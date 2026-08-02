@@ -1,0 +1,2856 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#070b10">
+
+<title>Mimo Brain V0.4</title>
+
+<style>
+
+:root{
+  --bg:#070b10;
+  --panel:#111923;
+  --panel2:#0d151f;
+  --line:#243142;
+  --text:#f4f7fb;
+  --muted:#8996a8;
+  --green:#4cdfa8;
+  --blue:#5c8cff;
+  --red:#ff747c;
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+
+button,input,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  max-width:500px;
+  margin:auto;
+  min-height:100vh;
+  padding:20px 16px 115px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+}
+
+.brand{
+  font-size:27px;
+  font-weight:900;
+}
+
+.version{
+  color:var(--muted);
+  border:1px solid var(--line);
+  padding:7px 11px;
+  border-radius:999px;
+  font-size:12px;
+}
+
+.card{
+  background:linear-gradient(145deg,#121b27,#0d151e);
+  border:1px solid var(--line);
+  border-radius:24px;
+  padding:18px;
+  margin-bottom:15px;
+}
+
+.row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.grow{
+  flex:1;
+}
+
+.robot-icon{
+  width:70px;
+  height:70px;
+  border-radius:22px;
+  background:#182536;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+}
+
+.title{
+  font-size:22px;
+  font-weight:900;
+}
+
+.sub{
+  color:var(--muted);
+  font-size:13px;
+  margin-top:5px;
+  line-height:1.5;
+}
+
+.online{
+  color:var(--green);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:18px;
+}
+
+.stat{
+  background:#0b131c;
+  border:1px solid #202c3b;
+  border-radius:18px;
+  padding:15px;
+}
+
+.stat-label{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.stat-value{
+  font-size:25px;
+  font-weight:900;
+  margin-top:6px;
+}
+
+.section-title{
+  font-size:20px;
+  font-weight:900;
+  margin:22px 2px 12px;
+}
+
+.btn{
+  width:100%;
+  border:0;
+  border-radius:17px;
+  padding:16px;
+  font-weight:850;
+  margin-top:10px;
+}
+
+.primary{
+  background:var(--green);
+  color:#06100c;
+}
+
+.secondary{
+  background:#172230;
+  color:white;
+  border:1px solid #2a394c;
+}
+
+.danger{
+  background:#32171b;
+  color:#ff9ca1;
+  border:1px solid #5a232a;
+}
+
+input,
+select{
+  width:100%;
+  background:#0b131c;
+  color:white;
+  border:1px solid #2a394c;
+  border-radius:15px;
+  padding:14px;
+  outline:none;
+  margin-top:8px;
+}
+
+.field{
+  display:block;
+  color:var(--muted);
+  font-size:12px;
+  margin-top:13px;
+}
+
+.pills{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:10px;
+}
+
+.pill{
+  border:1px solid #2a394c;
+  background:#101923;
+  color:#dbe4f0;
+  border-radius:999px;
+  padding:9px 12px;
+  font-size:12px;
+}
+
+.pill.active{
+  color:var(--green);
+  border-color:var(--green);
+  background:#10231d;
+}
+
+.photo-box{
+  margin-top:14px;
+  padding:17px;
+  border:1px dashed #34465d;
+  border-radius:20px;
+  background:#0b131c;
+  text-align:center;
+}
+
+.photo-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin-top:12px;
+}
+
+.photo{
+  position:relative;
+  aspect-ratio:1;
+  border-radius:14px;
+  overflow:hidden;
+  background:#15202c;
+}
+
+.photo img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.remove{
+  position:absolute;
+  right:5px;
+  top:5px;
+  width:27px;
+  height:27px;
+  border-radius:50%;
+  border:0;
+  background:rgba(0,0,0,.7);
+  color:white;
+  padding:0;
+}
+
+.item{
+  background:var(--panel2);
+  border:1px solid #223041;
+  border-radius:18px;
+  padding:13px;
+  margin-bottom:10px;
+}
+
+.item-top{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.thumb{
+  width:64px;
+  height:64px;
+  object-fit:cover;
+  border-radius:15px;
+  background:#172331;
+}
+
+.badge{
+  display:inline-block;
+  padding:5px 8px;
+  border-radius:999px;
+  font-size:11px;
+  margin-top:5px;
+  background:#17382d;
+  color:#5de4b0;
+}
+
+.badge.general{
+  background:#17263d;
+  color:#89b1ff;
+}
+
+.badge.owner{
+  background:#342a14;
+  color:#f1ce67;
+}
+
+.bar{
+  height:8px;
+  background:#243142;
+  border-radius:99px;
+  overflow:hidden;
+  margin-top:11px;
+}
+
+.fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--green),var(--blue));
+}
+
+.memory{
+  background:var(--panel2);
+  border:1px solid #223041;
+  border-radius:16px;
+  padding:13px;
+  margin-bottom:9px;
+}
+
+.time{
+  color:#718095;
+  font-size:11px;
+  margin-top:6px;
+}
+
+.quiz-image{
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  border-radius:20px;
+  background:#111923;
+  margin:14px 0;
+}
+
+.answer{
+  width:100%;
+  background:#172230;
+  color:white;
+  border:1px solid #2a394c;
+  padding:15px;
+  border-radius:15px;
+  margin-top:9px;
+  font-weight:800;
+}
+
+.notice{
+  padding:13px;
+  border-radius:15px;
+  background:#101c27;
+  border:1px solid #26384c;
+  color:#b9c8da;
+  font-size:13px;
+  line-height:1.5;
+}
+
+.empty{
+  text-align:center;
+  color:var(--muted);
+  padding:28px 10px;
+}
+
+.bottom{
+  position:fixed;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  width:min(100%,500px);
+
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+
+  background:rgba(7,11,16,.96);
+  backdrop-filter:blur(18px);
+
+  border-top:1px solid #202c39;
+
+  padding:
+  9px
+  4px
+  calc(9px + env(safe-area-inset-bottom));
+}
+
+.nav{
+  text-align:center;
+  color:#748296;
+  font-size:10px;
+}
+
+.nav-icon{
+  font-size:22px;
+  margin-bottom:3px;
+}
+
+.nav.active{
+  color:var(--green);
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<div class="top">
+
+<div class="brand">
+Mimo Brain
+</div>
+
+<div class="version">
+V0.4
+</div>
+
+</div>
+
+
+<!-- HOME -->
+
+<section id="homePage">
+
+<div class="card">
+
+<div class="row">
+
+<div class="robot-icon">
+🤖
+</div>
+
+<div class="grow">
+
+<div class="title" id="robotNameHome">
+Mimo
+</div>
+
+<div class="sub" id="robotIdHome">
+RB-000001
+</div>
+
+<div class="sub online">
+● Bộ nhớ đang hoạt động
+</div>
+
+</div>
+
+</div>
+
+
+<div class="grid">
+
+<div class="stat">
+
+<div class="stat-label">
+Kinh nghiệm
+</div>
+
+<div class="stat-value" id="xpHome">
+0 XP
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+Não chung
+</div>
+
+<div class="stat-value" id="generalHome">
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+Não cá nhân
+</div>
+
+<div class="stat-value" id="personalHome">
+0
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div class="stat-label">
+Ký ức
+</div>
+
+<div class="stat-value" id="memoryHome">
+0
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="card">
+
+<div class="row">
+
+<div style="font-size:38px">
+👑
+</div>
+
+<div class="grow">
+
+<div class="title" style="font-size:18px">
+Owner Identity
+</div>
+
+<div class="sub" id="ownerHome">
+Chưa thiết lập chủ nhân
+</div>
+
+</div>
+
+<div class="badge owner">
+OWNER
+</div>
+
+</div>
+
+<div class="sub" style="margin-top:14px">
+
+Face ID thật của iPhone chưa được Web App truy cập.
+
+V0.4 tạo hồ sơ danh tính để sau kết nối Face ID iOS
+và AI nhận diện khuôn mặt từ camera robot.
+
+</div>
+
+</div>
+
+
+<button class="btn primary"
+onclick="showPage('teach',1)">
+
+＋ Dạy kiến thức mới
+
+</button>
+
+
+<button class="btn secondary"
+onclick="startQuiz(2)">
+
+🎮 Kiểm tra nhận biết
+
+</button>
+
+
+<div class="section-title">
+Ký ức gần đây
+</div>
+
+<div id="recentMemories">
+</div>
+
+</section>
+
+
+
+<!-- TEACH -->
+
+<section id="teachPage" class="hidden">
+
+<div class="section-title">
+Dạy Mimo
+</div>
+
+
+<div class="card">
+
+<label class="field">
+Loại kiến thức
+</label>
+
+
+<div class="pills">
+
+<button
+id="personalPill"
+class="pill active"
+onclick="setTeachType('personal')">
+
+👤 Não cá nhân
+
+</button>
+
+
+<button
+id="generalPill"
+class="pill"
+onclick="setTeachType('general')">
+
+☁️ Não chung
+
+</button>
+
+</div>
+
+
+<label class="field">
+Tên đồ vật / kiến thức
+</label>
+
+
+<input
+id="teachName"
+placeholder="Ví dụ: Chai nước của tôi">
+
+
+<label class="field">
+Nguồn ảnh
+</label>
+
+
+<select id="teachSource">
+
+<option value="gallery">
+Ảnh có sẵn / ảnh AI
+</option>
+
+<option value="camera">
+Camera iPhone
+</option>
+
+<option value="ai">
+Ảnh AI tạo
+</option>
+
+<option value="dataset">
+Dataset
+</option>
+
+<option value="other">
+Nguồn khác
+</option>
+
+</select>
+
+
+<div class="photo-box">
+
+<div style="font-size:40px">
+🖼️
+</div>
+
+<div class="sub">
+
+Có thể chọn ảnh AI đã lưu,
+ảnh trong thư viện hoặc chụp ảnh thật.
+
+</div>
+
+
+<label
+for="photoInput"
+class="btn secondary"
+style="display:block">
+
+Chọn / chụp ảnh
+
+</label>
+
+
+<input
+id="photoInput"
+type="file"
+accept="image/*"
+multiple
+style="display:none">
+
+
+<div
+id="photoPreview"
+class="photo-grid">
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="saveKnowledge()">
+
+🧠 Ghi vào Brain
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- LEARN -->
+
+<section
+id="learnPage"
+class="hidden">
+
+<div class="section-title">
+🎮 Learn
+</div>
+
+
+<div id="quizBox" class="card">
+
+<div class="empty">
+
+Hãy dạy Mimo ít nhất 2 đồ vật có ảnh.
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- BRAIN -->
+
+<section
+id="brainPage"
+class="hidden">
+
+<div class="section-title">
+🧠 Brain
+</div>
+
+
+<div class="pills">
+
+<button
+id="brainAll"
+class="pill active"
+onclick="setBrainFilter('all')">
+
+Tất cả
+
+</button>
+
+
+<button
+id="brainGeneral"
+class="pill"
+onclick="setBrainFilter('general')">
+
+☁️ Não chung
+
+</button>
+
+
+<button
+id="brainPersonal"
+class="pill"
+onclick="setBrainFilter('personal')">
+
+👤 Não cá nhân
+
+</button>
+
+</div>
+
+
+<div
+id="brainList"
+style="margin-top:12px">
+
+</div>
+
+</section>
+
+
+
+<!-- SETTINGS -->
+
+<section
+id="settingsPage"
+class="hidden">
+
+<div class="section-title">
+⚙️ Robot & Owner
+</div>
+
+
+<div class="card">
+
+<label class="field">
+Tên robot
+</label>
+
+<input
+id="robotNameInput"
+placeholder="Mimo">
+
+
+<label class="field">
+Robot ID
+</label>
+
+<input
+id="robotIdInput"
+placeholder="RB-000001">
+
+
+<label class="field">
+Tên chủ nhân
+</label>
+
+<input
+id="ownerInput"
+placeholder="Tên chủ nhân">
+
+
+<button
+class="btn primary"
+onclick="saveProfile()">
+
+Lưu hồ sơ
+
+</button>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="title"
+style="font-size:18px">
+
+🔐 Nhận diện chủ nhân
+
+</div>
+
+
+<div class="notice"
+style="margin-top:12px">
+
+<b>Face ID iPhone</b>
+
+<br><br>
+
+Sau này dùng để xác thực người mở app.
+
+<br><br>
+
+<b>Camera robot</b>
+
+<br><br>
+
+Sẽ có AI riêng để nhận diện
+khuôn mặt và biết ai là chủ nhân.
+
+</div>
+
+</div>
+
+
+
+<div class="section-title">
+💾 Dữ liệu Brain
+</div>
+
+
+<div class="card">
+
+<button
+class="btn secondary"
+onclick="backupBrain()">
+
+⬇️ Backup Brain
+
+</button>
+
+
+<label
+for="restoreInput"
+class="btn secondary"
+style="display:block;text-align:center">
+
+⬆️ Restore Brain
+
+</label>
+
+
+<input
+id="restoreInput"
+type="file"
+accept=".json"
+style="display:none">
+
+
+<button
+class="btn danger"
+onclick="resetBrain()">
+
+Xóa toàn bộ Brain
+
+</button>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- BOTTOM MENU -->
+
+<div class="bottom">
+
+<div
+class="nav active"
+onclick="showPage('home',0)">
+
+<div class="nav-icon">
+⌂
+</div>
+
+Home
+
+</div>
+
+
+<div
+class="nav"
+onclick="showPage('teach',1)">
+
+<div class="nav-icon">
+＋
+</div>
+
+Teach
+
+</div>
+
+
+<div
+class="nav"
+onclick="startQuiz(2)">
+
+<div class="nav-icon">
+🎮
+</div>
+
+Learn
+
+</div>
+
+
+<div
+class="nav"
+onclick="showPage('brain',3)">
+
+<div class="nav-icon">
+🧠
+</div>
+
+Brain
+
+</div>
+
+
+<div
+class="nav"
+onclick="showPage('settings',4)">
+
+<div class="nav-icon">
+⚙️
+</div>
+
+Settings
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/* ======================
+   DATABASE
+====================== */
+
+const DB_NAME =
+"MimoBrainV04";
+
+const STORE_NAME =
+"brain";
+
+let database;
+
+
+let state = {
+
+version:"0.4",
+
+robot:{
+name:"Mimo",
+id:"RB-000001",
+xp:0
+},
+
+owner:{
+name:"",
+role:"owner"
+},
+
+knowledge:{},
+
+memories:[]
+
+};
+
+
+let pendingPhotos = [];
+
+let teachType =
+"personal";
+
+let brainFilter =
+"all";
+
+let quizTarget = null;
+
+
+
+function openDatabase(){
+
+return new Promise(
+
+(resolve,reject)=>{
+
+const request =
+indexedDB.open(
+DB_NAME,
+1
+);
+
+
+request.onupgradeneeded =
+function(event){
+
+const db =
+event.target.result;
+
+
+if(
+!db.objectStoreNames.contains(
+STORE_NAME
+)
+){
+
+db.createObjectStore(
+STORE_NAME
+);
+
+}
+
+};
+
+
+request.onsuccess =
+function(){
+
+database =
+request.result;
+
+resolve();
+
+};
+
+
+request.onerror =
+function(){
+
+reject(
+request.error
+);
+
+};
+
+});
+
+}
+
+
+
+function loadBrain(){
+
+return new Promise(
+
+(resolve)=>{
+
+const transaction =
+database.transaction(
+STORE_NAME,
+"readonly"
+);
+
+
+const store =
+transaction.objectStore(
+STORE_NAME
+);
+
+
+const request =
+store.get("state");
+
+
+request.onsuccess =
+function(){
+
+if(
+request.result
+){
+
+state =
+request.result;
+
+}
+
+resolve();
+
+};
+
+
+request.onerror =
+function(){
+
+resolve();
+
+};
+
+});
+
+}
+
+
+
+function saveBrain(){
+
+return new Promise(
+
+(resolve)=>{
+
+const transaction =
+database.transaction(
+STORE_NAME,
+"readwrite"
+);
+
+
+transaction
+.objectStore(
+STORE_NAME
+)
+.put(
+state,
+"state"
+);
+
+
+transaction.oncomplete =
+function(){
+
+resolve();
+
+};
+
+});
+
+}
+
+
+
+/* ======================
+   MEMORY
+====================== */
+
+
+function addMemory(text){
+
+state.memories.unshift({
+
+text:text,
+
+time:
+new Date()
+.toLocaleString(
+"vi-VN"
+)
+
+});
+
+
+if(
+state.memories.length > 300
+){
+
+state.memories.pop();
+
+}
+
+}
+
+
+
+/* ======================
+   PAGE
+====================== */
+
+
+function showPage(
+page,
+navIndex
+){
+
+[
+"home",
+"teach",
+"learn",
+"brain",
+"settings"
+
+].forEach(
+
+name=>{
+
+document
+.getElementById(
+name+"Page"
+)
+.classList.add(
+"hidden"
+);
+
+}
+
+);
+
+
+document
+.getElementById(
+page+"Page"
+)
+.classList.remove(
+"hidden"
+);
+
+
+const navs =
+document
+.querySelectorAll(
+".nav"
+);
+
+
+navs.forEach(
+
+n =>
+n.classList.remove(
+"active"
+)
+
+);
+
+
+if(
+navIndex !== undefined
+){
+
+navs[
+navIndex
+]
+.classList.add(
+"active"
+);
+
+}
+
+
+if(
+page === "home"
+){
+
+renderHome();
+
+}
+
+
+if(
+page === "brain"
+){
+
+renderBrain();
+
+}
+
+
+if(
+page === "settings"
+){
+
+renderSettings();
+
+}
+
+}
+
+
+
+/* ======================
+   HOME
+====================== */
+
+
+function renderHome(){
+
+document
+.getElementById(
+"robotNameHome"
+)
+.innerText =
+state.robot.name;
+
+
+document
+.getElementById(
+"robotIdHome"
+)
+.innerText =
+state.robot.id;
+
+
+document
+.getElementById(
+"xpHome"
+)
+.innerText =
+state.robot.xp +
+" XP";
+
+
+const objects =
+Object.values(
+state.knowledge
+);
+
+
+document
+.getElementById(
+"generalHome"
+)
+.innerText =
+objects.filter(
+
+o =>
+o.type ===
+"general"
+
+).length;
+
+
+document
+.getElementById(
+"personalHome"
+)
+.innerText =
+objects.filter(
+
+o =>
+o.type ===
+"personal"
+
+).length;
+
+
+document
+.getElementById(
+"memoryHome"
+)
+.innerText =
+state.memories.length;
+
+
+document
+.getElementById(
+"ownerHome"
+)
+.innerText =
+state.owner.name
+?
+state.owner.name
+:
+"Chưa thiết lập chủ nhân";
+
+
+const memoryBox =
+document
+.getElementById(
+"recentMemories"
+);
+
+
+if(
+state.memories.length === 0
+){
+
+memoryBox.innerHTML = `
+
+<div class="memory">
+
+Mimo chưa có ký ức học tập.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+memoryBox.innerHTML =
+state.memories
+.slice(
+0,
+6
+)
+.map(
+
+m => `
+
+<div class="memory">
+
+${m.text}
+
+<div class="time">
+
+${m.time}
+
+</div>
+
+</div>
+
+`
+
+)
+.join("");
+
+}
+
+
+
+/* ======================
+   TEACH TYPE
+====================== */
+
+
+function setTeachType(
+type
+){
+
+teachType =
+type;
+
+
+document
+.getElementById(
+"personalPill"
+)
+.classList.toggle(
+"active",
+type ===
+"personal"
+);
+
+
+document
+.getElementById(
+"generalPill"
+)
+.classList.toggle(
+"active",
+type ===
+"general"
+);
+
+}
+
+
+
+/* ======================
+   PHOTO
+====================== */
+
+
+document
+.getElementById(
+"photoInput"
+)
+.addEventListener(
+
+"change",
+
+async function(event){
+
+const files =
+Array.from(
+event.target.files
+);
+
+
+for(
+const file of files
+){
+
+if(
+pendingPhotos.length >= 12
+){
+
+break;
+
+}
+
+
+const image =
+await compressImage(
+file
+);
+
+
+pendingPhotos.push(
+image
+);
+
+}
+
+
+renderPhotos();
+
+
+event.target.value =
+"";
+
+}
+
+);
+
+
+
+function compressImage(
+file
+){
+
+return new Promise(
+
+(resolve)=>{
+
+const reader =
+new FileReader();
+
+
+reader.onload =
+function(event){
+
+const img =
+new Image();
+
+
+img.onload =
+function(){
+
+const max =
+720;
+
+
+let width =
+img.width;
+
+
+let height =
+img.height;
+
+
+const scale =
+Math.min(
+
+1,
+
+max /
+Math.max(
+width,
+height
+)
+
+);
+
+
+width =
+Math.round(
+width *
+scale
+);
+
+
+height =
+Math.round(
+height *
+scale
+);
+
+
+const canvas =
+document.createElement(
+"canvas"
+);
+
+
+canvas.width =
+width;
+
+
+canvas.height =
+height;
+
+
+const ctx =
+canvas.getContext(
+"2d"
+);
+
+
+ctx.drawImage(
+
+img,
+
+0,
+0,
+
+width,
+height
+
+);
+
+
+const data =
+canvas.toDataURL(
+
+"image/jpeg",
+
+0.68
+
+);
+
+
+resolve(
+data
+);
+
+};
+
+
+img.src =
+event.target.result;
+
+};
+
+
+reader.readAsDataURL(
+file
+);
+
+});
+
+}
+
+
+
+function renderPhotos(){
+
+const box =
+document
+.getElementById(
+"photoPreview"
+);
+
+
+box.innerHTML =
+pendingPhotos
+.map(
+
+(photo,index)=>`
+
+<div class="photo">
+
+<img src="${photo}">
+
+<button
+class="remove"
+onclick="removePhoto(${index})">
+
+×
+
+</button>
+
+</div>
+
+`
+
+)
+.join("");
+
+}
+
+
+
+function removePhoto(
+index
+){
+
+pendingPhotos.splice(
+index,
+1
+);
+
+
+renderPhotos();
+
+}
+
+
+
+/* ======================
+   SAVE KNOWLEDGE
+====================== */
+
+
+async function saveKnowledge(){
+
+const name =
+document
+.getElementById(
+"teachName"
+)
+.value
+.trim();
+
+
+if(
+!name
+){
+
+alert(
+"Hãy nhập tên kiến thức."
+);
+
+return;
+
+}
+
+
+if(
+pendingPhotos.length === 0
+){
+
+alert(
+"Hãy chọn ít nhất 1 ảnh."
+);
+
+return;
+
+}
+
+
+const source =
+document
+.getElementById(
+"teachSource"
+)
+.value;
+
+
+const id =
+
+"OBJ-" +
+
+Date.now() +
+
+"-" +
+
+Math.random()
+.toString(36)
+.slice(
+2,
+6
+);
+
+
+state.knowledge[
+id
+] = {
+
+id:id,
+
+name:name,
+
+type:teachType,
+
+source:source,
+
+images:[
+...pendingPhotos
+],
+
+confidence:10,
+
+correct:0,
+
+wrong:0,
+
+timesSeen:0,
+
+confusions:{},
+
+createdAt:
+new Date()
+.toISOString()
+
+};
+
+
+state.robot.xp +=
+5;
+
+
+addMemory(
+
+"Được dạy: " +
+name
+
+);
+
+
+await saveBrain();
+
+
+document
+.getElementById(
+"teachName"
+)
+.value =
+"";
+
+
+pendingPhotos =
+[];
+
+
+renderPhotos();
+
+
+alert(
+"Đã ghi kiến thức vào Brain."
+);
+
+
+showPage(
+"brain",
+3
+);
+
+}
+
+
+
+/* ======================
+   BRAIN
+====================== */
+
+
+function setBrainFilter(
+type
+){
+
+brainFilter =
+type;
+
+
+[
+"brainAll",
+"brainGeneral",
+"brainPersonal"
+
+].forEach(
+
+id =>
+
+document
+.getElementById(
+id
+)
+.classList.remove(
+"active"
+)
+
+);
+
+
+if(
+type ===
+"all"
+){
+
+document
+.getElementById(
+"brainAll"
+)
+.classList.add(
+"active"
+);
+
+}
+
+
+if(
+type ===
+"general"
+){
+
+document
+.getElementById(
+"brainGeneral"
+)
+.classList.add(
+"active"
+);
+
+}
+
+
+if(
+type ===
+"personal"
+){
+
+document
+.getElementById(
+"brainPersonal"
+)
+.classList.add(
+"active"
+);
+
+}
+
+
+renderBrain();
+
+}
+
+
+
+function renderBrain(){
+
+let objects =
+Object.values(
+state.knowledge
+);
+
+
+if(
+brainFilter !==
+"all"
+){
+
+objects =
+objects.filter(
+
+o =>
+o.type ===
+brainFilter
+
+);
+
+}
+
+
+const box =
+document
+.getElementById(
+"brainList"
+);
+
+
+if(
+objects.length ===
+0
+){
+
+box.innerHTML = `
+
+<div class="card empty">
+
+Brain chưa có kiến thức.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+box.innerHTML =
+objects
+.map(
+
+object=>{
+
+
+const image =
+
+object.images &&
+object.images.length
+
+?
+
+object.images[0]
+
+:
+
+"";
+
+
+const badge =
+
+object.type ===
+"general"
+
+?
+
+`
+<span class="badge general">
+NÃO CHUNG
+</span>
+`
+
+:
+
+`
+<span class="badge">
+NÃO CÁ NHÂN
+</span>
+`;
+
+
+return `
+
+<div class="item">
+
+<div class="item-top">
+
+<img
+class="thumb"
+src="${image}">
+
+
+<div class="grow">
+
+<div class="title"
+style="font-size:17px">
+
+${object.name}
+
+</div>
+
+
+${badge}
+
+
+<div class="sub">
+
+${object.images.length} ảnh
+
+• Đúng ${object.correct}
+
+• Sai ${object.wrong}
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="bar">
+
+<div
+class="fill"
+style="width:${object.confidence}%">
+
+</div>
+
+</div>
+
+
+<div class="sub">
+
+Độ tin cậy:
+${object.confidence}%
+
+</div>
+
+</div>
+
+`;
+
+}
+
+)
+.join("");
+
+}
+
+
+
+/* ======================
+   QUIZ
+====================== */
+
+
+function startQuiz(
+navIndex = 2
+){
+
+showPage(
+"learn",
+navIndex
+);
+
+
+const objects =
+Object.values(
+state.knowledge
+)
+.filter(
+
+o =>
+o.images &&
+o.images.length
+
+);
+
+
+if(
+objects.length <
+2
+){
+
+document
+.getElementById(
+"quizBox"
+)
+.innerHTML = `
+
+<div class="empty">
+
+Hãy dạy Mimo ít nhất
+2 đồ vật có ảnh.
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+nextQuestion();
+
+}
+
+
+
+function nextQuestion(){
+
+const objects =
+Object.values(
+state.knowledge
+)
+.filter(
+
+o =>
+o.images &&
+o.images.length
+
+);
+
+
+quizTarget =
+objects[
+
+Math.floor(
+Math.random() *
+objects.length
+)
+
+];
+
+
+const image =
+
+quizTarget.images[
+
+Math.floor(
+
+Math.random() *
+
+quizTarget.images.length
+
+)
+
+];
+
+
+let choices =
+[
+quizTarget
+];
+
+
+const others =
+objects
+
+.filter(
+
+o =>
+o.id !==
+quizTarget.id
+
+)
+
+.sort(
+
+() =>
+Math.random() -
+0.5
+
+);
+
+
+for(
+const object of others
+){
+
+if(
+choices.length >=
+4
+){
+
+break;
+
+}
+
+
+choices.push(
+object
+);
+
+}
+
+
+choices =
+choices.sort(
+
+() =>
+Math.random() -
+0.5
+
+);
+
+
+document
+.getElementById(
+"quizBox"
+)
+.innerHTML = `
+
+<div class="title"
+style="text-align:center">
+
+Mimo đang nhìn thấy gì?
+
+</div>
+
+
+<img
+class="quiz-image"
+src="${image}">
+
+
+${
+
+choices.map(
+
+object => `
+
+<button
+class="answer"
+onclick="checkAnswer('${object.id}')">
+
+${object.name}
+
+</button>
+
+`
+
+).join("")
+
+}
+
+
+<div
+id="quizMessage"
+class="sub"
+style="text-align:center;margin-top:14px">
+
+</div>
+
+`;
+
+}
+
+
+
+/* ======================
+   CHECK ANSWER
+====================== */
+
+
+async function checkAnswer(
+selectedId
+){
+
+const target =
+state.knowledge[
+quizTarget.id
+];
+
+
+target.timesSeen++;
+
+
+if(
+selectedId ===
+target.id
+){
+
+target.correct++;
+
+
+target.confidence =
+Math.min(
+
+100,
+
+target.confidence +
+10
+
+);
+
+
+state.robot.xp +=
+10;
+
+
+addMemory(
+
+"Nhận biết đúng: " +
+target.name
+
+);
+
+
+document
+.getElementById(
+"quizMessage"
+)
+.innerHTML =
+
+'<span class="online">✅ Chính xác</span>';
+
+}
+
+else{
+
+target.wrong++;
+
+
+target.confidence =
+Math.max(
+
+0,
+
+target.confidence -
+5
+
+);
+
+
+const selected =
+state.knowledge[
+selectedId
+];
+
+
+target.confusions[
+selectedId
+] =
+
+(
+target.confusions[
+selectedId
+]
+||
+0
+)
++
+1;
+
+
+addMemory(
+
+"Nhầm " +
+target.name +
+" với " +
+selected.name
+
+);
+
+
+document
+.getElementById(
+"quizMessage"
+)
+.innerHTML =
+
+'<span style="color:#ff747c">❌ Đây là ' +
+target.name +
+'</span>';
+
+}
+
+
+await saveBrain();
+
+
+setTimeout(
+
+nextQuestion,
+
+1200
+
+);
+
+}
+
+
+
+/* ======================
+   PROFILE
+====================== */
+
+
+function renderSettings(){
+
+document
+.getElementById(
+"robotNameInput"
+)
+.value =
+state.robot.name;
+
+
+document
+.getElementById(
+"robotIdInput"
+)
+.value =
+state.robot.id;
+
+
+document
+.getElementById(
+"ownerInput"
+)
+.value =
+state.owner.name;
+
+}
+
+
+
+async function saveProfile(){
+
+state.robot.name =
+
+document
+.getElementById(
+"robotNameInput"
+)
+.value
+.trim()
+||
+"Mimo";
+
+
+state.robot.id =
+
+document
+.getElementById(
+"robotIdInput"
+)
+.value
+.trim()
+||
+"RB-000001";
+
+
+state.owner.name =
+
+document
+.getElementById(
+"ownerInput"
+)
+.value
+.trim();
+
+
+addMemory(
+"Cập nhật hồ sơ Robot / Owner"
+);
+
+
+await saveBrain();
+
+
+alert(
+"Đã lưu hồ sơ."
+);
+
+}
+
+
+
+/* ======================
+   BACKUP
+====================== */
+
+
+function backupBrain(){
+
+const data =
+JSON.stringify(
+state,
+null,
+2
+);
+
+
+const blob =
+new Blob(
+[data],
+{
+type:
+"application/json"
+}
+);
+
+
+const url =
+URL.createObjectURL(
+blob
+);
+
+
+const link =
+document.createElement(
+"a"
+);
+
+
+link.href =
+url;
+
+
+link.download =
+
+"Mimo-Brain-" +
+
+new Date()
+.toISOString()
+.slice(
+0,
+10
+)
+
++
+
+".json";
+
+
+document.body
+.appendChild(
+link
+);
+
+
+link.click();
+
+
+link.remove();
+
+
+URL.revokeObjectURL(
+url
+);
+
+}
+
+
+
+/* ======================
+   RESTORE
+====================== */
+
+
+document
+.getElementById(
+"restoreInput"
+)
+.addEventListener(
+
+"change",
+
+async function(event){
+
+const file =
+event.target.files[0];
+
+
+if(
+!file
+){
+
+return;
+
+}
+
+
+try{
+
+const text =
+await file.text();
+
+
+const restored =
+JSON.parse(
+text
+);
+
+
+if(
+!restored.robot ||
+!restored.knowledge
+){
+
+throw new Error();
+
+}
+
+
+if(
+!confirm(
+"Khôi phục Brain này?"
+)
+){
+
+return;
+
+}
+
+
+state =
+restored;
+
+
+await saveBrain();
+
+
+alert(
+"Khôi phục thành công."
+);
+
+
+showPage(
+"home",
+0
+);
+
+}
+
+catch(error){
+
+alert(
+"File Brain không hợp lệ."
+);
+
+}
+
+
+event.target.value =
+"";
+
+}
+
+);
+
+
+
+/* ======================
+   RESET
+====================== */
+
+
+async function resetBrain(){
+
+if(
+!confirm(
+"Bạn chắc chắn muốn xóa toàn bộ Brain?"
+)
+){
+
+return;
+
+}
+
+
+if(
+!confirm(
+"Xác nhận lần cuối. Dữ liệu sẽ mất nếu chưa backup."
+)
+){
+
+return;
+
+}
+
+
+state = {
+
+version:"0.4",
+
+robot:{
+name:"Mimo",
+id:"RB-000001",
+xp:0
+},
+
+owner:{
+name:"",
+role:"owner"
+},
+
+knowledge:{},
+
+memories:[]
+
+};
+
+
+await saveBrain();
+
+
+alert(
+"Brain đã được reset."
+);
+
+
+showPage(
+"home",
+0
+);
+
+}
+
+
+
+/* ======================
+   START APP
+====================== */
+
+
+async function startApp(){
+
+try{
+
+await openDatabase();
+
+await loadBrain();
+
+renderHome();
+
+}
+
+catch(error){
+
+alert(
+"Không thể mở bộ nhớ Brain."
+);
+
+}
+
+}
+
+
+startApp();
+
+</script>
+
+</body>
+</html>
