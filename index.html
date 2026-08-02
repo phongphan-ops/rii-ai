@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070b10">
-<title>Rii AI V0.5.2</title>
-
+<title>Rii AI V0.5.3</title>
 <style>
 :root{
   --bg:#070b10;
@@ -17,212 +16,134 @@
   --green:#4cdfa8;
   --blue:#5c8cff;
   --red:#ff747c;
-  --yellow:#efc04e
+  --yellow:#efc04e;
 }
-
-*{
-  box-sizing:border-box;
-  -webkit-tap-highlight-color:transparent
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{
   margin:0;
   background:var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-
 button,input,select,textarea{font:inherit}
 button{cursor:pointer}
-
+img{display:block}
+.hidden{display:none!important}
 .app{
   max-width:500px;
   margin:auto;
   min-height:100vh;
-  padding:20px 16px 120px
+  padding:20px 16px 120px;
 }
-
-.hidden{display:none!important}
-
 .top{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:16px
+  margin-bottom:16px;
 }
-
-.brand{
-  font-size:27px;
-  font-weight:900
-}
-
+.brand{font-size:27px;font-weight:900}
 .version{
   font-size:12px;
   color:var(--muted);
   border:1px solid var(--line);
   padding:7px 11px;
-  border-radius:999px
+  border-radius:999px;
 }
-
 .card{
   background:linear-gradient(145deg,#121b27,#0d151f);
   border:1px solid var(--line);
   border-radius:24px;
   padding:18px;
-  margin-bottom:14px
+  margin-bottom:14px;
 }
-
-.row{
-  display:flex;
-  align-items:center;
-  gap:13px
-}
-
+.row{display:flex;align-items:center;gap:13px}
 .grow{flex:1}
-
-.title{
-  font-size:21px;
-  font-weight:900
-}
-
+.title{font-size:21px;font-weight:900}
 .sub,.helper{
   font-size:12px;
   color:var(--muted);
-  line-height:1.5;
-  margin-top:5px
+  line-height:1.55;
+  margin-top:5px;
 }
-
 .ok{color:var(--green)}
-.warnText{color:var(--yellow)}
 .bad{color:var(--red)}
-
+.warnText{color:var(--yellow)}
 .robotIcon{
-  width:68px;
-  height:68px;
-  border-radius:21px;
+  width:68px;height:68px;border-radius:21px;
   background:#182536;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:40px
+  display:flex;align-items:center;justify-content:center;
+  font-size:40px;
 }
-
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
-  margin-top:16px
+  margin-top:16px;
 }
-
 .stat{
   background:#0b131c;
   border:1px solid #202c3b;
   border-radius:18px;
-  padding:15px
+  padding:15px;
 }
-
-.stat .l{
-  font-size:12px;
-  color:var(--muted)
-}
-
-.stat .n{
-  font-size:24px;
-  font-weight:900;
-  margin-top:5px
-}
-
-.sectionTitle{
-  font-size:20px;
-  font-weight:900;
-  margin:21px 2px 12px
-}
-
+.stat .l{font-size:12px;color:var(--muted)}
+.stat .n{font-size:24px;font-weight:900;margin-top:5px}
+.sectionTitle{font-size:20px;font-weight:900;margin:21px 2px 12px}
 .btn{
   width:100%;
   border:0;
   border-radius:17px;
   padding:15px;
   font-weight:850;
-  margin-top:10px
+  margin-top:10px;
 }
-
-.primary{
-  background:var(--green);
-  color:#06100c
-}
-
-.secondary{
-  background:#172230;
-  color:white;
-  border:1px solid #2a394c
-}
-
-.warning{
-  background:#342d1a;
-  color:#ffd66b;
-  border:1px solid #5d4c19
-}
-
-.danger{
-  background:#32171b;
-  color:#ff9ca1;
-  border:1px solid #5a232a
-}
-
+.primary{background:var(--green);color:#06100c}
+.secondary{background:#172230;color:#fff;border:1px solid #2a394c}
+.warning{background:#342d1a;color:#ffd66b;border:1px solid #5d4c19}
+.danger{background:#32171b;color:#ff9ca1;border:1px solid #5a232a}
 .mini{
   width:auto;
   padding:9px 10px;
   border-radius:12px;
   margin:0;
-  font-size:12px
+  font-size:12px;
 }
-
 input,select,textarea{
   width:100%;
   background:#0b131c;
-  color:white;
+  color:#fff;
   border:1px solid #2a394c;
   border-radius:15px;
   padding:14px;
   outline:none;
-  margin-top:8px
+  margin-top:8px;
 }
-
-textarea{
-  min-height:80px;
-  resize:vertical
-}
-
+textarea{min-height:90px;resize:vertical}
 .field{
   display:block;
   color:var(--muted);
   font-size:12px;
-  margin-top:12px
+  margin-top:12px;
 }
-
 .pills{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
-  margin-top:9px
+  margin-top:9px;
 }
-
 .pill{
   border:1px solid #2a394c;
   background:#101923;
   color:#dbe4f0;
   border-radius:999px;
   padding:8px 11px;
-  font-size:12px
+  font-size:12px;
 }
-
 .pill.active{
   color:var(--green);
   border-color:var(--green);
-  background:#10231d
+  background:#10231d;
 }
-
 .notice{
   padding:13px;
   border-radius:15px;
@@ -230,40 +151,37 @@ textarea{
   border:1px solid #26384c;
   color:#b9c8da;
   font-size:12px;
-  line-height:1.55;
-  margin-top:10px
+  line-height:1.6;
+  margin-top:10px;
 }
-
 .photoBox{
   margin-top:13px;
   padding:15px;
   border:1px dashed #34465d;
   border-radius:19px;
   background:#0b131c;
-  text-align:center
+  text-align:center;
 }
-
 .photoGrid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:8px;
-  margin-top:11px
+  margin-top:11px;
 }
-
 .photo{
   position:relative;
   aspect-ratio:1;
   border-radius:14px;
   overflow:hidden;
-  background:#15202c
+  background:#15202c;
 }
-
-.photo img,.thumb,.quizImage{
+.photo img,
+.thumb,
+.quizImage{
   width:100%;
   height:100%;
-  object-fit:cover
+  object-fit:cover;
 }
-
 .remove{
   position:absolute;
   right:5px;
@@ -273,31 +191,23 @@ textarea{
   border-radius:50%;
   border:0;
   background:#000b;
-  color:white;
-  padding:0
+  color:#fff;
+  padding:0;
 }
-
 .item{
   background:var(--p2);
   border:1px solid #223041;
   border-radius:18px;
   padding:13px;
-  margin-bottom:10px
+  margin-bottom:10px;
 }
-
-.itemTop{
-  display:flex;
-  align-items:center;
-  gap:11px
-}
-
+.itemTop{display:flex;align-items:center;gap:11px}
 .thumb{
   width:64px;
   height:64px;
   border-radius:14px;
-  background:#172331
+  background:#172331;
 }
-
 .badge{
   display:inline-block;
   padding:4px 8px;
@@ -305,103 +215,76 @@ textarea{
   font-size:10px;
   margin:5px 4px 0 0;
   background:#17382d;
-  color:#5de4b0
+  color:#5de4b0;
 }
-
-.badge.general{
-  background:#17263d;
-  color:#89b1ff
-}
-
-.badge.ai{
-  background:#28193b;
-  color:#d4b0ff
-}
-
-.badge.owner{
-  background:#342a14;
-  color:#f1ce67
-}
-
+.badge.general{background:#17263d;color:#89b1ff}
+.badge.ai{background:#28193b;color:#d4b0ff}
+.badge.owner{background:#342a14;color:#f1ce67}
 .bar{
   height:7px;
   background:#243142;
   border-radius:99px;
   overflow:hidden;
-  margin-top:10px
+  margin-top:10px;
 }
-
 .fill{
   height:100%;
-  background:linear-gradient(90deg,var(--green),var(--blue))
+  background:linear-gradient(90deg,var(--green),var(--blue));
 }
-
 .actions{
   display:flex;
   gap:7px;
   flex-wrap:wrap;
-  margin-top:11px
+  margin-top:11px;
 }
-
 .actions button{
   flex:1;
-  min-width:95px
+  min-width:95px;
 }
-
 .memory{
   background:var(--p2);
   border:1px solid #223041;
   border-radius:16px;
   padding:12px;
-  margin-bottom:8px
+  margin-bottom:8px;
 }
-
 .time{
   font-size:11px;
   color:#718095;
-  margin-top:5px
+  margin-top:5px;
 }
-
 .quizImage{
   aspect-ratio:1;
   border-radius:20px;
   background:#111923;
-  margin:13px 0
+  margin:13px 0;
 }
-
 .answer{
   width:100%;
   background:#172230;
-  color:white;
+  color:#fff;
   border:1px solid #2a394c;
   padding:14px;
   border-radius:15px;
   margin-top:9px;
-  font-weight:800
+  font-weight:800;
 }
-
 .empty{
   text-align:center;
   color:var(--muted);
-  padding:27px 9px
+  padding:27px 9px;
 }
-
 .loader{
-  width:20px;
-  height:20px;
+  width:20px;height:20px;
   border:3px solid #ffffff35;
   border-top-color:#fff;
   border-radius:50%;
   animation:spin 1s linear infinite;
   display:inline-block;
   vertical-align:middle;
-  margin-right:7px
+  margin-right:7px;
 }
-
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
-
+@keyframes spin{to{transform:rotate(360deg)}}
 .bottom{
   position:fixed;
   left:50%;
@@ -413,3836 +296,1558 @@ textarea{
   background:#070b10f5;
   backdrop-filter:blur(18px);
   border-top:1px solid #202c39;
-  padding:9px 3px calc(9px + env(safe-area-inset-bottom))
+  padding:9px 3px calc(9px + env(safe-area-inset-bottom));
 }
-
-.nav{
-  text-align:center;
-  color:#748296;
-  font-size:9.5px
-}
-
-.nav .i{
-  font-size:21px;
-  margin-bottom:3px
-}
-
-.nav.active{
-  color:var(--green)
-}
+.nav{text-align:center;color:#748296;font-size:9.5px}
+.nav .i{font-size:21px;margin-bottom:3px}
+.nav.active{color:var(--green)}
+.smallBtnRow{display:flex;gap:8px;margin-top:10px}
+.smallBtnRow .btn{margin-top:0}
 </style>
 </head>
-
 <body>
 
 <div class="app">
 
-<div class="top">
-  <div class="brand">Rii AI</div>
-  <div class="version">V0.5.2</div>
-</div>
-
-<section id="homePage">
-
-<div class="card">
-  <div class="row">
-
-    <div class="robotIcon">🤖</div>
-
-    <div class="grow">
-      <div class="title" id="robotNameHome">Rii</div>
-      <div class="sub" id="robotIdHome">RII000001</div>
-      <div class="sub ok">● Bộ nhớ đang hoạt động</div>
-    </div>
-
+  <div class="top">
+    <div class="brand">Rii AI</div>
+    <div class="version">V0.5.3</div>
   </div>
 
-  <div class="grid">
+  <section id="homePage">
+    <div class="card">
+      <div class="row">
+        <div class="robotIcon">🤖</div>
+        <div class="grow">
+          <div class="title" id="robotNameHome">Rii</div>
+          <div class="sub" id="robotIdHome">RII000001</div>
+          <div class="sub ok">● Bộ nhớ đang hoạt động</div>
+        </div>
+      </div>
 
-    <div class="stat">
-      <div class="l">Kinh nghiệm</div>
-      <div class="n" id="xpHome">0 XP</div>
-    </div>
-
-    <div class="stat">
-      <div class="l">Não chung</div>
-      <div class="n" id="generalHome">0</div>
-    </div>
-
-    <div class="stat">
-      <div class="l">Não cá nhân</div>
-      <div class="n" id="personalHome">0</div>
-    </div>
-
-    <div class="stat">
-      <div class="l">Tổng ảnh</div>
-      <div class="n" id="imageCountHome">0</div>
-    </div>
-
-  </div>
-</div>
-
-<div class="card">
-
-  <div class="row">
-
-    <div style="font-size:34px">🪪</div>
-
-    <div class="grow">
-      <div class="title" style="font-size:18px">Danh tính máy chủ</div>
-
-      <div class="sub">
-        <b id="serialHome">RII000001</b>
-        •
-        <span id="roleHome">MASTER</span>
+      <div class="grid">
+        <div class="stat">
+          <div class="l">Kinh nghiệm</div>
+          <div class="n" id="xpHome">0 XP</div>
+        </div>
+        <div class="stat">
+          <div class="l">Não chung</div>
+          <div class="n" id="generalHome">0</div>
+        </div>
+        <div class="stat">
+          <div class="l">Não cá nhân</div>
+          <div class="n" id="personalHome">0</div>
+        </div>
+        <div class="stat">
+          <div class="l">Tổng ảnh</div>
+          <div class="n" id="imageCountHome">0</div>
+        </div>
       </div>
     </div>
 
-    <span class="badge general">FOUNDATION</span>
+    <div class="card">
+      <div class="row">
+        <div style="font-size:34px">🪪</div>
+        <div class="grow">
+          <div class="title" style="font-size:18px">Danh tính máy chủ</div>
+          <div class="sub">
+            <b id="serialHome">RII000001</b>
+            •
+            <span id="roleHome">MASTER</span>
+          </div>
+        </div>
+        <span class="badge general">FOUNDATION</span>
+      </div>
 
-  </div>
-
-  <div class="sub" style="margin-top:10px">
-    RII000001 được dành riêng cho máy chủ gốc.
-    Thiết bị/tài khoản sau dùng serial dạng
-    <b>2 chữ cái + 8 số</b>,
-    ví dụ AB58320471.
-  </div>
-
-</div>
-
-<div class="card">
-
-  <div class="row">
-
-    <div style="font-size:35px">👑</div>
-
-    <div class="grow">
-      <div class="title" style="font-size:18px">Owner Identity</div>
-      <div class="sub" id="ownerHome">Chưa thiết lập chủ nhân</div>
+      <div class="sub" style="margin-top:10px">
+        RII000001 được dành riêng cho máy chủ gốc.
+        Thiết bị / tài khoản sau dùng serial dạng
+        <b>2 chữ cái + 8 số</b>, ví dụ <b>AB58320471</b>.
+      </div>
     </div>
 
-    <span class="badge owner">OWNER</span>
-
-  </div>
-
-  <div class="sub">
-    Dữ liệu hiện lưu lâu dài trong Safari/iPhone này.
-    Đồng bộ thật theo tài khoản giữa nhiều thiết bị
-    sẽ cần backend cloud ở giai đoạn sau.
-  </div>
-
-</div>
-
-<button
-class="btn primary"
-onclick="showPage('teach',1)"
->
-＋ Dạy / bổ sung kiến thức
-</button>
-
-<button
-class="btn secondary"
-onclick="startQuiz(2)"
->
-🎮 Kiểm tra nhận biết
-</button>
-
-<button
-class="btn warning"
-onclick="showPage('vision',3)"
->
-✨ Vision
-</button>
-
-<div class="sectionTitle">
-Ký ức gần đây
-</div>
-
-<div id="recentMemories"></div>
-
-</section>
-
-<section id="teachPage" class="hidden">
-
-<div class="sectionTitle">
-Dạy Rii
-</div>
-
-<div
-id="editNotice"
-class="notice hidden"
-></div>
-
-<div class="card">
-
-<label class="field">
-Loại kiến thức
-</label>
-
-<div class="pills">
-
-<button
-id="personalPill"
-class="pill active"
-onclick="setTeachType('personal')"
->
-👤 Não cá nhân
-</button>
-
-<button
-id="generalPill"
-class="pill"
-onclick="setTeachType('general')"
->
-☁️ Não chung
-</button>
-
-</div>
-
-<label class="field">
-Tên đồ vật / kiến thức
-</label>
-
-<input
-id="teachName"
-placeholder="Ví dụ: bình sữa em bé"
->
-
-<label class="field">
-Nguồn dữ liệu
-</label>
-
-<select id="teachSource">
-  <option value="gallery">Ảnh có sẵn</option>
-  <option value="camera">Camera iPhone</option>
-  <option value="ai_generated">AI tạo ảnh</option>
-  <option value="dataset">Dataset</option>
-  <option value="other">Nguồn khác</option>
-</select>
-
-<label class="field">
-Số ảnh muốn tạo
-</label>
-
-<select id="aiCount">
-  <option>1</option>
-  <option>2</option>
-  <option selected>3</option>
-  <option>4</option>
-  <option>5</option>
-  <option>6</option>
-</select>
-
-<label class="field">
-Mô tả thêm cho AI
-</label>
-
-<textarea
-id="aiExtraPrompt"
-placeholder="Ví dụ: màu xanh, chính diện, nền xám sáng..."
-></textarea>
-
-<button
-id="generateBtn"
-class="btn warning"
-onclick="generateAiImages()"
->
-✨ Tạo ảnh AI
-</button>
-
-<div class="helper">
-Không có API: app tạo ảnh demo ngay.
-Có API nhưng lỗi hoặc quá 10 giây:
-tự chuyển sang demo.
-</div>
-
-<div class="photoBox">
-
-<div style="font-size:37px">
-🖼️
-</div>
-
-<div class="sub">
-
-<span id="draftStatus">
-Bản nháp tự lưu.
-</span>
-
-Ảnh cũ trong Brain không bị xóa
-khi bạn tạo thêm ảnh mới.
-
-</div>
-
-<label
-for="photoInput"
-class="btn secondary"
-style="display:block"
->
-Chọn / chụp ảnh
-</label>
-
-<input
-id="photoInput"
-type="file"
-accept="image/*"
-multiple
-style="display:none"
->
-
-<div
-id="photoPreview"
-class="photoGrid"
-></div>
-
-</div>
-
-<button
-class="btn primary"
-onclick="saveKnowledge()"
->
-🧠 Ghi / bổ sung vào Brain
-</button>
-
-<button
-id="cancelEditBtn"
-class="btn secondary hidden"
-onclick="cancelContinue()"
->
-Hủy bổ sung
-</button>
-
-</div>
-
-</section>
-
-<section
-id="learnPage"
-class="hidden"
->
-
-<div class="sectionTitle">
-🎮 Learn
-</div>
-
-<div
-id="quizBox"
-class="card"
->
-
-<div class="empty">
-Hãy có ít nhất 2 kiến thức có ảnh.
-</div>
-
-</div>
-
-</section>
-
-<section
-id="visionPage"
-class="hidden"
->
-
-<div class="sectionTitle">
-✨ Vision
-</div>
-
-<div class="card">
-
-<label
-for="visionInput"
-class="btn secondary"
-style="display:block;text-align:center"
->
-Chọn ảnh mới để phân tích
-</label>
-
-<input
-id="visionInput"
-type="file"
-accept="image/*"
-style="display:none"
->
-
-<div
-id="visionPreviewBox"
-class="hidden"
->
-
-<img
-id="visionPreview"
-class="quizImage"
->
-
-</div>
-
-<button
-class="btn warning"
-onclick="runVisionGuess()"
->
-🔍 Dự đoán từ Brain
-</button>
-
-<div
-id="visionResult"
-class="helper"
-></div>
-
-</div>
-
-<div class="notice">
-V0.5.2 chưa có model Vision thật.
-Khi chưa có backend AI,
-kết quả chỉ là mô phỏng.
-</div>
-
-</section>
-
-<section
-id="brainPage"
-class="hidden"
->
-
-<div class="sectionTitle">
-🧠 Brain
-</div>
-
-<div class="pills">
-
-<button
-id="brainAll"
-class="pill active"
-onclick="setBrainFilter('all')"
->
-Tất cả
-</button>
-
-<button
-id="brainGeneral"
-class="pill"
-onclick="setBrainFilter('general')"
->
-☁️ Não chung
-</button>
-
-<button
-id="brainPersonal"
-class="pill"
-onclick="setBrainFilter('personal')"
->
-👤 Não cá nhân
-</button>
-
-</div>
-
-<div
-id="brainList"
-style="margin-top:12px"
-></div>
-
-</section>
-
-<section
-id="settingsPage"
-class="hidden"
->
-
-<div class="sectionTitle">
-⚙️ Robot & Owner
-</div>
-
-<div class="card">
-
-<label class="field">
-Tên máy chủ
-</label>
-
-<input
-id="robotNameInput"
-value="Rii"
-readonly
->
-
-<label class="field">
-Serial máy chủ
-</label>
-
-<input
-id="robotIdInput"
-value="RII000001"
-readonly
->
-
-<label class="field">
-Tên chủ nhân
-</label>
-
-<input id="ownerInput">
-
-<button
-class="btn primary"
-onclick="saveProfile()"
->
-Lưu hồ sơ
-</button>
-
-</div>
-
-<div class="card">
-
-<div
-class="title"
-style="font-size:18px"
->
-🪪 Serial System
-</div>
-
-<div class="notice">
-
-<b>Máy chủ gốc:</b>
-RII000001
-
-<br>
-
-<b>Thiết bị/tài khoản khác:</b>
-2 chữ cái + 8 chữ số.
-
-<br>
-
-Serial đã cấp không tái sử dụng.
-Bản web hiện kiểm tra trùng
-trong bộ nhớ cục bộ.
-Sau này backend sẽ kiểm tra toàn hệ thống.
-
-</div>
-
-<label class="field">
-Serial máy hiện tại
-</label>
-
-<input
-id="serialInput"
-value="RII000001"
-readonly
->
-
-<label class="field">
-Device UUID nội bộ
-</label>
-
-<input
-id="deviceUuidInput"
-readonly
->
-
-<button
-class="btn secondary"
-onclick="generateNextSerial()"
->
-Tạo serial thử nghiệm cho thiết bị mới
-</button>
-
-<div
-id="generatedSerial"
-class="helper"
-></div>
-
-</div>
-
-<div class="card">
-
-<div
-class="title"
-style="font-size:18px"
->
-🔗 AI Backend
-</div>
-
-<label class="field">
-AI API URL
-</label>
-
-<input
-id="apiUrlInput"
-placeholder="https://your-domain.com/generate-object-images"
->
-
-<button
-class="btn secondary"
-onclick="saveApiConfig()"
->
-Lưu cấu hình API
-</button>
-
-<div
-id="apiStatus"
-class="helper"
-></div>
-
-</div>
-
-<div class="card">
-
-<div
-class="title"
-style="font-size:18px"
->
-💾 Bộ nhớ
-</div>
-
-<div
-id="storageStatus"
-class="notice"
->
-Đang kiểm tra dung lượng...
-</div>
-
-<button
-class="btn secondary"
-onclick="backupBrain()"
->
-⬇️ Backup Brain
-</button>
-
-<label
-for="restoreInput"
-class="btn secondary"
-style="display:block;text-align:center"
->
-⬆️ Restore Brain
-</label>
-
-<input
-id="restoreInput"
-type="file"
-accept=".json,application/json"
-style="display:none"
->
-
-<button
-class="btn danger"
-onclick="resetBrain()"
->
-Xóa toàn bộ Brain
-</button>
-
-</div>
-
-</section>
+    <div class="card">
+      <div class="row">
+        <div style="font-size:35px">👑</div>
+        <div class="grow">
+          <div class="title" style="font-size:18px">Owner Identity</div>
+          <div class="sub" id="ownerHome">Chưa thiết lập chủ nhân</div>
+        </div>
+        <span class="badge owner">OWNER</span>
+      </div>
+
+      <div class="sub">
+        Dữ liệu đang lưu trong Safari / iPhone này.
+        Nếu sau này cần đồng bộ nhiều thiết bị thật, sẽ nối backend cloud riêng.
+      </div>
+    </div>
+
+    <button class="btn primary" onclick="showPage('teach',1)">
+      ＋ Dạy / bổ sung kiến thức
+    </button>
+
+    <button class="btn secondary" onclick="startQuiz(2)">
+      🎮 Kiểm tra nhận biết
+    </button>
+
+    <button class="btn warning" onclick="showPage('vision',3)">
+      ✨ Vision
+    </button>
+
+    <div class="sectionTitle">Ký ức gần đây</div>
+    <div id="recentMemories"></div>
+  </section>
+
+  <section id="teachPage" class="hidden">
+    <div class="sectionTitle">Dạy Rii</div>
+
+    <div id="editNotice" class="notice hidden"></div>
+
+    <div class="card">
+
+      <label class="field">Loại kiến thức</label>
+
+      <div class="pills">
+        <button id="personalPill" class="pill active" onclick="setTeachType('personal')">
+          👤 Não cá nhân
+        </button>
+        <button id="generalPill" class="pill" onclick="setTeachType('general')">
+          ☁️ Não chung
+        </button>
+      </div>
+
+      <label class="field">Tên đồ vật / kiến thức</label>
+      <input id="teachName" placeholder="Ví dụ: cái ly">
+
+      <label class="field">Nguồn dữ liệu</label>
+      <select id="teachSource">
+        <option value="gallery">Ảnh có sẵn</option>
+        <option value="camera">Camera iPhone</option>
+        <option value="ai_generated">AI tạo ảnh</option>
+        <option value="dataset">Dataset</option>
+        <option value="other">Nguồn khác</option>
+      </select>
+
+      <label class="field">Số ảnh muốn tạo</label>
+      <select id="aiCount">
+        <option>1</option>
+        <option>2</option>
+        <option selected>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+      </select>
+
+      <label class="field">Mô tả thêm cho AI</label>
+      <textarea id="aiExtraPrompt" placeholder="Ví dụ: ly thủy tinh trong suốt, chính diện, nền trắng..."></textarea>
+
+      <button id="generateBtn" class="btn warning" onclick="generateAiImages()">
+        ✨ Tạo ảnh AI
+      </button>
+
+      <div class="helper">
+        Nếu chưa cấu hình backend hoặc backend lỗi / timeout,
+        hệ thống sẽ tự rơi về ảnh demo để app không bị đứng.
+      </div>
+
+      <div class="photoBox">
+        <div style="font-size:37px">🖼️</div>
+
+        <div class="sub">
+          <span id="draftStatus">Bản nháp tự lưu.</span>
+          Ảnh cũ trong Brain không bị xóa khi bạn tạo thêm ảnh mới.
+        </div>
+
+        <label for="photoInput" class="btn secondary" style="display:block">
+          Chọn / chụp ảnh
+        </label>
+
+        <input id="photoInput" type="file" accept="image/*" multiple style="display:none">
+
+        <div id="photoPreview" class="photoGrid"></div>
+      </div>
+
+      <button class="btn primary" onclick="saveKnowledge()">
+        🧠 Ghi / bổ sung vào Brain
+      </button>
+
+      <button id="cancelEditBtn" class="btn secondary hidden" onclick="cancelContinue()">
+        Hủy bổ sung
+      </button>
+    </div>
+  </section>
+
+  <section id="learnPage" class="hidden">
+    <div class="sectionTitle">🎮 Learn</div>
+    <div id="quizBox" class="card">
+      <div class="empty">Hãy có ít nhất 2 kiến thức có ảnh.</div>
+    </div>
+  </section>
+
+  <section id="visionPage" class="hidden">
+    <div class="sectionTitle">✨ Vision</div>
+
+    <div class="card">
+      <label for="visionInput" class="btn secondary" style="display:block;text-align:center">
+        Chọn ảnh mới để phân tích
+      </label>
+      <input id="visionInput" type="file" accept="image/*" style="display:none">
+
+      <div id="visionPreviewBox" class="hidden">
+        <img id="visionPreview" class="quizImage" alt="">
+      </div>
+
+      <button class="btn warning" onclick="runVisionGuess()">
+        🔍 Dự đoán từ Brain
+      </button>
+
+      <div id="visionResult" class="helper"></div>
+    </div>
+
+    <div class="notice">
+      V0.5.3 vẫn chưa có model Vision thật.
+      Phần này hiện là mô phỏng để test luồng sử dụng.
+    </div>
+  </section>
+
+  <section id="brainPage" class="hidden">
+    <div class="sectionTitle">🧠 Brain</div>
+
+    <div class="pills">
+      <button id="brainAll" class="pill active" onclick="setBrainFilter('all')">Tất cả</button>
+      <button id="brainGeneral" class="pill" onclick="setBrainFilter('general')">☁️ Não chung</button>
+      <button id="brainPersonal" class="pill" onclick="setBrainFilter('personal')">👤 Não cá nhân</button>
+    </div>
+
+    <div id="brainList" style="margin-top:12px"></div>
+  </section>
+
+  <section id="settingsPage" class="hidden">
+    <div class="sectionTitle">⚙️ Robot & Owner</div>
+
+    <div class="card">
+      <label class="field">Tên máy chủ</label>
+      <input id="robotNameInput" value="Rii" readonly>
+
+      <label class="field">Serial máy chủ</label>
+      <input id="robotIdInput" value="RII000001" readonly>
+
+      <label class="field">Tên chủ nhân</label>
+      <input id="ownerInput">
+
+      <button class="btn primary" onclick="saveProfile()">Lưu hồ sơ</button>
+    </div>
+
+    <div class="card">
+      <div class="title" style="font-size:18px">🪪 Serial System</div>
+
+      <div class="notice">
+        <b>Máy chủ gốc:</b> RII000001
+        <br><br>
+        <b>Thiết bị / tài khoản khác:</b> 2 chữ cái + 8 chữ số.
+        <br><br>
+        Serial đã cấp sẽ không tái sử dụng.
+        Bản web hiện chỉ kiểm tra trong bộ nhớ cục bộ của thiết bị này.
+      </div>
+
+      <label class="field">Serial máy hiện tại</label>
+      <input id="serialInput" value="RII000001" readonly>
+
+      <label class="field">Device UUID nội bộ</label>
+      <input id="deviceUuidInput" readonly>
+
+      <button class="btn secondary" onclick="generateNextSerial()">
+        Tạo serial thử nghiệm cho thiết bị mới
+      </button>
+
+      <div id="generatedSerial" class="helper"></div>
+    </div>
+
+    <div class="card">
+      <div class="title" style="font-size:18px">🔗 AI Backend</div>
+
+      <label class="field">AI API URL (chỉ dán URL gốc worker)</label>
+      <input id="apiUrlInput" placeholder="https://rii-backend.xxx.workers.dev">
+
+      <div class="helper">
+        App sẽ tự gọi endpoint:
+        <b>/generate-object-images</b>
+      </div>
+
+      <div class="smallBtnRow">
+        <button class="btn secondary" onclick="testApiConnection()">Kiểm tra kết nối</button>
+        <button class="btn primary" onclick="saveApiConfig()">Lưu cấu hình API</button>
+      </div>
+
+      <div id="apiStatus" class="notice">
+        Chưa có backend AI — hiện dùng ảnh demo.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="title" style="font-size:18px">💾 Bộ nhớ</div>
+
+      <div id="storageStatus" class="notice">
+        Đang kiểm tra dung lượng...
+      </div>
+
+      <button class="btn secondary" onclick="backupBrain()">⬇️ Backup Brain</button>
+
+      <label for="restoreInput" class="btn secondary" style="display:block;text-align:center">
+        ⬆️ Restore Brain
+      </label>
+      <input id="restoreInput" type="file" accept=".json,application/json" style="display:none">
+
+      <button class="btn danger" onclick="resetBrain()">Xóa toàn bộ Brain</button>
+    </div>
+  </section>
 
 </div>
 
 <div class="bottom">
-
-<div
-class="nav active"
-onclick="showPage('home',0)"
->
-<div class="i">⌂</div>
-Home
-</div>
-
-<div
-class="nav"
-onclick="showPage('teach',1)"
->
-<div class="i">＋</div>
-Teach
-</div>
-
-<div
-class="nav"
-onclick="startQuiz(2)"
->
-<div class="i">🎮</div>
-Learn
-</div>
-
-<div
-class="nav"
-onclick="showPage('vision',3)"
->
-<div class="i">✨</div>
-Vision
-</div>
-
-<div
-class="nav"
-onclick="showPage('brain',4)"
->
-<div class="i">🧠</div>
-Brain
-</div>
-
-<div
-class="nav"
-onclick="showPage('settings',5)"
->
-<div class="i">⚙️</div>
-Settings
-</div>
-
+  <div class="nav active" onclick="showPage('home',0)">
+    <div class="i">⌂</div>
+    Home
+  </div>
+  <div class="nav" onclick="showPage('teach',1)">
+    <div class="i">＋</div>
+    Teach
+  </div>
+  <div class="nav" onclick="startQuiz(2)">
+    <div class="i">🎮</div>
+    Learn
+  </div>
+  <div class="nav" onclick="showPage('vision',3)">
+    <div class="i">✨</div>
+    Vision
+  </div>
+  <div class="nav" onclick="showPage('brain',4)">
+    <div class="i">🧠</div>
+    Brain
+  </div>
+  <div class="nav" onclick="showPage('settings',5)">
+    <div class="i">⚙️</div>
+    Settings
+  </div>
 </div>
 
 <script>
+const DB_NAME = "RiiBrainV053";
+const STORE_NAME = "brainStore";
+const APP_VERSION = "0.5.3";
+const FIXED_ROBOT_NAME = "Rii";
+const FIXED_ROBOT_ID = "RII000001";
+const GENERATE_ENDPOINT = "/generate-object-images";
 
-const DB_NAME="MimoBrainV05";
-const STORE_NAME="brainStore";
+let database = null;
+let AI_API_URL = "";
+let pendingPhotos = [];
+let teachType = "personal";
+let brainFilter = "all";
+let quizTarget = null;
+let visionImage = "";
+let editingKnowledgeId = null;
 
-let database=null;
-let AI_API_URL="";
-let pendingPhotos=[];
-let teachType="personal";
-let brainFilter="all";
-let quizTarget=null;
-let visionImage="";
-let editingKnowledgeId=null;
-
-const DEFAULT_STATE={
-
-version:"0.5.2",
-
-robot:{
-  name:"Rii",
-  id:"RII000001",
-  serial:"RII000001",
-  role:"master",
-  deviceUuid:"",
-  xp:0
-},
-
-owner:{
-  name:"",
-  role:"owner"
-},
-
-config:{
-  aiApiUrl:""
-},
-
-serialRegistry:[
-  "RII000001"
-],
-
-draft:{
-  name:"",
-  type:"personal",
-  source:"gallery",
-  extraPrompt:"",
-  photos:[],
-  editingKnowledgeId:null
-},
-
-knowledge:{},
-
-memories:[]
-
+const DEFAULT_STATE = {
+  version: APP_VERSION,
+  robot: {
+    name: FIXED_ROBOT_NAME,
+    id: FIXED_ROBOT_ID,
+    serial: FIXED_ROBOT_ID,
+    role: "master",
+    deviceUuid: "",
+    xp: 0
+  },
+  owner: {
+    name: "",
+    role: "owner"
+  },
+  config: {
+    aiApiUrl: "",
+    lastApiCheck: ""
+  },
+  serialRegistry: [
+    FIXED_ROBOT_ID
+  ],
+  draft: {
+    name: "",
+    type: "personal",
+    source: "gallery",
+    extraPrompt: "",
+    photos: [],
+    editingKnowledgeId: null
+  },
+  knowledge: {},
+  memories: []
 };
 
-function freshState(){
-
-return JSON.parse(
-  JSON.stringify(
-    DEFAULT_STATE
-  )
-);
-
+function freshState() {
+  return JSON.parse(JSON.stringify(DEFAULT_STATE));
 }
 
-let state=freshState();
+let state = freshState();
 
-function createDeviceUUID(){
+function openDatabase() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(DB_NAME, 1);
 
-if(
-  window.crypto &&
-  typeof window.crypto.randomUUID==="function"
-){
+    request.onupgradeneeded = event => {
+      const db = event.target.result;
+      if (!db.objectStoreNames.contains(STORE_NAME)) {
+        db.createObjectStore(STORE_NAME);
+      }
+    };
 
-  return window.crypto.randomUUID();
+    request.onsuccess = () => {
+      database = request.result;
+      resolve();
+    };
 
+    request.onerror = () => reject(request.error);
+  });
 }
 
-return (
-  "dev-" +
-  Date.now() +
-  "-" +
-  Math.random()
-  .toString(36)
-  .slice(2)
-);
+function dbGet() {
+  return new Promise(resolve => {
+    const request = database
+      .transaction(STORE_NAME, "readonly")
+      .objectStore(STORE_NAME)
+      .get("state");
 
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => resolve(null);
+  });
 }
 
-function openDatabase(){
+function saveBrain() {
+  state.version = APP_VERSION;
 
-return new Promise(
-(resolve,reject)=>{
-
-const request=
-indexedDB.open(
-  DB_NAME,
-  1
-);
-
-request.onupgradeneeded=
-event=>{
-
-const db=
-event.target.result;
-
-if(
-  !db.objectStoreNames.contains(
-    STORE_NAME
-  )
-){
-
-db.createObjectStore(
-  STORE_NAME
-);
-
+  return new Promise((resolve, reject) => {
+    const tx = database.transaction(STORE_NAME, "readwrite");
+    tx.objectStore(STORE_NAME).put(state, "state");
+    tx.oncomplete = () => resolve();
+    tx.onerror = () => reject(tx.error);
+  });
 }
 
-};
+function normalizeState(saved) {
+  const next = freshState();
+  if (!saved) return next;
 
-request.onsuccess=()=>{
-  database=request.result;
-  resolve();
-};
+  next.robot = { ...next.robot, ...(saved.robot || {}) };
+  next.owner = { ...next.owner, ...(saved.owner || {}) };
+  next.config = { ...next.config, ...(saved.config || {}) };
+  next.knowledge = saved.knowledge || {};
+  next.memories = Array.isArray(saved.memories) ? saved.memories : [];
+  next.serialRegistry = Array.isArray(saved.serialRegistry)
+    ? saved.serialRegistry
+    : [FIXED_ROBOT_ID];
+  next.draft = { ...next.draft, ...(saved.draft || {}) };
 
-request.onerror=()=>{
-  reject(request.error);
-};
+  if (!next.serialRegistry.includes(FIXED_ROBOT_ID)) {
+    next.serialRegistry.unshift(FIXED_ROBOT_ID);
+  }
 
-});
+  next.robot.name = FIXED_ROBOT_NAME;
+  next.robot.id = FIXED_ROBOT_ID;
+  next.robot.serial = FIXED_ROBOT_ID;
+  next.robot.role = "master";
 
+  if (!next.robot.deviceUuid) {
+    if (window.crypto && typeof window.crypto.randomUUID === "function") {
+      next.robot.deviceUuid = window.crypto.randomUUID();
+    } else {
+      next.robot.deviceUuid =
+        "dev-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+    }
+  }
+
+  Object.values(next.knowledge).forEach(item => {
+    item.images = Array.isArray(item.images) ? item.images : [];
+    item.correct = Number(item.correct || 0);
+    item.wrong = Number(item.wrong || 0);
+    item.timesSeen = Number(item.timesSeen || 0);
+    item.confidence = Number(item.confidence ?? 10);
+    item.confusions = item.confusions || {};
+    item.type = item.type || "personal";
+    item.source = item.source || "legacy";
+  });
+
+  next.config.aiApiUrl = normalizeApiBase(next.config.aiApiUrl || "");
+
+  return next;
 }
 
-function dbGet(){
-
-return new Promise(
-resolve=>{
-
-const request=
-database
-.transaction(
-  STORE_NAME,
-  "readonly"
-)
-.objectStore(
-  STORE_NAME
-)
-.get("state");
-
-request.onsuccess=()=>{
-  resolve(
-    request.result
-  );
-};
-
-request.onerror=()=>{
-  resolve(null);
-};
-
-});
-
+async function loadBrain() {
+  state = normalizeState(await dbGet());
+  AI_API_URL = state.config.aiApiUrl || "";
+  await saveBrain();
 }
 
-function saveBrain(){
-
-state.version="0.5.2";
-
-return new Promise(
-(resolve,reject)=>{
-
-const tx=
-database.transaction(
-  STORE_NAME,
-  "readwrite"
-);
-
-tx.objectStore(
-  STORE_NAME
-)
-.put(
-  state,
-  "state"
-);
-
-tx.oncomplete=()=>resolve();
-
-tx.onerror=()=>reject(tx.error);
-
-});
-
+function addMemory(text) {
+  state.memories.unshift({
+    text,
+    time: new Date().toLocaleString("vi-VN")
+  });
+  state.memories = state.memories.slice(0, 300);
 }
 
-function normalizeState(saved){
-
-const next=freshState();
-
-if(!saved){
-
-next.robot.name="Rii";
-next.robot.id="RII000001";
-next.robot.serial="RII000001";
-next.robot.role="master";
-
-next.robot.deviceUuid=
-createDeviceUUID();
-
-return next;
-
-}
-
-next.robot={
-  ...next.robot,
-  ...(saved.robot||{})
-};
-
-next.owner={
-  ...next.owner,
-  ...(saved.owner||{})
-};
-
-next.config={
-  ...next.config,
-  ...(saved.config||{})
-};
-
-next.knowledge=
-saved.knowledge||{};
-
-next.memories=
-Array.isArray(
-  saved.memories
-)
-?
-saved.memories
-:
-[];
-
-next.serialRegistry=
-Array.isArray(
-  saved.serialRegistry
-)
-?
-saved.serialRegistry
-:
-["RII000001"];
-
-if(
-  !next.serialRegistry.includes(
-    "RII000001"
-  )
-){
-
-next.serialRegistry.unshift(
-  "RII000001"
-);
-
-}
-
-next.draft={
-  ...next.draft,
-  ...(saved.draft||{})
-};
-
-next.robot.name="Rii";
-next.robot.id="RII000001";
-next.robot.serial="RII000001";
-next.robot.role="master";
-
-if(
-  !next.robot.deviceUuid
-){
-
-next.robot.deviceUuid=
-createDeviceUUID();
-
-}
-
-Object.values(
-  next.knowledge
-)
-.forEach(object=>{
-
-object.images=
-Array.isArray(
-  object.images
-)
-?
-object.images
-:
-[];
-
-object.correct=
-Number(
-  object.correct||0
-);
-
-object.wrong=
-Number(
-  object.wrong||0
-);
-
-object.timesSeen=
-Number(
-  object.timesSeen||0
-);
-
-object.confidence=
-Number(
-  object.confidence??10
-);
-
-object.confusions=
-object.confusions||{};
-
-object.type=
-object.type||"personal";
-
-object.source=
-object.source||"legacy";
-
-});
-
-return next;
-
-}
-
-async function loadBrain(){
-
-state=
-normalizeState(
-  await dbGet()
-);
-
-AI_API_URL=
-state.config.aiApiUrl||"";
-
-await saveBrain();
-
-}
-
-function addMemory(text){
-
-state.memories.unshift({
-
-text,
-
-time:
-new Date()
-.toLocaleString(
-  "vi-VN"
-)
-
-});
-
-state.memories=
-state.memories.slice(
-  0,
-  300
-);
-
-}
-
-function esc(value){
-
-return String(
-  value??""
-)
-.replace(
-  /[&<>"']/g,
-  char=>({
-
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
     "&":"&amp;",
     "<":"&lt;",
     ">":"&gt;",
     "\"":"&quot;",
     "'":"&#039;"
-
-  }[char])
-);
-
+  }[char]));
 }
 
-function normalizeName(value){
-
-return String(
-  value||""
-)
-.trim()
-.toLocaleLowerCase(
-  "vi-VN"
-)
-.replace(
-  /\s+/g,
-  " "
-);
-
+function normalizeName(value) {
+  return String(value || "")
+    .trim()
+    .toLocaleLowerCase("vi-VN")
+    .replace(/\s+/g, " ");
 }
 
-function showPage(
-page,
-index
-){
+function showPage(page, index) {
+  ["home","teach","learn","vision","brain","settings"].forEach(name => {
+    document.getElementById(name + "Page").classList.add("hidden");
+  });
 
-[
-  "home",
-  "teach",
-  "learn",
-  "vision",
-  "brain",
-  "settings"
-]
-.forEach(name=>{
+  document.getElementById(page + "Page").classList.remove("hidden");
 
-document
-.getElementById(
-  name+"Page"
-)
-.classList
-.add("hidden");
+  document.querySelectorAll(".nav").forEach(item => item.classList.remove("active"));
+  if (index !== undefined) {
+    document.querySelectorAll(".nav")[index].classList.add("active");
+  }
 
+  if (page === "home") renderHome();
+  if (page === "teach") restoreDraftToUI();
+  if (page === "brain") renderBrain();
+  if (page === "settings") renderSettings();
+}
+
+function renderHome() {
+  document.getElementById("robotNameHome").textContent = state.robot.name;
+  document.getElementById("robotIdHome").textContent = state.robot.id;
+  document.getElementById("xpHome").textContent = (state.robot.xp || 0) + " XP";
+
+  const knowledge = Object.values(state.knowledge);
+
+  document.getElementById("generalHome").textContent =
+    knowledge.filter(item => item.type === "general").length;
+
+  document.getElementById("personalHome").textContent =
+    knowledge.filter(item => item.type === "personal").length;
+
+  document.getElementById("imageCountHome").textContent = knowledge.reduce(
+    (sum, item) => sum + (item.images?.length || 0),
+    0
+  );
+
+  document.getElementById("ownerHome").textContent =
+    state.owner.name || "Chưa thiết lập chủ nhân";
+
+  document.getElementById("serialHome").textContent =
+    state.robot.serial || FIXED_ROBOT_ID;
+
+  document.getElementById("roleHome").textContent =
+    (state.robot.role || "master").toUpperCase();
+
+  const memoryBox = document.getElementById("recentMemories");
+
+  if (state.memories.length) {
+    memoryBox.innerHTML = state.memories.slice(0, 6).map(memory => `
+      <div class="memory">
+        ${esc(memory.text)}
+        <div class="time">${esc(memory.time)}</div>
+      </div>
+    `).join("");
+  } else {
+    memoryBox.innerHTML = `<div class="memory">Rii chưa có ký ức học tập.</div>`;
+  }
+}
+
+function setTeachType(type) {
+  teachType = type;
+  document.getElementById("personalPill").classList.toggle("active", type === "personal");
+  document.getElementById("generalPill").classList.toggle("active", type === "general");
+  saveTeachDraft();
+}
+
+function setTeachTypeUI(type) {
+  document.getElementById("personalPill").classList.toggle("active", type === "personal");
+  document.getElementById("generalPill").classList.toggle("active", type === "general");
+}
+
+async function saveTeachDraft() {
+  state.draft = {
+    name: document.getElementById("teachName").value.trim(),
+    type: teachType,
+    source: document.getElementById("teachSource").value,
+    extraPrompt: document.getElementById("aiExtraPrompt").value,
+    photos: [...pendingPhotos],
+    editingKnowledgeId
+  };
+
+  document.getElementById("draftStatus").textContent =
+    "Đã tự lưu bản nháp • " + pendingPhotos.length + " ảnh";
+
+  await saveBrain();
+}
+
+function restoreDraftToUI() {
+  const draft = state.draft || DEFAULT_STATE.draft;
+
+  editingKnowledgeId = draft.editingKnowledgeId || null;
+  teachType = draft.type || "personal";
+  pendingPhotos = Array.isArray(draft.photos) ? [...draft.photos] : [];
+
+  document.getElementById("teachName").value = draft.name || "";
+  document.getElementById("teachSource").value = draft.source || "gallery";
+  document.getElementById("aiExtraPrompt").value = draft.extraPrompt || "";
+
+  setTeachTypeUI(teachType);
+  renderPhotos();
+  updateEditNotice();
+}
+
+["teachName", "aiExtraPrompt"].forEach(id => {
+  document.getElementById(id).addEventListener("input", () => {
+    clearTimeout(window._draftTimer);
+    window._draftTimer = setTimeout(saveTeachDraft, 250);
+  });
 });
 
-document
-.getElementById(
-  page+"Page"
-)
-.classList
-.remove("hidden");
+document.getElementById("teachSource").addEventListener("change", saveTeachDraft);
 
-document
-.querySelectorAll(".nav")
-.forEach(item=>
-  item.classList.remove(
-    "active"
-  )
-);
+document.getElementById("photoInput").addEventListener("change", async event => {
+  const files = [...event.target.files];
+  for (const file of files) {
+    try {
+      const compressed = await compressImage(file);
+      pendingPhotos.push(compressed);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-if(index!==undefined){
+  renderPhotos();
+  await saveTeachDraft();
+  event.target.value = "";
+});
 
-document
-.querySelectorAll(".nav")
-[index]
-.classList
-.add("active");
+function compressImage(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
 
+    reader.onerror = reject;
+    reader.onload = () => {
+      const image = new Image();
+
+      image.onerror = reject;
+      image.onload = () => {
+        const maxSize = 768;
+        const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
+        const width = Math.max(1, Math.round(image.width * scale));
+        const height = Math.max(1, Math.round(image.height * scale));
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(image, 0, 0, width, height);
+
+        resolve(canvas.toDataURL("image/jpeg", 0.78));
+      };
+
+      image.src = reader.result;
+    };
+
+    reader.readAsDataURL(file);
+  });
 }
 
-if(page==="home"){
+function renderPhotos() {
+  document.getElementById("photoPreview").innerHTML = pendingPhotos
+    .map((photo, index) => `
+      <div class="photo">
+        <img src="${photo}" alt="">
+        <button class="remove" onclick="removePhoto(${index})">×</button>
+      </div>
+    `)
+    .join("");
+
+  document.getElementById("draftStatus").textContent =
+    "Bản nháp tự lưu • " + pendingPhotos.length + " ảnh mới";
+}
+
+async function removePhoto(index) {
+  pendingPhotos.splice(index, 1);
+  renderPhotos();
+  await saveTeachDraft();
+}
+
+function buildObjectPrompt(name, extra = "") {
+  return `
+Create a clean, centered educational image of a single object: ${name}.
+Show only one clear object.
+Background should be white or light gray.
+No text, no watermark, no logo.
+High clarity, easy to recognize.
+${extra.trim() ? "Additional details: " + extra.trim() : ""}
+  `.trim();
+}
+
+function hashPair(text) {
+  let hash = 0;
+  for (const char of text) {
+    hash = char.charCodeAt(0) + ((hash << 5) - hash);
+  }
+
+  const palettes = [
+    ["#1e73d8","#8bc5ff"],
+    ["#2383d8","#6fd2ff"],
+    ["#ef9644","#ffd08a"],
+    ["#2fa86b","#8fe3b0"],
+    ["#6c55e0","#c2b4ff"],
+    ["#db5b76","#ffb1c0"]
+  ];
+
+  return palettes[Math.abs(hash) % palettes.length];
+}
+
+function roundRect(ctx, x, y, width, height, radius) {
+  ctx.beginPath();
+  ctx.roundRect(x, y, width, height, radius);
+  ctx.fill();
+}
+
+function wrapText(ctx, text, centerX, y, maxWidth, lineHeight) {
+  let line = "";
+  const lines = [];
+  const words = text.split(/\s+/);
+
+  for (const word of words) {
+    const testLine = line ? line + " " + word : word;
+
+    if (ctx.measureText(testLine).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = testLine;
+    }
+  }
+
+  if (line) lines.push(line);
+
+  lines.slice(0, 3).forEach((item, index) => {
+    ctx.fillText(item, centerX, y + index * lineHeight);
+  });
+}
+
+function createPlaceholderImage(name, index) {
+  const canvas = document.createElement("canvas");
+  canvas.width = 600;
+  canvas.height = 600;
+  const ctx = canvas.getContext("2d");
+
+  const [colorA, colorB] = hashPair(name + index);
+
+  ctx.fillStyle = "#efefef";
+  ctx.fillRect(0, 0, 600, 600);
+
+  ctx.fillStyle = "#00000012";
+  ctx.beginPath();
+  ctx.ellipse(300, 485, 135, 25, 0, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = colorA;
+  roundRect(ctx, 145, 145, 310, 270, 42);
+
+  ctx.fillStyle = colorB;
+  roundRect(ctx, 180, 185, 240, 72, 25);
+
+  ctx.fillStyle = "#ffffff38";
+  ctx.beginPath();
+  ctx.arc(300, 330, 60 + index * 3, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.fillStyle = "#ffffff";
+  ctx.textAlign = "center";
+  ctx.font = "700 32px -apple-system";
+  wrapText(ctx, name, 300, 440, 260, 37);
+
+  ctx.fillStyle = "#526071";
+  ctx.font = "20px -apple-system";
+  ctx.fillText("DEMO • " + index, 300, 535);
+
+  return canvas.toDataURL("image/jpeg", 0.78);
+}
+
+function generateFallbackSamples(name, count) {
+  return Array.from({ length: count }, (_, index) =>
+    createPlaceholderImage(name, index + 1)
+  );
+}
+
+function setAiLoading(value) {
+  const button = document.getElementById("generateBtn");
+  button.disabled = value;
+
+  if (value) {
+    button.innerHTML = `<span class="loader"></span>Đang tạo ảnh...`;
+  } else {
+    button.innerHTML = "✨ Tạo ảnh AI";
+  }
+}
+
+function normalizeApiBase(url) {
+  let base = String(url || "").trim();
+  if (!base) return "";
+
+  base = base.replace(/\/+$/, "");
+  if (base.endsWith(GENERATE_ENDPOINT)) {
+    base = base.slice(0, -GENERATE_ENDPOINT.length);
+  }
+  return base;
+}
+
+function buildGenerateUrl(baseUrl) {
+  const base = normalizeApiBase(baseUrl);
+  if (!base) return "";
+  return base + GENERATE_ENDPOINT;
+}
+
+async function fetchWithTimeout(url, options = {}, timeout = 10000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeout);
+
+  try {
+    return await fetch(url, {
+      ...options,
+      signal: controller.signal
+    });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function testApiConnection() {
+  const input = document.getElementById("apiUrlInput").value.trim();
+  const baseUrl = normalizeApiBase(input);
+
+  if (!baseUrl) {
+    alert("Hãy nhập URL backend trước.");
+    return;
+  }
+
+  const statusBox = document.getElementById("apiStatus");
+  statusBox.innerHTML = `<span class="loader"></span>Đang kiểm tra backend...`;
+
+  try {
+    const response = await fetchWithTimeout(baseUrl, {}, 8000);
+    const data = await response.json();
+
+    if (!response.ok || !data?.ok) {
+      throw new Error(data?.error || "Backend không hợp lệ.");
+    }
+
+    statusBox.innerHTML = `
+      <b class="ok">Kết nối thành công.</b><br>
+      Service: ${esc(data.service || "Rii AI Backend")}<br>
+      Version: ${esc(data.version || "-")}<br>
+      Endpoint tạo ảnh: <b>${esc(data.endpoint || GENERATE_ENDPOINT)}</b><br>
+      Workers AI binding: <b>${data.hasAI ? "Có" : "Chưa có"}</b>
+    `;
+  } catch (error) {
+    statusBox.innerHTML = `
+      <b class="bad">Không kết nối được backend.</b><br>
+      ${esc(error?.message || "Lỗi không xác định")}
+    `;
+  }
+}
+
+async function saveApiConfig() {
+  const raw = document.getElementById("apiUrlInput").value.trim();
+  AI_API_URL = normalizeApiBase(raw);
+  state.config.aiApiUrl = AI_API_URL;
+  state.config.lastApiCheck = new Date().toISOString();
+
+  addMemory(
+    AI_API_URL
+      ? "Đã lưu URL AI backend"
+      : "Đã tắt AI backend"
+  );
+
+  await saveBrain();
+  renderSettings();
+
+  alert("Đã lưu cấu hình.");
+}
+
+async function callAiApiWithTimeout(name, count, extra, milliseconds) {
+  const endpointUrl = buildGenerateUrl(AI_API_URL);
+
+  if (!endpointUrl) {
+    throw new Error("Chưa có AI_API_URL.");
+  }
+
+  const response = await fetchWithTimeout(
+    endpointUrl,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        objectName: name,
+        count,
+        prompt: buildObjectPrompt(name, extra),
+        style: "educational-clean-minimal"
+      })
+    },
+    milliseconds
+  );
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data?.error || ("HTTP " + response.status));
+  }
+
+  if (!data?.ok) {
+    throw new Error(data?.error || "Backend trả về lỗi.");
+  }
+
+  if (!Array.isArray(data.images) || !data.images.length) {
+    throw new Error("Backend không trả về danh sách images.");
+  }
+
+  return data;
+}
+
+async function generateAiImages() {
+  const name = document.getElementById("teachName").value.trim();
+  if (!name) {
+    alert("Hãy nhập tên đồ vật trước.");
+    return;
+  }
+
+  const count = Math.max(
+    1,
+    Math.min(
+      6,
+      parseInt(document.getElementById("aiCount").value || "3", 10)
+    )
+  );
+
+  const extra = document.getElementById("aiExtraPrompt").value.trim();
+
+  setAiLoading(true);
+
+  try {
+    let images = [];
+    let message = "";
+    let usedFallback = false;
+
+    if (AI_API_URL) {
+      try {
+        const result = await callAiApiWithTimeout(name, count, extra, 15000);
+        images = result.images;
+        message =
+          result.fallbackCount > 0
+            ? `Backend đã trả ${images.length} ảnh, có ${result.fallbackCount} ảnh fallback.`
+            : `Backend AI đã tạo ${images.length} ảnh thành công.`;
+
+        usedFallback = result.fallbackCount > 0;
+      } catch (error) {
+        console.error(error);
+        images = generateFallbackSamples(name, count);
+        usedFallback = true;
+        message =
+          "Backend lỗi hoặc không phản hồi đúng, app tự chuyển sang ảnh demo.";
+      }
+    } else {
+      images = generateFallbackSamples(name, count);
+      usedFallback = true;
+      message = "Chưa cấu hình backend, app tạo ảnh demo.";
+    }
+
+    pendingPhotos.push(...images);
+    document.getElementById("teachSource").value = "ai_generated";
+    renderPhotos();
+
+    addMemory(
+      (usedFallback ? "Tạo ảnh demo / fallback" : "Tạo ảnh AI") + " cho: " + name
+    );
+
+    await saveTeachDraft();
+
+    alert(message);
+  } catch (error) {
+    console.error(error);
+    alert("Có lỗi khi tạo ảnh. " + (error?.message || ""));
+  } finally {
+    setAiLoading(false);
+  }
+}
+
+async function saveKnowledge() {
+  const name = document.getElementById("teachName").value.trim();
+
+  if (!name) {
+    alert("Hãy nhập tên kiến thức.");
+    return;
+  }
+
+  if (!pendingPhotos.length) {
+    alert("Hãy thêm ít nhất 1 ảnh mới.");
+    return;
+  }
+
+  const source = document.getElementById("teachSource").value;
+  const extra = document.getElementById("aiExtraPrompt").value.trim();
+
+  let object = editingKnowledgeId
+    ? state.knowledge[editingKnowledgeId]
+    : null;
+
+  if (!object) {
+    object = Object.values(state.knowledge).find(item =>
+      normalizeName(item.name) === normalizeName(name) &&
+      item.type === teachType
+    );
+  }
+
+  const existingImages = new Set(object?.images || []);
+  const newImages = pendingPhotos.filter(photo => !existingImages.has(photo));
+
+  if (object) {
+    object.images = [...(object.images || []), ...newImages];
+    object.name = name;
+    object.type = teachType;
+    object.source = source;
+    object.updatedAt = new Date().toISOString();
+    object.promptSeed = buildObjectPrompt(name, extra);
+
+    addMemory("Thêm " + newImages.length + " ảnh cho: " + name);
+  } else {
+    const id = "OBJ-" + Date.now() + "-" + Math.random().toString(36).slice(2, 6);
+
+    state.knowledge[id] = {
+      id,
+      name,
+      type: teachType,
+      source,
+      promptSeed: buildObjectPrompt(name, extra),
+      images: [...newImages],
+      confidence: 10,
+      correct: 0,
+      wrong: 0,
+      timesSeen: 0,
+      confusions: {},
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    };
+
+    state.robot.xp = (state.robot.xp || 0) + 5;
+    addMemory("Học kiến thức mới: " + name);
+  }
+
+  clearDraft();
+  await saveBrain();
+
+  alert("Đã lưu vào Brain. Ảnh cũ được giữ nguyên.");
+  showPage("brain", 4);
+}
+
+function clearDraft() {
+  pendingPhotos = [];
+  editingKnowledgeId = null;
+
+  state.draft = { ...DEFAULT_STATE.draft };
+
+  document.getElementById("teachName").value = "";
+  document.getElementById("aiExtraPrompt").value = "";
+  document.getElementById("teachSource").value = "gallery";
+
+  teachType = "personal";
+  renderPhotos();
+  updateEditNotice();
+}
+
+function updateEditNotice() {
+  const notice = document.getElementById("editNotice");
+  const cancelButton = document.getElementById("cancelEditBtn");
+
+  if (editingKnowledgeId && state.knowledge[editingKnowledgeId]) {
+    notice.classList.remove("hidden");
+    cancelButton.classList.remove("hidden");
+
+    notice.textContent =
+      "Đang bổ sung cho: " +
+      state.knowledge[editingKnowledgeId].name +
+      ". Chỉ ảnh mới sẽ được thêm; ảnh cũ không bị thay thế.";
+  } else {
+    notice.classList.add("hidden");
+    cancelButton.classList.add("hidden");
+  }
+}
+
+async function continueKnowledge(id) {
+  const object = state.knowledge[id];
+  if (!object) return;
+
+  editingKnowledgeId = id;
+  pendingPhotos = [];
+  teachType = object.type;
+
+  state.draft = {
+    name: object.name,
+    type: object.type,
+    source: object.source || "gallery",
+    extraPrompt: "",
+    photos: [],
+    editingKnowledgeId: id
+  };
+
+  await saveBrain();
+  showPage("teach", 1);
+}
+
+async function cancelContinue() {
+  clearDraft();
+  await saveBrain();
+  showPage("brain", 4);
+}
+
+async function renameKnowledge(id) {
+  const object = state.knowledge[id];
+  const newName = prompt("Tên mới:", object.name);
+
+  if (newName && newName.trim()) {
+    object.name = newName.trim();
+    object.updatedAt = new Date().toISOString();
+
+    addMemory("Đổi tên kiến thức thành: " + object.name);
+    await saveBrain();
+    renderBrain();
+  }
+}
+
+async function deleteKnowledge(id) {
+  const object = state.knowledge[id];
+  if (!object) return;
+
+  if (!confirm('Xóa "' + object.name + '" và toàn bộ ảnh của kiến thức này?')) {
+    return;
+  }
+
+  delete state.knowledge[id];
+  addMemory("Đã xóa kiến thức: " + object.name);
+
+  await saveBrain();
+  renderBrain();
   renderHome();
 }
 
-if(page==="teach"){
-  restoreDraftToUI();
-}
+function setBrainFilter(type) {
+  brainFilter = type;
+  ["brainAll","brainGeneral","brainPersonal"].forEach(id => {
+    document.getElementById(id).classList.remove("active");
+  });
 
-if(page==="brain"){
+  let activeId = "brainAll";
+  if (type === "general") activeId = "brainGeneral";
+  if (type === "personal") activeId = "brainPersonal";
+
+  document.getElementById(activeId).classList.add("active");
   renderBrain();
 }
 
-if(page==="settings"){
-  renderSettings();
-}
-
-}
-
-function renderHome(){
-
-document
-.getElementById(
-  "robotNameHome"
-)
-.textContent=
-state.robot.name;
-
-document
-.getElementById(
-  "robotIdHome"
-)
-.textContent=
-state.robot.id;
-
-document
-.getElementById(
-  "xpHome"
-)
-.textContent=
-(state.robot.xp||0)
-+" XP";
-
-const knowledge=
-Object.values(
-  state.knowledge
-);
-
-document
-.getElementById(
-  "generalHome"
-)
-.textContent=
-knowledge.filter(
-  item=>
-  item.type==="general"
-).length;
-
-document
-.getElementById(
-  "personalHome"
-)
-.textContent=
-knowledge.filter(
-  item=>
-  item.type==="personal"
-).length;
-
-document
-.getElementById(
-  "imageCountHome"
-)
-.textContent=
-knowledge.reduce(
-(sum,item)=>
-sum+
-(
-  item.images?.length||0
-),
-0
-);
-
-document
-.getElementById(
-  "ownerHome"
-)
-.textContent=
-state.owner.name||
-"Chưa thiết lập chủ nhân";
-
-document
-.getElementById(
-  "serialHome"
-)
-.textContent=
-state.robot.serial||
-"RII000001";
-
-document
-.getElementById(
-  "roleHome"
-)
-.textContent=
-(
-  state.robot.role||
-  "master"
-)
-.toUpperCase();
-
-const memoryBox=
-document.getElementById(
-  "recentMemories"
-);
-
-if(
-  state.memories.length
-){
-
-memoryBox.innerHTML=
-state.memories
-.slice(0,6)
-.map(memory=>`
-
-<div class="memory">
-
-${esc(memory.text)}
-
-<div class="time">
-${esc(memory.time)}
-</div>
-
-</div>
-
-`)
-.join("");
-
-}else{
-
-memoryBox.innerHTML=`
-
-<div class="memory">
-Rii chưa có ký ức học tập.
-</div>
-
-`;
-
-}
-
-}
-
-function setTeachType(type){
-
-teachType=type;
-
-setTeachTypeUI(type);
-
-saveTeachDraft();
-
-}
-
-function setTeachTypeUI(type){
-
-document
-.getElementById(
-  "personalPill"
-)
-.classList
-.toggle(
-  "active",
-  type==="personal"
-);
-
-document
-.getElementById(
-  "generalPill"
-)
-.classList
-.toggle(
-  "active",
-  type==="general"
-);
-
-}
-
-async function saveTeachDraft(){
-
-state.draft={
-
-name:
-document
-.getElementById(
-  "teachName"
-)
-.value
-.trim(),
-
-type:
-teachType,
-
-source:
-document
-.getElementById(
-  "teachSource"
-)
-.value,
-
-extraPrompt:
-document
-.getElementById(
-  "aiExtraPrompt"
-)
-.value,
-
-photos:[
-  ...pendingPhotos
-],
-
-editingKnowledgeId
-
-};
-
-document
-.getElementById(
-  "draftStatus"
-)
-.textContent=
-"Đã tự lưu bản nháp • "
-+
-pendingPhotos.length
-+
-" ảnh";
-
-await saveBrain();
-
-}
-
-function restoreDraftToUI(){
-
-const draft=
-state.draft||
-DEFAULT_STATE.draft;
-
-editingKnowledgeId=
-draft.editingKnowledgeId||
-null;
-
-teachType=
-draft.type||
-"personal";
-
-pendingPhotos=
-Array.isArray(
-  draft.photos
-)
-?
-[...draft.photos]
-:
-[];
-
-document
-.getElementById(
-  "teachName"
-)
-.value=
-draft.name||"";
-
-document
-.getElementById(
-  "teachSource"
-)
-.value=
-draft.source||
-"gallery";
-
-document
-.getElementById(
-  "aiExtraPrompt"
-)
-.value=
-draft.extraPrompt||
-"";
-
-setTeachTypeUI(
-  teachType
-);
-
-renderPhotos();
-
-updateEditNotice();
-
-}
-
-[
-  "teachName",
-  "aiExtraPrompt"
-]
-.forEach(id=>{
-
-document
-.getElementById(id)
-.addEventListener(
-  "input",
-  ()=>{
-
-clearTimeout(
-  window._draftTimer
-);
-
-window._draftTimer=
-setTimeout(
-  saveTeachDraft,
-  250
-);
-
+function renderBrain() {
+  let items = Object.values(state.knowledge);
+
+  if (brainFilter !== "all") {
+    items = items.filter(item => item.type === brainFilter);
   }
-);
 
+  items.sort((a, b) =>
+    new Date(b.updatedAt || b.createdAt || 0) -
+    new Date(a.updatedAt || a.createdAt || 0)
+  );
+
+  const box = document.getElementById("brainList");
+
+  if (!items.length) {
+    box.innerHTML = `<div class="card empty">Brain chưa có kiến thức.</div>`;
+    return;
+  }
+
+  box.innerHTML = items.map(object => `
+    <div class="item">
+      <div class="itemTop">
+        ${
+          object.images?.[0]
+            ? `<img class="thumb" src="${object.images[0]}" alt="">`
+            : `<div class="thumb"></div>`
+        }
+
+        <div class="grow">
+          <div class="title" style="font-size:17px">${esc(object.name)}</div>
+
+          <span class="badge ${object.type === "general" ? "general" : ""}">
+            ${object.type === "general" ? "NÃO CHUNG" : "NÃO CÁ NHÂN"}
+          </span>
+
+          ${
+            object.source === "ai_generated"
+              ? `<span class="badge ai">AI / DEMO</span>`
+              : ``
+          }
+
+          <div class="sub">
+            ${object.images?.length || 0} ảnh • đúng ${object.correct || 0} • sai ${object.wrong || 0}
+          </div>
+        </div>
+      </div>
+
+      <div class="bar">
+        <div class="fill" style="width:${Math.max(0, Math.min(100, object.confidence || 0))}%"></div>
+      </div>
+
+      <div class="sub">Độ tin cậy: ${Math.round(object.confidence || 0)}%</div>
+
+      <div class="actions">
+        <button class="btn secondary mini" onclick="continueKnowledge('${object.id}')">＋ Thêm ảnh</button>
+        <button class="btn secondary mini" onclick="renameKnowledge('${object.id}')">Đổi tên</button>
+        <button class="btn danger mini" onclick="deleteKnowledge('${object.id}')">Xóa</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function candidates() {
+  return Object.values(state.knowledge).filter(object => object.images?.length);
+}
+
+function startQuiz(index = 2) {
+  showPage("learn", index);
+
+  if (candidates().length < 2) {
+    document.getElementById("quizBox").innerHTML = `
+      <div class="empty">Cần ít nhất 2 kiến thức có ảnh.</div>
+    `;
+    return;
+  }
+
+  nextQuestion();
+}
+
+function nextQuestion() {
+  const items = candidates();
+
+  quizTarget = items[Math.floor(Math.random() * items.length)];
+  const image = quizTarget.images[Math.floor(Math.random() * quizTarget.images.length)];
+
+  let choices = [
+    quizTarget,
+    ...items
+      .filter(item => item.id !== quizTarget.id)
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 3)
+  ];
+
+  choices = choices.sort(() => Math.random() - 0.5);
+
+  document.getElementById("quizBox").innerHTML = `
+    <div class="title" style="text-align:center">Rii đang nhìn thấy gì?</div>
+
+    <img class="quizImage" src="${image}" alt="">
+
+    ${
+      choices.map(object => `
+        <button class="answer" onclick="checkAnswer('${object.id}')">
+          ${esc(object.name)}
+        </button>
+      `).join("")
+    }
+
+    <div id="quizMessage" class="sub" style="text-align:center;margin-top:12px"></div>
+  `;
+}
+
+async function checkAnswer(id) {
+  const target = state.knowledge[quizTarget.id];
+  target.timesSeen = (target.timesSeen || 0) + 1;
+
+  if (id === target.id) {
+    target.correct = (target.correct || 0) + 1;
+    target.confidence = Math.min(100, (target.confidence || 0) + 10);
+    state.robot.xp = (state.robot.xp || 0) + 10;
+
+    addMemory("Nhận biết đúng: " + target.name);
+
+    document.getElementById("quizMessage").innerHTML = `<span class="ok">✅ Chính xác</span>`;
+  } else {
+    target.wrong = (target.wrong || 0) + 1;
+    target.confidence = Math.max(0, (target.confidence || 0) - 5);
+    target.confusions = target.confusions || {};
+    target.confusions[id] = (target.confusions[id] || 0) + 1;
+
+    addMemory(
+      "Nhầm " + target.name + " với " + (state.knowledge[id]?.name || "khác")
+    );
+
+    document.getElementById("quizMessage").innerHTML = `
+      <span class="bad">❌ Đây là ${esc(target.name)}</span>
+    `;
+  }
+
+  await saveBrain();
+  setTimeout(nextQuestion, 1000);
+}
+
+document.getElementById("visionInput").addEventListener("change", async event => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  visionImage = await compressImage(file);
+
+  document.getElementById("visionPreview").src = visionImage;
+  document.getElementById("visionPreviewBox").classList.remove("hidden");
+  document.getElementById("visionResult").textContent = "Ảnh đã sẵn sàng.";
+
+  event.target.value = "";
 });
 
-document
-.getElementById(
-  "teachSource"
-)
-.addEventListener(
-  "change",
-  saveTeachDraft
-);
-
-document
-.getElementById(
-  "photoInput"
-)
-.addEventListener(
-  "change",
-  async event=>{
-
-const files=
-[...event.target.files];
-
-for(
-  const file
-  of files
-){
-
-try{
-
-const compressed=
-await compressImage(
-  file
-);
-
-pendingPhotos.push(
-  compressed
-);
-
-}catch(error){
-
-console.error(error);
-
-}
-
-}
-
-renderPhotos();
-
-await saveTeachDraft();
-
-event.target.value="";
-
+async function runVisionGuess() {
+  if (!visionImage) {
+    alert("Hãy chọn ảnh.");
+    return;
   }
-);
 
-function compressImage(file){
+  const items = candidates();
+  if (!items.length) {
+    alert("Brain chưa có kiến thức.");
+    return;
+  }
 
-return new Promise(
-(resolve,reject)=>{
+  const resultBox = document.getElementById("visionResult");
+  resultBox.innerHTML = `<span class="loader"></span>Đang mô phỏng...`;
 
-const reader=
-new FileReader();
+  await new Promise(resolve => setTimeout(resolve, 500));
 
-reader.onerror=
-reject;
+  const guesses = [...items].sort(() => Math.random() - 0.5).slice(0, 3);
 
-reader.onload=()=>{
+  resultBox.innerHTML = `
+    <div class="notice">
+      <b>MÔ PHỎNG — chưa phải AI Vision thật</b>
+      <br><br>
+      ${
+        guesses.map((object, index) => {
+          const percent = [60, 25, 15][index] || 10;
+          return `${index + 1}. ${esc(object.name)} — ${percent}%`;
+        }).join("<br>")
+      }
+    </div>
+  `;
 
-const image=
-new Image();
+  addMemory("Chạy Vision mô phỏng");
+  await saveBrain();
+}
 
-image.onerror=
-reject;
+function renderSettings() {
+  document.getElementById("robotNameInput").value = state.robot.name;
+  document.getElementById("robotIdInput").value = state.robot.id;
+  document.getElementById("ownerInput").value = state.owner.name;
+  document.getElementById("serialInput").value = state.robot.serial || FIXED_ROBOT_ID;
+  document.getElementById("deviceUuidInput").value = state.robot.deviceUuid || "";
+  document.getElementById("apiUrlInput").value = state.config.aiApiUrl || "";
 
-image.onload=()=>{
+  const status = document.getElementById("apiStatus");
 
-const maxSize=640;
+  if (AI_API_URL) {
+    status.innerHTML = `
+      <b class="ok">Đã cấu hình backend AI.</b><br>
+      URL gốc: ${esc(AI_API_URL)}<br>
+      Endpoint tạo ảnh: ${esc(buildGenerateUrl(AI_API_URL))}
+    `;
+  } else {
+    status.innerHTML = `
+      Chưa có backend AI — hiện dùng ảnh demo.
+      <br>Hãy dán URL gốc worker, ví dụ:
+      <br><b>https://rii-backend.xxx.workers.dev</b>
+    `;
+  }
 
-const scale=
-Math.min(
-  1,
-  maxSize/
-  Math.max(
-    image.width,
-    image.height
-  )
-);
+  updateStorage();
+}
 
-const width=
-Math.max(
-  1,
-  Math.round(
-    image.width*
-    scale
-  )
-);
+async function saveProfile() {
+  state.robot.name = FIXED_ROBOT_NAME;
+  state.robot.id = FIXED_ROBOT_ID;
+  state.robot.serial = FIXED_ROBOT_ID;
+  state.robot.role = "master";
 
-const height=
-Math.max(
-  1,
-  Math.round(
-    image.height*
-    scale
-  )
-);
+  document.getElementById("robotNameInput").value = FIXED_ROBOT_NAME;
+  document.getElementById("robotIdInput").value = FIXED_ROBOT_ID;
 
-const canvas=
-document.createElement(
-  "canvas"
-);
+  state.owner.name = document.getElementById("ownerInput").value.trim();
 
-canvas.width=
-width;
+  addMemory("Cập nhật hồ sơ Owner");
+  await saveBrain();
 
-canvas.height=
-height;
+  alert("Đã lưu. Tên Rii và serial RII000001 của máy chủ được khóa.");
+  renderHome();
+}
 
-const ctx=
-canvas.getContext(
-  "2d"
-);
+async function updateStorage() {
+  const element = document.getElementById("storageStatus");
 
-ctx.drawImage(
-  image,
-  0,
-  0,
-  width,
-  height
-);
+  if (navigator.storage?.estimate) {
+    const estimate = await navigator.storage.estimate();
+    const used = estimate.usage || 0;
+    const quota = estimate.quota || 0;
 
-resolve(
-canvas.toDataURL(
-  "image/jpeg",
-  0.62
-)
-);
+    element.textContent =
+      "Ước tính đã dùng " +
+      (used / 1048576).toFixed(1) +
+      " MB / " +
+      (quota / 1048576).toFixed(0) +
+      " MB của vùng lưu trữ trình duyệt.";
+  } else {
+    element.textContent = "Trình duyệt không cung cấp thông tin dung lượng.";
+  }
+}
 
-};
+function randomInt(max) {
+  if (window.crypto && crypto.getRandomValues) {
+    const array = new Uint32Array(1);
+    crypto.getRandomValues(array);
+    return array[0] % max;
+  }
+  return Math.floor(Math.random() * max);
+}
 
-image.src=
-reader.result;
+function makeClientSerial() {
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const prefix = letters[randomInt(26)] + letters[randomInt(26)];
+  let digits = "";
 
-};
+  for (let i = 0; i < 8; i++) {
+    digits += String(randomInt(10));
+  }
 
-reader.readAsDataURL(
-  file
-);
+  return prefix + digits;
+}
 
+async function generateNextSerial() {
+  state.serialRegistry = Array.isArray(state.serialRegistry)
+    ? state.serialRegistry
+    : [FIXED_ROBOT_ID];
+
+  let serial = "";
+  let tries = 0;
+
+  do {
+    serial = makeClientSerial();
+    tries++;
+
+    if (tries > 1000) {
+      throw new Error("Không thể sinh serial cục bộ.");
+    }
+  } while (
+    state.serialRegistry.includes(serial) ||
+    serial === FIXED_ROBOT_ID
+  );
+
+  state.serialRegistry.push(serial);
+  addMemory("Đã cấp serial thử nghiệm: " + serial);
+
+  await saveBrain();
+
+  document.getElementById("generatedSerial").innerHTML = `
+    Serial mới: <b>${serial}</b><br>
+    Đã giữ chỗ trong bộ nhớ cục bộ của thiết bị này.
+  `;
+}
+
+function backupBrain() {
+  const blob = new Blob([JSON.stringify(state, null, 2)], {
+    type: "application/json"
+  });
+
+  const url = URL.createObjectURL(blob);
+  const anchor = document.createElement("a");
+
+  anchor.href = url;
+  anchor.download =
+    "Rii-AI-V053-" +
+    new Date().toISOString().slice(0, 10) +
+    ".json";
+
+  document.body.appendChild(anchor);
+  anchor.click();
+  anchor.remove();
+
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+document.getElementById("restoreInput").addEventListener("change", async event => {
+  const file = event.target.files[0];
+  if (!file) return;
+
+  try {
+    const restored = normalizeState(JSON.parse(await file.text()));
+
+    if (!confirm("Restore file này sẽ thay Brain hiện tại. Tiếp tục?")) {
+      return;
+    }
+
+    state = restored;
+    AI_API_URL = state.config.aiApiUrl || "";
+
+    await saveBrain();
+
+    alert("Restore thành công.");
+    showPage("home", 0);
+  } catch (error) {
+    console.error(error);
+    alert("File backup không hợp lệ.");
+  }
+
+  event.target.value = "";
 });
 
+async function resetBrain() {
+  if (!confirm("Xóa toàn bộ Brain trên thiết bị này?")) return;
+  if (!confirm("Xác nhận lần cuối. Hãy backup trước nếu cần.")) return;
+
+  state = normalizeState(freshState());
+  pendingPhotos = [];
+  editingKnowledgeId = null;
+  AI_API_URL = "";
+
+  await saveBrain();
+
+  alert("Đã reset Brain.");
+  showPage("home", 0);
 }
 
-function renderPhotos(){
-
-document
-.getElementById(
-  "photoPreview"
-)
-.innerHTML=
-pendingPhotos
-.map(
-(photo,index)=>`
-
-<div class="photo">
-
-<img
-src="${photo}"
->
-
-<button
-class="remove"
-onclick="removePhoto(${index})"
->
-×
-</button>
-
-</div>
-
-`
-)
-.join("");
-
-document
-.getElementById(
-  "draftStatus"
-)
-.textContent=
-"Bản nháp tự lưu • "
-+
-pendingPhotos.length
-+
-" ảnh mới";
-
-}
-
-async function removePhoto(index){
-
-pendingPhotos.splice(
-  index,
-  1
-);
-
-renderPhotos();
-
-await saveTeachDraft();
-
-}
-
-function buildObjectPrompt(
-name,
-extra=""
-){
-
-return `Create a clean centered educational illustration of ${name}.
-Single object only,
-neutral light gray background,
-clear recognizable shape,
-no text,
-no watermark,
-no extra objects.
-${extra.trim()
-?
-"Additional details: "+extra.trim()
-:
-""}`.trim();
-
-}
-
-function setAiLoading(value){
-
-const button=
-document.getElementById(
-  "generateBtn"
-);
-
-button.disabled=
-value;
-
-if(value){
-
-button.innerHTML=`
-<span class="loader"></span>
-Đang tạo ảnh...
-`;
-
-}else{
-
-button.innerHTML=
-"✨ Tạo ảnh AI";
-
-}
-
-}
-
-async function generateAiImages(){
-
-const name=
-document
-.getElementById(
-  "teachName"
-)
-.value
-.trim();
-
-if(!name){
-
-alert(
-  "Hãy nhập tên đồ vật trước."
-);
-
-return;
-
-}
-
-const count=
-Math.max(
-  1,
-  Math.min(
-    6,
-    parseInt(
-      document
-      .getElementById(
-        "aiCount"
-      )
-      .value||"3",
-      10
-    )
-  )
-);
-
-const extra=
-document
-.getElementById(
-  "aiExtraPrompt"
-)
-.value
-.trim();
-
-setAiLoading(true);
-
-try{
-
-let images=[];
-let usedFallback=false;
-
-if(AI_API_URL){
-
-try{
-
-images=
-await callAiApiWithTimeout(
-  name,
-  count,
-  extra,
-  10000
-);
-
-if(!images.length){
-
-throw new Error(
-  "empty"
-);
-
-}
-
-}catch(error){
-
-console.error(error);
-
-usedFallback=true;
-
-images=
-generateFallbackSamples(
-  name,
-  count
-);
-
-}
-
-}else{
-
-usedFallback=true;
-
-images=
-generateFallbackSamples(
-  name,
-  count
-);
-
-}
-
-pendingPhotos.push(
-  ...images
-);
-
-document
-.getElementById(
-  "teachSource"
-)
-.value=
-"ai_generated";
-
-renderPhotos();
-
-addMemory(
-(
-  usedFallback
-  ?
-  "Tạo ảnh demo"
-  :
-  "Tạo ảnh AI"
-)
-+
-" cho: "
-+
-name
-);
-
-await saveTeachDraft();
-
-if(usedFallback){
-
-alert(
-  "Đã tạo "
-  +
-  images.length
-  +
-  " ảnh demo. Muốn ảnh AI thật cần cấu hình backend."
-);
-
-}else{
-
-alert(
-  "Đã tạo "
-  +
-  images.length
-  +
-  " ảnh AI."
-);
-
-}
-
-}catch(error){
-
-console.error(error);
-
-alert(
-  "Có lỗi khi tạo ảnh. Bạn có thể thử lại."
-);
-
-}finally{
-
-setAiLoading(false);
-
-}
-
-}
-
-async function callAiApiWithTimeout(
-name,
-count,
-extra,
-milliseconds
-){
-
-const controller=
-new AbortController();
-
-const timer=
-setTimeout(
-  ()=>controller.abort(),
-  milliseconds
-);
-
-try{
-
-const response=
-await fetch(
-AI_API_URL,
-{
-
-method:"POST",
-
-headers:{
-  "Content-Type":
-  "application/json"
-},
-
-body:
-JSON.stringify({
-  objectName:name,
-  count,
-  prompt:
-  buildObjectPrompt(
-    name,
-    extra
-  ),
-  style:
-  "educational-clean-minimal"
-}),
-
-signal:
-controller.signal
-
-}
-);
-
-if(!response.ok){
-
-throw new Error(
-  "HTTP "
-  +
-  response.status
-);
-
-}
-
-const data=
-await response.json();
-
-if(
-  !Array.isArray(
-    data.images
-  )
-){
-
-throw new Error(
-  "invalid response"
-);
-
-}
-
-return data.images.filter(
-image=>
-typeof image==="string"
-&&
-image.length
-);
-
-}finally{
-
-clearTimeout(timer);
-
-}
-
-}
-
-function generateFallbackSamples(
-name,
-count
-){
-
-return Array.from(
-{
-  length:count
-},
-(_,index)=>
-createPlaceholderImage(
-  name,
-  index+1
-)
-);
-
-}
-
-function hashPair(text){
-
-let hash=0;
-
-for(
-  const char
-  of text
-){
-
-hash=
-char.charCodeAt(0)
-+
-(
-  (hash<<5)
-  -
-  hash
-);
-
-}
-
-const palettes=[
-
-["#1e73d8","#8bc5ff"],
-["#2383d8","#6fd2ff"],
-["#ef9644","#ffd08a"],
-["#2fa86b","#8fe3b0"],
-["#6c55e0","#c2b4ff"],
-["#db5b76","#ffb1c0"]
-
-];
-
-return palettes[
-Math.abs(hash)
-%
-palettes.length
-];
-
-}
-
-function roundRect(
-ctx,
-x,
-y,
-width,
-height,
-radius
-){
-
-const r=
-Math.min(
-  radius,
-  width/2,
-  height/2
-);
-
-ctx.beginPath();
-
-ctx.moveTo(
-  x+r,
-  y
-);
-
-ctx.lineTo(
-  x+width-r,
-  y
-);
-
-ctx.quadraticCurveTo(
-  x+width,
-  y,
-  x+width,
-  y+r
-);
-
-ctx.lineTo(
-  x+width,
-  y+height-r
-);
-
-ctx.quadraticCurveTo(
-  x+width,
-  y+height,
-  x+width-r,
-  y+height
-);
-
-ctx.lineTo(
-  x+r,
-  y+height
-);
-
-ctx.quadraticCurveTo(
-  x,
-  y+height,
-  x,
-  y+height-r
-);
-
-ctx.lineTo(
-  x,
-  y+r
-);
-
-ctx.quadraticCurveTo(
-  x,
-  y,
-  x+r,
-  y
-);
-
-ctx.closePath();
-ctx.fill();
-
-}
-
-function createPlaceholderImage(
-name,
-index
-){
-
-const canvas=
-document.createElement(
-  "canvas"
-);
-
-canvas.width=600;
-canvas.height=600;
-
-const ctx=
-canvas.getContext(
-  "2d"
-);
-
-const[
-  colorA,
-  colorB
-]=
-hashPair(
-  name+index
-);
-
-ctx.fillStyle=
-"#efefef";
-
-ctx.fillRect(
-  0,
-  0,
-  600,
-  600
-);
-
-ctx.fillStyle=
-"#00000012";
-
-ctx.beginPath();
-
-ctx.ellipse(
-  300,
-  485,
-  135,
-  25,
-  0,
-  0,
-  Math.PI*2
-);
-
-ctx.fill();
-
-ctx.fillStyle=
-colorA;
-
-roundRect(
-  ctx,
-  145,
-  145,
-  310,
-  270,
-  42
-);
-
-ctx.fillStyle=
-colorB;
-
-roundRect(
-  ctx,
-  180,
-  185,
-  240,
-  72,
-  25
-);
-
-ctx.fillStyle=
-"#ffffff38";
-
-ctx.beginPath();
-
-ctx.arc(
-  300,
-  330,
-  60+index*3,
-  0,
-  Math.PI*2
-);
-
-ctx.fill();
-
-ctx.fillStyle="#fff";
-ctx.textAlign="center";
-
-ctx.font=
-"700 32px -apple-system";
-
-wrapText(
-  ctx,
-  name,
-  300,
-  440,
-  260,
-  37
-);
-
-ctx.fillStyle=
-"#526071";
-
-ctx.font=
-"20px -apple-system";
-
-ctx.fillText(
-  "DEMO • "+index,
-  300,
-  535
-);
-
-return canvas.toDataURL(
-  "image/jpeg",
-  0.78
-);
-
-}
-
-function wrapText(
-ctx,
-text,
-centerX,
-y,
-maxWidth,
-lineHeight
-){
-
-let line="";
-const lines=[];
-const words=
-text.split(/\s+/);
-
-for(
-  const word
-  of words
-){
-
-const testLine=
-line
-?
-line+" "+word
-:
-word;
-
-if(
-  ctx.measureText(
-    testLine
-  ).width
-  >
-  maxWidth
-  &&
-  line
-){
-
-lines.push(
-  line
-);
-
-line=word;
-
-}else{
-
-line=testLine;
-
-}
-
-}
-
-if(line){
-  lines.push(line);
-}
-
-lines
-.slice(0,3)
-.forEach(
-(item,index)=>{
-
-ctx.fillText(
-  item,
-  centerX,
-  y+
-  index*lineHeight
-);
-
-}
-);
-
-}
-
-async function saveKnowledge(){
-
-const name=
-document
-.getElementById(
-  "teachName"
-)
-.value
-.trim();
-
-if(!name){
-
-alert(
-  "Hãy nhập tên kiến thức."
-);
-
-return;
-
-}
-
-if(
-  !pendingPhotos.length
-){
-
-alert(
-  "Hãy thêm ít nhất 1 ảnh mới."
-);
-
-return;
-
-}
-
-const source=
-document
-.getElementById(
-  "teachSource"
-)
-.value;
-
-const extra=
-document
-.getElementById(
-  "aiExtraPrompt"
-)
-.value
-.trim();
-
-let object=
-editingKnowledgeId
-?
-state.knowledge[
-  editingKnowledgeId
-]
-:
-null;
-
-if(!object){
-
-object=
-Object.values(
-  state.knowledge
-)
-.find(item=>
-
-normalizeName(
-  item.name
-)
-===
-normalizeName(
-  name
-)
-
-&&
-
-item.type===
-teachType
-
-);
-
-}
-
-const existingImages=
-new Set(
-  object?.images||[]
-);
-
-const newImages=
-pendingPhotos.filter(
-photo=>
-!existingImages.has(
-  photo
-)
-);
-
-if(object){
-
-object.images=[
-  ...(object.images||[]),
-  ...newImages
-];
-
-object.name=name;
-object.type=teachType;
-object.source=source;
-
-object.updatedAt=
-new Date()
-.toISOString();
-
-object.promptSeed=
-buildObjectPrompt(
-  name,
-  extra
-);
-
-addMemory(
-  "Thêm "
-  +
-  newImages.length
-  +
-  " ảnh cho: "
-  +
-  name
-);
-
-}else{
-
-const id=
-"OBJ-"
-+
-Date.now()
-+
-"-"
-+
-Math.random()
-.toString(36)
-.slice(2,6);
-
-state.knowledge[id]={
-
-id,
-name,
-type:teachType,
-source,
-
-promptSeed:
-buildObjectPrompt(
-  name,
-  extra
-),
-
-images:[
-  ...newImages
-],
-
-confidence:10,
-correct:0,
-wrong:0,
-timesSeen:0,
-confusions:{},
-
-createdAt:
-new Date()
-.toISOString(),
-
-updatedAt:
-new Date()
-.toISOString()
-
-};
-
-state.robot.xp=
-(state.robot.xp||0)
-+
-5;
-
-addMemory(
-  "Học kiến thức mới: "
-  +
-  name
-);
-
-}
-
-clearDraft();
-
-await saveBrain();
-
-alert(
-  "Đã lưu vào Brain. Ảnh cũ được giữ nguyên."
-);
-
-showPage(
-  "brain",
-  4
-);
-
-}
-
-function clearDraft(){
-
-pendingPhotos=[];
-editingKnowledgeId=null;
-
-state.draft={
-  ...DEFAULT_STATE.draft
-};
-
-document
-.getElementById(
-  "teachName"
-)
-.value="";
-
-document
-.getElementById(
-  "aiExtraPrompt"
-)
-.value="";
-
-document
-.getElementById(
-  "teachSource"
-)
-.value="gallery";
-
-teachType="personal";
-
-renderPhotos();
-updateEditNotice();
-
-}
-
-function updateEditNotice(){
-
-const notice=
-document.getElementById(
-  "editNotice"
-);
-
-const cancelButton=
-document.getElementById(
-  "cancelEditBtn"
-);
-
-if(
-  editingKnowledgeId
-  &&
-  state.knowledge[
-    editingKnowledgeId
-  ]
-){
-
-notice.classList.remove(
-  "hidden"
-);
-
-cancelButton
-.classList
-.remove(
-  "hidden"
-);
-
-notice.textContent=
-"Đang bổ sung cho: "
-+
-state.knowledge[
-  editingKnowledgeId
-].name
-+
-". Chỉ ảnh mới sẽ được thêm; ảnh cũ không bị thay thế.";
-
-}else{
-
-notice.classList.add(
-  "hidden"
-);
-
-cancelButton
-.classList
-.add(
-  "hidden"
-);
-
-}
-
-}
-
-async function continueKnowledge(id){
-
-const object=
-state.knowledge[id];
-
-if(!object){
-  return;
-}
-
-editingKnowledgeId=id;
-pendingPhotos=[];
-teachType=object.type;
-
-state.draft={
-
-name:
-object.name,
-
-type:
-object.type,
-
-source:
-object.source||
-"gallery",
-
-extraPrompt:"",
-
-photos:[],
-
-editingKnowledgeId:id
-
-};
-
-await saveBrain();
-
-showPage(
-  "teach",
-  1
-);
-
-}
-
-async function cancelContinue(){
-
-clearDraft();
-
-await saveBrain();
-
-showPage(
-  "brain",
-  4
-);
-
-}
-
-async function renameKnowledge(id){
-
-const object=
-state.knowledge[id];
-
-const newName=
-prompt(
-  "Tên mới:",
-  object.name
-);
-
-if(
-  newName
-  &&
-  newName.trim()
-){
-
-object.name=
-newName.trim();
-
-object.updatedAt=
-new Date()
-.toISOString();
-
-addMemory(
-  "Đổi tên kiến thức thành: "
-  +
-  object.name
-);
-
-await saveBrain();
-
-renderBrain();
-
-}
-
-}
-
-async function deleteKnowledge(id){
-
-const object=
-state.knowledge[id];
-
-if(!object){
-  return;
-}
-
-if(
-  !confirm(
-    'Xóa "'
-    +
-    object.name
-    +
-    '" và toàn bộ ảnh của kiến thức này?'
-  )
-){
-  return;
-}
-
-delete state.knowledge[id];
-
-addMemory(
-  "Đã xóa kiến thức: "
-  +
-  object.name
-);
-
-await saveBrain();
-
-renderBrain();
-renderHome();
-
-}
-
-function setBrainFilter(type){
-
-brainFilter=type;
-
-[
-"brainAll",
-"brainGeneral",
-"brainPersonal"
-]
-.forEach(id=>
-
-document
-.getElementById(id)
-.classList
-.remove("active")
-
-);
-
-let activeId=
-"brainAll";
-
-if(type==="general"){
-  activeId="brainGeneral";
-}
-
-if(type==="personal"){
-  activeId="brainPersonal";
-}
-
-document
-.getElementById(
-  activeId
-)
-.classList
-.add("active");
-
-renderBrain();
-
-}
-
-function renderBrain(){
-
-let items=
-Object.values(
-  state.knowledge
-);
-
-if(
-  brainFilter!=="all"
-){
-
-items=
-items.filter(
-  item=>
-  item.type===
-  brainFilter
-);
-
-}
-
-items.sort(
-(a,b)=>
-new Date(
-  b.updatedAt||
-  b.createdAt||
-  0
-)
--
-new Date(
-  a.updatedAt||
-  a.createdAt||
-  0
-)
-);
-
-const box=
-document.getElementById(
-  "brainList"
-);
-
-if(!items.length){
-
-box.innerHTML=`
-<div class="card empty">
-Brain chưa có kiến thức.
-</div>
-`;
-
-return;
-
-}
-
-box.innerHTML=
-items
-.map(object=>`
-
-<div class="item">
-
-<div class="itemTop">
-
-${
-object.images?.[0]
-?
-`
-<img
-class="thumb"
-src="${object.images[0]}"
->
-`
-:
-`
-<div class="thumb"></div>
-`
-}
-
-<div class="grow">
-
-<div
-class="title"
-style="font-size:17px"
->
-${esc(object.name)}
-</div>
-
-<span
-class="badge ${
-object.type==="general"
-?
-"general"
-:
-""
-}"
->
-${
-object.type==="general"
-?
-"NÃO CHUNG"
-:
-"NÃO CÁ NHÂN"
-}
-</span>
-
-${
-object.source==="ai_generated"
-?
-`
-<span class="badge ai">
-AI/DEMO
-</span>
-`
-:
-""
-}
-
-<div class="sub">
-
-${object.images?.length||0}
-ảnh
-
-•
-
-đúng
-${object.correct||0}
-
-•
-
-sai
-${object.wrong||0}
-
-</div>
-
-</div>
-
-</div>
-
-<div class="bar">
-
-<div
-class="fill"
-style="
-width:
-${
-Math.max(
-  0,
-  Math.min(
-    100,
-    object.confidence||0
-  )
-)
-}%
-"
-></div>
-
-</div>
-
-<div class="sub">
-Độ tin cậy:
-${Math.round(
-  object.confidence||0
-)}%
-</div>
-
-<div class="actions">
-
-<button
-class="btn secondary mini"
-onclick="continueKnowledge('${object.id}')"
->
-＋ Thêm ảnh
-</button>
-
-<button
-class="btn secondary mini"
-onclick="renameKnowledge('${object.id}')"
->
-Đổi tên
-</button>
-
-<button
-class="btn danger mini"
-onclick="deleteKnowledge('${object.id}')"
->
-Xóa
-</button>
-
-</div>
-
-</div>
-
-`)
-.join("");
-
-}
-
-function candidates(){
-
-return Object.values(
-  state.knowledge
-)
-.filter(
-  object=>
-  object.images?.length
-);
-
-}
-
-function startQuiz(
-index=2
-){
-
-showPage(
-  "learn",
-  index
-);
-
-if(
-  candidates().length<2
-){
-
-document
-.getElementById(
-  "quizBox"
-)
-.innerHTML=`
-<div class="empty">
-Cần ít nhất 2 kiến thức có ảnh.
-</div>
-`;
-
-return;
-
-}
-
-nextQuestion();
-
-}
-
-function nextQuestion(){
-
-const items=
-candidates();
-
-quizTarget=
-items[
-Math.floor(
-  Math.random()*
-  items.length
-)
-];
-
-const image=
-quizTarget.images[
-Math.floor(
-  Math.random()*
-  quizTarget.images.length
-)
-];
-
-let choices=[
-
-quizTarget,
-
-...items
-.filter(
-  item=>
-  item.id!==
-  quizTarget.id
-)
-.sort(
-  ()=>
-  Math.random()-0.5
-)
-.slice(
-  0,
-  3
-)
-
-];
-
-choices=
-choices.sort(
-  ()=>
-  Math.random()-0.5
-);
-
-document
-.getElementById(
-  "quizBox"
-)
-.innerHTML=`
-
-<div
-class="title"
-style="text-align:center"
->
-Rii đang nhìn thấy gì?
-</div>
-
-<img
-class="quizImage"
-src="${image}"
->
-
-${
-choices
-.map(object=>`
-
-<button
-class="answer"
-onclick="checkAnswer('${object.id}')"
->
-${esc(object.name)}
-</button>
-
-`)
-.join("")
-}
-
-<div
-id="quizMessage"
-class="sub"
-style="
-text-align:center;
-margin-top:12px
-"
-></div>
-
-`;
-
-}
-
-async function checkAnswer(id){
-
-const target=
-state.knowledge[
-  quizTarget.id
-];
-
-target.timesSeen=
-(target.timesSeen||0)
-+
-1;
-
-if(
-  id===
-  target.id
-){
-
-target.correct=
-(target.correct||0)
-+
-1;
-
-target.confidence=
-Math.min(
-  100,
-  (target.confidence||0)
-  +
-  10
-);
-
-state.robot.xp=
-(state.robot.xp||0)
-+
-10;
-
-addMemory(
-  "Nhận biết đúng: "
-  +
-  target.name
-);
-
-document
-.getElementById(
-  "quizMessage"
-)
-.innerHTML=`
-<span class="ok">
-✅ Chính xác
-</span>
-`;
-
-}else{
-
-target.wrong=
-(target.wrong||0)
-+
-1;
-
-target.confidence=
-Math.max(
-  0,
-  (target.confidence||0)
-  -
-  5
-);
-
-target.confusions=
-target.confusions||
-{};
-
-target.confusions[id]=
-(target.confusions[id]||0)
-+
-1;
-
-addMemory(
-"Nhầm "
-+
-target.name
-+
-" với "
-+
-(
-  state.knowledge[id]
-  ?.name||
-  "khác"
-)
-);
-
-document
-.getElementById(
-  "quizMessage"
-)
-.innerHTML=`
-<span class="bad">
-❌ Đây là
-${esc(target.name)}
-</span>
-`;
-
-}
-
-await saveBrain();
-
-setTimeout(
-  nextQuestion,
-  1000
-);
-
-}
-
-document
-.getElementById(
-  "visionInput"
-)
-.addEventListener(
-  "change",
-  async event=>{
-
-const file=
-event.target.files[0];
-
-if(!file){
-  return;
-}
-
-visionImage=
-await compressImage(
-  file
-);
-
-document
-.getElementById(
-  "visionPreview"
-)
-.src=
-visionImage;
-
-document
-.getElementById(
-  "visionPreviewBox"
-)
-.classList
-.remove(
-  "hidden"
-);
-
-document
-.getElementById(
-  "visionResult"
-)
-.textContent=
-"Ảnh đã sẵn sàng.";
-
-event.target.value="";
-
+(async () => {
+  try {
+    await openDatabase();
+    await loadBrain();
+    restoreDraftToUI();
+    renderHome();
+  } catch (error) {
+    console.error(error);
+    alert("Không thể mở bộ nhớ Brain.");
   }
-);
-
-async function runVisionGuess(){
-
-if(!visionImage){
-
-alert(
-  "Hãy chọn ảnh."
-);
-
-return;
-
-}
-
-const items=
-candidates();
-
-if(!items.length){
-
-alert(
-  "Brain chưa có kiến thức."
-);
-
-return;
-
-}
-
-const resultBox=
-document.getElementById(
-  "visionResult"
-);
-
-resultBox.innerHTML=`
-<span class="loader"></span>
-Đang mô phỏng...
-`;
-
-await new Promise(
-resolve=>
-setTimeout(
-  resolve,
-  500
-)
-);
-
-const guesses=
-[...items]
-.sort(
-  ()=>
-  Math.random()-0.5
-)
-.slice(
-  0,
-  3
-);
-
-resultBox.innerHTML=`
-
-<div class="notice">
-
-<b>
-MÔ PHỎNG —
-chưa phải AI Vision thật
-</b>
-
-<br><br>
-
-${
-guesses
-.map(
-(object,index)=>{
-
-const percent=
-[60,25,15][index]
-||
-10;
-
-return (
-(index+1)
-+
-". "
-+
-esc(object.name)
-+
-" — "
-+
-percent
-+
-"%"
-);
-
-}
-)
-.join("<br>")
-}
-
-</div>
-
-`;
-
-addMemory(
-  "Chạy Vision mô phỏng"
-);
-
-await saveBrain();
-
-}
-
-function renderSettings(){
-
-document
-.getElementById(
-  "robotNameInput"
-)
-.value=
-state.robot.name;
-
-document
-.getElementById(
-  "robotIdInput"
-)
-.value=
-state.robot.id;
-
-document
-.getElementById(
-  "ownerInput"
-)
-.value=
-state.owner.name;
-
-document
-.getElementById(
-  "serialInput"
-)
-.value=
-state.robot.serial||
-"RII000001";
-
-document
-.getElementById(
-  "deviceUuidInput"
-)
-.value=
-state.robot.deviceUuid||
-"";
-
-document
-.getElementById(
-  "apiUrlInput"
-)
-.value=
-state.config.aiApiUrl||
-"";
-
-document
-.getElementById(
-  "apiStatus"
-)
-.textContent=
-AI_API_URL
-?
-"Đã cấu hình backend AI. Nếu API lỗi, hệ thống tự fallback sau tối đa 10 giây."
-:
-"Chưa có backend AI — hiện dùng ảnh demo.";
-
-updateStorage();
-
-}
-
-async function saveProfile(){
-
-state.robot.name=
-"Rii";
-
-state.robot.id=
-"RII000001";
-
-state.robot.serial=
-"RII000001";
-
-state.robot.role=
-"master";
-
-document
-.getElementById(
-  "robotNameInput"
-)
-.value=
-"Rii";
-
-document
-.getElementById(
-  "robotIdInput"
-)
-.value=
-"RII000001";
-
-state.owner.name=
-document
-.getElementById(
-  "ownerInput"
-)
-.value
-.trim();
-
-addMemory(
-  "Cập nhật hồ sơ Owner"
-);
-
-await saveBrain();
-
-alert(
-  "Đã lưu. Tên Rii và serial RII000001 của máy chủ được khóa."
-);
-
-renderHome();
-
-}
-
-async function saveApiConfig(){
-
-AI_API_URL=
-document
-.getElementById(
-  "apiUrlInput"
-)
-.value
-.trim();
-
-state.config.aiApiUrl=
-AI_API_URL;
-
-addMemory(
-AI_API_URL
-?
-"Đã cấu hình AI backend"
-:
-"Đã tắt AI backend"
-);
-
-await saveBrain();
-
-renderSettings();
-
-alert(
-  "Đã lưu cấu hình."
-);
-
-}
-
-async function updateStorage(){
-
-const element=
-document.getElementById(
-  "storageStatus"
-);
-
-if(
-  navigator.storage
-  ?.estimate
-){
-
-const estimate=
-await navigator.storage
-.estimate();
-
-const used=
-estimate.usage||
-0;
-
-const quota=
-estimate.quota||
-0;
-
-element.textContent=
-"Ước tính đã dùng "
-+
-(
-  used/
-  1048576
-)
-.toFixed(1)
-+
-" MB / "
-+
-(
-  quota/
-  1048576
-)
-.toFixed(0)
-+
-" MB của vùng lưu trữ trình duyệt.";
-
-}else{
-
-element.textContent=
-"Trình duyệt không cung cấp thông tin dung lượng.";
-
-}
-
-}
-
-function randomInt(max){
-
-if(
-  window.crypto
-  &&
-  crypto.getRandomValues
-){
-
-const array=
-new Uint32Array(1);
-
-crypto.getRandomValues(
-  array
-);
-
-return (
-array[0]
-%
-max
-);
-
-}
-
-return Math.floor(
-  Math.random()*
-  max
-);
-
-}
-
-function makeClientSerial(){
-
-const letters=
-"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-
-const prefix=
-letters[
-  randomInt(26)
-]
-+
-letters[
-  randomInt(26)
-];
-
-let digits="";
-
-for(
-  let i=0;
-  i<8;
-  i++
-){
-
-digits+=
-String(
-  randomInt(10)
-);
-
-}
-
-return (
-prefix+
-digits
-);
-
-}
-
-async function generateNextSerial(){
-
-state.serialRegistry=
-Array.isArray(
-  state.serialRegistry
-)
-?
-state.serialRegistry
-:
-["RII000001"];
-
-let serial="";
-let tries=0;
-
-do{
-
-serial=
-makeClientSerial();
-
-tries++;
-
-if(
-  tries>1000
-){
-
-throw new Error(
-  "Không thể sinh serial cục bộ."
-);
-
-}
-
-}while(
-  state.serialRegistry.includes(
-    serial
-  )
-  ||
-  serial===
-  "RII000001"
-);
-
-state.serialRegistry.push(
-  serial
-);
-
-addMemory(
-  "Đã cấp serial thử nghiệm: "
-  +
-  serial
-);
-
-await saveBrain();
-
-document
-.getElementById(
-  "generatedSerial"
-)
-.innerHTML=
-`Serial mới: <b>${serial}</b><br>
-Đã giữ chỗ trong bộ nhớ cục bộ của thiết bị này.`;
-
-}
-
-function backupBrain(){
-
-const blob=
-new Blob(
-[
-JSON.stringify(
-  state,
-  null,
-  2
-)
-],
-{
-  type:
-  "application/json"
-}
-);
-
-const url=
-URL.createObjectURL(
-  blob
-);
-
-const anchor=
-document.createElement(
-  "a"
-);
-
-anchor.href=url;
-
-anchor.download=
-"Rii-AI-V052-"
-+
-new Date()
-.toISOString()
-.slice(0,10)
-+
-".json";
-
-document.body.appendChild(
-  anchor
-);
-
-anchor.click();
-anchor.remove();
-
-setTimeout(
-()=>
-URL.revokeObjectURL(
-  url
-),
-1000
-);
-
-}
-
-document
-.getElementById(
-  "restoreInput"
-)
-.addEventListener(
-  "change",
-  async event=>{
-
-const file=
-event.target.files[0];
-
-if(!file){
-  return;
-}
-
-try{
-
-const restored=
-normalizeState(
-JSON.parse(
-  await file.text()
-)
-);
-
-if(
-  !confirm(
-    "Restore file này sẽ thay Brain hiện tại. Tiếp tục?"
-  )
-){
-  return;
-}
-
-state=restored;
-
-AI_API_URL=
-state.config.aiApiUrl||
-"";
-
-await saveBrain();
-
-alert(
-  "Restore thành công."
-);
-
-showPage(
-  "home",
-  0
-);
-
-}catch(error){
-
-console.error(error);
-
-alert(
-  "File backup không hợp lệ."
-);
-
-}
-
-event.target.value="";
-
-  }
-);
-
-async function resetBrain(){
-
-if(
-  !confirm(
-    "Xóa toàn bộ Brain trên thiết bị này?"
-  )
-){
-  return;
-}
-
-if(
-  !confirm(
-    "Xác nhận lần cuối. Hãy backup trước nếu cần."
-  )
-){
-  return;
-}
-
-state=
-normalizeState(
-  freshState()
-);
-
-pendingPhotos=[];
-editingKnowledgeId=null;
-AI_API_URL="";
-
-await saveBrain();
-
-alert(
-  "Đã reset Brain."
-);
-
-showPage(
-  "home",
-  0
-);
-
-}
-
-(async()=>{
-
-try{
-
-await openDatabase();
-
-await loadBrain();
-
-restoreDraftToUI();
-
-renderHome();
-
-}catch(error){
-
-console.error(error);
-
-alert(
-  "Không thể mở bộ nhớ Brain."
-);
-
-}
-
 })();
-
 </script>
 
 </body>
