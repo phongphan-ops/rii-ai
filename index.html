@@ -4,11 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#070b10">
-
-<title>Mimo Brain V0.4</title>
+<title>Mimo Brain V0.5</title>
 
 <style>
-
 :root{
   --bg:#070b10;
   --panel:#111923;
@@ -19,6 +17,7 @@
   --green:#4cdfa8;
   --blue:#5c8cff;
   --red:#ff747c;
+  --yellow:#efc04e;
 }
 
 *{
@@ -33,7 +32,7 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-button,input,select{
+button,input,select,textarea{
   font:inherit;
 }
 
@@ -45,11 +44,11 @@ button{
   max-width:500px;
   margin:auto;
   min-height:100vh;
-  padding:20px 16px 115px;
+  padding:20px 16px 120px;
 }
 
 .hidden{
-  display:none!important;
+  display:none !important;
 }
 
 .top{
@@ -60,24 +59,24 @@ button{
 }
 
 .brand{
-  font-size:27px;
+  font-size:28px;
   font-weight:900;
 }
 
 .version{
   color:var(--muted);
   border:1px solid var(--line);
-  padding:7px 11px;
+  padding:7px 12px;
   border-radius:999px;
   font-size:12px;
 }
 
 .card{
-  background:linear-gradient(145deg,#121b27,#0d151e);
+  background:linear-gradient(145deg,#121b27,#0d151f);
   border:1px solid var(--line);
   border-radius:24px;
   padding:18px;
-  margin-bottom:15px;
+  margin-bottom:14px;
 }
 
 .row{
@@ -91,14 +90,14 @@ button{
 }
 
 .robot-icon{
-  width:70px;
-  height:70px;
+  width:72px;
+  height:72px;
   border-radius:22px;
   background:#182536;
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:40px;
+  font-size:42px;
 }
 
 .title{
@@ -168,14 +167,19 @@ button{
   border:1px solid #2a394c;
 }
 
+.warning{
+  background:#342d1a;
+  color:#ffd66b;
+  border:1px solid #5d4c19;
+}
+
 .danger{
   background:#32171b;
   color:#ff9ca1;
   border:1px solid #5a232a;
 }
 
-input,
-select{
+input,select,textarea{
   width:100%;
   background:#0b131c;
   color:white;
@@ -184,6 +188,11 @@ select{
   padding:14px;
   outline:none;
   margin-top:8px;
+}
+
+textarea{
+  min-height:90px;
+  resize:vertical;
 }
 
 .field{
@@ -253,7 +262,7 @@ select{
   height:27px;
   border-radius:50%;
   border:0;
-  background:rgba(0,0,0,.7);
+  background:rgba(0,0,0,.72);
   color:white;
   padding:0;
 }
@@ -298,6 +307,16 @@ select{
 .badge.owner{
   background:#342a14;
   color:#f1ce67;
+}
+
+.badge.ai{
+  background:#28193b;
+  color:#d4b0ff;
+}
+
+.badge.manual{
+  background:#19362d;
+  color:#8df0c3;
 }
 
 .bar{
@@ -363,25 +382,41 @@ select{
   padding:28px 10px;
 }
 
+.helper{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:9px;
+  line-height:1.5;
+}
+
+.loader{
+  width:22px;
+  height:22px;
+  border:3px solid rgba(255,255,255,.2);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  display:inline-block;
+  vertical-align:middle;
+  margin-right:8px;
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg);}
+}
+
 .bottom{
   position:fixed;
   left:50%;
   bottom:0;
   transform:translateX(-50%);
   width:min(100%,500px);
-
   display:grid;
-  grid-template-columns:repeat(5,1fr);
-
+  grid-template-columns:repeat(6,1fr);
   background:rgba(7,11,16,.96);
   backdrop-filter:blur(18px);
-
   border-top:1px solid #202c39;
-
-  padding:
-  9px
-  4px
-  calc(9px + env(safe-area-inset-bottom));
+  padding:9px 4px calc(9px + env(safe-area-inset-bottom));
 }
 
 .nav{
@@ -399,2457 +434,1229 @@ select{
   color:var(--green);
 }
 
+.small{
+  font-size:11px;
+}
+
+.code{
+  font-family:ui-monospace, SFMono-Regular, Menlo, monospace;
+  background:#0b131c;
+  border:1px solid #223041;
+  border-radius:10px;
+  padding:10px;
+  color:#d4dbe7;
+  font-size:12px;
+  margin-top:10px;
+  white-space:pre-wrap;
+}
 </style>
 </head>
-
 <body>
 
 <div class="app">
 
-<div class="top">
+  <div class="top">
+    <div class="brand">Mimo Brain</div>
+    <div class="version">V0.5</div>
+  </div>
+
+  <!-- HOME -->
+  <section id="homePage">
+    <div class="card">
+      <div class="row">
+        <div class="robot-icon">🤖</div>
+        <div class="grow">
+          <div class="title" id="robotNameHome">Mimo</div>
+          <div class="sub" id="robotIdHome">RB-000001</div>
+          <div class="sub online">● Bộ nhớ đang hoạt động</div>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="stat">
+          <div class="stat-label">Kinh nghiệm</div>
+          <div class="stat-value" id="xpHome">0 XP</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">Não chung</div>
+          <div class="stat-value" id="generalHome">0</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">Não cá nhân</div>
+          <div class="stat-value" id="personalHome">0</div>
+        </div>
+
+        <div class="stat">
+          <div class="stat-label">Ký ức</div>
+          <div class="stat-value" id="memoryHome">0</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <div style="font-size:38px">👑</div>
+        <div class="grow">
+          <div class="title" style="font-size:18px">Owner Identity</div>
+          <div class="sub" id="ownerHome">Chưa thiết lập chủ nhân</div>
+        </div>
+        <div class="badge owner">OWNER</div>
+      </div>
+
+      <div class="sub" style="margin-top:14px">
+        V0.5 đã sẵn kiến trúc cho ảnh AI không giới hạn.
+        Web app này chưa dùng trực tiếp Face ID của iPhone.
+      </div>
+    </div>
+
+    <button class="btn primary" onclick="showPage('teach',1)">＋ Dạy kiến thức mới</button>
+    <button class="btn secondary" onclick="startQuiz(2)">🎮 Kiểm tra nhận biết</button>
+    <button class="btn warning" onclick="showPage('vision',3)">✨ AI Vision</button>
+
+    <div class="section-title">Ký ức gần đây</div>
+    <div id="recentMemories"></div>
+  </section>
+
+
+  <!-- TEACH -->
+  <section id="teachPage" class="hidden">
+    <div class="section-title">Dạy Mimo</div>
+
+    <div class="card">
+      <label class="field">Loại kiến thức</label>
+      <div class="pills">
+        <button id="personalPill" class="pill active" onclick="setTeachType('personal')">👤 Não cá nhân</button>
+        <button id="generalPill" class="pill" onclick="setTeachType('general')">☁️ Não chung</button>
+      </div>
+
+      <label class="field">Tên đồ vật / kiến thức</label>
+      <input id="teachName" placeholder="Ví dụ: bình sữa em bé">
+
+      <label class="field">Nguồn dữ liệu</label>
+      <select id="teachSource">
+        <option value="gallery">Ảnh có sẵn</option>
+        <option value="camera">Camera iPhone</option>
+        <option value="ai_generated">AI tạo ảnh</option>
+        <option value="dataset">Dataset</option>
+        <option value="other">Nguồn khác</option>
+      </select>
+
+      <label class="field">Số lượng ảnh AI muốn tạo</label>
+      <select id="aiCount">
+        <option value="1">1 ảnh</option>
+        <option value="2">2 ảnh</option>
+        <option value="3" selected>3 ảnh</option>
+        <option value="4">4 ảnh</option>
+        <option value="5">5 ảnh</option>
+        <option value="6">6 ảnh</option>
+      </select>
+
+      <label class="field">Mô tả thêm cho AI (không bắt buộc)</label>
+      <textarea id="aiExtraPrompt" placeholder="Ví dụ: màu xanh, nền xám sáng, phong cách minh hoạ giáo dục tối giản..."></textarea>
+
+      <button class="btn warning" onclick="generateAiImages()">
+        ✨ Tạo ảnh AI
+      </button>
 
-<div class="brand">
-Mimo Brain
-</div>
+      <div class="helper">
+        Nếu chưa cấu hình backend AI, app sẽ dùng ảnh placeholder demo để bạn vẫn test được luồng V0.5.
+      </div>
 
-<div class="version">
-V0.4
-</div>
+      <div class="photo-box">
+        <div style="font-size:40px">🖼️</div>
+        <div class="sub">
+          Có thể trộn:
+          ảnh AI + ảnh có sẵn + ảnh chụp thật
+        </div>
 
-</div>
+        <label for="photoInput" class="btn secondary" style="display:block">
+          Chọn / chụp ảnh
+        </label>
 
+        <input id="photoInput" type="file" accept="image/*" multiple style="display:none">
 
-<!-- HOME -->
+        <div id="photoPreview" class="photo-grid"></div>
+      </div>
 
-<section id="homePage">
+      <button class="btn primary" onclick="saveKnowledge()">
+        🧠 Ghi vào Brain
+      </button>
+    </div>
+  </section>
 
-<div class="card">
 
-<div class="row">
+  <!-- LEARN -->
+  <section id="learnPage" class="hidden">
+    <div class="section-title">🎮 Learn</div>
+    <div id="quizBox" class="card">
+      <div class="empty">Hãy dạy Mimo ít nhất 2 kiến thức có ảnh.</div>
+    </div>
+  </section>
 
-<div class="robot-icon">
-🤖
-</div>
 
-<div class="grow">
+  <!-- VISION -->
+  <section id="visionPage" class="hidden">
+    <div class="section-title">✨ AI Vision</div>
 
-<div class="title" id="robotNameHome">
-Mimo
-</div>
+    <div class="card">
+      <label class="field">Ảnh muốn phân tích</label>
 
-<div class="sub" id="robotIdHome">
-RB-000001
-</div>
+      <label for="visionInput" class="btn secondary" style="display:block;text-align:center">
+        Chọn ảnh để AI đoán
+      </label>
 
-<div class="sub online">
-● Bộ nhớ đang hoạt động
-</div>
+      <input id="visionInput" type="file" accept="image/*" style="display:none">
 
-</div>
+      <div id="visionPreviewBox" class="hidden" style="margin-top:14px">
+        <img id="visionPreview" class="quiz-image" src="">
+      </div>
 
-</div>
+      <button class="btn warning" onclick="runVisionGuess()">
+        🔍 Dự đoán từ Brain
+      </button>
 
+      <div id="visionResult" class="helper"></div>
+    </div>
 
-<div class="grid">
+    <div class="card">
+      <div class="title" style="font-size:18px">Cách hoạt động ở V0.5</div>
+      <div class="sub">
+        Nếu chưa có backend AI thật, Vision sẽ mô phỏng bằng cách cho bạn xác nhận kết quả.
+        Khi có backend, phần này sẽ gọi API phân tích ảnh mới.
+      </div>
+    </div>
+  </section>
 
-<div class="stat">
 
-<div class="stat-label">
-Kinh nghiệm
-</div>
+  <!-- BRAIN -->
+  <section id="brainPage" class="hidden">
+    <div class="section-title">🧠 Brain</div>
 
-<div class="stat-value" id="xpHome">
-0 XP
-</div>
+    <div class="pills">
+      <button id="brainAll" class="pill active" onclick="setBrainFilter('all')">Tất cả</button>
+      <button id="brainGeneral" class="pill" onclick="setBrainFilter('general')">☁️ Não chung</button>
+      <button id="brainPersonal" class="pill" onclick="setBrainFilter('personal')">👤 Não cá nhân</button>
+    </div>
 
-</div>
+    <div id="brainList" style="margin-top:12px"></div>
+  </section>
 
 
-<div class="stat">
+  <!-- SETTINGS -->
+  <section id="settingsPage" class="hidden">
+    <div class="section-title">⚙️ Robot & Owner</div>
 
-<div class="stat-label">
-Não chung
-</div>
+    <div class="card">
+      <label class="field">Tên robot</label>
+      <input id="robotNameInput" placeholder="Mimo">
 
-<div class="stat-value" id="generalHome">
-0
-</div>
+      <label class="field">Robot ID</label>
+      <input id="robotIdInput" placeholder="RB-000001">
 
-</div>
+      <label class="field">Tên chủ nhân</label>
+      <input id="ownerInput" placeholder="Tên chủ nhân">
 
+      <button class="btn primary" onclick="saveProfile()">Lưu hồ sơ</button>
+    </div>
 
-<div class="stat">
+    <div class="card">
+      <div class="title" style="font-size:18px">🔗 Cấu hình AI API</div>
 
-<div class="stat-label">
-Não cá nhân
-</div>
+      <div class="sub">
+        Nếu có backend thật, nhập URL API ở đây.
+      </div>
 
-<div class="stat-value" id="personalHome">
-0
-</div>
+      <label class="field">AI API URL</label>
+      <input id="apiUrlInput" placeholder="https://your-domain.com/generate-object-images">
 
-</div>
+      <button class="btn secondary" onclick="saveApiConfig()">Lưu cấu hình API</button>
 
+      <div class="helper">
+        Nếu để trống, nút "Tạo ảnh AI" sẽ dùng fallback demo.
+      </div>
+    </div>
 
-<div class="stat">
+    <div class="card">
+      <div class="title" style="font-size:18px">💾 Dữ liệu Brain</div>
 
-<div class="stat-label">
-Ký ức
-</div>
+      <button class="btn secondary" onclick="backupBrain()">⬇️ Backup Brain</button>
 
-<div class="stat-value" id="memoryHome">
-0
-</div>
+      <label for="restoreInput" class="btn secondary" style="display:block;text-align:center">
+        ⬆️ Restore Brain
+      </label>
 
-</div>
+      <input id="restoreInput" type="file" accept=".json" style="display:none">
 
-</div>
-
-</div>
-
-
-<div class="card">
-
-<div class="row">
-
-<div style="font-size:38px">
-👑
-</div>
-
-<div class="grow">
-
-<div class="title" style="font-size:18px">
-Owner Identity
-</div>
-
-<div class="sub" id="ownerHome">
-Chưa thiết lập chủ nhân
-</div>
-
-</div>
-
-<div class="badge owner">
-OWNER
-</div>
-
-</div>
-
-<div class="sub" style="margin-top:14px">
-
-Face ID thật của iPhone chưa được Web App truy cập.
-
-V0.4 tạo hồ sơ danh tính để sau kết nối Face ID iOS
-và AI nhận diện khuôn mặt từ camera robot.
-
-</div>
-
-</div>
-
-
-<button class="btn primary"
-onclick="showPage('teach',1)">
-
-＋ Dạy kiến thức mới
-
-</button>
-
-
-<button class="btn secondary"
-onclick="startQuiz(2)">
-
-🎮 Kiểm tra nhận biết
-
-</button>
-
-
-<div class="section-title">
-Ký ức gần đây
-</div>
-
-<div id="recentMemories">
-</div>
-
-</section>
-
-
-
-<!-- TEACH -->
-
-<section id="teachPage" class="hidden">
-
-<div class="section-title">
-Dạy Mimo
-</div>
-
-
-<div class="card">
-
-<label class="field">
-Loại kiến thức
-</label>
-
-
-<div class="pills">
-
-<button
-id="personalPill"
-class="pill active"
-onclick="setTeachType('personal')">
-
-👤 Não cá nhân
-
-</button>
-
-
-<button
-id="generalPill"
-class="pill"
-onclick="setTeachType('general')">
-
-☁️ Não chung
-
-</button>
-
-</div>
-
-
-<label class="field">
-Tên đồ vật / kiến thức
-</label>
-
-
-<input
-id="teachName"
-placeholder="Ví dụ: Chai nước của tôi">
-
-
-<label class="field">
-Nguồn ảnh
-</label>
-
-
-<select id="teachSource">
-
-<option value="gallery">
-Ảnh có sẵn / ảnh AI
-</option>
-
-<option value="camera">
-Camera iPhone
-</option>
-
-<option value="ai">
-Ảnh AI tạo
-</option>
-
-<option value="dataset">
-Dataset
-</option>
-
-<option value="other">
-Nguồn khác
-</option>
-
-</select>
-
-
-<div class="photo-box">
-
-<div style="font-size:40px">
-🖼️
-</div>
-
-<div class="sub">
-
-Có thể chọn ảnh AI đã lưu,
-ảnh trong thư viện hoặc chụp ảnh thật.
+      <button class="btn danger" onclick="resetBrain()">Xóa toàn bộ Brain</button>
+    </div>
+  </section>
 
 </div>
 
 
-<label
-for="photoInput"
-class="btn secondary"
-style="display:block">
-
-Chọn / chụp ảnh
-
-</label>
-
-
-<input
-id="photoInput"
-type="file"
-accept="image/*"
-multiple
-style="display:none">
-
-
-<div
-id="photoPreview"
-class="photo-grid">
-
-</div>
-
-</div>
-
-
-<button
-class="btn primary"
-onclick="saveKnowledge()">
-
-🧠 Ghi vào Brain
-
-</button>
-
-</div>
-
-</section>
-
-
-
-<!-- LEARN -->
-
-<section
-id="learnPage"
-class="hidden">
-
-<div class="section-title">
-🎮 Learn
-</div>
-
-
-<div id="quizBox" class="card">
-
-<div class="empty">
-
-Hãy dạy Mimo ít nhất 2 đồ vật có ảnh.
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- BRAIN -->
-
-<section
-id="brainPage"
-class="hidden">
-
-<div class="section-title">
-🧠 Brain
-</div>
-
-
-<div class="pills">
-
-<button
-id="brainAll"
-class="pill active"
-onclick="setBrainFilter('all')">
-
-Tất cả
-
-</button>
-
-
-<button
-id="brainGeneral"
-class="pill"
-onclick="setBrainFilter('general')">
-
-☁️ Não chung
-
-</button>
-
-
-<button
-id="brainPersonal"
-class="pill"
-onclick="setBrainFilter('personal')">
-
-👤 Não cá nhân
-
-</button>
-
-</div>
-
-
-<div
-id="brainList"
-style="margin-top:12px">
-
-</div>
-
-</section>
-
-
-
-<!-- SETTINGS -->
-
-<section
-id="settingsPage"
-class="hidden">
-
-<div class="section-title">
-⚙️ Robot & Owner
-</div>
-
-
-<div class="card">
-
-<label class="field">
-Tên robot
-</label>
-
-<input
-id="robotNameInput"
-placeholder="Mimo">
-
-
-<label class="field">
-Robot ID
-</label>
-
-<input
-id="robotIdInput"
-placeholder="RB-000001">
-
-
-<label class="field">
-Tên chủ nhân
-</label>
-
-<input
-id="ownerInput"
-placeholder="Tên chủ nhân">
-
-
-<button
-class="btn primary"
-onclick="saveProfile()">
-
-Lưu hồ sơ
-
-</button>
-
-</div>
-
-
-
-<div class="card">
-
-<div class="title"
-style="font-size:18px">
-
-🔐 Nhận diện chủ nhân
-
-</div>
-
-
-<div class="notice"
-style="margin-top:12px">
-
-<b>Face ID iPhone</b>
-
-<br><br>
-
-Sau này dùng để xác thực người mở app.
-
-<br><br>
-
-<b>Camera robot</b>
-
-<br><br>
-
-Sẽ có AI riêng để nhận diện
-khuôn mặt và biết ai là chủ nhân.
-
-</div>
-
-</div>
-
-
-
-<div class="section-title">
-💾 Dữ liệu Brain
-</div>
-
-
-<div class="card">
-
-<button
-class="btn secondary"
-onclick="backupBrain()">
-
-⬇️ Backup Brain
-
-</button>
-
-
-<label
-for="restoreInput"
-class="btn secondary"
-style="display:block;text-align:center">
-
-⬆️ Restore Brain
-
-</label>
-
-
-<input
-id="restoreInput"
-type="file"
-accept=".json"
-style="display:none">
-
-
-<button
-class="btn danger"
-onclick="resetBrain()">
-
-Xóa toàn bộ Brain
-
-</button>
-
-</div>
-
-</section>
-
-</div>
-
-
-
-<!-- BOTTOM MENU -->
-
+<!-- MENU -->
 <div class="bottom">
+  <div class="nav active" onclick="showPage('home',0)">
+    <div class="nav-icon">⌂</div>
+    Home
+  </div>
 
-<div
-class="nav active"
-onclick="showPage('home',0)">
+  <div class="nav" onclick="showPage('teach',1)">
+    <div class="nav-icon">＋</div>
+    Teach
+  </div>
 
-<div class="nav-icon">
-⌂
+  <div class="nav" onclick="startQuiz(2)">
+    <div class="nav-icon">🎮</div>
+    Learn
+  </div>
+
+  <div class="nav" onclick="showPage('vision',3)">
+    <div class="nav-icon">✨</div>
+    Vision
+  </div>
+
+  <div class="nav" onclick="showPage('brain',4)">
+    <div class="nav-icon">🧠</div>
+    Brain
+  </div>
+
+  <div class="nav" onclick="showPage('settings',5)">
+    <div class="nav-icon">⚙️</div>
+    Settings
+  </div>
 </div>
-
-Home
-
-</div>
-
-
-<div
-class="nav"
-onclick="showPage('teach',1)">
-
-<div class="nav-icon">
-＋
-</div>
-
-Teach
-
-</div>
-
-
-<div
-class="nav"
-onclick="startQuiz(2)">
-
-<div class="nav-icon">
-🎮
-</div>
-
-Learn
-
-</div>
-
-
-<div
-class="nav"
-onclick="showPage('brain',3)">
-
-<div class="nav-icon">
-🧠
-</div>
-
-Brain
-
-</div>
-
-
-<div
-class="nav"
-onclick="showPage('settings',4)">
-
-<div class="nav-icon">
-⚙️
-</div>
-
-Settings
-
-</div>
-
-</div>
-
 
 
 <script>
+/* ===========================
+   CONFIG
+=========================== */
 
-/* ======================
-   DATABASE
-====================== */
+const DB_NAME = "MimoBrainV05";
+const STORE_NAME = "brainStore";
 
-const DB_NAME =
-"MimoBrainV04";
+let database = null;
 
-const STORE_NAME =
-"brain";
-
-let database;
-
+let AI_API_URL = ""; // Có thể lưu trong Settings
 
 let state = {
-
-version:"0.4",
-
-robot:{
-name:"Mimo",
-id:"RB-000001",
-xp:0
-},
-
-owner:{
-name:"",
-role:"owner"
-},
-
-knowledge:{},
-
-memories:[]
-
+  version:"0.5",
+  robot:{
+    name:"Mimo",
+    id:"RB-000001",
+    xp:0
+  },
+  owner:{
+    name:"",
+    role:"owner"
+  },
+  config:{
+    aiApiUrl:""
+  },
+  knowledge:{},
+  memories:[]
 };
-
 
 let pendingPhotos = [];
-
-let teachType =
-"personal";
-
-let brainFilter =
-"all";
-
+let teachType = "personal";
+let brainFilter = "all";
 let quizTarget = null;
+let visionImage = "";
 
 
+/* ===========================
+   DB
+=========================== */
 
 function openDatabase(){
+  return new Promise((resolve,reject)=>{
+    const request = indexedDB.open(DB_NAME,1);
 
-return new Promise(
+    request.onupgradeneeded = function(event){
+      const db = event.target.result;
+      if(!db.objectStoreNames.contains(STORE_NAME)){
+        db.createObjectStore(STORE_NAME);
+      }
+    };
 
-(resolve,reject)=>{
+    request.onsuccess = function(){
+      database = request.result;
+      resolve();
+    };
 
-const request =
-indexedDB.open(
-DB_NAME,
-1
-);
-
-
-request.onupgradeneeded =
-function(event){
-
-const db =
-event.target.result;
-
-
-if(
-!db.objectStoreNames.contains(
-STORE_NAME
-)
-){
-
-db.createObjectStore(
-STORE_NAME
-);
-
+    request.onerror = function(){
+      reject(request.error);
+    };
+  });
 }
-
-};
-
-
-request.onsuccess =
-function(){
-
-database =
-request.result;
-
-resolve();
-
-};
-
-
-request.onerror =
-function(){
-
-reject(
-request.error
-);
-
-};
-
-});
-
-}
-
-
 
 function loadBrain(){
+  return new Promise((resolve)=>{
+    const transaction = database.transaction(STORE_NAME,"readonly");
+    const store = transaction.objectStore(STORE_NAME);
+    const request = store.get("state");
 
-return new Promise(
+    request.onsuccess = function(){
+      if(request.result){
+        state = request.result;
+        AI_API_URL = state.config?.aiApiUrl || "";
+      }
+      resolve();
+    };
 
-(resolve)=>{
-
-const transaction =
-database.transaction(
-STORE_NAME,
-"readonly"
-);
-
-
-const store =
-transaction.objectStore(
-STORE_NAME
-);
-
-
-const request =
-store.get("state");
-
-
-request.onsuccess =
-function(){
-
-if(
-request.result
-){
-
-state =
-request.result;
-
+    request.onerror = function(){
+      resolve();
+    };
+  });
 }
-
-resolve();
-
-};
-
-
-request.onerror =
-function(){
-
-resolve();
-
-};
-
-});
-
-}
-
-
 
 function saveBrain(){
-
-return new Promise(
-
-(resolve)=>{
-
-const transaction =
-database.transaction(
-STORE_NAME,
-"readwrite"
-);
-
-
-transaction
-.objectStore(
-STORE_NAME
-)
-.put(
-state,
-"state"
-);
-
-
-transaction.oncomplete =
-function(){
-
-resolve();
-
-};
-
-});
-
+  return new Promise((resolve)=>{
+    const transaction = database.transaction(STORE_NAME,"readwrite");
+    transaction.objectStore(STORE_NAME).put(state,"state");
+    transaction.oncomplete = function(){
+      resolve();
+    };
+  });
 }
 
 
-
-/* ======================
+/* ===========================
    MEMORY
-====================== */
-
+=========================== */
 
 function addMemory(text){
+  state.memories.unshift({
+    text:text,
+    time:new Date().toLocaleString("vi-VN")
+  });
 
-state.memories.unshift({
-
-text:text,
-
-time:
-new Date()
-.toLocaleString(
-"vi-VN"
-)
-
-});
-
-
-if(
-state.memories.length > 300
-){
-
-state.memories.pop();
-
-}
-
+  if(state.memories.length > 300){
+    state.memories.pop();
+  }
 }
 
 
-
-/* ======================
+/* ===========================
    PAGE
-====================== */
+=========================== */
 
+function showPage(page,navIndex){
+  ["home","teach","learn","vision","brain","settings"].forEach(name=>{
+    document.getElementById(name+"Page").classList.add("hidden");
+  });
 
-function showPage(
-page,
-navIndex
-){
+  document.getElementById(page+"Page").classList.remove("hidden");
 
-[
-"home",
-"teach",
-"learn",
-"brain",
-"settings"
+  const navs = document.querySelectorAll(".nav");
+  navs.forEach(n=>n.classList.remove("active"));
+  if(navIndex !== undefined){
+    navs[navIndex].classList.add("active");
+  }
 
-].forEach(
-
-name=>{
-
-document
-.getElementById(
-name+"Page"
-)
-.classList.add(
-"hidden"
-);
-
-}
-
-);
-
-
-document
-.getElementById(
-page+"Page"
-)
-.classList.remove(
-"hidden"
-);
-
-
-const navs =
-document
-.querySelectorAll(
-".nav"
-);
-
-
-navs.forEach(
-
-n =>
-n.classList.remove(
-"active"
-)
-
-);
-
-
-if(
-navIndex !== undefined
-){
-
-navs[
-navIndex
-]
-.classList.add(
-"active"
-);
-
+  if(page === "home") renderHome();
+  if(page === "brain") renderBrain();
+  if(page === "settings") renderSettings();
 }
 
 
-if(
-page === "home"
-){
-
-renderHome();
-
-}
-
-
-if(
-page === "brain"
-){
-
-renderBrain();
-
-}
-
-
-if(
-page === "settings"
-){
-
-renderSettings();
-
-}
-
-}
-
-
-
-/* ======================
+/* ===========================
    HOME
-====================== */
-
+=========================== */
 
 function renderHome(){
+  document.getElementById("robotNameHome").innerText = state.robot.name;
+  document.getElementById("robotIdHome").innerText = state.robot.id;
+  document.getElementById("xpHome").innerText = state.robot.xp + " XP";
 
-document
-.getElementById(
-"robotNameHome"
-)
-.innerText =
-state.robot.name;
+  const objects = Object.values(state.knowledge);
 
+  document.getElementById("generalHome").innerText =
+    objects.filter(o => o.type === "general").length;
 
-document
-.getElementById(
-"robotIdHome"
-)
-.innerText =
-state.robot.id;
+  document.getElementById("personalHome").innerText =
+    objects.filter(o => o.type === "personal").length;
 
+  document.getElementById("memoryHome").innerText = state.memories.length;
 
-document
-.getElementById(
-"xpHome"
-)
-.innerText =
-state.robot.xp +
-" XP";
+  document.getElementById("ownerHome").innerText =
+    state.owner.name ? state.owner.name : "Chưa thiết lập chủ nhân";
 
+  const memoryBox = document.getElementById("recentMemories");
 
-const objects =
-Object.values(
-state.knowledge
-);
+  if(state.memories.length === 0){
+    memoryBox.innerHTML = `<div class="memory">Mimo chưa có ký ức học tập.</div>`;
+    return;
+  }
 
-
-document
-.getElementById(
-"generalHome"
-)
-.innerText =
-objects.filter(
-
-o =>
-o.type ===
-"general"
-
-).length;
-
-
-document
-.getElementById(
-"personalHome"
-)
-.innerText =
-objects.filter(
-
-o =>
-o.type ===
-"personal"
-
-).length;
-
-
-document
-.getElementById(
-"memoryHome"
-)
-.innerText =
-state.memories.length;
-
-
-document
-.getElementById(
-"ownerHome"
-)
-.innerText =
-state.owner.name
-?
-state.owner.name
-:
-"Chưa thiết lập chủ nhân";
-
-
-const memoryBox =
-document
-.getElementById(
-"recentMemories"
-);
-
-
-if(
-state.memories.length === 0
-){
-
-memoryBox.innerHTML = `
-
-<div class="memory">
-
-Mimo chưa có ký ức học tập.
-
-</div>
-
-`;
-
-return;
-
+  memoryBox.innerHTML = state.memories
+    .slice(0,6)
+    .map(m => `
+      <div class="memory">
+        ${escapeHtml(m.text)}
+        <div class="time">${escapeHtml(m.time)}</div>
+      </div>
+    `)
+    .join("");
 }
 
 
-memoryBox.innerHTML =
-state.memories
-.slice(
-0,
-6
-)
-.map(
-
-m => `
-
-<div class="memory">
-
-${m.text}
-
-<div class="time">
-
-${m.time}
-
-</div>
-
-</div>
-
-`
-
-)
-.join("");
-
-}
-
-
-
-/* ======================
+/* ===========================
    TEACH TYPE
-====================== */
+=========================== */
 
+function setTeachType(type){
+  teachType = type;
 
-function setTeachType(
-type
-){
-
-teachType =
-type;
-
-
-document
-.getElementById(
-"personalPill"
-)
-.classList.toggle(
-"active",
-type ===
-"personal"
-);
-
-
-document
-.getElementById(
-"generalPill"
-)
-.classList.toggle(
-"active",
-type ===
-"general"
-);
-
+  document.getElementById("personalPill").classList.toggle("active", type === "personal");
+  document.getElementById("generalPill").classList.toggle("active", type === "general");
 }
 
 
-
-/* ======================
-   PHOTO
-====================== */
-
-
-document
-.getElementById(
-"photoInput"
-)
-.addEventListener(
-
-"change",
-
-async function(event){
-
-const files =
-Array.from(
-event.target.files
-);
-
-
-for(
-const file of files
-){
-
-if(
-pendingPhotos.length >= 12
-){
-
-break;
-
-}
-
-
-const image =
-await compressImage(
-file
-);
-
-
-pendingPhotos.push(
-image
-);
-
-}
-
-
-renderPhotos();
-
-
-event.target.value =
-"";
-
-}
-
-);
-
-
-
-function compressImage(
-file
-){
-
-return new Promise(
-
-(resolve)=>{
-
-const reader =
-new FileReader();
-
-
-reader.onload =
-function(event){
-
-const img =
-new Image();
-
-
-img.onload =
-function(){
-
-const max =
-720;
-
-
-let width =
-img.width;
-
-
-let height =
-img.height;
-
-
-const scale =
-Math.min(
-
-1,
-
-max /
-Math.max(
-width,
-height
-)
-
-);
-
-
-width =
-Math.round(
-width *
-scale
-);
-
-
-height =
-Math.round(
-height *
-scale
-);
-
-
-const canvas =
-document.createElement(
-"canvas"
-);
-
-
-canvas.width =
-width;
-
-
-canvas.height =
-height;
-
-
-const ctx =
-canvas.getContext(
-"2d"
-);
-
-
-ctx.drawImage(
-
-img,
-
-0,
-0,
-
-width,
-height
-
-);
-
-
-const data =
-canvas.toDataURL(
-
-"image/jpeg",
-
-0.68
-
-);
-
-
-resolve(
-data
-);
-
-};
-
-
-img.src =
-event.target.result;
-
-};
-
-
-reader.readAsDataURL(
-file
-);
-
+/* ===========================
+   PHOTO INPUT
+=========================== */
+
+document.getElementById("photoInput").addEventListener("change", async function(event){
+  const files = Array.from(event.target.files);
+
+  for(const file of files){
+    if(pendingPhotos.length >= 20) break;
+    const image = await compressImage(file);
+    pendingPhotos.push(image);
+  }
+
+  renderPhotos();
+  event.target.value = "";
 });
 
+function compressImage(file){
+  return new Promise((resolve)=>{
+    const reader = new FileReader();
+
+    reader.onload = function(event){
+      const img = new Image();
+
+      img.onload = function(){
+        const max = 720;
+        let width = img.width;
+        let height = img.height;
+
+        const scale = Math.min(1, max / Math.max(width,height));
+        width = Math.round(width * scale);
+        height = Math.round(height * scale);
+
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        ctx.drawImage(img,0,0,width,height);
+
+        const data = canvas.toDataURL("image/jpeg",0.68);
+        resolve(data);
+      };
+
+      img.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
+  });
 }
-
-
 
 function renderPhotos(){
+  const box = document.getElementById("photoPreview");
 
-const box =
-document
-.getElementById(
-"photoPreview"
-);
+  box.innerHTML = pendingPhotos.map((photo,index)=>`
+    <div class="photo">
+      <img src="${photo}">
+      <button class="remove" onclick="removePhoto(${index})">×</button>
+    </div>
+  `).join("");
+}
 
-
-box.innerHTML =
-pendingPhotos
-.map(
-
-(photo,index)=>`
-
-<div class="photo">
-
-<img src="${photo}">
-
-<button
-class="remove"
-onclick="removePhoto(${index})">
-
-×
-
-</button>
-
-</div>
-
-`
-
-)
-.join("");
-
+function removePhoto(index){
+  pendingPhotos.splice(index,1);
+  renderPhotos();
 }
 
 
+/* ===========================
+   AI GENERATE
+=========================== */
 
-function removePhoto(
-index
-){
+function setAiLoading(loading){
+  const btns = Array.from(document.querySelectorAll("button"));
+  btns.forEach(btn=>{
+    if(btn.innerText.includes("Tạo ảnh AI")){
+      btn.disabled = loading;
+      btn.innerHTML = loading
+        ? `<span class="loader"></span>Đang tạo ảnh...`
+        : `✨ Tạo ảnh AI`;
+    }
+  });
+}
 
-pendingPhotos.splice(
-index,
-1
-);
+function buildObjectPrompt(objectName, extraPrompt = ""){
+  let prompt =
+`Create a clean simple centered illustration of ${objectName},
+single object only,
+light gray or clean neutral background,
+minimal educational flashcard style,
+high clarity,
+child-friendly object illustration,
+no watermark,
+no text,
+no extra objects.`;
 
+  if(extraPrompt && extraPrompt.trim()){
+    prompt += "\nAdditional details: " + extraPrompt.trim();
+  }
 
-renderPhotos();
+  return prompt;
+}
 
+async function generateAiImages(){
+  const objectName = document.getElementById("teachName").value.trim();
+  const count = parseInt(document.getElementById("aiCount").value || "3",10);
+  const extraPrompt = document.getElementById("aiExtraPrompt").value.trim();
+
+  if(!objectName){
+    alert("Hãy nhập tên đồ vật trước.");
+    return;
+  }
+
+  setAiLoading(true);
+
+  try{
+    let images = [];
+
+    if(AI_API_URL){
+      images = await callAiApi(objectName, count, extraPrompt);
+    }else{
+      images = await generateFallbackSamples(objectName, count);
+    }
+
+    pendingPhotos.push(...images);
+    renderPhotos();
+
+    document.getElementById("teachSource").value = "ai_generated";
+
+    addMemory("Tạo ảnh AI cho: " + objectName);
+    await saveBrain();
+
+    alert("Đã tạo " + images.length + " ảnh.");
+  }
+  catch(error){
+    console.error(error);
+    alert("Không thể tạo ảnh AI.");
+  }
+
+  setAiLoading(false);
+}
+
+async function callAiApi(objectName, count, extraPrompt){
+  const prompt = buildObjectPrompt(objectName, extraPrompt);
+
+  const response = await fetch(AI_API_URL,{
+    method:"POST",
+    headers:{
+      "Content-Type":"application/json"
+    },
+    body:JSON.stringify({
+      objectName,
+      count,
+      prompt,
+      style:"educational-clean-minimal"
+    })
+  });
+
+  if(!response.ok){
+    throw new Error("API error");
+  }
+
+  const data = await response.json();
+
+  if(!data.images || !Array.isArray(data.images)){
+    throw new Error("Invalid API response");
+  }
+
+  return data.images;
 }
 
 
+/* ===========================
+   FALLBACK DEMO
+=========================== */
 
-/* ======================
+async function generateFallbackSamples(objectName, count){
+  const results = [];
+
+  for(let i=0;i<count;i++){
+    results.push(await createPlaceholderImage(objectName, i + 1));
+  }
+
+  return results;
+}
+
+function hashColorFromText(text){
+  let hash = 0;
+  for(let i=0;i<text.length;i++){
+    hash = text.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  const colors = [
+    ["#1e73d8","#8bc5ff"],
+    ["#2383d8","#6fd2ff"],
+    ["#ef9644","#ffd08a"],
+    ["#2fa86b","#8fe3b0"],
+    ["#6c55e0","#c2b4ff"],
+    ["#db5b76","#ffb1c0"]
+  ];
+
+  return colors[Math.abs(hash) % colors.length];
+}
+
+function makeWrappedLines(ctx, text, maxWidth){
+  const words = text.split(" ");
+  const lines = [];
+  let line = "";
+
+  for(let n=0;n<words.length;n++){
+    const test = line ? line + " " + words[n] : words[n];
+    const width = ctx.measureText(test).width;
+    if(width > maxWidth && line){
+      lines.push(line);
+      line = words[n];
+    }else{
+      line = test;
+    }
+  }
+
+  if(line) lines.push(line);
+  return lines;
+}
+
+function createPlaceholderImage(objectName, variantIndex){
+  return new Promise((resolve)=>{
+    const canvas = document.createElement("canvas");
+    canvas.width = 720;
+    canvas.height = 720;
+    const ctx = canvas.getContext("2d");
+
+    const [c1,c2] = hashColorFromText(objectName + variantIndex);
+
+    // background
+    ctx.fillStyle = "#efefef";
+    ctx.fillRect(0,0,720,720);
+
+    // shadow
+    ctx.fillStyle = "rgba(0,0,0,0.08)";
+    ctx.beginPath();
+    ctx.ellipse(360, 585, 150, 28, 0, 0, Math.PI*2);
+    ctx.fill();
+
+    // main object card
+    ctx.fillStyle = c1;
+    roundRect(ctx, 180, 170, 360, 300, 38, true, false);
+
+    // overlay variation
+    ctx.fillStyle = c2;
+    roundRect(ctx, 210, 205, 300, 85, 26, true, false);
+    roundRect(ctx, 230, 315, 260, 95, 28, true, false);
+
+    // circle symbol
+    ctx.fillStyle = "rgba(255,255,255,.25)";
+    ctx.beginPath();
+    ctx.arc(360, 330, 58 + variantIndex*5, 0, Math.PI*2);
+    ctx.fill();
+
+    // title
+    ctx.fillStyle = "#19212c";
+    ctx.font = "bold 40px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+    ctx.textAlign = "center";
+    ctx.fillText("AI SAMPLE", 360, 90);
+
+    // name
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 42px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+    const lines = makeWrappedLines(ctx, objectName, 280);
+
+    let startY = 505;
+    if(lines.length === 2) startY = 490;
+    if(lines.length >= 3) startY = 470;
+
+    lines.slice(0,3).forEach((line,idx)=>{
+      ctx.fillText(line, 360, startY + idx*46);
+    });
+
+    // variant
+    ctx.fillStyle = "#445166";
+    ctx.font = "26px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif";
+    ctx.fillText("Variant " + variantIndex, 360, 640);
+
+    resolve(canvas.toDataURL("image/jpeg",0.86));
+  });
+}
+
+function roundRect(ctx, x, y, width, height, radius, fill, stroke){
+  let r = radius;
+  if(typeof r === "number"){
+    r = {tl:r,tr:r,br:r,bl:r};
+  }else{
+    r = Object.assign({tl:0,tr:0,br:0,bl:0}, r);
+  }
+
+  ctx.beginPath();
+  ctx.moveTo(x + r.tl, y);
+  ctx.lineTo(x + width - r.tr, y);
+  ctx.quadraticCurveTo(x + width, y, x + width, y + r.tr);
+  ctx.lineTo(x + width, y + height - r.br);
+  ctx.quadraticCurveTo(x + width, y + height, x + width - r.br, y + height);
+  ctx.lineTo(x + r.bl, y + height);
+  ctx.quadraticCurveTo(x, y + height, x, y + height - r.bl);
+  ctx.lineTo(x, y + r.tl);
+  ctx.quadraticCurveTo(x, y, x + r.tl, y);
+  ctx.closePath();
+
+  if(fill) ctx.fill();
+  if(stroke) ctx.stroke();
+}
+
+
+/* ===========================
    SAVE KNOWLEDGE
-====================== */
-
+=========================== */
 
 async function saveKnowledge(){
+  const name = document.getElementById("teachName").value.trim();
 
-const name =
-document
-.getElementById(
-"teachName"
-)
-.value
-.trim();
+  if(!name){
+    alert("Hãy nhập tên kiến thức.");
+    return;
+  }
 
+  if(pendingPhotos.length === 0){
+    alert("Hãy thêm ít nhất 1 ảnh.");
+    return;
+  }
 
-if(
-!name
-){
+  const source = document.getElementById("teachSource").value;
 
-alert(
-"Hãy nhập tên kiến thức."
-);
+  const id = "OBJ-" + Date.now() + "-" + Math.random().toString(36).slice(2,6);
 
-return;
+  state.knowledge[id] = {
+    id:id,
+    name:name,
+    type:teachType,
+    source:source,
+    promptSeed: buildObjectPrompt(name, document.getElementById("aiExtraPrompt").value.trim()),
+    images:[...pendingPhotos],
+    confidence:10,
+    correct:0,
+    wrong:0,
+    timesSeen:0,
+    confusions:{},
+    createdAt:new Date().toISOString()
+  };
 
+  state.robot.xp += 5;
+
+  addMemory("Được dạy: " + name);
+
+  await saveBrain();
+
+  document.getElementById("teachName").value = "";
+  document.getElementById("aiExtraPrompt").value = "";
+  pendingPhotos = [];
+  renderPhotos();
+
+  alert("Đã ghi kiến thức vào Brain.");
+  showPage("brain",4);
 }
 
 
-if(
-pendingPhotos.length === 0
-){
-
-alert(
-"Hãy chọn ít nhất 1 ảnh."
-);
-
-return;
-
-}
-
-
-const source =
-document
-.getElementById(
-"teachSource"
-)
-.value;
-
-
-const id =
-
-"OBJ-" +
-
-Date.now() +
-
-"-" +
-
-Math.random()
-.toString(36)
-.slice(
-2,
-6
-);
-
-
-state.knowledge[
-id
-] = {
-
-id:id,
-
-name:name,
-
-type:teachType,
-
-source:source,
-
-images:[
-...pendingPhotos
-],
-
-confidence:10,
-
-correct:0,
-
-wrong:0,
-
-timesSeen:0,
-
-confusions:{},
-
-createdAt:
-new Date()
-.toISOString()
-
-};
-
-
-state.robot.xp +=
-5;
-
-
-addMemory(
-
-"Được dạy: " +
-name
-
-);
-
-
-await saveBrain();
-
-
-document
-.getElementById(
-"teachName"
-)
-.value =
-"";
-
-
-pendingPhotos =
-[];
-
-
-renderPhotos();
-
-
-alert(
-"Đã ghi kiến thức vào Brain."
-);
-
-
-showPage(
-"brain",
-3
-);
-
-}
-
-
-
-/* ======================
+/* ===========================
    BRAIN
-====================== */
+=========================== */
 
+function setBrainFilter(type){
+  brainFilter = type;
 
-function setBrainFilter(
-type
-){
+  ["brainAll","brainGeneral","brainPersonal"].forEach(id=>{
+    document.getElementById(id).classList.remove("active");
+  });
 
-brainFilter =
-type;
+  if(type === "all") document.getElementById("brainAll").classList.add("active");
+  if(type === "general") document.getElementById("brainGeneral").classList.add("active");
+  if(type === "personal") document.getElementById("brainPersonal").classList.add("active");
 
-
-[
-"brainAll",
-"brainGeneral",
-"brainPersonal"
-
-].forEach(
-
-id =>
-
-document
-.getElementById(
-id
-)
-.classList.remove(
-"active"
-)
-
-);
-
-
-if(
-type ===
-"all"
-){
-
-document
-.getElementById(
-"brainAll"
-)
-.classList.add(
-"active"
-);
-
+  renderBrain();
 }
-
-
-if(
-type ===
-"general"
-){
-
-document
-.getElementById(
-"brainGeneral"
-)
-.classList.add(
-"active"
-);
-
-}
-
-
-if(
-type ===
-"personal"
-){
-
-document
-.getElementById(
-"brainPersonal"
-)
-.classList.add(
-"active"
-);
-
-}
-
-
-renderBrain();
-
-}
-
-
 
 function renderBrain(){
+  let objects = Object.values(state.knowledge);
 
-let objects =
-Object.values(
-state.knowledge
-);
+  if(brainFilter !== "all"){
+    objects = objects.filter(o => o.type === brainFilter);
+  }
 
+  const box = document.getElementById("brainList");
 
-if(
-brainFilter !==
-"all"
-){
+  if(objects.length === 0){
+    box.innerHTML = `<div class="card empty">Brain chưa có kiến thức.</div>`;
+    return;
+  }
 
-objects =
-objects.filter(
+  box.innerHTML = objects.map(object=>{
+    const image = object.images && object.images.length ? object.images[0] : "";
+    const typeBadge = object.type === "general"
+      ? `<span class="badge general">NÃO CHUNG</span>`
+      : `<span class="badge">NÃO CÁ NHÂN</span>`;
 
-o =>
-o.type ===
-brainFilter
+    const sourceBadge = object.source === "ai_generated"
+      ? `<span class="badge ai">AI</span>`
+      : `<span class="badge manual">MANUAL</span>`;
 
-);
+    return `
+      <div class="item">
+        <div class="item-top">
+          <img class="thumb" src="${image}">
+          <div class="grow">
+            <div class="title" style="font-size:17px">${escapeHtml(object.name)}</div>
+            ${typeBadge}
+            ${sourceBadge}
+            <div class="sub">
+              ${object.images.length} ảnh • Đúng ${object.correct} • Sai ${object.wrong}
+            </div>
+          </div>
+        </div>
 
+        <div class="bar">
+          <div class="fill" style="width:${object.confidence}%"></div>
+        </div>
+
+        <div class="sub">
+          Độ tin cậy: ${object.confidence}%
+        </div>
+      </div>
+    `;
+  }).join("");
 }
 
 
-const box =
-document
-.getElementById(
-"brainList"
-);
-
-
-if(
-objects.length ===
-0
-){
-
-box.innerHTML = `
-
-<div class="card empty">
-
-Brain chưa có kiến thức.
-
-</div>
-
-`;
-
-return;
-
-}
-
-
-box.innerHTML =
-objects
-.map(
-
-object=>{
-
-
-const image =
-
-object.images &&
-object.images.length
-
-?
-
-object.images[0]
-
-:
-
-"";
-
-
-const badge =
-
-object.type ===
-"general"
-
-?
-
-`
-<span class="badge general">
-NÃO CHUNG
-</span>
-`
-
-:
-
-`
-<span class="badge">
-NÃO CÁ NHÂN
-</span>
-`;
-
-
-return `
-
-<div class="item">
-
-<div class="item-top">
-
-<img
-class="thumb"
-src="${image}">
-
-
-<div class="grow">
-
-<div class="title"
-style="font-size:17px">
-
-${object.name}
-
-</div>
-
-
-${badge}
-
-
-<div class="sub">
-
-${object.images.length} ảnh
-
-• Đúng ${object.correct}
-
-• Sai ${object.wrong}
-
-</div>
-
-</div>
-
-</div>
-
-
-<div class="bar">
-
-<div
-class="fill"
-style="width:${object.confidence}%">
-
-</div>
-
-</div>
-
-
-<div class="sub">
-
-Độ tin cậy:
-${object.confidence}%
-
-</div>
-
-</div>
-
-`;
-
-}
-
-)
-.join("");
-
-}
-
-
-
-/* ======================
+/* ===========================
    QUIZ
-====================== */
+=========================== */
 
+function startQuiz(navIndex = 2){
+  showPage("learn",navIndex);
 
-function startQuiz(
-navIndex = 2
-){
+  const objects = Object.values(state.knowledge).filter(
+    o => o.images && o.images.length
+  );
 
-showPage(
-"learn",
-navIndex
-);
+  if(objects.length < 2){
+    document.getElementById("quizBox").innerHTML = `
+      <div class="empty">
+        Hãy dạy Mimo ít nhất 2 kiến thức có ảnh.
+      </div>
+    `;
+    return;
+  }
 
-
-const objects =
-Object.values(
-state.knowledge
-)
-.filter(
-
-o =>
-o.images &&
-o.images.length
-
-);
-
-
-if(
-objects.length <
-2
-){
-
-document
-.getElementById(
-"quizBox"
-)
-.innerHTML = `
-
-<div class="empty">
-
-Hãy dạy Mimo ít nhất
-2 đồ vật có ảnh.
-
-</div>
-
-`;
-
-return;
-
+  nextQuestion();
 }
-
-
-nextQuestion();
-
-}
-
-
 
 function nextQuestion(){
+  const objects = Object.values(state.knowledge).filter(
+    o => o.images && o.images.length
+  );
 
-const objects =
-Object.values(
-state.knowledge
-)
-.filter(
+  quizTarget = objects[Math.floor(Math.random() * objects.length)];
 
-o =>
-o.images &&
-o.images.length
+  const image = quizTarget.images[
+    Math.floor(Math.random() * quizTarget.images.length)
+  ];
 
-);
+  let choices = [quizTarget];
 
+  const others = objects
+    .filter(o => o.id !== quizTarget.id)
+    .sort(() => Math.random() - 0.5);
 
-quizTarget =
-objects[
+  for(const object of others){
+    if(choices.length >= 4) break;
+    choices.push(object);
+  }
 
-Math.floor(
-Math.random() *
-objects.length
-)
+  choices = choices.sort(() => Math.random() - 0.5);
 
-];
+  document.getElementById("quizBox").innerHTML = `
+    <div class="title" style="text-align:center">
+      Mimo đang nhìn thấy gì?
+    </div>
 
+    <img class="quiz-image" src="${image}">
 
-const image =
+    ${choices.map(object=>`
+      <button class="answer" onclick="checkAnswer('${object.id}')">
+        ${escapeHtml(object.name)}
+      </button>
+    `).join("")}
 
-quizTarget.images[
+    <div id="quizMessage" class="sub" style="text-align:center;margin-top:14px"></div>
+  `;
+}
 
-Math.floor(
+async function checkAnswer(selectedId){
+  const target = state.knowledge[quizTarget.id];
+  target.timesSeen++;
 
-Math.random() *
+  if(selectedId === target.id){
+    target.correct++;
+    target.confidence = Math.min(100, target.confidence + 10);
+    state.robot.xp += 10;
 
-quizTarget.images.length
+    addMemory("Nhận biết đúng: " + target.name);
 
-)
+    document.getElementById("quizMessage").innerHTML =
+      '<span class="online">✅ Chính xác</span>';
+  }
+  else{
+    target.wrong++;
+    target.confidence = Math.max(0, target.confidence - 5);
 
-];
+    const selected = state.knowledge[selectedId];
+    target.confusions[selectedId] = (target.confusions[selectedId] || 0) + 1;
 
+    addMemory("Nhầm " + target.name + " với " + selected.name);
 
-let choices =
-[
-quizTarget
-];
+    document.getElementById("quizMessage").innerHTML =
+      '<span style="color:#ff747c">❌ Đây là ' + escapeHtml(target.name) + '</span>';
+  }
 
+  await saveBrain();
 
-const others =
-objects
-
-.filter(
-
-o =>
-o.id !==
-quizTarget.id
-
-)
-
-.sort(
-
-() =>
-Math.random() -
-0.5
-
-);
-
-
-for(
-const object of others
-){
-
-if(
-choices.length >=
-4
-){
-
-break;
-
+  setTimeout(nextQuestion, 1200);
 }
 
 
-choices.push(
-object
-);
+/* ===========================
+   VISION
+=========================== */
 
+document.getElementById("visionInput").addEventListener("change", async function(event){
+  const file = event.target.files[0];
+  if(!file) return;
+
+  visionImage = await compressImage(file);
+
+  document.getElementById("visionPreview").src = visionImage;
+  document.getElementById("visionPreviewBox").classList.remove("hidden");
+  document.getElementById("visionResult").innerHTML = "Ảnh đã sẵn sàng để dự đoán.";
+});
+
+async function runVisionGuess(){
+  if(!visionImage){
+    alert("Hãy chọn ảnh trước.");
+    return;
+  }
+
+  const objects = Object.values(state.knowledge).filter(
+    o => o.images && o.images.length
+  );
+
+  if(objects.length === 0){
+    alert("Brain chưa có kiến thức nào để so sánh.");
+    return;
+  }
+
+  const resultBox = document.getElementById("visionResult");
+  resultBox.innerHTML = `<span class="loader"></span>Đang suy đoán...`;
+
+  await wait(700);
+
+  // Mô phỏng V0.5 nếu chưa có AI thật
+  const shuffled = [...objects].sort(() => Math.random() - 0.5).slice(0,3);
+
+  let first = shuffled[0];
+  let second = shuffled[1] || null;
+  let third = shuffled[2] || null;
+
+  const p1 = 72;
+  const p2 = 18;
+  const p3 = 10;
+
+  resultBox.innerHTML = `
+    <div class="notice">
+      <b>Dự đoán mô phỏng V0.5</b><br><br>
+      1. ${escapeHtml(first.name)} — ${p1}%<br>
+      ${second ? `2. ${escapeHtml(second.name)} — ${p2}%<br>` : ""}
+      ${third ? `3. ${escapeHtml(third.name)} — ${p3}%<br>` : ""}
+      <br>
+      Khi nối backend AI thật, phần này sẽ phân tích ảnh mới bằng model.
+    </div>
+  `;
+
+  addMemory("AI Vision dự đoán ảnh mới");
+  await saveBrain();
+}
+
+function wait(ms){
+  return new Promise(resolve=>setTimeout(resolve,ms));
 }
 
 
-choices =
-choices.sort(
-
-() =>
-Math.random() -
-0.5
-
-);
-
-
-document
-.getElementById(
-"quizBox"
-)
-.innerHTML = `
-
-<div class="title"
-style="text-align:center">
-
-Mimo đang nhìn thấy gì?
-
-</div>
-
-
-<img
-class="quiz-image"
-src="${image}">
-
-
-${
-
-choices.map(
-
-object => `
-
-<button
-class="answer"
-onclick="checkAnswer('${object.id}')">
-
-${object.name}
-
-</button>
-
-`
-
-).join("")
-
-}
-
-
-<div
-id="quizMessage"
-class="sub"
-style="text-align:center;margin-top:14px">
-
-</div>
-
-`;
-
-}
-
-
-
-/* ======================
-   CHECK ANSWER
-====================== */
-
-
-async function checkAnswer(
-selectedId
-){
-
-const target =
-state.knowledge[
-quizTarget.id
-];
-
-
-target.timesSeen++;
-
-
-if(
-selectedId ===
-target.id
-){
-
-target.correct++;
-
-
-target.confidence =
-Math.min(
-
-100,
-
-target.confidence +
-10
-
-);
-
-
-state.robot.xp +=
-10;
-
-
-addMemory(
-
-"Nhận biết đúng: " +
-target.name
-
-);
-
-
-document
-.getElementById(
-"quizMessage"
-)
-.innerHTML =
-
-'<span class="online">✅ Chính xác</span>';
-
-}
-
-else{
-
-target.wrong++;
-
-
-target.confidence =
-Math.max(
-
-0,
-
-target.confidence -
-5
-
-);
-
-
-const selected =
-state.knowledge[
-selectedId
-];
-
-
-target.confusions[
-selectedId
-] =
-
-(
-target.confusions[
-selectedId
-]
-||
-0
-)
-+
-1;
-
-
-addMemory(
-
-"Nhầm " +
-target.name +
-" với " +
-selected.name
-
-);
-
-
-document
-.getElementById(
-"quizMessage"
-)
-.innerHTML =
-
-'<span style="color:#ff747c">❌ Đây là ' +
-target.name +
-'</span>';
-
-}
-
-
-await saveBrain();
-
-
-setTimeout(
-
-nextQuestion,
-
-1200
-
-);
-
-}
-
-
-
-/* ======================
-   PROFILE
-====================== */
-
+/* ===========================
+   SETTINGS
+=========================== */
 
 function renderSettings(){
-
-document
-.getElementById(
-"robotNameInput"
-)
-.value =
-state.robot.name;
-
-
-document
-.getElementById(
-"robotIdInput"
-)
-.value =
-state.robot.id;
-
-
-document
-.getElementById(
-"ownerInput"
-)
-.value =
-state.owner.name;
-
+  document.getElementById("robotNameInput").value = state.robot.name;
+  document.getElementById("robotIdInput").value = state.robot.id;
+  document.getElementById("ownerInput").value = state.owner.name;
+  document.getElementById("apiUrlInput").value = state.config?.aiApiUrl || "";
 }
-
-
 
 async function saveProfile(){
+  state.robot.name = document.getElementById("robotNameInput").value.trim() || "Mimo";
+  state.robot.id = document.getElementById("robotIdInput").value.trim() || "RB-000001";
+  state.owner.name = document.getElementById("ownerInput").value.trim();
 
-state.robot.name =
+  addMemory("Cập nhật hồ sơ Robot / Owner");
+  await saveBrain();
 
-document
-.getElementById(
-"robotNameInput"
-)
-.value
-.trim()
-||
-"Mimo";
+  alert("Đã lưu hồ sơ.");
+}
 
+async function saveApiConfig(){
+  const url = document.getElementById("apiUrlInput").value.trim();
 
-state.robot.id =
+  if(!state.config) state.config = {};
+  state.config.aiApiUrl = url;
+  AI_API_URL = url;
 
-document
-.getElementById(
-"robotIdInput"
-)
-.value
-.trim()
-||
-"RB-000001";
+  addMemory("Cập nhật cấu hình AI API");
+  await saveBrain();
 
-
-state.owner.name =
-
-document
-.getElementById(
-"ownerInput"
-)
-.value
-.trim();
-
-
-addMemory(
-"Cập nhật hồ sơ Robot / Owner"
-);
-
-
-await saveBrain();
-
-
-alert(
-"Đã lưu hồ sơ."
-);
-
+  alert("Đã lưu cấu hình API.");
 }
 
 
-
-/* ======================
-   BACKUP
-====================== */
-
+/* ===========================
+   BACKUP / RESTORE
+=========================== */
 
 function backupBrain(){
+  const data = JSON.stringify(state,null,2);
 
-const data =
-JSON.stringify(
-state,
-null,
-2
-);
+  const blob = new Blob([data],{type:"application/json"});
+  const url = URL.createObjectURL(blob);
 
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = "Mimo-Brain-V05-" + new Date().toISOString().slice(0,10) + ".json";
 
-const blob =
-new Blob(
-[data],
-{
-type:
-"application/json"
-}
-);
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
 
-
-const url =
-URL.createObjectURL(
-blob
-);
-
-
-const link =
-document.createElement(
-"a"
-);
-
-
-link.href =
-url;
-
-
-link.download =
-
-"Mimo-Brain-" +
-
-new Date()
-.toISOString()
-.slice(
-0,
-10
-)
-
-+
-
-".json";
-
-
-document.body
-.appendChild(
-link
-);
-
-
-link.click();
-
-
-link.remove();
-
-
-URL.revokeObjectURL(
-url
-);
-
+  URL.revokeObjectURL(url);
 }
 
+document.getElementById("restoreInput").addEventListener("change", async function(event){
+  const file = event.target.files[0];
+  if(!file) return;
+
+  try{
+    const text = await file.text();
+    const restored = JSON.parse(text);
+
+    if(!restored.robot || !restored.knowledge){
+      throw new Error();
+    }
+
+    if(!confirm("Khôi phục Brain này?")){
+      return;
+    }
+
+    state = restored;
+    AI_API_URL = state.config?.aiApiUrl || "";
+
+    await saveBrain();
+
+    alert("Khôi phục thành công.");
+    showPage("home",0);
+  }
+  catch(error){
+    alert("File Brain không hợp lệ.");
+  }
+
+  event.target.value = "";
+});
 
 
-/* ======================
-   RESTORE
-====================== */
-
-
-document
-.getElementById(
-"restoreInput"
-)
-.addEventListener(
-
-"change",
-
-async function(event){
-
-const file =
-event.target.files[0];
-
-
-if(
-!file
-){
-
-return;
-
-}
-
-
-try{
-
-const text =
-await file.text();
-
-
-const restored =
-JSON.parse(
-text
-);
-
-
-if(
-!restored.robot ||
-!restored.knowledge
-){
-
-throw new Error();
-
-}
-
-
-if(
-!confirm(
-"Khôi phục Brain này?"
-)
-){
-
-return;
-
-}
-
-
-state =
-restored;
-
-
-await saveBrain();
-
-
-alert(
-"Khôi phục thành công."
-);
-
-
-showPage(
-"home",
-0
-);
-
-}
-
-catch(error){
-
-alert(
-"File Brain không hợp lệ."
-);
-
-}
-
-
-event.target.value =
-"";
-
-}
-
-);
-
-
-
-/* ======================
+/* ===========================
    RESET
-====================== */
-
+=========================== */
 
 async function resetBrain(){
+  if(!confirm("Bạn chắc chắn muốn xóa toàn bộ Brain?")) return;
+  if(!confirm("Xác nhận lần cuối. Dữ liệu sẽ mất nếu chưa backup.")) return;
 
-if(
-!confirm(
-"Bạn chắc chắn muốn xóa toàn bộ Brain?"
-)
-){
+  state = {
+    version:"0.5",
+    robot:{ name:"Mimo", id:"RB-000001", xp:0 },
+    owner:{ name:"", role:"owner" },
+    config:{ aiApiUrl:"" },
+    knowledge:{},
+    memories:[]
+  };
 
-return;
+  pendingPhotos = [];
+  AI_API_URL = "";
 
+  await saveBrain();
+
+  alert("Brain đã được reset.");
+  showPage("home",0);
 }
 
 
-if(
-!confirm(
-"Xác nhận lần cuối. Dữ liệu sẽ mất nếu chưa backup."
-)
-){
+/* ===========================
+   UTILS
+=========================== */
 
-return;
-
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 
-state = {
-
-version:"0.4",
-
-robot:{
-name:"Mimo",
-id:"RB-000001",
-xp:0
-},
-
-owner:{
-name:"",
-role:"owner"
-},
-
-knowledge:{},
-
-memories:[]
-
-};
-
-
-await saveBrain();
-
-
-alert(
-"Brain đã được reset."
-);
-
-
-showPage(
-"home",
-0
-);
-
-}
-
-
-
-/* ======================
-   START APP
-====================== */
-
+/* ===========================
+   START
+=========================== */
 
 async function startApp(){
-
-try{
-
-await openDatabase();
-
-await loadBrain();
-
-renderHome();
-
+  try{
+    await openDatabase();
+    await loadBrain();
+    renderHome();
+  }
+  catch(error){
+    alert("Không thể mở bộ nhớ Brain.");
+  }
 }
-
-catch(error){
-
-alert(
-"Không thể mở bộ nhớ Brain."
-);
-
-}
-
-}
-
 
 startApp();
-
 </script>
 
 </body>
