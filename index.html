@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Robot Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background: #0f172a;
+      color: white;
+    }
+    h1 {
+      margin-top: 30px;
+    }
+    .btn {
+      width: 100px;
+      height: 100px;
+      margin: 10px;
+      font-size: 20px;
+      border-radius: 20px;
+      border: none;
+      background: #2563eb;
+      color: white;
+    }
+    .btn:active {
+      background: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🤖 Robot Control</h1>
+
+<div>
+  <button class="btn" onclick="send('forward')">↑</button>
+</div>
+
+<div>
+  <button class="btn" onclick="send('left')">←</button>
+  <button class="btn" onclick="send('stop')">■</button>
+  <button class="btn" onclick="send('right')">→</button>
+</div>
+
+<div>
+  <button class="btn" onclick="send('back')">↓</button>
+</div>
+
+<script>
+function send(cmd) {
+  alert("Send command: " + cmd);
+}
+</script>
+
+</body>
+</html>
