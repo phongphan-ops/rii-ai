@@ -2,11 +2,13 @@
 <html lang="vi">
 <head>
   <meta charset="utf-8">
+
   <meta
     name="viewport"
     content="width=device-width,initial-scale=1,viewport-fit=cover"
   >
-  <title>Rii AI V2</title>
+
+  <title>Rii AI V2.0.1</title>
 
   <style>
     :root{
@@ -49,25 +51,36 @@
       cursor:pointer;
     }
 
+    button:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+    }
+
     .app{
       max-width:900px;
       margin:auto;
       min-height:100vh;
-      padding-bottom:100px;
+      padding-bottom:110px;
     }
 
     header{
       position:sticky;
       top:0;
       z-index:50;
+
       padding:
         calc(16px + env(safe-area-inset-top))
         18px
         15px;
+
       background:
-        rgba(7,16,25,.92);
-      backdrop-filter:blur(18px);
-      border-bottom:1px solid var(--line);
+        rgba(7,16,25,.94);
+
+      backdrop-filter:
+        blur(18px);
+
+      border-bottom:
+        1px solid var(--line);
     }
 
     .brand{
@@ -115,18 +128,28 @@
     }
 
     .card h2{
-      margin:
-        0 0 14px;
+      margin:0 0 14px;
       font-size:21px;
     }
 
     .card h3{
-      margin:
-        0 0 10px;
+      margin:0 0 10px;
     }
 
     .muted{
       color:var(--muted);
+    }
+
+    .green{
+      color:var(--green);
+    }
+
+    .yellow{
+      color:var(--yellow);
+    }
+
+    .red{
+      color:var(--red);
     }
 
     .grid{
@@ -163,8 +186,7 @@
 
     label{
       display:block;
-      margin:
-        14px 0 7px;
+      margin:14px 0 7px;
       color:var(--muted);
       font-weight:650;
     }
@@ -223,6 +245,7 @@
       padding:14px;
       border-radius:16px;
       color:#cfe3f6;
+      min-height:60px;
     }
 
     .pipeline{
@@ -244,14 +267,21 @@
       right:0;
       bottom:0;
       z-index:100;
+
       padding:
         8px
         8px
         calc(8px + env(safe-area-inset-bottom));
+
       background:
-        rgba(6,13,21,.96);
-      backdrop-filter:blur(20px);
-      border-top:1px solid var(--line);
+        rgba(6,13,21,.97);
+
+      backdrop-filter:
+        blur(20px);
+
+      border-top:
+        1px solid var(--line);
+
       overflow-x:auto;
       white-space:nowrap;
     }
@@ -293,6 +323,16 @@
       font-weight:800;
     }
 
+    .row{
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .row > *{
+      flex:1;
+    }
+
     @media(min-width:700px){
       .grid{
         grid-template-columns:
@@ -308,39 +348,49 @@
 
   <header>
     <div class="brand">
+
       <div>
         <h1>Rii AI V2</h1>
+
         <div class="subtitle">
           Brain • Vision • Think • Robot
         </div>
       </div>
 
       <div class="version">
-        V2.0
+        V2.0.1
       </div>
+
     </div>
   </header>
 
 
   <main>
 
-    <!-- HOME -->
+    <!-- =================================================
+         HOME
+    ================================================== -->
 
     <section
       id="page-home"
       class="page active"
     >
+
       <div class="card">
-        <h2>🏠 Trung tâm Rii</h2>
+
+        <h2>
+          🏠 Trung tâm Rii
+        </h2>
 
         <span class="status">
-          ● V2 đang phát triển
+          ● Thinking Core đang phát triển
         </span>
 
         <p class="muted">
-          Bộ tư duy được xây dựng độc lập
-          trước khi kết nối robot thật.
+          Hoàn thiện bộ tư duy và mô phỏng trước
+          khi kết nối robot thật.
         </p>
+
       </div>
 
 
@@ -349,27 +399,27 @@
         <div class="stat">
           🧠 Brain
           <strong id="brainStatus">
-            Ready
+            Checking
           </strong>
         </div>
 
         <div class="stat">
           ⚙️ Engine
           <strong id="engineStatus">
-            Ready
+            Checking
           </strong>
         </div>
 
         <div class="stat">
           🔐 Vault
           <strong id="vaultStatus">
-            Ready
+            Checking
           </strong>
         </div>
 
         <div class="stat">
-          🤖 Robot
-          <strong>
+          ☁️ Worker
+          <strong id="workerStatus">
             Offline
           </strong>
         </div>
@@ -378,9 +428,36 @@
 
 
       <div class="card">
-        <h3>Luồng tư duy</h3>
+
+        <h3>
+          Worker Backend
+        </h3>
+
+        <div
+          id="workerHomeInfo"
+          class="muted"
+        >
+          Chưa kiểm tra kết nối.
+        </div>
+
+        <button
+          class="btn secondary"
+          onclick="testWorkerConnection()"
+        >
+          🧪 Kiểm tra Worker
+        </button>
+
+      </div>
+
+
+      <div class="card">
+
+        <h3>
+          Luồng tư duy
+        </h3>
 
         <div class="pipeline">
+
           <span>Camera</span>
           <span>→ Vision</span>
           <span>→ Think</span>
@@ -389,23 +466,33 @@
           <span>→ Planner</span>
           <span>→ Simulator</span>
           <span>→ Robot</span>
+
         </div>
+
       </div>
+
     </section>
 
 
-    <!-- TEACH -->
+    <!-- =================================================
+         TEACH
+    ================================================== -->
 
     <section
       id="page-teach"
       class="page"
     >
+
       <div class="card">
-        <h2>➕ Teach</h2>
+
+        <h2>
+          ➕ Teach
+        </h2>
 
         <p class="muted">
-          Dạy Rii bằng câu tự nhiên.
+          Dạy Rii bằng ngôn ngữ tự nhiên.
         </p>
+
 
         <label>
           Kiến thức
@@ -413,36 +500,45 @@
 
         <textarea
           id="teachInput"
-          placeholder="Ví dụ: 3 con mèo trắng, hình tròn màu đỏ, 7 + 5..."
+          placeholder="Ví dụ: 3 con mèo trắng, 2 cái điện thoại, hình tròn màu đỏ, 7 + 5..."
         ></textarea>
 
+
         <button
+          id="teachButton"
           class="btn"
           onclick="analyzeTeach()"
         >
           🧠 Phân tích
         </button>
 
-        <pre id="teachResult">
-Chưa có dữ liệu.
-        </pre>
+
+        <pre id="teachResult">Chưa có dữ liệu.</pre>
+
       </div>
+
     </section>
 
 
-    <!-- THINK -->
+    <!-- =================================================
+         THINK
+    ================================================== -->
 
     <section
       id="page-think"
       class="page"
     >
+
       <div class="card">
-        <h2>✨ Think</h2>
+
+        <h2>
+          ✨ Think
+        </h2>
 
         <p class="muted">
-          Nơi Rii chuyển dữ liệu quan sát
-          thành kết quả và quyết định.
+          Rii phân tích dữ liệu và đưa ra kết quả.
         </p>
+
 
         <label>
           Câu hỏi / tình huống
@@ -450,36 +546,46 @@ Chưa có dữ liệu.
 
         <textarea
           id="thinkInput"
-          placeholder="Ví dụ: 8 nhân 7"
+          placeholder="Ví dụ: 8 nhân 7 hoặc 3 con mèo trắng"
         ></textarea>
 
+
         <button
+          id="thinkButton"
           class="btn"
           onclick="runThinking()"
         >
           ✨ Suy nghĩ
         </button>
 
-        <pre id="thinkResult">
-Waiting...
-        </pre>
+
+        <pre id="thinkResult">Waiting...</pre>
+
       </div>
+
     </section>
 
 
-    <!-- VISION -->
+    <!-- =================================================
+         VISION
+    ================================================== -->
 
     <section
       id="page-vision"
       class="page"
     >
+
       <div class="card">
-        <h2>👁 Vision</h2>
+
+        <h2>
+          👁 Vision
+        </h2>
 
         <p class="muted">
-          Camera robot và camera ngoài
-          sẽ được kết nối tại đây.
+          Camera robot và camera toàn cảnh
+          sẽ được nối ở giai đoạn Vision Core.
         </p>
+
 
         <div class="stat">
           Camera robot
@@ -497,80 +603,107 @@ Waiting...
           </strong>
         </div>
 
+
         <button
           class="btn secondary"
           disabled
         >
-          📷 Kết nối ở giai đoạn sau
+          📷 Vision Core chưa bật
         </button>
+
       </div>
+
     </section>
 
 
-    <!-- WORLD -->
+    <!-- =================================================
+         WORLD
+    ================================================== -->
 
     <section
       id="page-world"
       class="page"
     >
+
       <div class="card">
-        <h2>🌍 World Model</h2>
+
+        <h2>
+          🌍 World Model
+        </h2>
 
         <p class="muted">
-          Sau này lưu vị trí robot,
-          vật thể và điểm đích.
+          Đây sẽ là bộ nhớ vị trí của robot,
+          đồ vật và các điểm đích.
         </p>
 
-        <pre>
-Robot: chưa định vị
+        <pre id="worldState">Robot: chưa định vị
 Objects: 0
 Targets: 0
-Map: chưa có
-        </pre>
+Map: chưa có</pre>
+
       </div>
+
     </section>
 
 
-    <!-- SIMULATOR -->
+    <!-- =================================================
+         SIMULATOR
+    ================================================== -->
 
     <section
       id="page-simulator"
       class="page"
     >
+
       <div class="card">
-        <h2>🎮 Simulator</h2>
+
+        <h2>
+          🎮 Simulator
+        </h2>
 
         <p class="muted">
-          Lệnh vận động phải được kiểm tra
-          ở đây trước khi dùng cho robot thật.
+          Mọi lệnh vận động phải được kiểm tra
+          trong mô phỏng trước robot thật.
         </p>
+
 
         <label>
           Nhiệm vụ
         </label>
 
         <textarea
+          id="simTask"
           placeholder="Ví dụ: tìm điện thoại, đi tới, nhặt và đặt lên bàn."
         ></textarea>
+
 
         <button
           class="btn yellow"
           disabled
         >
-          ▶️ Simulator đang được xây dựng
+          ▶️ Planner / Simulator đang xây dựng
         </button>
+
       </div>
+
     </section>
 
 
-    <!-- BRAIN -->
+    <!-- =================================================
+         BRAIN
+    ================================================== -->
 
     <section
       id="page-brain"
       class="page"
     >
+
       <div class="card">
-        <h2>🧠 Brain</h2>
+
+        <h2>
+          🧠 Brain
+        </h2>
+
 
         <div class="stat">
           Master Brain
@@ -596,16 +729,21 @@ Map: chưa có
             Chưa liên kết
           </strong>
         </div>
+
       </div>
+
     </section>
 
 
-    <!-- VAULT -->
+    <!-- =================================================
+         COMMAND VAULT
+    ================================================== -->
 
     <section
       id="page-vault"
       class="page"
     >
+
       <div class="card warning">
 
         <h2>
@@ -620,9 +758,11 @@ Map: chưa có
         </div>
 
         <p class="muted">
-          Đây là kho lệnh robot lâu dài.
-          Không xóa version cũ.
+          Vault V2 đã được tải.
+          Giai đoạn hiện tại chỉ Preview.
+          Chưa ghi vĩnh viễn để tránh lưu lệnh chưa qua Simulator.
         </p>
+
       </div>
 
 
@@ -656,22 +796,28 @@ Map: chưa có
         </button>
 
 
-        <pre id="commandPreview">
-Chưa có command.
-        </pre>
+        <pre id="commandPreview">Chưa có command.</pre>
 
       </div>
+
     </section>
 
 
-    <!-- SETTINGS -->
+    <!-- =================================================
+         SETTINGS
+    ================================================== -->
 
     <section
       id="page-settings"
       class="page"
     >
+
       <div class="card">
-        <h2>⚙️ Settings</h2>
+
+        <h2>
+          ⚙️ Settings
+        </h2>
+
 
         <label>
           Role
@@ -682,6 +828,7 @@ Chưa có command.
           disabled
         >
 
+
         <label>
           Worker Backend
         </label>
@@ -691,19 +838,27 @@ Chưa có command.
           placeholder="https://...workers.dev"
         >
 
+
         <button
           class="btn"
           onclick="saveSettings()"
         >
-          Lưu cấu hình
+          💾 Lưu cấu hình
         </button>
 
-        <p
-          id="settingsMessage"
-          class="muted"
-        ></p>
+
+        <button
+          class="btn secondary"
+          onclick="testWorkerConnection()"
+        >
+          🧪 Kiểm tra kết nối Worker
+        </button>
+
+
+        <pre id="settingsWorkerResult">Chưa kiểm tra.</pre>
 
       </div>
+
     </section>
 
   </main>
@@ -711,7 +866,12 @@ Chưa có command.
 </div>
 
 
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
 <nav class="bottom-nav">
+
   <div class="nav-inner">
 
     <button
@@ -722,6 +882,7 @@ Chưa có command.
       Home
     </button>
 
+
     <button
       class="nav-btn"
       data-page="teach"
@@ -729,6 +890,7 @@ Chưa có command.
       <span class="nav-icon">➕</span>
       Teach
     </button>
+
 
     <button
       class="nav-btn"
@@ -738,6 +900,7 @@ Chưa có command.
       Think
     </button>
 
+
     <button
       class="nav-btn"
       data-page="vision"
@@ -745,6 +908,7 @@ Chưa có command.
       <span class="nav-icon">👁</span>
       Vision
     </button>
+
 
     <button
       class="nav-btn"
@@ -754,6 +918,7 @@ Chưa có command.
       World
     </button>
 
+
     <button
       class="nav-btn"
       data-page="simulator"
@@ -761,6 +926,7 @@ Chưa có command.
       <span class="nav-icon">🎮</span>
       Sim
     </button>
+
 
     <button
       class="nav-btn"
@@ -770,6 +936,7 @@ Chưa có command.
       Brain
     </button>
 
+
     <button
       class="nav-btn"
       data-page="vault"
@@ -777,6 +944,7 @@ Chưa có command.
       <span class="nav-icon">🔐</span>
       Vault
     </button>
+
 
     <button
       class="nav-btn"
@@ -787,15 +955,67 @@ Chưa có command.
     </button>
 
   </div>
+
 </nav>
 
 
+<!-- =====================================================
+     RII V2 MODULES
+===================================================== -->
+
 <script src="brain-v2.js"></script>
+
 <script src="brain-engine-v2.js"></script>
+
 <script src="command-vault-v2.js"></script>
+
+<script src="worker-client-v2.js"></script>
 
 
 <script>
+(function () {
+  "use strict";
+
+
+  /*
+    ==================================================
+    HELPERS
+    ==================================================
+  */
+
+  function $(id) {
+    return document.getElementById(id);
+  }
+
+
+  function pretty(value) {
+    return JSON.stringify(
+      value,
+      null,
+      2
+    );
+  }
+
+
+  function setBusy(
+    button,
+    busy,
+    normalText,
+    busyText
+  ) {
+    if (!button) {
+      return;
+    }
+
+    button.disabled =
+      Boolean(busy);
+
+    button.textContent =
+      busy
+        ? busyText
+        : normalText;
+  }
+
 
   /*
     ==================================================
@@ -804,61 +1024,59 @@ Chưa có command.
   */
 
   document
-    .querySelectorAll(
-      ".nav-btn"
-    )
-    .forEach(
-      button => {
+    .querySelectorAll(".nav-btn")
+    .forEach(button => {
 
-        button.addEventListener(
-          "click",
-          () => {
+      button.addEventListener(
+        "click",
+        () => {
 
-            const page =
-              button.dataset.page;
+          const page =
+            button.dataset.page;
 
-            document
-              .querySelectorAll(
-                ".page"
-              )
-              .forEach(
-                item =>
-                  item.classList.remove(
-                    "active"
-                  )
-              );
 
-            document
-              .querySelector(
-                "#page-" + page
-              )
-              ?.classList.add(
+          document
+            .querySelectorAll(".page")
+            .forEach(item => {
+
+              item.classList.remove(
                 "active"
               );
 
-            document
-              .querySelectorAll(
-                ".nav-btn"
-              )
-              .forEach(
-                item =>
-                  item.classList.remove(
-                    "active"
-                  )
+            });
+
+
+          $(
+            "page-" + page
+          )?.classList.add(
+            "active"
+          );
+
+
+          document
+            .querySelectorAll(".nav-btn")
+            .forEach(item => {
+
+              item.classList.remove(
+                "active"
               );
 
-            button.classList.add(
-              "active"
-            );
+            });
 
-            window.scrollTo(
-              0,
-              0
-            );
-          }
-        );
-      }
-    );
+
+          button.classList.add(
+            "active"
+          );
+
+
+          window.scrollTo(
+            0,
+            0
+          );
+        }
+      );
+
+    });
 
 
   /*
@@ -867,202 +1085,589 @@ Chưa có command.
     ==================================================
   */
 
-  document.getElementById(
-    "brainStatus"
-  ).textContent =
-    window.RiiBrainV2
-      ? "Ready"
-      : "Missing";
+  function updateModuleStatus() {
+
+    $("brainStatus").textContent =
+      window.RiiBrainV2
+        ? "Ready"
+        : "Missing";
 
 
-  document.getElementById(
-    "engineStatus"
-  ).textContent =
-    window.RiiBrainEngineV2
-      ? "Ready"
-      : "Missing";
+    $("engineStatus").textContent =
+      window.RiiBrainEngineV2
+        ? "Ready"
+        : "Missing";
 
 
-  document.getElementById(
-    "vaultStatus"
-  ).textContent =
-    window.RiiCommandVaultV2
-      ? "Ready"
-      : "Missing";
-
-
-  /*
-    ==================================================
-    TEACH TEST
-    ==================================================
-  */
-
-  function analyzeTeach() {
-
-    const input =
-      document
-        .getElementById(
-          "teachInput"
-        )
-        .value
-        .trim();
-
-
-    if (!input) {
-
-      document
-        .getElementById(
-          "teachResult"
-        )
-        .textContent =
-        "Hãy nhập một kiến thức.";
-
-      return;
-    }
+    $("vaultStatus").textContent =
+      window.RiiCommandVaultV2
+        ? "Ready"
+        : "Missing";
 
 
     if (
-      !window.RiiBrainEngineV2
+      !window.RiiWorkerClientV2
     ) {
 
-      document
-        .getElementById(
-          "teachResult"
-        )
-        .textContent =
-        "Brain Engine chưa được tải.";
+      $("workerStatus").textContent =
+        "Missing";
 
-      return;
+      $("workerHomeInfo").textContent =
+        "worker-client-v2.js chưa được tải.";
     }
-
-
-    const result =
-      window
-        .RiiBrainEngineV2
-        .analyzeLocal(
-          input
-        );
-
-
-    document
-      .getElementById(
-        "teachResult"
-      )
-      .textContent =
-      JSON.stringify(
-        result,
-        null,
-        2
-      );
   }
+
+
+  updateModuleStatus();
 
 
   /*
     ==================================================
-    THINK TEST
+    WORKER HEALTH
     ==================================================
   */
 
-  function runThinking() {
+  window.testWorkerConnection =
+    async function () {
 
-    const input =
-      document
-        .getElementById(
-          "thinkInput"
-        )
-        .value
-        .trim();
+      const homeInfo =
+        $("workerHomeInfo");
 
-
-    if (
-      !input
-      ||
-      !window.RiiBrainEngineV2
-    ) {
-      return;
-    }
+      const settingsResult =
+        $("settingsWorkerResult");
 
 
-    const result =
-      window
-        .RiiBrainEngineV2
-        .analyzeLocal(
-          input
-        );
+      if (
+        !window.RiiWorkerClientV2
+      ) {
+
+        const message =
+          "Worker Client V2 chưa được tải.";
+
+        $("workerStatus").textContent =
+          "Missing";
+
+        homeInfo.textContent =
+          message;
+
+        settingsResult.textContent =
+          message;
+
+        return;
+      }
 
 
-    document
-      .getElementById(
-        "thinkResult"
-      )
-      .textContent =
-      JSON.stringify(
-        result,
-        null,
-        2
-      );
-  }
+      $("workerStatus").textContent =
+        "Checking";
+
+
+      homeInfo.textContent =
+        "Đang kiểm tra Worker...";
+
+
+      settingsResult.textContent =
+        "Đang kiểm tra Worker...";
+
+
+      try {
+
+        const data =
+          await window
+            .RiiWorkerClientV2
+            .health();
+
+
+        $("workerStatus").textContent =
+          "Ready";
+
+
+        homeInfo.textContent =
+          "✅ " +
+          String(
+            data.service ||
+            "Rii AI Backend"
+          )
+          +
+          " • V"
+          +
+          String(
+            data.version ||
+            "?"
+          )
+          +
+          " • AI "
+          +
+          (
+            data.hasAI
+              ? "READY"
+              : "MISSING"
+          );
+
+
+        settingsResult.textContent =
+          pretty(data);
+
+
+      } catch (error) {
+
+        $("workerStatus").textContent =
+          "Error";
+
+
+        const formatted =
+          window
+            .RiiWorkerClientV2
+            .formatError(
+              error
+            );
+
+
+        homeInfo.textContent =
+          "❌ " +
+          formatted.message;
+
+
+        settingsResult.textContent =
+          pretty(
+            formatted
+          );
+      }
+    };
 
 
   /*
     ==================================================
-    COMMAND PREVIEW
+    TEACH
 
-    Chưa ghi thật.
-    Giai đoạn sau mới nối Vault persistence.
+    Local xử lý toán/hình cơ bản.
+    Khái niệm mở gửi Worker AI.
     ==================================================
   */
 
-  function previewCommand() {
+  window.analyzeTeach =
+    async function () {
 
-    const name =
-      document
-        .getElementById(
-          "commandName"
-        )
-        .value
-        .trim();
+      const input =
+        $("teachInput")
+          .value
+          .trim();
 
 
-    const code =
-      document
-        .getElementById(
-          "commandCode"
-        )
-        .value;
+      const resultBox =
+        $("teachResult");
 
 
-    if (!name) {
+      const button =
+        $("teachButton");
 
-      document
-        .getElementById(
-          "commandPreview"
-        )
+
+      if (!input) {
+
+        resultBox.textContent =
+          "Hãy nhập một kiến thức.";
+
+        return;
+      }
+
+
+      if (
+        !window.RiiBrainEngineV2
+      ) {
+
+        resultBox.textContent =
+          "Brain Engine V2 chưa được tải.";
+
+        return;
+      }
+
+
+      setBusy(
+        button,
+        true,
+        "🧠 Phân tích",
+        "⏳ Đang phân tích..."
+      );
+
+
+      try {
+
+        const local =
+          window
+            .RiiBrainEngineV2
+            .analyzeLocal(
+              input
+            );
+
+
+        /*
+          Nếu local đã hiểu hoàn toàn
+          thì chưa cần Worker.
+        */
+
+        if (
+          local &&
+          local.ok &&
+          local.needsAI === false
+        ) {
+
+          resultBox.textContent =
+            pretty({
+              mode:
+                "LOCAL",
+
+              result:
+                local
+            });
+
+          return;
+        }
+
+
+        /*
+          Khái niệm khó:
+          dùng Worker AI.
+        */
+
+        if (
+          !window.RiiWorkerClientV2
+        ) {
+
+          resultBox.textContent =
+            pretty({
+              mode:
+                "LOCAL_ONLY",
+
+              warning:
+                "Worker Client chưa tải.",
+
+              localResult:
+                local
+            });
+
+          return;
+        }
+
+
+        const remote =
+          await window
+            .RiiWorkerClientV2
+            .analyzeConcept(
+              input,
+              {
+                targetLanguage:
+                  "en",
+
+                targetLanguageName:
+                  "English"
+              }
+            );
+
+
+        const merged =
+          window
+            .RiiBrainEngineV2
+            .mergeAIAnalysis(
+              local,
+              remote
+            );
+
+
+        resultBox.textContent =
+          pretty({
+            mode:
+              "WORKER_AI",
+
+            local,
+
+            worker:
+              remote,
+
+            merged
+          });
+
+
+      } catch (error) {
+
+        if (
+          window.RiiWorkerClientV2
+        ) {
+
+          resultBox.textContent =
+            pretty(
+              window
+                .RiiWorkerClientV2
+                .formatError(
+                  error
+                )
+            );
+
+        } else {
+
+          resultBox.textContent =
+            String(
+              error?.message ||
+              error
+            );
+        }
+
+      } finally {
+
+        setBusy(
+          button,
+          false,
+          "🧠 Phân tích",
+          "⏳ Đang phân tích..."
+        );
+      }
+    };
+
+
+  /*
+    ==================================================
+    THINK
+    ==================================================
+  */
+
+  window.runThinking =
+    async function () {
+
+      const input =
+        $("thinkInput")
+          .value
+          .trim();
+
+
+      const resultBox =
+        $("thinkResult");
+
+
+      const button =
+        $("thinkButton");
+
+
+      if (!input) {
+
+        resultBox.textContent =
+          "Hãy nhập câu hỏi hoặc tình huống.";
+
+        return;
+      }
+
+
+      if (
+        !window.RiiBrainEngineV2
+      ) {
+
+        resultBox.textContent =
+          "Brain Engine V2 chưa được tải.";
+
+        return;
+      }
+
+
+      setBusy(
+        button,
+        true,
+        "✨ Suy nghĩ",
+        "⏳ Đang suy nghĩ..."
+      );
+
+
+      try {
+
+        const local =
+          window
+            .RiiBrainEngineV2
+            .analyzeLocal(
+              input
+            );
+
+
+        /*
+          Toán học:
+          trả kết quả trực tiếp.
+        */
+
+        if (
+          local?.category ===
+          "mathematics"
+        ) {
+
+          resultBox.textContent =
+            pretty({
+              mode:
+                "MATH",
+
+              expression:
+                input,
+
+              operation:
+                local.math.operation,
+
+              left:
+                local.math.left,
+
+              right:
+                local.math.right,
+
+              answer:
+                local.math.answer,
+
+              valid:
+                local.math.valid
+            });
+
+          return;
+        }
+
+
+        /*
+          Các local parser khác
+        */
+
+        if (
+          local &&
+          local.ok &&
+          local.needsAI === false
+        ) {
+
+          resultBox.textContent =
+            pretty({
+              mode:
+                "LOCAL",
+
+              result:
+                local
+            });
+
+          return;
+        }
+
+
+        /*
+          Concept mở
+        */
+
+        if (
+          !window.RiiWorkerClientV2
+        ) {
+
+          throw new Error(
+            "Worker Client V2 chưa được tải."
+          );
+        }
+
+
+        const remote =
+          await window
+            .RiiWorkerClientV2
+            .analyzeConcept(
+              input,
+              {
+                targetLanguage:
+                  "en",
+
+                targetLanguageName:
+                  "English"
+              }
+            );
+
+
+        resultBox.textContent =
+          pretty({
+            mode:
+              "WORKER_AI",
+
+            result:
+              remote
+          });
+
+
+      } catch (error) {
+
+        if (
+          window.RiiWorkerClientV2
+        ) {
+
+          resultBox.textContent =
+            pretty(
+              window
+                .RiiWorkerClientV2
+                .formatError(
+                  error
+                )
+            );
+
+        } else {
+
+          resultBox.textContent =
+            String(
+              error?.message ||
+              error
+            );
+        }
+
+      } finally {
+
+        setBusy(
+          button,
+          false,
+          "✨ Suy nghĩ",
+          "⏳ Đang suy nghĩ..."
+        );
+      }
+    };
+
+
+  /*
+    ==================================================
+    COMMAND VAULT PREVIEW
+
+    Chưa ghi vĩnh viễn.
+    ==================================================
+  */
+
+  window.previewCommand =
+    function () {
+
+      const name =
+        $("commandName")
+          .value
+          .trim();
+
+
+      const code =
+        $("commandCode")
+          .value;
+
+
+      if (!name) {
+
+        $("commandPreview")
+          .textContent =
+          "Thiếu tên command.";
+
+        return;
+      }
+
+
+      $("commandPreview")
         .textContent =
-        "Thiếu tên command.";
-
-      return;
-    }
-
-
-    document
-      .getElementById(
-        "commandPreview"
-      )
-      .textContent =
-      JSON.stringify(
-        {
+        pretty({
           name,
           code,
           status:
             "PREVIEW_ONLY",
+
+          vaultLoaded:
+            Boolean(
+              window.RiiCommandVaultV2
+            ),
+
           note:
-            "Chưa ghi vào Command Vault."
-        },
-        null,
-        2
-      );
-  }
+            "Chưa ghi vào Command Vault. Phải qua Simulator trước."
+        });
+    };
 
 
   /*
@@ -1071,30 +1676,29 @@ Chưa có command.
     ==================================================
   */
 
-  function saveSettings() {
+  window.saveSettings =
+    function () {
 
-    const url =
-      document
-        .getElementById(
-          "backendUrl"
-        )
-        .value
-        .trim();
-
-
-    localStorage.setItem(
-      "rii-v2-backend",
-      url
-    );
+      const url =
+        $("backendUrl")
+          .value
+          .trim()
+          .replace(
+            /\/+$/,
+            ""
+          );
 
 
-    document
-      .getElementById(
-        "settingsMessage"
-      )
-      .textContent =
-      "✅ Đã lưu cấu hình.";
-  }
+      localStorage.setItem(
+        "rii-v2-backend",
+        url
+      );
+
+
+      $("settingsWorkerResult")
+        .textContent =
+        "✅ Đã lưu cấu hình Worker.";
+    };
 
 
   const savedBackend =
@@ -1105,14 +1709,33 @@ Chưa có command.
 
   if (savedBackend) {
 
-    document
-      .getElementById(
-        "backendUrl"
-      )
-      .value =
+    $("backendUrl").value =
       savedBackend;
   }
 
+
+  /*
+    Không tự động gọi Worker liên tục.
+
+    Chỉ health check tự động một lần
+    nếu URL đã tồn tại.
+  */
+
+  if (
+    savedBackend &&
+    window.RiiWorkerClientV2
+  ) {
+
+    setTimeout(
+      () => {
+        window
+          .testWorkerConnection();
+      },
+      500
+    );
+  }
+
+})();
 </script>
 
 </body>
