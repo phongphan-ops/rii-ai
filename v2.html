@@ -1,870 +1,1006 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8">
+<meta charset="utf-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width,initial-scale=1,viewport-fit=cover"
-  >
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
 
-  <title>Rii AI V2.1.0</title>
+<title>Rii AI V2.1.1</title>
 
-  <style>
-    :root{
-      --bg:#071019;
-      --panel:#0f1b28;
-      --panel2:#142334;
-      --line:#24384d;
-      --text:#f4f8fc;
-      --muted:#91a3b7;
-      --green:#4ee0ae;
-      --yellow:#ffd76a;
-      --red:#ff727d;
-      --blue:#62a8ff;
-      --radius:22px;
-    }
+<style>
+:root{
+  --bg:#071019;
+  --panel:#0f1b28;
+  --panel2:#142334;
+  --line:#24384d;
+  --text:#f4f8fc;
+  --muted:#91a3b7;
+  --green:#4ee0ae;
+  --yellow:#ffd76a;
+  --red:#ff727d;
+  --blue:#62a8ff;
+  --radius:22px;
+}
 
-    *{
-      box-sizing:border-box;
-    }
+*{
+  box-sizing:border-box;
+}
 
-    body{
-      margin:0;
-      background:var(--bg);
-      color:var(--text);
-      font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-    }
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
 
-    button,
-    input,
-    textarea,
-    select{
-      font:inherit;
-    }
+button,
+input,
+textarea{
+  font:inherit;
+}
 
-    button{
-      cursor:pointer;
-    }
+button{
+  cursor:pointer;
+}
 
-    button:disabled{
-      opacity:.5;
-      cursor:not-allowed;
-    }
+button:disabled{
+  opacity:.5;
+}
 
-    .app{
-      max-width:900px;
-      margin:auto;
-      min-height:100vh;
-      padding-bottom:120px;
-    }
+.app{
+  max-width:900px;
+  margin:auto;
+  min-height:100vh;
+  padding-bottom:120px;
+}
 
-    header{
-      position:sticky;
-      top:0;
-      z-index:50;
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
 
-      padding:
-        calc(16px + env(safe-area-inset-top))
-        18px
-        15px;
+  padding:
+    calc(16px + env(safe-area-inset-top))
+    18px
+    15px;
 
-      background:
-        rgba(7,16,25,.95);
+  background:rgba(7,16,25,.96);
+  backdrop-filter:blur(18px);
 
-      backdrop-filter:
-        blur(18px);
+  border-bottom:
+    1px solid var(--line);
+}
 
-      border-bottom:
-        1px solid var(--line);
-    }
+.brand{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
 
-    .brand{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-    }
+h1{
+  margin:0;
+  font-size:25px;
+}
 
-    h1{
-      margin:0;
-      font-size:25px;
-    }
+.version{
+  color:var(--green);
+  font-weight:850;
+}
 
-    .version{
-      color:var(--green);
-      font-weight:800;
-    }
+.subtitle{
+  color:var(--muted);
+  margin-top:5px;
+  font-size:14px;
+}
 
-    .subtitle{
-      color:var(--muted);
-      margin-top:5px;
-      font-size:14px;
-    }
+main{
+  padding:18px;
+}
 
-    main{
-      padding:18px;
-    }
+.page{
+  display:none;
+}
 
-    .page{
-      display:none;
-    }
+.page.active{
+  display:block;
+}
 
-    .page.active{
-      display:block;
-    }
+.card{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px;
+  margin-bottom:16px;
+}
 
-    .card{
-      background:var(--panel);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:18px;
-      margin-bottom:16px;
-    }
+.card h2{
+  margin:0 0 14px;
+}
 
-    .card h2{
-      margin:0 0 14px;
-    }
+.card h3{
+  margin:0 0 10px;
+}
 
-    .card h3{
-      margin:0 0 10px;
-    }
+.muted{
+  color:var(--muted);
+}
 
-    .muted{
-      color:var(--muted);
-    }
+.status{
+  display:inline-flex;
+  gap:7px;
+  align-items:center;
 
-    .green{
-      color:var(--green);
-    }
+  padding:7px 11px;
 
-    .yellow{
-      color:var(--yellow);
-    }
+  border-radius:999px;
 
-    .grid{
-      display:grid;
-      grid-template-columns:
-        repeat(2,minmax(0,1fr));
-      gap:12px;
-    }
+  font-size:13px;
+  font-weight:750;
 
-    .stat{
-      background:var(--panel2);
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:15px;
-    }
+  background:#123027;
+  color:var(--green);
+}
 
-    .stat strong{
-      display:block;
-      font-size:22px;
-      margin-top:5px;
-    }
+.grid{
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+  gap:12px;
+}
 
-    .status{
-      display:inline-flex;
-      gap:7px;
-      align-items:center;
-      padding:7px 11px;
-      border-radius:999px;
-      font-weight:700;
-      font-size:13px;
-      background:#123027;
-      color:var(--green);
-    }
+.stat{
+  background:var(--panel2);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:15px;
+}
 
-    label{
-      display:block;
-      margin:14px 0 7px;
-      color:var(--muted);
-      font-weight:700;
-    }
+.stat strong{
+  display:block;
+  margin-top:5px;
+  font-size:22px;
+}
 
-    input,
-    textarea,
-    select{
-      width:100%;
-      padding:14px;
-      border-radius:16px;
-      border:1px solid var(--line);
-      background:#08121c;
-      color:var(--text);
-      outline:none;
-    }
+label{
+  display:block;
+  margin:14px 0 7px;
 
-    textarea{
-      min-height:120px;
-      resize:vertical;
-    }
+  color:var(--muted);
+  font-weight:750;
+}
 
-    .btn{
-      width:100%;
-      border:0;
-      border-radius:17px;
-      padding:15px;
-      margin-top:12px;
-      font-weight:850;
-      background:var(--green);
-      color:#04130e;
-    }
+input,
+textarea{
+  width:100%;
 
-    .btn.secondary{
-      color:var(--text);
-      background:var(--panel2);
-      border:1px solid var(--line);
-    }
+  padding:14px;
 
-    .btn.yellow{
-      background:var(--yellow);
-      color:#251c00;
-    }
+  border-radius:16px;
 
-    pre{
-      margin:12px 0 0;
-      white-space:pre-wrap;
-      overflow-wrap:anywhere;
-      background:#06101a;
-      border:1px solid var(--line);
-      padding:14px;
-      border-radius:16px;
-      color:#cfe3f6;
-    }
+  border:
+    1px solid var(--line);
 
-    .knowledge-item{
-      background:#0a1622;
-      border:1px solid var(--line);
-      border-radius:17px;
-      padding:14px;
-      margin-top:10px;
-    }
+  background:#08121c;
+  color:var(--text);
 
-    .knowledge-title{
-      font-weight:850;
-      font-size:18px;
-    }
+  outline:none;
+}
 
-    .knowledge-meta{
-      color:var(--muted);
-      font-size:13px;
-      margin-top:7px;
-      line-height:1.55;
-    }
+textarea{
+  min-height:120px;
+  resize:vertical;
+}
 
-    .empty{
-      text-align:center;
-      padding:25px 10px;
-      color:var(--muted);
-    }
+.btn{
+  width:100%;
 
-    .pipeline{
-      display:flex;
-      flex-wrap:wrap;
-      gap:7px;
-    }
+  border:0;
+  border-radius:17px;
 
-    .pipeline span{
-      padding:8px 11px;
-      border-radius:12px;
-      background:var(--panel2);
-      border:1px solid var(--line);
-    }
+  padding:15px;
+  margin-top:12px;
 
-    .bottom-nav{
-      position:fixed;
-      left:0;
-      right:0;
-      bottom:0;
-      z-index:100;
+  font-weight:850;
 
-      padding:
-        8px
-        8px
-        calc(8px + env(safe-area-inset-bottom));
+  background:var(--green);
+  color:#04130e;
+}
 
-      background:
-        rgba(6,13,21,.97);
+.btn.secondary{
+  color:var(--text);
 
-      border-top:
-        1px solid var(--line);
+  background:var(--panel2);
 
-      backdrop-filter:
-        blur(20px);
+  border:
+    1px solid var(--line);
+}
 
-      overflow-x:auto;
-      white-space:nowrap;
-    }
+.btn.yellow{
+  background:var(--yellow);
+  color:#251c00;
+}
 
-    .nav-inner{
-      display:flex;
-      min-width:max-content;
-      justify-content:center;
-      gap:5px;
-    }
+pre{
+  margin:12px 0 0;
 
-    .nav-btn{
-      border:0;
-      background:transparent;
-      color:var(--muted);
-      border-radius:14px;
-      padding:8px 11px;
-      min-width:70px;
-    }
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
 
-    .nav-btn.active{
-      color:var(--green);
-      background:#10241f;
-    }
+  background:#06101a;
 
-    .nav-icon{
-      display:block;
-      font-size:22px;
-      margin-bottom:2px;
-    }
+  border:
+    1px solid var(--line);
 
-    @media(min-width:700px){
-      .grid{
-        grid-template-columns:
-          repeat(4,minmax(0,1fr));
-      }
-    }
-  </style>
+  padding:14px;
+
+  border-radius:16px;
+
+  color:#cfe3f6;
+}
+
+.knowledge-item{
+  background:#0a1622;
+
+  border:
+    1px solid var(--line);
+
+  border-radius:17px;
+
+  padding:14px;
+
+  margin-top:10px;
+}
+
+.knowledge-title{
+  font-size:18px;
+  font-weight:850;
+}
+
+.knowledge-meta{
+  margin-top:7px;
+
+  color:var(--muted);
+
+  font-size:13px;
+  line-height:1.55;
+}
+
+.empty{
+  padding:25px 10px;
+  text-align:center;
+  color:var(--muted);
+}
+
+.pipeline{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+
+.pipeline span{
+  padding:8px 11px;
+
+  border-radius:12px;
+
+  background:var(--panel2);
+
+  border:
+    1px solid var(--line);
+}
+
+.mode-box{
+  margin-top:12px;
+
+  padding:12px;
+
+  border-radius:14px;
+
+  border:
+    1px solid var(--line);
+
+  background:#0a1622;
+}
+
+.mode-local{
+  color:var(--blue);
+}
+
+.mode-brain{
+  color:var(--yellow);
+}
+
+.mode-worker{
+  color:var(--green);
+}
+
+.bottom-nav{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+
+  z-index:100;
+
+  padding:
+    8px
+    8px
+    calc(8px + env(safe-area-inset-bottom));
+
+  background:
+    rgba(6,13,21,.98);
+
+  border-top:
+    1px solid var(--line);
+
+  backdrop-filter:
+    blur(20px);
+
+  overflow-x:auto;
+  white-space:nowrap;
+
+  -webkit-overflow-scrolling:
+    touch;
+}
+
+.nav-inner{
+  display:flex;
+  gap:5px;
+  min-width:max-content;
+}
+
+.nav-btn{
+  border:0;
+
+  min-width:74px;
+
+  padding:8px 11px;
+
+  border-radius:14px;
+
+  color:var(--muted);
+
+  background:transparent;
+}
+
+.nav-btn.active{
+  color:var(--green);
+  background:#10241f;
+}
+
+.nav-icon{
+  display:block;
+  margin-bottom:2px;
+  font-size:22px;
+}
+
+@media(min-width:700px){
+  .grid{
+    grid-template-columns:
+      repeat(4,minmax(0,1fr));
+  }
+}
+</style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <header>
-    <div class="brand">
+<header>
 
-      <div>
-        <h1>Rii AI V2</h1>
+  <div class="brand">
 
-        <div class="subtitle">
-          Brain • Vision • Think • Robot
-        </div>
-      </div>
+    <div>
 
-      <div class="version">
-        V2.1.0
+      <h1>
+        Rii AI V2
+      </h1>
+
+      <div class="subtitle">
+        Brain • Vision • Think • Robot
       </div>
 
     </div>
-  </header>
+
+    <div class="version">
+      V2.1.1
+    </div>
+
+  </div>
+
+</header>
 
 
-  <main>
+<main>
 
-    <!-- HOME -->
 
-    <section
-      id="page-home"
-      class="page active"
+<!-- HOME -->
+
+<section
+  id="page-home"
+  class="page active"
+>
+
+  <div class="card">
+
+    <h2>
+      🏠 Trung tâm Rii
+    </h2>
+
+    <span class="status">
+      ● Brain-first Thinking
+    </span>
+
+    <p class="muted">
+      Rii ưu tiên kiến thức cục bộ,
+      sau đó trí nhớ Brain,
+      cuối cùng mới gọi Worker AI.
+    </p>
+
+  </div>
+
+
+  <div class="grid">
+
+    <div class="stat">
+      🧠 Brain
+
+      <strong id="brainStatus">
+        Checking
+      </strong>
+    </div>
+
+    <div class="stat">
+      ⚙️ Engine
+
+      <strong id="engineStatus">
+        Checking
+      </strong>
+    </div>
+
+    <div class="stat">
+      🔐 Vault
+
+      <strong id="vaultStatus">
+        Checking
+      </strong>
+    </div>
+
+    <div class="stat">
+      ☁️ Worker
+
+      <strong id="workerStatus">
+        Offline
+      </strong>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>
+      🧠 Bộ nhớ hiện tại
+    </h3>
+
+    <div class="stat">
+      Tổng kiến thức
+
+      <strong id="knowledgeCountHome">
+        0
+      </strong>
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>
+      Luồng tư duy V2.1.1
+    </h3>
+
+    <div class="pipeline">
+
+      <span>Input</span>
+
+      <span>→ LOCAL</span>
+
+      <span>→ BRAIN</span>
+
+      <span>→ WORKER AI</span>
+
+    </div>
+
+  </div>
+
+
+  <div class="card">
+
+    <h3>
+      Worker Backend
+    </h3>
+
+    <div
+      id="workerHomeInfo"
+      class="muted"
     >
+      Chưa kiểm tra.
+    </div>
 
-      <div class="card">
-
-        <h2>
-          🏠 Trung tâm Rii
-        </h2>
-
-        <span class="status">
-          ● Brain Learning đang phát triển
-        </span>
-
-        <p class="muted">
-          Giai đoạn hiện tại:
-          phân tích kiến thức và ghi nhớ vào Brain.
-        </p>
-
-      </div>
-
-
-      <div class="grid">
-
-        <div class="stat">
-          🧠 Brain
-          <strong id="brainStatus">
-            Checking
-          </strong>
-        </div>
-
-        <div class="stat">
-          ⚙️ Engine
-          <strong id="engineStatus">
-            Checking
-          </strong>
-        </div>
-
-        <div class="stat">
-          🔐 Vault
-          <strong id="vaultStatus">
-            Checking
-          </strong>
-        </div>
-
-        <div class="stat">
-          ☁️ Worker
-          <strong id="workerStatus">
-            Offline
-          </strong>
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <h3>
-          🧠 Bộ nhớ hiện tại
-        </h3>
-
-        <div class="stat">
-          Tổng kiến thức
-          <strong id="knowledgeCountHome">
-            0
-          </strong>
-        </div>
-
-      </div>
-
-
-      <div class="card">
-
-        <h3>
-          Worker Backend
-        </h3>
-
-        <div
-          id="workerHomeInfo"
-          class="muted"
-        >
-          Chưa kiểm tra kết nối.
-        </div>
-
-        <button
-          class="btn secondary"
-          onclick="testWorkerConnection()"
-        >
-          🧪 Kiểm tra Worker
-        </button>
-
-      </div>
-
-
-      <div class="card">
-
-        <h3>
-          Luồng tư duy
-        </h3>
-
-        <div class="pipeline">
-          <span>Teach</span>
-          <span>→ Analyze</span>
-          <span>→ Brain</span>
-          <span>→ Vision</span>
-          <span>→ Planner</span>
-          <span>→ Robot</span>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- TEACH -->
-
-    <section
-      id="page-teach"
-      class="page"
+    <button
+      class="btn secondary"
+      onclick="testWorkerConnection()"
     >
+      🧪 Kiểm tra Worker
+    </button>
 
-      <div class="card">
+  </div>
 
-        <h2>
-          ➕ Teach
-        </h2>
-
-        <p class="muted">
-          Dạy một khái niệm.
-          Phân tích trước, sau đó mới ghi vào Brain.
-        </p>
+</section>
 
 
-        <label>
-          Kiến thức
-        </label>
 
-        <textarea
-          id="teachInput"
-          placeholder="Ví dụ: 3 con mèo trắng, áo khoác màu đỏ, hình tròn màu xanh..."
-        ></textarea>
+<!-- TEACH -->
 
+<section
+  id="page-teach"
+  class="page"
+>
 
-        <button
-          id="teachAnalyzeButton"
-          class="btn"
-          onclick="analyzeTeach()"
-        >
-          🧠 Phân tích
-        </button>
+  <div class="card">
 
+    <h2>
+      ➕ Teach
+    </h2>
 
-        <button
-          id="teachSaveButton"
-          class="btn yellow"
-          onclick="saveAnalyzedKnowledge()"
-          disabled
-        >
-          💾 Ghi vào Brain
-        </button>
+    <p class="muted">
+      Phân tích kiến thức trước,
+      sau đó ghi vào Brain.
+    </p>
 
 
-        <pre id="teachResult">Chưa có dữ liệu.</pre>
+    <label>
+      Kiến thức
+    </label>
 
-      </div>
+    <textarea
+      id="teachInput"
+      placeholder="Ví dụ: 2 con chó đen"
+    ></textarea>
 
-    </section>
 
-
-    <!-- THINK -->
-
-    <section
-      id="page-think"
-      class="page"
+    <button
+      id="teachAnalyzeButton"
+      class="btn"
+      onclick="analyzeTeach()"
     >
-
-      <div class="card">
-
-        <h2>
-          ✨ Think
-        </h2>
-
-        <p class="muted">
-          Phân tích câu hỏi hoặc tình huống.
-        </p>
+      🧠 Phân tích
+    </button>
 
 
-        <label>
-          Câu hỏi / tình huống
-        </label>
-
-        <textarea
-          id="thinkInput"
-          placeholder="Ví dụ: 99 * 10 hoặc 2 con chó đen"
-        ></textarea>
-
-
-        <button
-          id="thinkButton"
-          class="btn"
-          onclick="runThinking()"
-        >
-          ✨ Suy nghĩ
-        </button>
-
-
-        <pre id="thinkResult">Waiting...</pre>
-
-      </div>
-
-    </section>
-
-
-    <!-- VISION -->
-
-    <section
-      id="page-vision"
-      class="page"
+    <button
+      id="teachSaveButton"
+      class="btn yellow"
+      onclick="saveAnalyzedKnowledge()"
+      disabled
     >
-
-      <div class="card">
-
-        <h2>
-          👁 Vision
-        </h2>
-
-        <p class="muted">
-          Vision Core sẽ được nối sau khi
-          Brain Learning hoạt động ổn định.
-        </p>
-
-        <div class="stat">
-          Camera robot
-          <strong>Offline</strong>
-        </div>
-
-        <br>
-
-        <div class="stat">
-          Camera toàn cảnh
-          <strong>Offline</strong>
-        </div>
-
-      </div>
-
-    </section>
+      💾 Ghi vào Brain
+    </button>
 
 
-    <!-- WORLD -->
+    <pre id="teachResult">
+Chưa có dữ liệu.
+    </pre>
 
-    <section
-      id="page-world"
-      class="page"
+  </div>
+
+</section>
+
+
+
+<!-- THINK -->
+
+<section
+  id="page-think"
+  class="page"
+>
+
+  <div class="card">
+
+    <h2>
+      ✨ Think
+    </h2>
+
+    <p class="muted">
+      Thứ tự xử lý:
+      LOCAL → BRAIN_MEMORY → WORKER_AI.
+    </p>
+
+
+    <label>
+      Câu hỏi / tình huống
+    </label>
+
+    <textarea
+      id="thinkInput"
+      placeholder="Thử nhập lại: 2 con chó đen"
+    ></textarea>
+
+
+    <button
+      id="thinkButton"
+      class="btn"
+      onclick="runThinking()"
     >
+      ✨ Suy nghĩ
+    </button>
 
-      <div class="card">
 
-        <h2>
-          🌍 World Model
-        </h2>
+    <div
+      id="thinkMode"
+      class="mode-box"
+    >
+      Chưa xử lý.
+    </div>
 
-        <pre>Robot: chưa định vị
+
+    <pre id="thinkResult">
+Waiting...
+    </pre>
+
+  </div>
+
+</section>
+
+
+
+<!-- VISION -->
+
+<section
+  id="page-vision"
+  class="page"
+>
+
+  <div class="card">
+
+    <h2>
+      👁 Vision
+    </h2>
+
+    <p class="muted">
+      Vision sẽ được nối sau khi
+      bộ nhớ và Brain-first hoạt động ổn định.
+    </p>
+
+    <div class="stat">
+      Camera robot
+      <strong>Offline</strong>
+    </div>
+
+    <br>
+
+    <div class="stat">
+      Camera toàn cảnh
+      <strong>Offline</strong>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- WORLD -->
+
+<section
+  id="page-world"
+  class="page"
+>
+
+  <div class="card">
+
+    <h2>
+      🌍 World Model
+    </h2>
+
+    <pre>
+Robot: chưa định vị
 Objects: chưa kết nối Vision
 Targets: 0
-Map: chưa có</pre>
+Map: chưa có
+    </pre>
+
+  </div>
+
+</section>
+
+
+
+<!-- BRAIN -->
+
+<section
+  id="page-brain"
+  class="page"
+>
+
+  <div class="card">
+
+    <h2>
+      🧠 Brain
+    </h2>
+
+    <p class="muted">
+      Kiến thức do ROOT_OWNER dạy.
+    </p>
+
+
+    <div class="grid">
+
+      <div class="stat">
+
+        Role
+
+        <strong>
+          ROOT
+        </strong>
 
       </div>
 
-    </section>
+
+      <div class="stat">
+
+        Knowledge
+
+        <strong id="knowledgeCountBrain">
+          0
+        </strong>
+
+      </div>
+
+    </div>
 
 
-    <!-- BRAIN -->
+    <button
+      class="btn secondary"
+      onclick="renderBrain()"
+    >
+      🔄 Làm mới Brain
+    </button>
 
-    <section
-      id="page-brain"
-      class="page"
+  </div>
+
+
+  <div
+    id="brainList"
+    class="card"
+  >
+
+    <div class="empty">
+      Brain chưa có kiến thức.
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- VAULT -->
+
+<section
+  id="page-vault"
+  class="page"
+>
+
+  <div class="card">
+
+    <h2>
+      🔐 Command Vault
+    </h2>
+
+    <p class="muted">
+      Lệnh robot vẫn ở chế độ Preview.
+    </p>
+
+    <div class="stat">
+
+      Vault
+
+      <strong>
+        Ready
+      </strong>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- SETTINGS -->
+
+<section
+  id="page-settings"
+  class="page"
+>
+
+  <div class="card">
+
+    <h2>
+      ⚙️ Settings
+    </h2>
+
+
+    <label>
+      Role
+    </label>
+
+    <input
+      value="ROOT_OWNER"
+      disabled
     >
 
-      <div class="card">
 
-        <h2>
-          🧠 Brain
-        </h2>
+    <label>
+      Worker Backend
+    </label>
 
-        <p class="muted">
-          Kiến thức đã được ROOT_OWNER dạy.
-        </p>
-
-
-        <div class="grid">
-
-          <div class="stat">
-            Role
-            <strong>
-              ROOT
-            </strong>
-          </div>
-
-          <div class="stat">
-            Knowledge
-            <strong id="knowledgeCountBrain">
-              0
-            </strong>
-          </div>
-
-        </div>
-
-
-        <button
-          class="btn secondary"
-          onclick="renderBrain()"
-        >
-          🔄 Làm mới Brain
-        </button>
-
-      </div>
-
-
-      <div
-        id="brainList"
-        class="card"
-      >
-        <div class="empty">
-          Brain chưa có kiến thức.
-        </div>
-      </div>
-
-    </section>
-
-
-    <!-- VAULT -->
-
-    <section
-      id="page-vault"
-      class="page"
+    <input
+      id="backendUrl"
+      placeholder="https://...workers.dev"
     >
 
-      <div class="card">
 
-        <h2>
-          🔐 Command Vault
-        </h2>
-
-        <p class="muted">
-          Command Vault đang giữ ở chế độ Preview.
-          Chưa bật ghi lệnh vận động thật.
-        </p>
-
-        <div class="stat">
-          Vault
-          <strong>
-            Ready
-          </strong>
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- SETTINGS -->
-
-    <section
-      id="page-settings"
-      class="page"
+    <button
+      class="btn"
+      onclick="saveSettings()"
     >
-
-      <div class="card">
-
-        <h2>
-          ⚙️ Settings
-        </h2>
+      💾 Lưu cấu hình
+    </button>
 
 
-        <label>
-          Role
-        </label>
-
-        <input
-          value="ROOT_OWNER"
-          disabled
-        >
+    <button
+      class="btn secondary"
+      onclick="testWorkerConnection()"
+    >
+      🧪 Kiểm tra Worker
+    </button>
 
 
-        <label>
-          Worker Backend
-        </label>
+    <pre id="settingsWorkerResult">
+Chưa kiểm tra.
+    </pre>
 
-        <input
-          id="backendUrl"
-          placeholder="https://...workers.dev"
-        >
+  </div>
 
-
-        <button
-          class="btn"
-          onclick="saveSettings()"
-        >
-          💾 Lưu cấu hình
-        </button>
+</section>
 
 
-        <button
-          class="btn secondary"
-          onclick="testWorkerConnection()"
-        >
-          🧪 Kiểm tra kết nối Worker
-        </button>
-
-
-        <pre id="settingsWorkerResult">Chưa kiểm tra.</pre>
-
-      </div>
-
-    </section>
-
-  </main>
+</main>
 
 </div>
+
 
 
 <!-- NAV -->
 
 <nav class="bottom-nav">
 
-  <div class="nav-inner">
+<div class="nav-inner">
 
-    <button
-      class="nav-btn active"
-      data-page="home"
-    >
-      <span class="nav-icon">🏠</span>
-      Home
-    </button>
+  <button
+    class="nav-btn active"
+    data-page="home"
+  >
+    <span class="nav-icon">
+      🏠
+    </span>
+    Home
+  </button>
 
-    <button
-      class="nav-btn"
-      data-page="teach"
-    >
-      <span class="nav-icon">➕</span>
-      Teach
-    </button>
 
-    <button
-      class="nav-btn"
-      data-page="think"
-    >
-      <span class="nav-icon">✨</span>
-      Think
-    </button>
+  <button
+    class="nav-btn"
+    data-page="teach"
+  >
+    <span class="nav-icon">
+      ➕
+    </span>
+    Teach
+  </button>
 
-    <button
-      class="nav-btn"
-      data-page="vision"
-    >
-      <span class="nav-icon">👁</span>
-      Vision
-    </button>
 
-    <button
-      class="nav-btn"
-      data-page="world"
-    >
-      <span class="nav-icon">🌍</span>
-      World
-    </button>
+  <button
+    class="nav-btn"
+    data-page="think"
+  >
+    <span class="nav-icon">
+      ✨
+    </span>
+    Think
+  </button>
 
-    <button
-      class="nav-btn"
-      data-page="brain"
-    >
-      <span class="nav-icon">🧠</span>
-      Brain
-    </button>
 
-    <button
-      class="nav-btn"
-      data-page="vault"
-    >
-      <span class="nav-icon">🔐</span>
-      Vault
-    </button>
+  <button
+    class="nav-btn"
+    data-page="vision"
+  >
+    <span class="nav-icon">
+      👁
+    </span>
+    Vision
+  </button>
 
-    <button
-      class="nav-btn"
-      data-page="settings"
-    >
-      <span class="nav-icon">⚙️</span>
-      Settings
-    </button>
 
-  </div>
+  <button
+    class="nav-btn"
+    data-page="world"
+  >
+    <span class="nav-icon">
+      🌍
+    </span>
+    World
+  </button>
+
+
+  <button
+    class="nav-btn"
+    data-page="brain"
+  >
+    <span class="nav-icon">
+      🧠
+    </span>
+    Brain
+  </button>
+
+
+  <button
+    class="nav-btn"
+    data-page="vault"
+  >
+    <span class="nav-icon">
+      🔐
+    </span>
+    Vault
+  </button>
+
+
+  <button
+    class="nav-btn"
+    data-page="settings"
+  >
+    <span class="nav-icon">
+      ⚙️
+    </span>
+    Settings
+  </button>
+
+</div>
 
 </nav>
 
 
-<!-- EXISTING V2 MODULES -->
+
+<!-- MODULES -->
 
 <script src="brain-v2.js"></script>
+
 <script src="brain-engine-v2.js"></script>
+
 <script src="command-vault-v2.js"></script>
+
 <script src="worker-client-v2.js"></script>
+
 
 
 <script>
@@ -873,33 +1009,67 @@ Map: chưa có</pre>
 
 
   const APP_VERSION =
-    "2.1.0";
+    "2.1.1";
+
+
+  /*
+    GIỮ NGUYÊN KEY V2.1.0
+    để không mất black dog.
+  */
 
   const BRAIN_STORAGE_KEY =
     "rii-v2-root-knowledge";
 
+
   const ROLE =
     "ROOT_OWNER";
+
 
   let pendingKnowledge =
     null;
 
 
+
   /* =====================================================
-     HELPERS
+     BASIC HELPERS
   ===================================================== */
 
   function $(id) {
-    return document.getElementById(id);
+
+    return document
+      .getElementById(id);
   }
 
 
   function pretty(value) {
+
     return JSON.stringify(
       value,
       null,
       2
     );
+  }
+
+
+  function normalizeText(value) {
+
+    return String(
+      value ||
+      ""
+    )
+      .normalize("NFKC")
+      .toLowerCase()
+      .trim()
+
+      .replace(
+        /[.,!?;:()[\]{}"'`]/g,
+        " "
+      )
+
+      .replace(
+        /\s+/g,
+        " "
+      );
   }
 
 
@@ -914,26 +1084,52 @@ Map: chưa có</pre>
       return;
     }
 
+
     button.disabled =
       Boolean(busy);
 
+
     button.textContent =
       busy
-        ? busyText
-        : normalText;
+        ?
+        busyText
+        :
+        normalText;
   }
 
 
-  function normalizeText(value) {
+  function escapeHtml(value) {
 
     return String(
-      value ||
+      value ??
       ""
     )
-      .normalize("NFKC")
-      .trim()
-      .toLowerCase();
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+
+      .replace(
+        /</g,
+        "&lt;"
+      )
+
+      .replace(
+        />/g,
+        "&gt;"
+      )
+
+      .replace(
+        /"/g,
+        "&quot;"
+      )
+
+      .replace(
+        /'/g,
+        "&#039;"
+      );
   }
+
 
 
   /* =====================================================
@@ -951,7 +1147,9 @@ Map: chưa có</pre>
         () => {
 
           const page =
-            button.dataset.page;
+            button
+              .dataset
+              .page;
 
 
           document
@@ -960,9 +1158,11 @@ Map: chưa có</pre>
             )
             .forEach(item => {
 
-              item.classList.remove(
-                "active"
-              );
+              item
+                .classList
+                .remove(
+                  "active"
+                );
 
             });
 
@@ -982,21 +1182,27 @@ Map: chưa có</pre>
             )
             .forEach(item => {
 
-              item.classList.remove(
-                "active"
-              );
+              item
+                .classList
+                .remove(
+                  "active"
+                );
 
             });
 
 
-          button.classList.add(
-            "active"
-          );
+          button
+            .classList
+            .add(
+              "active"
+            );
 
 
           if (
-            page === "brain"
+            page ===
+            "brain"
           ) {
+
             renderBrain();
           }
 
@@ -1011,6 +1217,7 @@ Map: chưa có</pre>
     });
 
 
+
   /* =====================================================
      BRAIN STORAGE
   ===================================================== */
@@ -1020,9 +1227,10 @@ Map: chưa có</pre>
     try {
 
       const raw =
-        localStorage.getItem(
-          BRAIN_STORAGE_KEY
-        );
+        localStorage
+          .getItem(
+            BRAIN_STORAGE_KEY
+          );
 
 
       if (!raw) {
@@ -1047,16 +1255,21 @@ Map: chưa có</pre>
   }
 
 
-  function saveKnowledgeList(list) {
+  function saveKnowledgeList(
+    list
+  ) {
 
-    localStorage.setItem(
-      BRAIN_STORAGE_KEY,
-      JSON.stringify(list)
-    );
+    localStorage
+      .setItem(
+        BRAIN_STORAGE_KEY,
+        JSON.stringify(list)
+      );
   }
 
 
-  function makeKnowledgeId(data) {
+  function makeKnowledgeId(
+    data
+  ) {
 
     return [
       normalizeText(
@@ -1079,14 +1292,18 @@ Map: chưa có</pre>
   }
 
 
-  function saveKnowledgeRecord(record) {
+  function saveKnowledgeRecord(
+    record
+  ) {
 
     const list =
       loadKnowledge();
 
 
     const id =
-      makeKnowledgeId(record);
+      makeKnowledgeId(
+        record
+      );
 
 
     const existingIndex =
@@ -1114,7 +1331,9 @@ Map: chưa có</pre>
       list[
         existingIndex
       ] = {
+
         ...old,
+
         ...record,
 
         id,
@@ -1132,6 +1351,7 @@ Map: chưa có</pre>
     } else {
 
       list.unshift({
+
         ...record,
 
         id,
@@ -1157,11 +1377,288 @@ Map: chưa có</pre>
 
 
     return {
+
       id,
+
       list
     };
   }
 
+
+
+  /* =====================================================
+     BRAIN SEARCH
+  ===================================================== */
+
+  function tokenize(value) {
+
+    return normalizeText(
+      value
+    )
+      .split(" ")
+      .filter(
+        token =>
+          token.length > 1
+      );
+  }
+
+
+  function tokenOverlapScore(
+    a,
+    b
+  ) {
+
+    const ta =
+      tokenize(a);
+
+
+    const tb =
+      tokenize(b);
+
+
+    if (
+      ta.length === 0 ||
+      tb.length === 0
+    ) {
+      return 0;
+    }
+
+
+    const setB =
+      new Set(tb);
+
+
+    let matches = 0;
+
+
+    for (
+      const token
+      of ta
+    ) {
+
+      if (
+        setB.has(token)
+      ) {
+
+        matches++;
+      }
+    }
+
+
+    return (
+      matches /
+      Math.max(
+        ta.length,
+        tb.length
+      )
+    );
+  }
+
+
+  function scoreKnowledge(
+    input,
+    knowledge
+  ) {
+
+    const query =
+      normalizeText(input);
+
+
+    const original =
+      normalizeText(
+        knowledge.originalInput
+      );
+
+
+    const translated =
+      normalizeText(
+        knowledge.translatedLabel
+      );
+
+
+    const core =
+      normalizeText(
+        knowledge.normalizedEnglish
+      );
+
+
+    /*
+      Chính xác câu đã học:
+      ưu tiên tuyệt đối.
+    */
+
+    if (
+      query &&
+      query === original
+    ) {
+
+      return 1;
+    }
+
+
+    /*
+      Nếu nhập thẳng tiếng Anh:
+      black dog
+    */
+
+    if (
+      query &&
+      translated &&
+      query === translated
+    ) {
+
+      return .98;
+    }
+
+
+    /*
+      Nếu nhập core:
+      dog
+    */
+
+    if (
+      query &&
+      core &&
+      query === core
+    ) {
+
+      return .94;
+    }
+
+
+    let score = 0;
+
+
+    score =
+      Math.max(
+        score,
+        tokenOverlapScore(
+          query,
+          original
+        )
+      );
+
+
+    score =
+      Math.max(
+        score,
+        tokenOverlapScore(
+          query,
+          translated
+        )
+      );
+
+
+    /*
+      Core noun xuất hiện trực tiếp.
+    */
+
+    if (
+      core &&
+      query.includes(core)
+    ) {
+
+      score =
+        Math.max(
+          score,
+          .78
+        );
+    }
+
+
+    return score;
+  }
+
+
+  function findKnowledge(
+    input
+  ) {
+
+    const list =
+      loadKnowledge();
+
+
+    let best =
+      null;
+
+
+    let bestScore =
+      0;
+
+
+    for (
+      const item
+      of list
+    ) {
+
+      const score =
+        scoreKnowledge(
+          input,
+          item
+        );
+
+
+      if (
+        score >
+        bestScore
+      ) {
+
+        bestScore =
+          score;
+
+        best =
+          item;
+      }
+    }
+
+
+    /*
+      0.74 đủ chặt cho giai đoạn này.
+    */
+
+    if (
+      best &&
+      bestScore >= .74
+    ) {
+
+      return {
+
+        found:
+          true,
+
+        score:
+          Number(
+            bestScore
+              .toFixed(3)
+          ),
+
+        knowledge:
+          best
+      };
+    }
+
+
+    return {
+
+      found:
+        false,
+
+      score:
+        Number(
+          bestScore
+            .toFixed(3)
+        ),
+
+      knowledge:
+        null
+    };
+  }
+
+
+
+  /* =====================================================
+     BRAIN UI
+  ===================================================== */
 
   function updateKnowledgeCounters() {
 
@@ -1201,9 +1698,9 @@ Map: chưa có</pre>
 
         container.innerHTML =
           `
-            <div class="empty">
-              Brain chưa có kiến thức.
-            </div>
+          <div class="empty">
+            Brain chưa có kiến thức.
+          </div>
           `;
 
         return;
@@ -1224,103 +1721,60 @@ Map: chưa có</pre>
               "Knowledge";
 
 
-            const quantity =
-              item.quantity ??
-              1;
-
-
-            const color =
-              item.color ||
-              "-";
-
-
-            const shape =
-              item.shape ||
-              "-";
-
-
             return `
-              <div class="knowledge-item">
+            <div class="knowledge-item">
 
-                <div class="knowledge-title">
-                  ${escapeHtml(title)}
-                </div>
+              <div class="knowledge-title">
+                ${escapeHtml(title)}
+              </div>
 
-                <div class="knowledge-meta">
+              <div class="knowledge-meta">
 
-                  Core:
-                  <strong>
-                    ${escapeHtml(item.normalizedEnglish || "-")}
-                  </strong>
+                Core:
+                <strong>
+                  ${escapeHtml(item.normalizedEnglish || "-")}
+                </strong>
 
-                  <br>
+                <br>
 
-                  Category:
-                  ${escapeHtml(item.category || "unknown")}
+                Category:
+                ${escapeHtml(item.category || "unknown")}
 
-                  <br>
+                <br>
 
-                  Quantity:
-                  ${escapeHtml(String(quantity))}
+                Quantity:
+                ${escapeHtml(String(item.quantity ?? 1))}
 
-                  <br>
+                <br>
 
-                  Color:
-                  ${escapeHtml(color)}
+                Color:
+                ${escapeHtml(item.color || "-")}
 
-                  <br>
+                <br>
 
-                  Shape:
-                  ${escapeHtml(shape)}
+                Shape:
+                ${escapeHtml(item.shape || "-")}
 
-                  <br>
+                <br>
 
-                  Học:
-                  ${escapeHtml(String(item.learnedCount || 1))}
-                  lần
+                Học:
+                ${escapeHtml(String(item.learnedCount || 1))}
+                lần
 
-                  <br>
+                <br>
 
-                  Source:
-                  ${escapeHtml(item.source || "unknown")}
-
-                </div>
+                Source:
+                ${escapeHtml(item.source || "unknown")}
 
               </div>
+
+            </div>
             `;
 
           })
           .join("");
     };
 
-
-  function escapeHtml(value) {
-
-    return String(
-      value ??
-      ""
-    )
-      .replace(
-        /&/g,
-        "&amp;"
-      )
-      .replace(
-        /</g,
-        "&lt;"
-      )
-      .replace(
-        />/g,
-        "&gt;"
-      )
-      .replace(
-        /"/g,
-        "&quot;"
-      )
-      .replace(
-        /'/g,
-        "&#039;"
-      );
-  }
 
 
   /* =====================================================
@@ -1363,11 +1817,6 @@ Map: chưa có</pre>
       $("workerStatus")
         .textContent =
         "Missing";
-
-
-      $("workerHomeInfo")
-        .textContent =
-        "worker-client-v2.js chưa được tải.";
     }
 
 
@@ -1375,8 +1824,9 @@ Map: chưa có</pre>
   }
 
 
+
   /* =====================================================
-     WORKER
+     WORKER HEALTH
   ===================================================== */
 
   window.testWorkerConnection =
@@ -1474,6 +1924,7 @@ Map: chưa có</pre>
     };
 
 
+
   /* =====================================================
      KNOWLEDGE FORMAT
   ===================================================== */
@@ -1489,6 +1940,7 @@ Map: chưa có</pre>
     ) {
 
       return {
+
         originalInput:
           input,
 
@@ -1527,6 +1979,7 @@ Map: chưa có</pre>
 
 
     return {
+
       originalInput:
         input,
 
@@ -1586,6 +2039,7 @@ Map: chưa có</pre>
   ) {
 
     return {
+
       originalInput:
         input,
 
@@ -1649,6 +2103,7 @@ Map: chưa có</pre>
         .9
     };
   }
+
 
 
   /* =====================================================
@@ -1737,6 +2192,7 @@ Map: chưa có</pre>
 
           resultBox.textContent =
             pretty({
+
               mode:
                 "LOCAL",
 
@@ -1775,6 +2231,7 @@ Map: chưa có</pre>
             .analyzeConcept(
               input,
               {
+
                 targetLanguage:
                   "en",
 
@@ -1793,6 +2250,7 @@ Map: chưa có</pre>
 
         resultBox.textContent =
           pretty({
+
             mode:
               "WORKER_AI",
 
@@ -1815,7 +2273,6 @@ Map: chưa có</pre>
 
         pendingKnowledge =
           null;
-
 
         saveButton.disabled =
           true;
@@ -1855,6 +2312,7 @@ Map: chưa có</pre>
     };
 
 
+
   window.saveAnalyzedKnowledge =
     function () {
 
@@ -1871,7 +2329,7 @@ Map: chưa có</pre>
       ) {
 
         resultBox.textContent =
-          "Chưa có kiến thức hợp lệ để lưu.";
+          "Chưa có kiến thức hợp lệ.";
 
         return;
       }
@@ -1882,15 +2340,6 @@ Map: chưa có</pre>
           pendingKnowledge
         );
 
-
-      /*
-        Nếu Brain Core V2 có hàm addKnowledge,
-        gửi thêm vào module hiện tại.
-
-        Nếu API module khác phiên bản,
-        localStorage vẫn giữ được dữ liệu
-        và không làm hỏng giao diện.
-      */
 
       try {
 
@@ -1912,7 +2361,7 @@ Map: chưa có</pre>
       } catch (error) {
 
         console.warn(
-          "Brain Core addKnowledge:",
+          "Brain Core:",
           error
         );
       }
@@ -1923,6 +2372,7 @@ Map: chưa có</pre>
 
       resultBox.textContent =
         pretty({
+
           ok:
             true,
 
@@ -1940,17 +2390,19 @@ Map: chưa có</pre>
         });
 
 
-      saveButton.disabled =
-        true;
-
-
       pendingKnowledge =
         null;
+
+
+      saveButton.disabled =
+        true;
     };
+
 
 
   /* =====================================================
      THINK
+     LOCAL -> BRAIN -> WORKER
   ===================================================== */
 
   window.runThinking =
@@ -1964,6 +2416,10 @@ Map: chưa có</pre>
 
       const resultBox =
         $("thinkResult");
+
+
+      const modeBox =
+        $("thinkMode");
 
 
       const button =
@@ -2000,6 +2456,11 @@ Map: chưa có</pre>
 
       try {
 
+        /*
+          TẦNG 1
+          LOCAL
+        */
+
         const local =
           window
             .RiiBrainEngineV2
@@ -2014,8 +2475,17 @@ Map: chưa có</pre>
           local.needsAI === false
         ) {
 
+          modeBox.className =
+            "mode-box mode-local";
+
+
+          modeBox.textContent =
+            "⚡ LOCAL — xử lý ngay trên thiết bị";
+
+
           resultBox.textContent =
             pretty({
+
               mode:
                 "LOCAL",
 
@@ -2028,6 +2498,60 @@ Map: chưa có</pre>
         }
 
 
+        /*
+          TẦNG 2
+          BRAIN MEMORY
+        */
+
+        const brainMatch =
+          findKnowledge(
+            input
+          );
+
+
+        if (
+          brainMatch.found
+        ) {
+
+          modeBox.className =
+            "mode-box mode-brain";
+
+
+          modeBox.textContent =
+            "🧠 BRAIN_MEMORY — dùng kiến thức đã học";
+
+
+          resultBox.textContent =
+            pretty({
+
+              mode:
+                "BRAIN_MEMORY",
+
+              ok:
+                true,
+
+              input,
+
+              memoryScore:
+                brainMatch.score,
+
+              source:
+                "rii-v2-root-knowledge",
+
+              result:
+                brainMatch.knowledge
+            });
+
+
+          return;
+        }
+
+
+        /*
+          TẦNG 3
+          WORKER AI
+        */
+
         if (
           !window.RiiWorkerClientV2
         ) {
@@ -2038,12 +2562,21 @@ Map: chưa có</pre>
         }
 
 
+        modeBox.className =
+          "mode-box mode-worker";
+
+
+        modeBox.textContent =
+          "☁️ WORKER_AI — Brain chưa biết, đang hỏi AI";
+
+
         const remote =
           await window
             .RiiWorkerClientV2
             .analyzeConcept(
               input,
               {
+
                 targetLanguage:
                   "en",
 
@@ -2055,8 +2588,19 @@ Map: chưa có</pre>
 
         resultBox.textContent =
           pretty({
+
             mode:
               "WORKER_AI",
+
+            brainMemory:
+              {
+
+                found:
+                  false,
+
+                bestScore:
+                  brainMatch.score
+              },
 
             result:
               remote
@@ -2064,6 +2608,14 @@ Map: chưa có</pre>
 
 
       } catch (error) {
+
+        modeBox.className =
+          "mode-box";
+
+
+        modeBox.textContent =
+          "❌ Lỗi xử lý";
+
 
         if (
           window.RiiWorkerClientV2
@@ -2099,6 +2651,7 @@ Map: chưa có</pre>
     };
 
 
+
   /* =====================================================
      SETTINGS
   ===================================================== */
@@ -2116,10 +2669,11 @@ Map: chưa có</pre>
           );
 
 
-      localStorage.setItem(
-        "rii-v2-backend",
-        url
-      );
+      localStorage
+        .setItem(
+          "rii-v2-backend",
+          url
+        );
 
 
       $("settingsWorkerResult")
@@ -2129,9 +2683,10 @@ Map: chưa có</pre>
 
 
   const savedBackend =
-    localStorage.getItem(
-      "rii-v2-backend"
-    );
+    localStorage
+      .getItem(
+        "rii-v2-backend"
+      );
 
 
   if (
@@ -2143,8 +2698,9 @@ Map: chưa có</pre>
   }
 
 
+
   /* =====================================================
-     STARTUP
+     START
   ===================================================== */
 
   updateModuleStatus();
@@ -2159,7 +2715,9 @@ Map: chưa có</pre>
 
     setTimeout(
       () => {
+
         testWorkerConnection();
+
       },
       500
     );
