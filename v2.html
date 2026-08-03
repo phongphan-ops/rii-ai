@@ -1,0 +1,1119 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta
+    name="viewport"
+    content="width=device-width,initial-scale=1,viewport-fit=cover"
+  >
+  <title>Rii AI V2</title>
+
+  <style>
+    :root{
+      --bg:#071019;
+      --panel:#0f1b28;
+      --panel2:#142334;
+      --line:#24384d;
+      --text:#f4f8fc;
+      --muted:#91a3b7;
+      --green:#4ee0ae;
+      --yellow:#ffd76a;
+      --red:#ff727d;
+      --blue:#62a8ff;
+      --radius:22px;
+    }
+
+    *{
+      box-sizing:border-box;
+    }
+
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    }
+
+    button,
+    input,
+    textarea,
+    select{
+      font:inherit;
+    }
+
+    button{
+      cursor:pointer;
+    }
+
+    .app{
+      max-width:900px;
+      margin:auto;
+      min-height:100vh;
+      padding-bottom:100px;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      padding:
+        calc(16px + env(safe-area-inset-top))
+        18px
+        15px;
+      background:
+        rgba(7,16,25,.92);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid var(--line);
+    }
+
+    .brand{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+
+    h1{
+      margin:0;
+      font-size:25px;
+    }
+
+    .version{
+      color:var(--green);
+      font-weight:800;
+      font-size:14px;
+    }
+
+    .subtitle{
+      color:var(--muted);
+      margin-top:5px;
+      font-size:14px;
+    }
+
+    main{
+      padding:18px;
+    }
+
+    .page{
+      display:none;
+    }
+
+    .page.active{
+      display:block;
+    }
+
+    .card{
+      background:var(--panel);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:18px;
+      margin-bottom:16px;
+    }
+
+    .card h2{
+      margin:
+        0 0 14px;
+      font-size:21px;
+    }
+
+    .card h3{
+      margin:
+        0 0 10px;
+    }
+
+    .muted{
+      color:var(--muted);
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:
+        repeat(2,minmax(0,1fr));
+      gap:12px;
+    }
+
+    .stat{
+      background:var(--panel2);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:15px;
+    }
+
+    .stat strong{
+      display:block;
+      font-size:22px;
+      margin-top:5px;
+    }
+
+    .status{
+      display:inline-flex;
+      gap:7px;
+      align-items:center;
+      padding:7px 11px;
+      border-radius:999px;
+      font-weight:700;
+      font-size:13px;
+      background:#123027;
+      color:var(--green);
+    }
+
+    label{
+      display:block;
+      margin:
+        14px 0 7px;
+      color:var(--muted);
+      font-weight:650;
+    }
+
+    input,
+    textarea,
+    select{
+      width:100%;
+      padding:14px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:#08121c;
+      color:var(--text);
+      outline:none;
+    }
+
+    textarea{
+      min-height:120px;
+      resize:vertical;
+    }
+
+    .btn{
+      width:100%;
+      border:0;
+      border-radius:17px;
+      padding:15px;
+      margin-top:12px;
+      font-weight:850;
+      background:var(--green);
+      color:#04130e;
+    }
+
+    .btn.secondary{
+      color:var(--text);
+      background:var(--panel2);
+      border:1px solid var(--line);
+    }
+
+    .btn.yellow{
+      background:var(--yellow);
+      color:#251c00;
+    }
+
+    .btn.red{
+      background:#401a21;
+      color:#ffabb2;
+      border:1px solid #73303b;
+    }
+
+    pre{
+      margin:12px 0 0;
+      white-space:pre-wrap;
+      overflow-wrap:anywhere;
+      background:#06101a;
+      border:1px solid var(--line);
+      padding:14px;
+      border-radius:16px;
+      color:#cfe3f6;
+    }
+
+    .pipeline{
+      display:flex;
+      flex-wrap:wrap;
+      gap:7px;
+    }
+
+    .pipeline span{
+      padding:8px 11px;
+      border-radius:12px;
+      background:var(--panel2);
+      border:1px solid var(--line);
+    }
+
+    .bottom-nav{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:100;
+      padding:
+        8px
+        8px
+        calc(8px + env(safe-area-inset-bottom));
+      background:
+        rgba(6,13,21,.96);
+      backdrop-filter:blur(20px);
+      border-top:1px solid var(--line);
+      overflow-x:auto;
+      white-space:nowrap;
+    }
+
+    .nav-inner{
+      display:flex;
+      min-width:max-content;
+      justify-content:center;
+      gap:5px;
+    }
+
+    .nav-btn{
+      border:0;
+      background:transparent;
+      color:var(--muted);
+      border-radius:14px;
+      padding:8px 11px;
+      min-width:70px;
+    }
+
+    .nav-btn.active{
+      color:var(--green);
+      background:#10241f;
+    }
+
+    .nav-icon{
+      display:block;
+      font-size:22px;
+      margin-bottom:2px;
+    }
+
+    .warning{
+      border-left:
+        4px solid var(--yellow);
+    }
+
+    .root{
+      color:var(--yellow);
+      font-weight:800;
+    }
+
+    @media(min-width:700px){
+      .grid{
+        grid-template-columns:
+          repeat(4,minmax(0,1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <header>
+    <div class="brand">
+      <div>
+        <h1>Rii AI V2</h1>
+        <div class="subtitle">
+          Brain • Vision • Think • Robot
+        </div>
+      </div>
+
+      <div class="version">
+        V2.0
+      </div>
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- HOME -->
+
+    <section
+      id="page-home"
+      class="page active"
+    >
+      <div class="card">
+        <h2>🏠 Trung tâm Rii</h2>
+
+        <span class="status">
+          ● V2 đang phát triển
+        </span>
+
+        <p class="muted">
+          Bộ tư duy được xây dựng độc lập
+          trước khi kết nối robot thật.
+        </p>
+      </div>
+
+
+      <div class="grid">
+
+        <div class="stat">
+          🧠 Brain
+          <strong id="brainStatus">
+            Ready
+          </strong>
+        </div>
+
+        <div class="stat">
+          ⚙️ Engine
+          <strong id="engineStatus">
+            Ready
+          </strong>
+        </div>
+
+        <div class="stat">
+          🔐 Vault
+          <strong id="vaultStatus">
+            Ready
+          </strong>
+        </div>
+
+        <div class="stat">
+          🤖 Robot
+          <strong>
+            Offline
+          </strong>
+        </div>
+
+      </div>
+
+
+      <div class="card">
+        <h3>Luồng tư duy</h3>
+
+        <div class="pipeline">
+          <span>Camera</span>
+          <span>→ Vision</span>
+          <span>→ Think</span>
+          <span>→ Brain</span>
+          <span>→ World</span>
+          <span>→ Planner</span>
+          <span>→ Simulator</span>
+          <span>→ Robot</span>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- TEACH -->
+
+    <section
+      id="page-teach"
+      class="page"
+    >
+      <div class="card">
+        <h2>➕ Teach</h2>
+
+        <p class="muted">
+          Dạy Rii bằng câu tự nhiên.
+        </p>
+
+        <label>
+          Kiến thức
+        </label>
+
+        <textarea
+          id="teachInput"
+          placeholder="Ví dụ: 3 con mèo trắng, hình tròn màu đỏ, 7 + 5..."
+        ></textarea>
+
+        <button
+          class="btn"
+          onclick="analyzeTeach()"
+        >
+          🧠 Phân tích
+        </button>
+
+        <pre id="teachResult">
+Chưa có dữ liệu.
+        </pre>
+      </div>
+    </section>
+
+
+    <!-- THINK -->
+
+    <section
+      id="page-think"
+      class="page"
+    >
+      <div class="card">
+        <h2>✨ Think</h2>
+
+        <p class="muted">
+          Nơi Rii chuyển dữ liệu quan sát
+          thành kết quả và quyết định.
+        </p>
+
+        <label>
+          Câu hỏi / tình huống
+        </label>
+
+        <textarea
+          id="thinkInput"
+          placeholder="Ví dụ: 8 nhân 7"
+        ></textarea>
+
+        <button
+          class="btn"
+          onclick="runThinking()"
+        >
+          ✨ Suy nghĩ
+        </button>
+
+        <pre id="thinkResult">
+Waiting...
+        </pre>
+      </div>
+    </section>
+
+
+    <!-- VISION -->
+
+    <section
+      id="page-vision"
+      class="page"
+    >
+      <div class="card">
+        <h2>👁 Vision</h2>
+
+        <p class="muted">
+          Camera robot và camera ngoài
+          sẽ được kết nối tại đây.
+        </p>
+
+        <div class="stat">
+          Camera robot
+          <strong>
+            Offline
+          </strong>
+        </div>
+
+        <br>
+
+        <div class="stat">
+          Camera toàn cảnh
+          <strong>
+            Offline
+          </strong>
+        </div>
+
+        <button
+          class="btn secondary"
+          disabled
+        >
+          📷 Kết nối ở giai đoạn sau
+        </button>
+      </div>
+    </section>
+
+
+    <!-- WORLD -->
+
+    <section
+      id="page-world"
+      class="page"
+    >
+      <div class="card">
+        <h2>🌍 World Model</h2>
+
+        <p class="muted">
+          Sau này lưu vị trí robot,
+          vật thể và điểm đích.
+        </p>
+
+        <pre>
+Robot: chưa định vị
+Objects: 0
+Targets: 0
+Map: chưa có
+        </pre>
+      </div>
+    </section>
+
+
+    <!-- SIMULATOR -->
+
+    <section
+      id="page-simulator"
+      class="page"
+    >
+      <div class="card">
+        <h2>🎮 Simulator</h2>
+
+        <p class="muted">
+          Lệnh vận động phải được kiểm tra
+          ở đây trước khi dùng cho robot thật.
+        </p>
+
+        <label>
+          Nhiệm vụ
+        </label>
+
+        <textarea
+          placeholder="Ví dụ: tìm điện thoại, đi tới, nhặt và đặt lên bàn."
+        ></textarea>
+
+        <button
+          class="btn yellow"
+          disabled
+        >
+          ▶️ Simulator đang được xây dựng
+        </button>
+      </div>
+    </section>
+
+
+    <!-- BRAIN -->
+
+    <section
+      id="page-brain"
+      class="page"
+    >
+      <div class="card">
+        <h2>🧠 Brain</h2>
+
+        <div class="stat">
+          Master Brain
+          <strong>
+            ROOT
+          </strong>
+        </div>
+
+        <br>
+
+        <div class="stat">
+          User Brain
+          <strong>
+            Riêng biệt
+          </strong>
+        </div>
+
+        <br>
+
+        <div class="stat">
+          Robot Brain
+          <strong>
+            Chưa liên kết
+          </strong>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- VAULT -->
+
+    <section
+      id="page-vault"
+      class="page"
+    >
+      <div class="card warning">
+
+        <h2>
+          🔐 Command Vault
+        </h2>
+
+        <div>
+          Quyền hiện tại:
+          <span class="root">
+            ROOT_OWNER
+          </span>
+        </div>
+
+        <p class="muted">
+          Đây là kho lệnh robot lâu dài.
+          Không xóa version cũ.
+        </p>
+      </div>
+
+
+      <div class="card">
+
+        <label>
+          Tên lệnh
+        </label>
+
+        <input
+          id="commandName"
+          placeholder="Ví dụ: PICK_OBJECT"
+        >
+
+
+        <label>
+          Code / hướng dẫn
+        </label>
+
+        <textarea
+          id="commandCode"
+          placeholder="Nhập logic lệnh ở đây..."
+        ></textarea>
+
+
+        <button
+          class="btn yellow"
+          onclick="previewCommand()"
+        >
+          🔐 Chuẩn bị ghi nhớ
+        </button>
+
+
+        <pre id="commandPreview">
+Chưa có command.
+        </pre>
+
+      </div>
+    </section>
+
+
+    <!-- SETTINGS -->
+
+    <section
+      id="page-settings"
+      class="page"
+    >
+      <div class="card">
+        <h2>⚙️ Settings</h2>
+
+        <label>
+          Role
+        </label>
+
+        <input
+          value="ROOT_OWNER"
+          disabled
+        >
+
+        <label>
+          Worker Backend
+        </label>
+
+        <input
+          id="backendUrl"
+          placeholder="https://...workers.dev"
+        >
+
+        <button
+          class="btn"
+          onclick="saveSettings()"
+        >
+          Lưu cấu hình
+        </button>
+
+        <p
+          id="settingsMessage"
+          class="muted"
+        ></p>
+
+      </div>
+    </section>
+
+  </main>
+
+</div>
+
+
+<nav class="bottom-nav">
+  <div class="nav-inner">
+
+    <button
+      class="nav-btn active"
+      data-page="home"
+    >
+      <span class="nav-icon">🏠</span>
+      Home
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="teach"
+    >
+      <span class="nav-icon">➕</span>
+      Teach
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="think"
+    >
+      <span class="nav-icon">✨</span>
+      Think
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="vision"
+    >
+      <span class="nav-icon">👁</span>
+      Vision
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="world"
+    >
+      <span class="nav-icon">🌍</span>
+      World
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="simulator"
+    >
+      <span class="nav-icon">🎮</span>
+      Sim
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="brain"
+    >
+      <span class="nav-icon">🧠</span>
+      Brain
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="vault"
+    >
+      <span class="nav-icon">🔐</span>
+      Vault
+    </button>
+
+    <button
+      class="nav-btn"
+      data-page="settings"
+    >
+      <span class="nav-icon">⚙️</span>
+      Settings
+    </button>
+
+  </div>
+</nav>
+
+
+<script src="brain-v2.js"></script>
+<script src="brain-engine-v2.js"></script>
+<script src="command-vault-v2.js"></script>
+
+
+<script>
+
+  /*
+    ==================================================
+    NAVIGATION
+    ==================================================
+  */
+
+  document
+    .querySelectorAll(
+      ".nav-btn"
+    )
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            const page =
+              button.dataset.page;
+
+            document
+              .querySelectorAll(
+                ".page"
+              )
+              .forEach(
+                item =>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
+
+            document
+              .querySelector(
+                "#page-" + page
+              )
+              ?.classList.add(
+                "active"
+              );
+
+            document
+              .querySelectorAll(
+                ".nav-btn"
+              )
+              .forEach(
+                item =>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
+
+            button.classList.add(
+              "active"
+            );
+
+            window.scrollTo(
+              0,
+              0
+            );
+          }
+        );
+      }
+    );
+
+
+  /*
+    ==================================================
+    MODULE STATUS
+    ==================================================
+  */
+
+  document.getElementById(
+    "brainStatus"
+  ).textContent =
+    window.RiiBrainV2
+      ? "Ready"
+      : "Missing";
+
+
+  document.getElementById(
+    "engineStatus"
+  ).textContent =
+    window.RiiBrainEngineV2
+      ? "Ready"
+      : "Missing";
+
+
+  document.getElementById(
+    "vaultStatus"
+  ).textContent =
+    window.RiiCommandVaultV2
+      ? "Ready"
+      : "Missing";
+
+
+  /*
+    ==================================================
+    TEACH TEST
+    ==================================================
+  */
+
+  function analyzeTeach() {
+
+    const input =
+      document
+        .getElementById(
+          "teachInput"
+        )
+        .value
+        .trim();
+
+
+    if (!input) {
+
+      document
+        .getElementById(
+          "teachResult"
+        )
+        .textContent =
+        "Hãy nhập một kiến thức.";
+
+      return;
+    }
+
+
+    if (
+      !window.RiiBrainEngineV2
+    ) {
+
+      document
+        .getElementById(
+          "teachResult"
+        )
+        .textContent =
+        "Brain Engine chưa được tải.";
+
+      return;
+    }
+
+
+    const result =
+      window
+        .RiiBrainEngineV2
+        .analyzeLocal(
+          input
+        );
+
+
+    document
+      .getElementById(
+        "teachResult"
+      )
+      .textContent =
+      JSON.stringify(
+        result,
+        null,
+        2
+      );
+  }
+
+
+  /*
+    ==================================================
+    THINK TEST
+    ==================================================
+  */
+
+  function runThinking() {
+
+    const input =
+      document
+        .getElementById(
+          "thinkInput"
+        )
+        .value
+        .trim();
+
+
+    if (
+      !input
+      ||
+      !window.RiiBrainEngineV2
+    ) {
+      return;
+    }
+
+
+    const result =
+      window
+        .RiiBrainEngineV2
+        .analyzeLocal(
+          input
+        );
+
+
+    document
+      .getElementById(
+        "thinkResult"
+      )
+      .textContent =
+      JSON.stringify(
+        result,
+        null,
+        2
+      );
+  }
+
+
+  /*
+    ==================================================
+    COMMAND PREVIEW
+
+    Chưa ghi thật.
+    Giai đoạn sau mới nối Vault persistence.
+    ==================================================
+  */
+
+  function previewCommand() {
+
+    const name =
+      document
+        .getElementById(
+          "commandName"
+        )
+        .value
+        .trim();
+
+
+    const code =
+      document
+        .getElementById(
+          "commandCode"
+        )
+        .value;
+
+
+    if (!name) {
+
+      document
+        .getElementById(
+          "commandPreview"
+        )
+        .textContent =
+        "Thiếu tên command.";
+
+      return;
+    }
+
+
+    document
+      .getElementById(
+        "commandPreview"
+      )
+      .textContent =
+      JSON.stringify(
+        {
+          name,
+          code,
+          status:
+            "PREVIEW_ONLY",
+          note:
+            "Chưa ghi vào Command Vault."
+        },
+        null,
+        2
+      );
+  }
+
+
+  /*
+    ==================================================
+    SETTINGS
+    ==================================================
+  */
+
+  function saveSettings() {
+
+    const url =
+      document
+        .getElementById(
+          "backendUrl"
+        )
+        .value
+        .trim();
+
+
+    localStorage.setItem(
+      "rii-v2-backend",
+      url
+    );
+
+
+    document
+      .getElementById(
+        "settingsMessage"
+      )
+      .textContent =
+      "✅ Đã lưu cấu hình.";
+  }
+
+
+  const savedBackend =
+    localStorage.getItem(
+      "rii-v2-backend"
+    );
+
+
+  if (savedBackend) {
+
+    document
+      .getElementById(
+        "backendUrl"
+      )
+      .value =
+      savedBackend;
+  }
+
+</script>
+
+</body>
+</html>
