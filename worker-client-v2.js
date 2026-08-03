@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  const CLIENT_VERSION = "2.0.3";
+  const CLIENT_VERSION = "2.0.4";
 
   const DEFAULT_BACKEND =
     "https://rii-backend.phongphan327272.workers.dev";
@@ -18,6 +18,7 @@
     health: "/health",
     analyze: "/analyze-concept",
     normalize: "/normalize-object",
+    translate: "/translate-concept",
     generate: "/generate-object-images"
   };
 
@@ -44,7 +45,8 @@
 
 
   function setBaseUrl(value) {
-    const url = cleanUrl(value);
+    const url =
+      cleanUrl(value);
 
     if (!url) {
       throw new Error(
@@ -80,16 +82,21 @@
 
     try {
       const response =
-        await fetch(url, {
-          ...options,
-          signal: controller.signal
-        });
+        await fetch(
+          url,
+          {
+            ...options,
+            signal:
+              controller.signal
+          }
+        );
 
       return response;
 
     } catch (error) {
       if (
-        error?.name === "AbortError"
+        error?.name ===
+        "AbortError"
       ) {
         const timeoutError =
           new Error(
@@ -112,7 +119,9 @@
       throw error;
 
     } finally {
-      clearTimeout(timer);
+      clearTimeout(
+        timer
+      );
     }
   }
 
@@ -121,12 +130,16 @@
      RESPONSE
   ===================================================== */
 
-  async function readResponse(response) {
-    let data = null;
+  async function readResponse(
+    response
+  ) {
+    let data =
+      null;
 
     try {
       data =
         await response.json();
+
     } catch {
       const error =
         new Error(
@@ -161,7 +174,8 @@
         response.status;
 
       error.details =
-        data?.details || {};
+        data?.details ||
+        {};
 
       error.workerVersion =
         data?.workerVersion ||
@@ -200,17 +214,25 @@
       await fetchWithTimeout(
         base + endpoint,
         {
-          method: "POST",
+          method:
+            "POST",
+
           headers: {
             "Content-Type":
               "application/json"
           },
-          body: JSON.stringify(body)
+
+          body:
+            JSON.stringify(
+              body
+            )
         },
         timeoutMs
       );
 
-    return readResponse(response);
+    return readResponse(
+      response
+    );
   }
 
 
@@ -224,9 +246,12 @@
 
     const response =
       await fetchWithTimeout(
-        base + ENDPOINTS.health,
+        base +
+        ENDPOINTS.health,
         {
-          method: "GET",
+          method:
+            "GET",
+
           headers: {
             Accept:
               "application/json"
@@ -235,7 +260,9 @@
         HEALTH_TIMEOUT
       );
 
-    return readResponse(response);
+    return readResponse(
+      response
+    );
   }
 
 
@@ -248,7 +275,9 @@
     options = {}
   ) {
     const text =
-      String(input || "").trim();
+      String(
+        input || ""
+      ).trim();
 
     if (!text) {
       throw new Error(
@@ -259,7 +288,8 @@
     return postJson(
       ENDPOINTS.analyze,
       {
-        input: text,
+        input:
+          text,
 
         targetLanguage:
           options.targetLanguage ||
@@ -296,7 +326,8 @@
     return postJson(
       ENDPOINTS.normalize,
       {
-        objectName: text,
+        objectName:
+          text,
 
         targetLanguage:
           options.targetLanguage ||
@@ -305,6 +336,89 @@
         targetLanguageName:
           options.targetLanguageName ||
           "English"
+      },
+      AI_TIMEOUT
+    );
+  }
+
+
+  /* =====================================================
+     TRANSLATE CONCEPT
+     NEW IN CLIENT V2.0.4
+  ===================================================== */
+
+  async function translateConcept(
+    concept,
+    options = {}
+  ) {
+    const source =
+      concept &&
+      typeof concept ===
+        "object"
+        ?
+        concept
+        :
+        {
+          normalizedEnglish:
+            String(
+              concept || ""
+            ).trim()
+        };
+
+
+    const normalizedEnglish =
+      String(
+        source.normalizedEnglish ||
+        source.core ||
+        source.object ||
+        source.concept ||
+        ""
+      ).trim();
+
+
+    if (!normalizedEnglish) {
+      throw new Error(
+        "Thiếu normalizedEnglish để dịch."
+      );
+    }
+
+
+    const targetLanguage =
+      String(
+        options.targetLanguage ||
+        "en"
+      ).trim() ||
+      "en";
+
+
+    const targetLanguageName =
+      String(
+        options.targetLanguageName ||
+        targetLanguage
+      ).trim() ||
+      targetLanguage;
+
+
+    return postJson(
+      ENDPOINTS.translate,
+      {
+        normalizedEnglish,
+
+        color:
+          String(
+            source.color ||
+            ""
+          ).trim(),
+
+        shape:
+          String(
+            source.shape ||
+            ""
+          ).trim(),
+
+        targetLanguage,
+
+        targetLanguageName
       },
       AI_TIMEOUT
     );
@@ -337,27 +451,35 @@
       );
 
     if (
-      !Number.isFinite(count)
+      !Number.isFinite(
+        count
+      )
     ) {
-      count = 1;
+      count =
+        1;
     }
 
     count =
       Math.max(
         1,
-        Math.min(4, count)
+        Math.min(
+          4,
+          count
+        )
       );
 
     return postJson(
       ENDPOINTS.generate,
       {
-        objectName: text,
+        objectName:
+          text,
 
         count,
 
         prompt:
           String(
-            options.prompt || ""
+            options.prompt ||
+            ""
           ).trim(),
 
         targetLanguage:
@@ -377,17 +499,25 @@
      ERROR FORMAT
   ===================================================== */
 
-  function formatError(error) {
+  function formatError(
+    error
+  ) {
     if (!error) {
       return {
         message:
           "Lỗi không xác định.",
+
         code:
           "UNKNOWN_ERROR",
-        details: {},
-        workerVersion: ""
+
+        details:
+          {},
+
+        workerVersion:
+          ""
       };
     }
+
 
     /*
       Timeout phía trình duyệt
@@ -406,7 +536,8 @@
           "CLIENT_TIMEOUT",
 
         details:
-          error.details || {},
+          error.details ||
+          {},
 
         workerVersion:
           ""
@@ -418,7 +549,9 @@
       Lỗi do Worker trả về
     */
 
-    if (error.raw) {
+    if (
+      error.raw
+    ) {
       return {
         message:
           error.raw.message ||
@@ -452,7 +585,9 @@
     return {
       message:
         error.message ||
-        String(error),
+        String(
+          error
+        ),
 
       code:
         error.code ||
@@ -475,13 +610,19 @@
 
   async function selfTest() {
     const result = {
-      ok: true,
+      ok:
+        true,
+
       clientVersion:
         CLIENT_VERSION,
+
       backend:
         getBaseUrl(),
-      tests: []
+
+      tests:
+        []
     };
+
 
     /*
       Health
@@ -492,22 +633,44 @@
         await health();
 
       result.tests.push({
-        name: "health",
-        ok: true,
+        name:
+          "health",
+
+        ok:
+          true,
+
         workerVersion:
-          data.version || "",
+          data.version ||
+          "",
+
         hasAI:
-          Boolean(data.hasAI)
+          Boolean(
+            data.hasAI
+          ),
+
+        hasTranslateEndpoint:
+          Boolean(
+            data
+              ?.endpoints
+              ?.translate
+          )
       });
 
     } catch (error) {
-      result.ok = false;
+      result.ok =
+        false;
 
       result.tests.push({
-        name: "health",
-        ok: false,
+        name:
+          "health",
+
+        ok:
+          false,
+
         error:
-          formatError(error)
+          formatError(
+            error
+          )
       });
     }
 
@@ -516,19 +679,61 @@
       Local API object
     */
 
+    const functionsOk =
+      typeof health ===
+        "function" &&
+
+      typeof analyzeConcept ===
+        "function" &&
+
+      typeof normalizeObject ===
+        "function" &&
+
+      typeof translateConcept ===
+        "function" &&
+
+      typeof generateImages ===
+        "function";
+
+
+    if (
+      !functionsOk
+    ) {
+      result.ok =
+        false;
+    }
+
+
     result.tests.push({
       name:
         "client-functions",
+
       ok:
-        typeof health ===
-          "function" &&
-        typeof analyzeConcept ===
-          "function" &&
-        typeof normalizeObject ===
-          "function" &&
-        typeof generateImages ===
+        functionsOk,
+
+      functions: {
+        health:
+          typeof health ===
+          "function",
+
+        analyzeConcept:
+          typeof analyzeConcept ===
+          "function",
+
+        normalizeObject:
+          typeof normalizeObject ===
+          "function",
+
+        translateConcept:
+          typeof translateConcept ===
+          "function",
+
+        generateImages:
+          typeof generateImages ===
           "function"
+      }
     });
+
 
     return result;
   }
@@ -543,7 +748,9 @@
       CLIENT_VERSION,
 
     endpoints:
-      { ...ENDPOINTS },
+      {
+        ...ENDPOINTS
+      },
 
     getBaseUrl,
     setBaseUrl,
@@ -553,6 +760,8 @@
     analyzeConcept,
 
     normalizeObject,
+
+    translateConcept,
 
     generateImages,
 
