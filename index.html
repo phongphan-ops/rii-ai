@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#070b10">
 <title>Rii AI V0.5.3</title>
+
 <style>
 :root{
   --bg:#070b10;
@@ -18,30 +19,50 @@
   --red:#ff747c;
   --yellow:#efc04e;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
 body{
   margin:0;
   background:var(--bg);
   color:var(--text);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-img{display:block}
-.hidden{display:none!important}
+
+button,input,select,textarea{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
 .app{
   max-width:500px;
   margin:auto;
   min-height:100vh;
   padding:20px 16px 120px;
 }
+
 .top{
   display:flex;
   justify-content:space-between;
   align-items:center;
   margin-bottom:16px;
 }
-.brand{font-size:27px;font-weight:900}
+
+.brand{
+  font-size:28px;
+  font-weight:900;
+}
+
 .version{
   font-size:12px;
   color:var(--muted);
@@ -49,6 +70,7 @@ img{display:block}
   padding:7px 11px;
   border-radius:999px;
 }
+
 .card{
   background:linear-gradient(145deg,#121b27,#0d151f);
   border:1px solid var(--line);
@@ -56,39 +78,84 @@ img{display:block}
   padding:18px;
   margin-bottom:14px;
 }
-.row{display:flex;align-items:center;gap:13px}
-.grow{flex:1}
-.title{font-size:21px;font-weight:900}
-.sub,.helper{
+
+.row{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.grow{
+  flex:1;
+}
+
+.title{
+  font-size:21px;
+  font-weight:900;
+}
+
+.sub,
+.helper{
   font-size:12px;
   color:var(--muted);
   line-height:1.55;
   margin-top:5px;
 }
-.ok{color:var(--green)}
-.bad{color:var(--red)}
-.warnText{color:var(--yellow)}
+
+.ok{
+  color:var(--green);
+}
+
+.bad{
+  color:var(--red);
+}
+
+.warn{
+  color:var(--yellow);
+}
+
 .robotIcon{
-  width:68px;height:68px;border-radius:21px;
+  width:68px;
+  height:68px;
+  border-radius:21px;
   background:#182536;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   font-size:40px;
 }
+
 .grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:10px;
   margin-top:16px;
 }
+
 .stat{
   background:#0b131c;
   border:1px solid #202c3b;
   border-radius:18px;
   padding:15px;
 }
-.stat .l{font-size:12px;color:var(--muted)}
-.stat .n{font-size:24px;font-weight:900;margin-top:5px}
-.sectionTitle{font-size:20px;font-weight:900;margin:21px 2px 12px}
+
+.stat .l{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.stat .n{
+  font-size:24px;
+  font-weight:900;
+  margin-top:5px;
+}
+
+.sectionTitle{
+  font-size:20px;
+  font-weight:900;
+  margin:21px 2px 12px;
+}
+
 .btn{
   width:100%;
   border:0;
@@ -97,10 +164,30 @@ img{display:block}
   font-weight:850;
   margin-top:10px;
 }
-.primary{background:var(--green);color:#06100c}
-.secondary{background:#172230;color:#fff;border:1px solid #2a394c}
-.warning{background:#342d1a;color:#ffd66b;border:1px solid #5d4c19}
-.danger{background:#32171b;color:#ff9ca1;border:1px solid #5a232a}
+
+.primary{
+  background:var(--green);
+  color:#06100c;
+}
+
+.secondary{
+  background:#172230;
+  color:#fff;
+  border:1px solid #2a394c;
+}
+
+.warning{
+  background:#342d1a;
+  color:#ffd66b;
+  border:1px solid #5d4c19;
+}
+
+.danger{
+  background:#32171b;
+  color:#ff9ca1;
+  border:1px solid #5a232a;
+}
+
 .mini{
   width:auto;
   padding:9px 10px;
@@ -108,7 +195,10 @@ img{display:block}
   margin:0;
   font-size:12px;
 }
-input,select,textarea{
+
+input,
+select,
+textarea{
   width:100%;
   background:#0b131c;
   color:#fff;
@@ -118,19 +208,26 @@ input,select,textarea{
   outline:none;
   margin-top:8px;
 }
-textarea{min-height:90px;resize:vertical}
+
+textarea{
+  min-height:85px;
+  resize:vertical;
+}
+
 .field{
   display:block;
   color:var(--muted);
   font-size:12px;
   margin-top:12px;
 }
+
 .pills{
   display:flex;
   gap:8px;
   flex-wrap:wrap;
   margin-top:9px;
 }
+
 .pill{
   border:1px solid #2a394c;
   background:#101923;
@@ -139,11 +236,13 @@ textarea{min-height:90px;resize:vertical}
   padding:8px 11px;
   font-size:12px;
 }
+
 .pill.active{
   color:var(--green);
   border-color:var(--green);
   background:#10231d;
 }
+
 .notice{
   padding:13px;
   border-radius:15px;
@@ -154,6 +253,7 @@ textarea{min-height:90px;resize:vertical}
   line-height:1.6;
   margin-top:10px;
 }
+
 .photoBox{
   margin-top:13px;
   padding:15px;
@@ -162,12 +262,14 @@ textarea{min-height:90px;resize:vertical}
   background:#0b131c;
   text-align:center;
 }
+
 .photoGrid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:8px;
   margin-top:11px;
 }
+
 .photo{
   position:relative;
   aspect-ratio:1;
@@ -175,6 +277,7 @@ textarea{min-height:90px;resize:vertical}
   overflow:hidden;
   background:#15202c;
 }
+
 .photo img,
 .thumb,
 .quizImage{
@@ -182,18 +285,20 @@ textarea{min-height:90px;resize:vertical}
   height:100%;
   object-fit:cover;
 }
+
 .remove{
   position:absolute;
   right:5px;
   top:5px;
-  width:27px;
-  height:27px;
+  width:28px;
+  height:28px;
   border-radius:50%;
   border:0;
   background:#000b;
   color:#fff;
   padding:0;
 }
+
 .item{
   background:var(--p2);
   border:1px solid #223041;
@@ -201,13 +306,20 @@ textarea{min-height:90px;resize:vertical}
   padding:13px;
   margin-bottom:10px;
 }
-.itemTop{display:flex;align-items:center;gap:11px}
+
+.itemTop{
+  display:flex;
+  align-items:center;
+  gap:11px;
+}
+
 .thumb{
   width:64px;
   height:64px;
   border-radius:14px;
   background:#172331;
 }
+
 .badge{
   display:inline-block;
   padding:4px 8px;
@@ -217,9 +329,22 @@ textarea{min-height:90px;resize:vertical}
   background:#17382d;
   color:#5de4b0;
 }
-.badge.general{background:#17263d;color:#89b1ff}
-.badge.ai{background:#28193b;color:#d4b0ff}
-.badge.owner{background:#342a14;color:#f1ce67}
+
+.badge.general{
+  background:#17263d;
+  color:#89b1ff;
+}
+
+.badge.ai{
+  background:#28193b;
+  color:#d4b0ff;
+}
+
+.badge.owner{
+  background:#342a14;
+  color:#f1ce67;
+}
+
 .bar{
   height:7px;
   background:#243142;
@@ -227,20 +352,24 @@ textarea{min-height:90px;resize:vertical}
   overflow:hidden;
   margin-top:10px;
 }
+
 .fill{
   height:100%;
   background:linear-gradient(90deg,var(--green),var(--blue));
 }
+
 .actions{
   display:flex;
   gap:7px;
   flex-wrap:wrap;
   margin-top:11px;
 }
+
 .actions button{
   flex:1;
-  min-width:95px;
+  min-width:90px;
 }
+
 .memory{
   background:var(--p2);
   border:1px solid #223041;
@@ -248,17 +377,20 @@ textarea{min-height:90px;resize:vertical}
   padding:12px;
   margin-bottom:8px;
 }
+
 .time{
   font-size:11px;
   color:#718095;
   margin-top:5px;
 }
+
 .quizImage{
   aspect-ratio:1;
   border-radius:20px;
   background:#111923;
   margin:13px 0;
 }
+
 .answer{
   width:100%;
   background:#172230;
@@ -269,13 +401,16 @@ textarea{min-height:90px;resize:vertical}
   margin-top:9px;
   font-weight:800;
 }
+
 .empty{
   text-align:center;
   color:var(--muted);
   padding:27px 9px;
 }
+
 .loader{
-  width:20px;height:20px;
+  width:20px;
+  height:20px;
   border:3px solid #ffffff35;
   border-top-color:#fff;
   border-radius:50%;
@@ -284,7 +419,11 @@ textarea{min-height:90px;resize:vertical}
   vertical-align:middle;
   margin-right:7px;
 }
-@keyframes spin{to{transform:rotate(360deg)}}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
 .bottom{
   position:fixed;
   left:50%;
@@ -298,13 +437,24 @@ textarea{min-height:90px;resize:vertical}
   border-top:1px solid #202c39;
   padding:9px 3px calc(9px + env(safe-area-inset-bottom));
 }
-.nav{text-align:center;color:#748296;font-size:9.5px}
-.nav .i{font-size:21px;margin-bottom:3px}
-.nav.active{color:var(--green)}
-.smallBtnRow{display:flex;gap:8px;margin-top:10px}
-.smallBtnRow .btn{margin-top:0}
+
+.nav{
+  text-align:center;
+  color:#748296;
+  font-size:9.5px;
+}
+
+.nav .i{
+  font-size:21px;
+  margin-bottom:3px;
+}
+
+.nav.active{
+  color:var(--green);
+}
 </style>
 </head>
+
 <body>
 
 <div class="app">
@@ -315,120 +465,189 @@ textarea{min-height:90px;resize:vertical}
   </div>
 
   <section id="homePage">
+
     <div class="card">
       <div class="row">
         <div class="robotIcon">🤖</div>
+
         <div class="grow">
-          <div class="title" id="robotNameHome">Rii</div>
-          <div class="sub" id="robotIdHome">RII000001</div>
+          <div class="title">Rii</div>
+          <div class="sub">RII000001</div>
           <div class="sub ok">● Bộ nhớ đang hoạt động</div>
         </div>
       </div>
 
       <div class="grid">
+
         <div class="stat">
           <div class="l">Kinh nghiệm</div>
           <div class="n" id="xpHome">0 XP</div>
         </div>
+
         <div class="stat">
           <div class="l">Não chung</div>
           <div class="n" id="generalHome">0</div>
         </div>
+
         <div class="stat">
           <div class="l">Não cá nhân</div>
           <div class="n" id="personalHome">0</div>
         </div>
+
         <div class="stat">
           <div class="l">Tổng ảnh</div>
           <div class="n" id="imageCountHome">0</div>
         </div>
+
       </div>
     </div>
 
     <div class="card">
+
       <div class="row">
         <div style="font-size:34px">🪪</div>
+
         <div class="grow">
-          <div class="title" style="font-size:18px">Danh tính máy chủ</div>
+          <div class="title" style="font-size:18px">
+            Danh tính máy chủ
+          </div>
+
           <div class="sub">
-            <b id="serialHome">RII000001</b>
-            •
-            <span id="roleHome">MASTER</span>
+            <b>RII000001</b> • MASTER
           </div>
         </div>
-        <span class="badge general">FOUNDATION</span>
+
+        <span class="badge general">
+          FOUNDATION
+        </span>
       </div>
 
       <div class="sub" style="margin-top:10px">
-        RII000001 được dành riêng cho máy chủ gốc.
-        Thiết bị / tài khoản sau dùng serial dạng
-        <b>2 chữ cái + 8 số</b>, ví dụ <b>AB58320471</b>.
+        Máy chủ gốc luôn là <b>Rii</b>.
+        Thiết bị/tài khoản khác dùng serial
+        <b>2 chữ cái + 8 số</b>.
       </div>
+
     </div>
 
     <div class="card">
-      <div class="row">
-        <div style="font-size:35px">👑</div>
-        <div class="grow">
-          <div class="title" style="font-size:18px">Owner Identity</div>
-          <div class="sub" id="ownerHome">Chưa thiết lập chủ nhân</div>
-        </div>
-        <span class="badge owner">OWNER</span>
-      </div>
 
-      <div class="sub">
-        Dữ liệu đang lưu trong Safari / iPhone này.
-        Nếu sau này cần đồng bộ nhiều thiết bị thật, sẽ nối backend cloud riêng.
+      <div class="row">
+
+        <div style="font-size:35px">
+          👑
+        </div>
+
+        <div class="grow">
+          <div class="title" style="font-size:18px">
+            Owner Identity
+          </div>
+
+          <div class="sub" id="ownerHome">
+            Chưa thiết lập chủ nhân
+          </div>
+        </div>
+
+        <span class="badge owner">
+          OWNER
+        </span>
+
       </div>
     </div>
 
-    <button class="btn primary" onclick="showPage('teach',1)">
+    <button
+      class="btn primary"
+      onclick="showPage('teach',1)"
+    >
       ＋ Dạy / bổ sung kiến thức
     </button>
 
-    <button class="btn secondary" onclick="startQuiz(2)">
+    <button
+      class="btn secondary"
+      onclick="startQuiz(2)"
+    >
       🎮 Kiểm tra nhận biết
     </button>
 
-    <button class="btn warning" onclick="showPage('vision',3)">
+    <button
+      class="btn warning"
+      onclick="showPage('vision',3)"
+    >
       ✨ Vision
     </button>
 
-    <div class="sectionTitle">Ký ức gần đây</div>
+    <div class="sectionTitle">
+      Ký ức gần đây
+    </div>
+
     <div id="recentMemories"></div>
+
   </section>
 
-  <section id="teachPage" class="hidden">
-    <div class="sectionTitle">Dạy Rii</div>
+  <section
+    id="teachPage"
+    class="hidden"
+  >
 
-    <div id="editNotice" class="notice hidden"></div>
+    <div class="sectionTitle">
+      Dạy Rii
+    </div>
+
+    <div
+      id="editNotice"
+      class="notice hidden"
+    ></div>
 
     <div class="card">
 
-      <label class="field">Loại kiến thức</label>
+      <label class="field">
+        Loại kiến thức
+      </label>
 
       <div class="pills">
-        <button id="personalPill" class="pill active" onclick="setTeachType('personal')">
+
+        <button
+          id="personalPill"
+          class="pill active"
+          onclick="setTeachType('personal')"
+        >
           👤 Não cá nhân
         </button>
-        <button id="generalPill" class="pill" onclick="setTeachType('general')">
+
+        <button
+          id="generalPill"
+          class="pill"
+          onclick="setTeachType('general')"
+        >
           ☁️ Não chung
         </button>
+
       </div>
 
-      <label class="field">Tên đồ vật / kiến thức</label>
-      <input id="teachName" placeholder="Ví dụ: cái ly">
+      <label class="field">
+        Tên đồ vật / kiến thức
+      </label>
 
-      <label class="field">Nguồn dữ liệu</label>
+      <input
+        id="teachName"
+        placeholder="Ví dụ: cái ly"
+      >
+
+      <label class="field">
+        Nguồn dữ liệu
+      </label>
+
       <select id="teachSource">
-        <option value="gallery">Ảnh có sẵn</option>
-        <option value="camera">Camera iPhone</option>
+        <option value="gallery">Ảnh thật / thư viện</option>
+        <option value="camera">Camera</option>
         <option value="ai_generated">AI tạo ảnh</option>
         <option value="dataset">Dataset</option>
-        <option value="other">Nguồn khác</option>
       </select>
 
-      <label class="field">Số ảnh muốn tạo</label>
+      <label class="field">
+        Số ảnh AI muốn tạo
+      </label>
+
       <select id="aiCount">
         <option>1</option>
         <option>2</option>
@@ -438,1108 +657,2359 @@ textarea{min-height:90px;resize:vertical}
         <option>6</option>
       </select>
 
-      <label class="field">Mô tả thêm cho AI</label>
-      <textarea id="aiExtraPrompt" placeholder="Ví dụ: ly thủy tinh trong suốt, chính diện, nền trắng..."></textarea>
+      <label class="field">
+        Mô tả thêm
+      </label>
 
-      <button id="generateBtn" class="btn warning" onclick="generateAiImages()">
-        ✨ Tạo ảnh AI
+      <textarea
+        id="aiExtraPrompt"
+        placeholder="Ví dụ: ly thủy tinh trong suốt, chính diện, nền sáng..."
+      ></textarea>
+
+      <button
+        id="generateBtn"
+        class="btn warning"
+        onclick="generateAiImages()"
+      >
+        ✨ Tạo ảnh AI thật
       </button>
 
-      <div class="helper">
-        Nếu chưa cấu hình backend hoặc backend lỗi / timeout,
-        hệ thống sẽ tự rơi về ảnh demo để app không bị đứng.
+      <div
+        id="aiResult"
+        class="notice"
+      >
+        Nếu backend lỗi, Rii sẽ báo lỗi thật;
+        không tự giả thành ảnh demo.
       </div>
 
       <div class="photoBox">
-        <div style="font-size:37px">🖼️</div>
 
-        <div class="sub">
-          <span id="draftStatus">Bản nháp tự lưu.</span>
-          Ảnh cũ trong Brain không bị xóa khi bạn tạo thêm ảnh mới.
+        <div
+          class="sub"
+          id="draftStatus"
+        >
+          Bản nháp tự lưu.
         </div>
 
-        <label for="photoInput" class="btn secondary" style="display:block">
-          Chọn / chụp ảnh
+        <label
+          for="photoInput"
+          class="btn secondary"
+          style="display:block"
+        >
+          Chọn / chụp ảnh thật
         </label>
 
-        <input id="photoInput" type="file" accept="image/*" multiple style="display:none">
+        <input
+          id="photoInput"
+          type="file"
+          accept="image/*"
+          multiple
+          style="display:none"
+        >
 
-        <div id="photoPreview" class="photoGrid"></div>
+        <button
+          class="btn danger"
+          onclick="clearDraftPhotos()"
+        >
+          Xóa ảnh nháp
+        </button>
+
+        <div
+          id="photoPreview"
+          class="photoGrid"
+        ></div>
+
       </div>
 
-      <button class="btn primary" onclick="saveKnowledge()">
+      <button
+        class="btn primary"
+        onclick="saveKnowledge()"
+      >
         🧠 Ghi / bổ sung vào Brain
       </button>
 
-      <button id="cancelEditBtn" class="btn secondary hidden" onclick="cancelContinue()">
+      <button
+        id="cancelEditBtn"
+        class="btn secondary hidden"
+        onclick="cancelContinue()"
+      >
         Hủy bổ sung
       </button>
+
     </div>
   </section>
 
-  <section id="learnPage" class="hidden">
-    <div class="sectionTitle">🎮 Learn</div>
-    <div id="quizBox" class="card">
-      <div class="empty">Hãy có ít nhất 2 kiến thức có ảnh.</div>
+  <section
+    id="learnPage"
+    class="hidden"
+  >
+
+    <div class="sectionTitle">
+      🎮 Learn
     </div>
-  </section>
 
-  <section id="visionPage" class="hidden">
-    <div class="sectionTitle">✨ Vision</div>
-
-    <div class="card">
-      <label for="visionInput" class="btn secondary" style="display:block;text-align:center">
-        Chọn ảnh mới để phân tích
-      </label>
-      <input id="visionInput" type="file" accept="image/*" style="display:none">
-
-      <div id="visionPreviewBox" class="hidden">
-        <img id="visionPreview" class="quizImage" alt="">
+    <div
+      id="quizBox"
+      class="card"
+    >
+      <div class="empty">
+        Cần ít nhất 2 kiến thức có ảnh.
       </div>
-
-      <button class="btn warning" onclick="runVisionGuess()">
-        🔍 Dự đoán từ Brain
-      </button>
-
-      <div id="visionResult" class="helper"></div>
     </div>
 
-    <div class="notice">
-      V0.5.3 vẫn chưa có model Vision thật.
-      Phần này hiện là mô phỏng để test luồng sử dụng.
-    </div>
   </section>
 
-  <section id="brainPage" class="hidden">
-    <div class="sectionTitle">🧠 Brain</div>
+  <section
+    id="visionPage"
+    class="hidden"
+  >
 
-    <div class="pills">
-      <button id="brainAll" class="pill active" onclick="setBrainFilter('all')">Tất cả</button>
-      <button id="brainGeneral" class="pill" onclick="setBrainFilter('general')">☁️ Não chung</button>
-      <button id="brainPersonal" class="pill" onclick="setBrainFilter('personal')">👤 Não cá nhân</button>
-    </div>
-
-    <div id="brainList" style="margin-top:12px"></div>
-  </section>
-
-  <section id="settingsPage" class="hidden">
-    <div class="sectionTitle">⚙️ Robot & Owner</div>
-
-    <div class="card">
-      <label class="field">Tên máy chủ</label>
-      <input id="robotNameInput" value="Rii" readonly>
-
-      <label class="field">Serial máy chủ</label>
-      <input id="robotIdInput" value="RII000001" readonly>
-
-      <label class="field">Tên chủ nhân</label>
-      <input id="ownerInput">
-
-      <button class="btn primary" onclick="saveProfile()">Lưu hồ sơ</button>
+    <div class="sectionTitle">
+      ✨ Vision
     </div>
 
     <div class="card">
-      <div class="title" style="font-size:18px">🪪 Serial System</div>
+
+      <label
+        for="visionInput"
+        class="btn secondary"
+        style="display:block;text-align:center"
+      >
+        Chọn ảnh để thử
+      </label>
+
+      <input
+        id="visionInput"
+        type="file"
+        accept="image/*"
+        style="display:none"
+      >
+
+      <div
+        id="visionPreviewBox"
+        class="hidden"
+      >
+        <img
+          id="visionPreview"
+          class="quizImage"
+          alt=""
+        >
+      </div>
 
       <div class="notice">
-        <b>Máy chủ gốc:</b> RII000001
-        <br><br>
-        <b>Thiết bị / tài khoản khác:</b> 2 chữ cái + 8 chữ số.
-        <br><br>
-        Serial đã cấp sẽ không tái sử dụng.
-        Bản web hiện chỉ kiểm tra trong bộ nhớ cục bộ của thiết bị này.
+        V0.5.3 chưa kích hoạt Vision nhận diện thật.
+        Phần này được giữ để nâng cấp model Vision ở bước tiếp theo.
       </div>
 
-      <label class="field">Serial máy hiện tại</label>
-      <input id="serialInput" value="RII000001" readonly>
+    </div>
+  </section>
 
-      <label class="field">Device UUID nội bộ</label>
-      <input id="deviceUuidInput" readonly>
+  <section
+    id="brainPage"
+    class="hidden"
+  >
 
-      <button class="btn secondary" onclick="generateNextSerial()">
-        Tạo serial thử nghiệm cho thiết bị mới
+    <div class="sectionTitle">
+      🧠 Brain
+    </div>
+
+    <div class="pills">
+
+      <button
+        id="brainAll"
+        class="pill active"
+        onclick="setBrainFilter('all')"
+      >
+        Tất cả
       </button>
 
-      <div id="generatedSerial" class="helper"></div>
+      <button
+        id="brainGeneral"
+        class="pill"
+        onclick="setBrainFilter('general')"
+      >
+        ☁️ Não chung
+      </button>
+
+      <button
+        id="brainPersonal"
+        class="pill"
+        onclick="setBrainFilter('personal')"
+      >
+        👤 Não cá nhân
+      </button>
+
+    </div>
+
+    <div
+      id="brainList"
+      style="margin-top:12px"
+    ></div>
+
+  </section>
+
+  <section
+    id="settingsPage"
+    class="hidden"
+  >
+
+    <div class="sectionTitle">
+      ⚙️ Settings
     </div>
 
     <div class="card">
-      <div class="title" style="font-size:18px">🔗 AI Backend</div>
 
-      <label class="field">AI API URL (chỉ dán URL gốc worker)</label>
-      <input id="apiUrlInput" placeholder="https://rii-backend.xxx.workers.dev">
+      <label class="field">
+        Tên máy chủ
+      </label>
+
+      <input
+        value="Rii"
+        readonly
+      >
+
+      <label class="field">
+        Serial máy chủ
+      </label>
+
+      <input
+        value="RII000001"
+        readonly
+      >
+
+      <label class="field">
+        Tên chủ nhân
+      </label>
+
+      <input id="ownerInput">
+
+      <button
+        class="btn primary"
+        onclick="saveProfile()"
+      >
+        Lưu hồ sơ
+      </button>
+
+    </div>
+
+    <div class="card">
+
+      <div
+        class="title"
+        style="font-size:18px"
+      >
+        🪪 Serial System
+      </div>
+
+      <label class="field">
+        Device UUID
+      </label>
+
+      <input
+        id="deviceUuidInput"
+        readonly
+      >
+
+      <button
+        class="btn secondary"
+        onclick="generateNextSerial()"
+      >
+        Tạo serial thử nghiệm
+      </button>
+
+      <div
+        id="generatedSerial"
+        class="helper"
+      ></div>
+
+    </div>
+
+    <div class="card">
+
+      <div
+        class="title"
+        style="font-size:18px"
+      >
+        🔗 AI Backend
+      </div>
+
+      <label class="field">
+        URL gốc Worker
+      </label>
+
+      <input
+        id="apiUrlInput"
+        placeholder="https://rii-backend.xxxxx.workers.dev"
+      >
 
       <div class="helper">
-        App sẽ tự gọi endpoint:
+        Chỉ nhập URL gốc.
+        App tự nối:
         <b>/generate-object-images</b>
       </div>
 
-      <div class="smallBtnRow">
-        <button class="btn secondary" onclick="testApiConnection()">Kiểm tra kết nối</button>
-        <button class="btn primary" onclick="saveApiConfig()">Lưu cấu hình API</button>
+      <button
+        class="btn secondary"
+        onclick="testApiConnection()"
+      >
+        🧪 Kiểm tra kết nối
+      </button>
+
+      <button
+        class="btn primary"
+        onclick="saveApiConfig()"
+      >
+        Lưu cấu hình API
+      </button>
+
+      <div
+        id="apiStatus"
+        class="notice"
+      >
+        Chưa kiểm tra.
       </div>
 
-      <div id="apiStatus" class="notice">
-        Chưa có backend AI — hiện dùng ảnh demo.
-      </div>
     </div>
 
     <div class="card">
-      <div class="title" style="font-size:18px">💾 Bộ nhớ</div>
 
-      <div id="storageStatus" class="notice">
-        Đang kiểm tra dung lượng...
+      <div
+        class="title"
+        style="font-size:18px"
+      >
+        💾 Dữ liệu Brain
       </div>
 
-      <button class="btn secondary" onclick="backupBrain()">⬇️ Backup Brain</button>
+      <div
+        id="storageStatus"
+        class="notice"
+      >
+        Đang kiểm tra...
+      </div>
 
-      <label for="restoreInput" class="btn secondary" style="display:block;text-align:center">
+      <button
+        class="btn secondary"
+        onclick="backupBrain()"
+      >
+        ⬇️ Backup Brain
+      </button>
+
+      <label
+        for="restoreInput"
+        class="btn secondary"
+        style="display:block;text-align:center"
+      >
         ⬆️ Restore Brain
       </label>
-      <input id="restoreInput" type="file" accept=".json,application/json" style="display:none">
 
-      <button class="btn danger" onclick="resetBrain()">Xóa toàn bộ Brain</button>
+      <input
+        id="restoreInput"
+        type="file"
+        accept=".json,application/json"
+        style="display:none"
+      >
+
+      <button
+        class="btn danger"
+        onclick="resetBrain()"
+      >
+        Xóa toàn bộ Brain
+      </button>
+
     </div>
+
   </section>
 
 </div>
 
 <div class="bottom">
-  <div class="nav active" onclick="showPage('home',0)">
+
+  <div
+    class="nav active"
+    onclick="showPage('home',0)"
+  >
     <div class="i">⌂</div>
     Home
   </div>
-  <div class="nav" onclick="showPage('teach',1)">
+
+  <div
+    class="nav"
+    onclick="showPage('teach',1)"
+  >
     <div class="i">＋</div>
     Teach
   </div>
-  <div class="nav" onclick="startQuiz(2)">
+
+  <div
+    class="nav"
+    onclick="startQuiz(2)"
+  >
     <div class="i">🎮</div>
     Learn
   </div>
-  <div class="nav" onclick="showPage('vision',3)">
+
+  <div
+    class="nav"
+    onclick="showPage('vision',3)"
+  >
     <div class="i">✨</div>
     Vision
   </div>
-  <div class="nav" onclick="showPage('brain',4)">
+
+  <div
+    class="nav"
+    onclick="showPage('brain',4)"
+  >
     <div class="i">🧠</div>
     Brain
   </div>
-  <div class="nav" onclick="showPage('settings',5)">
+
+  <div
+    class="nav"
+    onclick="showPage('settings',5)"
+  >
     <div class="i">⚙️</div>
     Settings
   </div>
+
 </div>
 
 <script>
-const DB_NAME = "RiiBrainV053";
+const DB_NAME = "MimoBrainV05";
 const STORE_NAME = "brainStore";
-const APP_VERSION = "0.5.3";
-const FIXED_ROBOT_NAME = "Rii";
-const FIXED_ROBOT_ID = "RII000001";
-const GENERATE_ENDPOINT = "/generate-object-images";
+const VERSION = "0.5.3";
+const MASTER_SERIAL = "RII000001";
+const ENDPOINT = "/generate-object-images";
 
 let database = null;
-let AI_API_URL = "";
+let state = null;
+
 let pendingPhotos = [];
 let teachType = "personal";
+let editingKnowledgeId = null;
 let brainFilter = "all";
 let quizTarget = null;
 let visionImage = "";
-let editingKnowledgeId = null;
 
-const DEFAULT_STATE = {
-  version: APP_VERSION,
-  robot: {
-    name: FIXED_ROBOT_NAME,
-    id: FIXED_ROBOT_ID,
-    serial: FIXED_ROBOT_ID,
-    role: "master",
-    deviceUuid: "",
-    xp: 0
-  },
-  owner: {
-    name: "",
-    role: "owner"
-  },
-  config: {
-    aiApiUrl: "",
-    lastApiCheck: ""
-  },
-  serialRegistry: [
-    FIXED_ROBOT_ID
-  ],
-  draft: {
-    name: "",
-    type: "personal",
-    source: "gallery",
-    extraPrompt: "",
-    photos: [],
-    editingKnowledgeId: null
-  },
-  knowledge: {},
-  memories: []
-};
+function defaults() {
+  return {
+    version: VERSION,
 
-function freshState() {
-  return JSON.parse(JSON.stringify(DEFAULT_STATE));
+    robot: {
+      name: "Rii",
+      id: MASTER_SERIAL,
+      serial: MASTER_SERIAL,
+      role: "master",
+      deviceUuid: "",
+      xp: 0
+    },
+
+    owner: {
+      name: ""
+    },
+
+    config: {
+      aiApiUrl: ""
+    },
+
+    serialRegistry: [
+      MASTER_SERIAL
+    ],
+
+    draft: {
+      name: "",
+      type: "personal",
+      source: "gallery",
+      extraPrompt: "",
+      photos: [],
+      editingKnowledgeId: null
+    },
+
+    knowledge: {},
+
+    memories: []
+  };
 }
 
-let state = freshState();
+function clone(value) {
+  return JSON.parse(
+    JSON.stringify(value)
+  );
+}
 
-function openDatabase() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open(DB_NAME, 1);
+function openDB() {
+  return new Promise(
+    (resolve, reject) => {
 
-    request.onupgradeneeded = event => {
-      const db = event.target.result;
-      if (!db.objectStoreNames.contains(STORE_NAME)) {
-        db.createObjectStore(STORE_NAME);
-      }
-    };
+      const request =
+        indexedDB.open(
+          DB_NAME,
+          1
+        );
 
-    request.onsuccess = () => {
-      database = request.result;
-      resolve();
-    };
+      request.onupgradeneeded =
+        event => {
 
-    request.onerror = () => reject(request.error);
-  });
+          const db =
+            event.target.result;
+
+          if (
+            !db.objectStoreNames.contains(
+              STORE_NAME
+            )
+          ) {
+            db.createObjectStore(
+              STORE_NAME
+            );
+          }
+        };
+
+      request.onsuccess = () => {
+        database =
+          request.result;
+
+        resolve();
+      };
+
+      request.onerror = () => {
+        reject(
+          request.error
+        );
+      };
+    }
+  );
 }
 
 function dbGet() {
-  return new Promise(resolve => {
-    const request = database
-      .transaction(STORE_NAME, "readonly")
-      .objectStore(STORE_NAME)
-      .get("state");
+  return new Promise(
+    resolve => {
 
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => resolve(null);
-  });
+      const request =
+        database
+        .transaction(
+          STORE_NAME,
+          "readonly"
+        )
+        .objectStore(
+          STORE_NAME
+        )
+        .get(
+          "state"
+        );
+
+      request.onsuccess = () => {
+        resolve(
+          request.result
+        );
+      };
+
+      request.onerror = () => {
+        resolve(null);
+      };
+    }
+  );
 }
 
 function saveBrain() {
-  state.version = APP_VERSION;
+  return new Promise(
+    (resolve, reject) => {
 
-  return new Promise((resolve, reject) => {
-    const tx = database.transaction(STORE_NAME, "readwrite");
-    tx.objectStore(STORE_NAME).put(state, "state");
-    tx.oncomplete = () => resolve();
-    tx.onerror = () => reject(tx.error);
-  });
+      state.version =
+        VERSION;
+
+      const transaction =
+        database.transaction(
+          STORE_NAME,
+          "readwrite"
+        );
+
+      transaction
+      .objectStore(
+        STORE_NAME
+      )
+      .put(
+        state,
+        "state"
+      );
+
+      transaction.oncomplete =
+        () => resolve();
+
+      transaction.onerror =
+        () => reject(
+          transaction.error
+        );
+    }
+  );
 }
 
-function normalizeState(saved) {
-  const next = freshState();
-  if (!saved) return next;
+function normalize(saved) {
+  const next =
+    defaults();
 
-  next.robot = { ...next.robot, ...(saved.robot || {}) };
-  next.owner = { ...next.owner, ...(saved.owner || {}) };
-  next.config = { ...next.config, ...(saved.config || {}) };
-  next.knowledge = saved.knowledge || {};
-  next.memories = Array.isArray(saved.memories) ? saved.memories : [];
-  next.serialRegistry = Array.isArray(saved.serialRegistry)
-    ? saved.serialRegistry
-    : [FIXED_ROBOT_ID];
-  next.draft = { ...next.draft, ...(saved.draft || {}) };
+  if (saved) {
 
-  if (!next.serialRegistry.includes(FIXED_ROBOT_ID)) {
-    next.serialRegistry.unshift(FIXED_ROBOT_ID);
+    next.robot = {
+      ...next.robot,
+      ...(saved.robot || {})
+    };
+
+    next.owner = {
+      ...next.owner,
+      ...(saved.owner || {})
+    };
+
+    next.config = {
+      ...next.config,
+      ...(saved.config || {})
+    };
+
+    next.knowledge =
+      saved.knowledge || {};
+
+    next.memories =
+      Array.isArray(
+        saved.memories
+      )
+      ? saved.memories
+      : [];
+
+    next.serialRegistry =
+      Array.isArray(
+        saved.serialRegistry
+      )
+      ? saved.serialRegistry
+      : [MASTER_SERIAL];
+
+    next.draft = {
+      ...next.draft,
+      ...(saved.draft || {})
+    };
   }
 
-  next.robot.name = FIXED_ROBOT_NAME;
-  next.robot.id = FIXED_ROBOT_ID;
-  next.robot.serial = FIXED_ROBOT_ID;
-  next.robot.role = "master";
+  /*
+    Máy chủ gốc luôn cố định
+  */
 
-  if (!next.robot.deviceUuid) {
-    if (window.crypto && typeof window.crypto.randomUUID === "function") {
-      next.robot.deviceUuid = window.crypto.randomUUID();
-    } else {
+  next.robot.name =
+    "Rii";
+
+  next.robot.id =
+    MASTER_SERIAL;
+
+  next.robot.serial =
+    MASTER_SERIAL;
+
+  next.robot.role =
+    "master";
+
+  /*
+    Device UUID
+  */
+
+  if (
+    !next.robot.deviceUuid
+  ) {
+
+    if (
+      window.crypto &&
+      typeof window.crypto.randomUUID ===
+      "function"
+    ) {
+
       next.robot.deviceUuid =
-        "dev-" + Date.now() + "-" + Math.random().toString(36).slice(2);
+        window.crypto.randomUUID();
+
+    } else {
+
+      next.robot.deviceUuid =
+        "DEV-" +
+        Date.now() +
+        "-" +
+        Math.random()
+        .toString(36)
+        .slice(2);
     }
   }
 
-  Object.values(next.knowledge).forEach(item => {
-    item.images = Array.isArray(item.images) ? item.images : [];
-    item.correct = Number(item.correct || 0);
-    item.wrong = Number(item.wrong || 0);
-    item.timesSeen = Number(item.timesSeen || 0);
-    item.confidence = Number(item.confidence ?? 10);
-    item.confusions = item.confusions || {};
-    item.type = item.type || "personal";
-    item.source = item.source || "legacy";
+  /*
+    Master serial luôn tồn tại
+  */
+
+  if (
+    !next.serialRegistry.includes(
+      MASTER_SERIAL
+    )
+  ) {
+    next.serialRegistry.unshift(
+      MASTER_SERIAL
+    );
+  }
+
+  /*
+    Chuẩn hóa knowledge cũ
+  */
+
+  Object.values(
+    next.knowledge
+  ).forEach(item => {
+
+    item.images =
+      Array.isArray(
+        item.images
+      )
+      ? item.images
+      : [];
+
+    item.correct =
+      Number(
+        item.correct || 0
+      );
+
+    item.wrong =
+      Number(
+        item.wrong || 0
+      );
+
+    item.confidence =
+      Number(
+        item.confidence ?? 10
+      );
+
+    item.type =
+      item.type ||
+      "personal";
+
+    item.source =
+      item.source ||
+      "legacy";
+
+    item.createdAt =
+      item.createdAt ||
+      new Date()
+      .toISOString();
+
+    item.updatedAt =
+      item.updatedAt ||
+      item.createdAt;
   });
 
-  next.config.aiApiUrl = normalizeApiBase(next.config.aiApiUrl || "");
+  next.config.aiApiUrl =
+    normalizeBase(
+      next.config.aiApiUrl ||
+      ""
+    );
 
   return next;
 }
 
-async function loadBrain() {
-  state = normalizeState(await dbGet());
-  AI_API_URL = state.config.aiApiUrl || "";
-  await saveBrain();
+function esc(value) {
+  return String(
+    value ?? ""
+  ).replace(
+    /[&<>"']/g,
+    char => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      "\"": "&quot;",
+      "'": "&#039;"
+    }[char])
+  );
+}
+
+function normalizeName(value) {
+  return String(
+    value || ""
+  )
+  .trim()
+  .toLocaleLowerCase(
+    "vi-VN"
+  )
+  .replace(
+    /\s+/g,
+    " "
+  );
+}
+
+function normalizeBase(value) {
+  let url =
+    String(
+      value || ""
+    )
+    .trim()
+    .replace(
+      /\/+$/,
+      ""
+    );
+
+  if (
+    url.endsWith(
+      ENDPOINT
+    )
+  ) {
+
+    url =
+      url
+      .slice(
+        0,
+        -ENDPOINT.length
+      )
+      .replace(
+        /\/+$/,
+        ""
+      );
+  }
+
+  return url;
+}
+
+function apiEndpoint() {
+  const base =
+    normalizeBase(
+      state.config.aiApiUrl ||
+      ""
+    );
+
+  return base
+    ? base + ENDPOINT
+    : "";
 }
 
 function addMemory(text) {
   state.memories.unshift({
     text,
-    time: new Date().toLocaleString("vi-VN")
-  });
-  state.memories = state.memories.slice(0, 300);
-}
-
-function esc(value) {
-  return String(value ?? "").replace(/[&<>"']/g, char => ({
-    "&":"&amp;",
-    "<":"&lt;",
-    ">":"&gt;",
-    "\"":"&quot;",
-    "'":"&#039;"
-  }[char]));
-}
-
-function normalizeName(value) {
-  return String(value || "")
-    .trim()
-    .toLocaleLowerCase("vi-VN")
-    .replace(/\s+/g, " ");
-}
-
-function showPage(page, index) {
-  ["home","teach","learn","vision","brain","settings"].forEach(name => {
-    document.getElementById(name + "Page").classList.add("hidden");
+    time:
+      new Date()
+      .toLocaleString(
+        "vi-VN"
+      )
   });
 
-  document.getElementById(page + "Page").classList.remove("hidden");
+  state.memories =
+    state.memories.slice(
+      0,
+      300
+    );
+}
 
-  document.querySelectorAll(".nav").forEach(item => item.classList.remove("active"));
-  if (index !== undefined) {
-    document.querySelectorAll(".nav")[index].classList.add("active");
+function showPage(
+  name,
+  index
+) {
+
+  [
+    "home",
+    "teach",
+    "learn",
+    "vision",
+    "brain",
+    "settings"
+  ].forEach(page => {
+
+    document
+    .getElementById(
+      page + "Page"
+    )
+    .classList
+    .add(
+      "hidden"
+    );
+  });
+
+  document
+  .getElementById(
+    name + "Page"
+  )
+  .classList
+  .remove(
+    "hidden"
+  );
+
+  document
+  .querySelectorAll(
+    ".nav"
+  )
+  .forEach(item => {
+
+    item.classList.remove(
+      "active"
+    );
+  });
+
+  if (
+    index !== undefined
+  ) {
+
+    document
+    .querySelectorAll(
+      ".nav"
+    )[index]
+    .classList
+    .add(
+      "active"
+    );
   }
 
-  if (page === "home") renderHome();
-  if (page === "teach") restoreDraftToUI();
-  if (page === "brain") renderBrain();
-  if (page === "settings") renderSettings();
+  if (
+    name === "home"
+  ) {
+    renderHome();
+  }
+
+  if (
+    name === "teach"
+  ) {
+    restoreDraft();
+  }
+
+  if (
+    name === "brain"
+  ) {
+    renderBrain();
+  }
+
+  if (
+    name === "settings"
+  ) {
+    renderSettings();
+  }
 }
 
 function renderHome() {
-  document.getElementById("robotNameHome").textContent = state.robot.name;
-  document.getElementById("robotIdHome").textContent = state.robot.id;
-  document.getElementById("xpHome").textContent = (state.robot.xp || 0) + " XP";
+  const list =
+    Object.values(
+      state.knowledge
+    );
 
-  const knowledge = Object.values(state.knowledge);
+  document
+  .getElementById(
+    "xpHome"
+  )
+  .textContent =
+    (
+      state.robot.xp ||
+      0
+    ) +
+    " XP";
 
-  document.getElementById("generalHome").textContent =
-    knowledge.filter(item => item.type === "general").length;
+  document
+  .getElementById(
+    "generalHome"
+  )
+  .textContent =
+    list.filter(
+      item =>
+        item.type ===
+        "general"
+    ).length;
 
-  document.getElementById("personalHome").textContent =
-    knowledge.filter(item => item.type === "personal").length;
+  document
+  .getElementById(
+    "personalHome"
+  )
+  .textContent =
+    list.filter(
+      item =>
+        item.type ===
+        "personal"
+    ).length;
 
-  document.getElementById("imageCountHome").textContent = knowledge.reduce(
-    (sum, item) => sum + (item.images?.length || 0),
-    0
-  );
+  document
+  .getElementById(
+    "imageCountHome"
+  )
+  .textContent =
+    list.reduce(
+      (
+        total,
+        item
+      ) =>
+        total +
+        (
+          item.images
+          ?.length ||
+          0
+        ),
+      0
+    );
 
-  document.getElementById("ownerHome").textContent =
-    state.owner.name || "Chưa thiết lập chủ nhân";
+  document
+  .getElementById(
+    "ownerHome"
+  )
+  .textContent =
+    state.owner.name ||
+    "Chưa thiết lập chủ nhân";
 
-  document.getElementById("serialHome").textContent =
-    state.robot.serial || FIXED_ROBOT_ID;
+  const memoryBox =
+    document.getElementById(
+      "recentMemories"
+    );
 
-  document.getElementById("roleHome").textContent =
-    (state.robot.role || "master").toUpperCase();
+  if (
+    state.memories.length
+  ) {
 
-  const memoryBox = document.getElementById("recentMemories");
+    memoryBox.innerHTML =
+      state.memories
+      .slice(
+        0,
+        6
+      )
+      .map(
+        item => `
+          <div class="memory">
+            ${esc(item.text)}
 
-  if (state.memories.length) {
-    memoryBox.innerHTML = state.memories.slice(0, 6).map(memory => `
-      <div class="memory">
-        ${esc(memory.text)}
-        <div class="time">${esc(memory.time)}</div>
-      </div>
-    `).join("");
+            <div class="time">
+              ${esc(item.time)}
+            </div>
+          </div>
+        `
+      )
+      .join("");
+
   } else {
-    memoryBox.innerHTML = `<div class="memory">Rii chưa có ký ức học tập.</div>`;
+
+    memoryBox.innerHTML = `
+      <div class="memory">
+        Rii chưa có ký ức học tập.
+      </div>
+    `;
   }
 }
 
 function setTeachType(type) {
-  teachType = type;
-  document.getElementById("personalPill").classList.toggle("active", type === "personal");
-  document.getElementById("generalPill").classList.toggle("active", type === "general");
-  saveTeachDraft();
+  teachType =
+    type;
+
+  updateTeachPills();
+
+  saveDraft();
 }
 
-function setTeachTypeUI(type) {
-  document.getElementById("personalPill").classList.toggle("active", type === "personal");
-  document.getElementById("generalPill").classList.toggle("active", type === "general");
+function updateTeachPills() {
+  document
+  .getElementById(
+    "personalPill"
+  )
+  .classList
+  .toggle(
+    "active",
+    teachType ===
+    "personal"
+  );
+
+  document
+  .getElementById(
+    "generalPill"
+  )
+  .classList
+  .toggle(
+    "active",
+    teachType ===
+    "general"
+  );
 }
 
-async function saveTeachDraft() {
+async function saveDraft() {
   state.draft = {
-    name: document.getElementById("teachName").value.trim(),
-    type: teachType,
-    source: document.getElementById("teachSource").value,
-    extraPrompt: document.getElementById("aiExtraPrompt").value,
-    photos: [...pendingPhotos],
+
+    name:
+      document
+      .getElementById(
+        "teachName"
+      )
+      .value
+      .trim(),
+
+    type:
+      teachType,
+
+    source:
+      document
+      .getElementById(
+        "teachSource"
+      )
+      .value,
+
+    extraPrompt:
+      document
+      .getElementById(
+        "aiExtraPrompt"
+      )
+      .value,
+
+    photos:
+      [...pendingPhotos],
+
     editingKnowledgeId
   };
 
-  document.getElementById("draftStatus").textContent =
-    "Đã tự lưu bản nháp • " + pendingPhotos.length + " ảnh";
+  document
+  .getElementById(
+    "draftStatus"
+  )
+  .textContent =
+    pendingPhotos.length +
+    " ảnh trong bản nháp";
 
   await saveBrain();
 }
 
-function restoreDraftToUI() {
-  const draft = state.draft || DEFAULT_STATE.draft;
+function restoreDraft() {
+  const draft =
+    state.draft ||
+    defaults().draft;
 
-  editingKnowledgeId = draft.editingKnowledgeId || null;
-  teachType = draft.type || "personal";
-  pendingPhotos = Array.isArray(draft.photos) ? [...draft.photos] : [];
+  teachType =
+    draft.type ||
+    "personal";
 
-  document.getElementById("teachName").value = draft.name || "";
-  document.getElementById("teachSource").value = draft.source || "gallery";
-  document.getElementById("aiExtraPrompt").value = draft.extraPrompt || "";
+  editingKnowledgeId =
+    draft.editingKnowledgeId ||
+    null;
 
-  setTeachTypeUI(teachType);
+  pendingPhotos =
+    Array.isArray(
+      draft.photos
+    )
+    ? [...draft.photos]
+    : [];
+
+  document
+  .getElementById(
+    "teachName"
+  )
+  .value =
+    draft.name ||
+    "";
+
+  document
+  .getElementById(
+    "teachSource"
+  )
+  .value =
+    draft.source ||
+    "gallery";
+
+  document
+  .getElementById(
+    "aiExtraPrompt"
+  )
+  .value =
+    draft.extraPrompt ||
+    "";
+
+  updateTeachPills();
+
   renderPhotos();
+
   updateEditNotice();
 }
 
-["teachName", "aiExtraPrompt"].forEach(id => {
-  document.getElementById(id).addEventListener("input", () => {
-    clearTimeout(window._draftTimer);
-    window._draftTimer = setTimeout(saveTeachDraft, 250);
-  });
-});
+[
+  "teachName",
+  "aiExtraPrompt"
+].forEach(id => {
 
-document.getElementById("teachSource").addEventListener("change", saveTeachDraft);
+  document
+  .getElementById(id)
+  .addEventListener(
+    "input",
+    () => {
 
-document.getElementById("photoInput").addEventListener("change", async event => {
-  const files = [...event.target.files];
-  for (const file of files) {
-    try {
-      const compressed = await compressImage(file);
-      pendingPhotos.push(compressed);
-    } catch (error) {
-      console.error(error);
+      clearTimeout(
+        window.draftTimer
+      );
+
+      window.draftTimer =
+        setTimeout(
+          saveDraft,
+          300
+        );
     }
-  }
-
-  renderPhotos();
-  await saveTeachDraft();
-  event.target.value = "";
+  );
 });
+
+document
+.getElementById(
+  "teachSource"
+)
+.addEventListener(
+  "change",
+  saveDraft
+);
+
+document
+.getElementById(
+  "photoInput"
+)
+.addEventListener(
+  "change",
+  async event => {
+
+    const files =
+      [
+        ...event.target.files
+      ];
+
+    for (
+      const file
+      of files
+    ) {
+
+      try {
+
+        const image =
+          await compressImage(
+            file
+          );
+
+        pendingPhotos.push(
+          image
+        );
+
+      } catch (error) {
+
+        console.error(
+          error
+        );
+      }
+    }
+
+    renderPhotos();
+
+    await saveDraft();
+
+    event.target.value =
+      "";
+  }
+);
 
 function compressImage(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
 
-    reader.onerror = reject;
-    reader.onload = () => {
-      const image = new Image();
+      const reader =
+        new FileReader();
 
-      image.onerror = reject;
-      image.onload = () => {
-        const maxSize = 768;
-        const scale = Math.min(1, maxSize / Math.max(image.width, image.height));
-        const width = Math.max(1, Math.round(image.width * scale));
-        const height = Math.max(1, Math.round(image.height * scale));
+      reader.onerror =
+        () =>
+          reject(
+            new Error(
+              "Không đọc được ảnh."
+            )
+          );
 
-        const canvas = document.createElement("canvas");
-        canvas.width = width;
-        canvas.height = height;
+      reader.onload =
+        () => {
 
-        const ctx = canvas.getContext("2d");
-        ctx.drawImage(image, 0, 0, width, height);
+          const image =
+            new Image();
 
-        resolve(canvas.toDataURL("image/jpeg", 0.78));
-      };
+          image.onerror =
+            () =>
+              reject(
+                new Error(
+                  "Không mở được ảnh."
+                )
+              );
 
-      image.src = reader.result;
-    };
+          image.onload =
+            () => {
 
-    reader.readAsDataURL(file);
-  });
+              const maxSize =
+                768;
+
+              const scale =
+                Math.min(
+                  1,
+                  maxSize /
+                  Math.max(
+                    image.width,
+                    image.height
+                  )
+                );
+
+              const width =
+                Math.max(
+                  1,
+                  Math.round(
+                    image.width *
+                    scale
+                  )
+                );
+
+              const height =
+                Math.max(
+                  1,
+                  Math.round(
+                    image.height *
+                    scale
+                  )
+                );
+
+              const canvas =
+                document.createElement(
+                  "canvas"
+                );
+
+              canvas.width =
+                width;
+
+              canvas.height =
+                height;
+
+              const context =
+                canvas.getContext(
+                  "2d"
+                );
+
+              context.drawImage(
+                image,
+                0,
+                0,
+                width,
+                height
+              );
+
+              resolve(
+                canvas.toDataURL(
+                  "image/jpeg",
+                  0.78
+                )
+              );
+            };
+
+          image.src =
+            reader.result;
+        };
+
+      reader.readAsDataURL(
+        file
+      );
+    }
+  );
 }
 
 function renderPhotos() {
-  document.getElementById("photoPreview").innerHTML = pendingPhotos
-    .map((photo, index) => `
-      <div class="photo">
-        <img src="${photo}" alt="">
-        <button class="remove" onclick="removePhoto(${index})">×</button>
-      </div>
-    `)
+  document
+  .getElementById(
+    "photoPreview"
+  )
+  .innerHTML =
+    pendingPhotos
+    .map(
+      (
+        source,
+        index
+      ) => `
+        <div class="photo">
+
+          <img
+            src="${source}"
+            alt=""
+          >
+
+          <button
+            class="remove"
+            onclick="removePhoto(${index})"
+          >
+            ×
+          </button>
+
+        </div>
+      `
+    )
     .join("");
 
-  document.getElementById("draftStatus").textContent =
-    "Bản nháp tự lưu • " + pendingPhotos.length + " ảnh mới";
+  document
+  .getElementById(
+    "draftStatus"
+  )
+  .textContent =
+    pendingPhotos.length +
+    " ảnh trong bản nháp";
 }
 
-async function removePhoto(index) {
-  pendingPhotos.splice(index, 1);
-  renderPhotos();
-  await saveTeachDraft();
-}
-
-function buildObjectPrompt(name, extra = "") {
-  return `
-Create a clean, centered educational image of a single object: ${name}.
-Show only one clear object.
-Background should be white or light gray.
-No text, no watermark, no logo.
-High clarity, easy to recognize.
-${extra.trim() ? "Additional details: " + extra.trim() : ""}
-  `.trim();
-}
-
-function hashPair(text) {
-  let hash = 0;
-  for (const char of text) {
-    hash = char.charCodeAt(0) + ((hash << 5) - hash);
-  }
-
-  const palettes = [
-    ["#1e73d8","#8bc5ff"],
-    ["#2383d8","#6fd2ff"],
-    ["#ef9644","#ffd08a"],
-    ["#2fa86b","#8fe3b0"],
-    ["#6c55e0","#c2b4ff"],
-    ["#db5b76","#ffb1c0"]
-  ];
-
-  return palettes[Math.abs(hash) % palettes.length];
-}
-
-function roundRect(ctx, x, y, width, height, radius) {
-  ctx.beginPath();
-  ctx.roundRect(x, y, width, height, radius);
-  ctx.fill();
-}
-
-function wrapText(ctx, text, centerX, y, maxWidth, lineHeight) {
-  let line = "";
-  const lines = [];
-  const words = text.split(/\s+/);
-
-  for (const word of words) {
-    const testLine = line ? line + " " + word : word;
-
-    if (ctx.measureText(testLine).width > maxWidth && line) {
-      lines.push(line);
-      line = word;
-    } else {
-      line = testLine;
-    }
-  }
-
-  if (line) lines.push(line);
-
-  lines.slice(0, 3).forEach((item, index) => {
-    ctx.fillText(item, centerX, y + index * lineHeight);
-  });
-}
-
-function createPlaceholderImage(name, index) {
-  const canvas = document.createElement("canvas");
-  canvas.width = 600;
-  canvas.height = 600;
-  const ctx = canvas.getContext("2d");
-
-  const [colorA, colorB] = hashPair(name + index);
-
-  ctx.fillStyle = "#efefef";
-  ctx.fillRect(0, 0, 600, 600);
-
-  ctx.fillStyle = "#00000012";
-  ctx.beginPath();
-  ctx.ellipse(300, 485, 135, 25, 0, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.fillStyle = colorA;
-  roundRect(ctx, 145, 145, 310, 270, 42);
-
-  ctx.fillStyle = colorB;
-  roundRect(ctx, 180, 185, 240, 72, 25);
-
-  ctx.fillStyle = "#ffffff38";
-  ctx.beginPath();
-  ctx.arc(300, 330, 60 + index * 3, 0, Math.PI * 2);
-  ctx.fill();
-
-  ctx.fillStyle = "#ffffff";
-  ctx.textAlign = "center";
-  ctx.font = "700 32px -apple-system";
-  wrapText(ctx, name, 300, 440, 260, 37);
-
-  ctx.fillStyle = "#526071";
-  ctx.font = "20px -apple-system";
-  ctx.fillText("DEMO • " + index, 300, 535);
-
-  return canvas.toDataURL("image/jpeg", 0.78);
-}
-
-function generateFallbackSamples(name, count) {
-  return Array.from({ length: count }, (_, index) =>
-    createPlaceholderImage(name, index + 1)
+async function removePhoto(
+  index
+) {
+  pendingPhotos.splice(
+    index,
+    1
   );
+
+  renderPhotos();
+
+  await saveDraft();
 }
 
-function setAiLoading(value) {
-  const button = document.getElementById("generateBtn");
-  button.disabled = value;
-
-  if (value) {
-    button.innerHTML = `<span class="loader"></span>Đang tạo ảnh...`;
-  } else {
-    button.innerHTML = "✨ Tạo ảnh AI";
-  }
-}
-
-function normalizeApiBase(url) {
-  let base = String(url || "").trim();
-  if (!base) return "";
-
-  base = base.replace(/\/+$/, "");
-  if (base.endsWith(GENERATE_ENDPOINT)) {
-    base = base.slice(0, -GENERATE_ENDPOINT.length);
-  }
-  return base;
-}
-
-function buildGenerateUrl(baseUrl) {
-  const base = normalizeApiBase(baseUrl);
-  if (!base) return "";
-  return base + GENERATE_ENDPOINT;
-}
-
-async function fetchWithTimeout(url, options = {}, timeout = 10000) {
-  const controller = new AbortController();
-  const timer = setTimeout(() => controller.abort(), timeout);
-
-  try {
-    return await fetch(url, {
-      ...options,
-      signal: controller.signal
-    });
-  } finally {
-    clearTimeout(timer);
-  }
-}
-
-async function testApiConnection() {
-  const input = document.getElementById("apiUrlInput").value.trim();
-  const baseUrl = normalizeApiBase(input);
-
-  if (!baseUrl) {
-    alert("Hãy nhập URL backend trước.");
+async function clearDraftPhotos() {
+  if (
+    !pendingPhotos.length
+  ) {
     return;
   }
 
-  const statusBox = document.getElementById("apiStatus");
-  statusBox.innerHTML = `<span class="loader"></span>Đang kiểm tra backend...`;
+  if (
+    !confirm(
+      "Xóa toàn bộ ảnh đang nằm trong bản nháp?"
+    )
+  ) {
+    return;
+  }
+
+  pendingPhotos =
+    [];
+
+  renderPhotos();
+
+  await saveDraft();
+}
+
+function setLoading(on) {
+  const button =
+    document.getElementById(
+      "generateBtn"
+    );
+
+  button.disabled =
+    on;
+
+  if (on) {
+
+    button.innerHTML = `
+      <span class="loader"></span>
+      Đang tạo ảnh AI...
+    `;
+
+  } else {
+
+    button.innerHTML =
+      "✨ Tạo ảnh AI thật";
+  }
+}
+
+async function fetchTimeout(
+  url,
+  options = {},
+  timeout = 60000
+) {
+  const controller =
+    new AbortController();
+
+  const timer =
+    setTimeout(
+      () =>
+        controller.abort(),
+      timeout
+    );
 
   try {
-    const response = await fetchWithTimeout(baseUrl, {}, 8000);
-    const data = await response.json();
 
-    if (!response.ok || !data?.ok) {
-      throw new Error(data?.error || "Backend không hợp lệ.");
-    }
+    return await fetch(
+      url,
+      {
+        ...options,
+        signal:
+          controller.signal
+      }
+    );
 
-    statusBox.innerHTML = `
-      <b class="ok">Kết nối thành công.</b><br>
-      Service: ${esc(data.service || "Rii AI Backend")}<br>
-      Version: ${esc(data.version || "-")}<br>
-      Endpoint tạo ảnh: <b>${esc(data.endpoint || GENERATE_ENDPOINT)}</b><br>
-      Workers AI binding: <b>${data.hasAI ? "Có" : "Chưa có"}</b>
-    `;
-  } catch (error) {
-    statusBox.innerHTML = `
-      <b class="bad">Không kết nối được backend.</b><br>
-      ${esc(error?.message || "Lỗi không xác định")}
-    `;
+  } finally {
+
+    clearTimeout(
+      timer
+    );
   }
-}
-
-async function saveApiConfig() {
-  const raw = document.getElementById("apiUrlInput").value.trim();
-  AI_API_URL = normalizeApiBase(raw);
-  state.config.aiApiUrl = AI_API_URL;
-  state.config.lastApiCheck = new Date().toISOString();
-
-  addMemory(
-    AI_API_URL
-      ? "Đã lưu URL AI backend"
-      : "Đã tắt AI backend"
-  );
-
-  await saveBrain();
-  renderSettings();
-
-  alert("Đã lưu cấu hình.");
-}
-
-async function callAiApiWithTimeout(name, count, extra, milliseconds) {
-  const endpointUrl = buildGenerateUrl(AI_API_URL);
-
-  if (!endpointUrl) {
-    throw new Error("Chưa có AI_API_URL.");
-  }
-
-  const response = await fetchWithTimeout(
-    endpointUrl,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        objectName: name,
-        count,
-        prompt: buildObjectPrompt(name, extra),
-        style: "educational-clean-minimal"
-      })
-    },
-    milliseconds
-  );
-
-  const data = await response.json();
-
-  if (!response.ok) {
-    throw new Error(data?.error || ("HTTP " + response.status));
-  }
-
-  if (!data?.ok) {
-    throw new Error(data?.error || "Backend trả về lỗi.");
-  }
-
-  if (!Array.isArray(data.images) || !data.images.length) {
-    throw new Error("Backend không trả về danh sách images.");
-  }
-
-  return data;
 }
 
 async function generateAiImages() {
-  const name = document.getElementById("teachName").value.trim();
+  const name =
+    document
+    .getElementById(
+      "teachName"
+    )
+    .value
+    .trim();
+
   if (!name) {
-    alert("Hãy nhập tên đồ vật trước.");
+
+    alert(
+      "Hãy nhập tên đồ vật."
+    );
+
     return;
   }
 
-  const count = Math.max(
-    1,
-    Math.min(
-      6,
-      parseInt(document.getElementById("aiCount").value || "3", 10)
+  const endpoint =
+    apiEndpoint();
+
+  if (!endpoint) {
+
+    alert(
+      "Chưa cấu hình AI Backend trong Settings."
+    );
+
+    showPage(
+      "settings",
+      5
+    );
+
+    return;
+  }
+
+  const count =
+    Math.max(
+      1,
+      Math.min(
+        6,
+        parseInt(
+          document
+          .getElementById(
+            "aiCount"
+          )
+          .value ||
+          "1",
+          10
+        )
+      )
+    );
+
+  const extra =
+    document
+    .getElementById(
+      "aiExtraPrompt"
     )
-  );
+    .value
+    .trim();
 
-  const extra = document.getElementById("aiExtraPrompt").value.trim();
+  const resultBox =
+    document
+    .getElementById(
+      "aiResult"
+    );
 
-  setAiLoading(true);
+  setLoading(true);
+
+  resultBox.innerHTML = `
+    <span class="loader"></span>
+    Đang gọi Rii AI Backend...
+  `;
 
   try {
-    let images = [];
-    let message = "";
-    let usedFallback = false;
 
-    if (AI_API_URL) {
-      try {
-        const result = await callAiApiWithTimeout(name, count, extra, 15000);
-        images = result.images;
-        message =
-          result.fallbackCount > 0
-            ? `Backend đã trả ${images.length} ảnh, có ${result.fallbackCount} ảnh fallback.`
-            : `Backend AI đã tạo ${images.length} ảnh thành công.`;
+    const response =
+      await fetchTimeout(
+        endpoint,
+        {
+          method:
+            "POST",
 
-        usedFallback = result.fallbackCount > 0;
-      } catch (error) {
-        console.error(error);
-        images = generateFallbackSamples(name, count);
-        usedFallback = true;
-        message =
-          "Backend lỗi hoặc không phản hồi đúng, app tự chuyển sang ảnh demo.";
-      }
-    } else {
-      images = generateFallbackSamples(name, count);
-      usedFallback = true;
-      message = "Chưa cấu hình backend, app tạo ảnh demo.";
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+
+          body:
+            JSON.stringify({
+              objectName:
+                name,
+
+              count,
+
+              prompt:
+                extra
+            })
+        },
+        60000
+      );
+
+    let data;
+
+    try {
+
+      data =
+        await response.json();
+
+    } catch {
+
+      throw new Error(
+        "Backend trả dữ liệu không phải JSON."
+      );
     }
 
-    pendingPhotos.push(...images);
-    document.getElementById("teachSource").value = "ai_generated";
+    if (
+      !response.ok ||
+      !data.ok
+    ) {
+
+      throw new Error(
+        data.error ||
+        (
+          "HTTP " +
+          response.status
+        )
+      );
+    }
+
+    if (
+      !Array.isArray(
+        data.images
+      ) ||
+      !data.images.length
+    ) {
+
+      throw new Error(
+        "Backend không trả ảnh."
+      );
+    }
+
+    const validImages =
+      data.images.filter(
+        image =>
+          typeof image ===
+          "string"
+          &&
+          image.length >
+          50
+      );
+
+    if (
+      !validImages.length
+    ) {
+
+      throw new Error(
+        "Dữ liệu ảnh backend không hợp lệ."
+      );
+    }
+
+    pendingPhotos.push(
+      ...validImages
+    );
+
+    document
+    .getElementById(
+      "teachSource"
+    )
+    .value =
+      "ai_generated";
+
     renderPhotos();
 
     addMemory(
-      (usedFallback ? "Tạo ảnh demo / fallback" : "Tạo ảnh AI") + " cho: " + name
+      "AI tạo " +
+      validImages.length +
+      " ảnh cho: " +
+      name
     );
 
-    await saveTeachDraft();
+    await saveDraft();
 
-    alert(message);
+    resultBox.innerHTML = `
+      <b class="ok">
+        ✅ Tạo ảnh thành công
+      </b>
+
+      <br>
+
+      Backend:
+      ${esc(
+        data.version ||
+        "0.3.0"
+      )}
+
+      <br>
+
+      Đã nhận
+      <b>
+        ${validImages.length}
+      </b>
+      ảnh AI.
+    `;
+
   } catch (error) {
-    console.error(error);
-    alert("Có lỗi khi tạo ảnh. " + (error?.message || ""));
+
+    console.error(
+      error
+    );
+
+    let message =
+      error?.message ||
+      "Không xác định.";
+
+    if (
+      error?.name ===
+      "AbortError"
+    ) {
+
+      message =
+        "Backend mất quá 60 giây.";
+    }
+
+    resultBox.innerHTML = `
+      <b class="bad">
+        ❌ Tạo ảnh thất bại
+      </b>
+
+      <br>
+
+      ${esc(message)}
+    `;
+
+    alert(
+      "AI Backend lỗi: " +
+      message
+    );
+
   } finally {
-    setAiLoading(false);
+
+    setLoading(false);
   }
 }
 
 async function saveKnowledge() {
-  const name = document.getElementById("teachName").value.trim();
+  const name =
+    document
+    .getElementById(
+      "teachName"
+    )
+    .value
+    .trim();
 
   if (!name) {
-    alert("Hãy nhập tên kiến thức.");
+
+    alert(
+      "Hãy nhập tên kiến thức."
+    );
+
     return;
   }
 
-  if (!pendingPhotos.length) {
-    alert("Hãy thêm ít nhất 1 ảnh mới.");
+  if (
+    !pendingPhotos.length
+  ) {
+
+    alert(
+      "Chưa có ảnh để lưu."
+    );
+
     return;
   }
 
-  const source = document.getElementById("teachSource").value;
-  const extra = document.getElementById("aiExtraPrompt").value.trim();
+  const source =
+    document
+    .getElementById(
+      "teachSource"
+    )
+    .value;
 
-  let object = editingKnowledgeId
-    ? state.knowledge[editingKnowledgeId]
-    : null;
+  let object =
+    editingKnowledgeId
+    ?
+      state.knowledge[
+        editingKnowledgeId
+      ]
+    :
+      null;
 
   if (!object) {
-    object = Object.values(state.knowledge).find(item =>
-      normalizeName(item.name) === normalizeName(name) &&
-      item.type === teachType
+
+    object =
+      Object
+      .values(
+        state.knowledge
+      )
+      .find(
+        item =>
+          normalizeName(
+            item.name
+          )
+          ===
+          normalizeName(
+            name
+          )
+          &&
+          item.type ===
+          teachType
+      );
+  }
+
+  const oldImages =
+    new Set(
+      object?.images ||
+      []
+    );
+
+  const newImages =
+    pendingPhotos.filter(
+      image =>
+        !oldImages.has(
+          image
+        )
+    );
+
+  if (object) {
+
+    object.name =
+      name;
+
+    object.type =
+      teachType;
+
+    object.source =
+      source;
+
+    object.images = [
+      ...(object.images || []),
+      ...newImages
+    ];
+
+    object.updatedAt =
+      new Date()
+      .toISOString();
+
+    addMemory(
+      "Bổ sung " +
+      newImages.length +
+      " ảnh cho: " +
+      name
+    );
+
+  } else {
+
+    const id =
+      "OBJ-" +
+      Date.now() +
+      "-" +
+      Math.random()
+      .toString(36)
+      .slice(
+        2,
+        6
+      );
+
+    state.knowledge[id] = {
+
+      id,
+
+      name,
+
+      type:
+        teachType,
+
+      source,
+
+      images:
+        [...newImages],
+
+      confidence:
+        10,
+
+      correct:
+        0,
+
+      wrong:
+        0,
+
+      createdAt:
+        new Date()
+        .toISOString(),
+
+      updatedAt:
+        new Date()
+        .toISOString()
+    };
+
+    state.robot.xp =
+      (
+        state.robot.xp ||
+        0
+      ) +
+      5;
+
+    addMemory(
+      "Học kiến thức mới: " +
+      name
     );
   }
 
-  const existingImages = new Set(object?.images || []);
-  const newImages = pendingPhotos.filter(photo => !existingImages.has(photo));
+  clearDraftState();
 
-  if (object) {
-    object.images = [...(object.images || []), ...newImages];
-    object.name = name;
-    object.type = teachType;
-    object.source = source;
-    object.updatedAt = new Date().toISOString();
-    object.promptSeed = buildObjectPrompt(name, extra);
-
-    addMemory("Thêm " + newImages.length + " ảnh cho: " + name);
-  } else {
-    const id = "OBJ-" + Date.now() + "-" + Math.random().toString(36).slice(2, 6);
-
-    state.knowledge[id] = {
-      id,
-      name,
-      type: teachType,
-      source,
-      promptSeed: buildObjectPrompt(name, extra),
-      images: [...newImages],
-      confidence: 10,
-      correct: 0,
-      wrong: 0,
-      timesSeen: 0,
-      confusions: {},
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    };
-
-    state.robot.xp = (state.robot.xp || 0) + 5;
-    addMemory("Học kiến thức mới: " + name);
-  }
-
-  clearDraft();
   await saveBrain();
 
-  alert("Đã lưu vào Brain. Ảnh cũ được giữ nguyên.");
-  showPage("brain", 4);
+  alert(
+    "Đã lưu vào Brain. Ảnh cũ vẫn được giữ."
+  );
+
+  showPage(
+    "brain",
+    4
+  );
 }
 
-function clearDraft() {
-  pendingPhotos = [];
-  editingKnowledgeId = null;
+function clearDraftState() {
+  pendingPhotos =
+    [];
 
-  state.draft = { ...DEFAULT_STATE.draft };
+  editingKnowledgeId =
+    null;
 
-  document.getElementById("teachName").value = "";
-  document.getElementById("aiExtraPrompt").value = "";
-  document.getElementById("teachSource").value = "gallery";
+  teachType =
+    "personal";
 
-  teachType = "personal";
+  state.draft =
+    clone(
+      defaults().draft
+    );
+
+  document
+  .getElementById(
+    "teachName"
+  )
+  .value =
+    "";
+
+  document
+  .getElementById(
+    "aiExtraPrompt"
+  )
+  .value =
+    "";
+
+  document
+  .getElementById(
+    "teachSource"
+  )
+  .value =
+    "gallery";
+
+  updateTeachPills();
+
   renderPhotos();
+
   updateEditNotice();
 }
 
 function updateEditNotice() {
-  const notice = document.getElementById("editNotice");
-  const cancelButton = document.getElementById("cancelEditBtn");
+  const notice =
+    document.getElementById(
+      "editNotice"
+    );
 
-  if (editingKnowledgeId && state.knowledge[editingKnowledgeId]) {
-    notice.classList.remove("hidden");
-    cancelButton.classList.remove("hidden");
+  const button =
+    document.getElementById(
+      "cancelEditBtn"
+    );
+
+  if (
+    editingKnowledgeId &&
+    state.knowledge[
+      editingKnowledgeId
+    ]
+  ) {
+
+    notice.classList.remove(
+      "hidden"
+    );
+
+    button.classList.remove(
+      "hidden"
+    );
 
     notice.textContent =
-      "Đang bổ sung cho: " +
-      state.knowledge[editingKnowledgeId].name +
-      ". Chỉ ảnh mới sẽ được thêm; ảnh cũ không bị thay thế.";
+      "Đang bổ sung ảnh cho: " +
+      state.knowledge[
+        editingKnowledgeId
+      ].name +
+      ". Ảnh cũ sẽ không bị xóa.";
+
   } else {
-    notice.classList.add("hidden");
-    cancelButton.classList.add("hidden");
+
+    notice.classList.add(
+      "hidden"
+    );
+
+    button.classList.add(
+      "hidden"
+    );
   }
 }
 
-async function continueKnowledge(id) {
-  const object = state.knowledge[id];
-  if (!object) return;
+async function continueKnowledge(
+  id
+) {
+  const item =
+    state.knowledge[id];
 
-  editingKnowledgeId = id;
-  pendingPhotos = [];
-  teachType = object.type;
+  if (!item) {
+    return;
+  }
+
+  editingKnowledgeId =
+    id;
+
+  teachType =
+    item.type;
+
+  pendingPhotos =
+    [];
 
   state.draft = {
-    name: object.name,
-    type: object.type,
-    source: object.source || "gallery",
-    extraPrompt: "",
-    photos: [],
-    editingKnowledgeId: id
+
+    name:
+      item.name,
+
+    type:
+      item.type,
+
+    source:
+      item.source ||
+      "gallery",
+
+    extraPrompt:
+      "",
+
+    photos:
+      [],
+
+    editingKnowledgeId:
+      id
   };
 
   await saveBrain();
-  showPage("teach", 1);
+
+  showPage(
+    "teach",
+    1
+  );
 }
 
 async function cancelContinue() {
-  clearDraft();
+  clearDraftState();
+
   await saveBrain();
-  showPage("brain", 4);
+
+  showPage(
+    "brain",
+    4
+  );
 }
 
-async function renameKnowledge(id) {
-  const object = state.knowledge[id];
-  const newName = prompt("Tên mới:", object.name);
+async function deleteKnowledge(
+  id
+) {
+  const item =
+    state.knowledge[id];
 
-  if (newName && newName.trim()) {
-    object.name = newName.trim();
-    object.updatedAt = new Date().toISOString();
-
-    addMemory("Đổi tên kiến thức thành: " + object.name);
-    await saveBrain();
-    renderBrain();
+  if (!item) {
+    return;
   }
-}
 
-async function deleteKnowledge(id) {
-  const object = state.knowledge[id];
-  if (!object) return;
-
-  if (!confirm('Xóa "' + object.name + '" và toàn bộ ảnh của kiến thức này?')) {
+  if (
+    !confirm(
+      'Xóa "' +
+      item.name +
+      '" và toàn bộ ảnh của kiến thức này?'
+    )
+  ) {
     return;
   }
 
   delete state.knowledge[id];
-  addMemory("Đã xóa kiến thức: " + object.name);
+
+  addMemory(
+    "Đã xóa kiến thức: " +
+    item.name
+  );
 
   await saveBrain();
+
   renderBrain();
+
   renderHome();
 }
 
-function setBrainFilter(type) {
-  brainFilter = type;
-  ["brainAll","brainGeneral","brainPersonal"].forEach(id => {
-    document.getElementById(id).classList.remove("active");
+function setBrainFilter(
+  type
+) {
+  brainFilter =
+    type;
+
+  [
+    "brainAll",
+    "brainGeneral",
+    "brainPersonal"
+  ].forEach(id => {
+
+    document
+    .getElementById(id)
+    .classList
+    .remove(
+      "active"
+    );
   });
 
-  let activeId = "brainAll";
-  if (type === "general") activeId = "brainGeneral";
-  if (type === "personal") activeId = "brainPersonal";
+  let activeId =
+    "brainAll";
 
-  document.getElementById(activeId).classList.add("active");
+  if (
+    type ===
+    "general"
+  ) {
+    activeId =
+      "brainGeneral";
+  }
+
+  if (
+    type ===
+    "personal"
+  ) {
+    activeId =
+      "brainPersonal";
+  }
+
+  document
+  .getElementById(
+    activeId
+  )
+  .classList
+  .add(
+    "active"
+  );
+
   renderBrain();
 }
 
 function renderBrain() {
-  let items = Object.values(state.knowledge);
+  let items =
+    Object.values(
+      state.knowledge
+    );
 
-  if (brainFilter !== "all") {
-    items = items.filter(item => item.type === brainFilter);
+  if (
+    brainFilter !==
+    "all"
+  ) {
+
+    items =
+      items.filter(
+        item =>
+          item.type ===
+          brainFilter
+      );
   }
 
-  items.sort((a, b) =>
-    new Date(b.updatedAt || b.createdAt || 0) -
-    new Date(a.updatedAt || a.createdAt || 0)
+  items.sort(
+    (
+      first,
+      second
+    ) =>
+      new Date(
+        second.updatedAt ||
+        second.createdAt ||
+        0
+      )
+      -
+      new Date(
+        first.updatedAt ||
+        first.createdAt ||
+        0
+      )
   );
 
-  const box = document.getElementById("brainList");
+  const box =
+    document.getElementById(
+      "brainList"
+    );
 
-  if (!items.length) {
-    box.innerHTML = `<div class="card empty">Brain chưa có kiến thức.</div>`;
+  if (
+    !items.length
+  ) {
+
+    box.innerHTML = `
+      <div class="card empty">
+        Brain chưa có kiến thức.
+      </div>
+    `;
+
     return;
   }
 
-  box.innerHTML = items.map(object => `
-    <div class="item">
-      <div class="itemTop">
-        ${
-          object.images?.[0]
-            ? `<img class="thumb" src="${object.images[0]}" alt="">`
-            : `<div class="thumb"></div>`
-        }
+  box.innerHTML =
+    items
+    .map(
+      item => `
+        <div class="item">
 
-        <div class="grow">
-          <div class="title" style="font-size:17px">${esc(object.name)}</div>
+          <div class="itemTop">
 
-          <span class="badge ${object.type === "general" ? "general" : ""}">
-            ${object.type === "general" ? "NÃO CHUNG" : "NÃO CÁ NHÂN"}
-          </span>
+            ${
+              item.images?.[0]
+              ?
+              `
+                <img
+                  class="thumb"
+                  src="${item.images[0]}"
+                  alt=""
+                >
+              `
+              :
+              `
+                <div class="thumb"></div>
+              `
+            }
 
-          ${
-            object.source === "ai_generated"
-              ? `<span class="badge ai">AI / DEMO</span>`
-              : ``
-          }
+            <div class="grow">
+
+              <div
+                class="title"
+                style="font-size:17px"
+              >
+                ${esc(item.name)}
+              </div>
+
+              <span
+                class="badge ${
+                  item.type ===
+                  "general"
+                  ?
+                  "general"
+                  :
+                  ""
+                }"
+              >
+                ${
+                  item.type ===
+                  "general"
+                  ?
+                  "NÃO CHUNG"
+                  :
+                  "NÃO CÁ NHÂN"
+                }
+              </span>
+
+              ${
+                item.source ===
+                "ai_generated"
+                ?
+                `
+                  <span class="badge ai">
+                    AI
+                  </span>
+                `
+                :
+                ""
+              }
+
+              <div class="sub">
+                ${item.images?.length || 0}
+                ảnh
+                • đúng
+                ${item.correct || 0}
+                • sai
+                ${item.wrong || 0}
+              </div>
+
+            </div>
+          </div>
+
+          <div class="bar">
+
+            <div
+              class="fill"
+              style="
+                width:
+                ${
+                  Math.max(
+                    0,
+                    Math.min(
+                      100,
+                      item.confidence ||
+                      0
+                    )
+                  )
+                }%
+              "
+            ></div>
+
+          </div>
 
           <div class="sub">
-            ${object.images?.length || 0} ảnh • đúng ${object.correct || 0} • sai ${object.wrong || 0}
+            Độ tin cậy:
+            ${
+              Math.round(
+                item.confidence ||
+                0
+              )
+            }%
           </div>
+
+          <div class="actions">
+
+            <button
+              class="btn secondary mini"
+              onclick="continueKnowledge('${item.id}')"
+            >
+              ＋ Thêm ảnh
+            </button>
+
+            <button
+              class="btn danger mini"
+              onclick="deleteKnowledge('${item.id}')"
+            >
+              Xóa
+            </button>
+
+          </div>
+
         </div>
-      </div>
-
-      <div class="bar">
-        <div class="fill" style="width:${Math.max(0, Math.min(100, object.confidence || 0))}%"></div>
-      </div>
-
-      <div class="sub">Độ tin cậy: ${Math.round(object.confidence || 0)}%</div>
-
-      <div class="actions">
-        <button class="btn secondary mini" onclick="continueKnowledge('${object.id}')">＋ Thêm ảnh</button>
-        <button class="btn secondary mini" onclick="renameKnowledge('${object.id}')">Đổi tên</button>
-        <button class="btn danger mini" onclick="deleteKnowledge('${object.id}')">Xóa</button>
-      </div>
-    </div>
-  `).join("");
+      `
+    )
+    .join("");
 }
 
 function candidates() {
-  return Object.values(state.knowledge).filter(object => object.images?.length);
+  return Object
+  .values(
+    state.knowledge
+  )
+  .filter(
+    item =>
+      item.images
+      ?.length
+  );
 }
 
-function startQuiz(index = 2) {
-  showPage("learn", index);
+function startQuiz(
+  index = 2
+) {
+  showPage(
+    "learn",
+    index
+  );
 
-  if (candidates().length < 2) {
-    document.getElementById("quizBox").innerHTML = `
-      <div class="empty">Cần ít nhất 2 kiến thức có ảnh.</div>
+  if (
+    candidates().length <
+    2
+  ) {
+
+    document
+    .getElementById(
+      "quizBox"
+    )
+    .innerHTML = `
+      <div class="empty">
+        Cần ít nhất 2 kiến thức có ảnh.
+      </div>
     `;
+
     return;
   }
 
@@ -1547,139 +3017,317 @@ function startQuiz(index = 2) {
 }
 
 function nextQuestion() {
-  const items = candidates();
+  const items =
+    candidates();
 
-  quizTarget = items[Math.floor(Math.random() * items.length)];
-  const image = quizTarget.images[Math.floor(Math.random() * quizTarget.images.length)];
+  if (
+    items.length <
+    2
+  ) {
+    return;
+  }
+
+  quizTarget =
+    items[
+      Math.floor(
+        Math.random() *
+        items.length
+      )
+    ];
+
+  const image =
+    quizTarget.images[
+      Math.floor(
+        Math.random() *
+        quizTarget.images.length
+      )
+    ];
 
   let choices = [
     quizTarget,
+
     ...items
-      .filter(item => item.id !== quizTarget.id)
-      .sort(() => Math.random() - 0.5)
-      .slice(0, 3)
+    .filter(
+      item =>
+        item.id !==
+        quizTarget.id
+    )
+    .sort(
+      () =>
+        Math.random() -
+        0.5
+    )
+    .slice(
+      0,
+      3
+    )
   ];
 
-  choices = choices.sort(() => Math.random() - 0.5);
-
-  document.getElementById("quizBox").innerHTML = `
-    <div class="title" style="text-align:center">Rii đang nhìn thấy gì?</div>
-
-    <img class="quizImage" src="${image}" alt="">
-
-    ${
-      choices.map(object => `
-        <button class="answer" onclick="checkAnswer('${object.id}')">
-          ${esc(object.name)}
-        </button>
-      `).join("")
-    }
-
-    <div id="quizMessage" class="sub" style="text-align:center;margin-top:12px"></div>
-  `;
-}
-
-async function checkAnswer(id) {
-  const target = state.knowledge[quizTarget.id];
-  target.timesSeen = (target.timesSeen || 0) + 1;
-
-  if (id === target.id) {
-    target.correct = (target.correct || 0) + 1;
-    target.confidence = Math.min(100, (target.confidence || 0) + 10);
-    state.robot.xp = (state.robot.xp || 0) + 10;
-
-    addMemory("Nhận biết đúng: " + target.name);
-
-    document.getElementById("quizMessage").innerHTML = `<span class="ok">✅ Chính xác</span>`;
-  } else {
-    target.wrong = (target.wrong || 0) + 1;
-    target.confidence = Math.max(0, (target.confidence || 0) - 5);
-    target.confusions = target.confusions || {};
-    target.confusions[id] = (target.confusions[id] || 0) + 1;
-
-    addMemory(
-      "Nhầm " + target.name + " với " + (state.knowledge[id]?.name || "khác")
+  choices =
+    choices.sort(
+      () =>
+        Math.random() -
+        0.5
     );
 
-    document.getElementById("quizMessage").innerHTML = `
-      <span class="bad">❌ Đây là ${esc(target.name)}</span>
+  document
+  .getElementById(
+    "quizBox"
+  )
+  .innerHTML = `
+
+    <div
+      class="title"
+      style="text-align:center"
+    >
+      Rii đang nhìn thấy gì?
+    </div>
+
+    <img
+      class="quizImage"
+      src="${image}"
+      alt=""
+    >
+
+    ${
+      choices
+      .map(
+        item => `
+          <button
+            class="answer"
+            onclick="checkAnswer('${item.id}')"
+          >
+            ${esc(item.name)}
+          </button>
+        `
+      )
+      .join("")
+    }
+
+    <div
+      id="quizMessage"
+      class="sub"
+      style="
+        text-align:center;
+        margin-top:12px
+      "
+    ></div>
+  `;
+}
+
+async function checkAnswer(
+  id
+) {
+  const item =
+    state.knowledge[
+      quizTarget.id
+    ];
+
+  if (!item) {
+    return;
+  }
+
+  if (
+    id ===
+    item.id
+  ) {
+
+    item.correct =
+      (
+        item.correct ||
+        0
+      ) +
+      1;
+
+    item.confidence =
+      Math.min(
+        100,
+        (
+          item.confidence ||
+          0
+        ) +
+        10
+      );
+
+    state.robot.xp =
+      (
+        state.robot.xp ||
+        0
+      ) +
+      10;
+
+    addMemory(
+      "Nhận biết đúng: " +
+      item.name
+    );
+
+    document
+    .getElementById(
+      "quizMessage"
+    )
+    .innerHTML = `
+      <span class="ok">
+        ✅ Chính xác
+      </span>
+    `;
+
+  } else {
+
+    item.wrong =
+      (
+        item.wrong ||
+        0
+      ) +
+      1;
+
+    item.confidence =
+      Math.max(
+        0,
+        (
+          item.confidence ||
+          0
+        ) -
+        5
+      );
+
+    addMemory(
+      "Rii nhận nhầm: " +
+      item.name
+    );
+
+    document
+    .getElementById(
+      "quizMessage"
+    )
+    .innerHTML = `
+      <span class="bad">
+        ❌ Đây là
+        ${esc(item.name)}
+      </span>
     `;
   }
 
   await saveBrain();
-  setTimeout(nextQuestion, 1000);
+
+  setTimeout(
+    nextQuestion,
+    1000
+  );
 }
 
-document.getElementById("visionInput").addEventListener("change", async event => {
-  const file = event.target.files[0];
-  if (!file) return;
+document
+.getElementById(
+  "visionInput"
+)
+.addEventListener(
+  "change",
+  async event => {
 
-  visionImage = await compressImage(file);
+    const file =
+      event.target.files[0];
 
-  document.getElementById("visionPreview").src = visionImage;
-  document.getElementById("visionPreviewBox").classList.remove("hidden");
-  document.getElementById("visionResult").textContent = "Ảnh đã sẵn sàng.";
+    if (!file) {
+      return;
+    }
 
-  event.target.value = "";
-});
+    try {
 
-async function runVisionGuess() {
-  if (!visionImage) {
-    alert("Hãy chọn ảnh.");
-    return;
+      visionImage =
+        await compressImage(
+          file
+        );
+
+      document
+      .getElementById(
+        "visionPreview"
+      )
+      .src =
+        visionImage;
+
+      document
+      .getElementById(
+        "visionPreviewBox"
+      )
+      .classList
+      .remove(
+        "hidden"
+      );
+
+    } catch (error) {
+
+      console.error(
+        error
+      );
+
+      alert(
+        "Không thể mở ảnh Vision."
+      );
+    }
+
+    event.target.value =
+      "";
   }
-
-  const items = candidates();
-  if (!items.length) {
-    alert("Brain chưa có kiến thức.");
-    return;
-  }
-
-  const resultBox = document.getElementById("visionResult");
-  resultBox.innerHTML = `<span class="loader"></span>Đang mô phỏng...`;
-
-  await new Promise(resolve => setTimeout(resolve, 500));
-
-  const guesses = [...items].sort(() => Math.random() - 0.5).slice(0, 3);
-
-  resultBox.innerHTML = `
-    <div class="notice">
-      <b>MÔ PHỎNG — chưa phải AI Vision thật</b>
-      <br><br>
-      ${
-        guesses.map((object, index) => {
-          const percent = [60, 25, 15][index] || 10;
-          return `${index + 1}. ${esc(object.name)} — ${percent}%`;
-        }).join("<br>")
-      }
-    </div>
-  `;
-
-  addMemory("Chạy Vision mô phỏng");
-  await saveBrain();
-}
-
+);
 function renderSettings() {
-  document.getElementById("robotNameInput").value = state.robot.name;
-  document.getElementById("robotIdInput").value = state.robot.id;
-  document.getElementById("ownerInput").value = state.owner.name;
-  document.getElementById("serialInput").value = state.robot.serial || FIXED_ROBOT_ID;
-  document.getElementById("deviceUuidInput").value = state.robot.deviceUuid || "";
-  document.getElementById("apiUrlInput").value = state.config.aiApiUrl || "";
+  document
+  .getElementById(
+    "ownerInput"
+  )
+  .value =
+    state.owner.name ||
+    "";
 
-  const status = document.getElementById("apiStatus");
+  document
+  .getElementById(
+    "deviceUuidInput"
+  )
+  .value =
+    state.robot.deviceUuid ||
+    "";
 
-  if (AI_API_URL) {
-    status.innerHTML = `
-      <b class="ok">Đã cấu hình backend AI.</b><br>
-      URL gốc: ${esc(AI_API_URL)}<br>
-      Endpoint tạo ảnh: ${esc(buildGenerateUrl(AI_API_URL))}
+  document
+  .getElementById(
+    "apiUrlInput"
+  )
+  .value =
+    state.config.aiApiUrl ||
+    "";
+
+  const statusBox =
+    document.getElementById(
+      "apiStatus"
+    );
+
+  if (
+    state.config.aiApiUrl
+  ) {
+    statusBox.innerHTML = `
+      <b class="ok">
+        ✅ Backend đã lưu
+      </b>
+
+      <br>
+
+      ${esc(
+        state.config.aiApiUrl
+      )}
+
+      <br><br>
+
+      Endpoint tạo ảnh:
+
+      <br>
+
+      <b>
+        ${esc(
+          state.config.aiApiUrl +
+          ENDPOINT
+        )}
+      </b>
     `;
   } else {
-    status.innerHTML = `
-      Chưa có backend AI — hiện dùng ảnh demo.
-      <br>Hãy dán URL gốc worker, ví dụ:
-      <br><b>https://rii-backend.xxx.workers.dev</b>
+    statusBox.innerHTML = `
+      Chưa cấu hình AI Backend.
     `;
   }
 
@@ -1687,167 +3335,770 @@ function renderSettings() {
 }
 
 async function saveProfile() {
-  state.robot.name = FIXED_ROBOT_NAME;
-  state.robot.id = FIXED_ROBOT_ID;
-  state.robot.serial = FIXED_ROBOT_ID;
-  state.robot.role = "master";
+  const ownerName =
+    document
+    .getElementById(
+      "ownerInput"
+    )
+    .value
+    .trim();
 
-  document.getElementById("robotNameInput").value = FIXED_ROBOT_NAME;
-  document.getElementById("robotIdInput").value = FIXED_ROBOT_ID;
+  state.owner.name =
+    ownerName;
 
-  state.owner.name = document.getElementById("ownerInput").value.trim();
+  /*
+    Khóa danh tính máy chủ
+  */
 
-  addMemory("Cập nhật hồ sơ Owner");
+  state.robot.name =
+    "Rii";
+
+  state.robot.id =
+    MASTER_SERIAL;
+
+  state.robot.serial =
+    MASTER_SERIAL;
+
+  state.robot.role =
+    "master";
+
+  addMemory(
+    "Cập nhật hồ sơ Owner"
+  );
+
   await saveBrain();
 
-  alert("Đã lưu. Tên Rii và serial RII000001 của máy chủ được khóa.");
   renderHome();
+
+  alert(
+    "Đã lưu hồ sơ."
+  );
 }
 
-async function updateStorage() {
-  const element = document.getElementById("storageStatus");
+async function saveApiConfig() {
+  const input =
+    document
+    .getElementById(
+      "apiUrlInput"
+    );
 
-  if (navigator.storage?.estimate) {
-    const estimate = await navigator.storage.estimate();
-    const used = estimate.usage || 0;
-    const quota = estimate.quota || 0;
+  const url =
+    normalizeBase(
+      input.value
+    );
 
-    element.textContent =
-      "Ước tính đã dùng " +
-      (used / 1048576).toFixed(1) +
-      " MB / " +
-      (quota / 1048576).toFixed(0) +
-      " MB của vùng lưu trữ trình duyệt.";
+  if (
+    url &&
+    !/^https:\/\/.+/i.test(
+      url
+    )
+  ) {
+    alert(
+      "URL backend phải bắt đầu bằng https://"
+    );
+
+    return;
+  }
+
+  state.config.aiApiUrl =
+    url;
+
+  input.value =
+    url;
+
+  if (url) {
+    addMemory(
+      "Đã cấu hình AI Backend"
+    );
   } else {
-    element.textContent = "Trình duyệt không cung cấp thông tin dung lượng.";
+    addMemory(
+      "Đã xóa cấu hình AI Backend"
+    );
+  }
+
+  await saveBrain();
+
+  renderSettings();
+
+  alert(
+    "Đã lưu cấu hình API."
+  );
+}
+
+async function testApiConnection() {
+  const input =
+    document
+    .getElementById(
+      "apiUrlInput"
+    );
+
+  const baseUrl =
+    normalizeBase(
+      input.value
+    );
+
+  const statusBox =
+    document
+    .getElementById(
+      "apiStatus"
+    );
+
+  if (!baseUrl) {
+    alert(
+      "Hãy nhập URL Worker trước."
+    );
+
+    return;
+  }
+
+  if (
+    !/^https:\/\/.+/i.test(
+      baseUrl
+    )
+  ) {
+    statusBox.innerHTML = `
+      <b class="bad">
+        ❌ URL không hợp lệ
+      </b>
+
+      <br>
+
+      URL phải bắt đầu bằng
+      <b>https://</b>
+    `;
+
+    return;
+  }
+
+  statusBox.innerHTML = `
+    <span class="loader"></span>
+    Đang kiểm tra Rii AI Backend...
+  `;
+
+  try {
+    const response =
+      await fetchTimeout(
+        baseUrl +
+        "/health",
+        {
+          method:
+            "GET"
+        },
+        10000
+      );
+
+    let data;
+
+    try {
+      data =
+        await response.json();
+    } catch {
+      throw new Error(
+        "Backend không trả JSON hợp lệ."
+      );
+    }
+
+    if (
+      !response.ok ||
+      !data.ok
+    ) {
+      throw new Error(
+        data.error ||
+        (
+          "HTTP " +
+          response.status
+        )
+      );
+    }
+
+    const aiReady =
+      data.hasAI === true;
+
+    statusBox.innerHTML = `
+      <b class="ok">
+        ✅ Kết nối thành công
+      </b>
+
+      <br><br>
+
+      Service:
+      <b>
+        ${esc(
+          data.service ||
+          "Rii AI Backend"
+        )}
+      </b>
+
+      <br>
+
+      Backend:
+      <b>
+        ${esc(
+          data.version ||
+          "Không rõ"
+        )}
+      </b>
+
+      <br>
+
+      Workers AI:
+      ${
+        aiReady
+        ?
+        `
+          <b class="ok">
+            READY
+          </b>
+        `
+        :
+        `
+          <b class="bad">
+            CHƯA SẴN SÀNG
+          </b>
+        `
+      }
+
+      <br>
+
+      Endpoint:
+      <b>
+        ${esc(
+          data.endpoint ||
+          ENDPOINT
+        )}
+      </b>
+    `;
+
+    /*
+      Nếu test thành công,
+      lưu luôn URL để tránh
+      người dùng quên bấm Lưu.
+    */
+
+    state.config.aiApiUrl =
+      baseUrl;
+
+    input.value =
+      baseUrl;
+
+    await saveBrain();
+
+  } catch (error) {
+    console.error(
+      error
+    );
+
+    let message =
+      error?.message ||
+      "Không xác định.";
+
+    if (
+      error?.name ===
+      "AbortError"
+    ) {
+      message =
+        "Backend không phản hồi trong 10 giây.";
+    }
+
+    statusBox.innerHTML = `
+      <b class="bad">
+        ❌ Không kết nối được
+      </b>
+
+      <br><br>
+
+      ${esc(message)}
+    `;
   }
 }
 
 function randomInt(max) {
-  if (window.crypto && crypto.getRandomValues) {
-    const array = new Uint32Array(1);
-    crypto.getRandomValues(array);
-    return array[0] % max;
+  if (
+    window.crypto &&
+    typeof window.crypto.getRandomValues ===
+    "function"
+  ) {
+    const array =
+      new Uint32Array(1);
+
+    window.crypto.getRandomValues(
+      array
+    );
+
+    return (
+      array[0] %
+      max
+    );
   }
-  return Math.floor(Math.random() * max);
+
+  return Math.floor(
+    Math.random() *
+    max
+  );
 }
 
-function makeClientSerial() {
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const prefix = letters[randomInt(26)] + letters[randomInt(26)];
-  let digits = "";
+function makeSerial() {
+  const letters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  for (let i = 0; i < 8; i++) {
-    digits += String(randomInt(10));
+  const firstLetter =
+    letters[
+      randomInt(26)
+    ];
+
+  const secondLetter =
+    letters[
+      randomInt(26)
+    ];
+
+  let numbers =
+    "";
+
+  for (
+    let index = 0;
+    index < 8;
+    index++
+  ) {
+    numbers +=
+      String(
+        randomInt(10)
+      );
   }
 
-  return prefix + digits;
+  return (
+    firstLetter +
+    secondLetter +
+    numbers
+  );
 }
 
 async function generateNextSerial() {
-  state.serialRegistry = Array.isArray(state.serialRegistry)
-    ? state.serialRegistry
-    : [FIXED_ROBOT_ID];
+  if (
+    !Array.isArray(
+      state.serialRegistry
+    )
+  ) {
+    state.serialRegistry = [
+      MASTER_SERIAL
+    ];
+  }
 
-  let serial = "";
-  let tries = 0;
+  let serial =
+    "";
+
+  let attempts =
+    0;
 
   do {
-    serial = makeClientSerial();
-    tries++;
+    serial =
+      makeSerial();
 
-    if (tries > 1000) {
-      throw new Error("Không thể sinh serial cục bộ.");
-    }
-  } while (
-    state.serialRegistry.includes(serial) ||
-    serial === FIXED_ROBOT_ID
-  );
+    attempts++;
 
-  state.serialRegistry.push(serial);
-  addMemory("Đã cấp serial thử nghiệm: " + serial);
+    if (
+      attempts >
+      5000
+    ) {
+      alert(
+        "Không thể tạo serial mới."
+      );
 
-  await saveBrain();
-
-  document.getElementById("generatedSerial").innerHTML = `
-    Serial mới: <b>${serial}</b><br>
-    Đã giữ chỗ trong bộ nhớ cục bộ của thiết bị này.
-  `;
-}
-
-function backupBrain() {
-  const blob = new Blob([JSON.stringify(state, null, 2)], {
-    type: "application/json"
-  });
-
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-
-  anchor.href = url;
-  anchor.download =
-    "Rii-AI-V053-" +
-    new Date().toISOString().slice(0, 10) +
-    ".json";
-
-  document.body.appendChild(anchor);
-  anchor.click();
-  anchor.remove();
-
-  setTimeout(() => URL.revokeObjectURL(url), 1000);
-}
-
-document.getElementById("restoreInput").addEventListener("change", async event => {
-  const file = event.target.files[0];
-  if (!file) return;
-
-  try {
-    const restored = normalizeState(JSON.parse(await file.text()));
-
-    if (!confirm("Restore file này sẽ thay Brain hiện tại. Tiếp tục?")) {
       return;
     }
 
-    state = restored;
-    AI_API_URL = state.config.aiApiUrl || "";
+  } while (
+    state.serialRegistry.includes(
+      serial
+    )
+    ||
+    serial ===
+    MASTER_SERIAL
+  );
 
-    await saveBrain();
+  state.serialRegistry.push(
+    serial
+  );
 
-    alert("Restore thành công.");
-    showPage("home", 0);
-  } catch (error) {
-    console.error(error);
-    alert("File backup không hợp lệ.");
-  }
-
-  event.target.value = "";
-});
-
-async function resetBrain() {
-  if (!confirm("Xóa toàn bộ Brain trên thiết bị này?")) return;
-  if (!confirm("Xác nhận lần cuối. Hãy backup trước nếu cần.")) return;
-
-  state = normalizeState(freshState());
-  pendingPhotos = [];
-  editingKnowledgeId = null;
-  AI_API_URL = "";
+  addMemory(
+    "Đã cấp serial thử nghiệm: " +
+    serial
+  );
 
   await saveBrain();
 
-  alert("Đã reset Brain.");
-  showPage("home", 0);
+  document
+  .getElementById(
+    "generatedSerial"
+  )
+  .innerHTML = `
+    Serial mới:
+
+    <b>
+      ${esc(serial)}
+    </b>
+
+    <br>
+
+    Định dạng:
+    2 chữ cái + 8 số.
+  `;
 }
+
+async function updateStorage() {
+  const box =
+    document
+    .getElementById(
+      "storageStatus"
+    );
+
+  if (
+    !navigator.storage ||
+    typeof navigator.storage.estimate !==
+    "function"
+  ) {
+    box.textContent =
+      "Trình duyệt không cung cấp thông tin dung lượng.";
+
+    return;
+  }
+
+  try {
+    const estimate =
+      await navigator.storage
+      .estimate();
+
+    const used =
+      Number(
+        estimate.usage ||
+        0
+      );
+
+    const quota =
+      Number(
+        estimate.quota ||
+        0
+      );
+
+    const usedMB =
+      (
+        used /
+        1048576
+      ).toFixed(1);
+
+    const quotaMB =
+      (
+        quota /
+        1048576
+      ).toFixed(0);
+
+    box.innerHTML = `
+      Đã dùng:
+
+      <b>
+        ${usedMB} MB
+      </b>
+
+      <br>
+
+      Dung lượng trình duyệt ước tính:
+
+      <b>
+        ${quotaMB} MB
+      </b>
+    `;
+
+  } catch (error) {
+    console.error(
+      error
+    );
+
+    box.textContent =
+      "Không đọc được dung lượng lưu trữ.";
+  }
+}
+
+function backupBrain() {
+  try {
+    const backup = {
+      application:
+        "Rii AI",
+
+      version:
+        VERSION,
+
+      exportedAt:
+        new Date()
+        .toISOString(),
+
+      state
+    };
+
+    const blob =
+      new Blob(
+        [
+          JSON.stringify(
+            backup,
+            null,
+            2
+          )
+        ],
+        {
+          type:
+            "application/json"
+        }
+      );
+
+    const url =
+      URL.createObjectURL(
+        blob
+      );
+
+    const anchor =
+      document.createElement(
+        "a"
+      );
+
+    anchor.href =
+      url;
+
+    anchor.download =
+      "Rii-Brain-" +
+      new Date()
+      .toISOString()
+      .slice(
+        0,
+        10
+      ) +
+      ".json";
+
+    document.body.appendChild(
+      anchor
+    );
+
+    anchor.click();
+
+    anchor.remove();
+
+    setTimeout(
+      () => {
+        URL.revokeObjectURL(
+          url
+        );
+      },
+      1000
+    );
+
+  } catch (error) {
+    console.error(
+      error
+    );
+
+    alert(
+      "Không thể tạo file Backup."
+    );
+  }
+}
+
+document
+.getElementById(
+  "restoreInput"
+)
+.addEventListener(
+  "change",
+  async event => {
+
+    const file =
+      event.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    try {
+      const text =
+        await file.text();
+
+      const parsed =
+        JSON.parse(
+          text
+        );
+
+      /*
+        Hỗ trợ:
+        - backup mới {state:{}}
+        - backup cũ chứa state trực tiếp
+      */
+
+      const rawState =
+        parsed &&
+        parsed.state
+        ?
+        parsed.state
+        :
+        parsed;
+
+      const restored =
+        normalize(
+          rawState
+        );
+
+      if (
+        !confirm(
+          "Restore sẽ thay Brain hiện tại. Bạn có muốn tiếp tục?"
+        )
+      ) {
+        event.target.value =
+          "";
+
+        return;
+      }
+
+      state =
+        restored;
+
+      pendingPhotos =
+        [];
+
+      editingKnowledgeId =
+        null;
+
+      visionImage =
+        "";
+
+      addMemory(
+        "Restore Brain thành công"
+      );
+
+      await saveBrain();
+
+      restoreDraft();
+
+      renderHome();
+
+      alert(
+        "Restore Brain thành công."
+      );
+
+      showPage(
+        "home",
+        0
+      );
+
+    } catch (error) {
+      console.error(
+        error
+      );
+
+      alert(
+        "File Backup không hợp lệ."
+      );
+    }
+
+    event.target.value =
+      "";
+  }
+);
+
+async function resetBrain() {
+  const firstConfirm =
+    confirm(
+      "Bạn có chắc muốn xóa toàn bộ Brain trên thiết bị này?"
+    );
+
+  if (
+    !firstConfirm
+  ) {
+    return;
+  }
+
+  const secondConfirm =
+    confirm(
+      "Xác nhận lần cuối. Dữ liệu đã xóa sẽ không thể khôi phục nếu chưa Backup."
+    );
+
+  if (
+    !secondConfirm
+  ) {
+    return;
+  }
+
+  state =
+    normalize(
+      defaults()
+    );
+
+  pendingPhotos =
+    [];
+
+  editingKnowledgeId =
+    null;
+
+  teachType =
+    "personal";
+
+  brainFilter =
+    "all";
+
+  quizTarget =
+    null;
+
+  visionImage =
+    "";
+
+  await saveBrain();
+
+  restoreDraft();
+
+  renderHome();
+
+  alert(
+    "Đã xóa toàn bộ Brain."
+  );
+
+  showPage(
+    "home",
+    0
+  );
+}
+
+/*
+  KHỞI ĐỘNG RII AI
+*/
 
 (async () => {
   try {
-    await openDatabase();
-    await loadBrain();
-    restoreDraftToUI();
+    await openDB();
+
+    const saved =
+      await dbGet();
+
+    state =
+      normalize(
+        saved
+      );
+
+    /*
+      Giữ database cũ
+      nhưng cập nhật cấu trúc V0.5.3
+    */
+
+    await saveBrain();
+
+    restoreDraft();
+
     renderHome();
+
   } catch (error) {
-    console.error(error);
-    alert("Không thể mở bộ nhớ Brain.");
+    console.error(
+      error
+    );
+
+    alert(
+      "Không thể mở bộ nhớ Brain."
+    );
   }
 })();
+
 </script>
 
 </body>
