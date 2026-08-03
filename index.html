@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#070b10">
-<title>Rii AI V0.5.3</title>
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover"
+>
+
+<meta
+  name="theme-color"
+  content="#070b10"
+>
+
+<title>Rii AI V0.5.4</title>
 
 <style>
+
 :root{
   --bg:#070b10;
-  --p:#111923;
-  --p2:#0d151f;
+  --panel:#111923;
+  --panel2:#0d151f;
   --line:#243142;
   --text:#f4f7fb;
   --muted:#8996a8;
@@ -25,14 +37,24 @@
   -webkit-tap-highlight-color:transparent;
 }
 
+html,
 body{
   margin:0;
+  padding:0;
+  min-height:100%;
   background:var(--bg);
   color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
-button,input,select,textarea{
+button,
+input,
+select,
+textarea{
   font:inherit;
 }
 
@@ -48,13 +70,16 @@ button{
   max-width:500px;
   margin:auto;
   min-height:100vh;
-  padding:20px 16px 120px;
+  padding:
+    20px
+    16px
+    125px;
 }
 
 .top{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  justify-content:space-between;
   margin-bottom:16px;
 }
 
@@ -64,16 +89,25 @@ button{
 }
 
 .version{
-  font-size:12px;
-  color:var(--muted);
   border:1px solid var(--line);
-  padding:7px 11px;
+  color:var(--muted);
   border-radius:999px;
+  padding:7px 11px;
+  font-size:12px;
 }
 
 .card{
-  background:linear-gradient(145deg,#121b27,#0d151f);
-  border:1px solid var(--line);
+  background:
+    linear-gradient(
+      145deg,
+      #121b27,
+      #0d151f
+    );
+
+  border:
+    1px solid
+    var(--line);
+
   border-radius:24px;
   padding:18px;
   margin-bottom:14px;
@@ -87,6 +121,7 @@ button{
 
 .grow{
   flex:1;
+  min-width:0;
 }
 
 .title{
@@ -123,18 +158,22 @@ button{
   align-items:center;
   justify-content:center;
   font-size:40px;
+  flex-shrink:0;
 }
 
 .grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:
+    1fr 1fr;
   gap:10px;
   margin-top:16px;
 }
 
 .stat{
   background:#0b131c;
-  border:1px solid #202c3b;
+  border:
+    1px solid
+    #202c3b;
   border-radius:18px;
   padding:15px;
 }
@@ -153,7 +192,10 @@ button{
 .sectionTitle{
   font-size:20px;
   font-weight:900;
-  margin:21px 2px 12px;
+  margin:
+    21px
+    2px
+    12px;
 }
 
 .btn{
@@ -173,24 +215,32 @@ button{
 .secondary{
   background:#172230;
   color:#fff;
-  border:1px solid #2a394c;
+  border:
+    1px solid
+    #2a394c;
 }
 
 .warning{
   background:#342d1a;
   color:#ffd66b;
-  border:1px solid #5d4c19;
+  border:
+    1px solid
+    #5d4c19;
 }
 
 .danger{
   background:#32171b;
   color:#ff9ca1;
-  border:1px solid #5a232a;
+  border:
+    1px solid
+    #5a232a;
 }
 
 .mini{
   width:auto;
-  padding:9px 10px;
+  padding:
+    9px
+    10px;
   border-radius:12px;
   margin:0;
   font-size:12px;
@@ -202,7 +252,9 @@ textarea{
   width:100%;
   background:#0b131c;
   color:#fff;
-  border:1px solid #2a394c;
+  border:
+    1px solid
+    #2a394c;
   border-radius:15px;
   padding:14px;
   outline:none;
@@ -229,11 +281,15 @@ textarea{
 }
 
 .pill{
-  border:1px solid #2a394c;
+  border:
+    1px solid
+    #2a394c;
   background:#101923;
   color:#dbe4f0;
   border-radius:999px;
-  padding:8px 11px;
+  padding:
+    8px
+    11px;
   font-size:12px;
 }
 
@@ -247,7 +303,9 @@ textarea{
   padding:13px;
   border-radius:15px;
   background:#101c27;
-  border:1px solid #26384c;
+  border:
+    1px solid
+    #26384c;
   color:#b9c8da;
   font-size:12px;
   line-height:1.6;
@@ -257,7 +315,9 @@ textarea{
 .photoBox{
   margin-top:13px;
   padding:15px;
-  border:1px dashed #34465d;
+  border:
+    1px dashed
+    #34465d;
   border-radius:19px;
   background:#0b131c;
   text-align:center;
@@ -265,7 +325,8 @@ textarea{
 
 .photoGrid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
+  grid-template-columns:
+    repeat(3,1fr);
   gap:8px;
   margin-top:11px;
 }
@@ -300,8 +361,10 @@ textarea{
 }
 
 .item{
-  background:var(--p2);
-  border:1px solid #223041;
+  background:var(--panel2);
+  border:
+    1px solid
+    #223041;
   border-radius:18px;
   padding:13px;
   margin-bottom:10px;
@@ -318,14 +381,21 @@ textarea{
   height:64px;
   border-radius:14px;
   background:#172331;
+  flex-shrink:0;
 }
 
 .badge{
   display:inline-block;
-  padding:4px 8px;
+  padding:
+    4px
+    8px;
   border-radius:999px;
   font-size:10px;
-  margin:5px 4px 0 0;
+  margin:
+    5px
+    4px
+    0
+    0;
   background:#17382d;
   color:#5de4b0;
 }
@@ -355,7 +425,12 @@ textarea{
 
 .fill{
   height:100%;
-  background:linear-gradient(90deg,var(--green),var(--blue));
+  background:
+    linear-gradient(
+      90deg,
+      var(--green),
+      var(--blue)
+    );
 }
 
 .actions{
@@ -371,8 +446,10 @@ textarea{
 }
 
 .memory{
-  background:var(--p2);
-  border:1px solid #223041;
+  background:var(--panel2);
+  border:
+    1px solid
+    #223041;
   border-radius:16px;
   padding:12px;
   margin-bottom:8px;
@@ -388,14 +465,18 @@ textarea{
   aspect-ratio:1;
   border-radius:20px;
   background:#111923;
-  margin:13px 0;
+  margin:
+    13px
+    0;
 }
 
 .answer{
   width:100%;
   background:#172230;
   color:#fff;
-  border:1px solid #2a394c;
+  border:
+    1px solid
+    #2a394c;
   padding:14px;
   border-radius:15px;
   margin-top:9px;
@@ -405,37 +486,124 @@ textarea{
 .empty{
   text-align:center;
   color:var(--muted);
-  padding:27px 9px;
+  padding:
+    27px
+    9px;
 }
 
 .loader{
   width:20px;
   height:20px;
-  border:3px solid #ffffff35;
+  border:
+    3px solid
+    #ffffff35;
   border-top-color:#fff;
   border-radius:50%;
-  animation:spin 1s linear infinite;
   display:inline-block;
   vertical-align:middle;
   margin-right:7px;
+  animation:
+    spin
+    1s
+    linear
+    infinite;
 }
 
 @keyframes spin{
-  to{transform:rotate(360deg)}
+  to{
+    transform:
+      rotate(360deg);
+  }
+}
+
+.languageCard{
+  margin-top:13px;
+  background:#0b131c;
+  border:
+    1px solid
+    #26384c;
+  border-radius:18px;
+  padding:14px;
+}
+
+.languageGrid{
+  display:grid;
+  grid-template-columns:
+    1fr;
+  gap:9px;
+  margin-top:10px;
+}
+
+.languageRow{
+  background:#111b27;
+  border:
+    1px solid
+    #26384c;
+  border-radius:15px;
+  padding:12px;
+}
+
+.languageLabel{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.languageValue{
+  margin-top:4px;
+  font-size:16px;
+  font-weight:800;
+  word-break:break-word;
+}
+
+.speechButtons{
+  display:grid;
+  grid-template-columns:
+    1fr 1fr;
+  gap:8px;
+  margin-top:10px;
+}
+
+.speechButtons .btn{
+  margin-top:0;
+  padding:12px;
+}
+
+.languageStatus{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.55;
 }
 
 .bottom{
   position:fixed;
   left:50%;
   bottom:0;
-  transform:translateX(-50%);
-  width:min(100%,500px);
+  transform:
+    translateX(-50%);
+  width:
+    min(
+      100%,
+      500px
+    );
   display:grid;
-  grid-template-columns:repeat(6,1fr);
+  grid-template-columns:
+    repeat(6,1fr);
   background:#070b10f5;
-  backdrop-filter:blur(18px);
-  border-top:1px solid #202c39;
-  padding:9px 3px calc(9px + env(safe-area-inset-bottom));
+  backdrop-filter:
+    blur(18px);
+  border-top:
+    1px solid
+    #202c39;
+  padding:
+    9px
+    3px
+    calc(
+      9px +
+      env(
+        safe-area-inset-bottom
+      )
+    );
 }
 
 .nav{
@@ -452,632 +620,928 @@ textarea{
 .nav.active{
   color:var(--green);
 }
+
 </style>
+
 </head>
 
 <body>
 
 <div class="app">
 
-  <div class="top">
-    <div class="brand">Rii AI</div>
-    <div class="version">V0.5.3</div>
+<div class="top">
+
+  <div class="brand">
+    Rii AI
   </div>
 
-  <section id="homePage">
+  <div class="version">
+    V0.5.4
+  </div>
 
-    <div class="card">
-      <div class="row">
-        <div class="robotIcon">🤖</div>
+</div>
 
-        <div class="grow">
-          <div class="title">Rii</div>
-          <div class="sub">RII000001</div>
-          <div class="sub ok">● Bộ nhớ đang hoạt động</div>
-        </div>
-      </div>
+<section id="homePage">
 
-      <div class="grid">
+<div class="card">
 
-        <div class="stat">
-          <div class="l">Kinh nghiệm</div>
-          <div class="n" id="xpHome">0 XP</div>
-        </div>
+  <div class="row">
 
-        <div class="stat">
-          <div class="l">Não chung</div>
-          <div class="n" id="generalHome">0</div>
-        </div>
-
-        <div class="stat">
-          <div class="l">Não cá nhân</div>
-          <div class="n" id="personalHome">0</div>
-        </div>
-
-        <div class="stat">
-          <div class="l">Tổng ảnh</div>
-          <div class="n" id="imageCountHome">0</div>
-        </div>
-
-      </div>
+    <div class="robotIcon">
+      🤖
     </div>
 
-    <div class="card">
+    <div class="grow">
 
-      <div class="row">
-        <div style="font-size:34px">🪪</div>
-
-        <div class="grow">
-          <div class="title" style="font-size:18px">
-            Danh tính máy chủ
-          </div>
-
-          <div class="sub">
-            <b>RII000001</b> • MASTER
-          </div>
-        </div>
-
-        <span class="badge general">
-          FOUNDATION
-        </span>
+      <div class="title">
+        Rii
       </div>
 
-      <div class="sub" style="margin-top:10px">
-        Máy chủ gốc luôn là <b>Rii</b>.
-        Thiết bị/tài khoản khác dùng serial
-        <b>2 chữ cái + 8 số</b>.
+      <div class="sub">
+        RII000001
+      </div>
+
+      <div class="sub ok">
+        ● Bộ nhớ đang hoạt động
       </div>
 
     </div>
 
-    <div class="card">
+  </div>
 
-      <div class="row">
+  <div class="grid">
 
-        <div style="font-size:35px">
-          👑
-        </div>
+    <div class="stat">
 
-        <div class="grow">
-          <div class="title" style="font-size:18px">
-            Owner Identity
-          </div>
-
-          <div class="sub" id="ownerHome">
-            Chưa thiết lập chủ nhân
-          </div>
-        </div>
-
-        <span class="badge owner">
-          OWNER
-        </span>
-
+      <div class="l">
+        Kinh nghiệm
       </div>
+
+      <div
+        class="n"
+        id="xpHome"
+      >
+        0 XP
+      </div>
+
     </div>
+
+    <div class="stat">
+
+      <div class="l">
+        Não chung
+      </div>
+
+      <div
+        class="n"
+        id="generalHome"
+      >
+        0
+      </div>
+
+    </div>
+
+    <div class="stat">
+
+      <div class="l">
+        Não cá nhân
+      </div>
+
+      <div
+        class="n"
+        id="personalHome"
+      >
+        0
+      </div>
+
+    </div>
+
+    <div class="stat">
+
+      <div class="l">
+        Tổng ảnh
+      </div>
+
+      <div
+        class="n"
+        id="imageCountHome"
+      >
+        0
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div class="card">
+
+  <div class="row">
+
+    <div style="font-size:34px">
+      🪪
+    </div>
+
+    <div class="grow">
+
+      <div
+        class="title"
+        style="font-size:18px"
+      >
+        Danh tính máy chủ
+      </div>
+
+      <div class="sub">
+        <b>RII000001</b>
+        • MASTER
+      </div>
+
+    </div>
+
+    <span class="badge general">
+      FOUNDATION
+    </span>
+
+  </div>
+
+</div>
+
+<div class="card">
+
+  <div class="row">
+
+    <div style="font-size:35px">
+      👑
+    </div>
+
+    <div class="grow">
+
+      <div
+        class="title"
+        style="font-size:18px"
+      >
+        Owner Identity
+      </div>
+
+      <div
+        class="sub"
+        id="ownerHome"
+      >
+        Chưa thiết lập chủ nhân
+      </div>
+
+    </div>
+
+    <span class="badge owner">
+      OWNER
+    </span>
+
+  </div>
+
+</div>
+
+<button
+  class="btn primary"
+  onclick="showPage('teach',1)"
+>
+  ＋ Dạy / bổ sung kiến thức
+</button>
+
+<button
+  class="btn secondary"
+  onclick="startQuiz(2)"
+>
+  🎮 Kiểm tra nhận biết
+</button>
+
+<button
+  class="btn warning"
+  onclick="showPage('vision',3)"
+>
+  ✨ Vision
+</button>
+
+<div class="sectionTitle">
+  Ký ức gần đây
+</div>
+
+<div id="recentMemories"></div>
+
+</section>
+
+<section
+  id="teachPage"
+  class="hidden"
+>
+
+<div class="sectionTitle">
+  Dạy Rii
+</div>
+
+<div
+  id="editNotice"
+  class="notice hidden"
+></div>
+
+<div class="card">
+
+<label class="field">
+  Loại kiến thức
+</label>
+
+<div class="pills">
+
+  <button
+    id="personalPill"
+    class="pill active"
+    onclick="setTeachType('personal')"
+  >
+    👤 Não cá nhân
+  </button>
+
+  <button
+    id="generalPill"
+    class="pill"
+    onclick="setTeachType('general')"
+  >
+    ☁️ Não chung
+  </button>
+
+</div>
+
+<label class="field">
+  Tên đồ vật / kiến thức
+</label>
+
+<input
+  id="teachName"
+  placeholder="Ví dụ: cái ly, コップ, 玻璃杯..."
+>
+
+<label class="field">
+  Ngôn ngữ muốn học và nghe
+</label>
+
+<select id="targetLanguage">
+
+  <option value="en">
+    English
+  </option>
+
+  <option value="vi">
+    Tiếng Việt
+  </option>
+
+  <option value="zh-CN">
+    中文
+  </option>
+
+  <option value="ja">
+    日本語
+  </option>
+
+  <option value="ko">
+    한국어
+  </option>
+
+  <option value="th">
+    ไทย
+  </option>
+
+  <option value="es">
+    Español
+  </option>
+
+  <option value="fr">
+    Français
+  </option>
+
+  <option value="de">
+    Deutsch
+  </option>
+
+  <option value="pt">
+    Português
+  </option>
+
+  <option value="ru">
+    Русский
+  </option>
+
+  <option value="ar">
+    العربية
+  </option>
+
+  <option value="hi">
+    हिन्दी
+  </option>
+
+  <option value="id">
+    Bahasa Indonesia
+  </option>
+
+</select>
+
+<label class="field">
+  Nguồn dữ liệu
+</label>
+
+<select id="teachSource">
+
+  <option value="gallery">
+    Ảnh thật / thư viện
+  </option>
+
+  <option value="camera">
+    Camera
+  </option>
+
+  <option value="ai_generated">
+    AI tạo ảnh
+  </option>
+
+  <option value="dataset">
+    Dataset
+  </option>
+
+</select>
+
+<label class="field">
+  Số ảnh AI muốn tạo
+</label>
+
+<select id="aiCount">
+
+  <option>1</option>
+
+  <option>2</option>
+
+  <option selected>
+    3
+  </option>
+
+  <option>4</option>
+
+  <option>5</option>
+
+  <option>6</option>
+
+</select>
+
+<label class="field">
+  Mô tả thêm cho AI
+</label>
+
+<textarea
+  id="aiExtraPrompt"
+  placeholder="Ví dụ: ly thủy tinh trong suốt, chính diện, nền trắng..."
+></textarea>
+
+<button
+  id="generateBtn"
+  class="btn warning"
+  onclick="generateAiImages()"
+>
+  ✨ Tạo ảnh AI
+</button>
+
+<div
+  id="aiResult"
+  class="notice"
+>
+  Backend sẽ tự nhận ngôn ngữ đầu vào,
+  chuẩn hóa vật thể sang tiếng Anh
+  rồi mới tạo ảnh.
+</div>
+
+<div
+  id="languageResult"
+  class="languageCard hidden"
+>
+
+  <div
+    class="title"
+    style="font-size:17px"
+  >
+    🌐 Ngôn ngữ & phát âm
+  </div>
+
+  <div class="languageGrid">
+
+    <div class="languageRow">
+
+      <div class="languageLabel">
+        Tên gốc
+      </div>
+
+      <div
+        class="languageValue"
+        id="originalNameResult"
+      >
+        —
+      </div>
+
+    </div>
+
+    <div class="languageRow">
+
+      <div class="languageLabel">
+        English chuẩn
+      </div>
+
+      <div
+        class="languageValue"
+        id="englishNameResult"
+      >
+        —
+      </div>
+
+    </div>
+
+    <div class="languageRow">
+
+      <div
+        class="languageLabel"
+        id="targetLanguageLabel"
+      >
+        Ngôn ngữ đã chọn
+      </div>
+
+      <div
+        class="languageValue"
+        id="translatedNameResult"
+      >
+        —
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="speechButtons">
 
     <button
-      class="btn primary"
-      onclick="showPage('teach',1)"
-    >
-      ＋ Dạy / bổ sung kiến thức
-    </button>
-
-    <button
+      id="speakEnglishBtn"
       class="btn secondary"
-      onclick="startQuiz(2)"
+      onclick="speakEnglish()"
     >
-      🎮 Kiểm tra nhận biết
+      🔊 English
     </button>
 
     <button
-      class="btn warning"
-      onclick="showPage('vision',3)"
+      id="speakTargetBtn"
+      class="btn secondary"
+      onclick="speakTargetLanguage()"
     >
-      ✨ Vision
+      🔊 Ngôn ngữ chọn
     </button>
 
-    <div class="sectionTitle">
-      Ký ức gần đây
-    </div>
+  </div>
 
-    <div id="recentMemories"></div>
+  <div
+    id="speechStatus"
+    class="languageStatus"
+  >
+    iPhone sẽ dùng giọng đọc có sẵn
+    trong hệ thống nếu hỗ trợ ngôn ngữ này.
+  </div>
 
-  </section>
+</div>
 
-  <section
-    id="teachPage"
+<div class="photoBox">
+
+  <div
+    class="sub"
+    id="draftStatus"
+  >
+    Bản nháp tự lưu.
+  </div>
+
+  <label
+    for="photoInput"
+    class="btn secondary"
+    style="display:block"
+  >
+    Chọn / chụp ảnh thật
+  </label>
+
+  <input
+    id="photoInput"
+    type="file"
+    accept="image/*"
+    multiple
+    style="display:none"
+  >
+
+  <button
+    class="btn danger"
+    onclick="clearDraftPhotos()"
+  >
+    Xóa ảnh nháp
+  </button>
+
+  <div
+    id="photoPreview"
+    class="photoGrid"
+  ></div>
+
+</div>
+
+<button
+  class="btn primary"
+  onclick="saveKnowledge()"
+>
+  🧠 Ghi / bổ sung vào Brain
+</button>
+
+<button
+  id="cancelEditBtn"
+  class="btn secondary hidden"
+  onclick="cancelContinue()"
+>
+  Hủy bổ sung
+</button>
+
+</div>
+
+</section>
+
+<section
+  id="learnPage"
+  class="hidden"
+>
+
+<div class="sectionTitle">
+  🎮 Learn
+</div>
+
+<div
+  id="quizBox"
+  class="card"
+>
+
+  <div class="empty">
+    Cần ít nhất 2 kiến thức có ảnh.
+  </div>
+
+</div>
+
+</section>
+
+<section
+  id="visionPage"
+  class="hidden"
+>
+
+<div class="sectionTitle">
+  ✨ Vision
+</div>
+
+<div class="card">
+
+  <label
+    for="visionInput"
+    class="btn secondary"
+    style="display:block;text-align:center"
+  >
+    Chọn ảnh để thử
+  </label>
+
+  <input
+    id="visionInput"
+    type="file"
+    accept="image/*"
+    style="display:none"
+  >
+
+  <div
+    id="visionPreviewBox"
     class="hidden"
   >
 
-    <div class="sectionTitle">
-      Dạy Rii
-    </div>
-
-    <div
-      id="editNotice"
-      class="notice hidden"
-    ></div>
-
-    <div class="card">
-
-      <label class="field">
-        Loại kiến thức
-      </label>
-
-      <div class="pills">
-
-        <button
-          id="personalPill"
-          class="pill active"
-          onclick="setTeachType('personal')"
-        >
-          👤 Não cá nhân
-        </button>
-
-        <button
-          id="generalPill"
-          class="pill"
-          onclick="setTeachType('general')"
-        >
-          ☁️ Não chung
-        </button>
-
-      </div>
-
-      <label class="field">
-        Tên đồ vật / kiến thức
-      </label>
-
-      <input
-        id="teachName"
-        placeholder="Ví dụ: cái ly"
-      >
-
-      <label class="field">
-        Nguồn dữ liệu
-      </label>
-
-      <select id="teachSource">
-        <option value="gallery">Ảnh thật / thư viện</option>
-        <option value="camera">Camera</option>
-        <option value="ai_generated">AI tạo ảnh</option>
-        <option value="dataset">Dataset</option>
-      </select>
-
-      <label class="field">
-        Số ảnh AI muốn tạo
-      </label>
-
-      <select id="aiCount">
-        <option>1</option>
-        <option>2</option>
-        <option selected>3</option>
-        <option>4</option>
-        <option>5</option>
-        <option>6</option>
-      </select>
-
-      <label class="field">
-        Mô tả thêm
-      </label>
-
-      <textarea
-        id="aiExtraPrompt"
-        placeholder="Ví dụ: ly thủy tinh trong suốt, chính diện, nền sáng..."
-      ></textarea>
-
-      <button
-        id="generateBtn"
-        class="btn warning"
-        onclick="generateAiImages()"
-      >
-        ✨ Tạo ảnh AI thật
-      </button>
-
-      <div
-        id="aiResult"
-        class="notice"
-      >
-        Nếu backend lỗi, Rii sẽ báo lỗi thật;
-        không tự giả thành ảnh demo.
-      </div>
-
-      <div class="photoBox">
-
-        <div
-          class="sub"
-          id="draftStatus"
-        >
-          Bản nháp tự lưu.
-        </div>
-
-        <label
-          for="photoInput"
-          class="btn secondary"
-          style="display:block"
-        >
-          Chọn / chụp ảnh thật
-        </label>
-
-        <input
-          id="photoInput"
-          type="file"
-          accept="image/*"
-          multiple
-          style="display:none"
-        >
-
-        <button
-          class="btn danger"
-          onclick="clearDraftPhotos()"
-        >
-          Xóa ảnh nháp
-        </button>
-
-        <div
-          id="photoPreview"
-          class="photoGrid"
-        ></div>
-
-      </div>
-
-      <button
-        class="btn primary"
-        onclick="saveKnowledge()"
-      >
-        🧠 Ghi / bổ sung vào Brain
-      </button>
-
-      <button
-        id="cancelEditBtn"
-        class="btn secondary hidden"
-        onclick="cancelContinue()"
-      >
-        Hủy bổ sung
-      </button>
-
-    </div>
-  </section>
-
-  <section
-    id="learnPage"
-    class="hidden"
-  >
-
-    <div class="sectionTitle">
-      🎮 Learn
-    </div>
-
-    <div
-      id="quizBox"
-      class="card"
+    <img
+      id="visionPreview"
+      class="quizImage"
+      alt=""
     >
-      <div class="empty">
-        Cần ít nhất 2 kiến thức có ảnh.
-      </div>
-    </div>
 
-  </section>
+  </div>
 
-  <section
-    id="visionPage"
-    class="hidden"
+  <div class="notice">
+    Vision nhận diện thật sẽ được nâng
+    ở bước tiếp theo sau khi phần
+    đa ngôn ngữ + phát âm ổn định.
+  </div>
+
+</div>
+
+</section>
+
+<section
+  id="brainPage"
+  class="hidden"
+>
+
+<div class="sectionTitle">
+  🧠 Brain
+</div>
+
+<div class="pills">
+
+  <button
+    id="brainAll"
+    class="pill active"
+    onclick="setBrainFilter('all')"
+  >
+    Tất cả
+  </button>
+
+  <button
+    id="brainGeneral"
+    class="pill"
+    onclick="setBrainFilter('general')"
+  >
+    ☁️ Não chung
+  </button>
+
+  <button
+    id="brainPersonal"
+    class="pill"
+    onclick="setBrainFilter('personal')"
+  >
+    👤 Não cá nhân
+  </button>
+
+</div>
+
+<div
+  id="brainList"
+  style="margin-top:12px"
+></div>
+
+</section>
+
+<section
+  id="settingsPage"
+  class="hidden"
+>
+
+<div class="sectionTitle">
+  ⚙️ Settings
+</div>
+
+<div class="card">
+
+  <label class="field">
+    Tên máy chủ
+  </label>
+
+  <input
+    value="Rii"
+    readonly
   >
 
-    <div class="sectionTitle">
-      ✨ Vision
-    </div>
+  <label class="field">
+    Serial máy chủ
+  </label>
 
-    <div class="card">
-
-      <label
-        for="visionInput"
-        class="btn secondary"
-        style="display:block;text-align:center"
-      >
-        Chọn ảnh để thử
-      </label>
-
-      <input
-        id="visionInput"
-        type="file"
-        accept="image/*"
-        style="display:none"
-      >
-
-      <div
-        id="visionPreviewBox"
-        class="hidden"
-      >
-        <img
-          id="visionPreview"
-          class="quizImage"
-          alt=""
-        >
-      </div>
-
-      <div class="notice">
-        V0.5.3 chưa kích hoạt Vision nhận diện thật.
-        Phần này được giữ để nâng cấp model Vision ở bước tiếp theo.
-      </div>
-
-    </div>
-  </section>
-
-  <section
-    id="brainPage"
-    class="hidden"
+  <input
+    value="RII000001"
+    readonly
   >
 
-    <div class="sectionTitle">
-      🧠 Brain
-    </div>
+  <label class="field">
+    Tên chủ nhân
+  </label>
 
-    <div class="pills">
+  <input id="ownerInput">
 
-      <button
-        id="brainAll"
-        class="pill active"
-        onclick="setBrainFilter('all')"
-      >
-        Tất cả
-      </button>
+  <button
+    class="btn primary"
+    onclick="saveProfile()"
+  >
+    Lưu hồ sơ
+  </button>
 
-      <button
-        id="brainGeneral"
-        class="pill"
-        onclick="setBrainFilter('general')"
-      >
-        ☁️ Não chung
-      </button>
+</div>
 
-      <button
-        id="brainPersonal"
-        class="pill"
-        onclick="setBrainFilter('personal')"
-      >
-        👤 Não cá nhân
-      </button>
+<div class="card">
 
-    </div>
+  <div
+    class="title"
+    style="font-size:18px"
+  >
+    🪪 Serial System
+  </div>
 
-    <div
-      id="brainList"
-      style="margin-top:12px"
-    ></div>
+  <label class="field">
+    Device UUID
+  </label>
 
-  </section>
-
-  <section
-    id="settingsPage"
-    class="hidden"
+  <input
+    id="deviceUuidInput"
+    readonly
   >
 
-    <div class="sectionTitle">
-      ⚙️ Settings
-    </div>
+  <button
+    class="btn secondary"
+    onclick="generateNextSerial()"
+  >
+    Tạo serial thử nghiệm
+  </button>
 
-    <div class="card">
+  <div
+    id="generatedSerial"
+    class="helper"
+  ></div>
 
-      <label class="field">
-        Tên máy chủ
-      </label>
+</div>
 
-      <input
-        value="Rii"
-        readonly
-      >
+<div class="card">
 
-      <label class="field">
-        Serial máy chủ
-      </label>
+  <div
+    class="title"
+    style="font-size:18px"
+  >
+    🔗 AI Backend
+  </div>
 
-      <input
-        value="RII000001"
-        readonly
-      >
+  <label class="field">
+    URL gốc Worker
+  </label>
 
-      <label class="field">
-        Tên chủ nhân
-      </label>
+  <input
+    id="apiUrlInput"
+    placeholder="https://rii-backend.xxxxx.workers.dev"
+  >
 
-      <input id="ownerInput">
+  <div class="helper">
+    App tự nối
+    <b>/generate-object-images</b>.
+  </div>
 
-      <button
-        class="btn primary"
-        onclick="saveProfile()"
-      >
-        Lưu hồ sơ
-      </button>
+  <button
+    class="btn secondary"
+    onclick="testApiConnection()"
+  >
+    🧪 Kiểm tra kết nối
+  </button>
 
-    </div>
+  <button
+    class="btn primary"
+    onclick="saveApiConfig()"
+  >
+    Lưu cấu hình API
+  </button>
 
-    <div class="card">
+  <div
+    id="apiStatus"
+    class="notice"
+  >
+    Chưa kiểm tra.
+  </div>
 
-      <div
-        class="title"
-        style="font-size:18px"
-      >
-        🪪 Serial System
-      </div>
+</div>
 
-      <label class="field">
-        Device UUID
-      </label>
+<div class="card">
 
-      <input
-        id="deviceUuidInput"
-        readonly
-      >
+  <div
+    class="title"
+    style="font-size:18px"
+  >
+    💾 Dữ liệu Brain
+  </div>
 
-      <button
-        class="btn secondary"
-        onclick="generateNextSerial()"
-      >
-        Tạo serial thử nghiệm
-      </button>
+  <div
+    id="storageStatus"
+    class="notice"
+  >
+    Đang kiểm tra...
+  </div>
 
-      <div
-        id="generatedSerial"
-        class="helper"
-      ></div>
+  <button
+    class="btn secondary"
+    onclick="backupBrain()"
+  >
+    ⬇️ Backup Brain
+  </button>
 
-    </div>
+  <label
+    for="restoreInput"
+    class="btn secondary"
+    style="display:block;text-align:center"
+  >
+    ⬆️ Restore Brain
+  </label>
 
-    <div class="card">
+  <input
+    id="restoreInput"
+    type="file"
+    accept=".json,application/json"
+    style="display:none"
+  >
 
-      <div
-        class="title"
-        style="font-size:18px"
-      >
-        🔗 AI Backend
-      </div>
+  <button
+    class="btn danger"
+    onclick="resetBrain()"
+  >
+    Xóa toàn bộ Brain
+  </button>
 
-      <label class="field">
-        URL gốc Worker
-      </label>
+</div>
 
-      <input
-        id="apiUrlInput"
-        placeholder="https://rii-backend.xxxxx.workers.dev"
-      >
-
-      <div class="helper">
-        Chỉ nhập URL gốc.
-        App tự nối:
-        <b>/generate-object-images</b>
-      </div>
-
-      <button
-        class="btn secondary"
-        onclick="testApiConnection()"
-      >
-        🧪 Kiểm tra kết nối
-      </button>
-
-      <button
-        class="btn primary"
-        onclick="saveApiConfig()"
-      >
-        Lưu cấu hình API
-      </button>
-
-      <div
-        id="apiStatus"
-        class="notice"
-      >
-        Chưa kiểm tra.
-      </div>
-
-    </div>
-
-    <div class="card">
-
-      <div
-        class="title"
-        style="font-size:18px"
-      >
-        💾 Dữ liệu Brain
-      </div>
-
-      <div
-        id="storageStatus"
-        class="notice"
-      >
-        Đang kiểm tra...
-      </div>
-
-      <button
-        class="btn secondary"
-        onclick="backupBrain()"
-      >
-        ⬇️ Backup Brain
-      </button>
-
-      <label
-        for="restoreInput"
-        class="btn secondary"
-        style="display:block;text-align:center"
-      >
-        ⬆️ Restore Brain
-      </label>
-
-      <input
-        id="restoreInput"
-        type="file"
-        accept=".json,application/json"
-        style="display:none"
-      >
-
-      <button
-        class="btn danger"
-        onclick="resetBrain()"
-      >
-        Xóa toàn bộ Brain
-      </button>
-
-    </div>
-
-  </section>
+</section>
 
 </div>
 
 <div class="bottom">
 
-  <div
-    class="nav active"
-    onclick="showPage('home',0)"
-  >
-    <div class="i">⌂</div>
-    Home
+<div
+  class="nav active"
+  onclick="showPage('home',0)"
+>
+
+  <div class="i">
+    ⌂
   </div>
 
-  <div
-    class="nav"
-    onclick="showPage('teach',1)"
-  >
-    <div class="i">＋</div>
-    Teach
+  Home
+
+</div>
+
+<div
+  class="nav"
+  onclick="showPage('teach',1)"
+>
+
+  <div class="i">
+    ＋
   </div>
 
-  <div
-    class="nav"
-    onclick="startQuiz(2)"
-  >
-    <div class="i">🎮</div>
-    Learn
+  Teach
+
+</div>
+
+<div
+  class="nav"
+  onclick="startQuiz(2)"
+>
+
+  <div class="i">
+    🎮
   </div>
 
-  <div
-    class="nav"
-    onclick="showPage('vision',3)"
-  >
-    <div class="i">✨</div>
-    Vision
+  Learn
+
+</div>
+
+<div
+  class="nav"
+  onclick="showPage('vision',3)"
+>
+
+  <div class="i">
+    ✨
   </div>
 
-  <div
-    class="nav"
-    onclick="showPage('brain',4)"
-  >
-    <div class="i">🧠</div>
-    Brain
+  Vision
+
+</div>
+
+<div
+  class="nav"
+  onclick="showPage('brain',4)"
+>
+
+  <div class="i">
+    🧠
   </div>
 
-  <div
-    class="nav"
-    onclick="showPage('settings',5)"
-  >
-    <div class="i">⚙️</div>
-    Settings
+  Brain
+
+</div>
+
+<div
+  class="nav"
+  onclick="showPage('settings',5)"
+>
+
+  <div class="i">
+    ⚙️
   </div>
+
+  Settings
+
+</div>
 
 </div>
 
 <script>
 const DB_NAME = "MimoBrainV05";
 const STORE_NAME = "brainStore";
-const VERSION = "0.5.3";
+
+const VERSION = "0.5.4";
 const MASTER_SERIAL = "RII000001";
 const ENDPOINT = "/generate-object-images";
 
@@ -1090,6 +1554,32 @@ let editingKnowledgeId = null;
 let brainFilter = "all";
 let quizTarget = null;
 let visionImage = "";
+
+let currentLanguageResult = {
+  originalName: "",
+  normalizedEnglish: "",
+  translatedLabel: "",
+  detectedLanguage: "",
+  targetLanguage: "en",
+  targetLanguageName: "English"
+};
+
+const LANGUAGE_NAMES = {
+  "en": "English",
+  "vi": "Tiếng Việt",
+  "zh-CN": "中文",
+  "ja": "日本語",
+  "ko": "한국어",
+  "th": "ไทย",
+  "es": "Español",
+  "fr": "Français",
+  "de": "Deutsch",
+  "pt": "Português",
+  "ru": "Русский",
+  "ar": "العربية",
+  "hi": "हिन्दी",
+  "id": "Bahasa Indonesia"
+};
 
 function defaults() {
   return {
@@ -1121,8 +1611,18 @@ function defaults() {
       type: "personal",
       source: "gallery",
       extraPrompt: "",
+      targetLanguage: "en",
       photos: [],
-      editingKnowledgeId: null
+      editingKnowledgeId: null,
+
+      languageResult: {
+        originalName: "",
+        normalizedEnglish: "",
+        translatedLabel: "",
+        detectedLanguage: "",
+        targetLanguage: "en",
+        targetLanguageName: "English"
+      }
     },
 
     knowledge: {},
@@ -1285,11 +1785,16 @@ function normalize(saved) {
       ...next.draft,
       ...(saved.draft || {})
     };
-  }
 
-  /*
-    Máy chủ gốc luôn cố định
-  */
+    next.draft.languageResult = {
+      ...defaults().draft.languageResult,
+      ...(
+        saved.draft
+        ?.languageResult ||
+        {}
+      )
+    };
+  }
 
   next.robot.name =
     "Rii";
@@ -1303,10 +1808,6 @@ function normalize(saved) {
   next.robot.role =
     "master";
 
-  /*
-    Device UUID
-  */
-
   if (
     !next.robot.deviceUuid
   ) {
@@ -1316,12 +1817,9 @@ function normalize(saved) {
       typeof window.crypto.randomUUID ===
       "function"
     ) {
-
       next.robot.deviceUuid =
         window.crypto.randomUUID();
-
     } else {
-
       next.robot.deviceUuid =
         "DEV-" +
         Date.now() +
@@ -1331,10 +1829,6 @@ function normalize(saved) {
         .slice(2);
     }
   }
-
-  /*
-    Master serial luôn tồn tại
-  */
 
   if (
     !next.serialRegistry.includes(
@@ -1346,53 +1840,79 @@ function normalize(saved) {
     );
   }
 
-  /*
-    Chuẩn hóa knowledge cũ
-  */
-
   Object.values(
     next.knowledge
-  ).forEach(item => {
+  ).forEach(
+    item => {
 
-    item.images =
-      Array.isArray(
-        item.images
-      )
-      ? item.images
-      : [];
+      item.images =
+        Array.isArray(
+          item.images
+        )
+        ? item.images
+        : [];
 
-    item.correct =
-      Number(
-        item.correct || 0
-      );
+      item.correct =
+        Number(
+          item.correct || 0
+        );
 
-    item.wrong =
-      Number(
-        item.wrong || 0
-      );
+      item.wrong =
+        Number(
+          item.wrong || 0
+        );
 
-    item.confidence =
-      Number(
-        item.confidence ?? 10
-      );
+      item.confidence =
+        Number(
+          item.confidence ?? 10
+        );
 
-    item.type =
-      item.type ||
-      "personal";
+      item.type =
+        item.type ||
+        "personal";
 
-    item.source =
-      item.source ||
-      "legacy";
+      item.source =
+        item.source ||
+        "legacy";
 
-    item.createdAt =
-      item.createdAt ||
-      new Date()
-      .toISOString();
+      item.originalName =
+        item.originalName ||
+        item.name ||
+        "";
 
-    item.updatedAt =
-      item.updatedAt ||
-      item.createdAt;
-  });
+      item.normalizedEnglish =
+        item.normalizedEnglish ||
+        "";
+
+      item.translatedLabel =
+        item.translatedLabel ||
+        "";
+
+      item.targetLanguage =
+        item.targetLanguage ||
+        "en";
+
+      item.targetLanguageName =
+        item.targetLanguageName ||
+        LANGUAGE_NAMES[
+          item.targetLanguage
+        ] ||
+        item.targetLanguage;
+
+      item.detectedLanguage =
+        item.detectedLanguage ||
+        "";
+
+      item.createdAt =
+        item.createdAt ||
+        new Date()
+        .toISOString();
+
+      item.updatedAt =
+        item.updatedAt ||
+        item.createdAt;
+    }
+  );
 
   next.config.aiApiUrl =
     normalizeBase(
@@ -1493,11 +2013,125 @@ function addMemory(text) {
     );
 }
 
+function getTargetLanguage() {
+  const select =
+    document.getElementById(
+      "targetLanguage"
+    );
+
+  const code =
+    select.value ||
+    "en";
+
+  return {
+    code,
+    name:
+      LANGUAGE_NAMES[
+        code
+      ] ||
+      code
+  };
+}
+
+function resetLanguageResult() {
+  const language =
+    getTargetLanguage();
+
+  currentLanguageResult = {
+    originalName: "",
+    normalizedEnglish: "",
+    translatedLabel: "",
+    detectedLanguage: "",
+    targetLanguage:
+      language.code,
+    targetLanguageName:
+      language.name
+  };
+
+  renderLanguageResult();
+}
+
+function renderLanguageResult() {
+  const box =
+    document.getElementById(
+      "languageResult"
+    );
+
+  const original =
+    currentLanguageResult
+    .originalName || "";
+
+  const english =
+    currentLanguageResult
+    .normalizedEnglish || "";
+
+  const translated =
+    currentLanguageResult
+    .translatedLabel || "";
+
+  if (
+    !original &&
+    !english &&
+    !translated
+  ) {
+    box.classList.add(
+      "hidden"
+    );
+
+    return;
+  }
+
+  box.classList.remove(
+    "hidden"
+  );
+
+  document
+  .getElementById(
+    "originalNameResult"
+  )
+  .textContent =
+    original || "—";
+
+  document
+  .getElementById(
+    "englishNameResult"
+  )
+  .textContent =
+    english || "—";
+
+  document
+  .getElementById(
+    "translatedNameResult"
+  )
+  .textContent =
+    translated || "—";
+
+  document
+  .getElementById(
+    "targetLanguageLabel"
+  )
+  .textContent =
+    currentLanguageResult
+    .targetLanguageName ||
+    "Ngôn ngữ đã chọn";
+
+  document
+  .getElementById(
+    "speakTargetBtn"
+  )
+  .textContent =
+    "🔊 " +
+    (
+      currentLanguageResult
+      .targetLanguageName ||
+      "Ngôn ngữ chọn"
+    );
+}
+
 function showPage(
   name,
   index
 ) {
-
   [
     "home",
     "teach",
@@ -1505,17 +2139,19 @@ function showPage(
     "vision",
     "brain",
     "settings"
-  ].forEach(page => {
+  ].forEach(
+    page => {
 
-    document
-    .getElementById(
-      page + "Page"
-    )
-    .classList
-    .add(
-      "hidden"
-    );
-  });
+      document
+      .getElementById(
+        page + "Page"
+      )
+      .classList
+      .add(
+        "hidden"
+      );
+    }
+  );
 
   document
   .getElementById(
@@ -1530,17 +2166,18 @@ function showPage(
   .querySelectorAll(
     ".nav"
   )
-  .forEach(item => {
+  .forEach(
+    item => {
 
-    item.classList.remove(
-      "active"
-    );
-  });
+      item.classList.remove(
+        "active"
+      );
+    }
+  );
 
   if (
     index !== undefined
   ) {
-
     document
     .querySelectorAll(
       ".nav"
@@ -1660,11 +2297,13 @@ function renderHome() {
       .map(
         item => `
           <div class="memory">
+
             ${esc(item.text)}
 
             <div class="time">
               ${esc(item.time)}
             </div>
+
           </div>
         `
       )
@@ -1714,8 +2353,10 @@ function updateTeachPills() {
 }
 
 async function saveDraft() {
-  state.draft = {
+  const language =
+    getTargetLanguage();
 
+  state.draft = {
     name:
       document
       .getElementById(
@@ -1741,10 +2382,18 @@ async function saveDraft() {
       )
       .value,
 
+    targetLanguage:
+      language.code,
+
     photos:
       [...pendingPhotos],
 
-    editingKnowledgeId
+    editingKnowledgeId,
+
+    languageResult:
+      clone(
+        currentLanguageResult
+      )
   };
 
   document
@@ -1802,9 +2451,30 @@ function restoreDraft() {
     draft.extraPrompt ||
     "";
 
+  document
+  .getElementById(
+    "targetLanguage"
+  )
+  .value =
+    draft.targetLanguage ||
+    "en";
+
+  currentLanguageResult = {
+    ...defaults()
+    .draft
+    .languageResult,
+
+    ...(
+      draft.languageResult ||
+      {}
+    )
+  };
+
   updateTeachPills();
 
   renderPhotos();
+
+  renderLanguageResult();
 
   updateEditNotice();
 }
@@ -1812,26 +2482,28 @@ function restoreDraft() {
 [
   "teachName",
   "aiExtraPrompt"
-].forEach(id => {
+].forEach(
+  id => {
 
-  document
-  .getElementById(id)
-  .addEventListener(
-    "input",
-    () => {
+    document
+    .getElementById(id)
+    .addEventListener(
+      "input",
+      () => {
 
-      clearTimeout(
-        window.draftTimer
-      );
-
-      window.draftTimer =
-        setTimeout(
-          saveDraft,
-          300
+        clearTimeout(
+          window.draftTimer
         );
-    }
-  );
-});
+
+        window.draftTimer =
+          setTimeout(
+            saveDraft,
+            300
+          );
+      }
+    );
+  }
+);
 
 document
 .getElementById(
@@ -1840,6 +2512,40 @@ document
 .addEventListener(
   "change",
   saveDraft
+);
+
+document
+.getElementById(
+  "targetLanguage"
+)
+.addEventListener(
+  "change",
+  async () => {
+
+    const language =
+      getTargetLanguage();
+
+    currentLanguageResult
+    .targetLanguage =
+      language.code;
+
+    currentLanguageResult
+    .targetLanguageName =
+      language.name;
+
+    if (
+      currentLanguageResult
+      .translatedLabel
+    ) {
+      currentLanguageResult
+      .translatedLabel =
+        "";
+    }
+
+    renderLanguageResult();
+
+    await saveDraft();
+  }
 );
 
 document
@@ -1871,10 +2577,16 @@ document
           image
         );
 
-      } catch (error) {
+      } catch (
+        error
+      ) {
 
         console.error(
           error
+        );
+
+        alert(
+          "Có ảnh không thể đọc."
         );
       }
     }
@@ -1969,6 +2681,18 @@ function compressImage(file) {
                 canvas.getContext(
                   "2d"
                 );
+
+              if (
+                !context
+              ) {
+                reject(
+                  new Error(
+                    "Không tạo được canvas ảnh."
+                  )
+                );
+
+                return;
+              }
 
               context.drawImage(
                 image,
@@ -2082,7 +2806,9 @@ function setLoading(on) {
   button.disabled =
     on;
 
-  if (on) {
+  if (
+    on
+  ) {
 
     button.innerHTML = `
       <span class="loader"></span>
@@ -2092,14 +2818,14 @@ function setLoading(on) {
   } else {
 
     button.innerHTML =
-      "✨ Tạo ảnh AI thật";
+      "✨ Tạo ảnh AI";
   }
 }
 
 async function fetchTimeout(
   url,
   options = {},
-  timeout = 60000
+  timeout = 90000
 ) {
   const controller =
     new AbortController();
@@ -2139,7 +2865,9 @@ async function generateAiImages() {
     .value
     .trim();
 
-  if (!name) {
+  if (
+    !name
+  ) {
 
     alert(
       "Hãy nhập tên đồ vật."
@@ -2151,7 +2879,9 @@ async function generateAiImages() {
   const endpoint =
     apiEndpoint();
 
-  if (!endpoint) {
+  if (
+    !endpoint
+  ) {
 
     alert(
       "Chưa cấu hình AI Backend trong Settings."
@@ -2190,17 +2920,25 @@ async function generateAiImages() {
     .value
     .trim();
 
+  const language =
+    getTargetLanguage();
+
   const resultBox =
     document
     .getElementById(
       "aiResult"
     );
 
-  setLoading(true);
+  setLoading(
+    true
+  );
 
   resultBox.innerHTML = `
     <span class="loader"></span>
-    Đang gọi Rii AI Backend...
+
+    Đang nhận diện ngôn ngữ,
+    chuẩn hóa tên vật
+    và tạo ảnh...
   `;
 
   try {
@@ -2225,10 +2963,16 @@ async function generateAiImages() {
               count,
 
               prompt:
-                extra
+                extra,
+
+              targetLanguage:
+                language.code,
+
+              targetLanguageName:
+                language.name
             })
         },
-        60000
+        90000
       );
 
     let data;
@@ -2277,8 +3021,12 @@ async function generateAiImages() {
           typeof image ===
           "string"
           &&
+          image.startsWith(
+            "data:image/"
+          )
+          &&
           image.length >
-          50
+          100
       );
 
     if (
@@ -2289,6 +3037,44 @@ async function generateAiImages() {
         "Dữ liệu ảnh backend không hợp lệ."
       );
     }
+
+    currentLanguageResult = {
+      originalName:
+        String(
+          data.originalName ||
+          name
+        ),
+
+      normalizedEnglish:
+        String(
+          data.normalizedEnglish ||
+          ""
+        ),
+
+      translatedLabel:
+        String(
+          data.translatedLabel ||
+          ""
+        ),
+
+      detectedLanguage:
+        String(
+          data.detectedLanguage ||
+          ""
+        ),
+
+      targetLanguage:
+        String(
+          data.targetLanguage ||
+          language.code
+        ),
+
+      targetLanguageName:
+        String(
+          data.targetLanguageName ||
+          language.name
+        )
+    };
 
     pendingPhotos.push(
       ...validImages
@@ -2303,11 +3089,23 @@ async function generateAiImages() {
 
     renderPhotos();
 
+    renderLanguageResult();
+
     addMemory(
       "AI tạo " +
       validImages.length +
       " ảnh cho: " +
-      name
+      name +
+      (
+        currentLanguageResult
+        .normalizedEnglish
+        ?
+        " → " +
+        currentLanguageResult
+        .normalizedEnglish
+        :
+        ""
+      )
     );
 
     await saveDraft();
@@ -2317,13 +3115,42 @@ async function generateAiImages() {
         ✅ Tạo ảnh thành công
       </b>
 
+      <br><br>
+
+      Tên gốc:
+      <b>
+        ${esc(
+          currentLanguageResult
+          .originalName
+        )}
+      </b>
+
       <br>
 
-      Backend:
-      ${esc(
-        data.version ||
-        "0.3.0"
-      )}
+      English chuẩn:
+      <b>
+        ${esc(
+          currentLanguageResult
+          .normalizedEnglish ||
+          "—"
+        )}
+      </b>
+
+      <br>
+
+      ${
+        esc(
+          currentLanguageResult
+          .targetLanguageName
+        )
+      }:
+      <b>
+        ${esc(
+          currentLanguageResult
+          .translatedLabel ||
+          "—"
+        )}
+      </b>
 
       <br>
 
@@ -2331,10 +3158,12 @@ async function generateAiImages() {
       <b>
         ${validImages.length}
       </b>
-      ảnh AI.
+      ảnh.
     `;
 
-  } catch (error) {
+  } catch (
+    error
+  ) {
 
     console.error(
       error
@@ -2350,7 +3179,7 @@ async function generateAiImages() {
     ) {
 
       message =
-        "Backend mất quá 60 giây.";
+        "Backend mất quá 90 giây.";
     }
 
     resultBox.innerHTML = `
@@ -2358,7 +3187,7 @@ async function generateAiImages() {
         ❌ Tạo ảnh thất bại
       </b>
 
-      <br>
+      <br><br>
 
       ${esc(message)}
     `;
@@ -2370,8 +3199,158 @@ async function generateAiImages() {
 
   } finally {
 
-    setLoading(false);
+    setLoading(
+      false
+    );
   }
+}
+
+function speakText(
+  text,
+  languageCode
+) {
+  const value =
+    String(
+      text || ""
+    )
+    .trim();
+
+  const status =
+    document.getElementById(
+      "speechStatus"
+    );
+
+  if (
+    !value
+  ) {
+
+    status.innerHTML = `
+      <span class="bad">
+        Không có từ để đọc.
+      </span>
+    `;
+
+    return;
+  }
+
+  if (
+    !(
+      "speechSynthesis"
+      in window
+    )
+    ||
+    typeof SpeechSynthesisUtterance ===
+    "undefined"
+  ) {
+
+    status.innerHTML = `
+      <span class="bad">
+        Trình duyệt này không hỗ trợ phát âm.
+      </span>
+    `;
+
+    return;
+  }
+
+  try {
+
+    window
+    .speechSynthesis
+    .cancel();
+
+    const utterance =
+      new SpeechSynthesisUtterance(
+        value
+      );
+
+    utterance.lang =
+      languageCode ||
+      "en-US";
+
+    utterance.rate =
+      0.9;
+
+    utterance.pitch =
+      1;
+
+    utterance.volume =
+      1;
+
+    utterance.onstart =
+      () => {
+
+        status.innerHTML = `
+          <span class="ok">
+            🔊 Đang đọc:
+          </span>
+
+          ${esc(value)}
+        `;
+      };
+
+    utterance.onend =
+      () => {
+
+        status.innerHTML = `
+          Đã đọc:
+          <b>
+            ${esc(value)}
+          </b>
+        `;
+      };
+
+    utterance.onerror =
+      event => {
+
+        console.error(
+          event
+        );
+
+        status.innerHTML = `
+          <span class="bad">
+            Không phát được giọng này.
+          </span>
+        `;
+      };
+
+    window
+    .speechSynthesis
+    .speak(
+      utterance
+    );
+
+  } catch (
+    error
+  ) {
+
+    console.error(
+      error
+    );
+
+    status.innerHTML = `
+      <span class="bad">
+        Có lỗi khi phát âm.
+      </span>
+    `;
+  }
+}
+
+function speakEnglish() {
+  speakText(
+    currentLanguageResult
+    .normalizedEnglish,
+    "en-US"
+  );
+}
+
+function speakTargetLanguage() {
+  speakText(
+    currentLanguageResult
+    .translatedLabel,
+    currentLanguageResult
+    .targetLanguage ||
+    "en-US"
+  );
 }
 
 async function saveKnowledge() {
@@ -2383,7 +3362,9 @@ async function saveKnowledge() {
     .value
     .trim();
 
-  if (!name) {
+  if (
+    !name
+  ) {
 
     alert(
       "Hãy nhập tên kiến thức."
@@ -2410,6 +3391,9 @@ async function saveKnowledge() {
     )
     .value;
 
+  const language =
+    getTargetLanguage();
+
   let object =
     editingKnowledgeId
     ?
@@ -2419,7 +3403,9 @@ async function saveKnowledge() {
     :
       null;
 
-  if (!object) {
+  if (
+    !object
+  ) {
 
     object =
       Object
@@ -2455,10 +3441,45 @@ async function saveKnowledge() {
         )
     );
 
-  if (object) {
+  if (
+    object
+  ) {
 
     object.name =
       name;
+
+    object.originalName =
+      currentLanguageResult
+      .originalName ||
+      name;
+
+    object.normalizedEnglish =
+      currentLanguageResult
+      .normalizedEnglish ||
+      object.normalizedEnglish ||
+      "";
+
+    object.translatedLabel =
+      currentLanguageResult
+      .translatedLabel ||
+      object.translatedLabel ||
+      "";
+
+    object.detectedLanguage =
+      currentLanguageResult
+      .detectedLanguage ||
+      object.detectedLanguage ||
+      "";
+
+    object.targetLanguage =
+      currentLanguageResult
+      .targetLanguage ||
+      language.code;
+
+    object.targetLanguageName =
+      currentLanguageResult
+      .targetLanguageName ||
+      language.name;
 
     object.type =
       teachType;
@@ -2496,10 +3517,39 @@ async function saveKnowledge() {
       );
 
     state.knowledge[id] = {
-
       id,
 
       name,
+
+      originalName:
+        currentLanguageResult
+        .originalName ||
+        name,
+
+      normalizedEnglish:
+        currentLanguageResult
+        .normalizedEnglish ||
+        "",
+
+      translatedLabel:
+        currentLanguageResult
+        .translatedLabel ||
+        "",
+
+      detectedLanguage:
+        currentLanguageResult
+        .detectedLanguage ||
+        "",
+
+      targetLanguage:
+        currentLanguageResult
+        .targetLanguage ||
+        language.code,
+
+      targetLanguageName:
+        currentLanguageResult
+        .targetLanguageName ||
+        language.name,
 
       type:
         teachType,
@@ -2545,7 +3595,7 @@ async function saveKnowledge() {
   await saveBrain();
 
   alert(
-    "Đã lưu vào Brain. Ảnh cũ vẫn được giữ."
+    "Đã lưu vào Brain."
   );
 
   showPage(
@@ -2564,9 +3614,17 @@ function clearDraftState() {
   teachType =
     "personal";
 
+  currentLanguageResult =
+    clone(
+      defaults()
+      .draft
+      .languageResult
+    );
+
   state.draft =
     clone(
-      defaults().draft
+      defaults()
+      .draft
     );
 
   document
@@ -2590,9 +3648,18 @@ function clearDraftState() {
   .value =
     "gallery";
 
+  document
+  .getElementById(
+    "targetLanguage"
+  )
+  .value =
+    "en";
+
   updateTeachPills();
 
   renderPhotos();
+
+  renderLanguageResult();
 
   updateEditNotice();
 }
@@ -2648,7 +3715,9 @@ async function continueKnowledge(
   const item =
     state.knowledge[id];
 
-  if (!item) {
+  if (
+    !item
+  ) {
     return;
   }
 
@@ -2661,8 +3730,38 @@ async function continueKnowledge(
   pendingPhotos =
     [];
 
-  state.draft = {
+  currentLanguageResult = {
+    originalName:
+      item.originalName ||
+      item.name ||
+      "",
 
+    normalizedEnglish:
+      item.normalizedEnglish ||
+      "",
+
+    translatedLabel:
+      item.translatedLabel ||
+      "",
+
+    detectedLanguage:
+      item.detectedLanguage ||
+      "",
+
+    targetLanguage:
+      item.targetLanguage ||
+      "en",
+
+    targetLanguageName:
+      item.targetLanguageName ||
+      LANGUAGE_NAMES[
+        item.targetLanguage ||
+        "en"
+      ] ||
+      "English"
+  };
+
+  state.draft = {
     name:
       item.name,
 
@@ -2676,11 +3775,20 @@ async function continueKnowledge(
     extraPrompt:
       "",
 
+    targetLanguage:
+      item.targetLanguage ||
+      "en",
+
     photos:
       [],
 
     editingKnowledgeId:
-      id
+      id,
+
+    languageResult:
+      clone(
+        currentLanguageResult
+      )
   };
 
   await saveBrain();
@@ -2708,7 +3816,9 @@ async function deleteKnowledge(
   const item =
     state.knowledge[id];
 
-  if (!item) {
+  if (
+    !item
+  ) {
     return;
   }
 
@@ -2746,15 +3856,17 @@ function setBrainFilter(
     "brainAll",
     "brainGeneral",
     "brainPersonal"
-  ].forEach(id => {
+  ].forEach(
+    id => {
 
-    document
-    .getElementById(id)
-    .classList
-    .remove(
-      "active"
-    );
-  });
+      document
+      .getElementById(id)
+      .classList
+      .remove(
+        "active"
+      );
+    }
+  );
 
   let activeId =
     "brainAll";
@@ -2845,134 +3957,237 @@ function renderBrain() {
   box.innerHTML =
     items
     .map(
-      item => `
-        <div class="item">
+      item => {
 
-          <div class="itemTop">
+        const english =
+          item.normalizedEnglish ||
+          "";
 
-            ${
-              item.images?.[0]
-              ?
-              `
-                <img
-                  class="thumb"
-                  src="${item.images[0]}"
-                  alt=""
-                >
-              `
-              :
-              `
-                <div class="thumb"></div>
-              `
-            }
+        const translated =
+          item.translatedLabel ||
+          "";
 
-            <div class="grow">
+        const languageName =
+          item.targetLanguageName ||
+          LANGUAGE_NAMES[
+            item.targetLanguage
+          ] ||
+          "";
 
-              <div
-                class="title"
-                style="font-size:17px"
-              >
-                ${esc(item.name)}
-              </div>
+        return `
+          <div class="item">
 
-              <span
-                class="badge ${
-                  item.type ===
-                  "general"
-                  ?
-                  "general"
-                  :
-                  ""
-                }"
-              >
-                ${
-                  item.type ===
-                  "general"
-                  ?
-                  "NÃO CHUNG"
-                  :
-                  "NÃO CÁ NHÂN"
-                }
-              </span>
+            <div class="itemTop">
 
               ${
-                item.source ===
-                "ai_generated"
+                item.images?.[0]
                 ?
                 `
-                  <span class="badge ai">
-                    AI
-                  </span>
+                  <img
+                    class="thumb"
+                    src="${item.images[0]}"
+                    alt=""
+                  >
+                `
+                :
+                `
+                  <div class="thumb"></div>
+                `
+              }
+
+              <div class="grow">
+
+                <div
+                  class="title"
+                  style="font-size:17px"
+                >
+                  ${esc(item.name)}
+                </div>
+
+                <span
+                  class="badge ${
+                    item.type ===
+                    "general"
+                    ?
+                    "general"
+                    :
+                    ""
+                  }"
+                >
+                  ${
+                    item.type ===
+                    "general"
+                    ?
+                    "NÃO CHUNG"
+                    :
+                    "NÃO CÁ NHÂN"
+                  }
+                </span>
+
+                ${
+                  item.source ===
+                  "ai_generated"
+                  ?
+                  `
+                    <span class="badge ai">
+                      AI
+                    </span>
+                  `
+                  :
+                  ""
+                }
+
+                <div class="sub">
+                  ${item.images?.length || 0}
+                  ảnh
+                  • đúng
+                  ${item.correct || 0}
+                  • sai
+                  ${item.wrong || 0}
+                </div>
+
+                ${
+                  english
+                  ?
+                  `
+                    <div class="sub">
+                      🇬🇧 English:
+                      <b>
+                        ${esc(english)}
+                      </b>
+                    </div>
+                  `
+                  :
+                  ""
+                }
+
+                ${
+                  translated
+                  ?
+                  `
+                    <div class="sub">
+                      🌐 ${esc(languageName)}:
+                      <b>
+                        ${esc(translated)}
+                      </b>
+                    </div>
+                  `
+                  :
+                  ""
+                }
+
+              </div>
+
+            </div>
+
+            <div class="bar">
+
+              <div
+                class="fill"
+                style="
+                  width:
+                  ${
+                    Math.max(
+                      0,
+                      Math.min(
+                        100,
+                        item.confidence ||
+                        0
+                      )
+                    )
+                  }%
+                "
+              ></div>
+
+            </div>
+
+            <div class="sub">
+              Độ tin cậy:
+              ${
+                Math.round(
+                  item.confidence ||
+                  0
+                )
+              }%
+            </div>
+
+            <div class="actions">
+
+              ${
+                english
+                ?
+                `
+                  <button
+                    class="btn secondary mini"
+                    onclick="speakText('${escapeJsString(english)}','en-US')"
+                  >
+                    🔊 English
+                  </button>
                 `
                 :
                 ""
               }
 
-              <div class="sub">
-                ${item.images?.length || 0}
-                ảnh
-                • đúng
-                ${item.correct || 0}
-                • sai
-                ${item.wrong || 0}
-              </div>
+              ${
+                translated
+                ?
+                `
+                  <button
+                    class="btn secondary mini"
+                    onclick="speakText('${escapeJsString(translated)}','${escapeJsString(item.targetLanguage || "en")}')"
+                  >
+                    🔊 ${esc(languageName)}
+                  </button>
+                `
+                :
+                ""
+              }
+
+              <button
+                class="btn secondary mini"
+                onclick="continueKnowledge('${item.id}')"
+              >
+                ＋ Thêm ảnh
+              </button>
+
+              <button
+                class="btn danger mini"
+                onclick="deleteKnowledge('${item.id}')"
+              >
+                Xóa
+              </button>
 
             </div>
-          </div>
-
-          <div class="bar">
-
-            <div
-              class="fill"
-              style="
-                width:
-                ${
-                  Math.max(
-                    0,
-                    Math.min(
-                      100,
-                      item.confidence ||
-                      0
-                    )
-                  )
-                }%
-              "
-            ></div>
 
           </div>
-
-          <div class="sub">
-            Độ tin cậy:
-            ${
-              Math.round(
-                item.confidence ||
-                0
-              )
-            }%
-          </div>
-
-          <div class="actions">
-
-            <button
-              class="btn secondary mini"
-              onclick="continueKnowledge('${item.id}')"
-            >
-              ＋ Thêm ảnh
-            </button>
-
-            <button
-              class="btn danger mini"
-              onclick="deleteKnowledge('${item.id}')"
-            >
-              Xóa
-            </button>
-
-          </div>
-
-        </div>
-      `
+        `;
+      }
     )
     .join("");
+}
+
+function escapeJsString(
+  value
+) {
+  return String(
+    value || ""
+  )
+  .replace(
+    /\\/g,
+    "\\\\"
+  )
+  .replace(
+    /'/g,
+    "\\'"
+  )
+  .replace(
+    /\r/g,
+    "\\r"
+  )
+  .replace(
+    /\n/g,
+    "\\n"
+  );
 }
 
 function candidates() {
@@ -3090,6 +4305,21 @@ function nextQuestion() {
     >
 
     ${
+      quizTarget.normalizedEnglish
+      ?
+      `
+        <button
+          class="btn secondary"
+          onclick="speakText('${escapeJsString(quizTarget.normalizedEnglish)}','en-US')"
+        >
+          🔊 Nghe từ tiếng Anh
+        </button>
+      `
+      :
+      ""
+    }
+
+    ${
       choices
       .map(
         item => `
@@ -3123,7 +4353,9 @@ async function checkAnswer(
       quizTarget.id
     ];
 
-  if (!item) {
+  if (
+    !item
+  ) {
     return;
   }
 
@@ -3226,7 +4458,9 @@ document
     const file =
       event.target.files[0];
 
-    if (!file) {
+    if (
+      !file
+    ) {
       return;
     }
 
@@ -3253,7 +4487,9 @@ document
         "hidden"
       );
 
-    } catch (error) {
+    } catch (
+      error
+    ) {
 
       console.error(
         error
@@ -3301,12 +4537,13 @@ function renderSettings() {
   if (
     state.config.aiApiUrl
   ) {
+
     statusBox.innerHTML = `
       <b class="ok">
         ✅ Backend đã lưu
       </b>
 
-      <br>
+      <br><br>
 
       ${esc(
         state.config.aiApiUrl
@@ -3314,10 +4551,7 @@ function renderSettings() {
 
       <br><br>
 
-      Endpoint tạo ảnh:
-
-      <br>
-
+      Endpoint:
       <b>
         ${esc(
           state.config.aiApiUrl +
@@ -3325,7 +4559,9 @@ function renderSettings() {
         )}
       </b>
     `;
+
   } else {
+
     statusBox.innerHTML = `
       Chưa cấu hình AI Backend.
     `;
@@ -3345,10 +4581,6 @@ async function saveProfile() {
 
   state.owner.name =
     ownerName;
-
-  /*
-    Khóa danh tính máy chủ
-  */
 
   state.robot.name =
     "Rii";
@@ -3393,6 +4625,7 @@ async function saveApiConfig() {
       url
     )
   ) {
+
     alert(
       "URL backend phải bắt đầu bằng https://"
     );
@@ -3406,11 +4639,16 @@ async function saveApiConfig() {
   input.value =
     url;
 
-  if (url) {
+  if (
+    url
+  ) {
+
     addMemory(
       "Đã cấu hình AI Backend"
     );
+
   } else {
+
     addMemory(
       "Đã xóa cấu hình AI Backend"
     );
@@ -3443,7 +4681,10 @@ async function testApiConnection() {
       "apiStatus"
     );
 
-  if (!baseUrl) {
+  if (
+    !baseUrl
+  ) {
+
     alert(
       "Hãy nhập URL Worker trước."
     );
@@ -3456,6 +4697,7 @@ async function testApiConnection() {
       baseUrl
     )
   ) {
+
     statusBox.innerHTML = `
       <b class="bad">
         ❌ URL không hợp lệ
@@ -3476,6 +4718,7 @@ async function testApiConnection() {
   `;
 
   try {
+
     const response =
       await fetchTimeout(
         baseUrl +
@@ -3484,15 +4727,18 @@ async function testApiConnection() {
           method:
             "GET"
         },
-        10000
+        15000
       );
 
     let data;
 
     try {
+
       data =
         await response.json();
+
     } catch {
+
       throw new Error(
         "Backend không trả JSON hợp lệ."
       );
@@ -3502,6 +4748,7 @@ async function testApiConnection() {
       !response.ok ||
       !data.ok
     ) {
+
       throw new Error(
         data.error ||
         (
@@ -3511,12 +4758,34 @@ async function testApiConnection() {
       );
     }
 
+    const versionOk =
+      String(
+        data.version ||
+        ""
+      )
+      .startsWith(
+        "0.4."
+      );
+
     const aiReady =
-      data.hasAI === true;
+      data.hasAI ===
+      true;
 
     statusBox.innerHTML = `
-      <b class="ok">
-        ✅ Kết nối thành công
+      <b class="${
+        aiReady
+        ?
+        "ok"
+        :
+        "bad"
+      }">
+        ${
+          aiReady
+          ?
+          "✅ Kết nối thành công"
+          :
+          "❌ AI binding chưa sẵn sàng"
+        }
       </b>
 
       <br><br>
@@ -3532,7 +4801,13 @@ async function testApiConnection() {
       <br>
 
       Backend:
-      <b>
+      <b class="${
+        versionOk
+        ?
+        "ok"
+        :
+        "warn"
+      }">
         ${esc(
           data.version ||
           "Không rõ"
@@ -3560,6 +4835,26 @@ async function testApiConnection() {
 
       <br>
 
+      Language model:
+      <b>
+        ${esc(
+          data.languageModel ||
+          "—"
+        )}
+      </b>
+
+      <br>
+
+      Image model:
+      <b>
+        ${esc(
+          data.imageModel ||
+          "—"
+        )}
+      </b>
+
+      <br>
+
       Endpoint:
       <b>
         ${esc(
@@ -3567,13 +4862,22 @@ async function testApiConnection() {
           ENDPOINT
         )}
       </b>
-    `;
 
-    /*
-      Nếu test thành công,
-      lưu luôn URL để tránh
-      người dùng quên bấm Lưu.
-    */
+      ${
+        !versionOk
+        ?
+        `
+          <br><br>
+
+          <span class="warn">
+            ⚠️ Khuyên dùng Worker V0.4.x
+            để hỗ trợ đa ngôn ngữ.
+          </span>
+        `
+        :
+        ""
+      }
+    `;
 
     state.config.aiApiUrl =
       baseUrl;
@@ -3583,7 +4887,10 @@ async function testApiConnection() {
 
     await saveBrain();
 
-  } catch (error) {
+  } catch (
+    error
+  ) {
+
     console.error(
       error
     );
@@ -3596,8 +4903,9 @@ async function testApiConnection() {
       error?.name ===
       "AbortError"
     ) {
+
       message =
-        "Backend không phản hồi trong 10 giây.";
+        "Backend không phản hồi trong 15 giây.";
     }
 
     statusBox.innerHTML = `
@@ -3618,10 +4926,14 @@ function randomInt(max) {
     typeof window.crypto.getRandomValues ===
     "function"
   ) {
-    const array =
-      new Uint32Array(1);
 
-    window.crypto.getRandomValues(
+    const array =
+      new Uint32Array(
+        1
+      );
+
+    window.crypto
+    .getRandomValues(
       array
     );
 
@@ -3643,12 +4955,16 @@ function makeSerial() {
 
   const firstLetter =
     letters[
-      randomInt(26)
+      randomInt(
+        26
+      )
     ];
 
   const secondLetter =
     letters[
-      randomInt(26)
+      randomInt(
+        26
+      )
     ];
 
   let numbers =
@@ -3659,9 +4975,12 @@ function makeSerial() {
     index < 8;
     index++
   ) {
+
     numbers +=
       String(
-        randomInt(10)
+        randomInt(
+          10
+        )
       );
   }
 
@@ -3678,6 +4997,7 @@ async function generateNextSerial() {
       state.serialRegistry
     )
   ) {
+
     state.serialRegistry = [
       MASTER_SERIAL
     ];
@@ -3690,6 +5010,7 @@ async function generateNextSerial() {
     0;
 
   do {
+
     serial =
       makeSerial();
 
@@ -3699,6 +5020,7 @@ async function generateNextSerial() {
       attempts >
       5000
     ) {
+
       alert(
         "Không thể tạo serial mới."
       );
@@ -3756,6 +5078,7 @@ async function updateStorage() {
     typeof navigator.storage.estimate !==
     "function"
   ) {
+
     box.textContent =
       "Trình duyệt không cung cấp thông tin dung lượng.";
 
@@ -3763,6 +5086,7 @@ async function updateStorage() {
   }
 
   try {
+
     const estimate =
       await navigator.storage
       .estimate();
@@ -3783,13 +5107,19 @@ async function updateStorage() {
       (
         used /
         1048576
-      ).toFixed(1);
+      )
+      .toFixed(
+        1
+      );
 
     const quotaMB =
       (
         quota /
         1048576
-      ).toFixed(0);
+      )
+      .toFixed(
+        0
+      );
 
     box.innerHTML = `
       Đã dùng:
@@ -3807,7 +5137,10 @@ async function updateStorage() {
       </b>
     `;
 
-  } catch (error) {
+  } catch (
+    error
+  ) {
+
     console.error(
       error
     );
@@ -3819,6 +5152,7 @@ async function updateStorage() {
 
 function backupBrain() {
   try {
+
     const backup = {
       application:
         "Rii AI",
@@ -3871,7 +5205,8 @@ function backupBrain() {
       ) +
       ".json";
 
-    document.body.appendChild(
+    document.body
+    .appendChild(
       anchor
     );
 
@@ -3881,14 +5216,19 @@ function backupBrain() {
 
     setTimeout(
       () => {
+
         URL.revokeObjectURL(
           url
         );
+
       },
       1000
     );
 
-  } catch (error) {
+  } catch (
+    error
+  ) {
+
     console.error(
       error
     );
@@ -3910,11 +5250,14 @@ document
     const file =
       event.target.files[0];
 
-    if (!file) {
+    if (
+      !file
+    ) {
       return;
     }
 
     try {
+
       const text =
         await file.text();
 
@@ -3922,12 +5265,6 @@ document
         JSON.parse(
           text
         );
-
-      /*
-        Hỗ trợ:
-        - backup mới {state:{}}
-        - backup cũ chứa state trực tiếp
-      */
 
       const rawState =
         parsed &&
@@ -3947,6 +5284,7 @@ document
           "Restore sẽ thay Brain hiện tại. Bạn có muốn tiếp tục?"
         )
       ) {
+
         event.target.value =
           "";
 
@@ -3962,8 +5300,18 @@ document
       editingKnowledgeId =
         null;
 
+      quizTarget =
+        null;
+
       visionImage =
         "";
+
+      currentLanguageResult =
+        clone(
+          defaults()
+          .draft
+          .languageResult
+        );
 
       addMemory(
         "Restore Brain thành công"
@@ -3984,7 +5332,10 @@ document
         0
       );
 
-    } catch (error) {
+    } catch (
+      error
+    ) {
+
       console.error(
         error
       );
@@ -4045,6 +5396,13 @@ async function resetBrain() {
   visionImage =
     "";
 
+  currentLanguageResult =
+    clone(
+      defaults()
+      .draft
+      .languageResult
+    );
+
   await saveBrain();
 
   restoreDraft();
@@ -4062,11 +5420,12 @@ async function resetBrain() {
 }
 
 /*
-  KHỞI ĐỘNG RII AI
+  KHỞI ĐỘNG RII AI V0.5.4
 */
 
 (async () => {
   try {
+
     await openDB();
 
     const saved =
@@ -4077,18 +5436,16 @@ async function resetBrain() {
         saved
       );
 
-    /*
-      Giữ database cũ
-      nhưng cập nhật cấu trúc V0.5.3
-    */
-
     await saveBrain();
 
     restoreDraft();
 
     renderHome();
 
-  } catch (error) {
+  } catch (
+    error
+  ) {
+
     console.error(
       error
     );
@@ -4102,4 +5459,5 @@ async function resetBrain() {
 </script>
 
 </body>
+
 </html>
