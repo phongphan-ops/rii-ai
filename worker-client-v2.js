@@ -1,81 +1,145 @@
-/*
-  =========================================================
-  RII AI - WORKER CLIENT V2
-  File: worker-client-v2.js
-  Version: 2.0.0
-  =========================================================
-*/
-
 (function () {
   "use strict";
 
-  const CLIENT_VERSION = "2.0.0";
-  const DEFAULT_TIMEOUT = 30000;
+  const CLIENT_VERSION = "2.0.3";
 
-  function getBaseUrl() {
-    return String(
-      localStorage.getItem("rii-v2-backend") || ""
-    )
+  const DEFAULT_BACKEND =
+    "https://rii-backend.phongphan327272.workers.dev";
+
+  const STORAGE_KEY =
+    "rii-v2-backend";
+
+  // Thời gian chờ
+  const HEALTH_TIMEOUT = 20000;
+  const AI_TIMEOUT = 90000;
+  const IMAGE_TIMEOUT = 120000;
+
+  const ENDPOINTS = {
+    health: "/health",
+    analyze: "/analyze-concept",
+    normalize: "/normalize-object",
+    generate: "/generate-object-images"
+  };
+
+
+  /* =====================================================
+     URL
+  ===================================================== */
+
+  function cleanUrl(value) {
+    return String(value || "")
       .trim()
       .replace(/\/+$/, "");
   }
 
-  function requireBaseUrl() {
-    const baseUrl = getBaseUrl();
 
-    if (!baseUrl) {
+  function getBaseUrl() {
+    const saved =
+      localStorage.getItem(STORAGE_KEY);
+
+    return cleanUrl(
+      saved || DEFAULT_BACKEND
+    );
+  }
+
+
+  function setBaseUrl(value) {
+    const url = cleanUrl(value);
+
+    if (!url) {
       throw new Error(
-        "Chưa cấu hình Worker Backend trong Settings."
+        "Worker Backend URL không hợp lệ."
       );
     }
 
-    return baseUrl;
+    localStorage.setItem(
+      STORAGE_KEY,
+      url
+    );
+
+    return url;
   }
+
+
+  /* =====================================================
+     FETCH TIMEOUT
+  ===================================================== */
 
   async function fetchWithTimeout(
     url,
     options = {},
-    timeout = DEFAULT_TIMEOUT
+    timeoutMs = AI_TIMEOUT
   ) {
     const controller =
       new AbortController();
 
     const timer =
-      setTimeout(
-        () => controller.abort(),
-        timeout
-      );
+      setTimeout(() => {
+        controller.abort();
+      }, timeoutMs);
 
     try {
-      return await fetch(
-        url,
-        {
+      const response =
+        await fetch(url, {
           ...options,
           signal: controller.signal
-        }
-      );
+        });
+
+      return response;
+
     } catch (error) {
-      if (error?.name === "AbortError") {
-        throw new Error(
-          "Worker phản hồi quá thời gian."
-        );
+      if (
+        error?.name === "AbortError"
+      ) {
+        const timeoutError =
+          new Error(
+            `Worker phản hồi quá thời gian (${Math.round(
+              timeoutMs / 1000
+            )} giây).`
+          );
+
+        timeoutError.code =
+          "CLIENT_TIMEOUT";
+
+        timeoutError.details = {
+          timeoutMs,
+          url
+        };
+
+        throw timeoutError;
       }
 
       throw error;
+
     } finally {
       clearTimeout(timer);
     }
   }
 
-  async function readJsonResponse(response) {
-    let data;
+
+  /* =====================================================
+     RESPONSE
+  ===================================================== */
+
+  async function readResponse(response) {
+    let data = null;
 
     try {
-      data = await response.json();
+      data =
+        await response.json();
     } catch {
-      throw new Error(
-        `Worker không trả JSON hợp lệ. HTTP ${response.status}`
-      );
+      const error =
+        new Error(
+          "Worker không trả về JSON hợp lệ."
+        );
+
+      error.code =
+        "INVALID_WORKER_RESPONSE";
+
+      error.status =
+        response.status;
+
+      throw error;
     }
 
     if (
@@ -84,18 +148,28 @@
     ) {
       const error =
         new Error(
+          data?.message ||
           data?.error ||
-          `Worker lỗi HTTP ${response.status}`
+          `Worker HTTP ${response.status}`
         );
 
       error.code =
-        data?.code || "WORKER_ERROR";
+        data?.code ||
+        `HTTP_${response.status}`;
+
+      error.status =
+        response.status;
 
       error.details =
         data?.details || {};
 
       error.workerVersion =
-        data?.version || "";
+        data?.workerVersion ||
+        data?.version ||
+        "";
+
+      error.raw =
+        data;
 
       throw error;
     }
@@ -103,229 +177,376 @@
     return data;
   }
 
-  async function health() {
-    const baseUrl =
-      requireBaseUrl();
+
+  /* =====================================================
+     POST
+  ===================================================== */
+
+  async function postJson(
+    endpoint,
+    body,
+    timeoutMs = AI_TIMEOUT
+  ) {
+    const base =
+      getBaseUrl();
+
+    if (!base) {
+      throw new Error(
+        "Chưa cấu hình Worker Backend."
+      );
+    }
 
     const response =
       await fetchWithTimeout(
-        baseUrl + "/health",
+        base + endpoint,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type":
+              "application/json"
+          },
+          body: JSON.stringify(body)
+        },
+        timeoutMs
+      );
+
+    return readResponse(response);
+  }
+
+
+  /* =====================================================
+     HEALTH
+  ===================================================== */
+
+  async function health() {
+    const base =
+      getBaseUrl();
+
+    const response =
+      await fetchWithTimeout(
+        base + ENDPOINTS.health,
         {
           method: "GET",
           headers: {
-            "Accept":
+            Accept:
               "application/json"
           }
         },
-        15000
+        HEALTH_TIMEOUT
       );
 
-    return readJsonResponse(
-      response
-    );
+    return readResponse(response);
   }
 
+
+  /* =====================================================
+     ANALYZE CONCEPT
+  ===================================================== */
+
   async function analyzeConcept(
-    text,
+    input,
     options = {}
   ) {
-    const baseUrl =
-      requireBaseUrl();
+    const text =
+      String(input || "").trim();
 
-    const cleanText =
-      String(text || "").trim();
-
-    if (!cleanText) {
+    if (!text) {
       throw new Error(
         "Thiếu nội dung cần phân tích."
       );
     }
 
-    const response =
-      await fetchWithTimeout(
-        baseUrl + "/analyze-concept",
-        {
-          method: "POST",
+    return postJson(
+      ENDPOINTS.analyze,
+      {
+        input: text,
 
-          headers: {
-            "Content-Type":
-              "application/json",
-            "Accept":
-              "application/json"
-          },
+        targetLanguage:
+          options.targetLanguage ||
+          "en",
 
-          body:
-            JSON.stringify({
-              text:
-                cleanText,
-
-              targetLanguage:
-                options.targetLanguage ||
-                "en",
-
-              targetLanguageName:
-                options.targetLanguageName ||
-                "English"
-            })
-        }
-      );
-
-    return readJsonResponse(
-      response
+        targetLanguageName:
+          options.targetLanguageName ||
+          "English"
+      },
+      AI_TIMEOUT
     );
   }
+
+
+  /* =====================================================
+     NORMALIZE OBJECT
+  ===================================================== */
 
   async function normalizeObject(
     objectName,
     options = {}
   ) {
-    const baseUrl =
-      requireBaseUrl();
+    const text =
+      String(
+        objectName || ""
+      ).trim();
 
-    const name =
-      String(objectName || "").trim();
-
-    if (!name) {
+    if (!text) {
       throw new Error(
-        "Thiếu objectName."
+        "Thiếu tên đối tượng."
       );
     }
 
-    const response =
-      await fetchWithTimeout(
-        baseUrl + "/normalize-object",
-        {
-          method: "POST",
+    return postJson(
+      ENDPOINTS.normalize,
+      {
+        objectName: text,
 
-          headers: {
-            "Content-Type":
-              "application/json",
-            "Accept":
-              "application/json"
-          },
+        targetLanguage:
+          options.targetLanguage ||
+          "en",
 
-          body:
-            JSON.stringify({
-              objectName:
-                name,
-
-              targetLanguage:
-                options.targetLanguage ||
-                "en",
-
-              targetLanguageName:
-                options.targetLanguageName ||
-                "English"
-            })
-        }
-      );
-
-    return readJsonResponse(
-      response
+        targetLanguageName:
+          options.targetLanguageName ||
+          "English"
+      },
+      AI_TIMEOUT
     );
   }
+
+
+  /* =====================================================
+     GENERATE IMAGES
+  ===================================================== */
 
   async function generateImages(
     objectName,
     options = {}
   ) {
-    const baseUrl =
-      requireBaseUrl();
+    const text =
+      String(
+        objectName || ""
+      ).trim();
 
-    const name =
-      String(objectName || "").trim();
-
-    if (!name) {
+    if (!text) {
       throw new Error(
-        "Thiếu objectName."
+        "Thiếu tên đối tượng."
       );
     }
 
-    const count =
+    let count =
+      Number.parseInt(
+        options.count ?? 1,
+        10
+      );
+
+    if (
+      !Number.isFinite(count)
+    ) {
+      count = 1;
+    }
+
+    count =
       Math.max(
         1,
-        Math.min(
-          6,
-          Number.parseInt(
-            options.count ?? 1,
-            10
-          ) || 1
-        )
+        Math.min(4, count)
       );
 
-    const response =
-      await fetchWithTimeout(
-        baseUrl +
-        "/generate-object-images",
-        {
-          method: "POST",
+    return postJson(
+      ENDPOINTS.generate,
+      {
+        objectName: text,
 
-          headers: {
-            "Content-Type":
-              "application/json",
-            "Accept":
-              "application/json"
-          },
+        count,
 
-          body:
-            JSON.stringify({
-              objectName:
-                name,
+        prompt:
+          String(
+            options.prompt || ""
+          ).trim(),
 
-              count,
+        targetLanguage:
+          options.targetLanguage ||
+          "en",
 
-              prompt:
-                String(
-                  options.prompt || ""
-                )
-                .trim()
-                .slice(0, 300),
-
-              targetLanguage:
-                options.targetLanguage ||
-                "en",
-
-              targetLanguageName:
-                options.targetLanguageName ||
-                "English"
-            })
-        },
-        60000
-      );
-
-    return readJsonResponse(
-      response
+        targetLanguageName:
+          options.targetLanguageName ||
+          "English"
+      },
+      IMAGE_TIMEOUT
     );
   }
 
+
+  /* =====================================================
+     ERROR FORMAT
+  ===================================================== */
+
   function formatError(error) {
+    if (!error) {
+      return {
+        message:
+          "Lỗi không xác định.",
+        code:
+          "UNKNOWN_ERROR",
+        details: {},
+        workerVersion: ""
+      };
+    }
+
+    /*
+      Timeout phía trình duyệt
+    */
+
+    if (
+      error.code ===
+      "CLIENT_TIMEOUT"
+    ) {
+      return {
+        message:
+          error.message ||
+          "Worker phản hồi quá thời gian.",
+
+        code:
+          "CLIENT_TIMEOUT",
+
+        details:
+          error.details || {},
+
+        workerVersion:
+          ""
+      };
+    }
+
+
+    /*
+      Lỗi do Worker trả về
+    */
+
+    if (error.raw) {
+      return {
+        message:
+          error.raw.message ||
+          error.raw.error ||
+          error.message ||
+          "Worker error",
+
+        code:
+          error.raw.code ||
+          error.code ||
+          "WORKER_ERROR",
+
+        details:
+          error.raw.details ||
+          error.details ||
+          {},
+
+        workerVersion:
+          error.raw.workerVersion ||
+          error.raw.version ||
+          error.workerVersion ||
+          ""
+      };
+    }
+
+
+    /*
+      Network / JS error
+    */
+
     return {
       message:
-        String(
-          error?.message ||
-          error ||
-          "Không xác định"
-        ),
+        error.message ||
+        String(error),
 
       code:
-        error?.code ||
+        error.code ||
         "CLIENT_ERROR",
 
       details:
-        error?.details ||
+        error.details ||
         {},
 
       workerVersion:
-        error?.workerVersion ||
+        error.workerVersion ||
         ""
     };
   }
+
+
+  /* =====================================================
+     SELF TEST
+  ===================================================== */
+
+  async function selfTest() {
+    const result = {
+      ok: true,
+      clientVersion:
+        CLIENT_VERSION,
+      backend:
+        getBaseUrl(),
+      tests: []
+    };
+
+    /*
+      Health
+    */
+
+    try {
+      const data =
+        await health();
+
+      result.tests.push({
+        name: "health",
+        ok: true,
+        workerVersion:
+          data.version || "",
+        hasAI:
+          Boolean(data.hasAI)
+      });
+
+    } catch (error) {
+      result.ok = false;
+
+      result.tests.push({
+        name: "health",
+        ok: false,
+        error:
+          formatError(error)
+      });
+    }
+
+
+    /*
+      Local API object
+    */
+
+    result.tests.push({
+      name:
+        "client-functions",
+      ok:
+        typeof health ===
+          "function" &&
+        typeof analyzeConcept ===
+          "function" &&
+        typeof normalizeObject ===
+          "function" &&
+        typeof generateImages ===
+          "function"
+    });
+
+    return result;
+  }
+
+
+  /* =====================================================
+     PUBLIC API
+  ===================================================== */
 
   window.RiiWorkerClientV2 = {
     version:
       CLIENT_VERSION,
 
+    endpoints:
+      { ...ENDPOINTS },
+
     getBaseUrl,
+    setBaseUrl,
 
     health,
 
@@ -335,10 +556,14 @@
 
     generateImages,
 
-    formatError
+    formatError,
+
+    selfTest
   };
+
 
   console.log(
     `Rii Worker Client V${CLIENT_VERSION} ready`
   );
+
 })();
