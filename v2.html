@@ -8,7 +8,7 @@
   content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<title>Rii AI V2.2.0</title>
+<title>Rii AI V2.2.1</title>
 
 <style>
 :root{
@@ -42,7 +42,8 @@ body{
 
 button,
 input,
-textarea{
+textarea,
+select{
   font:inherit;
 }
 
@@ -74,9 +75,7 @@ header{
 
   background:rgba(7,16,25,.96);
   backdrop-filter:blur(18px);
-
-  border-bottom:
-    1px solid var(--line);
+  border-bottom:1px solid var(--line);
 }
 
 .brand{
@@ -174,7 +173,8 @@ label{
 }
 
 input,
-textarea{
+textarea,
+select{
   width:100%;
   padding:14px;
   border-radius:16px;
@@ -187,6 +187,10 @@ textarea{
 textarea{
   min-height:120px;
   resize:vertical;
+}
+
+select{
+  appearance:auto;
 }
 
 .btn{
@@ -215,6 +219,24 @@ textarea{
   background:#401a21;
   color:#ffabb2;
   border:1px solid #73303b;
+}
+
+.btn.blue{
+  background:#17345b;
+  color:#dbeaff;
+  border:1px solid #28538a;
+}
+
+.btn-row{
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+
+.btn-row .btn{
+  margin-top:0;
 }
 
 pre{
@@ -326,6 +348,50 @@ pre{
   font-weight:750;
 }
 
+.language-box{
+  background:#0b1926;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:14px;
+  margin-top:14px;
+}
+
+.language-title{
+  font-weight:850;
+  margin-bottom:8px;
+}
+
+.language-current{
+  color:var(--green);
+  font-weight:800;
+  margin-top:9px;
+}
+
+.translation-label{
+  margin-top:10px;
+  padding:12px;
+  border-radius:14px;
+  background:#07131e;
+  border:1px solid var(--line);
+  font-size:18px;
+  font-weight:800;
+}
+
+.speech-status{
+  margin-top:8px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.small-btn{
+  border:1px solid var(--line);
+  border-radius:12px;
+  padding:9px 11px;
+  background:var(--panel2);
+  color:var(--text);
+  font-weight:750;
+}
+
 .file-label{
   display:block;
   width:100%;
@@ -355,17 +421,12 @@ pre{
     8px
     calc(8px + env(safe-area-inset-bottom));
 
-  background:
-    rgba(6,13,21,.98);
-
-  border-top:
-    1px solid var(--line);
-
+  background:rgba(6,13,21,.98);
+  border-top:1px solid var(--line);
   backdrop-filter:blur(20px);
 
   overflow-x:auto;
   white-space:nowrap;
-
   -webkit-overflow-scrolling:touch;
 }
 
@@ -414,27 +475,19 @@ pre{
 <div class="app">
 
 <header>
-
   <div class="brand">
-
     <div>
-
-      <h1>
-        Rii AI V2
-      </h1>
+      <h1>Rii AI V2</h1>
 
       <div class="subtitle">
-        Brain • Visual Learning • Think • Robot
+        Brain • Vision • Multilingual Speech • Robot
       </div>
-
     </div>
 
     <div class="version">
-      V2.2.0
+      V2.2.1
     </div>
-
   </div>
-
 </header>
 
 
@@ -450,19 +503,45 @@ pre{
 
   <div class="card">
 
-    <h2>
-      🏠 Trung tâm Rii
-    </h2>
+    <h2>🏠 Trung tâm Rii</h2>
 
     <span class="status">
-      ● Visual Learning
+      ● Multilingual Visual Learning
     </span>
 
     <p class="muted">
       Rii có thể học concept,
-      ghi nhớ kiến thức và lưu
-      mẫu hình ảnh liên kết với Brain.
+      ghi nhớ hình ảnh,
+      dịch tên concept
+      và phát âm bằng ngôn ngữ được chọn.
     </p>
+
+    <div class="language-box">
+
+      <div class="language-title">
+        🌐 Ngôn ngữ Rii
+      </div>
+
+      <select
+        class="speech-language-select"
+        aria-label="Ngôn ngữ Rii"
+      ></select>
+
+      <div
+        id="homeLanguageCurrent"
+        class="language-current"
+      >
+        -
+      </div>
+
+      <div
+        id="speechSupportHome"
+        class="speech-status"
+      >
+        Đang kiểm tra giọng nói...
+      </div>
+
+    </div>
 
   </div>
 
@@ -500,7 +579,10 @@ pre{
   </div>
 
 
-  <div class="grid" style="margin-top:12px">
+  <div
+    class="grid"
+    style="margin-top:12px"
+  >
 
     <div class="stat">
       🧠 Knowledge
@@ -522,7 +604,7 @@ pre{
   <div class="card">
 
     <h3>
-      Luồng V2.2.0
+      Luồng V2.2.1
     </h3>
 
     <div class="pipeline">
@@ -530,8 +612,8 @@ pre{
       <span>→ Analyze</span>
       <span>→ Image</span>
       <span>→ Brain</span>
-      <span>→ Vision Memory</span>
-      <span>→ Future Camera</span>
+      <span>→ Translate</span>
+      <span>→ 🔊 Speak</span>
     </div>
 
   </div>
@@ -576,9 +658,10 @@ pre{
     </h2>
 
     <p class="muted">
-      Bước 1 phân tích concept.
-      Bước 2 thêm ảnh thật hoặc tạo ảnh AI.
-      Bước 3 ghi tất cả vào Brain.
+      Phân tích concept,
+      thêm ảnh,
+      rồi lưu vào Brain.
+      Có thể dịch và phát âm trước khi lưu.
     </p>
 
 
@@ -601,9 +684,58 @@ pre{
     </button>
 
 
-    <label
-      class="file-label"
-    >
+    <div class="language-box">
+
+      <div class="language-title">
+        🌐 Ngôn ngữ phát âm
+      </div>
+
+      <select
+        class="speech-language-select"
+        aria-label="Ngôn ngữ Teach"
+      ></select>
+
+      <div
+        id="teachTranslatedLabel"
+        class="translation-label"
+      >
+        Chưa có concept.
+      </div>
+
+      <div class="btn-row">
+
+        <button
+          id="teachTranslateButton"
+          class="btn blue"
+          onclick="translatePendingKnowledge()"
+          disabled
+        >
+          🌐 Dịch
+        </button>
+
+        <button
+          id="teachSpeakButton"
+          class="btn secondary"
+          onclick="speakPendingKnowledge()"
+          disabled
+        >
+          🔊 Phát âm
+        </button>
+
+      </div>
+
+      <div
+        id="teachSpeechStatus"
+        class="speech-status"
+      >
+        Chưa có dữ liệu phát âm.
+      </div>
+
+    </div>
+
+
+    <label class="file-label">
+
       📷 2A. Chọn ảnh thật từ máy
 
       <input
@@ -612,6 +744,7 @@ pre{
         accept="image/*"
         multiple
       >
+
     </label>
 
 
@@ -684,8 +817,22 @@ Chưa có dữ liệu.
 
     <textarea
       id="thinkInput"
-      placeholder="Ví dụ: 2 con chó đen"
+      placeholder="Ví dụ: con ngựa nâu"
     ></textarea>
+
+
+    <div class="language-box">
+
+      <div class="language-title">
+        🌐 Ngôn ngữ trả lời / phát âm
+      </div>
+
+      <select
+        class="speech-language-select"
+        aria-label="Ngôn ngữ Think"
+      ></select>
+
+    </div>
 
 
     <button
@@ -703,6 +850,36 @@ Chưa có dữ liệu.
     >
       Chưa xử lý.
     </div>
+
+
+    <div
+      id="thinkSpeechActions"
+      class="btn-row"
+      style="display:none"
+    >
+
+      <button
+        class="btn blue"
+        onclick="translateCurrentThinkResult()"
+      >
+        🌐 Dịch
+      </button>
+
+      <button
+        class="btn secondary"
+        onclick="speakCurrentThinkResult()"
+      >
+        🔊 Phát âm
+      </button>
+
+    </div>
+
+
+    <div
+      id="thinkTranslatedLabel"
+      class="translation-label"
+      style="display:none"
+    ></div>
 
 
     <pre id="thinkResult">
@@ -728,12 +905,30 @@ Waiting...
     </h2>
 
     <p class="muted">
-      Đây là dữ liệu hình ảnh Rii đã học.
-      Chưa phải nhận diện camera trực tiếp.
+      Dữ liệu hình ảnh Rii đã học.
+      Mỗi concept có thể được gọi tên
+      và phát âm theo ngôn ngữ đang chọn.
     </p>
 
 
-    <div class="grid">
+    <div class="language-box">
+
+      <div class="language-title">
+        🌐 Ngôn ngữ Vision
+      </div>
+
+      <select
+        class="speech-language-select"
+        aria-label="Ngôn ngữ Vision"
+      ></select>
+
+    </div>
+
+
+    <div
+      class="grid"
+      style="margin-top:12px"
+    >
 
       <div class="stat">
         Visual Samples
@@ -766,11 +961,9 @@ Waiting...
     id="visionMemoryList"
     class="card"
   >
-
     <div class="empty">
       Chưa có mẫu hình ảnh.
     </div>
-
   </div>
 
 </section>
@@ -816,11 +1009,29 @@ Map: chưa có
     </h2>
 
     <p class="muted">
-      Concept Memory + Visual Sample metadata.
+      Một concept gốc có thể giữ
+      nhiều tên ngôn ngữ khác nhau.
     </p>
 
 
-    <div class="grid">
+    <div class="language-box">
+
+      <div class="language-title">
+        🌐 Ngôn ngữ Brain
+      </div>
+
+      <select
+        class="speech-language-select"
+        aria-label="Ngôn ngữ Brain"
+      ></select>
+
+    </div>
+
+
+    <div
+      class="grid"
+      style="margin-top:12px"
+    >
 
       <div class="stat">
         Role
@@ -853,11 +1064,9 @@ Map: chưa có
     id="brainList"
     class="card"
   >
-
     <div class="empty">
       Brain chưa có kiến thức.
     </div>
-
   </div>
 
 </section>
@@ -878,7 +1087,6 @@ Map: chưa có
 
     <p class="muted">
       Command Vault vẫn được giữ riêng.
-      Visual Learning không sửa lệnh robot.
     </p>
 
     <div class="stat">
@@ -915,6 +1123,32 @@ Map: chưa có
       value="ROOT_OWNER"
       disabled
     >
+
+
+    <label>
+      🌐 Ngôn ngữ mặc định
+    </label>
+
+    <select
+      class="speech-language-select"
+      aria-label="Ngôn ngữ mặc định"
+    ></select>
+
+
+    <div
+      id="settingsSpeechInfo"
+      class="speech-status"
+    >
+      -
+    </div>
+
+
+    <button
+      class="btn secondary"
+      onclick="testSpeech()"
+    >
+      🔊 Thử giọng nói
+    </button>
 
 
     <label>
@@ -961,66 +1195,42 @@ Chưa kiểm tra.
 
 <div class="nav-inner">
 
-  <button
-    class="nav-btn active"
-    data-page="home"
-  >
+  <button class="nav-btn active" data-page="home">
     <span class="nav-icon">🏠</span>
     Home
   </button>
 
-  <button
-    class="nav-btn"
-    data-page="teach"
-  >
+  <button class="nav-btn" data-page="teach">
     <span class="nav-icon">➕</span>
     Teach
   </button>
 
-  <button
-    class="nav-btn"
-    data-page="think"
-  >
+  <button class="nav-btn" data-page="think">
     <span class="nav-icon">✨</span>
     Think
   </button>
 
-  <button
-    class="nav-btn"
-    data-page="vision"
-  >
+  <button class="nav-btn" data-page="vision">
     <span class="nav-icon">👁</span>
     Vision
   </button>
 
-  <button
-    class="nav-btn"
-    data-page="world"
-  >
+  <button class="nav-btn" data-page="world">
     <span class="nav-icon">🌍</span>
     World
   </button>
 
-  <button
-    class="nav-btn"
-    data-page="brain"
-  >
+  <button class="nav-btn" data-page="brain">
     <span class="nav-icon">🧠</span>
     Brain
   </button>
 
-  <button
-    class="nav-btn"
-    data-page="vault"
-  >
+  <button class="nav-btn" data-page="vault">
     <span class="nav-icon">🔐</span>
     Vault
   </button>
 
-  <button
-    class="nav-btn"
-    data-page="settings"
-  >
+  <button class="nav-btn" data-page="settings">
     <span class="nav-icon">⚙️</span>
     Settings
   </button>
@@ -1041,7 +1251,7 @@ Chưa kiểm tra.
 "use strict";
 
 const APP_VERSION =
-  "2.2.0";
+  "2.2.1";
 
 const BRAIN_STORAGE_KEY =
   "rii-v2-root-knowledge";
@@ -1058,6 +1268,98 @@ const VISUAL_DB_VERSION =
 const VISUAL_STORE =
   "samples";
 
+const SPEECH_LANGUAGE_KEY =
+  "rii-v2-speech-language";
+
+
+const LANGUAGES = [
+  {
+    locale:"vi-VN",
+    code:"vi",
+    name:"Vietnamese",
+    label:"🇻🇳 Tiếng Việt",
+    test:"Xin chào, tôi là Rii."
+  },
+  {
+    locale:"en-US",
+    code:"en",
+    name:"English",
+    label:"🇺🇸 English",
+    test:"Hello, I am Rii."
+  },
+  {
+    locale:"ja-JP",
+    code:"ja",
+    name:"Japanese",
+    label:"🇯🇵 日本語",
+    test:"こんにちは"
+  },
+  {
+    locale:"ko-KR",
+    code:"ko",
+    name:"Korean",
+    label:"🇰🇷 한국어",
+    test:"안녕하세요"
+  },
+  {
+    locale:"zh-CN",
+    code:"zh",
+    name:"Chinese",
+    label:"🇨🇳 中文",
+    test:"你好"
+  },
+  {
+    locale:"fr-FR",
+    code:"fr",
+    name:"French",
+    label:"🇫🇷 Français",
+    test:"Bonjour"
+  },
+  {
+    locale:"es-ES",
+    code:"es",
+    name:"Spanish",
+    label:"🇪🇸 Español",
+    test:"Hola"
+  },
+  {
+    locale:"de-DE",
+    code:"de",
+    name:"German",
+    label:"🇩🇪 Deutsch",
+    test:"Hallo"
+  },
+  {
+    locale:"it-IT",
+    code:"it",
+    name:"Italian",
+    label:"🇮🇹 Italiano",
+    test:"Ciao"
+  },
+  {
+    locale:"pt-BR",
+    code:"pt",
+    name:"Portuguese",
+    label:"🇧🇷 Português",
+    test:"Olá"
+  },
+  {
+    locale:"th-TH",
+    code:"th",
+    name:"Thai",
+    label:"🇹🇭 ไทย",
+    test:"สวัสดี"
+  },
+  {
+    locale:"id-ID",
+    code:"id",
+    name:"Indonesian",
+    label:"🇮🇩 Bahasa Indonesia",
+    test:"Halo"
+  }
+];
+
+
 let pendingKnowledge =
   null;
 
@@ -1066,6 +1368,15 @@ let pendingImages =
 
 let activeObjectUrls =
   [];
+
+let speechVoices =
+  [];
+
+let currentThinkConcept =
+  null;
+
+let currentThinkSpeechText =
+  "";
   /* =====================================================
    BASIC HELPERS
 ===================================================== */
@@ -1126,11 +1437,11 @@ function escapeHtml(value) {
   return String(
     value ?? ""
   )
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
 }
 
 
@@ -1158,6 +1469,451 @@ function createId(prefix) {
 
 
 /* =====================================================
+   LANGUAGE
+===================================================== */
+
+function getLanguageConfig(
+  locale
+) {
+  return (
+    LANGUAGES.find(
+      item =>
+        item.locale === locale
+    )
+    ||
+    LANGUAGES[0]
+  );
+}
+
+
+function getSelectedLocale() {
+  const saved =
+    localStorage.getItem(
+      SPEECH_LANGUAGE_KEY
+    );
+
+  if (
+    LANGUAGES.some(
+      item =>
+        item.locale === saved
+    )
+  ) {
+    return saved;
+  }
+
+  return "vi-VN";
+}
+
+
+function getSelectedLanguage() {
+  return getLanguageConfig(
+    getSelectedLocale()
+  );
+}
+
+
+function populateLanguageSelectors() {
+
+  const selected =
+    getSelectedLocale();
+
+  document
+    .querySelectorAll(
+      ".speech-language-select"
+    )
+    .forEach(select => {
+
+      select.innerHTML =
+        LANGUAGES
+          .map(item => `
+            <option
+              value="${escapeHtml(item.locale)}"
+            >
+              ${escapeHtml(item.label)}
+            </option>
+          `)
+          .join("");
+
+      select.value =
+        selected;
+
+      select.addEventListener(
+        "change",
+        () => {
+
+          setSpeechLanguage(
+            select.value
+          );
+        }
+      );
+    });
+
+  updateLanguageUi();
+}
+
+
+function setSpeechLanguage(
+  locale
+) {
+
+  const config =
+    getLanguageConfig(
+      locale
+    );
+
+  localStorage.setItem(
+    SPEECH_LANGUAGE_KEY,
+    config.locale
+  );
+
+  document
+    .querySelectorAll(
+      ".speech-language-select"
+    )
+    .forEach(select => {
+
+      if (
+        select.value !==
+        config.locale
+      ) {
+        select.value =
+          config.locale;
+      }
+    });
+
+  updateLanguageUi();
+
+  renderBrain();
+  renderVisionMemory();
+
+  if (
+    pendingKnowledge
+  ) {
+    updatePendingLanguageLabel();
+  }
+
+  if (
+    currentThinkConcept
+  ) {
+    updateCurrentThinkLanguageLabel();
+  }
+}
+
+
+function updateLanguageUi() {
+
+  const config =
+    getSelectedLanguage();
+
+  if (
+    $("homeLanguageCurrent")
+  ) {
+    $("homeLanguageCurrent")
+      .textContent =
+      "Đang chọn: " +
+      config.label;
+  }
+
+  if (
+    $("settingsSpeechInfo")
+  ) {
+    $("settingsSpeechInfo")
+      .textContent =
+      "Locale phát âm: " +
+      config.locale;
+  }
+
+  updateSpeechSupportUi();
+}
+
+
+/* =====================================================
+   SPEECH
+===================================================== */
+
+function speechSupported() {
+  return (
+    "speechSynthesis" in window &&
+    "SpeechSynthesisUtterance" in window
+  );
+}
+
+
+function refreshSpeechVoices() {
+
+  if (
+    !speechSupported()
+  ) {
+    speechVoices =
+      [];
+
+    updateSpeechSupportUi();
+
+    return;
+  }
+
+  speechVoices =
+    window
+      .speechSynthesis
+      .getVoices()
+    ||
+    [];
+
+  updateSpeechSupportUi();
+}
+
+
+function findVoiceForLocale(
+  locale
+) {
+
+  if (
+    !speechVoices.length
+  ) {
+    refreshSpeechVoices();
+  }
+
+  const target =
+    String(locale)
+      .toLowerCase();
+
+  const exact =
+    speechVoices.find(
+      voice =>
+        String(
+          voice.lang || ""
+        )
+          .toLowerCase() ===
+        target
+    );
+
+  if (exact) {
+    return exact;
+  }
+
+  const prefix =
+    target.split("-")[0];
+
+  return (
+    speechVoices.find(
+      voice =>
+        String(
+          voice.lang || ""
+        )
+          .toLowerCase()
+          .startsWith(
+            prefix + "-"
+          )
+    )
+    ||
+    speechVoices.find(
+      voice =>
+        String(
+          voice.lang || ""
+        )
+          .toLowerCase() ===
+        prefix
+    )
+    ||
+    null
+  );
+}
+
+
+function updateSpeechSupportUi() {
+
+  const supported =
+    speechSupported();
+
+  const config =
+    getSelectedLanguage();
+
+  const voice =
+    supported
+      ?
+      findVoiceForLocale(
+        config.locale
+      )
+      :
+      null;
+
+  let message;
+
+  if (!supported) {
+    message =
+      "❌ Trình duyệt không hỗ trợ Speech Synthesis.";
+
+  } else if (voice) {
+    message =
+      "🔊 Voice: " +
+      voice.name +
+      " • " +
+      voice.lang;
+
+  } else {
+    message =
+      "🔊 Sẽ dùng giọng hệ thống cho " +
+      config.locale +
+      " nếu thiết bị hỗ trợ.";
+  }
+
+  if (
+    $("speechSupportHome")
+  ) {
+    $("speechSupportHome")
+      .textContent =
+      message;
+  }
+
+  if (
+    $("settingsSpeechInfo")
+  ) {
+    $("settingsSpeechInfo")
+      .textContent =
+      message;
+  }
+}
+
+
+function speakText(
+  text,
+  locale
+) {
+
+  const value =
+    String(
+      text || ""
+    ).trim();
+
+  if (!value) {
+    throw new Error(
+      "Không có nội dung để phát âm."
+    );
+  }
+
+  if (
+    !speechSupported()
+  ) {
+    throw new Error(
+      "Trình duyệt không hỗ trợ phát âm."
+    );
+  }
+
+  const config =
+    getLanguageConfig(
+      locale ||
+      getSelectedLocale()
+    );
+
+  const utterance =
+    new SpeechSynthesisUtterance(
+      value
+    );
+
+  utterance.lang =
+    config.locale;
+
+  utterance.rate =
+    0.92;
+
+  utterance.pitch =
+    1;
+
+  utterance.volume =
+    1;
+
+  const voice =
+    findVoiceForLocale(
+      config.locale
+    );
+
+  if (voice) {
+    utterance.voice =
+      voice;
+  }
+
+  window
+    .speechSynthesis
+    .cancel();
+
+  window
+    .speechSynthesis
+    .speak(
+      utterance
+    );
+
+  return {
+    text:
+      value,
+
+    locale:
+      config.locale,
+
+    voice:
+      voice?.name ||
+      "system"
+  };
+}
+
+
+window.testSpeech =
+  function () {
+
+    const config =
+      getSelectedLanguage();
+
+    try {
+
+      const result =
+        speakText(
+          config.test,
+          config.locale
+        );
+
+      $("settingsSpeechInfo")
+        .textContent =
+        "✅ Đang phát: " +
+        result.text +
+        " • " +
+        result.locale;
+
+    } catch (error) {
+
+      $("settingsSpeechInfo")
+        .textContent =
+        "❌ " +
+        (
+          error?.message ||
+          error
+        );
+    }
+  };
+
+
+if (
+  speechSupported()
+) {
+
+  window
+    .speechSynthesis
+    .addEventListener?.(
+      "voiceschanged",
+      refreshSpeechVoices
+    );
+
+  setTimeout(
+    refreshSpeechVoices,
+    100
+  );
+
+  setTimeout(
+    refreshSpeechVoices,
+    1000
+  );
+}
+
+
+/* =====================================================
    NAVIGATION
 ===================================================== */
 
@@ -1179,11 +1935,9 @@ document
             ".page"
           )
           .forEach(item => {
-
             item.classList.remove(
               "active"
             );
-
           });
 
         $(
@@ -1199,11 +1953,9 @@ document
             ".nav-btn"
           )
           .forEach(item => {
-
             item.classList.remove(
               "active"
             );
-
           });
 
         button.classList.add(
@@ -1228,7 +1980,6 @@ document
         );
       }
     );
-
   });
 
 
@@ -1263,8 +2014,9 @@ function loadKnowledge() {
 }
 
 
-function saveKnowledgeList(list) {
-
+function saveKnowledgeList(
+  list
+) {
   localStorage.setItem(
     BRAIN_STORAGE_KEY,
     JSON.stringify(list)
@@ -1272,8 +2024,9 @@ function saveKnowledgeList(list) {
 }
 
 
-function makeKnowledgeId(data) {
-
+function makeKnowledgeId(
+  data
+) {
   return [
     normalizeText(
       data.category
@@ -1289,6 +2042,25 @@ function makeKnowledgeId(data) {
     )
   ]
     .join("|");
+}
+
+
+function normalizeTranslations(
+  value
+) {
+
+  if (
+    !value ||
+    typeof value !==
+    "object" ||
+    Array.isArray(value)
+  ) {
+    return {};
+  }
+
+  return {
+    ...value
+  };
 }
 
 
@@ -1331,6 +2103,15 @@ function saveKnowledgeRecord(
 
       ...record,
 
+      translations: {
+        ...normalizeTranslations(
+          old.translations
+        ),
+        ...normalizeTranslations(
+          record.translations
+        )
+      },
+
       id,
 
       updatedAt:
@@ -1354,6 +2135,11 @@ function saveKnowledgeRecord(
     list.unshift({
 
       ...record,
+
+      translations:
+        normalizeTranslations(
+          record.translations
+        ),
 
       id,
 
@@ -1388,9 +2174,9 @@ function saveKnowledgeRecord(
 }
 
 
-function updateKnowledgeVisualCount(
+function updateKnowledgeRecord(
   knowledgeId,
-  count
+  updates
 ) {
 
   const list =
@@ -1399,29 +2185,322 @@ function updateKnowledgeVisualCount(
   const index =
     list.findIndex(
       item =>
-        item.id === knowledgeId
+        item.id ===
+        knowledgeId
     );
 
   if (
     index < 0
   ) {
-    return;
+    return null;
   }
 
-  list[
-    index
-  ].visualSamples =
-    count;
-
-  list[
-    index
-  ].updatedAt =
-    new Date()
-      .toISOString();
+  list[index] = {
+    ...list[index],
+    ...updates,
+    updatedAt:
+      new Date()
+        .toISOString()
+  };
 
   saveKnowledgeList(
     list
   );
+
+  return list[index];
+}
+
+
+function updateKnowledgeVisualCount(
+  knowledgeId,
+  count
+) {
+
+  updateKnowledgeRecord(
+    knowledgeId,
+    {
+      visualSamples:
+        count
+    }
+  );
+}
+
+
+function getCachedTranslation(
+  knowledge,
+  locale
+) {
+
+  const translations =
+    normalizeTranslations(
+      knowledge?.translations
+    );
+
+  const entry =
+    translations[
+      locale
+    ];
+
+  if (
+    typeof entry ===
+    "string"
+  ) {
+    return entry;
+  }
+
+  if (
+    entry &&
+    typeof entry ===
+    "object"
+  ) {
+    return String(
+      entry.label ||
+      entry.translatedLabel ||
+      ""
+    ).trim();
+  }
+
+  return "";
+}
+
+
+function getEnglishKnowledgeLabel(
+  knowledge
+) {
+  return (
+    knowledge?.translatedLabel ||
+    knowledge?.normalizedEnglish ||
+    knowledge?.originalInput ||
+    "Knowledge"
+  );
+}
+
+
+function getKnowledgeDisplayLabel(
+  knowledge,
+  locale =
+    getSelectedLocale()
+) {
+
+  const config =
+    getLanguageConfig(
+      locale
+    );
+
+  if (
+    config.code === "en"
+  ) {
+    return getEnglishKnowledgeLabel(
+      knowledge
+    );
+  }
+
+  return (
+    getCachedTranslation(
+      knowledge,
+      config.locale
+    )
+    ||
+    getEnglishKnowledgeLabel(
+      knowledge
+    )
+  );
+}
+
+
+function cacheKnowledgeTranslation(
+  knowledgeId,
+  locale,
+  translatedLabel
+) {
+
+  const list =
+    loadKnowledge();
+
+  const index =
+    list.findIndex(
+      item =>
+        item.id ===
+        knowledgeId
+    );
+
+  if (
+    index < 0
+  ) {
+    return null;
+  }
+
+  const config =
+    getLanguageConfig(
+      locale
+    );
+
+  const translations =
+    normalizeTranslations(
+      list[index]
+        .translations
+    );
+
+  translations[
+    config.locale
+  ] = {
+    label:
+      translatedLabel,
+
+    code:
+      config.code,
+
+    language:
+      config.name,
+
+    locale:
+      config.locale,
+
+    updatedAt:
+      new Date()
+        .toISOString()
+  };
+
+  list[index] = {
+    ...list[index],
+
+    translations,
+
+    updatedAt:
+      new Date()
+        .toISOString()
+  };
+
+  saveKnowledgeList(
+    list
+  );
+
+  return list[index];
+}
+
+
+/* =====================================================
+   TRANSLATION
+===================================================== */
+
+async function requestConceptTranslation(
+  concept,
+  locale =
+    getSelectedLocale()
+) {
+
+  const config =
+    getLanguageConfig(
+      locale
+    );
+
+  if (
+    config.code === "en"
+  ) {
+    return (
+      concept.translatedLabel ||
+      concept.normalizedEnglish ||
+      concept.originalInput ||
+      ""
+    );
+  }
+
+  if (
+    !window.RiiWorkerClientV2 ||
+    typeof window
+      .RiiWorkerClientV2
+      .translateConcept !==
+      "function"
+  ) {
+    throw new Error(
+      "Worker Client chưa có translateConcept()."
+    );
+  }
+
+  const response =
+    await window
+      .RiiWorkerClientV2
+      .translateConcept(
+        {
+          normalizedEnglish:
+            concept.normalizedEnglish,
+
+          color:
+            concept.color ||
+            "",
+
+          shape:
+            concept.shape ||
+            ""
+        },
+        {
+          targetLanguage:
+            config.code,
+
+          targetLanguageName:
+            config.name
+        }
+      );
+
+  const label =
+    String(
+      response
+        ?.translatedLabel ||
+      ""
+    ).trim();
+
+  if (!label) {
+    throw new Error(
+      "Worker không trả về translatedLabel."
+    );
+  }
+
+  return label;
+}
+
+
+async function ensureKnowledgeTranslation(
+  knowledge,
+  locale =
+    getSelectedLocale()
+) {
+
+  const config =
+    getLanguageConfig(
+      locale
+    );
+
+  if (
+    config.code === "en"
+  ) {
+    return getEnglishKnowledgeLabel(
+      knowledge
+    );
+  }
+
+  const cached =
+    getCachedTranslation(
+      knowledge,
+      config.locale
+    );
+
+  if (cached) {
+    return cached;
+  }
+
+  const translated =
+    await requestConceptTranslation(
+      knowledge,
+      config.locale
+    );
+
+  cacheKnowledgeTranslation(
+    knowledge.id,
+    config.locale,
+    translated
+  );
+
+  return translated;
 }
 
 
@@ -1450,7 +2529,8 @@ function openVisualDb() {
             request.result;
 
           if (
-            !db.objectStoreNames
+            !db
+              .objectStoreNames
               .contains(
                 VISUAL_STORE
               )
@@ -1486,20 +2566,16 @@ function openVisualDb() {
         };
 
       request.onsuccess =
-        () => {
-
+        () =>
           resolve(
             request.result
           );
-        };
 
       request.onerror =
-        () => {
-
+        () =>
           reject(
             request.error
           );
-        };
     }
   );
 }
@@ -1530,9 +2606,7 @@ async function addVisualSample(
       image.blob,
 
     mimeType:
-      image.blob
-        ?.type
-      ||
+      image.blob?.type ||
       "image/jpeg",
 
     createdAt:
@@ -1561,7 +2635,8 @@ async function addVisualSample(
         );
 
       tx.oncomplete =
-        () => resolve();
+        () =>
+          resolve();
 
       tx.onerror =
         () =>
@@ -1778,9 +2853,8 @@ function renderPendingImages() {
     container.innerHTML =
       "";
 
-    $(
-      "clearPendingImagesButton"
-    ).disabled =
+    $("clearPendingImagesButton")
+      .disabled =
       true;
 
     return;
@@ -1826,14 +2900,12 @@ function renderPendingImages() {
 
             </div>
           `;
-
         }
       )
       .join("");
 
-  $(
-    "clearPendingImagesButton"
-  ).disabled =
+  $("clearPendingImagesButton")
+    .disabled =
     false;
 }
 
@@ -1881,12 +2953,8 @@ $("realImageInput")
         }
 
         pendingImages.push({
-
-          source:
-            "real",
-
-          blob:
-            file
+          source:"real",
+          blob:file
         });
       }
 
@@ -1944,7 +3012,6 @@ function tokenOverlapScore(
     if (
       setB.has(token)
     ) {
-
       matches++;
     }
   }
@@ -1967,15 +3034,77 @@ function scoreKnowledge(
   const query =
     normalizeText(input);
 
-  const original =
-    normalizeText(
-      knowledge.originalInput
+  const candidates = [
+    knowledge.originalInput,
+    knowledge.translatedLabel,
+    knowledge.normalizedEnglish
+  ];
+
+  const translations =
+    normalizeTranslations(
+      knowledge.translations
     );
 
-  const translated =
-    normalizeText(
-      knowledge.translatedLabel
-    );
+  for (
+    const value
+    of Object.values(
+      translations
+    )
+  ) {
+
+    if (
+      typeof value ===
+      "string"
+    ) {
+      candidates.push(
+        value
+      );
+
+    } else if (
+      value &&
+      typeof value ===
+      "object"
+    ) {
+      candidates.push(
+        value.label ||
+        value.translatedLabel ||
+        ""
+      );
+    }
+  }
+
+  let score =
+    0;
+
+  for (
+    const candidate
+    of candidates
+  ) {
+
+    const normalized =
+      normalizeText(
+        candidate
+      );
+
+    if (!normalized) {
+      continue;
+    }
+
+    if (
+      query === normalized
+    ) {
+      return 1;
+    }
+
+    score =
+      Math.max(
+        score,
+        tokenOverlapScore(
+          query,
+          normalized
+        )
+      );
+  }
 
   const core =
     normalizeText(
@@ -1983,54 +3112,9 @@ function scoreKnowledge(
     );
 
   if (
-    query &&
-    query === original
-  ) {
-    return 1;
-  }
-
-  if (
-    query &&
-    translated &&
-    query === translated
-  ) {
-    return .98;
-  }
-
-  if (
-    query &&
-    core &&
-    query === core
-  ) {
-    return .94;
-  }
-
-  let score =
-    0;
-
-  score =
-    Math.max(
-      score,
-      tokenOverlapScore(
-        query,
-        original
-      )
-    );
-
-  score =
-    Math.max(
-      score,
-      tokenOverlapScore(
-        query,
-        translated
-      )
-    );
-
-  if (
     core &&
     query.includes(core)
   ) {
-
     score =
       Math.max(
         score,
@@ -2042,7 +3126,9 @@ function scoreKnowledge(
 }
 
 
-function findKnowledge(input) {
+function findKnowledge(
+  input
+) {
 
   const list =
     loadKnowledge();
@@ -2068,7 +3154,6 @@ function findKnowledge(input) {
       score >
       bestScore
     ) {
-
       bestScore =
         score;
 
@@ -2083,8 +3168,7 @@ function findKnowledge(input) {
   ) {
 
     return {
-      found:
-        true,
+      found:true,
 
       score:
         Number(
@@ -2098,8 +3182,7 @@ function findKnowledge(input) {
   }
 
   return {
-    found:
-      false,
+    found:false,
 
     score:
       Number(
@@ -2107,8 +3190,7 @@ function findKnowledge(input) {
           .toFixed(3)
       ),
 
-    knowledge:
-      null
+    knowledge:null
   };
 }
 
@@ -2194,18 +3276,27 @@ window.renderBrain =
       return;
     }
 
+    const locale =
+      getSelectedLocale();
+
+    const config =
+      getSelectedLanguage();
+
     container.innerHTML =
       list
         .map(item => {
 
           const title =
-            item.translatedLabel
-            ||
-            item.normalizedEnglish
-            ||
-            item.originalInput
-            ||
-            "Knowledge";
+            getKnowledgeDisplayLabel(
+              item,
+              locale
+            );
+
+          const cached =
+            getCachedTranslation(
+              item,
+              locale
+            );
 
           return `
             <div class="knowledge-item">
@@ -2222,6 +3313,20 @@ window.renderBrain =
                 </strong>
 
                 <br>
+
+                Language:
+                ${escapeHtml(config.label)}
+
+                <br>
+
+                ${
+                  config.code !== "en" &&
+                  !cached
+                    ?
+                    "Translation: chưa cache<br>"
+                    :
+                    ""
+                }
 
                 Category:
                 ${escapeHtml(item.category || "unknown")}
@@ -2259,6 +3364,24 @@ window.renderBrain =
 
               </div>
 
+              <div class="btn-row">
+
+                <button
+                  class="small-btn"
+                  onclick="translateBrainKnowledge('${escapeHtml(item.id)}')"
+                >
+                  🌐 Dịch
+                </button>
+
+                <button
+                  class="small-btn"
+                  onclick="speakBrainKnowledge('${escapeHtml(item.id)}')"
+                >
+                  🔊 Phát âm
+                </button>
+
+              </div>
+
               ${
                 Number(
                   item.visualSamples ||
@@ -2276,9 +3399,89 @@ window.renderBrain =
 
             </div>
           `;
-
         })
         .join("");
+  };
+
+
+window.translateBrainKnowledge =
+  async function (
+    knowledgeId
+  ) {
+
+    const item =
+      loadKnowledge()
+        .find(
+          value =>
+            value.id ===
+            knowledgeId
+        );
+
+    if (!item) {
+      return;
+    }
+
+    try {
+
+      await ensureKnowledgeTranslation(
+        item
+      );
+
+      renderBrain();
+      renderVisionMemory();
+
+    } catch (error) {
+
+      alert(
+        "Không dịch được: " +
+        (
+          error?.message ||
+          error
+        )
+      );
+    }
+  };
+
+
+window.speakBrainKnowledge =
+  async function (
+    knowledgeId
+  ) {
+
+    const item =
+      loadKnowledge()
+        .find(
+          value =>
+            value.id ===
+            knowledgeId
+        );
+
+    if (!item) {
+      return;
+    }
+
+    try {
+
+      const label =
+        await ensureKnowledgeTranslation(
+          item
+        );
+
+      speakText(
+        label,
+        getSelectedLocale()
+      );
+
+    } catch (error) {
+
+      alert(
+        "Không phát âm được: " +
+        (
+          error?.message ||
+          error
+        )
+      );
+    }
   };
 
 
@@ -2335,6 +3538,9 @@ window.renderVisionMemory =
 
       revokeActiveUrls();
 
+      const locale =
+        getSelectedLocale();
+
       container.innerHTML =
         `
           <div class="image-grid">
@@ -2359,24 +3565,28 @@ window.renderVisionMemory =
                     url
                   );
 
+                  const title =
+                    item
+                      ?
+                      getKnowledgeDisplayLabel(
+                        item,
+                        locale
+                      )
+                      :
+                      "Unknown";
+
                   return `
                     <div class="image-card">
 
                       <img
                         src="${url}"
-                        alt="${escapeHtml(item?.translatedLabel || "visual memory")}"
+                        alt="${escapeHtml(title)}"
                       >
 
                       <div class="image-info">
 
                         <strong>
-                          ${escapeHtml(
-                            item?.translatedLabel
-                            ||
-                            item?.normalizedEnglish
-                            ||
-                            "Unknown"
-                          )}
+                          ${escapeHtml(title)}
                         </strong>
 
                         <br>
@@ -2390,11 +3600,27 @@ window.renderVisionMemory =
                             "📷 Real"
                         }
 
+                        ${
+                          item
+                            ?
+                            `
+                              <br><br>
+
+                              <button
+                                class="small-btn"
+                                onclick="speakVisionKnowledge('${escapeHtml(item.id)}')"
+                              >
+                                🔊
+                              </button>
+                            `
+                            :
+                            ""
+                        }
+
                       </div>
 
                     </div>
                   `;
-
                 })
                 .join("")
             }
@@ -2411,6 +3637,50 @@ window.renderVisionMemory =
             ${escapeHtml(error?.message || error)}
           </div>
         `;
+    }
+  };
+
+
+window.speakVisionKnowledge =
+  async function (
+    knowledgeId
+  ) {
+
+    const item =
+      loadKnowledge()
+        .find(
+          value =>
+            value.id ===
+            knowledgeId
+        );
+
+    if (!item) {
+      return;
+    }
+
+    try {
+
+      const label =
+        await ensureKnowledgeTranslation(
+          item
+        );
+
+      speakText(
+        label,
+        getSelectedLocale()
+      );
+
+      renderVisionMemory();
+
+    } catch (error) {
+
+      alert(
+        "Không phát âm được: " +
+        (
+          error?.message ||
+          error
+        )
+      );
     }
   };
 
@@ -2442,7 +3712,6 @@ function updateModuleStatus() {
   if (
     !window.RiiWorkerClientV2
   ) {
-
     $("workerStatus")
       .textContent =
       "Missing";
@@ -2501,12 +3770,16 @@ window.testWorkerConnection =
           "?"
         )
         +
-        " • AI "
+        " • Translate "
         +
         (
-          data.hasAI
-            ? "READY"
-            : "MISSING"
+          data
+            ?.endpoints
+            ?.translate
+            ?
+            "READY"
+            :
+            "MISSING"
         );
 
       $("settingsWorkerResult")
@@ -2528,8 +3801,7 @@ window.testWorkerConnection =
 
       $("workerHomeInfo")
         .textContent =
-        "❌ "
-        +
+        "❌ " +
         formatted.message;
 
       $("settingsWorkerResult")
@@ -2556,50 +3828,26 @@ function localToKnowledge(
   ) {
 
     return {
-
-      originalInput:
-        input,
-
-      category:
-        "mathematics",
-
-      quantity:
-        1,
-
-      normalizedEnglish:
-        "basic arithmetic",
-
-      translatedLabel:
-        input,
-
-      color:
-        "",
-
-      shape:
-        "",
-
-      attributes:
-        [],
-
+      originalInput:input,
+      category:"mathematics",
+      quantity:1,
+      normalizedEnglish:"basic arithmetic",
+      translatedLabel:input,
+      color:"",
+      shape:"",
+      attributes:[],
+      translations:{},
       math:
         local.math ||
         null,
-
-      needsImage:
-        false,
-
-      source:
-        "local-math",
-
-      confidence:
-        1
+      needsImage:false,
+      source:"local-math",
+      confidence:1
     };
   }
 
   return {
-
-    originalInput:
-      input,
+    originalInput:input,
 
     category:
       local?.category ||
@@ -2636,8 +3884,12 @@ function localToKnowledge(
       Array.isArray(
         local?.attributes
       )
-        ? local.attributes
-        : [],
+        ?
+        local.attributes
+        :
+        [],
+
+    translations:{},
 
     needsImage:
       Boolean(
@@ -2648,8 +3900,7 @@ function localToKnowledge(
       local?.source ||
       "local-parser",
 
-    confidence:
-      1
+    confidence:1
   };
 }
 
@@ -2659,10 +3910,15 @@ function remoteToKnowledge(
   remote
 ) {
 
-  return {
+  const englishLabel =
+    remote.translatedLabel
+    ||
+    remote.normalizedEnglish
+    ||
+    input;
 
-    originalInput:
-      input,
+  return {
+    originalInput:input,
 
     category:
       remote.category ||
@@ -2679,11 +3935,7 @@ function remoteToKnowledge(
       "",
 
     translatedLabel:
-      remote.translatedLabel
-      ||
-      remote.normalizedEnglish
-      ||
-      input,
+      englishLabel,
 
     detectedLanguage:
       remote.detectedLanguage ||
@@ -2705,25 +3957,254 @@ function remoteToKnowledge(
       Array.isArray(
         remote.attributes
       )
-        ? remote.attributes
-        : [],
+        ?
+        remote.attributes
+        :
+        [],
+
+    translations:{
+      "en-US":{
+        label:
+          englishLabel,
+
+        code:"en",
+
+        language:"English",
+
+        locale:"en-US",
+
+        updatedAt:
+          new Date()
+            .toISOString()
+      }
+    },
 
     needsImage:
       Boolean(
         remote.needsImage
       ),
 
-    source:
-      "worker-ai",
+    source:"worker-ai",
 
     workerVersion:
       remote.version ||
       "",
 
-    confidence:
-      .9
+    confidence:.9
   };
 }
+/* =====================================================
+   TEACH LANGUAGE
+===================================================== */
+
+function updatePendingLanguageLabel() {
+
+  const box =
+    $("teachTranslatedLabel");
+
+  if (
+    !pendingKnowledge
+  ) {
+    box.textContent =
+      "Chưa có concept.";
+
+    return;
+  }
+
+  const locale =
+    getSelectedLocale();
+
+  const label =
+    getKnowledgeDisplayLabel(
+      pendingKnowledge,
+      locale
+    );
+
+  box.textContent =
+    label;
+}
+
+
+window.translatePendingKnowledge =
+  async function () {
+
+    if (
+      !pendingKnowledge
+    ) {
+      return;
+    }
+
+    const button =
+      $("teachTranslateButton");
+
+    setBusy(
+      button,
+      true,
+      "🌐 Dịch",
+      "⏳ Đang dịch..."
+    );
+
+    try {
+
+      const config =
+        getSelectedLanguage();
+
+      const label =
+        await requestConceptTranslation(
+          pendingKnowledge,
+          config.locale
+        );
+
+      pendingKnowledge
+        .translations =
+        normalizeTranslations(
+          pendingKnowledge
+            .translations
+        );
+
+      pendingKnowledge
+        .translations[
+          config.locale
+        ] = {
+          label,
+          code:
+            config.code,
+          language:
+            config.name,
+          locale:
+            config.locale,
+          updatedAt:
+            new Date()
+              .toISOString()
+        };
+
+      $("teachTranslatedLabel")
+        .textContent =
+        label;
+
+      $("teachSpeechStatus")
+        .textContent =
+        "✅ Đã dịch sang " +
+        config.label;
+
+    } catch (error) {
+
+      $("teachSpeechStatus")
+        .textContent =
+        "❌ " +
+        (
+          error?.message ||
+          error
+        );
+
+    } finally {
+
+      setBusy(
+        button,
+        false,
+        "🌐 Dịch",
+        "⏳ Đang dịch..."
+      );
+    }
+  };
+
+
+window.speakPendingKnowledge =
+  async function () {
+
+    if (
+      !pendingKnowledge
+    ) {
+      return;
+    }
+
+    try {
+
+      const config =
+        getSelectedLanguage();
+
+      let label;
+
+      if (
+        config.code === "en"
+      ) {
+
+        label =
+          getEnglishKnowledgeLabel(
+            pendingKnowledge
+          );
+
+      } else {
+
+        label =
+          getCachedTranslation(
+            pendingKnowledge,
+            config.locale
+          );
+
+        if (!label) {
+
+          label =
+            await requestConceptTranslation(
+              pendingKnowledge,
+              config.locale
+            );
+
+          pendingKnowledge
+            .translations =
+            normalizeTranslations(
+              pendingKnowledge
+                .translations
+            );
+
+          pendingKnowledge
+            .translations[
+              config.locale
+            ] = {
+              label,
+              code:
+                config.code,
+              language:
+                config.name,
+              locale:
+                config.locale,
+              updatedAt:
+                new Date()
+                  .toISOString()
+            };
+        }
+      }
+
+      $("teachTranslatedLabel")
+        .textContent =
+        label;
+
+      const result =
+        speakText(
+          label,
+          config.locale
+        );
+
+      $("teachSpeechStatus")
+        .textContent =
+        "🔊 " +
+        result.text +
+        " • " +
+        result.locale;
+
+    } catch (error) {
+
+      $("teachSpeechStatus")
+        .textContent =
+        "❌ " +
+        (
+          error?.message ||
+          error
+        );
+    }
+  };
+
+
 /* =====================================================
    TEACH ANALYZE
 ===================================================== */
@@ -2761,6 +4242,18 @@ window.analyzeTeach =
 
     generateButton.disabled =
       true;
+
+    $("teachTranslateButton")
+      .disabled =
+      true;
+
+    $("teachSpeakButton")
+      .disabled =
+      true;
+
+    $("teachTranslatedLabel")
+      .textContent =
+      "Chưa có concept.";
 
     if (!input) {
 
@@ -2810,18 +4303,11 @@ window.analyzeTeach =
 
         resultBox.textContent =
           pretty({
-
-            mode:
-              "LOCAL",
-
-            readyToSave:
-              true,
-
+            mode:"LOCAL",
+            readyToSave:true,
             knowledge:
               pendingKnowledge,
-
-            raw:
-              local
+            raw:local
           });
 
         saveButton.disabled =
@@ -2831,13 +4317,22 @@ window.analyzeTeach =
           !pendingKnowledge
             .needsImage;
 
+        $("teachTranslateButton")
+          .disabled =
+          false;
+
+        $("teachSpeakButton")
+          .disabled =
+          false;
+
+        updatePendingLanguageLabel();
+
         return;
       }
 
       if (
         !window.RiiWorkerClientV2
       ) {
-
         throw new Error(
           "Worker Client V2 chưa được tải."
         );
@@ -2849,12 +4344,8 @@ window.analyzeTeach =
           .analyzeConcept(
             input,
             {
-
-              targetLanguage:
-                "en",
-
-              targetLanguageName:
-                "English"
+              targetLanguage:"en",
+              targetLanguageName:"English"
             }
           );
 
@@ -2866,22 +4357,14 @@ window.analyzeTeach =
 
       resultBox.textContent =
         pretty({
-
-          mode:
-            "WORKER_AI",
-
-          readyToSave:
-            true,
-
+          mode:"WORKER_AI",
+          readyToSave:true,
           visualLearning:
             pendingKnowledge
               .needsImage,
-
           knowledge:
             pendingKnowledge,
-
-          raw:
-            remote
+          raw:remote
         });
 
       saveButton.disabled =
@@ -2890,6 +4373,16 @@ window.analyzeTeach =
       generateButton.disabled =
         !pendingKnowledge
           .needsImage;
+
+      $("teachTranslateButton")
+        .disabled =
+        false;
+
+      $("teachSpeakButton")
+        .disabled =
+        false;
+
+      updatePendingLanguageLabel();
 
     } catch (error) {
 
@@ -2900,6 +4393,14 @@ window.analyzeTeach =
         true;
 
       generateButton.disabled =
+        true;
+
+      $("teachTranslateButton")
+        .disabled =
+        true;
+
+      $("teachSpeakButton")
+        .disabled =
         true;
 
       if (
@@ -2996,14 +4497,9 @@ window.generateTeachImages =
             pendingKnowledge
               .originalInput,
             {
-              count:
-                3,
-
-              targetLanguage:
-                "en",
-
-              targetLanguageName:
-                "English"
+              count:3,
+              targetLanguage:"en",
+              targetLanguageName:"English"
             }
           );
 
@@ -3011,13 +4507,14 @@ window.generateTeachImages =
         Array.isArray(
           response.images
         )
-          ? response.images
-          : [];
+          ?
+          response.images
+          :
+          [];
 
       if (
         images.length === 0
       ) {
-
         throw new Error(
           "Worker không trả ảnh."
         );
@@ -3034,10 +4531,7 @@ window.generateTeachImages =
           );
 
         pendingImages.push({
-
-          source:
-            "ai",
-
+          source:"ai",
           blob
         });
       }
@@ -3046,20 +4540,14 @@ window.generateTeachImages =
 
       resultBox.textContent =
         pretty({
-
-          ok:
-            true,
-
+          ok:true,
           message:
             "Đã tạo mẫu ảnh AI.",
-
           concept:
             pendingKnowledge
               .translatedLabel,
-
           addedImages:
             images.length,
-
           pendingImages:
             pendingImages.length
         });
@@ -3162,14 +4650,11 @@ window.saveAnalyzedKnowledge =
 
           window
             .RiiBrainV2
-            .addKnowledge(
-              {
-                ...pendingKnowledge,
-
-                visualSamples:
-                  visualCount
-              }
-            );
+            .addKnowledge({
+              ...pendingKnowledge,
+              visualSamples:
+                visualCount
+            });
         }
 
       } catch (error) {
@@ -3184,25 +4669,17 @@ window.saveAnalyzedKnowledge =
 
       resultBox.textContent =
         pretty({
-
-          ok:
-            true,
-
+          ok:true,
           message:
-            "Đã ghi kiến thức và Visual Memory vào Brain.",
-
+            "Đã ghi kiến thức, bản dịch và Visual Memory vào Brain.",
           id:
             saved.id,
-
           totalKnowledge:
             loadKnowledge()
               .length,
-
           addedVisuals,
-
           totalVisualSamplesForConcept:
             visualCount,
-
           knowledge:
             pendingKnowledge
         });
@@ -3222,6 +4699,18 @@ window.saveAnalyzedKnowledge =
         .disabled =
         true;
 
+      $("teachTranslateButton")
+        .disabled =
+        true;
+
+      $("teachSpeakButton")
+        .disabled =
+        true;
+
+      $("teachTranslatedLabel")
+        .textContent =
+        "Chưa có concept.";
+
       $("realImageInput").value =
         "";
 
@@ -3229,10 +4718,7 @@ window.saveAnalyzedKnowledge =
 
       resultBox.textContent =
         pretty({
-
-          ok:
-            false,
-
+          ok:false,
           error:
             String(
               error?.message ||
@@ -3266,8 +4752,175 @@ window.saveAnalyzedKnowledge =
 
 
 /* =====================================================
+   THINK LANGUAGE
+===================================================== */
+
+function resetThinkSpeech() {
+
+  currentThinkConcept =
+    null;
+
+  currentThinkSpeechText =
+    "";
+
+  $("thinkSpeechActions")
+    .style.display =
+    "none";
+
+  $("thinkTranslatedLabel")
+    .style.display =
+    "none";
+
+  $("thinkTranslatedLabel")
+    .textContent =
+    "";
+}
+
+
+function updateCurrentThinkLanguageLabel() {
+
+  if (
+    !currentThinkConcept
+  ) {
+    return;
+  }
+
+  const label =
+    getKnowledgeDisplayLabel(
+      currentThinkConcept,
+      getSelectedLocale()
+    );
+
+  currentThinkSpeechText =
+    label;
+
+  $("thinkTranslatedLabel")
+    .style.display =
+    "block";
+
+  $("thinkTranslatedLabel")
+    .textContent =
+    label;
+}
+
+
+window.translateCurrentThinkResult =
+  async function () {
+
+    if (
+      !currentThinkConcept
+    ) {
+      return;
+    }
+
+    try {
+
+      let label;
+
+      if (
+        currentThinkConcept.id
+      ) {
+
+        label =
+          await ensureKnowledgeTranslation(
+            currentThinkConcept
+          );
+
+        const refreshed =
+          loadKnowledge()
+            .find(
+              item =>
+                item.id ===
+                currentThinkConcept.id
+            );
+
+        if (refreshed) {
+          currentThinkConcept =
+            refreshed;
+        }
+
+      } else {
+
+        label =
+          await requestConceptTranslation(
+            currentThinkConcept
+          );
+      }
+
+      currentThinkSpeechText =
+        label;
+
+      $("thinkTranslatedLabel")
+        .style.display =
+        "block";
+
+      $("thinkTranslatedLabel")
+        .textContent =
+        label;
+
+    } catch (error) {
+
+      $("thinkTranslatedLabel")
+        .style.display =
+        "block";
+
+      $("thinkTranslatedLabel")
+        .textContent =
+        "❌ " +
+        (
+          error?.message ||
+          error
+        );
+    }
+  };
+
+
+window.speakCurrentThinkResult =
+  async function () {
+
+    if (
+      !currentThinkConcept
+    ) {
+      return;
+    }
+
+    try {
+
+      if (
+        !currentThinkSpeechText
+      ) {
+        await window
+          .translateCurrentThinkResult();
+      }
+
+      if (
+        currentThinkSpeechText
+      ) {
+        speakText(
+          currentThinkSpeechText,
+          getSelectedLocale()
+        );
+      }
+
+    } catch (error) {
+
+      $("thinkTranslatedLabel")
+        .style.display =
+        "block";
+
+      $("thinkTranslatedLabel")
+        .textContent =
+        "❌ " +
+        (
+          error?.message ||
+          error
+        );
+    }
+  };
+
+
+/* =====================================================
    THINK
-   LOCAL -> BRAIN -> WORKER
 ===================================================== */
 
 window.runThinking =
@@ -3286,6 +4939,8 @@ window.runThinking =
 
     const button =
       $("thinkButton");
+
+    resetThinkSpeech();
 
     if (!input) {
 
@@ -3335,12 +4990,8 @@ window.runThinking =
 
         resultBox.textContent =
           pretty({
-
-            mode:
-              "LOCAL",
-
-            result:
-              local
+            mode:"LOCAL",
+            result:local
           });
 
         return;
@@ -3361,23 +5012,39 @@ window.runThinking =
         modeBox.textContent =
           "🧠 BRAIN_MEMORY — dùng kiến thức đã học";
 
+        currentThinkConcept =
+          brainMatch.knowledge;
+
+        currentThinkSpeechText =
+          getKnowledgeDisplayLabel(
+            brainMatch.knowledge
+          );
+
+        $("thinkSpeechActions")
+          .style.display =
+          "grid";
+
+        $("thinkTranslatedLabel")
+          .style.display =
+          "block";
+
+        $("thinkTranslatedLabel")
+          .textContent =
+          currentThinkSpeechText;
+
         resultBox.textContent =
           pretty({
-
-            mode:
-              "BRAIN_MEMORY",
-
-            ok:
-              true,
-
+            mode:"BRAIN_MEMORY",
+            ok:true,
             input,
-
             memoryScore:
               brainMatch.score,
-
+            selectedLanguage:
+              getSelectedLanguage(),
+            displayLabel:
+              currentThinkSpeechText,
             source:
               "rii-v2-root-knowledge",
-
             result:
               brainMatch.knowledge
           });
@@ -3388,7 +5055,6 @@ window.runThinking =
       if (
         !window.RiiWorkerClientV2
       ) {
-
         throw new Error(
           "Worker Client V2 chưa được tải."
         );
@@ -3406,33 +5072,44 @@ window.runThinking =
           .analyzeConcept(
             input,
             {
-
-              targetLanguage:
-                "en",
-
-              targetLanguageName:
-                "English"
+              targetLanguage:"en",
+              targetLanguageName:"English"
             }
           );
 
+      currentThinkConcept =
+        remoteToKnowledge(
+          input,
+          remote
+        );
+
+      currentThinkSpeechText =
+        currentThinkConcept
+          .translatedLabel;
+
+      $("thinkSpeechActions")
+        .style.display =
+        "grid";
+
+      $("thinkTranslatedLabel")
+        .style.display =
+        "block";
+
+      $("thinkTranslatedLabel")
+        .textContent =
+        currentThinkSpeechText;
+
       resultBox.textContent =
         pretty({
-
-          mode:
-            "WORKER_AI",
-
-          brainMemory:
-            {
-
-              found:
-                false,
-
-              bestScore:
-                brainMatch.score
-            },
-
-          result:
-            remote
+          mode:"WORKER_AI",
+          brainMemory:{
+            found:false,
+            bestScore:
+              brainMatch.score
+          },
+          selectedLanguage:
+            getSelectedLanguage(),
+          result:remote
         });
 
     } catch (error) {
@@ -3500,7 +5177,7 @@ window.saveSettings =
 
     $("settingsWorkerResult")
       .textContent =
-      "✅ Đã lưu cấu hình Worker.";
+      "✅ Đã lưu cấu hình Worker + ngôn ngữ.";
   };
 
 
@@ -3513,7 +5190,6 @@ const savedBackend =
 if (
   savedBackend
 ) {
-
   $("backendUrl").value =
     savedBackend;
 }
@@ -3522,6 +5198,10 @@ if (
 /* =====================================================
    START
 ===================================================== */
+
+populateLanguageSelectors();
+
+refreshSpeechVoices();
 
 updateModuleStatus();
 
@@ -3537,9 +5217,7 @@ if (
 
   setTimeout(
     () => {
-
       testWorkerConnection();
-
     },
     500
   );
