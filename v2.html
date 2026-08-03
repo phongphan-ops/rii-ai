@@ -8,7 +8,7 @@
   content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<title>Rii AI V2.1.1</title>
+<title>Rii AI V2.2.0</title>
 
 <style>
 :root{
@@ -52,13 +52,14 @@ button{
 
 button:disabled{
   opacity:.5;
+  cursor:not-allowed;
 }
 
 .app{
   max-width:900px;
   margin:auto;
   min-height:100vh;
-  padding-bottom:120px;
+  padding-bottom:125px;
 }
 
 header{
@@ -137,14 +138,10 @@ main{
   display:inline-flex;
   gap:7px;
   align-items:center;
-
   padding:7px 11px;
-
   border-radius:999px;
-
   font-size:13px;
   font-weight:750;
-
   background:#123027;
   color:var(--green);
 }
@@ -172,7 +169,6 @@ main{
 label{
   display:block;
   margin:14px 0 7px;
-
   color:var(--muted);
   font-weight:750;
 }
@@ -180,17 +176,11 @@ label{
 input,
 textarea{
   width:100%;
-
   padding:14px;
-
   border-radius:16px;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   background:#08121c;
   color:var(--text);
-
   outline:none;
 }
 
@@ -201,26 +191,19 @@ textarea{
 
 .btn{
   width:100%;
-
   border:0;
   border-radius:17px;
-
   padding:15px;
   margin-top:12px;
-
   font-weight:850;
-
   background:var(--green);
   color:#04130e;
 }
 
 .btn.secondary{
   color:var(--text);
-
   background:var(--panel2);
-
-  border:
-    1px solid var(--line);
+  border:1px solid var(--line);
 }
 
 .btn.yellow{
@@ -228,34 +211,28 @@ textarea{
   color:#251c00;
 }
 
+.btn.red{
+  background:#401a21;
+  color:#ffabb2;
+  border:1px solid #73303b;
+}
+
 pre{
   margin:12px 0 0;
-
   white-space:pre-wrap;
   overflow-wrap:anywhere;
-
   background:#06101a;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   padding:14px;
-
   border-radius:16px;
-
   color:#cfe3f6;
 }
 
 .knowledge-item{
   background:#0a1622;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   border-radius:17px;
-
   padding:14px;
-
   margin-top:10px;
 }
 
@@ -266,9 +243,7 @@ pre{
 
 .knowledge-meta{
   margin-top:7px;
-
   color:var(--muted);
-
   font-size:13px;
   line-height:1.55;
 }
@@ -287,25 +262,16 @@ pre{
 
 .pipeline span{
   padding:8px 11px;
-
   border-radius:12px;
-
   background:var(--panel2);
-
-  border:
-    1px solid var(--line);
+  border:1px solid var(--line);
 }
 
 .mode-box{
   margin-top:12px;
-
   padding:12px;
-
   border-radius:14px;
-
-  border:
-    1px solid var(--line);
-
+  border:1px solid var(--line);
   background:#0a1622;
 }
 
@@ -321,12 +287,67 @@ pre{
   color:var(--green);
 }
 
+.image-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+  gap:10px;
+  margin-top:12px;
+}
+
+.image-card{
+  overflow:hidden;
+  border-radius:16px;
+  border:1px solid var(--line);
+  background:#08121c;
+}
+
+.image-card img{
+  width:100%;
+  aspect-ratio:1/1;
+  display:block;
+  object-fit:cover;
+}
+
+.image-info{
+  padding:9px;
+  color:var(--muted);
+  font-size:12px;
+}
+
+.visual-badge{
+  display:inline-block;
+  margin-top:7px;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#162c25;
+  color:var(--green);
+  font-size:12px;
+  font-weight:750;
+}
+
+.file-label{
+  display:block;
+  width:100%;
+  margin-top:12px;
+  padding:15px;
+  text-align:center;
+  border-radius:17px;
+  border:1px solid var(--line);
+  background:var(--panel2);
+  color:var(--text);
+  font-weight:850;
+}
+
+.file-label input{
+  display:none;
+}
+
 .bottom-nav{
   position:fixed;
   left:0;
   right:0;
   bottom:0;
-
   z-index:100;
 
   padding:
@@ -340,14 +361,12 @@ pre{
   border-top:
     1px solid var(--line);
 
-  backdrop-filter:
-    blur(20px);
+  backdrop-filter:blur(20px);
 
   overflow-x:auto;
   white-space:nowrap;
 
-  -webkit-overflow-scrolling:
-    touch;
+  -webkit-overflow-scrolling:touch;
 }
 
 .nav-inner{
@@ -358,15 +377,10 @@ pre{
 
 .nav-btn{
   border:0;
-
   min-width:74px;
-
   padding:8px 11px;
-
   border-radius:14px;
-
   color:var(--muted);
-
   background:transparent;
 }
 
@@ -383,6 +397,11 @@ pre{
 
 @media(min-width:700px){
   .grid{
+    grid-template-columns:
+      repeat(4,minmax(0,1fr));
+  }
+
+  .image-grid{
     grid-template-columns:
       repeat(4,minmax(0,1fr));
   }
@@ -405,13 +424,13 @@ pre{
       </h1>
 
       <div class="subtitle">
-        Brain • Vision • Think • Robot
+        Brain • Visual Learning • Think • Robot
       </div>
 
     </div>
 
     <div class="version">
-      V2.1.1
+      V2.2.0
     </div>
 
   </div>
@@ -436,13 +455,13 @@ pre{
     </h2>
 
     <span class="status">
-      ● Brain-first Thinking
+      ● Visual Learning
     </span>
 
     <p class="muted">
-      Rii ưu tiên kiến thức cục bộ,
-      sau đó trí nhớ Brain,
-      cuối cùng mới gọi Worker AI.
+      Rii có thể học concept,
+      ghi nhớ kiến thức và lưu
+      mẫu hình ảnh liên kết với Brain.
     </p>
 
   </div>
@@ -452,7 +471,6 @@ pre{
 
     <div class="stat">
       🧠 Brain
-
       <strong id="brainStatus">
         Checking
       </strong>
@@ -460,7 +478,6 @@ pre{
 
     <div class="stat">
       ⚙️ Engine
-
       <strong id="engineStatus">
         Checking
       </strong>
@@ -468,7 +485,6 @@ pre{
 
     <div class="stat">
       🔐 Vault
-
       <strong id="vaultStatus">
         Checking
       </strong>
@@ -476,7 +492,6 @@ pre{
 
     <div class="stat">
       ☁️ Worker
-
       <strong id="workerStatus">
         Offline
       </strong>
@@ -485,16 +500,18 @@ pre{
   </div>
 
 
-  <div class="card">
-
-    <h3>
-      🧠 Bộ nhớ hiện tại
-    </h3>
+  <div class="grid" style="margin-top:12px">
 
     <div class="stat">
-      Tổng kiến thức
-
+      🧠 Knowledge
       <strong id="knowledgeCountHome">
+        0
+      </strong>
+    </div>
+
+    <div class="stat">
+      🖼 Visual Samples
+      <strong id="visualCountHome">
         0
       </strong>
     </div>
@@ -505,19 +522,16 @@ pre{
   <div class="card">
 
     <h3>
-      Luồng tư duy V2.1.1
+      Luồng V2.2.0
     </h3>
 
     <div class="pipeline">
-
-      <span>Input</span>
-
-      <span>→ LOCAL</span>
-
-      <span>→ BRAIN</span>
-
-      <span>→ WORKER AI</span>
-
+      <span>Teach</span>
+      <span>→ Analyze</span>
+      <span>→ Image</span>
+      <span>→ Brain</span>
+      <span>→ Vision Memory</span>
+      <span>→ Future Camera</span>
     </div>
 
   </div>
@@ -548,7 +562,6 @@ pre{
 </section>
 
 
-
 <!-- TEACH -->
 
 <section
@@ -559,12 +572,13 @@ pre{
   <div class="card">
 
     <h2>
-      ➕ Teach
+      ➕ Teach + Visual Learning
     </h2>
 
     <p class="muted">
-      Phân tích kiến thức trước,
-      sau đó ghi vào Brain.
+      Bước 1 phân tích concept.
+      Bước 2 thêm ảnh thật hoặc tạo ảnh AI.
+      Bước 3 ghi tất cả vào Brain.
     </p>
 
 
@@ -574,7 +588,7 @@ pre{
 
     <textarea
       id="teachInput"
-      placeholder="Ví dụ: 2 con chó đen"
+      placeholder="Ví dụ: 1 con ngựa nâu"
     ></textarea>
 
 
@@ -583,8 +597,48 @@ pre{
       class="btn"
       onclick="analyzeTeach()"
     >
-      🧠 Phân tích
+      🧠 1. Phân tích
     </button>
+
+
+    <label
+      class="file-label"
+    >
+      📷 2A. Chọn ảnh thật từ máy
+
+      <input
+        id="realImageInput"
+        type="file"
+        accept="image/*"
+        multiple
+      >
+    </label>
+
+
+    <button
+      id="generateImageButton"
+      class="btn secondary"
+      onclick="generateTeachImages()"
+      disabled
+    >
+      ✨ 2B. Tạo 3 ảnh AI
+    </button>
+
+
+    <button
+      id="clearPendingImagesButton"
+      class="btn red"
+      onclick="clearPendingImages()"
+      disabled
+    >
+      🗑 Xóa ảnh đang chờ
+    </button>
+
+
+    <div
+      id="teachImagePreview"
+      class="image-grid"
+    ></div>
 
 
     <button
@@ -593,7 +647,7 @@ pre{
       onclick="saveAnalyzedKnowledge()"
       disabled
     >
-      💾 Ghi vào Brain
+      💾 3. Ghi kiến thức + ảnh vào Brain
     </button>
 
 
@@ -604,7 +658,6 @@ Chưa có dữ liệu.
   </div>
 
 </section>
-
 
 
 <!-- THINK -->
@@ -621,7 +674,6 @@ Chưa có dữ liệu.
     </h2>
 
     <p class="muted">
-      Thứ tự xử lý:
       LOCAL → BRAIN_MEMORY → WORKER_AI.
     </p>
 
@@ -632,7 +684,7 @@ Chưa có dữ liệu.
 
     <textarea
       id="thinkInput"
-      placeholder="Thử nhập lại: 2 con chó đen"
+      placeholder="Ví dụ: 2 con chó đen"
     ></textarea>
 
 
@@ -662,7 +714,6 @@ Waiting...
 </section>
 
 
-
 <!-- VISION -->
 
 <section
@@ -673,30 +724,56 @@ Waiting...
   <div class="card">
 
     <h2>
-      👁 Vision
+      👁 Vision Memory
     </h2>
 
     <p class="muted">
-      Vision sẽ được nối sau khi
-      bộ nhớ và Brain-first hoạt động ổn định.
+      Đây là dữ liệu hình ảnh Rii đã học.
+      Chưa phải nhận diện camera trực tiếp.
     </p>
 
-    <div class="stat">
-      Camera robot
-      <strong>Offline</strong>
+
+    <div class="grid">
+
+      <div class="stat">
+        Visual Samples
+        <strong id="visualCountVision">
+          0
+        </strong>
+      </div>
+
+      <div class="stat">
+        Camera
+        <strong>
+          Offline
+        </strong>
+      </div>
+
     </div>
 
-    <br>
 
-    <div class="stat">
-      Camera toàn cảnh
-      <strong>Offline</strong>
+    <button
+      class="btn secondary"
+      onclick="renderVisionMemory()"
+    >
+      🔄 Làm mới Visual Memory
+    </button>
+
+  </div>
+
+
+  <div
+    id="visionMemoryList"
+    class="card"
+  >
+
+    <div class="empty">
+      Chưa có mẫu hình ảnh.
     </div>
 
   </div>
 
 </section>
-
 
 
 <!-- WORLD -->
@@ -714,7 +791,8 @@ Waiting...
 
     <pre>
 Robot: chưa định vị
-Objects: chưa kết nối Vision
+Camera: chưa kết nối
+Objects: chưa nhận diện trực tiếp
 Targets: 0
 Map: chưa có
     </pre>
@@ -722,7 +800,6 @@ Map: chưa có
   </div>
 
 </section>
-
 
 
 <!-- BRAIN -->
@@ -739,31 +816,24 @@ Map: chưa có
     </h2>
 
     <p class="muted">
-      Kiến thức do ROOT_OWNER dạy.
+      Concept Memory + Visual Sample metadata.
     </p>
 
 
     <div class="grid">
 
       <div class="stat">
-
         Role
-
         <strong>
           ROOT
         </strong>
-
       </div>
 
-
       <div class="stat">
-
         Knowledge
-
         <strong id="knowledgeCountBrain">
           0
         </strong>
-
       </div>
 
     </div>
@@ -793,7 +863,6 @@ Map: chưa có
 </section>
 
 
-
 <!-- VAULT -->
 
 <section
@@ -808,23 +877,20 @@ Map: chưa có
     </h2>
 
     <p class="muted">
-      Lệnh robot vẫn ở chế độ Preview.
+      Command Vault vẫn được giữ riêng.
+      Visual Learning không sửa lệnh robot.
     </p>
 
     <div class="stat">
-
       Vault
-
       <strong>
         Ready
       </strong>
-
     </div>
 
   </div>
 
 </section>
-
 
 
 <!-- SETTINGS -->
@@ -891,9 +957,6 @@ Chưa kiểm tra.
 </div>
 
 
-
-<!-- NAV -->
-
 <nav class="bottom-nav">
 
 <div class="nav-inner">
@@ -902,86 +965,63 @@ Chưa kiểm tra.
     class="nav-btn active"
     data-page="home"
   >
-    <span class="nav-icon">
-      🏠
-    </span>
+    <span class="nav-icon">🏠</span>
     Home
   </button>
-
 
   <button
     class="nav-btn"
     data-page="teach"
   >
-    <span class="nav-icon">
-      ➕
-    </span>
+    <span class="nav-icon">➕</span>
     Teach
   </button>
-
 
   <button
     class="nav-btn"
     data-page="think"
   >
-    <span class="nav-icon">
-      ✨
-    </span>
+    <span class="nav-icon">✨</span>
     Think
   </button>
-
 
   <button
     class="nav-btn"
     data-page="vision"
   >
-    <span class="nav-icon">
-      👁
-    </span>
+    <span class="nav-icon">👁</span>
     Vision
   </button>
-
 
   <button
     class="nav-btn"
     data-page="world"
   >
-    <span class="nav-icon">
-      🌍
-    </span>
+    <span class="nav-icon">🌍</span>
     World
   </button>
-
 
   <button
     class="nav-btn"
     data-page="brain"
   >
-    <span class="nav-icon">
-      🧠
-    </span>
+    <span class="nav-icon">🧠</span>
     Brain
   </button>
-
 
   <button
     class="nav-btn"
     data-page="vault"
   >
-    <span class="nav-icon">
-      🔐
-    </span>
+    <span class="nav-icon">🔐</span>
     Vault
   </button>
-
 
   <button
     class="nav-btn"
     data-page="settings"
   >
-    <span class="nav-icon">
-      ⚙️
-    </span>
+    <span class="nav-icon">⚙️</span>
     Settings
   </button>
 
@@ -990,658 +1030,1061 @@ Chưa kiểm tra.
 </nav>
 
 
-
-<!-- MODULES -->
-
 <script src="brain-v2.js"></script>
-
 <script src="brain-engine-v2.js"></script>
-
 <script src="command-vault-v2.js"></script>
-
 <script src="worker-client-v2.js"></script>
-
 
 
 <script>
 (function () {
-  "use strict";
+"use strict";
 
+const APP_VERSION =
+  "2.2.0";
 
-  const APP_VERSION =
-    "2.1.1";
+const BRAIN_STORAGE_KEY =
+  "rii-v2-root-knowledge";
 
+const ROLE =
+  "ROOT_OWNER";
 
-  /*
-    GIỮ NGUYÊN KEY V2.1.0
-    để không mất black dog.
-  */
+const VISUAL_DB_NAME =
+  "RiiVisualMemoryV2";
 
-  const BRAIN_STORAGE_KEY =
-    "rii-v2-root-knowledge";
+const VISUAL_DB_VERSION =
+  1;
 
+const VISUAL_STORE =
+  "samples";
 
-  const ROLE =
-    "ROOT_OWNER";
+let pendingKnowledge =
+  null;
 
+let pendingImages =
+  [];
 
-  let pendingKnowledge =
-    null;
-
-
-
+let activeObjectUrls =
+  [];
   /* =====================================================
-     BASIC HELPERS
-  ===================================================== */
+   BASIC HELPERS
+===================================================== */
 
-  function $(id) {
+function $(id) {
+  return document.getElementById(id);
+}
 
-    return document
-      .getElementById(id);
+
+function pretty(value) {
+  return JSON.stringify(
+    value,
+    null,
+    2
+  );
+}
+
+
+function normalizeText(value) {
+  return String(
+    value || ""
+  )
+    .normalize("NFKC")
+    .toLowerCase()
+    .trim()
+    .replace(
+      /[.,!?;:()[\]{}"'`]/g,
+      " "
+    )
+    .replace(
+      /\s+/g,
+      " "
+    );
+}
+
+
+function setBusy(
+  button,
+  busy,
+  normalText,
+  busyText
+) {
+  if (!button) {
+    return;
   }
 
+  button.disabled =
+    Boolean(busy);
 
-  function pretty(value) {
+  button.textContent =
+    busy
+      ? busyText
+      : normalText;
+}
 
-    return JSON.stringify(
-      value,
-      null,
-      2
+
+function escapeHtml(value) {
+  return String(
+    value ?? ""
+  )
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+
+function createId(prefix) {
+  if (
+    crypto?.randomUUID
+  ) {
+    return (
+      prefix +
+      "-" +
+      crypto.randomUUID()
     );
   }
 
-
-  function normalizeText(value) {
-
-    return String(
-      value ||
-      ""
-    )
-      .normalize("NFKC")
-      .toLowerCase()
-      .trim()
-
-      .replace(
-        /[.,!?;:()[\]{}"'`]/g,
-        " "
-      )
-
-      .replace(
-        /\s+/g,
-        " "
-      );
-  }
+  return (
+    prefix +
+    "-" +
+    Date.now() +
+    "-" +
+    Math.random()
+      .toString(36)
+      .slice(2)
+  );
+}
 
 
-  function setBusy(
-    button,
-    busy,
-    normalText,
-    busyText
-  ) {
+/* =====================================================
+   NAVIGATION
+===================================================== */
 
-    if (!button) {
-      return;
-    }
+document
+  .querySelectorAll(
+    ".nav-btn"
+  )
+  .forEach(button => {
 
+    button.addEventListener(
+      "click",
+      () => {
 
-    button.disabled =
-      Boolean(busy);
+        const page =
+          button.dataset.page;
 
-
-    button.textContent =
-      busy
-        ?
-        busyText
-        :
-        normalText;
-  }
-
-
-  function escapeHtml(value) {
-
-    return String(
-      value ??
-      ""
-    )
-      .replace(
-        /&/g,
-        "&amp;"
-      )
-
-      .replace(
-        /</g,
-        "&lt;"
-      )
-
-      .replace(
-        />/g,
-        "&gt;"
-      )
-
-      .replace(
-        /"/g,
-        "&quot;"
-      )
-
-      .replace(
-        /'/g,
-        "&#039;"
-      );
-  }
-
-
-
-  /* =====================================================
-     NAVIGATION
-  ===================================================== */
-
-  document
-    .querySelectorAll(
-      ".nav-btn"
-    )
-    .forEach(button => {
-
-      button.addEventListener(
-        "click",
-        () => {
-
-          const page =
-            button
-              .dataset
-              .page;
-
-
-          document
-            .querySelectorAll(
-              ".page"
-            )
-            .forEach(item => {
-
-              item
-                .classList
-                .remove(
-                  "active"
-                );
-
-            });
-
-
-          $(
-            "page-" + page
+        document
+          .querySelectorAll(
+            ".page"
           )
-            ?.classList
-            .add(
+          .forEach(item => {
+
+            item.classList.remove(
               "active"
             );
 
+          });
 
-          document
-            .querySelectorAll(
-              ".nav-btn"
-            )
-            .forEach(item => {
-
-              item
-                .classList
-                .remove(
-                  "active"
-                );
-
-            });
-
-
-          button
-            .classList
-            .add(
-              "active"
-            );
-
-
-          if (
-            page ===
-            "brain"
-          ) {
-
-            renderBrain();
-          }
-
-
-          window.scrollTo(
-            0,
-            0
+        $(
+          "page-" + page
+        )
+          ?.classList
+          .add(
+            "active"
           );
+
+        document
+          .querySelectorAll(
+            ".nav-btn"
+          )
+          .forEach(item => {
+
+            item.classList.remove(
+              "active"
+            );
+
+          });
+
+        button.classList.add(
+          "active"
+        );
+
+        if (
+          page === "brain"
+        ) {
+          renderBrain();
         }
+
+        if (
+          page === "vision"
+        ) {
+          renderVisionMemory();
+        }
+
+        window.scrollTo(
+          0,
+          0
+        );
+      }
+    );
+
+  });
+
+
+/* =====================================================
+   BRAIN STORAGE
+===================================================== */
+
+function loadKnowledge() {
+
+  try {
+
+    const raw =
+      localStorage.getItem(
+        BRAIN_STORAGE_KEY
       );
 
-    });
-
-
-
-  /* =====================================================
-     BRAIN STORAGE
-  ===================================================== */
-
-  function loadKnowledge() {
-
-    try {
-
-      const raw =
-        localStorage
-          .getItem(
-            BRAIN_STORAGE_KEY
-          );
-
-
-      if (!raw) {
-        return [];
-      }
-
-
-      const data =
-        JSON.parse(raw);
-
-
-      return Array.isArray(data)
-        ?
-        data
-        :
-        [];
-
-    } catch {
-
+    if (!raw) {
       return [];
     }
+
+    const data =
+      JSON.parse(raw);
+
+    return Array.isArray(data)
+      ? data
+      : [];
+
+  } catch {
+
+    return [];
   }
+}
 
 
-  function saveKnowledgeList(
-    list
-  ) {
+function saveKnowledgeList(list) {
 
-    localStorage
-      .setItem(
-        BRAIN_STORAGE_KEY,
-        JSON.stringify(list)
-      );
-  }
+  localStorage.setItem(
+    BRAIN_STORAGE_KEY,
+    JSON.stringify(list)
+  );
+}
 
 
-  function makeKnowledgeId(
-    data
-  ) {
+function makeKnowledgeId(data) {
 
-    return [
-      normalizeText(
-        data.category
-      ),
-
-      normalizeText(
-        data.normalizedEnglish
-      ),
-
-      normalizeText(
-        data.color
-      ),
-
-      normalizeText(
-        data.shape
-      )
-    ]
-      .join("|");
-  }
+  return [
+    normalizeText(
+      data.category
+    ),
+    normalizeText(
+      data.normalizedEnglish
+    ),
+    normalizeText(
+      data.color
+    ),
+    normalizeText(
+      data.shape
+    )
+  ]
+    .join("|");
+}
 
 
-  function saveKnowledgeRecord(
-    record
-  ) {
+function saveKnowledgeRecord(
+  record
+) {
 
-    const list =
-      loadKnowledge();
+  const list =
+    loadKnowledge();
 
-
-    const id =
-      makeKnowledgeId(
-        record
-      );
-
-
-    const existingIndex =
-      list.findIndex(
-        item =>
-          item.id === id
-      );
-
-
-    const now =
-      new Date()
-        .toISOString();
-
-
-    if (
-      existingIndex >= 0
-    ) {
-
-      const old =
-        list[
-          existingIndex
-        ];
-
-
-      list[
-        existingIndex
-      ] = {
-
-        ...old,
-
-        ...record,
-
-        id,
-
-        updatedAt:
-          now,
-
-        learnedCount:
-          Number(
-            old.learnedCount ||
-            1
-          ) + 1
-      };
-
-    } else {
-
-      list.unshift({
-
-        ...record,
-
-        id,
-
-        ownerRole:
-          ROLE,
-
-        learnedCount:
-          1,
-
-        createdAt:
-          now,
-
-        updatedAt:
-          now
-      });
-    }
-
-
-    saveKnowledgeList(
-      list
+  const id =
+    makeKnowledgeId(
+      record
     );
 
+  const existingIndex =
+    list.findIndex(
+      item =>
+        item.id === id
+    );
 
-    return {
+  const now =
+    new Date()
+      .toISOString();
+
+  if (
+    existingIndex >= 0
+  ) {
+
+    const old =
+      list[
+        existingIndex
+      ];
+
+    list[
+      existingIndex
+    ] = {
+
+      ...old,
+
+      ...record,
 
       id,
 
-      list
+      updatedAt:
+        now,
+
+      learnedCount:
+        Number(
+          old.learnedCount ||
+          1
+        ) + 1,
+
+      visualSamples:
+        Number(
+          old.visualSamples ||
+          0
+        )
     };
+
+  } else {
+
+    list.unshift({
+
+      ...record,
+
+      id,
+
+      ownerRole:
+        ROLE,
+
+      learnedCount:
+        1,
+
+      visualSamples:
+        Number(
+          record.visualSamples ||
+          0
+        ),
+
+      createdAt:
+        now,
+
+      updatedAt:
+        now
+    });
   }
 
+  saveKnowledgeList(
+    list
+  );
+
+  return {
+    id,
+    list
+  };
+}
 
 
-  /* =====================================================
-     BRAIN SEARCH
-  ===================================================== */
+function updateKnowledgeVisualCount(
+  knowledgeId,
+  count
+) {
 
-  function tokenize(value) {
+  const list =
+    loadKnowledge();
 
-    return normalizeText(
-      value
-    )
-      .split(" ")
-      .filter(
-        token =>
-          token.length > 1
-      );
+  const index =
+    list.findIndex(
+      item =>
+        item.id === knowledgeId
+    );
+
+  if (
+    index < 0
+  ) {
+    return;
   }
 
+  list[
+    index
+  ].visualSamples =
+    count;
 
-  function tokenOverlapScore(
-    a,
-    b
+  list[
+    index
+  ].updatedAt =
+    new Date()
+      .toISOString();
+
+  saveKnowledgeList(
+    list
+  );
+}
+
+
+/* =====================================================
+   VISUAL INDEXEDDB
+===================================================== */
+
+function openVisualDb() {
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      const request =
+        indexedDB.open(
+          VISUAL_DB_NAME,
+          VISUAL_DB_VERSION
+        );
+
+      request.onupgradeneeded =
+        () => {
+
+          const db =
+            request.result;
+
+          if (
+            !db.objectStoreNames
+              .contains(
+                VISUAL_STORE
+              )
+          ) {
+
+            const store =
+              db.createObjectStore(
+                VISUAL_STORE,
+                {
+                  keyPath:
+                    "id"
+                }
+              );
+
+            store.createIndex(
+              "knowledgeId",
+              "knowledgeId",
+              {
+                unique:
+                  false
+              }
+            );
+
+            store.createIndex(
+              "createdAt",
+              "createdAt",
+              {
+                unique:
+                  false
+              }
+            );
+          }
+        };
+
+      request.onsuccess =
+        () => {
+
+          resolve(
+            request.result
+          );
+        };
+
+      request.onerror =
+        () => {
+
+          reject(
+            request.error
+          );
+        };
+    }
+  );
+}
+
+
+async function addVisualSample(
+  knowledgeId,
+  image
+) {
+
+  const db =
+    await openVisualDb();
+
+  const record = {
+
+    id:
+      createId(
+        "visual"
+      ),
+
+    knowledgeId,
+
+    source:
+      image.source ||
+      "unknown",
+
+    blob:
+      image.blob,
+
+    mimeType:
+      image.blob
+        ?.type
+      ||
+      "image/jpeg",
+
+    createdAt:
+      new Date()
+        .toISOString()
+  };
+
+  await new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      const tx =
+        db.transaction(
+          VISUAL_STORE,
+          "readwrite"
+        );
+
+      tx
+        .objectStore(
+          VISUAL_STORE
+        )
+        .put(
+          record
+        );
+
+      tx.oncomplete =
+        () => resolve();
+
+      tx.onerror =
+        () =>
+          reject(
+            tx.error
+          );
+    }
+  );
+
+  db.close();
+
+  return record;
+}
+
+
+async function getAllVisualSamples() {
+
+  const db =
+    await openVisualDb();
+
+  const result =
+    await new Promise(
+      (
+        resolve,
+        reject
+      ) => {
+
+        const tx =
+          db.transaction(
+            VISUAL_STORE,
+            "readonly"
+          );
+
+        const request =
+          tx
+            .objectStore(
+              VISUAL_STORE
+            )
+            .getAll();
+
+        request.onsuccess =
+          () =>
+            resolve(
+              request.result ||
+              []
+            );
+
+        request.onerror =
+          () =>
+            reject(
+              request.error
+            );
+      }
+    );
+
+  db.close();
+
+  return result;
+}
+
+
+async function countVisualSamplesForKnowledge(
+  knowledgeId
+) {
+
+  const db =
+    await openVisualDb();
+
+  const count =
+    await new Promise(
+      (
+        resolve,
+        reject
+      ) => {
+
+        const tx =
+          db.transaction(
+            VISUAL_STORE,
+            "readonly"
+          );
+
+        const index =
+          tx
+            .objectStore(
+              VISUAL_STORE
+            )
+            .index(
+              "knowledgeId"
+            );
+
+        const request =
+          index.count(
+            knowledgeId
+          );
+
+        request.onsuccess =
+          () =>
+            resolve(
+              request.result ||
+              0
+            );
+
+        request.onerror =
+          () =>
+            reject(
+              request.error
+            );
+      }
+    );
+
+  db.close();
+
+  return count;
+}
+
+
+async function getVisualSampleCount() {
+
+  const db =
+    await openVisualDb();
+
+  const count =
+    await new Promise(
+      (
+        resolve,
+        reject
+      ) => {
+
+        const tx =
+          db.transaction(
+            VISUAL_STORE,
+            "readonly"
+          );
+
+        const request =
+          tx
+            .objectStore(
+              VISUAL_STORE
+            )
+            .count();
+
+        request.onsuccess =
+          () =>
+            resolve(
+              request.result ||
+              0
+            );
+
+        request.onerror =
+          () =>
+            reject(
+              request.error
+            );
+      }
+    );
+
+  db.close();
+
+  return count;
+}
+
+
+/* =====================================================
+   DATA URI → BLOB
+===================================================== */
+
+async function dataUriToBlob(
+  dataUri
+) {
+
+  const response =
+    await fetch(
+      dataUri
+    );
+
+  return response.blob();
+}
+
+
+/* =====================================================
+   IMAGE PREVIEW
+===================================================== */
+
+function revokeActiveUrls() {
+
+  for (
+    const url
+    of activeObjectUrls
   ) {
 
-    const ta =
-      tokenize(a);
+    try {
+      URL.revokeObjectURL(
+        url
+      );
+    } catch {}
+  }
+
+  activeObjectUrls =
+    [];
+}
 
 
-    const tb =
-      tokenize(b);
+function renderPendingImages() {
+
+  const container =
+    $("teachImagePreview");
+
+  revokeActiveUrls();
+
+  if (
+    pendingImages.length === 0
+  ) {
+
+    container.innerHTML =
+      "";
+
+    $(
+      "clearPendingImagesButton"
+    ).disabled =
+      true;
+
+    return;
+  }
+
+  container.innerHTML =
+    pendingImages
+      .map(
+        (
+          image,
+          index
+        ) => {
+
+          const url =
+            URL.createObjectURL(
+              image.blob
+            );
+
+          activeObjectUrls.push(
+            url
+          );
+
+          return `
+            <div class="image-card">
+
+              <img
+                src="${url}"
+                alt="Visual sample ${index + 1}"
+              >
+
+              <div class="image-info">
+
+                ${
+                  image.source ===
+                  "ai"
+                    ?
+                    "✨ AI generated"
+                    :
+                    "📷 Real image"
+                }
+
+              </div>
+
+            </div>
+          `;
+
+        }
+      )
+      .join("");
+
+  $(
+    "clearPendingImagesButton"
+  ).disabled =
+    false;
+}
 
 
-    if (
-      ta.length === 0 ||
-      tb.length === 0
-    ) {
-      return 0;
-    }
+window.clearPendingImages =
+  function () {
+
+    pendingImages =
+      [];
+
+    $("realImageInput").value =
+      "";
+
+    renderPendingImages();
+  };
 
 
-    const setB =
-      new Set(tb);
+/* =====================================================
+   REAL IMAGE INPUT
+===================================================== */
 
+$("realImageInput")
+  .addEventListener(
+    "change",
+    event => {
 
-    let matches = 0;
+      const files =
+        Array.from(
+          event.target.files ||
+          []
+        );
 
-
-    for (
-      const token
-      of ta
-    ) {
-
-      if (
-        setB.has(token)
+      for (
+        const file
+        of files
       ) {
 
-        matches++;
+        if (
+          !file.type
+            .startsWith(
+              "image/"
+            )
+        ) {
+          continue;
+        }
+
+        pendingImages.push({
+
+          source:
+            "real",
+
+          blob:
+            file
+        });
       }
+
+      renderPendingImages();
     }
+  );
 
 
-    return (
-      matches /
-      Math.max(
-        ta.length,
-        tb.length
+/* =====================================================
+   BRAIN SEARCH
+===================================================== */
+
+function tokenize(value) {
+
+  return normalizeText(
+    value
+  )
+    .split(" ")
+    .filter(
+      token =>
+        token.length > 1
+    );
+}
+
+
+function tokenOverlapScore(
+  a,
+  b
+) {
+
+  const ta =
+    tokenize(a);
+
+  const tb =
+    tokenize(b);
+
+  if (
+    ta.length === 0 ||
+    tb.length === 0
+  ) {
+    return 0;
+  }
+
+  const setB =
+    new Set(tb);
+
+  let matches =
+    0;
+
+  for (
+    const token
+    of ta
+  ) {
+
+    if (
+      setB.has(token)
+    ) {
+
+      matches++;
+    }
+  }
+
+  return (
+    matches /
+    Math.max(
+      ta.length,
+      tb.length
+    )
+  );
+}
+
+
+function scoreKnowledge(
+  input,
+  knowledge
+) {
+
+  const query =
+    normalizeText(input);
+
+  const original =
+    normalizeText(
+      knowledge.originalInput
+    );
+
+  const translated =
+    normalizeText(
+      knowledge.translatedLabel
+    );
+
+  const core =
+    normalizeText(
+      knowledge.normalizedEnglish
+    );
+
+  if (
+    query &&
+    query === original
+  ) {
+    return 1;
+  }
+
+  if (
+    query &&
+    translated &&
+    query === translated
+  ) {
+    return .98;
+  }
+
+  if (
+    query &&
+    core &&
+    query === core
+  ) {
+    return .94;
+  }
+
+  let score =
+    0;
+
+  score =
+    Math.max(
+      score,
+      tokenOverlapScore(
+        query,
+        original
       )
     );
-  }
 
+  score =
+    Math.max(
+      score,
+      tokenOverlapScore(
+        query,
+        translated
+      )
+    );
 
-  function scoreKnowledge(
-    input,
-    knowledge
+  if (
+    core &&
+    query.includes(core)
   ) {
-
-    const query =
-      normalizeText(input);
-
-
-    const original =
-      normalizeText(
-        knowledge.originalInput
-      );
-
-
-    const translated =
-      normalizeText(
-        knowledge.translatedLabel
-      );
-
-
-    const core =
-      normalizeText(
-        knowledge.normalizedEnglish
-      );
-
-
-    /*
-      Chính xác câu đã học:
-      ưu tiên tuyệt đối.
-    */
-
-    if (
-      query &&
-      query === original
-    ) {
-
-      return 1;
-    }
-
-
-    /*
-      Nếu nhập thẳng tiếng Anh:
-      black dog
-    */
-
-    if (
-      query &&
-      translated &&
-      query === translated
-    ) {
-
-      return .98;
-    }
-
-
-    /*
-      Nếu nhập core:
-      dog
-    */
-
-    if (
-      query &&
-      core &&
-      query === core
-    ) {
-
-      return .94;
-    }
-
-
-    let score = 0;
-
 
     score =
       Math.max(
         score,
-        tokenOverlapScore(
-          query,
-          original
-        )
+        .78
       );
-
-
-    score =
-      Math.max(
-        score,
-        tokenOverlapScore(
-          query,
-          translated
-        )
-      );
-
-
-    /*
-      Core noun xuất hiện trực tiếp.
-    */
-
-    if (
-      core &&
-      query.includes(core)
-    ) {
-
-      score =
-        Math.max(
-          score,
-          .78
-        );
-    }
-
-
-    return score;
   }
 
+  return score;
+}
 
-  function findKnowledge(
-    input
+
+function findKnowledge(input) {
+
+  const list =
+    loadKnowledge();
+
+  let best =
+    null;
+
+  let bestScore =
+    0;
+
+  for (
+    const item
+    of list
   ) {
 
-    const list =
-      loadKnowledge();
-
-
-    let best =
-      null;
-
-
-    let bestScore =
-      0;
-
-
-    for (
-      const item
-      of list
-    ) {
-
-      const score =
-        scoreKnowledge(
-          input,
-          item
-        );
-
-
-      if (
-        score >
-        bestScore
-      ) {
-
-        bestScore =
-          score;
-
-        best =
-          item;
-      }
-    }
-
-
-    /*
-      0.74 đủ chặt cho giai đoạn này.
-    */
+    const score =
+      scoreKnowledge(
+        input,
+        item
+      );
 
     if (
-      best &&
-      bestScore >= .74
+      score >
+      bestScore
     ) {
 
-      return {
+      bestScore =
+        score;
 
-        found:
-          true,
-
-        score:
-          Number(
-            bestScore
-              .toFixed(3)
-          ),
-
-        knowledge:
-          best
-      };
+      best =
+        item;
     }
+  }
 
+  if (
+    best &&
+    bestScore >= .74
+  ) {
 
     return {
-
       found:
-        false,
+        true,
 
       score:
         Number(
@@ -1650,78 +2093,121 @@ Chưa kiểm tra.
         ),
 
       knowledge:
-        null
+        best
     };
   }
 
+  return {
+    found:
+      false,
+
+    score:
+      Number(
+        bestScore
+          .toFixed(3)
+      ),
+
+    knowledge:
+      null
+  };
+}
 
 
-  /* =====================================================
-     BRAIN UI
-  ===================================================== */
+/* =====================================================
+   COUNTERS
+===================================================== */
 
-  function updateKnowledgeCounters() {
+async function updateCounters() {
 
-    const count =
-      loadKnowledge()
-        .length;
+  const knowledgeCount =
+    loadKnowledge()
+      .length;
 
+  $("knowledgeCountHome")
+    .textContent =
+    String(
+      knowledgeCount
+    );
 
-    $("knowledgeCountHome")
+  $("knowledgeCountBrain")
+    .textContent =
+    String(
+      knowledgeCount
+    );
+
+  try {
+
+    const visualCount =
+      await getVisualSampleCount();
+
+    $("visualCountHome")
       .textContent =
-      String(count);
+      String(
+        visualCount
+      );
 
-
-    $("knowledgeCountBrain")
+    $("visualCountVision")
       .textContent =
-      String(count);
+      String(
+        visualCount
+      );
+
+  } catch {
+
+    $("visualCountHome")
+      .textContent =
+      "?";
+
+    $("visualCountVision")
+      .textContent =
+      "?";
   }
+}
 
 
-  window.renderBrain =
-    function () {
+/* =====================================================
+   BRAIN UI
+===================================================== */
 
-      const list =
-        loadKnowledge();
+window.renderBrain =
+  function () {
 
+    const list =
+      loadKnowledge();
 
-      updateKnowledgeCounters();
+    updateCounters();
 
+    const container =
+      $("brainList");
 
-      const container =
-        $("brainList");
+    if (
+      list.length === 0
+    ) {
 
-
-      if (
-        list.length === 0
-      ) {
-
-        container.innerHTML =
-          `
+      container.innerHTML =
+        `
           <div class="empty">
             Brain chưa có kiến thức.
           </div>
-          `;
+        `;
 
-        return;
-      }
+      return;
+    }
 
+    container.innerHTML =
+      list
+        .map(item => {
 
-      container.innerHTML =
-        list
-          .map(item => {
+          const title =
+            item.translatedLabel
+            ||
+            item.normalizedEnglish
+            ||
+            item.originalInput
+            ||
+            "Knowledge";
 
-            const title =
-              item.translatedLabel
-              ||
-              item.normalizedEnglish
-              ||
-              item.originalInput
-              ||
-              "Knowledge";
-
-
-            return `
+          return `
             <div class="knowledge-item">
 
               <div class="knowledge-title">
@@ -1763,52 +2249,215 @@ Chưa kiểm tra.
 
                 <br>
 
+                Visual samples:
+                ${escapeHtml(String(item.visualSamples || 0))}
+
+                <br>
+
                 Source:
                 ${escapeHtml(item.source || "unknown")}
 
               </div>
 
+              ${
+                Number(
+                  item.visualSamples ||
+                  0
+                ) > 0
+                  ?
+                  `
+                    <span class="visual-badge">
+                      🖼 Có dữ liệu hình ảnh
+                    </span>
+                  `
+                  :
+                  ""
+              }
+
             </div>
-            `;
+          `;
 
-          })
-          .join("");
-    };
+        })
+        .join("");
+  };
 
 
+/* =====================================================
+   VISION MEMORY UI
+===================================================== */
 
-  /* =====================================================
-     MODULE STATUS
-  ===================================================== */
+window.renderVisionMemory =
+  async function () {
 
-  function updateModuleStatus() {
+    const container =
+      $("visionMemoryList");
 
-    $("brainStatus")
+    container.innerHTML =
+      `
+        <div class="empty">
+          Đang tải Visual Memory...
+        </div>
+      `;
+
+    try {
+
+      const samples =
+        await getAllVisualSamples();
+
+      await updateCounters();
+
+      if (
+        samples.length === 0
+      ) {
+
+        container.innerHTML =
+          `
+            <div class="empty">
+              Chưa có mẫu hình ảnh.
+            </div>
+          `;
+
+        return;
+      }
+
+      const knowledge =
+        loadKnowledge();
+
+      const map =
+        new Map(
+          knowledge.map(
+            item => [
+              item.id,
+              item
+            ]
+          )
+        );
+
+      revokeActiveUrls();
+
+      container.innerHTML =
+        `
+          <div class="image-grid">
+
+            ${
+              samples
+                .slice()
+                .reverse()
+                .map(sample => {
+
+                  const item =
+                    map.get(
+                      sample.knowledgeId
+                    );
+
+                  const url =
+                    URL.createObjectURL(
+                      sample.blob
+                    );
+
+                  activeObjectUrls.push(
+                    url
+                  );
+
+                  return `
+                    <div class="image-card">
+
+                      <img
+                        src="${url}"
+                        alt="${escapeHtml(item?.translatedLabel || "visual memory")}"
+                      >
+
+                      <div class="image-info">
+
+                        <strong>
+                          ${escapeHtml(
+                            item?.translatedLabel
+                            ||
+                            item?.normalizedEnglish
+                            ||
+                            "Unknown"
+                          )}
+                        </strong>
+
+                        <br>
+
+                        ${
+                          sample.source ===
+                          "ai"
+                            ?
+                            "✨ AI"
+                            :
+                            "📷 Real"
+                        }
+
+                      </div>
+
+                    </div>
+                  `;
+
+                })
+                .join("")
+            }
+
+          </div>
+        `;
+
+    } catch (error) {
+
+      container.innerHTML =
+        `
+          <div class="empty">
+            ❌ Không đọc được Visual Memory:
+            ${escapeHtml(error?.message || error)}
+          </div>
+        `;
+    }
+  };
+
+
+/* =====================================================
+   MODULE STATUS
+===================================================== */
+
+function updateModuleStatus() {
+
+  $("brainStatus")
+    .textContent =
+    window.RiiBrainV2
+      ? "Ready"
+      : "Missing";
+
+  $("engineStatus")
+    .textContent =
+    window.RiiBrainEngineV2
+      ? "Ready"
+      : "Missing";
+
+  $("vaultStatus")
+    .textContent =
+    window.RiiCommandVaultV2
+      ? "Ready"
+      : "Missing";
+
+  if (
+    !window.RiiWorkerClientV2
+  ) {
+
+    $("workerStatus")
       .textContent =
-      window.RiiBrainV2
-        ?
-        "Ready"
-        :
-        "Missing";
+      "Missing";
+  }
+
+  updateCounters();
+}
 
 
-    $("engineStatus")
-      .textContent =
-      window.RiiBrainEngineV2
-        ?
-        "Ready"
-        :
-        "Missing";
+/* =====================================================
+   WORKER HEALTH
+===================================================== */
 
-
-    $("vaultStatus")
-      .textContent =
-      window.RiiCommandVaultV2
-        ?
-        "Ready"
-        :
-        "Missing";
-
+window.testWorkerConnection =
+  async function () {
 
     if (
       !window.RiiWorkerClientV2
@@ -1817,166 +2466,94 @@ Chưa kiểm tra.
       $("workerStatus")
         .textContent =
         "Missing";
+
+      return;
     }
 
+    $("workerStatus")
+      .textContent =
+      "Checking";
 
-    updateKnowledgeCounters();
-  }
+    try {
 
-
-
-  /* =====================================================
-     WORKER HEALTH
-  ===================================================== */
-
-  window.testWorkerConnection =
-    async function () {
-
-      if (
-        !window.RiiWorkerClientV2
-      ) {
-
-        $("workerStatus")
-          .textContent =
-          "Missing";
-
-        return;
-      }
-
+      const data =
+        await window
+          .RiiWorkerClientV2
+          .health();
 
       $("workerStatus")
         .textContent =
-        "Checking";
+        "Ready";
 
+      $("workerHomeInfo")
+        .textContent =
+        "✅ "
+        +
+        (
+          data.service ||
+          "Rii AI Backend"
+        )
+        +
+        " • V"
+        +
+        (
+          data.version ||
+          "?"
+        )
+        +
+        " • AI "
+        +
+        (
+          data.hasAI
+            ? "READY"
+            : "MISSING"
+        );
 
-      try {
+      $("settingsWorkerResult")
+        .textContent =
+        pretty(data);
 
-        const data =
-          await window
-            .RiiWorkerClientV2
-            .health();
+    } catch (error) {
 
+      $("workerStatus")
+        .textContent =
+        "Error";
 
-        $("workerStatus")
-          .textContent =
-          "Ready";
-
-
-        $("workerHomeInfo")
-          .textContent =
-          "✅ "
-          +
-          (
-            data.service ||
-            "Rii AI Backend"
-          )
-          +
-          " • V"
-          +
-          (
-            data.version ||
-            "?"
-          )
-          +
-          " • AI "
-          +
-          (
-            data.hasAI
-              ?
-              "READY"
-              :
-              "MISSING"
+      const formatted =
+        window
+          .RiiWorkerClientV2
+          .formatError(
+            error
           );
 
+      $("workerHomeInfo")
+        .textContent =
+        "❌ "
+        +
+        formatted.message;
 
-        $("settingsWorkerResult")
-          .textContent =
-          pretty(data);
-
-      } catch (error) {
-
-        $("workerStatus")
-          .textContent =
-          "Error";
-
-
-        const formatted =
-          window
-            .RiiWorkerClientV2
-            .formatError(
-              error
-            );
-
-
-        $("workerHomeInfo")
-          .textContent =
-          "❌ "
-          +
-          formatted.message;
-
-
-        $("settingsWorkerResult")
-          .textContent =
-          pretty(
-            formatted
-          );
-      }
-    };
-
-
-
-  /* =====================================================
-     KNOWLEDGE FORMAT
-  ===================================================== */
-
-  function localToKnowledge(
-    input,
-    local
-  ) {
-
-    if (
-      local?.category ===
-      "mathematics"
-    ) {
-
-      return {
-
-        originalInput:
-          input,
-
-        category:
-          "mathematics",
-
-        quantity:
-          1,
-
-        normalizedEnglish:
-          "basic arithmetic",
-
-        translatedLabel:
-          input,
-
-        color:
-          "",
-
-        shape:
-          "",
-
-        attributes:
-          [],
-
-        math:
-          local.math ||
-          null,
-
-        source:
-          "local-math",
-
-        confidence:
-          1
-      };
+      $("settingsWorkerResult")
+        .textContent =
+        pretty(
+          formatted
+        );
     }
+  };
 
+
+/* =====================================================
+   KNOWLEDGE FORMAT
+===================================================== */
+
+function localToKnowledge(
+  input,
+  local
+) {
+
+  if (
+    local?.category ===
+    "mathematics"
+  ) {
 
     return {
 
@@ -1984,275 +2561,258 @@ Chưa kiểm tra.
         input,
 
       category:
-        local?.category ||
-        local?.type ||
-        "unknown",
+        "mathematics",
 
       quantity:
-        Number(
-          local?.quantity ||
-          1
-        ),
+        1,
 
       normalizedEnglish:
-        local?.normalizedEnglish
-        ||
-        local?.shape
-        ||
-        local?.object
-        ||
-        normalizeText(input),
+        "basic arithmetic",
 
       translatedLabel:
         input,
 
       color:
-        local?.color ||
         "",
 
       shape:
-        local?.shape ||
         "",
 
       attributes:
-        Array.isArray(
-          local?.attributes
-        )
-          ?
-          local.attributes
-          :
-          [],
+        [],
+
+      math:
+        local.math ||
+        null,
+
+      needsImage:
+        false,
 
       source:
-        local?.source ||
-        "local-parser",
+        "local-math",
 
       confidence:
         1
     };
   }
 
+  return {
 
-  function remoteToKnowledge(
-    input,
-    remote
-  ) {
+    originalInput:
+      input,
 
-    return {
+    category:
+      local?.category ||
+      local?.type ||
+      "unknown",
 
-      originalInput:
-        input,
+    quantity:
+      Number(
+        local?.quantity ||
+        1
+      ),
 
-      category:
-        remote.category ||
-        "unknown",
+    normalizedEnglish:
+      local?.normalizedEnglish
+      ||
+      local?.shape
+      ||
+      local?.object
+      ||
+      normalizeText(input),
 
-      quantity:
-        Number(
-          remote.quantity ||
-          1
-        ),
+    translatedLabel:
+      input,
 
-      normalizedEnglish:
-        remote.normalizedEnglish ||
-        "",
+    color:
+      local?.color ||
+      "",
 
-      translatedLabel:
-        remote.translatedLabel ||
-        remote.normalizedEnglish ||
-        input,
+    shape:
+      local?.shape ||
+      "",
 
-      detectedLanguage:
-        remote.detectedLanguage ||
-        "unknown",
+    attributes:
+      Array.isArray(
+        local?.attributes
+      )
+        ? local.attributes
+        : [],
 
-      targetLanguage:
-        remote.targetLanguage ||
-        "en",
+    needsImage:
+      Boolean(
+        local?.needsImage
+      ),
 
-      color:
-        remote.color ||
-        "",
+    source:
+      local?.source ||
+      "local-parser",
 
-      shape:
-        remote.shape ||
-        "",
-
-      attributes:
-        Array.isArray(
-          remote.attributes
-        )
-          ?
-          remote.attributes
-          :
-          [],
-
-      needsImage:
-        Boolean(
-          remote.needsImage
-        ),
-
-      source:
-        "worker-ai",
-
-      workerVersion:
-        remote.version ||
-        "",
-
-      confidence:
-        .9
-    };
-  }
+    confidence:
+      1
+  };
+}
 
 
+function remoteToKnowledge(
+  input,
+  remote
+) {
 
-  /* =====================================================
-     TEACH
-  ===================================================== */
+  return {
 
-  window.analyzeTeach =
-    async function () {
+    originalInput:
+      input,
 
-      const input =
-        $("teachInput")
-          .value
-          .trim();
+    category:
+      remote.category ||
+      "unknown",
 
+    quantity:
+      Number(
+        remote.quantity ||
+        1
+      ),
 
-      const resultBox =
-        $("teachResult");
+    normalizedEnglish:
+      remote.normalizedEnglish ||
+      "",
 
+    translatedLabel:
+      remote.translatedLabel
+      ||
+      remote.normalizedEnglish
+      ||
+      input,
 
-      const button =
-        $("teachAnalyzeButton");
+    detectedLanguage:
+      remote.detectedLanguage ||
+      "unknown",
 
+    targetLanguage:
+      remote.targetLanguage ||
+      "en",
 
-      const saveButton =
-        $("teachSaveButton");
+    color:
+      remote.color ||
+      "",
 
+    shape:
+      remote.shape ||
+      "",
 
-      pendingKnowledge =
-        null;
+    attributes:
+      Array.isArray(
+        remote.attributes
+      )
+        ? remote.attributes
+        : [],
 
+    needsImage:
+      Boolean(
+        remote.needsImage
+      ),
 
-      saveButton.disabled =
-        true;
+    source:
+      "worker-ai",
 
+    workerVersion:
+      remote.version ||
+      "",
 
-      if (!input) {
+    confidence:
+      .9
+  };
+}
+/* =====================================================
+   TEACH ANALYZE
+===================================================== */
 
-        resultBox.textContent =
-          "Hãy nhập kiến thức.";
+window.analyzeTeach =
+  async function () {
 
-        return;
-      }
+    const input =
+      $("teachInput")
+        .value
+        .trim();
 
+    const resultBox =
+      $("teachResult");
+
+    const button =
+      $("teachAnalyzeButton");
+
+    const saveButton =
+      $("teachSaveButton");
+
+    const generateButton =
+      $("generateImageButton");
+
+    pendingKnowledge =
+      null;
+
+    pendingImages =
+      [];
+
+    renderPendingImages();
+
+    saveButton.disabled =
+      true;
+
+    generateButton.disabled =
+      true;
+
+    if (!input) {
+
+      resultBox.textContent =
+        "Hãy nhập kiến thức.";
+
+      return;
+    }
+
+    if (
+      !window.RiiBrainEngineV2
+    ) {
+
+      resultBox.textContent =
+        "Brain Engine V2 chưa được tải.";
+
+      return;
+    }
+
+    setBusy(
+      button,
+      true,
+      "🧠 1. Phân tích",
+      "⏳ Đang phân tích..."
+    );
+
+    try {
+
+      const local =
+        window
+          .RiiBrainEngineV2
+          .analyzeLocal(
+            input
+          );
 
       if (
-        !window.RiiBrainEngineV2
+        local &&
+        local.ok &&
+        local.needsAI === false
       ) {
 
-        resultBox.textContent =
-          "Brain Engine V2 chưa được tải.";
-
-        return;
-      }
-
-
-      setBusy(
-        button,
-        true,
-        "🧠 Phân tích",
-        "⏳ Đang phân tích..."
-      );
-
-
-      try {
-
-        const local =
-          window
-            .RiiBrainEngineV2
-            .analyzeLocal(
-              input
-            );
-
-
-        if (
-          local &&
-          local.ok &&
-          local.needsAI === false
-        ) {
-
-          pendingKnowledge =
-            localToKnowledge(
-              input,
-              local
-            );
-
-
-          resultBox.textContent =
-            pretty({
-
-              mode:
-                "LOCAL",
-
-              readyToSave:
-                true,
-
-              knowledge:
-                pendingKnowledge,
-
-              raw:
-                local
-            });
-
-
-          saveButton.disabled =
-            false;
-
-
-          return;
-        }
-
-
-        if (
-          !window.RiiWorkerClientV2
-        ) {
-
-          throw new Error(
-            "Worker Client V2 chưa được tải."
-          );
-        }
-
-
-        const remote =
-          await window
-            .RiiWorkerClientV2
-            .analyzeConcept(
-              input,
-              {
-
-                targetLanguage:
-                  "en",
-
-                targetLanguageName:
-                  "English"
-              }
-            );
-
-
         pendingKnowledge =
-          remoteToKnowledge(
+          localToKnowledge(
             input,
-            remote
+            local
           );
-
 
         resultBox.textContent =
           pretty({
 
             mode:
-              "WORKER_AI",
+              "LOCAL",
 
             readyToSave:
               true,
@@ -2261,85 +2821,334 @@ Chưa kiểm tra.
               pendingKnowledge,
 
             raw:
-              remote
+              local
           });
-
 
         saveButton.disabled =
           false;
 
-
-      } catch (error) {
-
-        pendingKnowledge =
-          null;
-
-        saveButton.disabled =
-          true;
-
-
-        if (
-          window.RiiWorkerClientV2
-        ) {
-
-          resultBox.textContent =
-            pretty(
-              window
-                .RiiWorkerClientV2
-                .formatError(
-                  error
-                )
-            );
-
-        } else {
-
-          resultBox.textContent =
-            String(
-              error?.message ||
-              error
-            );
-        }
-
-      } finally {
-
-        setBusy(
-          button,
-          false,
-          "🧠 Phân tích",
-          "⏳ Đang phân tích..."
-        );
-      }
-    };
-
-
-
-  window.saveAnalyzedKnowledge =
-    function () {
-
-      const resultBox =
-        $("teachResult");
-
-
-      const saveButton =
-        $("teachSaveButton");
-
-
-      if (
-        !pendingKnowledge
-      ) {
-
-        resultBox.textContent =
-          "Chưa có kiến thức hợp lệ.";
+        generateButton.disabled =
+          !pendingKnowledge
+            .needsImage;
 
         return;
       }
 
+      if (
+        !window.RiiWorkerClientV2
+      ) {
+
+        throw new Error(
+          "Worker Client V2 chưa được tải."
+        );
+      }
+
+      const remote =
+        await window
+          .RiiWorkerClientV2
+          .analyzeConcept(
+            input,
+            {
+
+              targetLanguage:
+                "en",
+
+              targetLanguageName:
+                "English"
+            }
+          );
+
+      pendingKnowledge =
+        remoteToKnowledge(
+          input,
+          remote
+        );
+
+      resultBox.textContent =
+        pretty({
+
+          mode:
+            "WORKER_AI",
+
+          readyToSave:
+            true,
+
+          visualLearning:
+            pendingKnowledge
+              .needsImage,
+
+          knowledge:
+            pendingKnowledge,
+
+          raw:
+            remote
+        });
+
+      saveButton.disabled =
+        false;
+
+      generateButton.disabled =
+        !pendingKnowledge
+          .needsImage;
+
+    } catch (error) {
+
+      pendingKnowledge =
+        null;
+
+      saveButton.disabled =
+        true;
+
+      generateButton.disabled =
+        true;
+
+      if (
+        window.RiiWorkerClientV2
+      ) {
+
+        resultBox.textContent =
+          pretty(
+            window
+              .RiiWorkerClientV2
+              .formatError(
+                error
+              )
+          );
+
+      } else {
+
+        resultBox.textContent =
+          String(
+            error?.message ||
+            error
+          );
+      }
+
+    } finally {
+
+      setBusy(
+        button,
+        false,
+        "🧠 1. Phân tích",
+        "⏳ Đang phân tích..."
+      );
+    }
+  };
+
+
+/* =====================================================
+   GENERATE AI VISUAL SAMPLES
+===================================================== */
+
+window.generateTeachImages =
+  async function () {
+
+    const button =
+      $("generateImageButton");
+
+    const resultBox =
+      $("teachResult");
+
+    if (
+      !pendingKnowledge
+    ) {
+
+      resultBox.textContent =
+        "Hãy phân tích kiến thức trước.";
+
+      return;
+    }
+
+    if (
+      !pendingKnowledge
+        .needsImage
+    ) {
+
+      resultBox.textContent =
+        "Khái niệm này không cần dữ liệu hình ảnh.";
+
+      return;
+    }
+
+    if (
+      !window.RiiWorkerClientV2
+    ) {
+
+      resultBox.textContent =
+        "Worker Client V2 chưa được tải.";
+
+      return;
+    }
+
+    setBusy(
+      button,
+      true,
+      "✨ 2B. Tạo 3 ảnh AI",
+      "⏳ Đang tạo ảnh..."
+    );
+
+    try {
+
+      const response =
+        await window
+          .RiiWorkerClientV2
+          .generateImages(
+            pendingKnowledge
+              .originalInput,
+            {
+              count:
+                3,
+
+              targetLanguage:
+                "en",
+
+              targetLanguageName:
+                "English"
+            }
+          );
+
+      const images =
+        Array.isArray(
+          response.images
+        )
+          ? response.images
+          : [];
+
+      if (
+        images.length === 0
+      ) {
+
+        throw new Error(
+          "Worker không trả ảnh."
+        );
+      }
+
+      for (
+        const dataUri
+        of images
+      ) {
+
+        const blob =
+          await dataUriToBlob(
+            dataUri
+          );
+
+        pendingImages.push({
+
+          source:
+            "ai",
+
+          blob
+        });
+      }
+
+      renderPendingImages();
+
+      resultBox.textContent =
+        pretty({
+
+          ok:
+            true,
+
+          message:
+            "Đã tạo mẫu ảnh AI.",
+
+          concept:
+            pendingKnowledge
+              .translatedLabel,
+
+          addedImages:
+            images.length,
+
+          pendingImages:
+            pendingImages.length
+        });
+
+    } catch (error) {
+
+      resultBox.textContent =
+        pretty(
+          window
+            .RiiWorkerClientV2
+            .formatError(
+              error
+            )
+        );
+
+    } finally {
+
+      setBusy(
+        button,
+        false,
+        "✨ 2B. Tạo 3 ảnh AI",
+        "⏳ Đang tạo ảnh..."
+      );
+    }
+  };
+
+
+/* =====================================================
+   SAVE KNOWLEDGE + VISUALS
+===================================================== */
+
+window.saveAnalyzedKnowledge =
+  async function () {
+
+    const resultBox =
+      $("teachResult");
+
+    const saveButton =
+      $("teachSaveButton");
+
+    if (
+      !pendingKnowledge
+    ) {
+
+      resultBox.textContent =
+        "Chưa có kiến thức hợp lệ.";
+
+      return;
+    }
+
+    setBusy(
+      saveButton,
+      true,
+      "💾 3. Ghi kiến thức + ảnh vào Brain",
+      "⏳ Đang ghi Brain..."
+    );
+
+    try {
 
       const saved =
         saveKnowledgeRecord(
           pendingKnowledge
         );
 
+      let addedVisuals =
+        0;
+
+      for (
+        const image
+        of pendingImages
+      ) {
+
+        await addVisualSample(
+          saved.id,
+          image
+        );
+
+        addedVisuals++;
+      }
+
+      const visualCount =
+        await countVisualSamplesForKnowledge(
+          saved.id
+        );
+
+      updateKnowledgeVisualCount(
+        saved.id,
+        visualCount
+      );
 
       try {
 
@@ -2354,7 +3163,12 @@ Chưa kiểm tra.
           window
             .RiiBrainV2
             .addKnowledge(
-              pendingKnowledge
+              {
+                ...pendingKnowledge,
+
+                visualSamples:
+                  visualCount
+              }
             );
         }
 
@@ -2366,9 +3180,7 @@ Chưa kiểm tra.
         );
       }
 
-
-      updateKnowledgeCounters();
-
+      await updateCounters();
 
       resultBox.textContent =
         pretty({
@@ -2377,356 +3189,366 @@ Chưa kiểm tra.
             true,
 
           message:
-            "Đã ghi kiến thức vào Brain.",
+            "Đã ghi kiến thức và Visual Memory vào Brain.",
 
           id:
             saved.id,
 
           totalKnowledge:
-            saved.list.length,
+            loadKnowledge()
+              .length,
+
+          addedVisuals,
+
+          totalVisualSamplesForConcept:
+            visualCount,
 
           knowledge:
             pendingKnowledge
         });
 
-
       pendingKnowledge =
         null;
 
+      pendingImages =
+        [];
+
+      renderPendingImages();
 
       saveButton.disabled =
         true;
-    };
 
+      $("generateImageButton")
+        .disabled =
+        true;
 
+      $("realImageInput").value =
+        "";
 
-  /* =====================================================
-     THINK
-     LOCAL -> BRAIN -> WORKER
-  ===================================================== */
+    } catch (error) {
 
-  window.runThinking =
-    async function () {
+      resultBox.textContent =
+        pretty({
 
-      const input =
-        $("thinkInput")
-          .value
-          .trim();
+          ok:
+            false,
 
+          error:
+            String(
+              error?.message ||
+              error
+            )
+        });
 
-      const resultBox =
-        $("thinkResult");
-
-
-      const modeBox =
-        $("thinkMode");
-
-
-      const button =
-        $("thinkButton");
-
-
-      if (!input) {
-
-        resultBox.textContent =
-          "Hãy nhập câu hỏi hoặc tình huống.";
-
-        return;
-      }
-
+    } finally {
 
       if (
-        !window.RiiBrainEngineV2
+        pendingKnowledge
       ) {
 
-        resultBox.textContent =
-          "Brain Engine V2 chưa được tải.";
+        setBusy(
+          saveButton,
+          false,
+          "💾 3. Ghi kiến thức + ảnh vào Brain",
+          "⏳ Đang ghi Brain..."
+        );
 
-        return;
+      } else {
+
+        saveButton.textContent =
+          "💾 3. Ghi kiến thức + ảnh vào Brain";
+
+        saveButton.disabled =
+          true;
       }
+    }
+  };
 
 
-      setBusy(
-        button,
-        true,
-        "✨ Suy nghĩ",
-        "⏳ Đang suy nghĩ..."
-      );
+/* =====================================================
+   THINK
+   LOCAL -> BRAIN -> WORKER
+===================================================== */
 
+window.runThinking =
+  async function () {
 
-      try {
+    const input =
+      $("thinkInput")
+        .value
+        .trim();
 
-        /*
-          TẦNG 1
-          LOCAL
-        */
+    const resultBox =
+      $("thinkResult");
 
-        const local =
-          window
-            .RiiBrainEngineV2
-            .analyzeLocal(
-              input
-            );
+    const modeBox =
+      $("thinkMode");
 
+    const button =
+      $("thinkButton");
 
-        if (
-          local &&
-          local.ok &&
-          local.needsAI === false
-        ) {
+    if (!input) {
 
-          modeBox.className =
-            "mode-box mode-local";
+      resultBox.textContent =
+        "Hãy nhập câu hỏi hoặc tình huống.";
 
+      return;
+    }
 
-          modeBox.textContent =
-            "⚡ LOCAL — xử lý ngay trên thiết bị";
+    if (
+      !window.RiiBrainEngineV2
+    ) {
 
+      resultBox.textContent =
+        "Brain Engine V2 chưa được tải.";
 
-          resultBox.textContent =
-            pretty({
+      return;
+    }
 
-              mode:
-                "LOCAL",
+    setBusy(
+      button,
+      true,
+      "✨ Suy nghĩ",
+      "⏳ Đang suy nghĩ..."
+    );
 
-              result:
-                local
-            });
+    try {
 
-
-          return;
-        }
-
-
-        /*
-          TẦNG 2
-          BRAIN MEMORY
-        */
-
-        const brainMatch =
-          findKnowledge(
+      const local =
+        window
+          .RiiBrainEngineV2
+          .analyzeLocal(
             input
           );
 
-
-        if (
-          brainMatch.found
-        ) {
-
-          modeBox.className =
-            "mode-box mode-brain";
-
-
-          modeBox.textContent =
-            "🧠 BRAIN_MEMORY — dùng kiến thức đã học";
-
-
-          resultBox.textContent =
-            pretty({
-
-              mode:
-                "BRAIN_MEMORY",
-
-              ok:
-                true,
-
-              input,
-
-              memoryScore:
-                brainMatch.score,
-
-              source:
-                "rii-v2-root-knowledge",
-
-              result:
-                brainMatch.knowledge
-            });
-
-
-          return;
-        }
-
-
-        /*
-          TẦNG 3
-          WORKER AI
-        */
-
-        if (
-          !window.RiiWorkerClientV2
-        ) {
-
-          throw new Error(
-            "Worker Client V2 chưa được tải."
-          );
-        }
-
+      if (
+        local &&
+        local.ok &&
+        local.needsAI === false
+      ) {
 
         modeBox.className =
-          "mode-box mode-worker";
-
+          "mode-box mode-local";
 
         modeBox.textContent =
-          "☁️ WORKER_AI — Brain chưa biết, đang hỏi AI";
-
-
-        const remote =
-          await window
-            .RiiWorkerClientV2
-            .analyzeConcept(
-              input,
-              {
-
-                targetLanguage:
-                  "en",
-
-                targetLanguageName:
-                  "English"
-              }
-            );
-
+          "⚡ LOCAL — xử lý ngay trên thiết bị";
 
         resultBox.textContent =
           pretty({
 
             mode:
-              "WORKER_AI",
-
-            brainMemory:
-              {
-
-                found:
-                  false,
-
-                bestScore:
-                  brainMatch.score
-              },
+              "LOCAL",
 
             result:
-              remote
+              local
           });
 
+        return;
+      }
 
-      } catch (error) {
+      const brainMatch =
+        findKnowledge(
+          input
+        );
+
+      if (
+        brainMatch.found
+      ) {
 
         modeBox.className =
-          "mode-box";
-
+          "mode-box mode-brain";
 
         modeBox.textContent =
-          "❌ Lỗi xử lý";
+          "🧠 BRAIN_MEMORY — dùng kiến thức đã học";
 
+        resultBox.textContent =
+          pretty({
 
-        if (
-          window.RiiWorkerClientV2
-        ) {
+            mode:
+              "BRAIN_MEMORY",
 
-          resultBox.textContent =
-            pretty(
-              window
-                .RiiWorkerClientV2
-                .formatError(
-                  error
-                )
-            );
+            ok:
+              true,
 
-        } else {
+            input,
 
-          resultBox.textContent =
-            String(
-              error?.message ||
-              error
-            );
-        }
+            memoryScore:
+              brainMatch.score,
 
-      } finally {
+            source:
+              "rii-v2-root-knowledge",
 
-        setBusy(
-          button,
-          false,
-          "✨ Suy nghĩ",
-          "⏳ Đang suy nghĩ..."
+            result:
+              brainMatch.knowledge
+          });
+
+        return;
+      }
+
+      if (
+        !window.RiiWorkerClientV2
+      ) {
+
+        throw new Error(
+          "Worker Client V2 chưa được tải."
         );
       }
-    };
 
+      modeBox.className =
+        "mode-box mode-worker";
 
+      modeBox.textContent =
+        "☁️ WORKER_AI — Brain chưa biết, đang hỏi AI";
 
-  /* =====================================================
-     SETTINGS
-  ===================================================== */
+      const remote =
+        await window
+          .RiiWorkerClientV2
+          .analyzeConcept(
+            input,
+            {
 
-  window.saveSettings =
-    function () {
+              targetLanguage:
+                "en",
 
-      const url =
-        $("backendUrl")
-          .value
-          .trim()
-          .replace(
-            /\/+$/,
-            ""
+              targetLanguageName:
+                "English"
+            }
           );
 
+      resultBox.textContent =
+        pretty({
 
-      localStorage
-        .setItem(
-          "rii-v2-backend",
-          url
+          mode:
+            "WORKER_AI",
+
+          brainMemory:
+            {
+
+              found:
+                false,
+
+              bestScore:
+                brainMatch.score
+            },
+
+          result:
+            remote
+        });
+
+    } catch (error) {
+
+      modeBox.className =
+        "mode-box";
+
+      modeBox.textContent =
+        "❌ Lỗi xử lý";
+
+      if (
+        window.RiiWorkerClientV2
+      ) {
+
+        resultBox.textContent =
+          pretty(
+            window
+              .RiiWorkerClientV2
+              .formatError(
+                error
+              )
+          );
+
+      } else {
+
+        resultBox.textContent =
+          String(
+            error?.message ||
+            error
+          );
+      }
+
+    } finally {
+
+      setBusy(
+        button,
+        false,
+        "✨ Suy nghĩ",
+        "⏳ Đang suy nghĩ..."
+      );
+    }
+  };
+
+
+/* =====================================================
+   SETTINGS
+===================================================== */
+
+window.saveSettings =
+  function () {
+
+    const url =
+      $("backendUrl")
+        .value
+        .trim()
+        .replace(
+          /\/+$/,
+          ""
         );
 
-
-      $("settingsWorkerResult")
-        .textContent =
-        "✅ Đã lưu cấu hình Worker.";
-    };
-
-
-  const savedBackend =
-    localStorage
-      .getItem(
-        "rii-v2-backend"
-      );
-
-
-  if (
-    savedBackend
-  ) {
-
-    $("backendUrl").value =
-      savedBackend;
-  }
-
-
-
-  /* =====================================================
-     START
-  ===================================================== */
-
-  updateModuleStatus();
-
-  renderBrain();
-
-
-  if (
-    savedBackend &&
-    window.RiiWorkerClientV2
-  ) {
-
-    setTimeout(
-      () => {
-
-        testWorkerConnection();
-
-      },
-      500
+    localStorage.setItem(
+      "rii-v2-backend",
+      url
     );
-  }
+
+    $("settingsWorkerResult")
+      .textContent =
+      "✅ Đã lưu cấu hình Worker.";
+  };
 
 
-  console.log(
-    `Rii AI V${APP_VERSION} ready`
+const savedBackend =
+  localStorage.getItem(
+    "rii-v2-backend"
   );
+
+
+if (
+  savedBackend
+) {
+
+  $("backendUrl").value =
+    savedBackend;
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+updateModuleStatus();
+
+renderBrain();
+
+updateCounters();
+
+
+if (
+  savedBackend &&
+  window.RiiWorkerClientV2
+) {
+
+  setTimeout(
+    () => {
+
+      testWorkerConnection();
+
+    },
+    500
+  );
+}
+
+
+console.log(
+  `Rii AI V${APP_VERSION} ready`
+);
 
 })();
 </script>
