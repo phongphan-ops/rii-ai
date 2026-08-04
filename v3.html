@@ -10,13 +10,13 @@
 
 <meta name="theme-color" content="#050b14">
 
-<title>Rii AI V3.4 — Live Vision AI</title>
+<title>Rii AI V3.4.1 — Camera State Fix</title>
 
 <style>
 :root{
   --bg:#050b14;
-  --panel:rgba(10,22,37,.94);
-  --line:rgba(190,150,70,.34);
+  --panel:rgba(10,22,37,.95);
+  --line:rgba(190,150,70,.35);
 
   --gold:#d8ad58;
   --gold2:#f2d58b;
@@ -49,7 +49,6 @@ body{
 }
 
 button,
-input,
 select,
 textarea{
   font:inherit;
@@ -140,8 +139,9 @@ button:disabled{
 .header{
   display:flex;
   justify-content:space-between;
-  gap:12px;
   align-items:flex-start;
+
+  gap:12px;
 
   margin-bottom:18px;
 }
@@ -149,6 +149,7 @@ button:disabled{
 .logo{
   font-size:30px;
   font-weight:900;
+
   color:var(--gold2);
 }
 
@@ -158,14 +159,17 @@ button:disabled{
 
 .tagline{
   margin-top:4px;
+
   color:var(--muted);
+
   font-size:12px;
 }
 
 .header-actions{
   display:flex;
-  gap:6px;
   align-items:center;
+
+  gap:6px;
 }
 
 .icon-btn{
@@ -173,9 +177,13 @@ button:disabled{
   height:43px;
 
   border-radius:14px;
-  border:1px solid var(--line);
 
-  background:rgba(8,19,31,.88);
+  border:
+    1px solid
+    var(--line);
+
+  background:
+    rgba(8,19,31,.88);
 
   color:#fff;
 }
@@ -183,16 +191,21 @@ button:disabled{
 .ready{
   height:43px;
 
+  display:flex;
+  align-items:center;
+
+  gap:6px;
+
   padding:0 10px;
 
   border-radius:14px;
-  border:1px solid var(--line);
 
-  background:rgba(8,19,31,.88);
+  border:
+    1px solid
+    var(--line);
 
-  display:flex;
-  align-items:center;
-  gap:6px;
+  background:
+    rgba(8,19,31,.88);
 
   color:var(--gold2);
 
@@ -215,7 +228,7 @@ button:disabled{
 
 
 /* =====================================================
-   GENERAL CARDS
+   HERO
 ===================================================== */
 
 .hero,
@@ -224,8 +237,7 @@ button:disabled{
     1px solid
     rgba(255,255,255,.08);
 
-  background:
-    var(--panel);
+  background:var(--panel);
 
   border-radius:28px;
 
@@ -246,36 +258,42 @@ button:disabled{
 
   font-size:12px;
   font-weight:850;
+
   letter-spacing:1px;
 }
 
 .hero h1{
+  margin:
+    9px 0
+    12px;
+
   font-size:
     clamp(30px,7vw,50px);
 
   line-height:1.04;
 
   letter-spacing:-1.4px;
-
-  margin:
-    9px 0
-    12px;
 }
 
 .hero p{
+  margin:0;
+
   color:var(--muted);
 
   line-height:1.6;
-
-  margin:0;
 }
 
 
 /* =====================================================
-   IDENTITY
+   ID
 ===================================================== */
 
 .identity{
+  display:flex;
+  justify-content:space-between;
+
+  gap:10px;
+
   margin-top:16px;
 
   padding:12px 13px;
@@ -284,10 +302,6 @@ button:disabled{
 
   background:
     rgba(0,0,0,.22);
-
-  display:flex;
-  justify-content:space-between;
-  gap:10px;
 }
 
 .id-small{
@@ -299,11 +313,11 @@ button:disabled{
 }
 
 .id-value{
+  margin-top:3px;
+
   color:var(--gold2);
 
   font-weight:850;
-
-  margin-top:3px;
 }
 
 .robot-pill{
@@ -343,20 +357,25 @@ button:disabled{
 .voicebar select{
   min-width:0;
 
-  background:#07131f;
+  padding:12px;
 
-  color:#fff;
+  border-radius:15px;
 
   border:
     1px solid
     var(--line);
 
-  border-radius:15px;
+  background:#07131f;
 
-  padding:12px;
+  color:#fff;
 }
 
 .voicebar button{
+  padding:
+    0 13px;
+
+  border-radius:15px;
+
   border:
     1px solid
     var(--line);
@@ -364,11 +383,6 @@ button:disabled{
   background:#0c1a29;
 
   color:#fff;
-
-  border-radius:15px;
-
-  padding:
-    0 13px;
 }
 
 .voicebar button.listening{
@@ -399,9 +413,9 @@ button:disabled{
 }
 
 .section-head span{
-  font-size:11px;
-
   color:var(--muted);
+
+  font-size:11px;
 }
 
 .grid{
@@ -418,15 +432,15 @@ button:disabled{
 
   min-height:180px;
 
-  border-radius:25px;
+  overflow:hidden;
 
   padding:16px;
+
+  border-radius:25px;
 
   border:
     1px solid
     rgba(255,255,255,.08);
-
-  overflow:hidden;
 }
 
 .center.math{
@@ -484,24 +498,24 @@ button:disabled{
 }
 
 .center h3{
-  font-size:18px;
-
   margin:
     15px 0
     6px;
+
+  font-size:18px;
 }
 
 .center p{
-  font-size:11px;
-
-  line-height:1.48;
+  margin:
+    0 0
+    42px;
 
   color:
     rgba(238,243,248,.72);
 
-  margin:
-    0 0
-    42px;
+  font-size:11px;
+
+  line-height:1.48;
 }
 
 .center .open{
@@ -529,9 +543,9 @@ button:disabled{
 ===================================================== */
 
 .card{
-  padding:17px;
-
   margin-top:16px;
+
+  padding:17px;
 }
 
 .audio-card{
@@ -543,17 +557,17 @@ button:disabled{
 .audio-card select{
   width:100%;
 
-  background:#07131f;
+  padding:12px;
 
-  color:#fff;
+  border-radius:15px;
 
   border:
     1px solid
     var(--line);
 
-  border-radius:15px;
+  background:#07131f;
 
-  padding:12px;
+  color:#fff;
 }
 
 
@@ -563,14 +577,18 @@ button:disabled{
 
 .screen{
   position:fixed;
-
   inset:0;
-
-  display:none;
 
   z-index:800;
 
+  display:none;
+
   overflow:auto;
+
+  padding:
+    calc(15px + env(safe-area-inset-top))
+    13px
+    calc(95px + env(safe-area-inset-bottom));
 
   background:
     linear-gradient(
@@ -578,11 +596,6 @@ button:disabled{
       #030912,
       #071522
     );
-
-  padding:
-    calc(15px + env(safe-area-inset-top))
-    13px
-    calc(95px + env(safe-area-inset-bottom));
 }
 
 .screen.open{
@@ -597,7 +610,6 @@ button:disabled{
 
 .screen-top{
   display:flex;
-
   align-items:center;
   justify-content:space-between;
 
@@ -605,6 +617,11 @@ button:disabled{
 }
 
 .back{
+  padding:
+    10px 13px;
+
+  border-radius:14px;
+
   border:
     1px solid
     rgba(255,255,255,.08);
@@ -613,11 +630,6 @@ button:disabled{
     rgba(255,255,255,.055);
 
   color:#fff;
-
-  padding:
-    10px 13px;
-
-  border-radius:14px;
 
   font-weight:800;
 }
@@ -637,14 +649,35 @@ button:disabled{
     1px solid
     var(--line);
 
-  background:
-    var(--panel);
+  background:var(--panel);
 }
 
 
 /* =====================================================
-   ACTIONS
+   INPUT / ACTION
 ===================================================== */
+
+.textbox{
+  width:100%;
+
+  min-height:110px;
+
+  margin-top:10px;
+
+  padding:13px;
+
+  border-radius:16px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.09);
+
+  background:#06111c;
+
+  color:#fff;
+
+  resize:vertical;
+}
 
 .action-row{
   display:grid;
@@ -658,6 +691,10 @@ button:disabled{
 }
 
 .action{
+  padding:13px;
+
+  border-radius:15px;
+
   border:
     1px solid
     var(--line);
@@ -665,10 +702,6 @@ button:disabled{
   background:#0c1c2c;
 
   color:#fff;
-
-  padding:13px;
-
-  border-radius:15px;
 
   font-weight:800;
 }
@@ -689,33 +722,6 @@ button:disabled{
 
 
 /* =====================================================
-   INPUT
-===================================================== */
-
-.textbox{
-  width:100%;
-
-  min-height:110px;
-
-  margin-top:10px;
-
-  background:#06111c;
-
-  color:#fff;
-
-  border:
-    1px solid
-    rgba(255,255,255,.09);
-
-  border-radius:16px;
-
-  padding:13px;
-
-  resize:vertical;
-}
-
-
-/* =====================================================
    RESULT
 ===================================================== */
 
@@ -726,11 +732,11 @@ button:disabled{
 
   border-radius:17px;
 
-  background:#06111b;
-
   border:
     1px solid
     rgba(255,255,255,.08);
+
+  background:#06111b;
 
   color:#dbe7f1;
 
@@ -749,6 +755,10 @@ button:disabled{
 
   overflow:hidden;
 
+  max-height:66vh;
+
+  aspect-ratio:3/4;
+
   border-radius:24px;
 
   border:
@@ -756,10 +766,6 @@ button:disabled{
     rgba(226,180,81,.42);
 
   background:#02060b;
-
-  aspect-ratio:3/4;
-
-  max-height:66vh;
 }
 
 .camera-wrap video,
@@ -768,9 +774,9 @@ button:disabled{
   width:100%;
   height:100%;
 
-  object-fit:cover;
-
   display:block;
+
+  object-fit:cover;
 }
 
 .camera-overlay{
@@ -799,24 +805,24 @@ button:disabled{
 
 
 /* =====================================================
-   VISION STATUS
+   VISION
 ===================================================== */
 
 .vision-status{
-  margin-top:12px;
-
   display:none;
+
+  margin-top:12px;
 
   padding:13px;
 
   border-radius:16px;
 
-  background:
-    rgba(20,46,70,.64);
-
   border:
     1px solid
     rgba(63,167,218,.30);
+
+  background:
+    rgba(20,46,70,.64);
 
   color:#ccecff;
 
@@ -828,11 +834,11 @@ button:disabled{
 }
 
 .vision-status.error{
-  background:
-    rgba(72,22,26,.58);
-
   border-color:
     rgba(255,125,125,.35);
+
+  background:
+    rgba(72,22,26,.58);
 
   color:#ffd4d4;
 }
@@ -863,15 +869,12 @@ button:disabled{
   }
 }
 
-
-/* =====================================================
-   VISION RESULT CARD
-===================================================== */
-
 .vision-card{
+  display:none;
+
   margin-top:14px;
 
-  display:none;
+  padding:16px;
 
   border-radius:21px;
 
@@ -885,8 +888,6 @@ button:disabled{
       rgba(17,34,50,.96),
       rgba(7,18,29,.98)
     );
-
-  padding:16px;
 }
 
 .vision-card.show{
@@ -895,19 +896,17 @@ button:disabled{
 
 .vision-top{
   display:flex;
-
   justify-content:space-between;
-  gap:12px;
-
   align-items:flex-start;
+
+  gap:12px;
 }
 
 .vision-name{
-  font-size:27px;
-
-  font-weight:900;
-
   color:var(--gold2);
+
+  font-size:27px;
+  font-weight:900;
 }
 
 .vision-core{
@@ -928,17 +927,16 @@ button:disabled{
 
   border-radius:14px;
 
-  background:
-    rgba(88,217,176,.10);
-
   border:
     1px solid
     rgba(88,217,176,.28);
 
+  background:
+    rgba(88,217,176,.10);
+
   color:var(--mint);
 
   font-size:11px;
-
   font-weight:850;
 
   text-align:center;
@@ -947,11 +945,11 @@ button:disabled{
 .explanation{
   margin-top:15px;
 
+  color:#eef4f8;
+
   font-size:15px;
 
   line-height:1.65;
-
-  color:#eef4f8;
 }
 
 .info-grid{
@@ -970,20 +968,20 @@ button:disabled{
 
   border-radius:15px;
 
-  background:
-    rgba(255,255,255,.04);
-
   border:
     1px solid
     rgba(255,255,255,.06);
+
+  background:
+    rgba(255,255,255,.04);
 }
 
 .info-label{
+  margin-bottom:4px;
+
   color:#7f94a8;
 
   font-size:10px;
-
-  margin-bottom:4px;
 }
 
 .info-value{
@@ -995,11 +993,11 @@ button:disabled{
 }
 
 .fact-list{
-  margin-top:13px;
-
   display:grid;
 
   gap:7px;
+
+  margin-top:13px;
 }
 
 .fact{
@@ -1037,7 +1035,7 @@ button:disabled{
 
 
 /* =====================================================
-   RII FLOATING
+   FLOATING RII
 ===================================================== */
 
 .rii{
@@ -1070,8 +1068,7 @@ button:disabled{
       #06121e 62%
     );
 
-  color:
-    var(--gold2);
+  color:var(--gold2);
 
   font-weight:900;
 
@@ -1090,7 +1087,6 @@ button:disabled{
 
 .overlay{
   position:fixed;
-
   inset:0;
 
   z-index:900;
@@ -1138,9 +1134,7 @@ button:disabled{
 
 .panel-head{
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
 }
 
@@ -1164,7 +1158,7 @@ button:disabled{
 
 
 /* =====================================================
-   LANGUAGE MENU
+   LANGUAGE
 ===================================================== */
 
 .lang-list{
@@ -1176,13 +1170,12 @@ button:disabled{
 }
 
 .lang-btn{
-  display:flex;
+  width:100%;
 
+  display:flex;
   align-items:center;
 
   gap:10px;
-
-  width:100%;
 
   padding:12px;
 
@@ -1210,7 +1203,7 @@ button:disabled{
 
 
 /* =====================================================
-   QUICK MENU
+   QUICK
 ===================================================== */
 
 .quick-grid{
@@ -1227,6 +1220,8 @@ button:disabled{
 .quick{
   min-height:84px;
 
+  padding:12px;
+
   border-radius:17px;
 
   border:
@@ -1240,27 +1235,20 @@ button:disabled{
 
   text-align:left;
 
-  padding:12px;
-
   font-weight:800;
 }
 
 .quick span{
   display:block;
 
-  font-size:24px;
-
   margin-bottom:5px;
+
+  font-size:24px;
 }
 
 .hidden{
   display:none!important;
 }
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
 
 @media(max-width:430px){
 
@@ -1280,15 +1268,6 @@ button:disabled{
 
   .center h3{
     font-size:17px;
-  }
-
-  .header-actions{
-    gap:4px;
-  }
-
-  .ready{
-    padding:
-      0 7px;
   }
 
   .info-grid{
@@ -1364,7 +1343,7 @@ button:disabled{
 <section class="hero">
 
   <div class="eyebrow">
-    RII V3.4 • LIVE VISION AI
+    RII V3.4.1 • LIVE VISION
   </div>
 
 
@@ -1535,7 +1514,7 @@ button:disabled{
   </strong>
 
 
-  <select id="audioMode">
+  <select>
 
     <option>
       Automatic / System audio
@@ -1553,9 +1532,7 @@ button:disabled{
 
 
   <div class="id-small">
-    Rii phát âm qua tuyến âm thanh đang được thiết bị chọn.
-    Khi phát triển thiết bị riêng, phần loa và Bluetooth
-    sẽ được điều khiển sâu hơn.
+    Rii sử dụng tuyến âm thanh hiện được hệ điều hành lựa chọn.
   </div>
 
 </section>
@@ -1563,10 +1540,6 @@ button:disabled{
 </div>
 
 
-
-<!-- ===================================================
-     FLOATING RII
-=================================================== -->
 
 <div
   id="riiButton"
@@ -1576,10 +1549,6 @@ button:disabled{
 </div>
 
 
-
-<!-- ===================================================
-     LANGUAGE
-=================================================== -->
 
 <div
   id="languageOverlay"
@@ -1615,10 +1584,6 @@ button:disabled{
 
 
 
-<!-- ===================================================
-     QUICK MENU
-=================================================== -->
-
 <div
   id="quickOverlay"
   class="overlay"
@@ -1648,13 +1613,8 @@ button:disabled{
         class="quick"
         onclick="quickOpen('math')"
       >
-
-        <span>
-          🧮
-        </span>
-
+        <span>🧮</span>
         <b id="qMath"></b>
-
       </button>
 
 
@@ -1662,13 +1622,8 @@ button:disabled{
         class="quick"
         onclick="quickOpen('camera')"
       >
-
-        <span>
-          📷
-        </span>
-
+        <span>📷</span>
         <b id="qCamera"></b>
-
       </button>
 
 
@@ -1676,13 +1631,8 @@ button:disabled{
         class="quick"
         onclick="quickOpen('translate')"
       >
-
-        <span>
-          🌍
-        </span>
-
+        <span>🌍</span>
         <b id="qTranslate"></b>
-
       </button>
 
 
@@ -1690,13 +1640,8 @@ button:disabled{
         class="quick"
         onclick="quickOpen('notes')"
       >
-
-        <span>
-          📝
-        </span>
-
+        <span>📝</span>
         <b id="qNotes"></b>
-
       </button>
 
 
@@ -1704,15 +1649,8 @@ button:disabled{
         class="quick"
         onclick="closeQuick()"
       >
-
-        <span>
-          🏠
-        </span>
-
-        <b>
-          Home
-        </b>
-
+        <span>🏠</span>
+        <b>Home</b>
       </button>
 
 
@@ -1720,15 +1658,8 @@ button:disabled{
         class="quick"
         onclick="openLanguageFromQuick()"
       >
-
-        <span>
-          🌐
-        </span>
-
-        <b>
-          Language
-        </b>
-
+        <span>🌐</span>
+        <b>Language</b>
       </button>
 
     </div>
@@ -1739,17 +1670,12 @@ button:disabled{
 
 
 
-<!-- ===================================================
-     CENTER SCREEN
-=================================================== -->
-
 <div
   id="centerScreen"
   class="screen"
 >
 
   <div class="screen-inner">
-
 
     <div class="screen-top">
 
@@ -1804,10 +1730,6 @@ button:disabled{
 
 
 
-    <!-- =========================
-         MATH
-    ========================== -->
-
     <section
       id="mathCenter"
       class="screen-card hidden"
@@ -1849,16 +1771,12 @@ button:disabled{
         id="mathResult"
         class="result"
       >
-Rii sẽ ưu tiên giải thích từng bước, không chỉ đưa đáp án.
+Rii sẽ ưu tiên giải thích từng bước.
       </div>
 
     </section>
 
 
-
-    <!-- =========================
-         CAMERA
-    ========================== -->
 
     <section
       id="cameraCenter"
@@ -1909,7 +1827,7 @@ Rii sẽ ưu tiên giải thích từng bước, không chỉ đưa đáp án.
       <textarea
         id="cameraQuestion"
         class="textbox"
-        placeholder="Con có thể hỏi: Đây là gì? Nó sống ở đâu? Nó dùng để làm gì?"
+        placeholder="Ví dụ: Nó là gì? Nó sống ở đâu?"
       ></textarea>
 
 
@@ -2022,10 +1940,10 @@ Rii sẽ ưu tiên giải thích từng bước, không chỉ đưa đáp án.
         <div class="action-row">
 
           <button
-            class="action"
+            class="action mint"
             onclick="startCamera()"
           >
-            🔄 Nhìn vật khác
+            📷 Vật khác
           </button>
 
 
@@ -2045,17 +1963,12 @@ Rii sẽ ưu tiên giải thích từng bước, không chỉ đưa đáp án.
         id="cameraResult"
         class="result"
       >
-Đưa vật trẻ muốn tìm hiểu vào khung rồi bấm “Chụp & tìm hiểu”.
-Rii sẽ gửi ảnh sang Vision AI và giải thích bằng ngôn ngữ đang chọn.
+Mở camera → đưa vật vào khung → bấm “Chụp & tìm hiểu”.
       </div>
 
     </section>
 
 
-
-    <!-- =========================
-         TRANSLATE
-    ========================== -->
 
     <section
       id="translateCenter"
@@ -2070,7 +1983,7 @@ Rii sẽ gửi ảnh sang Vision AI và giải thích bằng ngôn ngữ đang c
       <textarea
         id="translateInput"
         class="textbox"
-        placeholder="Nói hoặc nhập từ/câu..."
+        placeholder="Nói hoặc nhập..."
       ></textarea>
 
 
@@ -2098,16 +2011,12 @@ Rii sẽ gửi ảnh sang Vision AI và giải thích bằng ngôn ngữ đang c
         id="translateResult"
         class="result"
       >
-Ngôn ngữ nghe và phát âm dùng cùng locale đang chọn.
+Language center ready.
       </div>
 
     </section>
 
 
-
-    <!-- =========================
-         NOTES
-    ========================== -->
 
     <section
       id="notesCenter"
@@ -2122,7 +2031,7 @@ Ngôn ngữ nghe và phát âm dùng cùng locale đang chọn.
       <textarea
         id="notesInput"
         class="textbox"
-        placeholder="Ví dụ: Nhắc con học toán lúc 7 giờ tối"
+        placeholder="Nói ghi chú..."
       ></textarea>
 
 
@@ -2132,7 +2041,7 @@ Ngôn ngữ nghe và phát âm dùng cùng locale đang chọn.
           class="action mint"
           onclick="startSpeechInto('notesInput')"
         >
-          🎙 Nói ghi chú
+          🎙 Nói
         </button>
 
 
@@ -2150,11 +2059,10 @@ Ngôn ngữ nghe và phát âm dùng cùng locale đang chọn.
         id="notesResult"
         class="result"
       >
-Ghi chú cục bộ đã sẵn sàng.
+Ghi chú sẵn sàng.
       </div>
 
     </section>
-
 
   </div>
 
@@ -2162,12 +2070,7 @@ Ghi chú cục bộ đã sẵn sàng.
 
 
 
-<!-- ===================================================
-     EXISTING WORKER CLIENT
-=================================================== -->
-
 <script src="./worker-client-v2.js"></script>
-
 
 
 <script>
@@ -2176,7 +2079,7 @@ Ghi chú cục bộ đã sẵn sàng.
 
 
 const APP_VERSION =
-  "3.4";
+  "3.4.1";
 
 
 const LANGUAGE_KEY =
@@ -2294,102 +2197,102 @@ const languages = [
 
 const copy = {
 
-  vi:{
+vi:{
 
-    tagline:
-      "Học thông minh • Khám phá thế giới",
+  tagline:
+    "Học thông minh • Khám phá thế giới",
 
-    ready:
-      "Sẵn sàng",
+  ready:
+    "Sẵn sàng",
 
-    hero:
-      "Xin chào 👋 Hôm nay con muốn khám phá gì?",
+  hero:
+    "Xin chào 👋 Hôm nay con muốn khám phá gì?",
 
-    heroText:
-      "Con có thể chạm, nói hoặc nghe. Camera AI giờ có thể gửi hình ảnh đến Rii Vision để tìm hiểu thế giới.",
+  heroText:
+    "Con có thể chạm, nói hoặc nghe. Rii Vision giúp con tìm hiểu những vật con nhìn thấy.",
 
-    root:
-      "Tài khoản gốc • ROOT",
+  root:
+    "Tài khoản gốc • ROOT",
 
-    center:
-      "Trung tâm Rii",
+  center:
+    "Trung tâm Rii",
 
-    hint:
-      "Chạm hoặc nói tên chức năng",
+  hint:
+    "Chạm hoặc nói tên chức năng",
 
-    math:
-      "Giải toán",
+  math:
+    "Giải toán",
 
-    mathText:
-      "Nói, nhập hoặc chụp bài. Rii giải thích từng bước.",
+  mathText:
+    "Nói, nhập hoặc chụp bài. Rii giải thích từng bước.",
 
-    camera:
-      "Camera AI",
+  camera:
+    "Camera AI",
 
-    cameraText:
-      "Nhìn vật thật, nhận diện và nghe Rii giải thích.",
+  cameraText:
+    "Nhìn vật thật, nhận diện và nghe Rii giải thích.",
 
-    translate:
-      "Phiên dịch",
+  translate:
+    "Phiên dịch",
 
-    translateText:
-      "Nghe, nói, dịch và phát âm theo ngôn ngữ được chọn.",
+  translateText:
+    "Nghe, nói, dịch và phát âm theo ngôn ngữ được chọn.",
 
-    notes:
-      "Ghi chú & Báo thức",
+  notes:
+    "Ghi chú & Báo thức",
 
-    notesText:
-      "Nói với Rii để ghi nhớ việc học và giờ cần nhắc."
-  },
+  notesText:
+    "Nói với Rii để ghi nhớ việc học."
+},
 
 
-  en:{
+en:{
 
-    tagline:
-      "Smart learning • Explore the world",
+  tagline:
+    "Smart learning • Explore the world",
 
-    ready:
-      "Ready",
+  ready:
+    "Ready",
 
-    hero:
-      "Hello 👋 What would you like to explore today?",
+  hero:
+    "Hello 👋 What would you like to explore today?",
 
-    heroText:
-      "You can tap, speak or listen. Camera AI can now send images to Rii Vision to explore the real world.",
+  heroText:
+    "Tap, speak or listen. Rii Vision helps you learn about things you can see.",
 
-    root:
-      "Root account • ROOT",
+  root:
+    "Root account • ROOT",
 
-    center:
-      "Rii Centers",
+  center:
+    "Rii Centers",
 
-    hint:
-      "Tap or say a center name",
+  hint:
+    "Tap or say a center name",
 
-    math:
-      "Math",
+  math:
+    "Math",
 
-    mathText:
-      "Speak, type or photograph a problem. Rii explains step by step.",
+  mathText:
+    "Speak, type or photograph a problem.",
 
-    camera:
-      "Camera AI",
+  camera:
+    "Camera AI",
 
-    cameraText:
-      "Look at a real object, identify it and listen to Rii explain.",
+  cameraText:
+    "Look at a real object and let Rii explain it.",
 
-    translate:
-      "Languages",
+  translate:
+    "Languages",
 
-    translateText:
-      "Listen, speak, translate and pronounce in the selected language.",
+  translateText:
+    "Listen, speak, translate and pronounce.",
 
-    notes:
-      "Notes & Alarms",
+  notes:
+    "Notes & Alarms",
 
-    notesText:
-      "Speak to Rii to remember school tasks and reminder times."
-  }
+  notesText:
+    "Speak to Rii to remember important things."
+}
 
 };
 
@@ -2411,6 +2314,15 @@ let latestVisionResult =
 
 
 let visionBusy =
+  false;
+
+
+/*
+IMPORTANT FIX
+
+This is the state that V3.4 did not track correctly.
+*/
+let capturedFrameReady =
   false;
 
 
@@ -2441,7 +2353,7 @@ function lang(){
 }
 
 
-function t(){
+function text(){
 
   return (
     copy[
@@ -2475,7 +2387,7 @@ function set(
 function render(){
 
   const x =
-    t();
+    text();
 
 
   const language =
@@ -2749,18 +2661,20 @@ function(){
 ===================================================== */
 
 function speak(
-  text
+  value
 ){
 
-  const value =
+  const speechText =
     String(
-      text ||
+      value ||
       ""
     )
       .trim();
 
 
-  if(!value){
+  if(
+    !speechText
+  ){
 
     return;
   }
@@ -2768,38 +2682,30 @@ function speak(
 
   if(
     !(
-      "speechSynthesis" in
-      window
+      "speechSynthesis"
+      in window
     )
   ){
-
-    alert(
-      "Speech synthesis is not supported."
-    );
 
     return;
   }
 
 
-  const speech =
+  const utterance =
     new SpeechSynthesisUtterance(
-      value
+      speechText
     );
 
 
-  speech.lang =
+  utterance.lang =
     lang().locale;
 
 
-  speech.rate =
-    .90;
+  utterance.rate =
+    .9;
 
 
-  speech.pitch =
-    1;
-
-
-  speech.volume =
+  utterance.pitch =
     1;
 
 
@@ -2807,7 +2713,7 @@ function speak(
 
 
   speechSynthesis.speak(
-    speech
+    utterance
   );
 }
 
@@ -2816,11 +2722,18 @@ window.speakVisible =
 function(){
 
   const x =
-    t();
+    text();
 
 
   speak(
-    `${x.hero}. ${x.math}. ${x.camera}. ${x.translate}. ${x.notes}.`
+    [
+      x.hero,
+      x.math,
+      x.camera,
+      x.translate,
+      x.notes
+    ]
+      .join(". ")
   );
 };
 
@@ -2829,22 +2742,15 @@ window.speakCenter =
 function(){
 
   const x =
-    t();
+    text();
 
 
   speak(
     {
-      math:
-        x.math,
-
-      camera:
-        x.camera,
-
-      translate:
-        x.translate,
-
-      notes:
-        x.notes
+      math:x.math,
+      camera:x.camera,
+      translate:x.translate,
+      notes:x.notes
 
     }[
       currentCenter
@@ -2881,21 +2787,17 @@ function beginRecognition(
   if(!C){
 
     alert(
-      "Speech recognition is not supported by this browser."
+      "Speech recognition is not supported."
     );
 
     return;
   }
 
 
-  if(
-    recognition
-  ){
+  if(recognition){
 
     try{
-
       recognition.stop();
-
     }catch{}
   }
 
@@ -2908,31 +2810,12 @@ function beginRecognition(
     lang().locale;
 
 
-  recognition.interimResults =
-    false;
-
-
   recognition.continuous =
     false;
 
 
-  [
-    "homeMicBtn",
-    "centerMicBtn"
-  ]
-    .forEach(
-      id => {
-
-        document
-          .getElementById(
-            id
-          )
-          ?.classList
-          .add(
-            "listening"
-          );
-      }
-    );
+  recognition.interimResults =
+    false;
 
 
   recognition.onresult =
@@ -2944,9 +2827,7 @@ function beginRecognition(
           .transcript;
 
 
-      if(
-        targetId
-      ){
+      if(targetId){
 
         const element =
           document.getElementById(
@@ -2966,39 +2847,6 @@ function beginRecognition(
           words
         );
       }
-    };
-
-
-  recognition.onend =
-    () => {
-
-      [
-        "homeMicBtn",
-        "centerMicBtn"
-      ]
-        .forEach(
-          id => {
-
-            document
-              .getElementById(
-                id
-              )
-              ?.classList
-              .remove(
-                "listening"
-              );
-          }
-        );
-    };
-
-
-  recognition.onerror =
-    error => {
-
-      console.warn(
-        "Speech recognition:",
-        error?.error
-      );
     };
 
 
@@ -3024,11 +2872,6 @@ function(id){
 };
 
 
-
-/* =====================================================
-   VOICE COMMAND
-===================================================== */
-
 function handleVoiceCommand(
   words
 ){
@@ -3042,10 +2885,8 @@ function handleVoiceCommand(
 
 
   if(
-    /camera|máy ảnh|ống kính|相机|カメラ|카메라/
-      .test(
-        query
-      )
+    /camera|máy ảnh|ống kính|カメラ|相机|카메라/
+      .test(query)
   ){
 
     openCenter(
@@ -3057,10 +2898,8 @@ function handleVoiceCommand(
 
 
   if(
-    /math|toán|算数|数学|수학/
-      .test(
-        query
-      )
+    /math|toán|数学|算数|수학/
+      .test(query)
   ){
 
     openCenter(
@@ -3073,9 +2912,7 @@ function handleVoiceCommand(
 
   if(
     /translate|language|dịch|ngôn ngữ|语言|言語|언어/
-      .test(
-        query
-      )
+      .test(query)
   ){
 
     openCenter(
@@ -3088,9 +2925,7 @@ function handleVoiceCommand(
 
   if(
     /note|alarm|ghi chú|báo thức|メモ|알람/
-      .test(
-        query
-      )
+      .test(query)
   ){
 
     openCenter(
@@ -3176,23 +3011,16 @@ function(name){
 function updateScreenTitle(){
 
   const x =
-    t();
+    text();
 
 
   set(
     "screenTitle",
     {
-      math:
-        x.math,
-
-      camera:
-        x.camera,
-
-      translate:
-        x.translate,
-
-      notes:
-        x.notes
+      math:x.math,
+      camera:x.camera,
+      translate:x.translate,
+      notes:x.notes
 
     }[
       currentCenter
@@ -3205,6 +3033,9 @@ function updateScreenTitle(){
 
 window.closeCenter =
 function(){
+
+  stopCamera();
+
 
   document
     .getElementById(
@@ -3220,9 +3051,6 @@ function(){
     "";
 
 
-  stopCamera();
-
-
   currentCenter =
     null;
 };
@@ -3230,7 +3058,52 @@ function(){
 
 
 /* =====================================================
-   CAMERA
+   CAMERA STATE
+===================================================== */
+
+function isCameraLive(){
+
+  const video =
+    document.getElementById(
+      "cameraVideo"
+    );
+
+
+  return Boolean(
+    cameraStream
+    &&
+    video
+    &&
+    video.readyState >= 2
+    &&
+    video.videoWidth > 0
+    &&
+    video.videoHeight > 0
+  );
+}
+
+
+function hasCapturedFrame(){
+
+  const canvas =
+    document.getElementById(
+      "cameraCanvas"
+    );
+
+
+  return Boolean(
+    capturedFrameReady
+    &&
+    canvas.width > 0
+    &&
+    canvas.height > 0
+  );
+}
+
+
+
+/* =====================================================
+   START CAMERA
 ===================================================== */
 
 window.startCamera =
@@ -3247,6 +3120,46 @@ async function(){
     stopCamera();
 
 
+    /*
+      Starting a new camera session means
+      the next analyze action should capture
+      a NEW frame.
+    */
+
+    capturedFrameReady =
+      false;
+
+
+    latestVisionResult =
+      null;
+
+
+    document
+      .getElementById(
+        "visionSpeakButton"
+      )
+      .disabled =
+      true;
+
+
+    document
+      .getElementById(
+        "visionCard"
+      )
+      .classList
+      .remove(
+        "show"
+      );
+
+
+    document
+      .getElementById(
+        "visionStatus"
+      )
+      .className =
+      "vision-status";
+
+
     if(
       !navigator.mediaDevices
       ||
@@ -3255,7 +3168,7 @@ async function(){
     ){
 
       throw new Error(
-        "Camera API không có trên trình duyệt này."
+        "Camera API không được hỗ trợ."
       );
     }
 
@@ -3303,8 +3216,11 @@ async function(){
       );
 
 
+    await video.play();
+
+
     status.textContent =
-      "✅ Camera đang hoạt động. Đưa vật trẻ muốn tìm hiểu vào khung.";
+      "✅ Camera đang hoạt động. Đưa vật vào khung rồi bấm Chụp & tìm hiểu.";
 
 
   }catch(error){
@@ -3320,7 +3236,12 @@ async function(){
 };
 
 
-function captureToCanvas(){
+
+/* =====================================================
+   CAPTURE FRAME
+===================================================== */
+
+function captureCurrentFrame(){
 
   const video =
     document.getElementById(
@@ -3335,7 +3256,7 @@ function captureToCanvas(){
 
 
   if(
-    !video.videoWidth
+    !isCameraLive()
   ){
 
     throw new Error(
@@ -3344,22 +3265,15 @@ function captureToCanvas(){
   }
 
 
-  /*
-    Resize before sending to AI.
-
-    This avoids sending full 4K iPhone frames
-    and keeps request size much smaller.
-  */
-
   const MAX_EDGE =
     1280;
 
 
-  let width =
+  let sourceWidth =
     video.videoWidth;
 
 
-  let height =
+  let sourceHeight =
     video.videoHeight;
 
 
@@ -3368,22 +3282,22 @@ function captureToCanvas(){
       1,
       MAX_EDGE /
       Math.max(
-        width,
-        height
+        sourceWidth,
+        sourceHeight
       )
     );
 
 
-  width =
+  const width =
     Math.round(
-      width *
+      sourceWidth *
       scale
     );
 
 
-  height =
+  const height =
     Math.round(
-      height *
+      sourceHeight *
       scale
     );
 
@@ -3396,26 +3310,55 @@ function captureToCanvas(){
     height;
 
 
-  canvas
-    .getContext(
+  const context =
+    canvas.getContext(
       "2d"
-    )
-    .drawImage(
-      video,
-      0,
-      0,
-      width,
-      height
     );
+
+
+  context.drawImage(
+    video,
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  /*
+    Mark frame READY before stopping camera.
+  */
+
+  capturedFrameReady =
+    true;
 
 
   return canvas;
 }
 
 
-function showCapturedImage(
-  canvas
-){
+
+/* =====================================================
+   SHOW CAPTURE
+===================================================== */
+
+function showCapturedImage(){
+
+  const canvas =
+    document.getElementById(
+      "cameraCanvas"
+    );
+
+
+  if(
+    !hasCapturedFrame()
+  ){
+
+    throw new Error(
+      "Ảnh chụp chưa sẵn sàng."
+    );
+  }
+
 
   const image =
     document.getElementById(
@@ -3445,8 +3388,21 @@ function showCapturedImage(
     .add(
       "hidden"
     );
+
+
+  document
+    .getElementById(
+      "cameraStatus"
+    )
+    .textContent =
+    "✅ Đã chụp ảnh. Rii đang chuẩn bị phân tích.";
 }
 
+
+
+/* =====================================================
+   CAPTURE + ANALYZE
+===================================================== */
 
 window.captureAndAnalyze =
 async function(){
@@ -3461,24 +3417,48 @@ async function(){
 
   try{
 
-    const canvas =
-      captureToCanvas();
+    /*
+      CASE 1:
+      Camera is currently live.
+      Capture exactly one frame.
+    */
+
+    if(
+      isCameraLive()
+    ){
+
+      captureCurrentFrame();
 
 
-    showCapturedImage(
-      canvas
-    );
+      showCapturedImage();
 
 
-    stopCamera();
+      /*
+        IMPORTANT:
+        Only stop camera AFTER
+        canvas has been populated.
+      */
+
+      stopCamera();
+    }
 
 
-    document
-      .getElementById(
-        "cameraStatus"
-      )
-      .textContent =
-      "✅ Đã chụp ảnh.";
+    /*
+      CASE 2:
+      Camera is already stopped,
+      but we have a saved frame.
+
+      Reuse it.
+    */
+
+    if(
+      !hasCapturedFrame()
+    ){
+
+      throw new Error(
+        "Chưa có ảnh. Hãy bấm Mở camera trước."
+      );
+    }
 
 
     await analyzeCapturedImage();
@@ -3495,7 +3475,7 @@ async function(){
 
 
 /* =====================================================
-   REAL VISION AI
+   ANALYZE SAVED FRAME
 ===================================================== */
 
 window.analyzeCapturedImage =
@@ -3509,21 +3489,13 @@ async function(){
   }
 
 
-  const canvas =
-    document.getElementById(
-      "cameraCanvas"
-    );
-
-
   if(
-    !canvas.width
-    ||
-    !canvas.height
+    !hasCapturedFrame()
   ){
 
     showVisionError(
       new Error(
-        "Chưa có ảnh để phân tích."
+        "Chưa có ảnh để phân tích. Hãy mở camera và chụp trước."
       )
     );
 
@@ -3563,6 +3535,12 @@ async function(){
       .trim();
 
 
+  const canvas =
+    document.getElementById(
+      "cameraCanvas"
+    );
+
+
   setVisionBusy(
     true
   );
@@ -3574,7 +3552,7 @@ async function(){
       ?
       "Rii đang nhìn và tìm hiểu vật thể..."
       :
-      "Rii is looking at the object..."
+      "Rii is looking and learning..."
   );
 
 
@@ -3611,11 +3589,6 @@ async function(){
     );
 
 
-    /*
-      Child-first behavior:
-      automatically explain after recognition.
-    */
-
     const speechText =
       buildVisionSpeech(
         result
@@ -3650,7 +3623,45 @@ async function(){
 
 
 /* =====================================================
-   VISION UI
+   STOP CAMERA
+===================================================== */
+
+function stopCamera(){
+
+  if(
+    cameraStream
+  ){
+
+    cameraStream
+      .getTracks()
+      .forEach(
+        track =>
+          track.stop()
+      );
+
+
+    cameraStream =
+      null;
+  }
+
+
+  const video =
+    document.getElementById(
+      "cameraVideo"
+    );
+
+
+  if(video){
+
+    video.srcObject =
+      null;
+  }
+}
+
+
+
+/* =====================================================
+   VISION BUSY
 ===================================================== */
 
 function setVisionBusy(
@@ -3680,6 +3691,11 @@ function setVisionBusy(
 }
 
 
+
+/* =====================================================
+   VISION LOADING
+===================================================== */
+
 function showVisionLoading(
   message
 ){
@@ -3696,8 +3712,8 @@ function showVisionLoading(
 
   status.innerHTML =
     `
-      <span class="spinner"></span>
-      ${escapeHtml(message)}
+    <span class="spinner"></span>
+    ${escapeHtml(message)}
     `;
 
 
@@ -3720,6 +3736,11 @@ function showVisionLoading(
 }
 
 
+
+/* =====================================================
+   VISION ERROR
+===================================================== */
+
 function showVisionError(
   error
 ){
@@ -3738,7 +3759,10 @@ function showVisionError(
           String(
             error?.message ||
             error
-          )
+          ),
+
+        code:
+          "CLIENT_ERROR"
       };
 
 
@@ -3755,10 +3779,7 @@ function showVisionError(
   status.textContent =
     "❌ "
     +
-    String(
-      formatted.message ||
-      "Vision AI error"
-    );
+    formatted.message;
 
 
   document
@@ -3774,11 +3795,16 @@ function showVisionError(
 
 
   console.error(
-    "Rii Vision:",
+    "Rii Vision Error:",
     formatted
   );
 }
 
+
+
+/* =====================================================
+   RENDER RESULT
+===================================================== */
 
 function renderVisionResult(
   result
@@ -3804,13 +3830,13 @@ function renderVisionResult(
       (
         result.closerViewMessage
         ||
-        "Rii chưa nhìn đủ rõ. Hãy đưa vật gần hơn hoặc chụp lại."
+        "Rii chưa nhìn đủ rõ. Hãy đưa vật gần hơn rồi thử lại."
       );
 
   }else{
 
     status.textContent =
-      "✅ Rii đã phân tích hình ảnh.";
+      "✅ Rii đã nhận được kết quả.";
   }
 
 
@@ -3830,12 +3856,8 @@ function renderVisionResult(
       result.category,
       result.objectName
     ]
-      .filter(
-        Boolean
-      )
-      .join(
-        " • "
-      )
+      .filter(Boolean)
+      .join(" • ")
   );
 
 
@@ -3852,9 +3874,10 @@ function renderVisionResult(
 
   set(
     "visionConfidence",
-    confidence
+    confidence > 0
       ?
-      `${confidence}%`
+      confidence +
+      "%"
       :
       "AI"
   );
@@ -3973,6 +3996,11 @@ function renderVisionResult(
 }
 
 
+
+/* =====================================================
+   INFO
+===================================================== */
+
 function renderVisionInfo(
   result
 ){
@@ -3981,68 +4009,48 @@ function renderVisionInfo(
     [];
 
 
-  if(
-    result.color
-  ){
+  if(result.color){
 
-    items.push(
-      [
-        "🎨 Color",
-        result.color
-      ]
-    );
+    items.push([
+      "🎨 Color",
+      result.color
+    ]);
   }
 
 
-  if(
-    result.habitat
-  ){
+  if(result.habitat){
 
-    items.push(
-      [
-        "🌱 Habitat",
-        result.habitat
-      ]
-    );
+    items.push([
+      "🌱 Habitat",
+      result.habitat
+    ]);
   }
 
 
-  if(
-    result.origin
-  ){
+  if(result.origin){
 
-    items.push(
-      [
-        "🌍 Origin",
-        result.origin
-      ]
-    );
+    items.push([
+      "🌍 Origin",
+      result.origin
+    ]);
   }
 
 
-  if(
-    result.uses
-  ){
+  if(result.uses){
 
-    items.push(
-      [
-        "🧩 Uses",
-        result.uses
-      ]
-    );
+    items.push([
+      "🧩 Uses",
+      result.uses
+    ]);
   }
 
 
-  if(
-    result.detectedText
-  ){
+  if(result.detectedText){
 
-    items.push(
-      [
-        "🔤 Text",
-        result.detectedText
-      ]
-    );
+    items.push([
+      "🔤 Text",
+      result.detectedText
+    ]);
   }
 
 
@@ -4054,15 +4062,12 @@ function renderVisionInfo(
     result.visibleFeatures.length
   ){
 
-    items.push(
-      [
-        "👁 Features",
-        result.visibleFeatures
-          .join(
-            ", "
-          )
-      ]
-    );
+    items.push([
+      "👁 Features",
+
+      result.visibleFeatures
+        .join(", ")
+    ]);
   }
 
 
@@ -4091,6 +4096,11 @@ function renderVisionInfo(
       .join("");
 }
 
+
+
+/* =====================================================
+   FACTS
+===================================================== */
 
 function renderVisionFacts(
   result
@@ -4126,16 +4136,14 @@ function renderVisionFacts(
 
 
 /* =====================================================
-   SPEAK VISION
+   VISION SPEECH
 ===================================================== */
 
 function buildVisionSpeech(
   result
 ){
 
-  if(
-    !result
-  ){
+  if(!result){
 
     return "";
   }
@@ -4168,12 +4176,8 @@ function buildVisionSpeech(
 
     result.safetyNote
   ]
-    .filter(
-      Boolean
-    )
-    .join(
-      ". "
-    );
+    .filter(Boolean)
+    .join(". ");
 }
 
 
@@ -4247,17 +4251,13 @@ function saveVisionHistory(
       confidence:
         result.confidence
         ||
-        0,
-
-      childExplanation:
-        result.childExplanation
-        ||
-        ""
+        0
     });
 
 
     localStorage.setItem(
       VISION_HISTORY_KEY,
+
       JSON.stringify(
         history.slice(
           0,
@@ -4270,34 +4270,9 @@ function saveVisionHistory(
   }catch(error){
 
     console.warn(
-      "Vision history save:",
+      "Vision history:",
       error
     );
-  }
-}
-
-
-
-/* =====================================================
-   STOP CAMERA
-===================================================== */
-
-function stopCamera(){
-
-  if(
-    cameraStream
-  ){
-
-    cameraStream
-      .getTracks()
-      .forEach(
-        track =>
-          track.stop()
-      );
-
-
-    cameraStream =
-      null;
   }
 }
 
@@ -4310,7 +4285,7 @@ function stopCamera(){
 window.demoMath =
 function(){
 
-  const question =
+  const value =
     document
       .getElementById(
         "mathInput"
@@ -4324,22 +4299,22 @@ function(){
       "mathResult"
     )
     .textContent =
-
-    question
+    value
       ?
-      `Đã nhận đề: ${question}
-
-Voice UI đã sẵn sàng.
-Brain/AI giải toán sẽ được nối sau Camera Vision.`
+      "Đã nhận đề: "
+      +
+      value
+      +
+      "\n\nAI giải toán sẽ được nối sau khi Camera Vision ổn định."
       :
-      "Hãy nói hoặc nhập bài toán trước.";
+      "Hãy nhập hoặc nói bài toán.";
 };
 
 
 window.demoTranslate =
 function(){
 
-  const question =
+  const value =
     document
       .getElementById(
         "translateInput"
@@ -4353,20 +4328,24 @@ function(){
       "translateResult"
     )
     .textContent =
-
-    question
+    value
       ?
-      `Đã nhận: ${question}
-Language: ${lang().name}`
+      "Đã nhận: "
+      +
+      value
+      +
+      "\nLanguage: "
+      +
+      lang().name
       :
-      "Hãy nói hoặc nhập từ/câu trước.";
+      "Hãy nhập hoặc nói.";
 };
 
 
 window.saveLocalNote =
 function(){
 
-  const note =
+  const value =
     document
       .getElementById(
         "notesInput"
@@ -4375,9 +4354,7 @@ function(){
       .trim();
 
 
-  if(
-    !note
-  ){
+  if(!value){
 
     return;
   }
@@ -4399,7 +4376,7 @@ function(){
       "Rii00000001",
 
     text:
-      note,
+      value,
 
     createdAt:
       new Date()
@@ -4409,6 +4386,7 @@ function(){
 
   localStorage.setItem(
     NOTE_KEY,
+
     JSON.stringify(
       notes.slice(
         0,
@@ -4418,18 +4396,16 @@ function(){
   );
 
 
-  document
-    .getElementById(
-      "notesResult"
-    )
-    .textContent =
+  set(
+    "notesResult",
     "✅ Đã lưu:\n"
     +
-    note;
+    value
+  );
 
 
   speak(
-    note
+    value
   );
 };
 
@@ -4458,6 +4434,7 @@ function(name){
 
   closeQuick();
 
+
   openCenter(
     name
   );
@@ -4466,7 +4443,7 @@ function(name){
 
 
 /* =====================================================
-   FLOATING RII BUTTON
+   FLOAT BUTTON
 ===================================================== */
 
 const rii =
@@ -4606,9 +4583,7 @@ rii.addEventListener(
     }catch{}
 
 
-    if(
-      !moved
-    ){
+    if(!moved){
 
       document
         .getElementById(
@@ -4625,7 +4600,7 @@ rii.addEventListener(
 
 
 /* =====================================================
-   OVERLAY CLOSE
+   OVERLAY
 ===================================================== */
 
 [
@@ -4663,7 +4638,7 @@ rii.addEventListener(
 
 
 /* =====================================================
-   HTML ESCAPE
+   ESCAPE
 ===================================================== */
 
 function escapeHtml(
@@ -4699,7 +4674,7 @@ function escapeHtml(
 
 
 /* =====================================================
-   START
+   BOOT
 ===================================================== */
 
 if(
@@ -4719,9 +4694,11 @@ render();
 
 
 console.log(
-  "Rii AI V" +
-  APP_VERSION +
-  " Live Vision ready"
+  "Rii AI V"
+  +
+  APP_VERSION
+  +
+  " Camera State Fix ready"
 );
 
 })();
