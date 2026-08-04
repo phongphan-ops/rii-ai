@@ -8,7 +8,7 @@
   content="width=device-width,initial-scale=1,viewport-fit=cover"
 >
 
-<title>Rii AI V2.2.1</title>
+<title>Rii AI V2.2.2</title>
 
 <style>
 :root{
@@ -75,6 +75,7 @@ header{
 
   background:rgba(7,16,25,.96);
   backdrop-filter:blur(18px);
+
   border-bottom:1px solid var(--line);
 }
 
@@ -137,10 +138,14 @@ main{
   display:inline-flex;
   gap:7px;
   align-items:center;
+
   padding:7px 11px;
+
   border-radius:999px;
+
   font-size:13px;
   font-weight:750;
+
   background:#123027;
   color:var(--green);
 }
@@ -177,10 +182,13 @@ textarea,
 select{
   width:100%;
   padding:14px;
+
   border-radius:16px;
   border:1px solid var(--line);
+
   background:#08121c;
   color:var(--text);
+
   outline:none;
 }
 
@@ -189,17 +197,17 @@ textarea{
   resize:vertical;
 }
 
-select{
-  appearance:auto;
-}
-
 .btn{
   width:100%;
+
   border:0;
   border-radius:17px;
+
   padding:15px;
   margin-top:12px;
+
   font-weight:850;
+
   background:var(--green);
   color:#04130e;
 }
@@ -241,12 +249,16 @@ select{
 
 pre{
   margin:12px 0 0;
+
   white-space:pre-wrap;
   overflow-wrap:anywhere;
+
   background:#06101a;
   border:1px solid var(--line);
+
   padding:14px;
   border-radius:16px;
+
   color:#cfe3f6;
 }
 
@@ -309,6 +321,10 @@ pre{
   color:var(--green);
 }
 
+.mode-offline{
+  color:#ffbd78;
+}
+
 .image-grid{
   display:grid;
   grid-template-columns:
@@ -339,19 +355,25 @@ pre{
 
 .visual-badge{
   display:inline-block;
+
   margin-top:7px;
   padding:5px 9px;
+
   border-radius:999px;
+
   background:#162c25;
   color:var(--green);
+
   font-size:12px;
   font-weight:750;
 }
 
 .language-box{
   background:#0b1926;
+
   border:1px solid var(--line);
   border-radius:18px;
+
   padding:14px;
   margin-top:14px;
 }
@@ -370,9 +392,12 @@ pre{
 .translation-label{
   margin-top:10px;
   padding:12px;
+
   border-radius:14px;
+
   background:#07131e;
   border:1px solid var(--line);
+
   font-size:18px;
   font-weight:800;
 }
@@ -381,6 +406,16 @@ pre{
   margin-top:8px;
   color:var(--muted);
   font-size:13px;
+  line-height:1.5;
+}
+
+.warning-box{
+  margin-top:12px;
+  padding:12px;
+  border-radius:14px;
+  border:1px solid #63482b;
+  background:#2b2114;
+  color:#ffd79e;
 }
 
 .small-btn{
@@ -395,13 +430,18 @@ pre{
 .file-label{
   display:block;
   width:100%;
+
   margin-top:12px;
   padding:15px;
+
   text-align:center;
+
   border-radius:17px;
   border:1px solid var(--line);
+
   background:var(--panel2);
   color:var(--text);
+
   font-weight:850;
 }
 
@@ -411,9 +451,11 @@ pre{
 
 .bottom-nav{
   position:fixed;
+
   left:0;
   right:0;
   bottom:0;
+
   z-index:100;
 
   padding:
@@ -422,11 +464,14 @@ pre{
     calc(8px + env(safe-area-inset-bottom));
 
   background:rgba(6,13,21,.98);
+
   border-top:1px solid var(--line);
+
   backdrop-filter:blur(20px);
 
   overflow-x:auto;
   white-space:nowrap;
+
   -webkit-overflow-scrolling:touch;
 }
 
@@ -438,9 +483,13 @@ pre{
 
 .nav-btn{
   border:0;
+
   min-width:74px;
+
   padding:8px 11px;
+
   border-radius:14px;
+
   color:var(--muted);
   background:transparent;
 }
@@ -457,6 +506,7 @@ pre{
 }
 
 @media(min-width:700px){
+
   .grid{
     grid-template-columns:
       repeat(4,minmax(0,1fr));
@@ -475,19 +525,27 @@ pre{
 <div class="app">
 
 <header>
+
   <div class="brand">
+
     <div>
-      <h1>Rii AI V2</h1>
+
+      <h1>
+        Rii AI V2
+      </h1>
 
       <div class="subtitle">
         Brain • Vision • Multilingual Speech • Robot
       </div>
+
     </div>
 
     <div class="version">
-      V2.2.1
+      V2.2.2
     </div>
+
   </div>
+
 </header>
 
 
@@ -503,18 +561,21 @@ pre{
 
   <div class="card">
 
-    <h2>🏠 Trung tâm Rii</h2>
+    <h2>
+      🏠 Trung tâm Rii
+    </h2>
 
     <span class="status">
-      ● Multilingual Visual Learning
+      ● Offline Speech Fallback
     </span>
 
     <p class="muted">
-      Rii có thể học concept,
-      ghi nhớ hình ảnh,
-      dịch tên concept
-      và phát âm bằng ngôn ngữ được chọn.
+      Rii ưu tiên Brain và AI.
+      Nếu Workers AI hết quota,
+      phần phát âm trên thiết bị
+      vẫn tiếp tục hoạt động.
     </p>
+
 
     <div class="language-box">
 
@@ -549,31 +610,46 @@ pre{
   <div class="grid">
 
     <div class="stat">
+
       🧠 Brain
+
       <strong id="brainStatus">
         Checking
       </strong>
+
     </div>
 
+
     <div class="stat">
+
       ⚙️ Engine
+
       <strong id="engineStatus">
         Checking
       </strong>
+
     </div>
 
+
     <div class="stat">
+
       🔐 Vault
+
       <strong id="vaultStatus">
         Checking
       </strong>
+
     </div>
 
+
     <div class="stat">
+
       ☁️ Worker
+
       <strong id="workerStatus">
         Offline
       </strong>
+
     </div>
 
   </div>
@@ -585,17 +661,24 @@ pre{
   >
 
     <div class="stat">
+
       🧠 Knowledge
+
       <strong id="knowledgeCountHome">
         0
       </strong>
+
     </div>
 
+
     <div class="stat">
+
       🖼 Visual Samples
+
       <strong id="visualCountHome">
         0
       </strong>
+
     </div>
 
   </div>
@@ -604,16 +687,19 @@ pre{
   <div class="card">
 
     <h3>
-      Luồng V2.2.1
+      Luồng V2.2.2
     </h3>
 
     <div class="pipeline">
-      <span>Teach</span>
-      <span>→ Analyze</span>
-      <span>→ Image</span>
-      <span>→ Brain</span>
-      <span>→ Translate</span>
-      <span>→ 🔊 Speak</span>
+
+      <span>LOCAL</span>
+
+      <span>→ BRAIN</span>
+
+      <span>→ WORKER AI</span>
+
+      <span>→ OFFLINE SPEECH</span>
+
     </div>
 
   </div>
@@ -660,8 +746,9 @@ pre{
     <p class="muted">
       Phân tích concept,
       thêm ảnh,
-      rồi lưu vào Brain.
-      Có thể dịch và phát âm trước khi lưu.
+      dịch,
+      phát âm
+      và lưu vào Brain.
     </p>
 
 
@@ -671,7 +758,7 @@ pre{
 
     <textarea
       id="teachInput"
-      placeholder="Ví dụ: 1 con ngựa nâu"
+      placeholder="Ví dụ: brown horse"
     ></textarea>
 
 
@@ -695,12 +782,14 @@ pre{
         aria-label="Ngôn ngữ Teach"
       ></select>
 
+
       <div
         id="teachTranslatedLabel"
         class="translation-label"
       >
         Chưa có concept.
       </div>
+
 
       <div class="btn-row">
 
@@ -713,6 +802,7 @@ pre{
           🌐 Dịch
         </button>
 
+
         <button
           id="teachSpeakButton"
           class="btn secondary"
@@ -723,6 +813,7 @@ pre{
         </button>
 
       </div>
+
 
       <div
         id="teachSpeechStatus"
@@ -807,7 +898,7 @@ Chưa có dữ liệu.
     </h2>
 
     <p class="muted">
-      LOCAL → BRAIN_MEMORY → WORKER_AI.
+      LOCAL → BRAIN_MEMORY → WORKER_AI → OFFLINE_SPEECH.
     </p>
 
 
@@ -817,7 +908,7 @@ Chưa có dữ liệu.
 
     <textarea
       id="thinkInput"
-      placeholder="Ví dụ: con ngựa nâu"
+      placeholder="Ví dụ: brown horse"
     ></textarea>
 
 
@@ -859,11 +950,13 @@ Chưa có dữ liệu.
     >
 
       <button
+        id="thinkTranslateButton"
         class="btn blue"
         onclick="translateCurrentThinkResult()"
       >
         🌐 Dịch
       </button>
+
 
       <button
         class="btn secondary"
@@ -906,8 +999,6 @@ Waiting...
 
     <p class="muted">
       Dữ liệu hình ảnh Rii đã học.
-      Mỗi concept có thể được gọi tên
-      và phát âm theo ngôn ngữ đang chọn.
     </p>
 
 
@@ -931,17 +1022,24 @@ Waiting...
     >
 
       <div class="stat">
+
         Visual Samples
+
         <strong id="visualCountVision">
           0
         </strong>
+
       </div>
 
+
       <div class="stat">
+
         Camera
+
         <strong>
           Offline
         </strong>
+
       </div>
 
     </div>
@@ -961,9 +1059,11 @@ Waiting...
     id="visionMemoryList"
     class="card"
   >
+
     <div class="empty">
       Chưa có mẫu hình ảnh.
     </div>
+
   </div>
 
 </section>
@@ -1009,8 +1109,7 @@ Map: chưa có
     </h2>
 
     <p class="muted">
-      Một concept gốc có thể giữ
-      nhiều tên ngôn ngữ khác nhau.
+      Concept Memory + Visual Memory + Translation Cache.
     </p>
 
 
@@ -1034,17 +1133,24 @@ Map: chưa có
     >
 
       <div class="stat">
+
         Role
+
         <strong>
           ROOT
         </strong>
+
       </div>
 
+
       <div class="stat">
+
         Knowledge
+
         <strong id="knowledgeCountBrain">
           0
         </strong>
+
       </div>
 
     </div>
@@ -1064,9 +1170,11 @@ Map: chưa có
     id="brainList"
     class="card"
   >
+
     <div class="empty">
       Brain chưa có kiến thức.
     </div>
+
   </div>
 
 </section>
@@ -1086,14 +1194,17 @@ Map: chưa có
     </h2>
 
     <p class="muted">
-      Command Vault vẫn được giữ riêng.
+      Command Vault được giữ riêng.
     </p>
 
     <div class="stat">
+
       Vault
+
       <strong>
         Ready
       </strong>
+
     </div>
 
   </div>
@@ -1195,43 +1306,90 @@ Chưa kiểm tra.
 
 <div class="nav-inner">
 
-  <button class="nav-btn active" data-page="home">
-    <span class="nav-icon">🏠</span>
+  <button
+    class="nav-btn active"
+    data-page="home"
+  >
+    <span class="nav-icon">
+      🏠
+    </span>
     Home
   </button>
 
-  <button class="nav-btn" data-page="teach">
-    <span class="nav-icon">➕</span>
+
+  <button
+    class="nav-btn"
+    data-page="teach"
+  >
+    <span class="nav-icon">
+      ➕
+    </span>
     Teach
   </button>
 
-  <button class="nav-btn" data-page="think">
-    <span class="nav-icon">✨</span>
+
+  <button
+    class="nav-btn"
+    data-page="think"
+  >
+    <span class="nav-icon">
+      ✨
+    </span>
     Think
   </button>
 
-  <button class="nav-btn" data-page="vision">
-    <span class="nav-icon">👁</span>
+
+  <button
+    class="nav-btn"
+    data-page="vision"
+  >
+    <span class="nav-icon">
+      👁
+    </span>
     Vision
   </button>
 
-  <button class="nav-btn" data-page="world">
-    <span class="nav-icon">🌍</span>
+
+  <button
+    class="nav-btn"
+    data-page="world"
+  >
+    <span class="nav-icon">
+      🌍
+    </span>
     World
   </button>
 
-  <button class="nav-btn" data-page="brain">
-    <span class="nav-icon">🧠</span>
+
+  <button
+    class="nav-btn"
+    data-page="brain"
+  >
+    <span class="nav-icon">
+      🧠
+    </span>
     Brain
   </button>
 
-  <button class="nav-btn" data-page="vault">
-    <span class="nav-icon">🔐</span>
+
+  <button
+    class="nav-btn"
+    data-page="vault"
+  >
+    <span class="nav-icon">
+      🔐
+    </span>
     Vault
   </button>
 
-  <button class="nav-btn" data-page="settings">
-    <span class="nav-icon">⚙️</span>
+
+  <button
+    class="nav-btn"
+    data-page="settings"
+  >
+    <span class="nav-icon">
+      ⚙️
+    </span>
     Settings
   </button>
 
@@ -1250,29 +1408,37 @@ Chưa kiểm tra.
 (function () {
 "use strict";
 
+
 const APP_VERSION =
-  "2.2.1";
+  "2.2.2";
+
 
 const BRAIN_STORAGE_KEY =
   "rii-v2-root-knowledge";
 
+
 const ROLE =
   "ROOT_OWNER";
+
 
 const VISUAL_DB_NAME =
   "RiiVisualMemoryV2";
 
+
 const VISUAL_DB_VERSION =
   1;
 
+
 const VISUAL_STORE =
   "samples";
+
 
 const SPEECH_LANGUAGE_KEY =
   "rii-v2-speech-language";
 
 
 const LANGUAGES = [
+
   {
     locale:"vi-VN",
     code:"vi",
@@ -1280,6 +1446,7 @@ const LANGUAGES = [
     label:"🇻🇳 Tiếng Việt",
     test:"Xin chào, tôi là Rii."
   },
+
   {
     locale:"en-US",
     code:"en",
@@ -1287,6 +1454,7 @@ const LANGUAGES = [
     label:"🇺🇸 English",
     test:"Hello, I am Rii."
   },
+
   {
     locale:"ja-JP",
     code:"ja",
@@ -1294,6 +1462,7 @@ const LANGUAGES = [
     label:"🇯🇵 日本語",
     test:"こんにちは"
   },
+
   {
     locale:"ko-KR",
     code:"ko",
@@ -1301,6 +1470,7 @@ const LANGUAGES = [
     label:"🇰🇷 한국어",
     test:"안녕하세요"
   },
+
   {
     locale:"zh-CN",
     code:"zh",
@@ -1308,6 +1478,7 @@ const LANGUAGES = [
     label:"🇨🇳 中文",
     test:"你好"
   },
+
   {
     locale:"fr-FR",
     code:"fr",
@@ -1315,6 +1486,7 @@ const LANGUAGES = [
     label:"🇫🇷 Français",
     test:"Bonjour"
   },
+
   {
     locale:"es-ES",
     code:"es",
@@ -1322,6 +1494,7 @@ const LANGUAGES = [
     label:"🇪🇸 Español",
     test:"Hola"
   },
+
   {
     locale:"de-DE",
     code:"de",
@@ -1329,6 +1502,7 @@ const LANGUAGES = [
     label:"🇩🇪 Deutsch",
     test:"Hallo"
   },
+
   {
     locale:"it-IT",
     code:"it",
@@ -1336,6 +1510,7 @@ const LANGUAGES = [
     label:"🇮🇹 Italiano",
     test:"Ciao"
   },
+
   {
     locale:"pt-BR",
     code:"pt",
@@ -1343,6 +1518,7 @@ const LANGUAGES = [
     label:"🇧🇷 Português",
     test:"Olá"
   },
+
   {
     locale:"th-TH",
     code:"th",
@@ -1350,6 +1526,7 @@ const LANGUAGES = [
     label:"🇹🇭 ไทย",
     test:"สวัสดี"
   },
+
   {
     locale:"id-ID",
     code:"id",
@@ -1357,36 +1534,48 @@ const LANGUAGES = [
     label:"🇮🇩 Bahasa Indonesia",
     test:"Halo"
   }
+
 ];
 
 
 let pendingKnowledge =
   null;
 
+
 let pendingImages =
   [];
+
 
 let activeObjectUrls =
   [];
 
+
 let speechVoices =
   [];
+
 
 let currentThinkConcept =
   null;
 
+
 let currentThinkSpeechText =
   "";
-  /* =====================================================
-   BASIC HELPERS
+
+
+
+/* =====================================================
+   HELPERS
 ===================================================== */
 
 function $(id) {
-  return document.getElementById(id);
+
+  return document
+    .getElementById(id);
 }
 
 
 function pretty(value) {
+
   return JSON.stringify(
     value,
     null,
@@ -1396,6 +1585,7 @@ function pretty(value) {
 
 
 function normalizeText(value) {
+
   return String(
     value || ""
   )
@@ -1413,27 +1603,22 @@ function normalizeText(value) {
 }
 
 
-function setBusy(
-  button,
-  busy,
-  normalText,
-  busyText
-) {
-  if (!button) {
-    return;
-  }
+function cleanText(value) {
 
-  button.disabled =
-    Boolean(busy);
-
-  button.textContent =
-    busy
-      ? busyText
-      : normalText;
+  return String(
+    value ?? ""
+  )
+    .normalize("NFKC")
+    .trim()
+    .replace(
+      /\s+/g,
+      " "
+    );
 }
 
 
 function escapeHtml(value) {
+
   return String(
     value ?? ""
   )
@@ -1445,10 +1630,37 @@ function escapeHtml(value) {
 }
 
 
+function setBusy(
+  button,
+  busy,
+  normalText,
+  busyText
+) {
+
+  if (!button) {
+    return;
+  }
+
+  button.disabled =
+    Boolean(busy);
+
+  button.textContent =
+    busy
+      ?
+      busyText
+      :
+      normalText;
+}
+
+
 function createId(prefix) {
+
   if (
-    crypto?.randomUUID
+    crypto &&
+    typeof crypto.randomUUID ===
+    "function"
   ) {
+
     return (
       prefix +
       "-" +
@@ -1468,17 +1680,99 @@ function createId(prefix) {
 }
 
 
+function formatClientError(
+  error
+) {
+
+  if (
+    window.RiiWorkerClientV2 &&
+    typeof window
+      .RiiWorkerClientV2
+      .formatError ===
+      "function"
+  ) {
+
+    return window
+      .RiiWorkerClientV2
+      .formatError(
+        error
+      );
+  }
+
+  return {
+
+    message:
+      String(
+        error?.message ||
+        error ||
+        "Unknown error"
+      ),
+
+    code:
+      error?.code ||
+      "CLIENT_ERROR",
+
+    details:
+      error?.details ||
+      {},
+
+    workerVersion:
+      error?.workerVersion ||
+      ""
+  };
+}
+
+
+function isAiQuotaError(
+  error
+) {
+
+  const formatted =
+    formatClientError(
+      error
+    );
+
+  const text =
+    [
+      formatted.message,
+      formatted.code,
+      JSON.stringify(
+        formatted.details ||
+        {}
+      )
+    ]
+      .join(" ")
+      .toLowerCase();
+
+  return (
+    text.includes("4006") ||
+    text.includes(
+      "daily free allocation"
+    ) ||
+    text.includes(
+      "10,000 neurons"
+    ) ||
+    text.includes(
+      "10000 neurons"
+    )
+  );
+}
+
+
+
 /* =====================================================
-   LANGUAGE
+   LANGUAGE + SPEECH
 ===================================================== */
 
 function getLanguageConfig(
   locale
 ) {
+
   return (
     LANGUAGES.find(
       item =>
-        item.locale === locale
+        item.locale ===
+        locale
     )
     ||
     LANGUAGES[0]
@@ -1487,6 +1781,7 @@ function getLanguageConfig(
 
 
 function getSelectedLocale() {
+
   const saved =
     localStorage.getItem(
       SPEECH_LANGUAGE_KEY
@@ -1495,9 +1790,11 @@ function getSelectedLocale() {
   if (
     LANGUAGES.some(
       item =>
-        item.locale === saved
+        item.locale ===
+        saved
     )
   ) {
+
     return saved;
   }
 
@@ -1506,9 +1803,75 @@ function getSelectedLocale() {
 
 
 function getSelectedLanguage() {
+
   return getLanguageConfig(
     getSelectedLocale()
   );
+}
+
+
+function detectSpeechLocaleFromText(
+  text
+) {
+
+  const value =
+    String(
+      text || ""
+    );
+
+
+  if (
+    /[ăâđêôơưáàảãạấầẩẫậắằẳẵặéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵ]/i
+      .test(value)
+  ) {
+
+    return "vi-VN";
+  }
+
+
+  if (
+    /[\u3040-\u30ff]/u
+      .test(value)
+  ) {
+
+    return "ja-JP";
+  }
+
+
+  if (
+    /[\uac00-\ud7af]/u
+      .test(value)
+  ) {
+
+    return "ko-KR";
+  }
+
+
+  if (
+    /[\u4e00-\u9fff]/u
+      .test(value)
+  ) {
+
+    return "zh-CN";
+  }
+
+
+  if (
+    /[\u0e00-\u0e7f]/u
+      .test(value)
+  ) {
+
+    return "th-TH";
+  }
+
+
+  /*
+    Với chuỗi Latin không dấu như
+    "brown horse",
+    fallback sang English.
+  */
+
+  return "en-US";
 }
 
 
@@ -1525,13 +1888,14 @@ function populateLanguageSelectors() {
 
       select.innerHTML =
         LANGUAGES
-          .map(item => `
-            <option
-              value="${escapeHtml(item.locale)}"
-            >
-              ${escapeHtml(item.label)}
-            </option>
-          `)
+          .map(
+            item =>
+              `
+              <option value="${escapeHtml(item.locale)}">
+                ${escapeHtml(item.label)}
+              </option>
+              `
+          )
           .join("");
 
       select.value =
@@ -1576,6 +1940,7 @@ function setSpeechLanguage(
         select.value !==
         config.locale
       ) {
+
         select.value =
           config.locale;
       }
@@ -1584,54 +1949,27 @@ function setSpeechLanguage(
   updateLanguageUi();
 
   renderBrain();
+
   renderVisionMemory();
 
   if (
     pendingKnowledge
   ) {
+
     updatePendingLanguageLabel();
   }
 
   if (
     currentThinkConcept
   ) {
+
     updateCurrentThinkLanguageLabel();
   }
 }
 
 
-function updateLanguageUi() {
-
-  const config =
-    getSelectedLanguage();
-
-  if (
-    $("homeLanguageCurrent")
-  ) {
-    $("homeLanguageCurrent")
-      .textContent =
-      "Đang chọn: " +
-      config.label;
-  }
-
-  if (
-    $("settingsSpeechInfo")
-  ) {
-    $("settingsSpeechInfo")
-      .textContent =
-      "Locale phát âm: " +
-      config.locale;
-  }
-
-  updateSpeechSupportUi();
-}
-
-
-/* =====================================================
-   SPEECH
-===================================================== */
-
 function speechSupported() {
+
   return (
     "speechSynthesis" in window &&
     "SpeechSynthesisUtterance" in window
@@ -1644,6 +1982,7 @@ function refreshSpeechVoices() {
   if (
     !speechSupported()
   ) {
+
     speechVoices =
       [];
 
@@ -1670,18 +2009,27 @@ function findVoiceForLocale(
   if (
     !speechVoices.length
   ) {
-    refreshSpeechVoices();
+
+    speechVoices =
+      window
+        .speechSynthesis
+        ?.getVoices?.()
+      ||
+      [];
   }
 
   const target =
-    String(locale)
+    String(
+      locale || ""
+    )
       .toLowerCase();
 
   const exact =
     speechVoices.find(
       voice =>
         String(
-          voice.lang || ""
+          voice.lang ||
+          ""
         )
           .toLowerCase() ===
         target
@@ -1692,27 +2040,20 @@ function findVoiceForLocale(
   }
 
   const prefix =
-    target.split("-")[0];
+    target
+      .split("-")[0];
 
   return (
     speechVoices.find(
       voice =>
         String(
-          voice.lang || ""
+          voice.lang ||
+          ""
         )
           .toLowerCase()
           .startsWith(
             prefix + "-"
           )
-    )
-    ||
-    speechVoices.find(
-      voice =>
-        String(
-          voice.lang || ""
-        )
-          .toLowerCase() ===
-        prefix
     )
     ||
     null
@@ -1722,56 +2063,79 @@ function findVoiceForLocale(
 
 function updateSpeechSupportUi() {
 
-  const supported =
-    speechSupported();
+  const config =
+    getSelectedLanguage();
+
+  let message =
+    "";
+
+  if (
+    !speechSupported()
+  ) {
+
+    message =
+      "❌ Trình duyệt không hỗ trợ Speech Synthesis.";
+
+  } else {
+
+    const voice =
+      findVoiceForLocale(
+        config.locale
+      );
+
+    if (voice) {
+
+      message =
+        "🔊 Voice: " +
+        voice.name +
+        " • " +
+        voice.lang;
+
+    } else {
+
+      message =
+        "🔊 Sẽ dùng giọng hệ thống cho " +
+        config.locale +
+        " nếu thiết bị có hỗ trợ.";
+    }
+  }
+
+  if (
+    $("speechSupportHome")
+  ) {
+
+    $("speechSupportHome")
+      .textContent =
+      message;
+  }
+
+  if (
+    $("settingsSpeechInfo")
+  ) {
+
+    $("settingsSpeechInfo")
+      .textContent =
+      message;
+  }
+}
+
+
+function updateLanguageUi() {
 
   const config =
     getSelectedLanguage();
 
-  const voice =
-    supported
-      ?
-      findVoiceForLocale(
-        config.locale
-      )
-      :
-      null;
-
-  let message;
-
-  if (!supported) {
-    message =
-      "❌ Trình duyệt không hỗ trợ Speech Synthesis.";
-
-  } else if (voice) {
-    message =
-      "🔊 Voice: " +
-      voice.name +
-      " • " +
-      voice.lang;
-
-  } else {
-    message =
-      "🔊 Sẽ dùng giọng hệ thống cho " +
-      config.locale +
-      " nếu thiết bị hỗ trợ.";
-  }
-
   if (
-    $("speechSupportHome")
+    $("homeLanguageCurrent")
   ) {
-    $("speechSupportHome")
+
+    $("homeLanguageCurrent")
       .textContent =
-      message;
+      "Đang chọn: " +
+      config.label;
   }
 
-  if (
-    $("settingsSpeechInfo")
-  ) {
-    $("settingsSpeechInfo")
-      .textContent =
-      message;
-  }
+  updateSpeechSupportUi();
 }
 
 
@@ -1781,11 +2145,12 @@ function speakText(
 ) {
 
   const value =
-    String(
-      text || ""
-    ).trim();
+    cleanText(
+      text
+    );
 
   if (!value) {
+
     throw new Error(
       "Không có nội dung để phát âm."
     );
@@ -1794,6 +2159,7 @@ function speakText(
   if (
     !speechSupported()
   ) {
+
     throw new Error(
       "Trình duyệt không hỗ trợ phát âm."
     );
@@ -1828,6 +2194,7 @@ function speakText(
     );
 
   if (voice) {
+
     utterance.voice =
       voice;
   }
@@ -1843,6 +2210,7 @@ function speakText(
     );
 
   return {
+
     text:
       value,
 
@@ -1894,12 +2262,16 @@ if (
   speechSupported()
 ) {
 
-  window
-    .speechSynthesis
-    .addEventListener?.(
-      "voiceschanged",
-      refreshSpeechVoices
-    );
+  if (
+    "onvoiceschanged" in
+    window.speechSynthesis
+  ) {
+
+    window
+      .speechSynthesis
+      .onvoiceschanged =
+      refreshSpeechVoices;
+  }
 
   setTimeout(
     refreshSpeechVoices,
@@ -1911,6 +2283,7 @@ if (
     1000
   );
 }
+
 
 
 /* =====================================================
@@ -1928,20 +2301,26 @@ document
       () => {
 
         const page =
-          button.dataset.page;
+          button
+            .dataset
+            .page;
 
         document
           .querySelectorAll(
             ".page"
           )
           .forEach(item => {
-            item.classList.remove(
-              "active"
-            );
+
+            item
+              .classList
+              .remove(
+                "active"
+              );
           });
 
         $(
-          "page-" + page
+          "page-" +
+          page
         )
           ?.classList
           .add(
@@ -1953,24 +2332,33 @@ document
             ".nav-btn"
           )
           .forEach(item => {
-            item.classList.remove(
-              "active"
-            );
+
+            item
+              .classList
+              .remove(
+                "active"
+              );
           });
 
-        button.classList.add(
-          "active"
-        );
+        button
+          .classList
+          .add(
+            "active"
+          );
 
         if (
-          page === "brain"
+          page ===
+          "brain"
         ) {
+
           renderBrain();
         }
 
         if (
-          page === "vision"
+          page ===
+          "vision"
         ) {
+
           renderVisionMemory();
         }
 
@@ -1983,6 +2371,7 @@ document
   });
 
 
+
 /* =====================================================
    BRAIN STORAGE
 ===================================================== */
@@ -1992,20 +2381,28 @@ function loadKnowledge() {
   try {
 
     const raw =
-      localStorage.getItem(
-        BRAIN_STORAGE_KEY
-      );
+      localStorage
+        .getItem(
+          BRAIN_STORAGE_KEY
+        );
 
     if (!raw) {
+
       return [];
     }
 
     const data =
-      JSON.parse(raw);
+      JSON.parse(
+        raw
+      );
 
-    return Array.isArray(data)
-      ? data
-      : [];
+    return Array.isArray(
+      data
+    )
+      ?
+      data
+      :
+      [];
 
   } catch {
 
@@ -2017,29 +2414,39 @@ function loadKnowledge() {
 function saveKnowledgeList(
   list
 ) {
-  localStorage.setItem(
-    BRAIN_STORAGE_KEY,
-    JSON.stringify(list)
-  );
+
+  localStorage
+    .setItem(
+      BRAIN_STORAGE_KEY,
+      JSON.stringify(
+        list
+      )
+    );
 }
 
 
 function makeKnowledgeId(
   data
 ) {
+
   return [
+
     normalizeText(
       data.category
     ),
+
     normalizeText(
       data.normalizedEnglish
     ),
+
     normalizeText(
       data.color
     ),
+
     normalizeText(
       data.shape
     )
+
   ]
     .join("|");
 }
@@ -2052,9 +2459,12 @@ function normalizeTranslations(
   if (
     !value ||
     typeof value !==
-    "object" ||
-    Array.isArray(value)
+      "object" ||
+    Array.isArray(
+      value
+    )
   ) {
+
     return {};
   }
 
@@ -2076,37 +2486,41 @@ function saveKnowledgeRecord(
       record
     );
 
-  const existingIndex =
+  const index =
     list.findIndex(
       item =>
-        item.id === id
+        item.id ===
+        id
     );
 
   const now =
     new Date()
       .toISOString();
 
+
   if (
-    existingIndex >= 0
+    index >= 0
   ) {
 
     const old =
       list[
-        existingIndex
+        index
       ];
 
     list[
-      existingIndex
+      index
     ] = {
 
       ...old,
 
       ...record,
 
-      translations: {
+      translations:{
+
         ...normalizeTranslations(
           old.translations
         ),
+
         ...normalizeTranslations(
           record.translations
         )
@@ -2192,12 +2606,16 @@ function updateKnowledgeRecord(
   if (
     index < 0
   ) {
+
     return null;
   }
 
   list[index] = {
+
     ...list[index],
+
     ...updates,
+
     updatedAt:
       new Date()
         .toISOString()
@@ -2233,7 +2651,8 @@ function getCachedTranslation(
 
   const translations =
     normalizeTranslations(
-      knowledge?.translations
+      knowledge
+        ?.translations
     );
 
   const entry =
@@ -2245,6 +2664,7 @@ function getCachedTranslation(
     typeof entry ===
     "string"
   ) {
+
     return entry;
   }
 
@@ -2253,11 +2673,12 @@ function getCachedTranslation(
     typeof entry ===
     "object"
   ) {
-    return String(
+
+    return cleanText(
       entry.label ||
       entry.translatedLabel ||
       ""
-    ).trim();
+    );
   }
 
   return "";
@@ -2267,10 +2688,17 @@ function getCachedTranslation(
 function getEnglishKnowledgeLabel(
   knowledge
 ) {
+
   return (
-    knowledge?.translatedLabel ||
-    knowledge?.normalizedEnglish ||
-    knowledge?.originalInput ||
+    knowledge
+      ?.translatedLabel
+    ||
+    knowledge
+      ?.normalizedEnglish
+    ||
+    knowledge
+      ?.originalInput
+    ||
     "Knowledge"
   );
 }
@@ -2282,14 +2710,28 @@ function getKnowledgeDisplayLabel(
     getSelectedLocale()
 ) {
 
+  if (
+    knowledge
+      ?.source ===
+    "offline-speech-fallback"
+  ) {
+
+    return (
+      knowledge.originalInput ||
+      ""
+    );
+  }
+
   const config =
     getLanguageConfig(
       locale
     );
 
   if (
-    config.code === "en"
+    config.code ===
+    "en"
   ) {
+
     return getEnglishKnowledgeLabel(
       knowledge
     );
@@ -2327,6 +2769,7 @@ function cacheKnowledgeTranslation(
   if (
     index < 0
   ) {
+
     return null;
   }
 
@@ -2344,6 +2787,7 @@ function cacheKnowledgeTranslation(
   translations[
     config.locale
   ] = {
+
     label:
       translatedLabel,
 
@@ -2362,6 +2806,7 @@ function cacheKnowledgeTranslation(
   };
 
   list[index] = {
+
     ...list[index],
 
     translations,
@@ -2377,6 +2822,7 @@ function cacheKnowledgeTranslation(
 
   return list[index];
 }
+
 
 
 /* =====================================================
@@ -2395,13 +2841,23 @@ async function requestConceptTranslation(
     );
 
   if (
-    config.code === "en"
+    config.code ===
+    "en"
   ) {
-    return (
-      concept.translatedLabel ||
-      concept.normalizedEnglish ||
-      concept.originalInput ||
-      ""
+
+    return getEnglishKnowledgeLabel(
+      concept
+    );
+  }
+
+  if (
+    concept
+      ?.source ===
+    "offline-speech-fallback"
+  ) {
+
+    throw new Error(
+      "AI đang hết quota nên chưa thể tạo bản dịch mới."
     );
   }
 
@@ -2412,6 +2868,7 @@ async function requestConceptTranslation(
       .translateConcept !==
       "function"
   ) {
+
     throw new Error(
       "Worker Client chưa có translateConcept()."
     );
@@ -2431,6 +2888,10 @@ async function requestConceptTranslation(
 
           shape:
             concept.shape ||
+            "",
+
+          translatedLabel:
+            concept.translatedLabel ||
             ""
         },
         {
@@ -2443,13 +2904,13 @@ async function requestConceptTranslation(
       );
 
   const label =
-    String(
+    cleanText(
       response
-        ?.translatedLabel ||
-      ""
-    ).trim();
+        ?.translatedLabel
+    );
 
   if (!label) {
+
     throw new Error(
       "Worker không trả về translatedLabel."
     );
@@ -2471,8 +2932,10 @@ async function ensureKnowledgeTranslation(
     );
 
   if (
-    config.code === "en"
+    config.code ===
+    "en"
   ) {
+
     return getEnglishKnowledgeLabel(
       knowledge
     );
@@ -2485,6 +2948,7 @@ async function ensureKnowledgeTranslation(
     );
 
   if (cached) {
+
     return cached;
   }
 
@@ -2494,18 +2958,24 @@ async function ensureKnowledgeTranslation(
       config.locale
     );
 
-  cacheKnowledgeTranslation(
-    knowledge.id,
-    config.locale,
-    translated
-  );
+  if (
+    knowledge.id
+  ) {
+
+    cacheKnowledgeTranslation(
+      knowledge.id,
+      config.locale,
+      translated
+    );
+  }
 
   return translated;
 }
 
 
+
 /* =====================================================
-   VISUAL INDEXEDDB
+   VISUAL DATABASE
 ===================================================== */
 
 function openVisualDb() {
@@ -2549,8 +3019,7 @@ function openVisualDb() {
               "knowledgeId",
               "knowledgeId",
               {
-                unique:
-                  false
+                unique:false
               }
             );
 
@@ -2558,24 +3027,27 @@ function openVisualDb() {
               "createdAt",
               "createdAt",
               {
-                unique:
-                  false
+                unique:false
               }
             );
           }
         };
 
       request.onsuccess =
-        () =>
+        () => {
+
           resolve(
             request.result
           );
+        };
 
       request.onerror =
-        () =>
+        () => {
+
           reject(
             request.error
           );
+        };
     }
   );
 }
@@ -2635,14 +3107,18 @@ async function addVisualSample(
         );
 
       tx.oncomplete =
-        () =>
+        () => {
+
           resolve();
+        };
 
       tx.onerror =
-        () =>
+        () => {
+
           reject(
             tx.error
           );
+        };
     }
   );
 
@@ -2678,17 +3154,21 @@ async function getAllVisualSamples() {
             .getAll();
 
         request.onsuccess =
-          () =>
+          () => {
+
             resolve(
               request.result ||
               []
             );
+          };
 
         request.onerror =
-          () =>
+          () => {
+
             reject(
               request.error
             );
+          };
       }
     );
 
@@ -2733,17 +3213,21 @@ async function countVisualSamplesForKnowledge(
           );
 
         request.onsuccess =
-          () =>
+          () => {
+
             resolve(
               request.result ||
               0
             );
+          };
 
         request.onerror =
-          () =>
+          () => {
+
             reject(
               request.error
             );
+          };
       }
     );
 
@@ -2779,17 +3263,21 @@ async function getVisualSampleCount() {
             .count();
 
         request.onsuccess =
-          () =>
+          () => {
+
             resolve(
               request.result ||
               0
             );
+          };
 
         request.onerror =
-          () =>
+          () => {
+
             reject(
               request.error
             );
+          };
       }
     );
 
@@ -2798,10 +3286,6 @@ async function getVisualSampleCount() {
   return count;
 }
 
-
-/* =====================================================
-   DATA URI → BLOB
-===================================================== */
 
 async function dataUriToBlob(
   dataUri
@@ -2816,6 +3300,7 @@ async function dataUriToBlob(
 }
 
 
+
 /* =====================================================
    IMAGE PREVIEW
 ===================================================== */
@@ -2828,9 +3313,12 @@ function revokeActiveUrls() {
   ) {
 
     try {
-      URL.revokeObjectURL(
-        url
-      );
+
+      URL
+        .revokeObjectURL(
+          url
+        );
+
     } catch {}
   }
 
@@ -2847,7 +3335,8 @@ function renderPendingImages() {
   revokeActiveUrls();
 
   if (
-    pendingImages.length === 0
+    pendingImages.length ===
+    0
   ) {
 
     container.innerHTML =
@@ -2923,10 +3412,6 @@ window.clearPendingImages =
   };
 
 
-/* =====================================================
-   REAL IMAGE INPUT
-===================================================== */
-
 $("realImageInput")
   .addEventListener(
     "change",
@@ -2949,18 +3434,24 @@ $("realImageInput")
               "image/"
             )
         ) {
+
           continue;
         }
 
         pendingImages.push({
-          source:"real",
-          blob:file
+
+          source:
+            "real",
+
+          blob:
+            file
         });
       }
 
       renderPendingImages();
     }
   );
+
 
 
 /* =====================================================
@@ -2975,7 +3466,8 @@ function tokenize(value) {
     .split(" ")
     .filter(
       token =>
-        token.length > 1
+        token.length >
+        1
     );
 }
 
@@ -2995,11 +3487,14 @@ function tokenOverlapScore(
     ta.length === 0 ||
     tb.length === 0
   ) {
+
     return 0;
   }
 
   const setB =
-    new Set(tb);
+    new Set(
+      tb
+    );
 
   let matches =
     0;
@@ -3010,8 +3505,11 @@ function tokenOverlapScore(
   ) {
 
     if (
-      setB.has(token)
+      setB.has(
+        token
+      )
     ) {
+
       matches++;
     }
   }
@@ -3032,12 +3530,18 @@ function scoreKnowledge(
 ) {
 
   const query =
-    normalizeText(input);
+    normalizeText(
+      input
+    );
 
   const candidates = [
+
     knowledge.originalInput,
+
     knowledge.translatedLabel,
+
     knowledge.normalizedEnglish
+
   ];
 
   const translations =
@@ -3056,6 +3560,7 @@ function scoreKnowledge(
       typeof value ===
       "string"
     ) {
+
       candidates.push(
         value
       );
@@ -3065,6 +3570,7 @@ function scoreKnowledge(
       typeof value ===
       "object"
     ) {
+
       candidates.push(
         value.label ||
         value.translatedLabel ||
@@ -3087,12 +3593,15 @@ function scoreKnowledge(
       );
 
     if (!normalized) {
+
       continue;
     }
 
     if (
-      query === normalized
+      query ===
+      normalized
     ) {
+
       return 1;
     }
 
@@ -3108,13 +3617,17 @@ function scoreKnowledge(
 
   const core =
     normalizeText(
-      knowledge.normalizedEnglish
+      knowledge
+        .normalizedEnglish
     );
 
   if (
     core &&
-    query.includes(core)
+    query.includes(
+      core
+    )
   ) {
+
     score =
       Math.max(
         score,
@@ -3154,6 +3667,7 @@ function findKnowledge(
       score >
       bestScore
     ) {
+
       bestScore =
         score;
 
@@ -3164,16 +3678,21 @@ function findKnowledge(
 
   if (
     best &&
-    bestScore >= .74
+    bestScore >=
+    .74
   ) {
 
     return {
-      found:true,
+
+      found:
+        true,
 
       score:
         Number(
           bestScore
-            .toFixed(3)
+            .toFixed(
+              3
+            )
         ),
 
       knowledge:
@@ -3182,17 +3701,23 @@ function findKnowledge(
   }
 
   return {
-    found:false,
+
+    found:
+      false,
 
     score:
       Number(
         bestScore
-          .toFixed(3)
+          .toFixed(
+            3
+          )
       ),
 
-    knowledge:null
+    knowledge:
+      null
   };
 }
+
 
 
 /* =====================================================
@@ -3247,6 +3772,7 @@ async function updateCounters() {
 }
 
 
+
 /* =====================================================
    BRAIN UI
 ===================================================== */
@@ -3263,14 +3789,15 @@ window.renderBrain =
       $("brainList");
 
     if (
-      list.length === 0
+      list.length ===
+      0
     ) {
 
       container.innerHTML =
         `
-          <div class="empty">
-            Brain chưa có kiến thức.
-          </div>
+        <div class="empty">
+          Brain chưa có kiến thức.
+        </div>
         `;
 
       return;
@@ -3284,122 +3811,127 @@ window.renderBrain =
 
     container.innerHTML =
       list
-        .map(item => {
+        .map(
+          item => {
 
-          const title =
-            getKnowledgeDisplayLabel(
-              item,
-              locale
-            );
+            const title =
+              getKnowledgeDisplayLabel(
+                item,
+                locale
+              );
 
-          const cached =
-            getCachedTranslation(
-              item,
-              locale
-            );
+            const cached =
+              getCachedTranslation(
+                item,
+                locale
+              );
 
-          return `
-            <div class="knowledge-item">
+            return `
+              <div class="knowledge-item">
 
-              <div class="knowledge-title">
-                ${escapeHtml(title)}
-              </div>
+                <div class="knowledge-title">
+                  ${escapeHtml(title)}
+                </div>
 
-              <div class="knowledge-meta">
+                <div class="knowledge-meta">
 
-                Core:
-                <strong>
-                  ${escapeHtml(item.normalizedEnglish || "-")}
-                </strong>
+                  Core:
+                  <strong>
+                    ${escapeHtml(item.normalizedEnglish || "-")}
+                  </strong>
 
-                <br>
+                  <br>
 
-                Language:
-                ${escapeHtml(config.label)}
+                  Language:
+                  ${escapeHtml(config.label)}
 
-                <br>
+                  <br>
+
+                  ${
+                    config.code !== "en" &&
+                    !cached
+                      ?
+                      "Translation: chưa cache<br>"
+                      :
+                      ""
+                  }
+
+                  Category:
+                  ${escapeHtml(item.category || "unknown")}
+
+                  <br>
+
+                  Quantity:
+                  ${escapeHtml(String(item.quantity ?? 1))}
+
+                  <br>
+
+                  Color:
+                  ${escapeHtml(item.color || "-")}
+
+                  <br>
+
+                  Shape:
+                  ${escapeHtml(item.shape || "-")}
+
+                  <br>
+
+                  Học:
+                  ${escapeHtml(String(item.learnedCount || 1))}
+                  lần
+
+                  <br>
+
+                  Visual samples:
+                  ${escapeHtml(String(item.visualSamples || 0))}
+
+                  <br>
+
+                  Source:
+                  ${escapeHtml(item.source || "unknown")}
+
+                </div>
+
+
+                <div class="btn-row">
+
+                  <button
+                    class="small-btn"
+                    onclick="translateBrainKnowledge('${escapeHtml(item.id)}')"
+                  >
+                    🌐 Dịch
+                  </button>
+
+
+                  <button
+                    class="small-btn"
+                    onclick="speakBrainKnowledge('${escapeHtml(item.id)}')"
+                  >
+                    🔊 Phát âm
+                  </button>
+
+                </div>
+
 
                 ${
-                  config.code !== "en" &&
-                  !cached
+                  Number(
+                    item.visualSamples ||
+                    0
+                  ) > 0
                     ?
-                    "Translation: chưa cache<br>"
+                    `
+                    <span class="visual-badge">
+                      🖼 Có dữ liệu hình ảnh
+                    </span>
+                    `
                     :
                     ""
                 }
 
-                Category:
-                ${escapeHtml(item.category || "unknown")}
-
-                <br>
-
-                Quantity:
-                ${escapeHtml(String(item.quantity ?? 1))}
-
-                <br>
-
-                Color:
-                ${escapeHtml(item.color || "-")}
-
-                <br>
-
-                Shape:
-                ${escapeHtml(item.shape || "-")}
-
-                <br>
-
-                Học:
-                ${escapeHtml(String(item.learnedCount || 1))}
-                lần
-
-                <br>
-
-                Visual samples:
-                ${escapeHtml(String(item.visualSamples || 0))}
-
-                <br>
-
-                Source:
-                ${escapeHtml(item.source || "unknown")}
-
               </div>
-
-              <div class="btn-row">
-
-                <button
-                  class="small-btn"
-                  onclick="translateBrainKnowledge('${escapeHtml(item.id)}')"
-                >
-                  🌐 Dịch
-                </button>
-
-                <button
-                  class="small-btn"
-                  onclick="speakBrainKnowledge('${escapeHtml(item.id)}')"
-                >
-                  🔊 Phát âm
-                </button>
-
-              </div>
-
-              ${
-                Number(
-                  item.visualSamples ||
-                  0
-                ) > 0
-                  ?
-                  `
-                    <span class="visual-badge">
-                      🖼 Có dữ liệu hình ảnh
-                    </span>
-                  `
-                  :
-                  ""
-              }
-
-            </div>
-          `;
-        })
+            `;
+          }
+        )
         .join("");
   };
 
@@ -3418,6 +3950,7 @@ window.translateBrainKnowledge =
         );
 
     if (!item) {
+
       return;
     }
 
@@ -3428,6 +3961,7 @@ window.translateBrainKnowledge =
       );
 
       renderBrain();
+
       renderVisionMemory();
 
     } catch (error) {
@@ -3457,20 +3991,65 @@ window.speakBrainKnowledge =
         );
 
     if (!item) {
+
       return;
     }
 
     try {
 
-      const label =
-        await ensureKnowledgeTranslation(
-          item
+      const selected =
+        getSelectedLanguage();
+
+      const cached =
+        getCachedTranslation(
+          item,
+          selected.locale
         );
+
+      let label =
+        "";
+
+      let locale =
+        selected.locale;
+
+
+      if (
+        selected.code ===
+        "en"
+      ) {
+
+        label =
+          getEnglishKnowledgeLabel(
+            item
+          );
+
+      } else if (
+        cached
+      ) {
+
+        label =
+          cached;
+
+      } else {
+
+        /*
+          Nếu chưa có bản dịch cache,
+          mới cần gọi AI.
+        */
+
+        label =
+          await ensureKnowledgeTranslation(
+            item,
+            selected.locale
+          );
+      }
 
       speakText(
         label,
-        getSelectedLocale()
+        locale
       );
+
+      renderBrain();
 
     } catch (error) {
 
@@ -3485,8 +4064,9 @@ window.speakBrainKnowledge =
   };
 
 
+
 /* =====================================================
-   VISION MEMORY UI
+   VISION UI
 ===================================================== */
 
 window.renderVisionMemory =
@@ -3497,9 +4077,9 @@ window.renderVisionMemory =
 
     container.innerHTML =
       `
-        <div class="empty">
-          Đang tải Visual Memory...
-        </div>
+      <div class="empty">
+        Đang tải Visual Memory...
+      </div>
       `;
 
     try {
@@ -3510,14 +4090,15 @@ window.renderVisionMemory =
       await updateCounters();
 
       if (
-        samples.length === 0
+        samples.length ===
+        0
       ) {
 
         container.innerHTML =
           `
-            <div class="empty">
-              Chưa có mẫu hình ảnh.
-            </div>
+          <div class="empty">
+            Chưa có mẫu hình ảnh.
+          </div>
           `;
 
         return;
@@ -3543,13 +4124,14 @@ window.renderVisionMemory =
 
       container.innerHTML =
         `
-          <div class="image-grid">
+        <div class="image-grid">
 
-            ${
-              samples
-                .slice()
-                .reverse()
-                .map(sample => {
+          ${
+            samples
+              .slice()
+              .reverse()
+              .map(
+                sample => {
 
                   const item =
                     map.get(
@@ -3604,14 +4186,14 @@ window.renderVisionMemory =
                           item
                             ?
                             `
-                              <br><br>
+                            <br><br>
 
-                              <button
-                                class="small-btn"
-                                onclick="speakVisionKnowledge('${escapeHtml(item.id)}')"
-                              >
-                                🔊
-                              </button>
+                            <button
+                              class="small-btn"
+                              onclick="speakVisionKnowledge('${escapeHtml(item.id)}')"
+                            >
+                              🔊
+                            </button>
                             `
                             :
                             ""
@@ -3621,21 +4203,25 @@ window.renderVisionMemory =
 
                     </div>
                   `;
-                })
-                .join("")
-            }
+                }
+              )
+              .join("")
+          }
 
-          </div>
+        </div>
         `;
 
     } catch (error) {
 
       container.innerHTML =
         `
-          <div class="empty">
-            ❌ Không đọc được Visual Memory:
-            ${escapeHtml(error?.message || error)}
-          </div>
+        <div class="empty">
+
+          ❌ Không đọc được Visual Memory:
+
+          ${escapeHtml(error?.message || error)}
+
+        </div>
         `;
     }
   };
@@ -3655,19 +4241,53 @@ window.speakVisionKnowledge =
         );
 
     if (!item) {
+
       return;
     }
 
     try {
 
-      const label =
-        await ensureKnowledgeTranslation(
-          item
+      const selected =
+        getSelectedLanguage();
+
+      const cached =
+        getCachedTranslation(
+          item,
+          selected.locale
         );
+
+      let label =
+        "";
+
+      if (
+        selected.code ===
+        "en"
+      ) {
+
+        label =
+          getEnglishKnowledgeLabel(
+            item
+          );
+
+      } else if (
+        cached
+      ) {
+
+        label =
+          cached;
+
+      } else {
+
+        label =
+          await ensureKnowledgeTranslation(
+            item,
+            selected.locale
+          );
+      }
 
       speakText(
         label,
-        getSelectedLocale()
+        selected.locale
       );
 
       renderVisionMemory();
@@ -3685,6 +4305,7 @@ window.speakVisionKnowledge =
   };
 
 
+
 /* =====================================================
    MODULE STATUS
 ===================================================== */
@@ -3694,24 +4315,31 @@ function updateModuleStatus() {
   $("brainStatus")
     .textContent =
     window.RiiBrainV2
-      ? "Ready"
-      : "Missing";
+      ?
+      "Ready"
+      :
+      "Missing";
 
   $("engineStatus")
     .textContent =
     window.RiiBrainEngineV2
-      ? "Ready"
-      : "Missing";
+      ?
+      "Ready"
+      :
+      "Missing";
 
   $("vaultStatus")
     .textContent =
     window.RiiCommandVaultV2
-      ? "Ready"
-      : "Missing";
+      ?
+      "Ready"
+      :
+      "Missing";
 
   if (
     !window.RiiWorkerClientV2
   ) {
+
     $("workerStatus")
       .textContent =
       "Missing";
@@ -3719,6 +4347,7 @@ function updateModuleStatus() {
 
   updateCounters();
 }
+
 
 
 /* =====================================================
@@ -3756,26 +4385,19 @@ window.testWorkerConnection =
 
       $("workerHomeInfo")
         .textContent =
-        "✅ "
-        +
+        "✅ " +
         (
           data.service ||
           "Rii AI Backend"
-        )
-        +
-        " • V"
-        +
+        ) +
+        " • V" +
         (
           data.version ||
           "?"
-        )
-        +
-        " • Translate "
-        +
+        ) +
+        " • AI binding " +
         (
-          data
-            ?.endpoints
-            ?.translate
+          data.hasAI
             ?
             "READY"
             :
@@ -3784,7 +4406,9 @@ window.testWorkerConnection =
 
       $("settingsWorkerResult")
         .textContent =
-        pretty(data);
+        pretty(
+          data
+        );
 
     } catch (error) {
 
@@ -3793,11 +4417,9 @@ window.testWorkerConnection =
         "Error";
 
       const formatted =
-        window
-          .RiiWorkerClientV2
-          .formatError(
-            error
-          );
+        formatClientError(
+          error
+        );
 
       $("workerHomeInfo")
         .textContent =
@@ -3811,6 +4433,7 @@ window.testWorkerConnection =
         );
     }
   };
+
 
 
 /* =====================================================
@@ -3828,26 +4451,53 @@ function localToKnowledge(
   ) {
 
     return {
-      originalInput:input,
-      category:"mathematics",
-      quantity:1,
-      normalizedEnglish:"basic arithmetic",
-      translatedLabel:input,
-      color:"",
-      shape:"",
-      attributes:[],
-      translations:{},
+
+      originalInput:
+        input,
+
+      category:
+        "mathematics",
+
+      quantity:
+        1,
+
+      normalizedEnglish:
+        "basic arithmetic",
+
+      translatedLabel:
+        input,
+
+      color:
+        "",
+
+      shape:
+        "",
+
+      attributes:
+        [],
+
+      translations:
+        {},
+
       math:
         local.math ||
         null,
-      needsImage:false,
-      source:"local-math",
-      confidence:1
+
+      needsImage:
+        false,
+
+      source:
+        "local-math",
+
+      confidence:
+        1
     };
   }
 
   return {
-    originalInput:input,
+
+    originalInput:
+      input,
 
     category:
       local?.category ||
@@ -3867,7 +4517,9 @@ function localToKnowledge(
       ||
       local?.object
       ||
-      normalizeText(input),
+      normalizeText(
+        input
+      ),
 
     translatedLabel:
       input,
@@ -3889,7 +4541,8 @@ function localToKnowledge(
         :
         [],
 
-    translations:{},
+    translations:
+      {},
 
     needsImage:
       Boolean(
@@ -3900,7 +4553,8 @@ function localToKnowledge(
       local?.source ||
       "local-parser",
 
-    confidence:1
+    confidence:
+      1
   };
 }
 
@@ -3918,7 +4572,9 @@ function remoteToKnowledge(
     input;
 
   return {
-    originalInput:input,
+
+    originalInput:
+      input,
 
     category:
       remote.category ||
@@ -3963,15 +4619,20 @@ function remoteToKnowledge(
         [],
 
     translations:{
+
       "en-US":{
+
         label:
           englishLabel,
 
-        code:"en",
+        code:
+          "en",
 
-        language:"English",
+        language:
+          "English",
 
-        locale:"en-US",
+        locale:
+          "en-US",
 
         updatedAt:
           new Date()
@@ -3984,15 +4645,80 @@ function remoteToKnowledge(
         remote.needsImage
       ),
 
-    source:"worker-ai",
+    source:
+      "worker-ai",
 
     workerVersion:
       remote.version ||
       "",
 
-    confidence:.9
+    confidence:
+      .9
   };
 }
+
+
+function createOfflineSpeechFallback(
+  input
+) {
+
+  const locale =
+    detectSpeechLocaleFromText(
+      input
+    );
+
+  return {
+
+    originalInput:
+      input,
+
+    category:
+      "unparsed",
+
+    quantity:
+      1,
+
+    normalizedEnglish:
+      input,
+
+    translatedLabel:
+      input,
+
+    detectedLanguage:
+      locale
+        .split("-")[0],
+
+    targetLanguage:
+      "original",
+
+    color:
+      "",
+
+    shape:
+      "",
+
+    attributes:
+      [],
+
+    translations:
+      {},
+
+    needsImage:
+      false,
+
+    source:
+      "offline-speech-fallback",
+
+    sourceLanguageLocale:
+      locale,
+
+    confidence:
+      0
+  };
+}
+
+
+
 /* =====================================================
    TEACH LANGUAGE
 ===================================================== */
@@ -4005,23 +4731,30 @@ function updatePendingLanguageLabel() {
   if (
     !pendingKnowledge
   ) {
+
     box.textContent =
       "Chưa có concept.";
 
     return;
   }
 
-  const locale =
-    getSelectedLocale();
+  if (
+    pendingKnowledge.source ===
+    "offline-speech-fallback"
+  ) {
 
-  const label =
-    getKnowledgeDisplayLabel(
-      pendingKnowledge,
-      locale
-    );
+    box.textContent =
+      pendingKnowledge
+        .originalInput;
+
+    return;
+  }
 
   box.textContent =
-    label;
+    getKnowledgeDisplayLabel(
+      pendingKnowledge,
+      getSelectedLocale()
+    );
 }
 
 
@@ -4031,6 +4764,19 @@ window.translatePendingKnowledge =
     if (
       !pendingKnowledge
     ) {
+
+      return;
+    }
+
+    if (
+      pendingKnowledge.source ===
+      "offline-speech-fallback"
+    ) {
+
+      $("teachSpeechStatus")
+        .textContent =
+        "⚠️ AI đang hết quota. Chưa thể tạo bản dịch mới.";
+
       return;
     }
 
@@ -4066,17 +4812,22 @@ window.translatePendingKnowledge =
         .translations[
           config.locale
         ] = {
-          label,
-          code:
-            config.code,
-          language:
-            config.name,
-          locale:
-            config.locale,
-          updatedAt:
-            new Date()
-              .toISOString()
-        };
+
+        label,
+
+        code:
+          config.code,
+
+        language:
+          config.name,
+
+        locale:
+          config.locale,
+
+        updatedAt:
+          new Date()
+            .toISOString()
+      };
 
       $("teachTranslatedLabel")
         .textContent =
@@ -4115,18 +4866,63 @@ window.speakPendingKnowledge =
     if (
       !pendingKnowledge
     ) {
+
       return;
     }
 
     try {
 
+      /*
+        OFFLINE FALLBACK:
+        phát nguyên văn bằng locale
+        đoán từ ngôn ngữ nguồn.
+      */
+
+      if (
+        pendingKnowledge.source ===
+        "offline-speech-fallback"
+      ) {
+
+        const sourceLocale =
+          pendingKnowledge
+            .sourceLanguageLocale
+          ||
+          detectSpeechLocaleFromText(
+            pendingKnowledge
+              .originalInput
+          );
+
+        const result =
+          speakText(
+            pendingKnowledge
+              .originalInput,
+            sourceLocale
+          );
+
+        $("teachTranslatedLabel")
+          .textContent =
+          pendingKnowledge
+            .originalInput;
+
+        $("teachSpeechStatus")
+          .textContent =
+          "🔊 OFFLINE: phát nguyên bản • " +
+          result.locale +
+          " • không dùng Workers AI.";
+
+        return;
+      }
+
+
       const config =
         getSelectedLanguage();
 
-      let label;
+      let label =
+        "";
 
       if (
-        config.code === "en"
+        config.code ===
+        "en"
       ) {
 
         label =
@@ -4161,17 +4957,22 @@ window.speakPendingKnowledge =
             .translations[
               config.locale
             ] = {
-              label,
-              code:
-                config.code,
-              language:
-                config.name,
-              locale:
-                config.locale,
-              updatedAt:
-                new Date()
-                  .toISOString()
-            };
+
+            label,
+
+            code:
+              config.code,
+
+            language:
+              config.name,
+
+            locale:
+              config.locale,
+
+            updatedAt:
+              new Date()
+                .toISOString()
+          };
         }
       }
 
@@ -4205,6 +5006,7 @@ window.speakPendingKnowledge =
   };
 
 
+
 /* =====================================================
    TEACH ANALYZE
 ===================================================== */
@@ -4229,6 +5031,7 @@ window.analyzeTeach =
     const generateButton =
       $("generateImageButton");
 
+
     pendingKnowledge =
       null;
 
@@ -4236,6 +5039,7 @@ window.analyzeTeach =
       [];
 
     renderPendingImages();
+
 
     saveButton.disabled =
       true;
@@ -4255,6 +5059,11 @@ window.analyzeTeach =
       .textContent =
       "Chưa có concept.";
 
+    $("teachSpeechStatus")
+      .textContent =
+      "Chưa có dữ liệu phát âm.";
+
+
     if (!input) {
 
       resultBox.textContent =
@@ -4262,6 +5071,7 @@ window.analyzeTeach =
 
       return;
     }
+
 
     if (
       !window.RiiBrainEngineV2
@@ -4273,12 +5083,14 @@ window.analyzeTeach =
       return;
     }
 
+
     setBusy(
       button,
       true,
       "🧠 1. Phân tích",
       "⏳ Đang phân tích..."
     );
+
 
     try {
 
@@ -4289,10 +5101,12 @@ window.analyzeTeach =
             input
           );
 
+
       if (
         local &&
         local.ok &&
-        local.needsAI === false
+        local.needsAI ===
+        false
       ) {
 
         pendingKnowledge =
@@ -4303,11 +5117,18 @@ window.analyzeTeach =
 
         resultBox.textContent =
           pretty({
-            mode:"LOCAL",
-            readyToSave:true,
+
+            mode:
+              "LOCAL",
+
+            readyToSave:
+              true,
+
             knowledge:
               pendingKnowledge,
-            raw:local
+
+            raw:
+              local
           });
 
         saveButton.disabled =
@@ -4330,13 +5151,16 @@ window.analyzeTeach =
         return;
       }
 
+
       if (
         !window.RiiWorkerClientV2
       ) {
+
         throw new Error(
           "Worker Client V2 chưa được tải."
         );
       }
+
 
       const remote =
         await window
@@ -4344,10 +5168,14 @@ window.analyzeTeach =
           .analyzeConcept(
             input,
             {
-              targetLanguage:"en",
-              targetLanguageName:"English"
+              targetLanguage:
+                "en",
+
+              targetLanguageName:
+                "English"
             }
           );
+
 
       pendingKnowledge =
         remoteToKnowledge(
@@ -4355,17 +5183,27 @@ window.analyzeTeach =
           remote
         );
 
+
       resultBox.textContent =
         pretty({
-          mode:"WORKER_AI",
-          readyToSave:true,
+
+          mode:
+            "WORKER_AI",
+
+          readyToSave:
+            true,
+
           visualLearning:
             pendingKnowledge
               .needsImage,
+
           knowledge:
             pendingKnowledge,
-          raw:remote
+
+          raw:
+            remote
         });
+
 
       saveButton.disabled =
         false;
@@ -4384,7 +5222,99 @@ window.analyzeTeach =
 
       updatePendingLanguageLabel();
 
+
     } catch (error) {
+
+      /*
+        QUOTA 4006:
+        không coi là app hỏng.
+        chuyển sang Offline Speech.
+      */
+
+      if (
+        isAiQuotaError(
+          error
+        )
+      ) {
+
+        const formatted =
+          formatClientError(
+            error
+          );
+
+        pendingKnowledge =
+          createOfflineSpeechFallback(
+            input
+          );
+
+
+        saveButton.disabled =
+          true;
+
+        generateButton.disabled =
+          true;
+
+        $("teachTranslateButton")
+          .disabled =
+          true;
+
+        $("teachSpeakButton")
+          .disabled =
+          false;
+
+
+        $("teachTranslatedLabel")
+          .textContent =
+          input;
+
+
+        $("teachSpeechStatus")
+          .textContent =
+          "⚠️ Workers AI đã hết quota hôm nay. "
+          +
+          "Rii vẫn có thể phát âm nguyên bản trực tiếp trên thiết bị.";
+
+
+        resultBox.textContent =
+          pretty({
+
+            mode:
+              "OFFLINE_SPEECH_FALLBACK",
+
+            ok:
+              true,
+
+            aiAvailable:
+              false,
+
+            canSpeak:
+              true,
+
+            canTranslate:
+              false,
+
+            canGenerateImages:
+              false,
+
+            canSaveKnowledge:
+              false,
+
+            input,
+
+            speechLocale:
+              pendingKnowledge
+                .sourceLanguageLocale,
+
+            message:
+              "AI hết quota nhưng phát âm cục bộ vẫn hoạt động.",
+
+            workerError:
+              formatted
+          });
+
+        return;
+      }
+
 
       pendingKnowledge =
         null;
@@ -4403,27 +5333,13 @@ window.analyzeTeach =
         .disabled =
         true;
 
-      if (
-        window.RiiWorkerClientV2
-      ) {
-
-        resultBox.textContent =
-          pretty(
-            window
-              .RiiWorkerClientV2
-              .formatError(
-                error
-              )
-          );
-
-      } else {
-
-        resultBox.textContent =
-          String(
-            error?.message ||
+      resultBox.textContent =
+        pretty(
+          formatClientError(
             error
-          );
-      }
+          )
+        );
+
 
     } finally {
 
@@ -4437,8 +5353,9 @@ window.analyzeTeach =
   };
 
 
+
 /* =====================================================
-   GENERATE AI VISUAL SAMPLES
+   GENERATE IMAGES
 ===================================================== */
 
 window.generateTeachImages =
@@ -4450,6 +5367,7 @@ window.generateTeachImages =
     const resultBox =
       $("teachResult");
 
+
     if (
       !pendingKnowledge
     ) {
@@ -4459,6 +5377,26 @@ window.generateTeachImages =
 
       return;
     }
+
+
+    if (
+      pendingKnowledge.source ===
+      "offline-speech-fallback"
+    ) {
+
+      resultBox.textContent =
+        pretty({
+
+          mode:
+            "OFFLINE_SPEECH_FALLBACK",
+
+          message:
+            "Workers AI đang hết quota nên chưa thể tạo ảnh mới."
+        });
+
+      return;
+    }
+
 
     if (
       !pendingKnowledge
@@ -4471,6 +5409,7 @@ window.generateTeachImages =
       return;
     }
 
+
     if (
       !window.RiiWorkerClientV2
     ) {
@@ -4481,12 +5420,14 @@ window.generateTeachImages =
       return;
     }
 
+
     setBusy(
       button,
       true,
       "✨ 2B. Tạo 3 ảnh AI",
       "⏳ Đang tạo ảnh..."
     );
+
 
     try {
 
@@ -4497,11 +5438,17 @@ window.generateTeachImages =
             pendingKnowledge
               .originalInput,
             {
-              count:3,
-              targetLanguage:"en",
-              targetLanguageName:"English"
+              count:
+                3,
+
+              targetLanguage:
+                "en",
+
+              targetLanguageName:
+                "English"
             }
           );
+
 
       const images =
         Array.isArray(
@@ -4512,13 +5459,17 @@ window.generateTeachImages =
           :
           [];
 
+
       if (
-        images.length === 0
+        images.length ===
+        0
       ) {
+
         throw new Error(
           "Worker không trả ảnh."
         );
       }
+
 
       for (
         const dataUri
@@ -4531,37 +5482,48 @@ window.generateTeachImages =
           );
 
         pendingImages.push({
-          source:"ai",
+
+          source:
+            "ai",
+
           blob
         });
       }
 
+
       renderPendingImages();
+
 
       resultBox.textContent =
         pretty({
-          ok:true,
+
+          ok:
+            true,
+
           message:
             "Đã tạo mẫu ảnh AI.",
+
           concept:
             pendingKnowledge
               .translatedLabel,
+
           addedImages:
             images.length,
+
           pendingImages:
             pendingImages.length
         });
+
 
     } catch (error) {
 
       resultBox.textContent =
         pretty(
-          window
-            .RiiWorkerClientV2
-            .formatError(
-              error
-            )
+          formatClientError(
+            error
+          )
         );
+
 
     } finally {
 
@@ -4575,8 +5537,9 @@ window.generateTeachImages =
   };
 
 
+
 /* =====================================================
-   SAVE KNOWLEDGE + VISUALS
+   SAVE
 ===================================================== */
 
 window.saveAnalyzedKnowledge =
@@ -4588,6 +5551,7 @@ window.saveAnalyzedKnowledge =
     const saveButton =
       $("teachSaveButton");
 
+
     if (
       !pendingKnowledge
     ) {
@@ -4598,12 +5562,36 @@ window.saveAnalyzedKnowledge =
       return;
     }
 
+
+    if (
+      pendingKnowledge.source ===
+      "offline-speech-fallback"
+    ) {
+
+      resultBox.textContent =
+        pretty({
+
+          ok:
+            false,
+
+          mode:
+            "OFFLINE_SPEECH_FALLBACK",
+
+          message:
+            "Không lưu concept chưa được AI phân tích để tránh làm bẩn Brain."
+        });
+
+      return;
+    }
+
+
     setBusy(
       saveButton,
       true,
       "💾 3. Ghi kiến thức + ảnh vào Brain",
       "⏳ Đang ghi Brain..."
     );
+
 
     try {
 
@@ -4614,6 +5602,7 @@ window.saveAnalyzedKnowledge =
 
       let addedVisuals =
         0;
+
 
       for (
         const image
@@ -4628,15 +5617,18 @@ window.saveAnalyzedKnowledge =
         addedVisuals++;
       }
 
+
       const visualCount =
         await countVisualSamplesForKnowledge(
           saved.id
         );
 
+
       updateKnowledgeVisualCount(
         saved.id,
         visualCount
       );
+
 
       try {
 
@@ -4651,7 +5643,9 @@ window.saveAnalyzedKnowledge =
           window
             .RiiBrainV2
             .addKnowledge({
+
               ...pendingKnowledge,
+
               visualSamples:
                 visualCount
             });
@@ -4665,24 +5659,35 @@ window.saveAnalyzedKnowledge =
         );
       }
 
+
       await updateCounters();
+
 
       resultBox.textContent =
         pretty({
-          ok:true,
+
+          ok:
+            true,
+
           message:
             "Đã ghi kiến thức, bản dịch và Visual Memory vào Brain.",
+
           id:
             saved.id,
+
           totalKnowledge:
             loadKnowledge()
               .length,
+
           addedVisuals,
+
           totalVisualSamplesForConcept:
             visualCount,
+
           knowledge:
             pendingKnowledge
         });
+
 
       pendingKnowledge =
         null;
@@ -4691,6 +5696,7 @@ window.saveAnalyzedKnowledge =
         [];
 
       renderPendingImages();
+
 
       saveButton.disabled =
         true;
@@ -4714,17 +5720,22 @@ window.saveAnalyzedKnowledge =
       $("realImageInput").value =
         "";
 
+
     } catch (error) {
 
       resultBox.textContent =
         pretty({
-          ok:false,
+
+          ok:
+            false,
+
           error:
             String(
               error?.message ||
               error
             )
         });
+
 
     } finally {
 
@@ -4751,8 +5762,9 @@ window.saveAnalyzedKnowledge =
   };
 
 
+
 /* =====================================================
-   THINK LANGUAGE
+   THINK SPEECH
 ===================================================== */
 
 function resetThinkSpeech() {
@@ -4764,16 +5776,22 @@ function resetThinkSpeech() {
     "";
 
   $("thinkSpeechActions")
-    .style.display =
+    .style
+    .display =
     "none";
 
   $("thinkTranslatedLabel")
-    .style.display =
+    .style
+    .display =
     "none";
 
   $("thinkTranslatedLabel")
     .textContent =
     "";
+
+  $("thinkTranslateButton")
+    .disabled =
+    false;
 }
 
 
@@ -4782,25 +5800,36 @@ function updateCurrentThinkLanguageLabel() {
   if (
     !currentThinkConcept
   ) {
+
     return;
   }
 
-  const label =
-    getKnowledgeDisplayLabel(
-      currentThinkConcept,
-      getSelectedLocale()
-    );
+  if (
+    currentThinkConcept.source ===
+    "offline-speech-fallback"
+  ) {
 
-  currentThinkSpeechText =
-    label;
+    currentThinkSpeechText =
+      currentThinkConcept
+        .originalInput;
+
+  } else {
+
+    currentThinkSpeechText =
+      getKnowledgeDisplayLabel(
+        currentThinkConcept,
+        getSelectedLocale()
+      );
+  }
 
   $("thinkTranslatedLabel")
-    .style.display =
+    .style
+    .display =
     "block";
 
   $("thinkTranslatedLabel")
     .textContent =
-    label;
+    currentThinkSpeechText;
 }
 
 
@@ -4810,12 +5839,34 @@ window.translateCurrentThinkResult =
     if (
       !currentThinkConcept
     ) {
+
       return;
     }
 
+
+    if (
+      currentThinkConcept.source ===
+      "offline-speech-fallback"
+    ) {
+
+      $("thinkTranslatedLabel")
+        .style
+        .display =
+        "block";
+
+      $("thinkTranslatedLabel")
+        .textContent =
+        "⚠️ AI đang hết quota. Không thể tạo bản dịch mới.";
+
+      return;
+    }
+
+
     try {
 
-      let label;
+      let label =
+        "";
+
 
       if (
         currentThinkConcept.id
@@ -4835,6 +5886,7 @@ window.translateCurrentThinkResult =
             );
 
         if (refreshed) {
+
           currentThinkConcept =
             refreshed;
         }
@@ -4847,21 +5899,25 @@ window.translateCurrentThinkResult =
           );
       }
 
+
       currentThinkSpeechText =
         label;
 
       $("thinkTranslatedLabel")
-        .style.display =
+        .style
+        .display =
         "block";
 
       $("thinkTranslatedLabel")
         .textContent =
         label;
 
+
     } catch (error) {
 
       $("thinkTranslatedLabel")
-        .style.display =
+        .style
+        .display =
         "block";
 
       $("thinkTranslatedLabel")
@@ -4881,31 +5937,61 @@ window.speakCurrentThinkResult =
     if (
       !currentThinkConcept
     ) {
+
       return;
     }
 
     try {
 
       if (
+        currentThinkConcept.source ===
+        "offline-speech-fallback"
+      ) {
+
+        const locale =
+          currentThinkConcept
+            .sourceLanguageLocale
+          ||
+          detectSpeechLocaleFromText(
+            currentThinkConcept
+              .originalInput
+          );
+
+        speakText(
+          currentThinkConcept
+            .originalInput,
+          locale
+        );
+
+        return;
+      }
+
+
+      if (
         !currentThinkSpeechText
       ) {
+
         await window
           .translateCurrentThinkResult();
       }
 
+
       if (
         currentThinkSpeechText
       ) {
+
         speakText(
           currentThinkSpeechText,
           getSelectedLocale()
         );
       }
 
+
     } catch (error) {
 
       $("thinkTranslatedLabel")
-        .style.display =
+        .style
+        .display =
         "block";
 
       $("thinkTranslatedLabel")
@@ -4917,6 +6003,7 @@ window.speakCurrentThinkResult =
         );
     }
   };
+
 
 
 /* =====================================================
@@ -4940,7 +6027,9 @@ window.runThinking =
     const button =
       $("thinkButton");
 
+
     resetThinkSpeech();
+
 
     if (!input) {
 
@@ -4949,6 +6038,7 @@ window.runThinking =
 
       return;
     }
+
 
     if (
       !window.RiiBrainEngineV2
@@ -4960,12 +6050,14 @@ window.runThinking =
       return;
     }
 
+
     setBusy(
       button,
       true,
       "✨ Suy nghĩ",
       "⏳ Đang suy nghĩ..."
     );
+
 
     try {
 
@@ -4976,10 +6068,12 @@ window.runThinking =
             input
           );
 
+
       if (
         local &&
         local.ok &&
-        local.needsAI === false
+        local.needsAI ===
+        false
       ) {
 
         modeBox.className =
@@ -4990,17 +6084,23 @@ window.runThinking =
 
         resultBox.textContent =
           pretty({
-            mode:"LOCAL",
-            result:local
+
+            mode:
+              "LOCAL",
+
+            result:
+              local
           });
 
         return;
       }
 
+
       const brainMatch =
         findKnowledge(
           input
         );
+
 
       if (
         brainMatch.found
@@ -5012,39 +6112,54 @@ window.runThinking =
         modeBox.textContent =
           "🧠 BRAIN_MEMORY — dùng kiến thức đã học";
 
+
         currentThinkConcept =
           brainMatch.knowledge;
+
 
         currentThinkSpeechText =
           getKnowledgeDisplayLabel(
             brainMatch.knowledge
           );
 
+
         $("thinkSpeechActions")
-          .style.display =
+          .style
+          .display =
           "grid";
 
+
         $("thinkTranslatedLabel")
-          .style.display =
+          .style
+          .display =
           "block";
+
 
         $("thinkTranslatedLabel")
           .textContent =
           currentThinkSpeechText;
 
+
         resultBox.textContent =
           pretty({
-            mode:"BRAIN_MEMORY",
-            ok:true,
+
+            mode:
+              "BRAIN_MEMORY",
+
+            ok:
+              true,
+
             input,
+
             memoryScore:
               brainMatch.score,
-            selectedLanguage:
-              getSelectedLanguage(),
+
             displayLabel:
               currentThinkSpeechText,
+
             source:
               "rii-v2-root-knowledge",
+
             result:
               brainMatch.knowledge
           });
@@ -5052,13 +6167,16 @@ window.runThinking =
         return;
       }
 
+
       if (
         !window.RiiWorkerClientV2
       ) {
+
         throw new Error(
           "Worker Client V2 chưa được tải."
         );
       }
+
 
       modeBox.className =
         "mode-box mode-worker";
@@ -5066,16 +6184,21 @@ window.runThinking =
       modeBox.textContent =
         "☁️ WORKER_AI — Brain chưa biết, đang hỏi AI";
 
+
       const remote =
         await window
           .RiiWorkerClientV2
           .analyzeConcept(
             input,
             {
-              targetLanguage:"en",
-              targetLanguageName:"English"
+              targetLanguage:
+                "en",
+
+              targetLanguageName:
+                "English"
             }
           );
+
 
       currentThinkConcept =
         remoteToKnowledge(
@@ -5083,36 +6206,132 @@ window.runThinking =
           remote
         );
 
+
       currentThinkSpeechText =
         currentThinkConcept
           .translatedLabel;
 
+
       $("thinkSpeechActions")
-        .style.display =
+        .style
+        .display =
         "grid";
 
+
       $("thinkTranslatedLabel")
-        .style.display =
+        .style
+        .display =
         "block";
+
 
       $("thinkTranslatedLabel")
         .textContent =
         currentThinkSpeechText;
 
+
       resultBox.textContent =
         pretty({
-          mode:"WORKER_AI",
+
+          mode:
+            "WORKER_AI",
+
           brainMemory:{
-            found:false,
+
+            found:
+              false,
+
             bestScore:
               brainMatch.score
           },
-          selectedLanguage:
-            getSelectedLanguage(),
-          result:remote
+
+          result:
+            remote
         });
 
+
     } catch (error) {
+
+      /*
+        THINK cũng fallback nếu AI hết quota.
+      */
+
+      if (
+        isAiQuotaError(
+          error
+        )
+      ) {
+
+        currentThinkConcept =
+          createOfflineSpeechFallback(
+            input
+          );
+
+        currentThinkSpeechText =
+          input;
+
+
+        modeBox.className =
+          "mode-box mode-offline";
+
+        modeBox.textContent =
+          "🔊 OFFLINE_SPEECH — AI hết quota, vẫn phát âm trên thiết bị";
+
+
+        $("thinkSpeechActions")
+          .style
+          .display =
+          "grid";
+
+
+        $("thinkTranslateButton")
+          .disabled =
+          true;
+
+
+        $("thinkTranslatedLabel")
+          .style
+          .display =
+          "block";
+
+
+        $("thinkTranslatedLabel")
+          .textContent =
+          input;
+
+
+        resultBox.textContent =
+          pretty({
+
+            mode:
+              "OFFLINE_SPEECH_FALLBACK",
+
+            ok:
+              true,
+
+            input,
+
+            canSpeak:
+              true,
+
+            canTranslate:
+              false,
+
+            aiAvailable:
+              false,
+
+            speechLocale:
+              currentThinkConcept
+                .sourceLanguageLocale,
+
+            workerError:
+              formatClientError(
+                error
+              )
+          });
+
+        return;
+      }
+
 
       modeBox.className =
         "mode-box";
@@ -5120,27 +6339,14 @@ window.runThinking =
       modeBox.textContent =
         "❌ Lỗi xử lý";
 
-      if (
-        window.RiiWorkerClientV2
-      ) {
 
-        resultBox.textContent =
-          pretty(
-            window
-              .RiiWorkerClientV2
-              .formatError(
-                error
-              )
-          );
-
-      } else {
-
-        resultBox.textContent =
-          String(
-            error?.message ||
+      resultBox.textContent =
+        pretty(
+          formatClientError(
             error
-          );
-      }
+          )
+        );
+
 
     } finally {
 
@@ -5152,6 +6358,7 @@ window.runThinking =
       );
     }
   };
+
 
 
 /* =====================================================
@@ -5170,10 +6377,33 @@ window.saveSettings =
           ""
         );
 
+
     localStorage.setItem(
       "rii-v2-backend",
       url
     );
+
+
+    if (
+      window.RiiWorkerClientV2 &&
+      typeof window
+        .RiiWorkerClientV2
+        .setBaseUrl ===
+        "function" &&
+      url
+    ) {
+
+      try {
+
+        window
+          .RiiWorkerClientV2
+          .setBaseUrl(
+            url
+          );
+
+      } catch {}
+    }
+
 
     $("settingsWorkerResult")
       .textContent =
@@ -5190,9 +6420,11 @@ const savedBackend =
 if (
   savedBackend
 ) {
+
   $("backendUrl").value =
     savedBackend;
 }
+
 
 
 /* =====================================================
@@ -5217,7 +6449,9 @@ if (
 
   setTimeout(
     () => {
+
       testWorkerConnection();
+
     },
     500
   );
