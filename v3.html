@@ -11,7 +11,7 @@
   content="#050b14"
 >
 
-<title>Rii AI V3.5.4</title>
+<title>Rii AI V3.5.5</title>
 
 <style>
 :root{
@@ -89,9 +89,7 @@ button:disabled{
 
 .app{
   width:min(100%,980px);
-
   margin:auto;
-
   min-height:100vh;
 
   padding:
@@ -460,13 +458,7 @@ button:disabled{
   margin-top:14px;
   padding:16px;
   border-radius:21px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #112232,
-      #07121d
-    );
+  background:linear-gradient(145deg,#112232,#07121d);
 }
 
 .math-card{
@@ -537,27 +529,16 @@ button:disabled{
   color:#ffe9b8;
 }
 
-
-/* =====================================================
-   TRANSLATION V3.5.4
-===================================================== */
-
 .translation-route{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:10px;
-
   margin-top:12px;
   padding:12px 13px;
-
   border-radius:16px;
-
-  border:
-    1px solid #58d9b035;
-
-  background:
-    #071a1c;
+  border:1px solid #58d9b035;
+  background:#071a1c;
 }
 
 .translation-route-label{
@@ -573,21 +554,12 @@ button:disabled{
 
 .translation-status{
   display:none;
-
   margin-top:12px;
   padding:13px 14px;
-
   border-radius:16px;
-
-  border:
-    1px solid #58d9b044;
-
-  background:
-    #0a362f;
-
-  color:
-    #d9fff3;
-
+  border:1px solid #58d9b044;
+  background:#0a362f;
+  color:#d9fff3;
   line-height:1.5;
 }
 
@@ -609,14 +581,10 @@ button:disabled{
 
 .translation-output{
   display:none;
-
   margin-top:14px;
   padding:16px;
-
   border-radius:20px;
-
-  border:
-    1px solid #58d9b044;
+  border:1px solid #58d9b044;
 
   background:
     linear-gradient(
@@ -639,30 +607,20 @@ button:disabled{
 
 .translation-result{
   margin-top:9px;
-
   color:#f1fff9;
-
   font-size:20px;
   font-weight:750;
   line-height:1.55;
-
   white-space:pre-wrap;
   word-break:break-word;
 }
 
 .translation-meta{
   margin-top:12px;
-
   color:var(--muted);
-
   font-size:11px;
   line-height:1.55;
 }
-
-
-/* =====================================================
-   CAMERA
-===================================================== */
 
 .camera-wrap{
   position:relative;
@@ -758,21 +716,13 @@ button:disabled{
 
 .rii{
   position:fixed;
-
-  left:
-    calc(100vw - 82px);
-
-  top:
-    calc(100vh - 148px);
-
+  left:calc(100vw - 82px);
+  top:calc(100vh - 148px);
   z-index:999;
-
   width:62px;
   height:62px;
-
   display:grid;
   place-items:center;
-
   border-radius:50%;
   border:2px solid var(--gold);
 
@@ -785,7 +735,6 @@ button:disabled{
 
   color:var(--gold2);
   font-weight:900;
-
   touch-action:none;
   user-select:none;
 
@@ -798,17 +747,12 @@ button:disabled{
   position:fixed;
   inset:0;
   z-index:900;
-
   display:none;
   align-items:center;
   justify-content:center;
-
   padding:20px;
-
   background:#01060bc2;
-
-  backdrop-filter:
-    blur(16px);
+  backdrop-filter:blur(16px);
 }
 
 .overlay.open{
@@ -903,7 +847,6 @@ button:disabled{
 }
 
 @media(max-width:430px){
-
   .hero{
     padding:20px;
   }
@@ -980,11 +923,10 @@ button:disabled{
 
 </header>
 
-
 <section class="hero">
 
   <div class="eyebrow">
-    RII V3.5.4 • LIVE TRANSLATION
+    RII V3.5.5 • TRANSLATION METADATA SYNC
   </div>
 
   <h1 id="heroTitle"></h1>
@@ -1025,7 +967,6 @@ button:disabled{
 
 </section>
 
-
 <div class="voicebar">
 
   <select
@@ -1043,7 +984,6 @@ button:disabled{
 
 </div>
 
-
 <div class="section-head">
 
   <h2 id="centerTitle"></h2>
@@ -1051,7 +991,6 @@ button:disabled{
   <span id="centerHint"></span>
 
 </div>
-
 
 <section class="grid">
 
@@ -1074,7 +1013,6 @@ button:disabled{
 
   </article>
 
-
   <article class="center camera">
 
     <div class="center-icon">
@@ -1094,7 +1032,6 @@ button:disabled{
 
   </article>
 
-
   <article class="center translate">
 
     <div class="center-icon">
@@ -1113,7 +1050,6 @@ button:disabled{
     </button>
 
   </article>
-
 
   <article class="center notes">
 
@@ -1135,7 +1071,6 @@ button:disabled{
   </article>
 
 </section>
-
 
 <section class="card audio-card">
 
@@ -1159,16 +1094,12 @@ button:disabled{
 
 </div>
 
-
 <div
   id="riiButton"
   class="rii"
 >
   Rii
 </div>
-
-
-<!-- LANGUAGE -->
 
 <div
   id="languageOverlay"
@@ -1199,9 +1130,6 @@ button:disabled{
 
 </div>
 
-
-<!-- QUICK -->
-
 <div
   id="quickOverlay"
   class="overlay"
@@ -1230,66 +1158,48 @@ button:disabled{
         class="quick"
         onclick="quickOpen('math')"
       >
-
         <span>🧮</span>
-
         <b id="quickMath"></b>
-
       </button>
 
       <button
         class="quick"
         onclick="quickOpen('camera')"
       >
-
         <span>📷</span>
-
         <b id="quickCamera"></b>
-
       </button>
 
       <button
         class="quick"
         onclick="quickOpen('translate')"
       >
-
         <span>🌍</span>
-
         <b id="quickTranslate"></b>
-
       </button>
 
       <button
         class="quick"
         onclick="quickOpen('notes')"
       >
-
         <span>📝</span>
-
         <b id="quickNotes"></b>
-
       </button>
 
       <button
         class="quick"
         onclick="closeQuick()"
       >
-
         <span>🏠</span>
-
         <b id="quickHome"></b>
-
       </button>
 
       <button
         class="quick"
         onclick="openLanguageFromQuick()"
       >
-
         <span>🌐</span>
-
         <b id="quickLanguage"></b>
-
       </button>
 
     </div>
@@ -1297,9 +1207,6 @@ button:disabled{
   </div>
 
 </div>
-
-
-<!-- CENTER SCREEN -->
 
 <div
   id="centerScreen"
@@ -1330,7 +1237,6 @@ button:disabled{
 
     </div>
 
-
     <div class="voicebar">
 
       <select
@@ -1347,9 +1253,6 @@ button:disabled{
       </button>
 
     </div>
-
-
-    <!-- MATH -->
 
     <section
       id="mathCenter"
@@ -1438,17 +1341,11 @@ button:disabled{
         id="mathDebug"
         class="root-debug hidden"
       >
-
         <summary id="mathDebugSummary"></summary>
-
         <pre id="mathDebugText"></pre>
-
       </details>
 
     </section>
-
-
-    <!-- CAMERA -->
 
     <section
       id="cameraCenter"
@@ -1523,10 +1420,7 @@ button:disabled{
       <button
         id="visionRetryButton"
         class="action hidden"
-        style="
-          width:100%;
-          margin-top:10px
-        "
+        style="width:100%;margin-top:10px"
         onclick="analyzeCapturedImage()"
       ></button>
 
@@ -1537,11 +1431,7 @@ button:disabled{
 
         <div
           id="aiMessageTitle"
-          style="
-            font-size:17px;
-            font-weight:900;
-            margin-bottom:5px
-          "
+          style="font-size:17px;font-weight:900;margin-bottom:5px"
         ></div>
 
         <div id="aiMessageText"></div>
@@ -1605,17 +1495,11 @@ button:disabled{
         id="rootDebug"
         class="root-debug hidden"
       >
-
         <summary id="visionDebugSummary"></summary>
-
         <pre id="rootDebugText"></pre>
-
       </details>
 
     </section>
-
-
-    <!-- TRANSLATION V3.5.4 -->
 
     <section
       id="translateCenter"
@@ -1725,17 +1609,11 @@ button:disabled{
         id="translationDebug"
         class="root-debug hidden"
       >
-
         <summary id="translationDebugSummary"></summary>
-
         <pre id="translationDebugText"></pre>
-
       </details>
 
     </section>
-
-
-    <!-- NOTES -->
 
     <section
       id="notesCenter"
@@ -1776,39 +1654,24 @@ button:disabled{
 
 </div>
 
-
 <script src="./worker-client-v2.js"></script>
-
 
 <script>
 (function(){
 
 "use strict";
 
-
-/* =====================================================
-   VERSION
-===================================================== */
-
 const APP_VERSION =
-  "3.5.4";
-
+  "3.5.5";
 
 const ROOT_ID =
   "Rii00000001";
 
-
 const LANGUAGE_KEY =
   "rii-v3-ui-language";
 
-
 const NOTE_KEY =
   "rii-v3-local-notes";
-
-
-/* =====================================================
-   LANGUAGE LIST
-===================================================== */
 
 const languages = [
 
@@ -1910,11 +1773,6 @@ const languages = [
 
 ];
 
-
-/* =====================================================
-   ENGLISH BASE
-===================================================== */
-
 const EN = {
 
   tagline:
@@ -1992,9 +1850,6 @@ const EN = {
   speechUnsupported:
     "Speech recognition is not supported on this browser.",
 
-
-  /* MATH */
-
   mathIntro:
     "Basic arithmetic uses the local Math Engine without AI quota. Word problems use Math AI.",
 
@@ -2042,9 +1897,6 @@ const EN = {
 
   mathDebug:
     "🔐 ROOT • Math technical details",
-
-
-  /* CAMERA */
 
   cameraClosed:
     "Camera is closed.",
@@ -2127,9 +1979,6 @@ const EN = {
   detectedText:
     "Detected text",
 
-
-  /* LIVE TRANSLATION V3.5.4 */
-
   translatePlaceholder:
     "Speak or type a word, sentence, or paragraph...",
 
@@ -2187,9 +2036,6 @@ const EN = {
   translationDebug:
     "🔐 ROOT • Translation technical details",
 
-
-  /* NOTES */
-
   notesPlaceholder:
     "Speak or type a note...",
 
@@ -2203,303 +2049,114 @@ const EN = {
     "✅ Saved:"
 };
 
-
-/* =====================================================
-   UI DICTIONARIES
-===================================================== */
-
 const UI = {
 
   en:{
     ...EN
   },
 
-
   vi:{
     ...EN,
 
-    tagline:
-      "Học thông minh • Khám phá thế giới",
-
-    ready:
-      "Sẵn sàng",
-
-    hero:
-      "Xin chào 👋 Hôm nay con muốn khám phá gì?",
-
-    heroText:
-      "Con có thể chạm, nói hoặc nghe. Rii giữ các chức năng ổn định và báo rõ khi AI cần thử lại.",
-
-    identity:
-      "Danh tính Rii",
-
-    root:
-      "Tài khoản gốc • ROOT",
-
-    robotFuture:
-      "🤖 Robot • tương lai",
-
-    centers:
-      "Trung tâm Rii",
-
-    hint:
-      "Chạm hoặc nói tên chức năng",
-
-    math:
-      "Giải toán",
-
-    mathText:
-      "Nói hoặc nhập bài toán. Rii giải từng bước.",
-
-    camera:
-      "Camera AI",
-
-    cameraText:
-      "Nhìn vật thật và nghe Rii giải thích.",
-
-    translate:
-      "Phiên dịch",
-
-    translateText:
-      "Nói hoặc nhập bằng một ngôn ngữ, Rii sẽ dịch sang ngôn ngữ con đang chọn.",
-
-    notes:
-      "Ghi chú & Báo thức",
-
-    notesText:
-      "Ghi chú đang hoạt động; báo thức sẽ được hoàn thiện tiếp.",
-
-    audio:
-      "🎧 Âm thanh",
-
-    audioSystem:
-      "Tự động theo hệ thống",
-
-    audioNote:
-      "Trên iPhone/iPad, loa hoặc Bluetooth do iOS chọn.",
-
-    language:
-      "🌐 Ngôn ngữ",
-
-    home:
-      "Trang chủ",
-
-    back:
-      "← Trang chủ",
-
-    voice:
-      "🎙 Nói",
-
-    speechUnsupported:
-      "Trình duyệt này chưa hỗ trợ nhận dạng giọng nói.",
-
-
-    mathIntro:
-      "Phép tính cơ bản dùng Math Engine cục bộ, không dùng quota AI. Bài toán bằng lời dùng Math AI.",
-
-    mathPlaceholder:
-      "Ví dụ: Lan có 12 quả táo, cho bạn 5 quả. Lan còn bao nhiêu quả?",
-
-    solve:
-      "✨ Giải cùng Rii",
-
-    solving:
-      "⏳ Rii đang giải...",
-
-    test:
-      "🧪 Test 8 × 7",
-
-    listenSolution:
-      "🔊 Nghe lời giải",
-
-    needProblem:
-      "Hãy nói hoặc nhập bài toán trước.",
-
-    mathClientMissing:
-      "Math Client chưa sẵn sàng.",
-
-    mathLocal:
-      "⚡ Rii đã giải bằng Math Engine cục bộ — không dùng quota AI.",
-
-    mathAI:
-      "✨ Rii Math AI đã giải xong.",
-
-    mathQuota:
-      "💤 Math AI đang tạm nghỉ vì hết quota. Phép tính cơ bản vẫn dùng được.",
-
-    mathError:
-      "❌ Rii chưa giải được bài này: ",
-
-    answer:
-      "Đáp án",
-
-    step:
-      "Bước",
-
-    check:
-      "Kiểm tra",
-
-    mathDebug:
-      "🔐 ROOT • Chi tiết kỹ thuật Math",
-
-
-    cameraClosed:
-      "Camera chưa mở.",
-
-    cameraLive:
-      "✅ Camera đang hoạt động.",
-
-    cameraSaved:
-      "📸 Ảnh vẫn được giữ lại.",
-
-    cameraNotReady:
-      "Camera chưa sẵn sàng.",
-
-    noCapturedFrame:
-      "Chưa có ảnh đã chụp để phân tích.",
-
-    visionClientMissing:
-      "Vision Client chưa sẵn sàng.",
-
-    cameraPlaceholder:
-      "Ví dụ: Nó là gì? Nó sống ở đâu?",
-
-    openCamera:
-      "📷 Mở camera",
-
-    capture:
-      "✨ Chụp & tìm hiểu",
-
-    looking:
-      "⏳ Rii đang nhìn...",
-
-    askRii:
-      "🎙 Hỏi Rii",
-
-    listenRii:
-      "🔊 Nghe Rii",
-
-    retryVision:
-      "🧠 Phân tích lại ảnh đã chụp",
-
-    otherObject:
-      "📷 Vật khác",
-
-    analyzeAgain:
-      "🧠 Phân tích lại",
-
-    visionRest:
-      "💤 Rii Vision đang tạm nghỉ",
-
-    visionRestText:
-      "Ảnh của con vẫn được giữ lại. Khi AI sẵn sàng, bấm Phân tích lại ảnh đã chụp.",
-
-    visionError:
-      "🌧️ Rii chưa xem được ảnh",
-
-    visionErrorText:
-      "Ảnh vẫn còn ở đây. Con có thể thử lại mà không cần chụp lại.",
-
-    visionDebug:
-      "🔐 ROOT • Chi tiết kỹ thuật Vision",
-
-    unknown:
-      "Chưa nhận ra vật",
-
-    color:
-      "Màu sắc",
-
-    habitat:
-      "Môi trường sống",
-
-    origin:
-      "Nguồn gốc",
-
-    uses:
-      "Công dụng",
-
-    features:
-      "Đặc điểm",
-
-    detectedText:
-      "Chữ nhìn thấy",
-
-
-    translatePlaceholder:
-      "Nói hoặc nhập từ, câu hoặc đoạn văn...",
-
-    translateAction:
-      "🌐 Dịch",
-
-    translating:
-      "⏳ Rii đang dịch...",
-
-    translateReady:
-      "Phiên dịch trực tiếp đã sẵn sàng. Rii sẽ tự nhận biết ngôn ngữ nguồn.",
-
-    translateNeedText:
-      "Hãy nói hoặc nhập nội dung cần dịch trước.",
-
-    translateClientMissing:
-      "Translation Client chưa sẵn sàng.",
-
-    translateDone:
-      "✅ Rii đã dịch xong.",
-
-    translateLocal:
-      "⚡ Ngôn ngữ nguồn và đích giống nhau — không dùng quota AI.",
-
-    translateQuota:
-      "💤 Translation AI đang tạm nghỉ vì đã hết quota AI trong ngày.",
-
-    translateError:
-      "❌ Rii chưa dịch được nội dung này: ",
-
-    translateListen:
-      "🔊 Nghe bản dịch",
-
-    translateClear:
-      "🗑 Xóa",
-
-    translateSource:
-      "Nguồn",
-
-    translateAuto:
-      "Tự nhận biết",
-
-    translateTarget:
-      "Đích",
-
-    translateOutput:
-      "Bản dịch",
-
-    translateDetected:
-      "Đã nhận biết",
-
-    translateTo:
-      "sang",
-
-    translationDebug:
-      "🔐 ROOT • Chi tiết kỹ thuật Translation",
-
-
-    notesPlaceholder:
-      "Nói hoặc nhập ghi chú...",
-
-    save:
-      "💾 Ghi nhớ",
-
-    noteReady:
-      "Ghi chú sẵn sàng.",
-
-    saved:
-      "✅ Đã lưu:"
+    tagline:"Học thông minh • Khám phá thế giới",
+    ready:"Sẵn sàng",
+    hero:"Xin chào 👋 Hôm nay con muốn khám phá gì?",
+    heroText:"Con có thể chạm, nói hoặc nghe. Rii giữ các chức năng ổn định và báo rõ khi AI cần thử lại.",
+    identity:"Danh tính Rii",
+    root:"Tài khoản gốc • ROOT",
+    robotFuture:"🤖 Robot • tương lai",
+    centers:"Trung tâm Rii",
+    hint:"Chạm hoặc nói tên chức năng",
+    math:"Giải toán",
+    mathText:"Nói hoặc nhập bài toán. Rii giải từng bước.",
+    camera:"Camera AI",
+    cameraText:"Nhìn vật thật và nghe Rii giải thích.",
+    translate:"Phiên dịch",
+    translateText:"Nói hoặc nhập bằng một ngôn ngữ, Rii sẽ dịch sang ngôn ngữ con đang chọn.",
+    notes:"Ghi chú & Báo thức",
+    notesText:"Ghi chú đang hoạt động; báo thức sẽ được hoàn thiện tiếp.",
+    audio:"🎧 Âm thanh",
+    audioSystem:"Tự động theo hệ thống",
+    audioNote:"Trên iPhone/iPad, loa hoặc Bluetooth do iOS chọn.",
+    language:"🌐 Ngôn ngữ",
+    home:"Trang chủ",
+    back:"← Trang chủ",
+    voice:"🎙 Nói",
+    speechUnsupported:"Trình duyệt này chưa hỗ trợ nhận dạng giọng nói.",
+
+    mathIntro:"Phép tính cơ bản dùng Math Engine cục bộ, không dùng quota AI. Bài toán bằng lời dùng Math AI.",
+    mathPlaceholder:"Ví dụ: Lan có 12 quả táo, cho bạn 5 quả. Lan còn bao nhiêu quả?",
+    solve:"✨ Giải cùng Rii",
+    solving:"⏳ Rii đang giải...",
+    test:"🧪 Test 8 × 7",
+    listenSolution:"🔊 Nghe lời giải",
+    needProblem:"Hãy nói hoặc nhập bài toán trước.",
+    mathClientMissing:"Math Client chưa sẵn sàng.",
+    mathLocal:"⚡ Rii đã giải bằng Math Engine cục bộ — không dùng quota AI.",
+    mathAI:"✨ Rii Math AI đã giải xong.",
+    mathQuota:"💤 Math AI đang tạm nghỉ vì hết quota. Phép tính cơ bản vẫn dùng được.",
+    mathError:"❌ Rii chưa giải được bài này: ",
+    answer:"Đáp án",
+    step:"Bước",
+    check:"Kiểm tra",
+    mathDebug:"🔐 ROOT • Chi tiết kỹ thuật Math",
+
+    cameraClosed:"Camera chưa mở.",
+    cameraLive:"✅ Camera đang hoạt động.",
+    cameraSaved:"📸 Ảnh vẫn được giữ lại.",
+    cameraNotReady:"Camera chưa sẵn sàng.",
+    noCapturedFrame:"Chưa có ảnh đã chụp để phân tích.",
+    visionClientMissing:"Vision Client chưa sẵn sàng.",
+    cameraPlaceholder:"Ví dụ: Nó là gì? Nó sống ở đâu?",
+    openCamera:"📷 Mở camera",
+    capture:"✨ Chụp & tìm hiểu",
+    looking:"⏳ Rii đang nhìn...",
+    askRii:"🎙 Hỏi Rii",
+    listenRii:"🔊 Nghe Rii",
+    retryVision:"🧠 Phân tích lại ảnh đã chụp",
+    otherObject:"📷 Vật khác",
+    analyzeAgain:"🧠 Phân tích lại",
+    visionRest:"💤 Rii Vision đang tạm nghỉ",
+    visionRestText:"Ảnh của con vẫn được giữ lại. Khi AI sẵn sàng, bấm Phân tích lại ảnh đã chụp.",
+    visionError:"🌧️ Rii chưa xem được ảnh",
+    visionErrorText:"Ảnh vẫn còn ở đây. Con có thể thử lại mà không cần chụp lại.",
+    visionDebug:"🔐 ROOT • Chi tiết kỹ thuật Vision",
+    unknown:"Chưa nhận ra vật",
+    color:"Màu sắc",
+    habitat:"Môi trường sống",
+    origin:"Nguồn gốc",
+    uses:"Công dụng",
+    features:"Đặc điểm",
+    detectedText:"Chữ nhìn thấy",
+
+    translatePlaceholder:"Nói hoặc nhập từ, câu hoặc đoạn văn...",
+    translateAction:"🌐 Dịch",
+    translating:"⏳ Rii đang dịch...",
+    translateReady:"Phiên dịch trực tiếp đã sẵn sàng. Rii sẽ tự nhận biết ngôn ngữ nguồn.",
+    translateNeedText:"Hãy nói hoặc nhập nội dung cần dịch trước.",
+    translateClientMissing:"Translation Client chưa sẵn sàng.",
+    translateDone:"✅ Rii đã dịch xong.",
+    translateLocal:"⚡ Ngôn ngữ nguồn và đích giống nhau — không dùng quota AI.",
+    translateQuota:"💤 Translation AI đang tạm nghỉ vì đã hết quota AI trong ngày.",
+    translateError:"❌ Rii chưa dịch được nội dung này: ",
+    translateListen:"🔊 Nghe bản dịch",
+    translateClear:"🗑 Xóa",
+    translateSource:"Nguồn",
+    translateAuto:"Tự nhận biết",
+    translateTarget:"Đích",
+    translateOutput:"Bản dịch",
+    translateDetected:"Đã nhận biết",
+    translateTo:"sang",
+    translationDebug:"🔐 ROOT • Chi tiết kỹ thuật Translation",
+
+    notesPlaceholder:"Nói hoặc nhập ghi chú...",
+    save:"💾 Ghi nhớ",
+    noteReady:"Ghi chú sẵn sàng.",
+    saved:"✅ Đã lưu:"
   },
-
 
   zh:{
     ...EN,
-
     tagline:"智能学习 • 探索世界",
     ready:"就绪",
     hero:"你好 👋 今天想探索什么？",
@@ -2509,29 +2166,22 @@ const UI = {
     robotFuture:"🤖 机器人 • 未来",
     centers:"Rii 学习中心",
     hint:"点击或说出功能名称",
-
     math:"数学",
     mathText:"说出或输入题目，Rii 会分步骤讲解。",
-
     camera:"相机 AI",
     cameraText:"观察真实物体并听 Rii 解释。",
-
     translate:"翻译",
     translateText:"说出或输入一种语言，Rii 会翻译成当前选择的语言。",
-
     notes:"笔记与闹钟",
     notesText:"笔记已经可用；闹钟功能将在下一步完成。",
-
     audio:"🎧 音频",
     audioSystem:"跟随系统自动选择",
     audioNote:"在 iPhone/iPad 上，扬声器或蓝牙由 iOS 选择。",
-
     language:"🌐 语言",
     home:"主页",
     back:"← 主页",
     voice:"🎙 说",
     speechUnsupported:"此浏览器暂不支持语音识别。",
-
     mathIntro:"基础运算使用本地 Math Engine，不消耗 AI 配额。应用题使用 Math AI。",
     mathPlaceholder:"例如：兰有12个苹果，送给朋友5个，还剩多少个？",
     solve:"✨ 和 Rii 一起解题",
@@ -2548,7 +2198,6 @@ const UI = {
     step:"步骤",
     check:"检查",
     mathDebug:"🔐 ROOT • Math 技术详情",
-
     cameraClosed:"相机尚未打开。",
     cameraLive:"✅ 相机正在工作。",
     cameraSaved:"📸 图片仍已保留。",
@@ -2576,7 +2225,6 @@ const UI = {
     uses:"用途",
     features:"特征",
     detectedText:"检测到的文字",
-
     translatePlaceholder:"说出或输入单词、句子或段落...",
     translateAction:"🌐 翻译",
     translating:"⏳ Rii 正在翻译...",
@@ -2596,17 +2244,14 @@ const UI = {
     translateDetected:"已识别",
     translateTo:"到",
     translationDebug:"🔐 ROOT • Translation 技术详情",
-
     notesPlaceholder:"说出或输入笔记...",
     save:"💾 保存",
     noteReady:"笔记已就绪。",
     saved:"✅ 已保存："
   },
 
-
   ja:{
     ...EN,
-
     tagline:"スマート学習 • 世界を探検",
     ready:"準備完了",
     hero:"こんにちは 👋 今日は何を探検する？",
@@ -2616,29 +2261,22 @@ const UI = {
     robotFuture:"🤖 ロボット • 将来",
     centers:"Rii センター",
     hint:"タップするか機能名を話してね",
-
     math:"算数",
     mathText:"問題を話すか入力すると、Rii が順番に説明します。",
-
     camera:"カメラ AI",
     cameraText:"本物を見て Rii の説明を聞こう。",
-
     translate:"翻訳",
     translateText:"話すか入力すると、Rii が選択中の言語へ翻訳します。",
-
     notes:"メモとアラーム",
     notesText:"メモは利用可能。アラームは次の段階で完成します。",
-
     audio:"🎧 オーディオ",
     audioSystem:"システムに従って自動",
     audioNote:"iPhone/iPad ではスピーカーや Bluetooth は iOS が選択します。",
-
     language:"🌐 言語",
     home:"ホーム",
     back:"← ホーム",
     voice:"🎙 話す",
     speechUnsupported:"このブラウザでは音声認識を利用できません。",
-
     mathIntro:"基本計算はローカル Math Engine を使い AI クォータを消費しません。文章題は Math AI を使います。",
     mathPlaceholder:"例：りんごが12個あり、5個あげました。残りはいくつ？",
     solve:"✨ Rii と解く",
@@ -2655,7 +2293,6 @@ const UI = {
     step:"ステップ",
     check:"確認",
     mathDebug:"🔐 ROOT • Math 技術情報",
-
     cameraClosed:"カメラは閉じています。",
     cameraLive:"✅ カメラ稼働中。",
     cameraSaved:"📸 写真は保存されています。",
@@ -2683,7 +2320,6 @@ const UI = {
     uses:"用途",
     features:"特徴",
     detectedText:"読み取った文字",
-
     translatePlaceholder:"単語、文、文章を話すか入力...",
     translateAction:"🌐 翻訳",
     translating:"⏳ Rii が翻訳しています...",
@@ -2703,17 +2339,14 @@ const UI = {
     translateDetected:"認識",
     translateTo:"から",
     translationDebug:"🔐 ROOT • Translation 技術情報",
-
     notesPlaceholder:"メモを話すか入力...",
     save:"💾 保存",
     noteReady:"メモの準備完了。",
     saved:"✅ 保存しました："
   },
 
-
   ko:{
     ...EN,
-
     tagline:"스마트 학습 • 세상 탐험",
     ready:"준비됨",
     hero:"안녕 👋 오늘 무엇을 탐험할까?",
@@ -2723,29 +2356,22 @@ const UI = {
     robotFuture:"🤖 로봇 • 미래",
     centers:"Rii 센터",
     hint:"누르거나 기능 이름을 말하세요",
-
     math:"수학",
     mathText:"문제를 말하거나 입력하면 Rii가 단계별로 설명해요.",
-
     camera:"카메라 AI",
     cameraText:"실제 물체를 보고 Rii의 설명을 들어요.",
-
     translate:"번역",
     translateText:"말하거나 입력하면 Rii가 선택한 언어로 번역해요.",
-
     notes:"메모 & 알람",
     notesText:"메모는 작동하며 알람은 다음 단계에서 완성합니다.",
-
     audio:"🎧 오디오",
     audioSystem:"시스템 자동 선택",
     audioNote:"iPhone/iPad에서는 스피커나 Bluetooth를 iOS가 선택합니다.",
-
     language:"🌐 언어",
     home:"홈",
     back:"← 홈",
     voice:"🎙 말하기",
     speechUnsupported:"이 브라우저에서는 음성 인식을 지원하지 않습니다.",
-
     mathIntro:"기본 계산은 로컬 Math Engine을 사용해 AI 할당량을 쓰지 않습니다. 문장제는 Math AI를 사용합니다.",
     mathPlaceholder:"예: 사과가 12개 있는데 5개를 주었습니다. 몇 개 남았나요?",
     solve:"✨ Rii와 풀기",
@@ -2762,7 +2388,6 @@ const UI = {
     step:"단계",
     check:"확인",
     mathDebug:"🔐 ROOT • Math 기술 정보",
-
     cameraClosed:"카메라가 꺼져 있습니다.",
     cameraLive:"✅ 카메라가 작동 중입니다.",
     cameraSaved:"📸 사진이 보관되어 있습니다.",
@@ -2790,7 +2415,6 @@ const UI = {
     uses:"용도",
     features:"특징",
     detectedText:"감지된 글자",
-
     translatePlaceholder:"단어, 문장 또는 문단을 말하거나 입력...",
     translateAction:"🌐 번역",
     translating:"⏳ Rii가 번역하고 있어요...",
@@ -2810,17 +2434,14 @@ const UI = {
     translateDetected:"감지됨",
     translateTo:"→",
     translationDebug:"🔐 ROOT • Translation 기술 정보",
-
     notesPlaceholder:"메모를 말하거나 입력...",
     save:"💾 저장",
     noteReady:"메모 준비됨.",
     saved:"✅ 저장됨:"
   },
 
-
   es:{
     ...EN,
-
     tagline:"Aprendizaje inteligente • Explora el mundo",
     ready:"Listo",
     hero:"Hola 👋 ¿Qué quieres explorar hoy?",
@@ -2830,29 +2451,22 @@ const UI = {
     robotFuture:"🤖 Robot • futuro",
     centers:"Centros Rii",
     hint:"Toca o di el nombre de una función",
-
     math:"Matemáticas",
     mathText:"Habla o escribe un problema. Rii lo explica paso a paso.",
-
     camera:"Cámara IA",
     cameraText:"Mira objetos reales y escucha la explicación de Rii.",
-
     translate:"Traducción",
     translateText:"Habla o escribe en un idioma y Rii lo traduce al idioma seleccionado.",
-
     notes:"Notas y alarmas",
     notesText:"Las notas funcionan; las alarmas se completarán en el siguiente paso.",
-
     audio:"🎧 Audio",
     audioSystem:"Ruta automática del sistema",
     audioNote:"En iPhone/iPad, iOS elige altavoz o Bluetooth.",
-
     language:"🌐 Idioma",
     home:"Inicio",
     back:"← Inicio",
     voice:"🎙 Hablar",
     speechUnsupported:"Este navegador no admite reconocimiento de voz.",
-
     mathIntro:"La aritmética básica usa el Math Engine local sin cuota de IA. Los problemas escritos usan Math AI.",
     mathPlaceholder:"Ejemplo: Lan tiene 12 manzanas y regala 5. ¿Cuántas quedan?",
     solve:"✨ Resolver con Rii",
@@ -2869,7 +2483,6 @@ const UI = {
     step:"Paso",
     check:"Comprobación",
     mathDebug:"🔐 ROOT • Detalles técnicos Math",
-
     cameraClosed:"La cámara está cerrada.",
     cameraLive:"✅ Cámara activa.",
     cameraSaved:"📸 La imagen sigue guardada.",
@@ -2897,7 +2510,6 @@ const UI = {
     uses:"Usos",
     features:"Características",
     detectedText:"Texto detectado",
-
     translatePlaceholder:"Habla o escribe una palabra, frase o párrafo...",
     translateAction:"🌐 Traducir",
     translating:"⏳ Rii está traduciendo...",
@@ -2917,17 +2529,14 @@ const UI = {
     translateDetected:"Detectado",
     translateTo:"a",
     translationDebug:"🔐 ROOT • Detalles técnicos Translation",
-
     notesPlaceholder:"Habla o escribe una nota...",
     save:"💾 Guardar",
     noteReady:"Notas listas.",
     saved:"✅ Guardado:"
   },
 
-
   fr:{
     ...EN,
-
     tagline:"Apprentissage intelligent • Explore le monde",
     ready:"Prêt",
     hero:"Bonjour 👋 Que veux-tu explorer aujourd’hui ?",
@@ -2937,29 +2546,22 @@ const UI = {
     robotFuture:"🤖 Robot • futur",
     centers:"Centres Rii",
     hint:"Touchez ou dites le nom d’une fonction",
-
     math:"Maths",
     mathText:"Parle ou écris un problème. Rii l’explique étape par étape.",
-
     camera:"Caméra IA",
     cameraText:"Observe des objets réels et écoute Rii les expliquer.",
-
     translate:"Traduction",
     translateText:"Parle ou écris dans une langue et Rii traduit vers la langue sélectionnée.",
-
     notes:"Notes et alarmes",
     notesText:"Les notes fonctionnent ; les alarmes seront finalisées à l’étape suivante.",
-
     audio:"🎧 Audio",
     audioSystem:"Routage automatique du système",
     audioNote:"Sur iPhone/iPad, iOS choisit le haut-parleur ou le Bluetooth.",
-
     language:"🌐 Langue",
     home:"Accueil",
     back:"← Accueil",
     voice:"🎙 Parler",
     speechUnsupported:"Ce navigateur ne prend pas en charge la reconnaissance vocale.",
-
     mathIntro:"Les calculs de base utilisent le Math Engine local sans quota IA. Les problèmes rédigés utilisent Math AI.",
     mathPlaceholder:"Exemple : Lan a 12 pommes et en donne 5. Combien en reste-t-il ?",
     solve:"✨ Résoudre avec Rii",
@@ -2976,7 +2578,6 @@ const UI = {
     step:"Étape",
     check:"Vérification",
     mathDebug:"🔐 ROOT • Détails techniques Math",
-
     cameraClosed:"La caméra est fermée.",
     cameraLive:"✅ Caméra active.",
     cameraSaved:"📸 L’image est toujours conservée.",
@@ -3004,7 +2605,6 @@ const UI = {
     uses:"Usages",
     features:"Caractéristiques",
     detectedText:"Texte détecté",
-
     translatePlaceholder:"Parle ou écris un mot, une phrase ou un paragraphe...",
     translateAction:"🌐 Traduire",
     translating:"⏳ Rii traduit...",
@@ -3024,17 +2624,14 @@ const UI = {
     translateDetected:"Détecté",
     translateTo:"vers",
     translationDebug:"🔐 ROOT • Détails techniques Translation",
-
     notesPlaceholder:"Parle ou écris une note...",
     save:"💾 Enregistrer",
     noteReady:"Notes prêtes.",
     saved:"✅ Enregistré :"
   },
 
-
   de:{
     ...EN,
-
     tagline:"Intelligent lernen • Die Welt entdecken",
     ready:"Bereit",
     hero:"Hallo 👋 Was möchtest du heute entdecken?",
@@ -3044,29 +2641,22 @@ const UI = {
     robotFuture:"🤖 Roboter • Zukunft",
     centers:"Rii-Zentren",
     hint:"Tippe oder sage den Namen einer Funktion",
-
     math:"Mathe",
     mathText:"Sprich oder tippe eine Aufgabe. Rii erklärt sie Schritt für Schritt.",
-
     camera:"Kamera-KI",
     cameraText:"Sieh echte Dinge an und lass Rii sie erklären.",
-
     translate:"Übersetzen",
     translateText:"Sprich oder tippe in einer Sprache und Rii übersetzt in die ausgewählte Sprache.",
-
     notes:"Notizen & Alarme",
     notesText:"Notizen funktionieren; Alarme werden im nächsten Schritt fertiggestellt.",
-
     audio:"🎧 Audio",
     audioSystem:"Automatische Systemausgabe",
     audioNote:"Auf iPhone/iPad wählt iOS Lautsprecher oder Bluetooth.",
-
     language:"🌐 Sprache",
     home:"Start",
     back:"← Start",
     voice:"🎙 Sprechen",
     speechUnsupported:"Dieser Browser unterstützt keine Spracherkennung.",
-
     mathIntro:"Grundrechenarten laufen lokal ohne KI-Kontingent. Textaufgaben nutzen Math AI.",
     mathPlaceholder:"Beispiel: Lan hat 12 Äpfel und gibt 5 weg. Wie viele bleiben?",
     solve:"✨ Mit Rii lösen",
@@ -3083,7 +2673,6 @@ const UI = {
     step:"Schritt",
     check:"Prüfung",
     mathDebug:"🔐 ROOT • Math-Technikdetails",
-
     cameraClosed:"Kamera ist geschlossen.",
     cameraLive:"✅ Kamera ist aktiv.",
     cameraSaved:"📸 Das Bild bleibt gespeichert.",
@@ -3111,7 +2700,6 @@ const UI = {
     uses:"Verwendung",
     features:"Merkmale",
     detectedText:"Erkannter Text",
-
     translatePlaceholder:"Wort, Satz oder Absatz sprechen oder eingeben...",
     translateAction:"🌐 Übersetzen",
     translating:"⏳ Rii übersetzt...",
@@ -3131,17 +2719,14 @@ const UI = {
     translateDetected:"Erkannt",
     translateTo:"nach",
     translationDebug:"🔐 ROOT • Translation-Technikdetails",
-
     notesPlaceholder:"Notiz sprechen oder eingeben...",
     save:"💾 Speichern",
     noteReady:"Notizen bereit.",
     saved:"✅ Gespeichert:"
   },
 
-
   pt:{
     ...EN,
-
     tagline:"Aprendizado inteligente • Explore o mundo",
     ready:"Pronto",
     hero:"Olá 👋 O que você quer explorar hoje?",
@@ -3151,29 +2736,22 @@ const UI = {
     robotFuture:"🤖 Robô • futuro",
     centers:"Centros Rii",
     hint:"Toque ou diga o nome de uma função",
-
     math:"Matemática",
     mathText:"Fale ou digite um problema. Rii explica passo a passo.",
-
     camera:"Câmera IA",
     cameraText:"Veja objetos reais e ouça Rii explicar.",
-
     translate:"Tradução",
     translateText:"Fale ou digite em um idioma e Rii traduz para o idioma selecionado.",
-
     notes:"Notas e alarmes",
     notesText:"As notas funcionam; os alarmes serão concluídos na próxima etapa.",
-
     audio:"🎧 Áudio",
     audioSystem:"Rota automática do sistema",
     audioNote:"No iPhone/iPad, o iOS escolhe alto-falante ou Bluetooth.",
-
     language:"🌐 Idioma",
     home:"Início",
     back:"← Início",
     voice:"🎙 Falar",
     speechUnsupported:"Este navegador não oferece suporte ao reconhecimento de voz.",
-
     mathIntro:"Aritmética básica usa o Math Engine local sem cota de IA. Problemas em texto usam Math AI.",
     mathPlaceholder:"Exemplo: Lan tem 12 maçãs e dá 5. Quantas restam?",
     solve:"✨ Resolver com Rii",
@@ -3190,7 +2768,6 @@ const UI = {
     step:"Passo",
     check:"Verificação",
     mathDebug:"🔐 ROOT • Detalhes técnicos Math",
-
     cameraClosed:"Câmera fechada.",
     cameraLive:"✅ Câmera ativa.",
     cameraSaved:"📸 A imagem continua salva.",
@@ -3218,7 +2795,6 @@ const UI = {
     uses:"Usos",
     features:"Características",
     detectedText:"Texto detectado",
-
     translatePlaceholder:"Fale ou digite uma palavra, frase ou parágrafo...",
     translateAction:"🌐 Traduzir",
     translating:"⏳ Rii está traduzindo...",
@@ -3238,17 +2814,14 @@ const UI = {
     translateDetected:"Detectado",
     translateTo:"para",
     translationDebug:"🔐 ROOT • Detalhes técnicos Translation",
-
     notesPlaceholder:"Fale ou digite uma nota...",
     save:"💾 Salvar",
     noteReady:"Notas prontas.",
     saved:"✅ Salvo:"
   },
 
-
   it:{
     ...EN,
-
     tagline:"Apprendimento intelligente • Esplora il mondo",
     ready:"Pronto",
     hero:"Ciao 👋 Cosa vuoi esplorare oggi?",
@@ -3258,29 +2831,22 @@ const UI = {
     robotFuture:"🤖 Robot • futuro",
     centers:"Centri Rii",
     hint:"Tocca o pronuncia il nome di una funzione",
-
     math:"Matematica",
     mathText:"Parla o scrivi un problema. Rii lo spiega passo dopo passo.",
-
     camera:"Fotocamera IA",
     cameraText:"Guarda oggetti reali e ascolta Rii spiegarli.",
-
     translate:"Traduzione",
     translateText:"Parla o scrivi in una lingua e Rii traduce nella lingua selezionata.",
-
     notes:"Note e sveglie",
     notesText:"Le note funzionano; le sveglie saranno completate nel prossimo passaggio.",
-
     audio:"🎧 Audio",
     audioSystem:"Percorso automatico di sistema",
     audioNote:"Su iPhone/iPad, iOS sceglie altoparlante o Bluetooth.",
-
     language:"🌐 Lingua",
     home:"Home",
     back:"← Home",
     voice:"🎙 Parla",
     speechUnsupported:"Questo browser non supporta il riconoscimento vocale.",
-
     mathIntro:"L'aritmetica di base usa il Math Engine locale senza quota IA. I problemi testuali usano Math AI.",
     mathPlaceholder:"Esempio: Lan ha 12 mele e ne dà 5. Quante ne restano?",
     solve:"✨ Risolvi con Rii",
@@ -3297,7 +2863,6 @@ const UI = {
     step:"Passo",
     check:"Verifica",
     mathDebug:"🔐 ROOT • Dettagli tecnici Math",
-
     cameraClosed:"Fotocamera chiusa.",
     cameraLive:"✅ Fotocamera attiva.",
     cameraSaved:"📸 L'immagine è ancora salvata.",
@@ -3325,7 +2890,6 @@ const UI = {
     uses:"Usi",
     features:"Caratteristiche",
     detectedText:"Testo rilevato",
-
     translatePlaceholder:"Parla o scrivi una parola, frase o paragrafo...",
     translateAction:"🌐 Traduci",
     translating:"⏳ Rii sta traducendo...",
@@ -3345,17 +2909,14 @@ const UI = {
     translateDetected:"Rilevato",
     translateTo:"verso",
     translationDebug:"🔐 ROOT • Dettagli tecnici Translation",
-
     notesPlaceholder:"Parla o scrivi una nota...",
     save:"💾 Salva",
     noteReady:"Note pronte.",
     saved:"✅ Salvato:"
   },
 
-
   th:{
     ...EN,
-
     tagline:"เรียนรู้อย่างชาญฉลาด • สำรวจโลก",
     ready:"พร้อม",
     hero:"สวัสดี 👋 วันนี้อยากสำรวจอะไร?",
@@ -3365,29 +2926,22 @@ const UI = {
     robotFuture:"🤖 หุ่นยนต์ • อนาคต",
     centers:"ศูนย์ Rii",
     hint:"แตะหรือพูดชื่อฟังก์ชัน",
-
     math:"คณิตศาสตร์",
     mathText:"พูดหรือพิมพ์โจทย์ แล้ว Rii จะอธิบายทีละขั้น",
-
     camera:"กล้อง AI",
     cameraText:"ดูสิ่งของจริงแล้วฟัง Rii อธิบาย",
-
     translate:"แปลภาษา",
     translateText:"พูดหรือพิมพ์ภาษาใดก็ได้ แล้ว Rii จะแปลเป็นภาษาที่เลือก",
-
     notes:"โน้ตและนาฬิกาปลุก",
     notesText:"โน้ตใช้งานได้แล้ว ส่วนนาฬิกาปลุกจะทำให้เสร็จในขั้นถัดไป",
-
     audio:"🎧 เสียง",
     audioSystem:"เลือกเส้นทางเสียงโดยระบบอัตโนมัติ",
     audioNote:"บน iPhone/iPad ระบบ iOS เป็นผู้เลือกลำโพงหรือ Bluetooth",
-
     language:"🌐 ภาษา",
     home:"หน้าแรก",
     back:"← หน้าแรก",
     voice:"🎙 พูด",
     speechUnsupported:"เบราว์เซอร์นี้ยังไม่รองรับการรู้จำเสียงพูด",
-
     mathIntro:"เลขคณิตพื้นฐานใช้ Math Engine ในเครื่องโดยไม่ใช้โควตา AI ส่วนโจทย์ข้อความใช้ Math AI",
     mathPlaceholder:"ตัวอย่าง: Lan มีแอปเปิล 12 ลูก ให้เพื่อนไป 5 ลูก เหลือกี่ลูก?",
     solve:"✨ แก้กับ Rii",
@@ -3404,7 +2958,6 @@ const UI = {
     step:"ขั้น",
     check:"ตรวจสอบ",
     mathDebug:"🔐 ROOT • รายละเอียดเทคนิค Math",
-
     cameraClosed:"กล้องยังไม่เปิด",
     cameraLive:"✅ กล้องกำลังทำงาน",
     cameraSaved:"📸 รูปยังถูกเก็บไว้",
@@ -3432,7 +2985,6 @@ const UI = {
     uses:"การใช้งาน",
     features:"ลักษณะ",
     detectedText:"ข้อความที่ตรวจพบ",
-
     translatePlaceholder:"พูดหรือพิมพ์คำ ประโยค หรือย่อหน้า...",
     translateAction:"🌐 แปล",
     translating:"⏳ Rii กำลังแปล...",
@@ -3452,17 +3004,14 @@ const UI = {
     translateDetected:"ตรวจพบ",
     translateTo:"ไปยัง",
     translationDebug:"🔐 ROOT • รายละเอียดเทคนิค Translation",
-
     notesPlaceholder:"พูดหรือพิมพ์โน้ต...",
     save:"💾 บันทึก",
     noteReady:"โน้ตพร้อมใช้งาน",
     saved:"✅ บันทึกแล้ว:"
   },
 
-
   id:{
     ...EN,
-
     tagline:"Belajar cerdas • Jelajahi dunia",
     ready:"Siap",
     hero:"Halo 👋 Apa yang ingin kamu jelajahi hari ini?",
@@ -3472,29 +3021,22 @@ const UI = {
     robotFuture:"🤖 Robot • masa depan",
     centers:"Pusat Rii",
     hint:"Ketuk atau ucapkan nama fitur",
-
     math:"Matematika",
     mathText:"Ucapkan atau ketik soal. Rii menjelaskan langkah demi langkah.",
-
     camera:"Kamera AI",
     cameraText:"Lihat benda nyata dan dengarkan penjelasan Rii.",
-
     translate:"Terjemahan",
     translateText:"Ucapkan atau ketik dalam bahasa apa pun dan Rii menerjemahkan ke bahasa yang dipilih.",
-
     notes:"Catatan & Alarm",
     notesText:"Catatan sudah berfungsi; alarm akan diselesaikan pada langkah berikutnya.",
-
     audio:"🎧 Audio",
     audioSystem:"Rute sistem otomatis",
     audioNote:"Di iPhone/iPad, iOS memilih speaker atau Bluetooth.",
-
     language:"🌐 Bahasa",
     home:"Beranda",
     back:"← Beranda",
     voice:"🎙 Bicara",
     speechUnsupported:"Browser ini belum mendukung pengenalan suara.",
-
     mathIntro:"Aritmetika dasar memakai Math Engine lokal tanpa kuota AI. Soal cerita memakai Math AI.",
     mathPlaceholder:"Contoh: Lan punya 12 apel dan memberikan 5. Berapa yang tersisa?",
     solve:"✨ Selesaikan dengan Rii",
@@ -3511,7 +3053,6 @@ const UI = {
     step:"Langkah",
     check:"Periksa",
     mathDebug:"🔐 ROOT • Detail teknis Math",
-
     cameraClosed:"Kamera tertutup.",
     cameraLive:"✅ Kamera aktif.",
     cameraSaved:"📸 Gambar masih tersimpan.",
@@ -3539,7 +3080,6 @@ const UI = {
     uses:"Kegunaan",
     features:"Ciri",
     detectedText:"Teks terdeteksi",
-
     translatePlaceholder:"Ucapkan atau ketik kata, kalimat, atau paragraf...",
     translateAction:"🌐 Terjemahkan",
     translating:"⏳ Rii sedang menerjemahkan...",
@@ -3559,7 +3099,6 @@ const UI = {
     translateDetected:"Terdeteksi",
     translateTo:"ke",
     translationDebug:"🔐 ROOT • Detail teknis Translation",
-
     notesPlaceholder:"Ucapkan atau ketik catatan...",
     save:"💾 Simpan",
     noteReady:"Catatan siap.",
@@ -3568,22 +3107,15 @@ const UI = {
 
 };
 
-
-/* =====================================================
-   LANGUAGE SAFETY
-===================================================== */
-
 const ALL_KEYS =
   Object.keys(
     EN
   );
 
-
 function validateLanguageDictionaries(){
 
   const errors =
     [];
-
 
   for(
     const language
@@ -3594,7 +3126,6 @@ function validateLanguageDictionaries(){
       UI[
         language.code
       ];
-
 
     if(
       !dictionary
@@ -3609,7 +3140,6 @@ function validateLanguageDictionaries(){
       continue;
     }
 
-
     const missingKeys =
       ALL_KEYS.filter(
         key =>
@@ -3617,7 +3147,6 @@ function validateLanguageDictionaries(){
           !==
           "string"
       );
-
 
     if(
       missingKeys.length
@@ -3633,7 +3162,6 @@ function validateLanguageDictionaries(){
     }
   }
 
-
   if(
     errors.length
   ){
@@ -3645,58 +3173,38 @@ function validateLanguageDictionaries(){
     );
   }
 
-
   return true;
 }
-
-
-/* =====================================================
-   STATE
-===================================================== */
 
 let currentCenter =
   null;
 
-
 let cameraStream =
   null;
-
 
 let recognition =
   null;
 
-
 let capturedFrameReady =
   false;
-
 
 let latestVisionResult =
   null;
 
-
 let latestMathResult =
   null;
-
 
 let latestTranslationResult =
   null;
 
-
 let visionBusy =
   false;
-
 
 let mathBusy =
   false;
 
-
 let translationBusy =
   false;
-
-
-/* =====================================================
-   HELPERS
-===================================================== */
 
 function el(
   id
@@ -3706,7 +3214,6 @@ function el(
     id
   );
 }
-
 
 function setText(
   id,
@@ -3718,7 +3225,6 @@ function setText(
       id
     );
 
-
   if(
     node
   ){
@@ -3728,14 +3234,12 @@ function setText(
   }
 }
 
-
 function currentLanguage(){
 
   const savedCode =
     localStorage.getItem(
       LANGUAGE_KEY
     );
-
 
   const valid =
     languages.some(
@@ -3744,14 +3248,12 @@ function currentLanguage(){
         savedCode
     );
 
-
   const code =
     valid
       ?
       savedCode
       :
       "vi";
-
 
   return (
     languages.find(
@@ -3763,7 +3265,6 @@ function currentLanguage(){
     languages[0]
   );
 }
-
 
 function languageByCode(
   code
@@ -3780,7 +3281,6 @@ function languageByCode(
   );
 }
 
-
 function text(){
 
   return (
@@ -3792,7 +3292,6 @@ function text(){
     EN
   );
 }
-
 
 function escapeHtml(
   value
@@ -3824,15 +3323,9 @@ function escapeHtml(
     );
 }
 
-
-/* =====================================================
-   BOOT VALIDATION
-===================================================== */
-
 function validateBoot(){
 
   validateLanguageDictionaries();
-
 
   const requiredIds = [
 
@@ -3877,13 +3370,11 @@ function validateBoot(){
 
   ];
 
-
   const missing =
     requiredIds.filter(
       id =>
         !el(id)
     );
-
 
   if(
     missing.length
@@ -3896,10 +3387,8 @@ function validateBoot(){
     );
   }
 
-
   return true;
 }
-
 
 function showBootError(
   error
@@ -3910,14 +3399,12 @@ function showBootError(
       "bootError"
     );
 
-
   if(
     !node
   ){
 
     return;
   }
-
 
   node.textContent =
     "❌ Rii UI boot error: "
@@ -3927,7 +3414,6 @@ function showBootError(
       error
     );
 
-
   node
     .classList
     .add(
@@ -3935,121 +3421,107 @@ function showBootError(
     );
 }
 
+function resetTranslationViewForLanguageChange(){
 
-/* =====================================================
-   RENDER
-===================================================== */
+  latestTranslationResult =
+    null;
+
+  setText(
+    "translateResult",
+    ""
+  );
+
+  setText(
+    "translationMeta",
+    ""
+  );
+
+  el(
+    "translationOutput"
+  )
+    .classList
+    .remove(
+      "show"
+    );
+
+  el(
+    "translateSpeakButton"
+  )
+    .disabled =
+    true;
+
+  el(
+    "translationDebug"
+  )
+    .classList
+    .add(
+      "hidden"
+    );
+
+  const language =
+    currentLanguage();
+
+  setText(
+    "translateSourceValue",
+    text().translateAuto
+  );
+
+  setText(
+    "translateTargetValue",
+    language.flag
+    +
+    " "
+    +
+    language.name
+  );
+}
 
 function render(){
 
   const x =
     text();
 
-
   const language =
     currentLanguage();
-
 
   document
     .documentElement
     .lang =
     language.code;
 
-
   const map = {
 
-    tagline:
-      "tagline",
-
-    readyText:
-      "ready",
-
-    heroTitle:
-      "hero",
-
-    heroText:
-      "heroText",
-
-    identityLabel:
-      "identity",
-
-    rootText:
-      "root",
-
-    robotFuture:
-      "robotFuture",
-
-    centerTitle:
-      "centers",
-
-    centerHint:
-      "hint",
-
-    mathTitle:
-      "math",
-
-    mathText:
-      "mathText",
-
-    cameraTitle:
-      "camera",
-
-    cameraText:
-      "cameraText",
-
-    translateTitle:
-      "translate",
-
-    translateText:
-      "translateText",
-
-    notesTitle:
-      "notes",
-
-    notesText:
-      "notesText",
-
-    audioTitle:
-      "audio",
-
-    audioSystemOption:
-      "audioSystem",
-
-    audioNote:
-      "audioNote",
-
-    languagePanelTitle:
-      "language",
-
-    quickMath:
-      "math",
-
-    quickCamera:
-      "camera",
-
-    quickTranslate:
-      "translate",
-
-    quickNotes:
-      "notes",
-
-    quickHome:
-      "home",
-
-    quickLanguage:
-      "language",
-
-    backButton:
-      "back",
-
-    mathCenterTitle:
-      "math",
-
-    mathIntro:
-      "mathIntro",
-
-    mathVoiceButton:
-      "voice",
+    tagline:"tagline",
+    readyText:"ready",
+    heroTitle:"hero",
+    heroText:"heroText",
+    identityLabel:"identity",
+    rootText:"root",
+    robotFuture:"robotFuture",
+    centerTitle:"centers",
+    centerHint:"hint",
+    mathTitle:"math",
+    mathText:"mathText",
+    cameraTitle:"camera",
+    cameraText:"cameraText",
+    translateTitle:"translate",
+    translateText:"translateText",
+    notesTitle:"notes",
+    notesText:"notesText",
+    audioTitle:"audio",
+    audioSystemOption:"audioSystem",
+    audioNote:"audioNote",
+    languagePanelTitle:"language",
+    quickMath:"math",
+    quickCamera:"camera",
+    quickTranslate:"translate",
+    quickNotes:"notes",
+    quickHome:"home",
+    quickLanguage:"language",
+    backButton:"back",
+    mathCenterTitle:"math",
+    mathIntro:"mathIntro",
+    mathVoiceButton:"voice",
 
     mathSolveButton:
       mathBusy
@@ -4058,20 +3530,11 @@ function render(){
         :
         "solve",
 
-    mathTestButton:
-      "test",
-
-    mathSpeakButton:
-      "listenSolution",
-
-    mathDebugSummary:
-      "mathDebug",
-
-    cameraCenterTitle:
-      "camera",
-
-    cameraOpenButton:
-      "openCamera",
+    mathTestButton:"test",
+    mathSpeakButton:"listenSolution",
+    mathDebugSummary:"mathDebug",
+    cameraCenterTitle:"camera",
+    cameraOpenButton:"openCamera",
 
     captureButton:
       visionBusy
@@ -4080,29 +3543,14 @@ function render(){
         :
         "capture",
 
-    cameraAskButton:
-      "askRii",
-
-    visionSpeakButton:
-      "listenRii",
-
-    visionRetryButton:
-      "retryVision",
-
-    otherObjectButton:
-      "otherObject",
-
-    visionAnalyzeAgainButton:
-      "analyzeAgain",
-
-    visionDebugSummary:
-      "visionDebug",
-
-    translateCenterTitle:
-      "translate",
-
-    translateVoiceButton:
-      "voice",
+    cameraAskButton:"askRii",
+    visionSpeakButton:"listenRii",
+    visionRetryButton:"retryVision",
+    otherObjectButton:"otherObject",
+    visionAnalyzeAgainButton:"analyzeAgain",
+    visionDebugSummary:"visionDebug",
+    translateCenterTitle:"translate",
+    translateVoiceButton:"voice",
 
     translateActionButton:
       translationBusy
@@ -4111,34 +3559,16 @@ function render(){
         :
         "translateAction",
 
-    translateSpeakButton:
-      "translateListen",
-
-    translateClearButton:
-      "translateClear",
-
-    translateSourceLabel:
-      "translateSource",
-
-    translateTargetLabel:
-      "translateTarget",
-
-    translationOutputLabel:
-      "translateOutput",
-
-    translationDebugSummary:
-      "translationDebug",
-
-    notesCenterTitle:
-      "notes",
-
-    notesVoiceButton:
-      "voice",
-
-    notesSaveButton:
-      "save"
+    translateSpeakButton:"translateListen",
+    translateClearButton:"translateClear",
+    translateSourceLabel:"translateSource",
+    translateTargetLabel:"translateTarget",
+    translationOutputLabel:"translateOutput",
+    translationDebugSummary:"translationDebug",
+    notesCenterTitle:"notes",
+    notesVoiceButton:"voice",
+    notesSaveButton:"save"
   };
-
 
   for(
     const [
@@ -4160,13 +3590,11 @@ function render(){
     );
   }
 
-
   el(
     "mathInput"
   )
     .placeholder =
     x.mathPlaceholder;
-
 
   el(
     "cameraQuestion"
@@ -4174,13 +3602,11 @@ function render(){
     .placeholder =
     x.cameraPlaceholder;
 
-
   el(
     "translateInput"
   )
     .placeholder =
     x.translatePlaceholder;
-
 
   el(
     "notesInput"
@@ -4188,41 +3614,35 @@ function render(){
     .placeholder =
     x.notesPlaceholder;
 
-
   el(
     "capturedImage"
   )
     .alt =
     x.cameraSaved;
 
-
-  setText(
-    "translateSourceValue",
-    x.translateAuto
-  );
-
-
-  setText(
-    "translateTargetValue",
-
-    language.flag
-    +
-    " "
-    +
-    language.name
-  );
-
-
   if(
     !latestTranslationResult
   ){
+
+    setText(
+      "translateSourceValue",
+      x.translateAuto
+    );
+
+    setText(
+      "translateTargetValue",
+      language.flag
+      +
+      " "
+      +
+      language.name
+    );
 
     showTranslationStatus(
       x.translateReady,
       "normal"
     );
   }
-
 
   if(
     !el(
@@ -4238,7 +3658,6 @@ function render(){
     );
   }
 
-
   if(
     !isCameraLive()
     &&
@@ -4250,7 +3669,6 @@ function render(){
       x.cameraClosed
     );
   }
-
 
   document
     .querySelectorAll(
@@ -4271,18 +3689,14 @@ function render(){
             )
             .join("");
 
-
         select.value =
           language.code;
       }
     );
 
-
   renderLanguageList();
 
-
   updateScreenTitle();
-
 
   if(
     latestMathResult
@@ -4293,7 +3707,6 @@ function render(){
     );
   }
 
-
   if(
     latestVisionResult
   ){
@@ -4302,7 +3715,6 @@ function render(){
       latestVisionResult
     );
   }
-
 
   if(
     latestTranslationResult
@@ -4313,7 +3725,6 @@ function render(){
     );
   }
 }
-
 
 window.setLanguage =
 function(
@@ -4327,7 +3738,6 @@ function(
         code
     );
 
-
   if(
     !valid
   ){
@@ -4335,26 +3745,39 @@ function(
     return;
   }
 
+  const oldCode =
+    currentLanguage()
+      .code;
+
+  if(
+    oldCode ===
+    code
+  ){
+
+    render();
+
+    return;
+  }
 
   localStorage.setItem(
     LANGUAGE_KEY,
     code
   );
 
+  if(
+    latestTranslationResult
+  ){
+
+    resetTranslationViewForLanguageChange();
+  }
 
   render();
 };
-
-
-/* =====================================================
-   LANGUAGE MENU
-===================================================== */
 
 function renderLanguageList(){
 
   const current =
     currentLanguage();
-
 
   el(
     "languageList"
@@ -4388,12 +3811,10 @@ function renderLanguageList(){
       .join("");
 }
 
-
 window.openLanguage =
 function(){
 
   renderLanguageList();
-
 
   el(
     "languageOverlay"
@@ -4403,7 +3824,6 @@ function(){
       "open"
     );
 };
-
 
 window.closeLanguage =
 function(){
@@ -4417,7 +3837,6 @@ function(){
     );
 };
 
-
 window.openLanguageFromQuick =
 function(){
 
@@ -4425,11 +3844,6 @@ function(){
 
   openLanguage();
 };
-
-
-/* =====================================================
-   SPEECH
-===================================================== */
 
 function speak(
   value,
@@ -4444,7 +3858,6 @@ function speak(
     )
       .trim();
 
-
   if(
     !message
     ||
@@ -4457,12 +3870,10 @@ function speak(
     return;
   }
 
-
   const utterance =
     new SpeechSynthesisUtterance(
       message
     );
-
 
   utterance.lang =
     localeOverride
@@ -4470,26 +3881,21 @@ function speak(
     currentLanguage()
       .locale;
 
-
   utterance.rate =
     .9;
 
-
   speechSynthesis.cancel();
-
 
   speechSynthesis.speak(
     utterance
   );
 }
 
-
 window.speakHome =
 function(){
 
   const x =
     text();
-
 
   speak(
     [
@@ -4505,28 +3911,18 @@ function(){
   );
 };
 
-
 window.speakCenter =
 function(){
 
   const x =
     text();
 
-
   speak(
     {
-      math:
-        x.math,
-
-      camera:
-        x.camera,
-
-      translate:
-        x.translate,
-
-      notes:
-        x.notes
-
+      math:x.math,
+      camera:x.camera,
+      translate:x.translate,
+      notes:x.notes
     }[
       currentCenter
     ]
@@ -4534,11 +3930,6 @@ function(){
     x.centers
   );
 };
-
-
-/* =====================================================
-   SPEECH INPUT
-===================================================== */
 
 function recognitionClass(){
 
@@ -4549,7 +3940,6 @@ function recognitionClass(){
   );
 }
 
-
 function startRecognition(
   targetId =
   null
@@ -4557,7 +3947,6 @@ function startRecognition(
 
   const C =
     recognitionClass();
-
 
   if(
     !C
@@ -4570,35 +3959,27 @@ function startRecognition(
     return;
   }
 
-
   if(
     recognition
   ){
 
     try{
-
       recognition.stop();
-
     }catch{}
   }
 
-
   recognition =
     new C();
-
 
   recognition.lang =
     currentLanguage()
       .locale;
 
-
   recognition.continuous =
     false;
 
-
   recognition.interimResults =
     false;
-
 
   recognition.onresult =
     event => {
@@ -4608,7 +3989,6 @@ function startRecognition(
           .results[0][0]
           .transcript;
 
-
       if(
         targetId
       ){
@@ -4617,7 +3997,6 @@ function startRecognition(
           el(
             targetId
           );
-
 
         if(
           target
@@ -4635,17 +4014,14 @@ function startRecognition(
       }
     };
 
-
   recognition.start();
 }
-
 
 window.listenCommand =
 function(){
 
   startRecognition();
 };
-
 
 window.speechInto =
 function(
@@ -4657,7 +4033,6 @@ function(
   );
 };
 
-
 function handleVoiceCommand(
   value
 ){
@@ -4668,7 +4043,6 @@ function handleVoiceCommand(
       ""
     )
       .toLowerCase();
-
 
   if(
     /camera|máy ảnh|カメラ|相机|카메라|cámara|caméra|kamera|fotocamera|กล้อง/
@@ -4684,7 +4058,6 @@ function handleVoiceCommand(
     return;
   }
 
-
   if(
     /math|toán|数学|算数|수학|matemáticas|maths|mathe|matemática|matematica|คณิต|matematika/
       .test(
@@ -4698,7 +4071,6 @@ function handleVoiceCommand(
 
     return;
   }
-
 
   if(
     /translate|translation|language|dịch|phiên dịch|ngôn ngữ|翻译|翻訳|번역|idioma|traduc|langue|tradu|übersetz|lingua|traduz|traduc|ภาษา|แปล|bahasa|terjemah/
@@ -4714,7 +4086,6 @@ function handleVoiceCommand(
     return;
   }
 
-
   if(
     /note|alarm|ghi chú|báo thức|メモ|アラーム|메모|알람|nota|alarma|note|alarme|notiz|โน้ต|catatan/
       .test(
@@ -4729,16 +4100,10 @@ function handleVoiceCommand(
     return;
   }
 
-
   speak(
     value
   );
 }
-
-
-/* =====================================================
-   CENTERS
-===================================================== */
 
 window.openCenter =
 function(
@@ -4760,10 +4125,8 @@ function(
     return;
   }
 
-
   currentCenter =
     name;
-
 
   [
     "math",
@@ -4787,7 +4150,6 @@ function(
       }
     );
 
-
   el(
     "centerScreen"
   )
@@ -4796,13 +4158,10 @@ function(
       "open"
     );
 
-
   document.body.style.overflow =
     "hidden";
 
-
   updateScreenTitle();
-
 
   if(
     name ===
@@ -4816,7 +4175,6 @@ function(
   }
 };
 
-
 function updateScreenTitle(){
 
   if(
@@ -4826,27 +4184,17 @@ function updateScreenTitle(){
     return;
   }
 
-
   const x =
     text();
-
 
   setText(
     "screenTitle",
 
     {
-      math:
-        x.math,
-
-      camera:
-        x.camera,
-
-      translate:
-        x.translate,
-
-      notes:
-        x.notes
-
+      math:x.math,
+      camera:x.camera,
+      translate:x.translate,
+      notes:x.notes
     }[
       currentCenter
     ]
@@ -4855,12 +4203,10 @@ function updateScreenTitle(){
   );
 }
 
-
 window.closeCenter =
 function(){
 
   stopCamera();
-
 
   el(
     "centerScreen"
@@ -4870,19 +4216,12 @@ function(){
       "open"
     );
 
-
   document.body.style.overflow =
     "";
-
 
   currentCenter =
     null;
 };
-
-
-/* =====================================================
-   MATH
-===================================================== */
 
 function showMathStatus(
   message,
@@ -4895,10 +4234,8 @@ function showMathStatus(
       "mathStatus"
     );
 
-
   node.textContent =
     message;
-
 
   node.className =
     "math-status show"
@@ -4912,7 +4249,6 @@ function showMathStatus(
     );
 }
 
-
 function hideMathStatus(){
 
   el(
@@ -4922,7 +4258,6 @@ function hideMathStatus(){
     "math-status";
 }
 
-
 function setMathBusy(
   busy
 ){
@@ -4930,13 +4265,11 @@ function setMathBusy(
   mathBusy =
     busy;
 
-
   el(
     "mathSolveButton"
   )
     .disabled =
     busy;
-
 
   setText(
     "mathSolveButton",
@@ -4949,7 +4282,6 @@ function setMathBusy(
   );
 }
 
-
 window.setMathExample =
 function(){
 
@@ -4959,10 +4291,8 @@ function(){
     .value =
     "8 × 7";
 
-
   solveMathNow();
 };
-
 
 window.solveMathNow =
 async function(){
@@ -4974,7 +4304,6 @@ async function(){
     return;
   }
 
-
   const problem =
     el(
       "mathInput"
@@ -4982,10 +4311,8 @@ async function(){
       .value
       .trim();
 
-
   const x =
     text();
-
 
   if(
     !problem
@@ -4998,7 +4325,6 @@ async function(){
 
     return;
   }
-
 
   if(
     !window.RiiWorkerClientV2
@@ -5017,14 +4343,11 @@ async function(){
     return;
   }
 
-
   setMathBusy(
     true
   );
 
-
   hideMathStatus();
-
 
   el(
     "mathCard"
@@ -5034,7 +4357,6 @@ async function(){
       "show"
     );
 
-
   el(
     "mathDebug"
   )
@@ -5043,12 +4365,10 @@ async function(){
       "hidden"
     );
 
-
   try{
 
     const language =
       currentLanguage();
-
 
     const result =
       await window
@@ -5066,15 +4386,12 @@ async function(){
           }
         );
 
-
     latestMathResult =
       result;
-
 
     renderMath(
       result
     );
-
 
     showMathStatus(
 
@@ -5085,9 +4402,7 @@ async function(){
         x.mathLocal
     );
 
-
     speakMath();
-
 
   }catch(error){
 
@@ -5113,7 +4428,6 @@ async function(){
           "CLIENT_ERROR"
       };
 
-
     el(
       "mathDebugText"
     )
@@ -5124,7 +4438,6 @@ async function(){
         2
       );
 
-
     el(
       "mathDebug"
     )
@@ -5132,7 +4445,6 @@ async function(){
       .remove(
         "hidden"
       );
-
 
     const quota =
       formatted.code ===
@@ -5143,7 +4455,6 @@ async function(){
         .test(
           formatted.message
         );
-
 
     showMathStatus(
 
@@ -5158,7 +4469,6 @@ async function(){
       true
     );
 
-
   }finally{
 
     setMathBusy(
@@ -5167,14 +4477,12 @@ async function(){
   }
 };
 
-
 function renderMath(
   result
 ){
 
   const x =
     text();
-
 
   setText(
     "mathAnswer",
@@ -5202,7 +4510,6 @@ function renderMath(
       ": —"
   );
 
-
   setText(
     "mathExplanation",
 
@@ -5220,7 +4527,6 @@ function renderMath(
         ""
       )
   );
-
 
   el(
     "mathSteps"
@@ -5258,12 +4564,10 @@ function renderMath(
       )
       .join("");
 
-
   const check =
     el(
       "mathCheck"
     );
-
 
   if(
     result.check
@@ -5277,7 +4581,6 @@ function renderMath(
       ": "
       +
       result.check;
-
 
     check
       .classList
@@ -5293,7 +4596,6 @@ function renderMath(
         "hidden"
       );
   }
-
 
   setText(
     "mathMeta",
@@ -5325,7 +4627,6 @@ function renderMath(
       )
   );
 
-
   el(
     "mathCard"
   )
@@ -5334,14 +4635,12 @@ function renderMath(
       "show"
     );
 
-
   el(
     "mathSpeakButton"
   )
     .disabled =
     false;
 }
-
 
 window.speakMath =
 function(){
@@ -5353,14 +4652,11 @@ function(){
     return;
   }
 
-
   const result =
     latestMathResult;
 
-
   const x =
     text();
-
 
   speak(
 
@@ -5408,18 +4704,12 @@ function(){
   );
 };
 
-
-/* =====================================================
-   CAMERA
-===================================================== */
-
 function isCameraLive(){
 
   const video =
     el(
       "cameraVideo"
     );
-
 
   return Boolean(
 
@@ -5442,14 +4732,12 @@ function isCameraLive(){
   );
 }
 
-
 function hasCapturedFrame(){
 
   const canvas =
     el(
       "cameraCanvas"
     );
-
 
   return Boolean(
 
@@ -5465,7 +4753,6 @@ function hasCapturedFrame(){
   );
 }
 
-
 window.startCamera =
 async function(){
 
@@ -5473,17 +4760,13 @@ async function(){
 
     stopCamera();
 
-
     capturedFrameReady =
       false;
-
 
     latestVisionResult =
       null;
 
-
     hideAiMessage();
-
 
     el(
       "visionCard"
@@ -5493,7 +4776,6 @@ async function(){
         "show"
       );
 
-
     el(
       "visionRetryButton"
     )
@@ -5502,13 +4784,11 @@ async function(){
         "hidden"
       );
 
-
     el(
       "visionSpeakButton"
     )
       .disabled =
       true;
-
 
     cameraStream =
       await navigator
@@ -5527,23 +4807,19 @@ async function(){
             false
         });
 
-
     const video =
       el(
         "cameraVideo"
       );
 
-
     video.srcObject =
       cameraStream;
-
 
     video
       .classList
       .remove(
         "hidden"
       );
-
 
     el(
       "capturedImage"
@@ -5553,15 +4829,12 @@ async function(){
         "hidden"
       );
 
-
     await video.play();
-
 
     setText(
       "cameraStatus",
       text().cameraLive
     );
-
 
   }catch(error){
 
@@ -5578,7 +4851,6 @@ async function(){
   }
 };
 
-
 function captureFrame(){
 
   if(
@@ -5590,18 +4862,15 @@ function captureFrame(){
     );
   }
 
-
   const video =
     el(
       "cameraVideo"
     );
 
-
   const canvas =
     el(
       "cameraCanvas"
     );
-
 
   const scale =
     Math.min(
@@ -5615,13 +4884,11 @@ function captureFrame(){
       )
     );
 
-
   const width =
     Math.round(
       video.videoWidth *
       scale
     );
-
 
   const height =
     Math.round(
@@ -5629,20 +4896,16 @@ function captureFrame(){
       scale
     );
 
-
   canvas.width =
     width;
 
-
   canvas.height =
     height;
-
 
   const context =
     canvas.getContext(
       "2d"
     );
-
 
   if(
     !context
@@ -5653,7 +4916,6 @@ function captureFrame(){
     );
   }
 
-
   context.drawImage(
     video,
     0,
@@ -5662,16 +4924,13 @@ function captureFrame(){
     height
   );
 
-
   capturedFrameReady =
     true;
-
 
   const image =
     el(
       "capturedImage"
     );
-
 
   image.src =
     canvas.toDataURL(
@@ -5679,13 +4938,11 @@ function captureFrame(){
       .82
     );
 
-
   image
     .classList
     .remove(
       "hidden"
     );
-
 
   video
     .classList
@@ -5693,16 +4950,13 @@ function captureFrame(){
       "hidden"
     );
 
-
   setText(
     "cameraStatus",
     text().cameraSaved
   );
 
-
   stopCamera();
 }
-
 
 window.captureAndAnalyze =
 async function(){
@@ -5714,7 +4968,6 @@ async function(){
     return;
   }
 
-
   try{
 
     if(
@@ -5723,7 +4976,6 @@ async function(){
 
       captureFrame();
     }
-
 
     if(
       !hasCapturedFrame()
@@ -5734,9 +4986,7 @@ async function(){
       );
     }
 
-
     await analyzeCapturedImage();
-
 
   }catch(error){
 
@@ -5745,7 +4995,6 @@ async function(){
     );
   }
 };
-
 
 window.analyzeCapturedImage =
 async function(){
@@ -5756,7 +5005,6 @@ async function(){
 
     return;
   }
-
 
   if(
     !hasCapturedFrame()
@@ -5770,7 +5018,6 @@ async function(){
 
     return;
   }
-
 
   if(
     !window.RiiWorkerClientV2
@@ -5790,10 +5037,8 @@ async function(){
     return;
   }
 
-
   visionBusy =
     true;
-
 
   el(
     "captureButton"
@@ -5801,12 +5046,10 @@ async function(){
     .disabled =
     true;
 
-
   setText(
     "captureButton",
     text().looking
   );
-
 
   el(
     "visionRetryButton"
@@ -5816,19 +5059,16 @@ async function(){
       "hidden"
     );
 
-
   showAiMessage(
     "⏳",
     text().looking,
     false
   );
 
-
   try{
 
     const language =
       currentLanguage();
-
 
     const question =
       el(
@@ -5836,7 +5076,6 @@ async function(){
       )
         .value
         .trim();
-
 
     const result =
       await window
@@ -5858,18 +5097,14 @@ async function(){
           }
         );
 
-
     latestVisionResult =
       result;
-
 
     renderVision(
       result
     );
 
-
     hideAiMessage();
-
 
     el(
       "rootDebug"
@@ -5879,9 +5114,7 @@ async function(){
         "hidden"
       );
 
-
     speakVision();
-
 
   }catch(error){
 
@@ -5889,12 +5122,10 @@ async function(){
       error
     );
 
-
   }finally{
 
     visionBusy =
       false;
-
 
     el(
       "captureButton"
@@ -5902,14 +5133,12 @@ async function(){
       .disabled =
       false;
 
-
     setText(
       "captureButton",
       text().capture
     );
   }
 };
-
 
 function handleVisionError(
   error
@@ -5937,7 +5166,6 @@ function handleVisionError(
         "CLIENT_ERROR"
     };
 
-
   el(
     "rootDebugText"
   )
@@ -5948,7 +5176,6 @@ function handleVisionError(
       2
     );
 
-
   el(
     "rootDebug"
   )
@@ -5956,7 +5183,6 @@ function handleVisionError(
     .remove(
       "hidden"
     );
-
 
   const quota =
     formatted.code ===
@@ -5967,7 +5193,6 @@ function handleVisionError(
       .test(
         formatted.message
       );
-
 
   showAiMessage(
 
@@ -5986,7 +5211,6 @@ function handleVisionError(
     !quota
   );
 
-
   if(
     hasCapturedFrame()
   ){
@@ -5999,14 +5223,12 @@ function handleVisionError(
         "hidden"
       );
 
-
     setText(
       "cameraStatus",
       text().cameraSaved
     );
   }
 }
-
 
 function showAiMessage(
   title,
@@ -6019,7 +5241,6 @@ function showAiMessage(
       "aiMessage"
     );
 
-
   box.className =
     "ai-message show"
     +
@@ -6031,19 +5252,16 @@ function showAiMessage(
         " resting"
     );
 
-
   setText(
     "aiMessageTitle",
     title
   );
-
 
   setText(
     "aiMessageText",
     message
   );
 }
-
 
 function hideAiMessage(){
 
@@ -6054,14 +5272,12 @@ function hideAiMessage(){
     "ai-message";
 }
 
-
 function renderVision(
   result
 ){
 
   const x =
     text();
-
 
   setText(
     "visionName",
@@ -6072,7 +5288,6 @@ function renderVision(
     ||
     x.unknown
   );
-
 
   setText(
     "visionCore",
@@ -6089,7 +5304,6 @@ function renderVision(
       )
   );
 
-
   setText(
     "visionExplanation",
 
@@ -6100,10 +5314,8 @@ function renderVision(
     ""
   );
 
-
   const items =
     [];
-
 
   if(
     result.color
@@ -6115,7 +5327,6 @@ function renderVision(
     ]);
   }
 
-
   if(
     result.habitat
   ){
@@ -6125,7 +5336,6 @@ function renderVision(
       result.habitat
     ]);
   }
-
 
   if(
     result.origin
@@ -6137,7 +5347,6 @@ function renderVision(
     ]);
   }
 
-
   if(
     result.uses
   ){
@@ -6148,7 +5357,6 @@ function renderVision(
     ]);
   }
 
-
   if(
     result.detectedText
   ){
@@ -6158,7 +5366,6 @@ function renderVision(
       result.detectedText
     ]);
   }
-
 
   if(
     Array.isArray(
@@ -6179,7 +5386,6 @@ function renderVision(
         )
     ]);
   }
-
 
   el(
     "visionInfoGrid"
@@ -6205,7 +5411,6 @@ function renderVision(
       )
       .join("");
 
-
   el(
     "visionFacts"
   )
@@ -6230,12 +5435,10 @@ function renderVision(
       )
       .join("");
 
-
   const answer =
     el(
       "visionAnswer"
     );
-
 
   if(
     result.answer
@@ -6243,7 +5446,6 @@ function renderVision(
 
     answer.textContent =
       result.answer;
-
 
     answer
       .classList
@@ -6260,7 +5462,6 @@ function renderVision(
       );
   }
 
-
   el(
     "visionCard"
   )
@@ -6269,13 +5470,11 @@ function renderVision(
       "show"
     );
 
-
   el(
     "visionSpeakButton"
   )
     .disabled =
     false;
-
 
   el(
     "visionRetryButton"
@@ -6286,7 +5485,6 @@ function renderVision(
     );
 }
 
-
 window.speakVision =
 function(){
 
@@ -6296,7 +5494,6 @@ function(){
 
     const result =
       latestVisionResult;
-
 
     speak(
 
@@ -6321,10 +5518,8 @@ function(){
         )
     );
 
-
     return;
   }
-
 
   speak(
     el(
@@ -6333,7 +5528,6 @@ function(){
       .textContent
   );
 };
-
 
 function stopCamera(){
 
@@ -6348,17 +5542,14 @@ function stopCamera(){
           track.stop()
       );
 
-
     cameraStream =
       null;
   }
-
 
   const video =
     el(
       "cameraVideo"
     );
-
 
   if(
     video
@@ -6369,10 +5560,9 @@ function stopCamera(){
   }
 }
 
-
 /* =====================================================
    LIVE TRANSLATION
-   V3.5.4
+   V3.5.5
 ===================================================== */
 
 function setTranslationBusy(
@@ -6382,20 +5572,17 @@ function setTranslationBusy(
   translationBusy =
     busy;
 
-
   el(
     "translateActionButton"
   )
     .disabled =
     busy;
 
-
   el(
     "translateVoiceButton"
   )
     .disabled =
     busy;
-
 
   setText(
     "translateActionButton",
@@ -6408,7 +5595,6 @@ function setTranslationBusy(
   );
 }
 
-
 function showTranslationStatus(
   message,
   mode =
@@ -6420,17 +5606,14 @@ function showTranslationStatus(
       "translationStatus"
     );
 
-
   box.textContent =
     String(
       message ||
       ""
     );
 
-
   box.className =
     "translation-status show";
-
 
   if(
     mode ===
@@ -6441,7 +5624,6 @@ function showTranslationStatus(
       "error"
     );
   }
-
 
   if(
     mode ===
@@ -6454,7 +5636,6 @@ function showTranslationStatus(
   }
 }
 
-
 function hideTranslationStatus(){
 
   el(
@@ -6464,6 +5645,43 @@ function hideTranslationStatus(){
     "translation-status";
 }
 
+function normalizeTranslationLanguageCode(
+  result
+){
+
+  return (
+    result?.detectedLanguageCode
+    ||
+    result?.detectedSourceLanguage
+    ||
+    result?.sourceLanguage
+    ||
+    ""
+  );
+}
+
+function normalizeTranslationLanguageName(
+  result,
+  source
+){
+
+  if(
+    source
+  ){
+
+    return source.name;
+  }
+
+  return (
+    result?.detectedLanguage
+    ||
+    result?.detectedSourceLanguageName
+    ||
+    result?.sourceLanguageName
+    ||
+    ""
+  );
+}
 
 function renderTranslation(
   result
@@ -6476,30 +5694,39 @@ function renderTranslation(
     return;
   }
 
-
   const x =
     text();
 
-
   const sourceCode =
-    result.detectedSourceLanguage
-    ||
-    "unknown";
-
+    normalizeTranslationLanguageCode(
+      result
+    );
 
   const source =
     languageByCode(
       sourceCode
     );
 
+  const sourceName =
+    normalizeTranslationLanguageName(
+      result,
+      source
+    )
+    ||
+    x.translateAuto;
+
+  const targetCode =
+    result.targetLanguage
+    ||
+    currentLanguage()
+      .code;
 
   const target =
     languageByCode(
-      result.targetLanguage
+      targetCode
     )
     ||
     currentLanguage();
-
 
   setText(
     "translateResult",
@@ -6507,7 +5734,6 @@ function renderTranslation(
     ||
     ""
   );
-
 
   setText(
     "translateSourceValue",
@@ -6520,15 +5746,8 @@ function renderTranslation(
       +
       source.name
       :
-      (
-        result.detectedSourceLanguageName
-        ||
-        sourceCode
-        ||
-        x.translateAuto
-      )
+      sourceName
   );
-
 
   setText(
     "translateTargetValue",
@@ -6540,18 +5759,17 @@ function renderTranslation(
     target.name
   );
 
-
   setText(
     "translationMeta",
 
     [
-      result.detectedSourceLanguageName
+      sourceName
         ?
         x.translateDetected
         +
         ": "
         +
-        result.detectedSourceLanguageName
+        sourceName
         :
         "",
 
@@ -6581,7 +5799,6 @@ function renderTranslation(
       )
   );
 
-
   el(
     "translationOutput"
   )
@@ -6590,14 +5807,12 @@ function renderTranslation(
       "show"
     );
 
-
   el(
     "translateSpeakButton"
   )
     .disabled =
     !result.translatedText;
 }
-
 
 window.translateNow =
 async function(){
@@ -6609,10 +5824,8 @@ async function(){
     return;
   }
 
-
   const x =
     text();
-
 
   const value =
     el(
@@ -6620,7 +5833,6 @@ async function(){
     )
       .value
       .trim();
-
 
   if(
     !value
@@ -6633,7 +5845,6 @@ async function(){
 
     return;
   }
-
 
   if(
     !window.RiiWorkerClientV2
@@ -6652,16 +5863,13 @@ async function(){
     return;
   }
 
-
   setTranslationBusy(
     true
   );
 
-
   showTranslationStatus(
     x.translating
   );
-
 
   el(
     "translationDebug"
@@ -6671,12 +5879,10 @@ async function(){
       "hidden"
     );
 
-
   try{
 
     const language =
       currentLanguage();
-
 
     const result =
       await window
@@ -6697,15 +5903,12 @@ async function(){
           }
         );
 
-
     latestTranslationResult =
       result;
-
 
     renderTranslation(
       result
     );
-
 
     showTranslationStatus(
 
@@ -6717,7 +5920,6 @@ async function(){
 
       "normal"
     );
-
 
   }catch(error){
 
@@ -6745,7 +5947,6 @@ async function(){
         details:{}
       };
 
-
     el(
       "translationDebugText"
     )
@@ -6756,7 +5957,6 @@ async function(){
         2
       );
 
-
     el(
       "translationDebug"
     )
@@ -6764,7 +5964,6 @@ async function(){
       .remove(
         "hidden"
       );
-
 
     const quota =
       formatted.code ===
@@ -6775,7 +5974,6 @@ async function(){
         .test(
           formatted.message
         );
-
 
     showTranslationStatus(
 
@@ -6794,13 +5992,6 @@ async function(){
         "error"
     );
 
-
-    /*
-      Important:
-      Do NOT clear a previous successful
-      translation when a later request fails.
-    */
-
     if(
       latestTranslationResult
     ){
@@ -6810,7 +6001,6 @@ async function(){
       );
     }
 
-
   }finally{
 
     setTranslationBusy(
@@ -6818,7 +6008,6 @@ async function(){
     );
   }
 };
-
 
 window.speakTranslation =
 function(){
@@ -6833,13 +6022,11 @@ function(){
     return;
   }
 
-
   const target =
     languageByCode(
       latestTranslationResult
         .targetLanguage
     );
-
 
   speak(
 
@@ -6849,6 +6036,9 @@ function(){
     latestTranslationResult
       .targetLocale
     ||
+    latestTranslationResult
+      .locale
+    ||
     target
       ?.locale
     ||
@@ -6856,7 +6046,6 @@ function(){
       .locale
   );
 };
-
 
 window.clearTranslation =
 function(){
@@ -6868,10 +6057,8 @@ function(){
     return;
   }
 
-
   latestTranslationResult =
     null;
-
 
   el(
     "translateInput"
@@ -6879,28 +6066,23 @@ function(){
     .value =
     "";
 
-
   setText(
     "translateResult",
     ""
   );
-
 
   setText(
     "translationMeta",
     ""
   );
 
-
   setText(
     "translateSourceValue",
     text().translateAuto
   );
 
-
   const language =
     currentLanguage();
-
 
   setText(
     "translateTargetValue",
@@ -6912,7 +6094,6 @@ function(){
     language.name
   );
 
-
   el(
     "translationOutput"
   )
@@ -6921,13 +6102,11 @@ function(){
       "show"
     );
 
-
   el(
     "translateSpeakButton"
   )
     .disabled =
     true;
-
 
   el(
     "translationDebug"
@@ -6937,16 +6116,10 @@ function(){
       "hidden"
     );
 
-
   showTranslationStatus(
     text().translateReady
   );
 };
-
-
-/* =====================================================
-   NOTES
-===================================================== */
 
 window.saveNote =
 function(){
@@ -6958,7 +6131,6 @@ function(){
       .value
       .trim();
 
-
   if(
     !value
   ){
@@ -6966,10 +6138,8 @@ function(){
     return;
   }
 
-
   let notes =
     [];
-
 
   try{
 
@@ -6988,7 +6158,6 @@ function(){
       [];
   }
 
-
   if(
     !Array.isArray(
       notes
@@ -6998,7 +6167,6 @@ function(){
     notes =
       [];
   }
-
 
   notes.unshift({
 
@@ -7013,7 +6181,6 @@ function(){
         .toISOString()
   });
 
-
   localStorage.setItem(
 
     NOTE_KEY,
@@ -7026,14 +6193,12 @@ function(){
     )
   );
 
-
   el(
     "notesResult"
   )
     .dataset
     .touched =
     "1";
-
 
   setText(
 
@@ -7046,16 +6211,10 @@ function(){
     value
   );
 
-
   speak(
     value
   );
 };
-
-
-/* =====================================================
-   QUICK
-===================================================== */
 
 window.closeQuick =
 function(){
@@ -7069,7 +6228,6 @@ function(){
     );
 };
 
-
 window.quickOpen =
 function(
   name
@@ -7077,38 +6235,33 @@ function(
 
   closeQuick();
 
-
   openCenter(
     name
   );
 };
-
-
-/* =====================================================
-   FLOATING RII
-===================================================== */
 
 const rii =
   el(
     "riiButton"
   );
 
-
 let dragging =
   false;
-
 
 let moved =
   false;
 
-
 let offsetX =
   0;
-
 
 let offsetY =
   0;
 
+let dragStartX =
+  0;
+
+let dragStartY =
+  0;
 
 function clamp(
   value,
@@ -7125,7 +6278,6 @@ function clamp(
   );
 }
 
-
 rii.addEventListener(
   "pointerdown",
   event => {
@@ -7133,32 +6285,36 @@ rii.addEventListener(
     dragging =
       true;
 
-
     moved =
       false;
 
+    dragStartX =
+      event.clientX;
+
+    dragStartY =
+      event.clientY;
 
     const rect =
       rii
         .getBoundingClientRect();
 
-
     offsetX =
       event.clientX -
       rect.left;
-
 
     offsetY =
       event.clientY -
       rect.top;
 
+    try{
 
-    rii.setPointerCapture(
-      event.pointerId
-    );
+      rii.setPointerCapture(
+        event.pointerId
+      );
+
+    }catch{}
   }
 );
-
 
 rii.addEventListener(
   "pointermove",
@@ -7171,34 +6327,34 @@ rii.addEventListener(
       return;
     }
 
+    const deltaX =
+      event.clientX -
+      dragStartX;
+
+    const deltaY =
+      event.clientY -
+      dragStartY;
 
     const distance =
-      Math.abs(
-        event.movementX
-        ||
-        0
-      )
-      +
-      Math.abs(
-        event.movementY
-        ||
-        0
+      Math.sqrt(
+        deltaX *
+        deltaX
+        +
+        deltaY *
+        deltaY
       );
-
 
     if(
       distance >
-      1
+      4
     ){
 
       moved =
         true;
     }
 
-
     const size =
       rii.offsetWidth;
-
 
     rii.style.left =
       clamp(
@@ -7211,7 +6367,6 @@ rii.addEventListener(
       )
       +
       "px";
-
 
     rii.style.top =
       clamp(
@@ -7227,14 +6382,12 @@ rii.addEventListener(
   }
 );
 
-
 rii.addEventListener(
   "pointerup",
   event => {
 
     dragging =
       false;
-
 
     try{
 
@@ -7243,7 +6396,6 @@ rii.addEventListener(
       );
 
     }catch{}
-
 
     if(
       !moved
@@ -7260,10 +6412,14 @@ rii.addEventListener(
   }
 );
 
+rii.addEventListener(
+  "pointercancel",
+  () => {
 
-/* =====================================================
-   OVERLAY
-===================================================== */
+    dragging =
+      false;
+  }
+);
 
 [
   "languageOverlay",
@@ -7296,21 +6452,14 @@ rii.addEventListener(
   }
 );
 
-
-/* =====================================================
-   BOOT
-===================================================== */
-
 try{
 
   validateBoot();
-
 
   const savedLanguage =
     localStorage.getItem(
       LANGUAGE_KEY
     );
-
 
   const validSavedLanguage =
     languages.some(
@@ -7318,7 +6467,6 @@ try{
         item.code ===
         savedLanguage
     );
-
 
   if(
     !validSavedLanguage
@@ -7330,18 +6478,15 @@ try{
     );
   }
 
-
   render();
-
 
   console.log(
     "Rii AI V"
     +
     APP_VERSION
     +
-    " Live Translation ready"
+    " Translation Metadata Sync ready"
   );
-
 
 }catch(error){
 
@@ -7349,7 +6494,6 @@ try{
     "Rii boot failed",
     error
   );
-
 
   showBootError(
     error
