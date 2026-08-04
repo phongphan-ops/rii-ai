@@ -1,295 +1,505 @@
 (function () {
-  "use strict";
-
-  const CLIENT_VERSION = "2.0.4";
-
-  const DEFAULT_BACKEND =
-    "https://rii-backend.phongphan327272.workers.dev";
-
-  const STORAGE_KEY =
-    "rii-v2-backend";
-
-  // Thời gian chờ
-  const HEALTH_TIMEOUT = 20000;
-  const AI_TIMEOUT = 90000;
-  const IMAGE_TIMEOUT = 120000;
-
-  const ENDPOINTS = {
-    health: "/health",
-    analyze: "/analyze-concept",
-    normalize: "/normalize-object",
-    translate: "/translate-concept",
-    generate: "/generate-object-images"
-  };
+"use strict";
 
 
-  /* =====================================================
-     URL
-  ===================================================== */
-
-  function cleanUrl(value) {
-    return String(value || "")
-      .trim()
-      .replace(/\/+$/, "");
-  }
+const CLIENT_VERSION =
+  "2.1.0";
 
 
-  function getBaseUrl() {
-    const saved =
-      localStorage.getItem(STORAGE_KEY);
+const DEFAULT_BACKEND =
+  "https://rii-backend.phongphan327272.workers.dev";
 
-    return cleanUrl(
-      saved || DEFAULT_BACKEND
+
+const STORAGE_KEY =
+  "rii-v2-backend";
+
+
+const HEALTH_TIMEOUT =
+  20000;
+
+
+const AI_TIMEOUT =
+  90000;
+
+
+const VISION_TIMEOUT =
+  120000;
+
+
+const IMAGE_TIMEOUT =
+  120000;
+
+
+const ENDPOINTS = {
+
+  health:
+    "/health",
+
+  analyze:
+    "/analyze-concept",
+
+  normalize:
+    "/normalize-object",
+
+  translate:
+    "/translate-concept",
+
+  vision:
+    "/analyze-image",
+
+  generate:
+    "/generate-object-images"
+};
+
+
+
+/* =====================================================
+   BASE URL
+===================================================== */
+
+function cleanUrl(
+  value
+) {
+
+  return String(
+    value ||
+    ""
+  )
+    .trim()
+    .replace(
+      /\/+$/,
+      ""
+    );
+}
+
+
+function getBaseUrl() {
+
+  const saved =
+    cleanUrl(
+      localStorage.getItem(
+        STORAGE_KEY
+      )
+    );
+
+
+  return (
+    saved ||
+    DEFAULT_BACKEND
+  );
+}
+
+
+function setBaseUrl(
+  value
+) {
+
+  const url =
+    cleanUrl(
+      value
+    );
+
+
+  if (!url) {
+
+    throw new Error(
+      "Backend URL không hợp lệ."
     );
   }
 
 
-  function setBaseUrl(value) {
-    const url =
-      cleanUrl(value);
-
-    if (!url) {
-      throw new Error(
-        "Worker Backend URL không hợp lệ."
-      );
-    }
-
-    localStorage.setItem(
-      STORAGE_KEY,
-      url
-    );
-
-    return url;
-  }
+  localStorage.setItem(
+    STORAGE_KEY,
+    url
+  );
 
 
-  /* =====================================================
-     FETCH TIMEOUT
-  ===================================================== */
+  return url;
+}
 
-  async function fetchWithTimeout(
-    url,
-    options = {},
-    timeoutMs = AI_TIMEOUT
-  ) {
-    const controller =
-      new AbortController();
 
-    const timer =
-      setTimeout(() => {
+
+/* =====================================================
+   TIMEOUT
+===================================================== */
+
+function createTimeoutController(
+  timeout
+) {
+
+  const controller =
+    new AbortController();
+
+
+  const timer =
+    setTimeout(
+      () => {
+
         controller.abort();
-      }, timeoutMs);
 
-    try {
-      const response =
-        await fetch(
-          url,
-          {
-            ...options,
-            signal:
-              controller.signal
-          }
-        );
+      },
+      timeout
+    );
 
-      return response;
 
-    } catch (error) {
-      if (
-        error?.name ===
-        "AbortError"
-      ) {
-        const timeoutError =
-          new Error(
-            `Worker phản hồi quá thời gian (${Math.round(
-              timeoutMs / 1000
-            )} giây).`
-          );
+  return {
 
-        timeoutError.code =
-          "CLIENT_TIMEOUT";
+    controller,
 
-        timeoutError.details = {
-          timeoutMs,
-          url
-        };
+    clear() {
 
-        throw timeoutError;
-      }
-
-      throw error;
-
-    } finally {
       clearTimeout(
         timer
       );
     }
-  }
+  };
+}
 
 
-  /* =====================================================
-     RESPONSE
-  ===================================================== */
 
-  async function readResponse(
-    response
-  ) {
+/* =====================================================
+   ERROR
+===================================================== */
+
+function createClientError(
+  message,
+  code,
+  details,
+  status,
+  workerVersion
+) {
+
+  const error =
+    new Error(
+      String(
+        message ||
+        "Unknown error"
+      )
+    );
+
+
+  error.code =
+    code ||
+    "CLIENT_ERROR";
+
+
+  error.details =
+    details ||
+    {};
+
+
+  error.status =
+    Number(
+      status ||
+      0
+    );
+
+
+  error.workerVersion =
+    workerVersion ||
+    "";
+
+
+  return error;
+}
+
+
+function formatError(
+  error
+) {
+
+  return {
+
+    message:
+      String(
+        error?.message ||
+        error ||
+        "Unknown error"
+      ),
+
+    code:
+      error?.code ||
+      "CLIENT_ERROR",
+
+    details:
+      error?.details ||
+      {},
+
+    status:
+      Number(
+        error?.status ||
+        0
+      ),
+
+    workerVersion:
+      error?.workerVersion ||
+      ""
+  };
+}
+
+
+
+/* =====================================================
+   REQUEST
+===================================================== */
+
+async function requestJson(
+  endpoint,
+  options = {}
+) {
+
+  const method =
+    options.method ||
+    "GET";
+
+
+  const timeout =
+    Number(
+      options.timeout ||
+      AI_TIMEOUT
+    );
+
+
+  const body =
+    options.body;
+
+
+  const baseUrl =
+    getBaseUrl();
+
+
+  const url =
+    baseUrl +
+    endpoint;
+
+
+  const timeoutControl =
+    createTimeoutController(
+      timeout
+    );
+
+
+  try {
+
+    const requestOptions = {
+
+      method,
+
+      headers:{
+
+        "Accept":
+          "application/json"
+      },
+
+      signal:
+        timeoutControl
+          .controller
+          .signal
+    };
+
+
+    if (
+      body !==
+      undefined
+    ) {
+
+      requestOptions
+        .headers[
+          "Content-Type"
+        ] =
+        "application/json";
+
+
+      requestOptions.body =
+        JSON.stringify(
+          body
+        );
+    }
+
+
+    const response =
+      await fetch(
+        url,
+        requestOptions
+      );
+
+
     let data =
       null;
 
+
     try {
+
       data =
         await response.json();
 
     } catch {
-      const error =
-        new Error(
-          "Worker không trả về JSON hợp lệ."
-        );
 
-      error.code =
-        "INVALID_WORKER_RESPONSE";
+      const text =
+        await response.text()
+          .catch(
+            () => ""
+          );
 
-      error.status =
-        response.status;
 
-      throw error;
+      throw createClientError(
+
+        text ||
+        "Worker trả về dữ liệu không hợp lệ.",
+
+        "INVALID_WORKER_RESPONSE",
+
+        {
+          endpoint,
+          url
+        },
+
+        response.status
+      );
     }
+
 
     if (
-      !response.ok ||
-      data?.ok === false
+      !response.ok
     ) {
-      const error =
-        new Error(
-          data?.message ||
-          data?.error ||
-          `Worker HTTP ${response.status}`
-        );
 
-      error.code =
+      throw createClientError(
+
+        data?.message ||
+        (
+          "Worker request failed: "
+          +
+          response.status
+        ),
+
         data?.code ||
-        `HTTP_${response.status}`;
+        "WORKER_REQUEST_FAILED",
 
-      error.status =
-        response.status;
-
-      error.details =
         data?.details ||
-        {};
+        {},
 
-      error.workerVersion =
+        response.status,
+
         data?.workerVersion ||
-        data?.version ||
-        "";
+        ""
+      );
+    }
 
-      error.raw =
-        data;
+
+    return data;
+
+
+  } catch(error) {
+
+    if (
+      error?.name ===
+      "AbortError"
+    ) {
+
+      throw createClientError(
+
+        "Worker request timeout.",
+
+        "REQUEST_TIMEOUT",
+
+        {
+          endpoint,
+          timeout
+        },
+
+        0
+      );
+    }
+
+
+    if (
+      error?.code
+    ) {
 
       throw error;
     }
 
-    return data;
-  }
 
+    throw createClientError(
 
-  /* =====================================================
-     POST
-  ===================================================== */
+      error?.message ||
+      error,
 
-  async function postJson(
-    endpoint,
-    body,
-    timeoutMs = AI_TIMEOUT
-  ) {
-    const base =
-      getBaseUrl();
+      "NETWORK_ERROR",
 
-    if (!base) {
-      throw new Error(
-        "Chưa cấu hình Worker Backend."
-      );
-    }
+      {
+        endpoint,
+        url
+      },
 
-    const response =
-      await fetchWithTimeout(
-        base + endpoint,
-        {
-          method:
-            "POST",
-
-          headers: {
-            "Content-Type":
-              "application/json"
-          },
-
-          body:
-            JSON.stringify(
-              body
-            )
-        },
-        timeoutMs
-      );
-
-    return readResponse(
-      response
+      0
     );
+
+
+  } finally {
+
+    timeoutControl.clear();
   }
+}
 
 
-  /* =====================================================
-     HEALTH
-  ===================================================== */
 
-  async function health() {
-    const base =
-      getBaseUrl();
+/* =====================================================
+   HEALTH
+===================================================== */
 
-    const response =
-      await fetchWithTimeout(
-        base +
-        ENDPOINTS.health,
-        {
-          method:
-            "GET",
+async function health() {
 
-          headers: {
-            Accept:
-              "application/json"
-          }
-        },
+  return requestJson(
+    ENDPOINTS.health,
+    {
+      timeout:
         HEALTH_TIMEOUT
-      );
+    }
+  );
+}
 
-    return readResponse(
-      response
+
+
+/* =====================================================
+   ANALYZE CONCEPT
+===================================================== */
+
+async function analyzeConcept(
+  input,
+  options = {}
+) {
+
+  const value =
+    String(
+      input ||
+      ""
+    )
+      .trim();
+
+
+  if (!value) {
+
+    throw createClientError(
+      "input is required.",
+      "INPUT_REQUIRED"
     );
   }
 
 
-  /* =====================================================
-     ANALYZE CONCEPT
-  ===================================================== */
+  return requestJson(
+    ENDPOINTS.analyze,
+    {
+      method:
+        "POST",
 
-  async function analyzeConcept(
-    input,
-    options = {}
-  ) {
-    const text =
-      String(
-        input || ""
-      ).trim();
+      timeout:
+        AI_TIMEOUT,
 
-    if (!text) {
-      throw new Error(
-        "Thiếu nội dung cần phân tích."
-      );
-    }
+      body:{
 
-    return postJson(
-      ENDPOINTS.analyze,
-      {
         input:
-          text,
+          value,
 
         targetLanguage:
           options.targetLanguage ||
@@ -298,36 +508,52 @@
         targetLanguageName:
           options.targetLanguageName ||
           "English"
-      },
-      AI_TIMEOUT
+      }
+    }
+  );
+}
+
+
+
+/* =====================================================
+   NORMALIZE OBJECT
+===================================================== */
+
+async function normalizeObject(
+  input,
+  options = {}
+) {
+
+  const value =
+    String(
+      input ||
+      ""
+    )
+      .trim();
+
+
+  if (!value) {
+
+    throw createClientError(
+      "input is required.",
+      "INPUT_REQUIRED"
     );
   }
 
 
-  /* =====================================================
-     NORMALIZE OBJECT
-  ===================================================== */
+  return requestJson(
+    ENDPOINTS.normalize,
+    {
+      method:
+        "POST",
 
-  async function normalizeObject(
-    objectName,
-    options = {}
-  ) {
-    const text =
-      String(
-        objectName || ""
-      ).trim();
+      timeout:
+        AI_TIMEOUT,
 
-    if (!text) {
-      throw new Error(
-        "Thiếu tên đối tượng."
-      );
-    }
+      body:{
 
-    return postJson(
-      ENDPOINTS.normalize,
-      {
-        objectName:
-          text,
+        input:
+          value,
 
         targetLanguage:
           options.targetLanguage ||
@@ -336,151 +562,377 @@
         targetLanguageName:
           options.targetLanguageName ||
           "English"
-      },
-      AI_TIMEOUT
+      }
+    }
+  );
+}
+
+
+
+/* =====================================================
+   TRANSLATE
+===================================================== */
+
+async function translateConcept(
+  concept,
+  options = {}
+) {
+
+  if (
+    !concept ||
+    typeof concept !==
+      "object"
+  ) {
+
+    throw createClientError(
+      "concept object is required.",
+      "CONCEPT_REQUIRED"
     );
   }
 
 
-  /* =====================================================
-     TRANSLATE CONCEPT
-     NEW IN CLIENT V2.0.4
-  ===================================================== */
+  const normalizedEnglish =
+    String(
+      concept
+        .normalizedEnglish ||
+      ""
+    )
+      .trim();
 
-  async function translateConcept(
-    concept,
-    options = {}
+
+  if (
+    !normalizedEnglish
   ) {
-    const source =
-      concept &&
-      typeof concept ===
-        "object"
-        ?
-        concept
-        :
-        {
-          normalizedEnglish:
-            String(
-              concept || ""
-            ).trim()
-        };
+
+    throw createClientError(
+      "normalizedEnglish is required.",
+      "NORMALIZED_ENGLISH_REQUIRED"
+    );
+  }
 
 
-    const normalizedEnglish =
-      String(
-        source.normalizedEnglish ||
-        source.core ||
-        source.object ||
-        source.concept ||
-        ""
-      ).trim();
+  return requestJson(
+    ENDPOINTS.translate,
+    {
+      method:
+        "POST",
 
+      timeout:
+        AI_TIMEOUT,
 
-    if (!normalizedEnglish) {
-      throw new Error(
-        "Thiếu normalizedEnglish để dịch."
-      );
-    }
+      body:{
 
-
-    const targetLanguage =
-      String(
-        options.targetLanguage ||
-        "en"
-      ).trim() ||
-      "en";
-
-
-    const targetLanguageName =
-      String(
-        options.targetLanguageName ||
-        targetLanguage
-      ).trim() ||
-      targetLanguage;
-
-
-    return postJson(
-      ENDPOINTS.translate,
-      {
         normalizedEnglish,
 
         color:
           String(
-            source.color ||
+            concept.color ||
             ""
-          ).trim(),
+          ),
 
         shape:
           String(
-            source.shape ||
+            concept.shape ||
             ""
-          ).trim(),
+          ),
 
-        targetLanguage,
+        translatedLabel:
+          String(
+            concept
+              .translatedLabel ||
+            ""
+          ),
 
-        targetLanguageName
-      },
-      AI_TIMEOUT
+        targetLanguage:
+          options.targetLanguage ||
+          "vi",
+
+        targetLanguageName:
+          options.targetLanguageName ||
+          "Vietnamese"
+      }
+    }
+  );
+}
+
+
+
+/* =====================================================
+   IMAGE HELPERS
+===================================================== */
+
+function blobToDataUri(
+  blob
+) {
+
+  return new Promise(
+    (
+      resolve,
+      reject
+    ) => {
+
+      if (
+        !(blob instanceof Blob)
+      ) {
+
+        reject(
+          createClientError(
+            "Image must be a Blob.",
+            "INVALID_IMAGE_BLOB"
+          )
+        );
+
+        return;
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        () => {
+
+          resolve(
+            String(
+              reader.result ||
+              ""
+            )
+          );
+        };
+
+
+      reader.onerror =
+        () => {
+
+          reject(
+            createClientError(
+              "Không đọc được ảnh.",
+              "IMAGE_READ_FAILED"
+            )
+          );
+        };
+
+
+      reader.readAsDataURL(
+        blob
+      );
+    }
+  );
+}
+
+
+function canvasToDataUri(
+  canvas,
+  quality = .86
+) {
+
+  if (
+    !canvas ||
+    typeof canvas
+      .toDataURL !==
+      "function"
+  ) {
+
+    throw createClientError(
+      "Canvas không hợp lệ.",
+      "INVALID_CANVAS"
     );
   }
 
 
-  /* =====================================================
-     GENERATE IMAGES
-  ===================================================== */
+  return canvas.toDataURL(
+    "image/jpeg",
+    quality
+  );
+}
 
-  async function generateImages(
-    objectName,
-    options = {}
+
+function normalizeImageInput(
+  image
+) {
+
+  if (
+    typeof image ===
+    "string"
   ) {
-    const text =
-      String(
-        objectName || ""
-      ).trim();
 
-    if (!text) {
-      throw new Error(
-        "Thiếu tên đối tượng."
+    const value =
+      image.trim();
+
+
+    if (!value) {
+
+      throw createClientError(
+        "image is required.",
+        "IMAGE_REQUIRED"
       );
     }
 
-    let count =
-      Number.parseInt(
-        options.count ?? 1,
-        10
-      );
 
-    if (
-      !Number.isFinite(
-        count
+    return Promise.resolve(
+      value
+    );
+  }
+
+
+  if (
+    image instanceof Blob
+  ) {
+
+    return blobToDataUri(
+      image
+    );
+  }
+
+
+  if (
+    image &&
+    typeof image
+      .toDataURL ===
+      "function"
+  ) {
+
+    return Promise.resolve(
+      canvasToDataUri(
+        image
       )
-    ) {
-      count =
-        1;
+    );
+  }
+
+
+  throw createClientError(
+    "Unsupported image input.",
+    "INVALID_IMAGE_INPUT"
+  );
+}
+
+
+
+/* =====================================================
+   VISION AI
+===================================================== */
+
+async function analyzeImage(
+  image,
+  options = {}
+) {
+
+  const imageData =
+    await normalizeImageInput(
+      image
+    );
+
+
+  const body = {
+
+    image:
+      imageData,
+
+    question:
+      String(
+        options.question ||
+        ""
+      )
+        .trim(),
+
+    targetLanguage:
+      options.targetLanguage ||
+      "vi",
+
+    targetLanguageName:
+      options.targetLanguageName ||
+      "Vietnamese"
+  };
+
+
+  return requestJson(
+    ENDPOINTS.vision,
+    {
+      method:
+        "POST",
+
+      timeout:
+        VISION_TIMEOUT,
+
+      body
     }
+  );
+}
+
+
+
+/* =====================================================
+   GENERATE IMAGES
+===================================================== */
+
+async function generateImages(
+  concept,
+  options = {}
+) {
+
+  const value =
+    String(
+      concept ||
+      ""
+    )
+      .trim();
+
+
+  if (!value) {
+
+    throw createClientError(
+      "concept is required.",
+      "CONCEPT_REQUIRED"
+    );
+  }
+
+
+  let count =
+    Number(
+      options.count ??
+      3
+    );
+
+
+  if (
+    !Number.isFinite(
+      count
+    )
+  ) {
 
     count =
-      Math.max(
-        1,
-        Math.min(
-          4,
-          count
-        )
-      );
+      3;
+  }
 
-    return postJson(
-      ENDPOINTS.generate,
-      {
-        objectName:
-          text,
+
+  count =
+    Math.min(
+      Math.max(
+        Math.round(
+          count
+        ),
+        1
+      ),
+      3
+    );
+
+
+  return requestJson(
+    ENDPOINTS.generate,
+    {
+      method:
+        "POST",
+
+      timeout:
+        IMAGE_TIMEOUT,
+
+      body:{
+
+        concept:
+          value,
 
         count,
-
-        prompt:
-          String(
-            options.prompt ||
-            ""
-          ).trim(),
 
         targetLanguage:
           options.targetLanguage ||
@@ -489,290 +941,125 @@
         targetLanguageName:
           options.targetLanguageName ||
           "English"
-      },
-      IMAGE_TIMEOUT
-    );
-  }
-
-
-  /* =====================================================
-     ERROR FORMAT
-  ===================================================== */
-
-  function formatError(
-    error
-  ) {
-    if (!error) {
-      return {
-        message:
-          "Lỗi không xác định.",
-
-        code:
-          "UNKNOWN_ERROR",
-
-        details:
-          {},
-
-        workerVersion:
-          ""
-      };
-    }
-
-
-    /*
-      Timeout phía trình duyệt
-    */
-
-    if (
-      error.code ===
-      "CLIENT_TIMEOUT"
-    ) {
-      return {
-        message:
-          error.message ||
-          "Worker phản hồi quá thời gian.",
-
-        code:
-          "CLIENT_TIMEOUT",
-
-        details:
-          error.details ||
-          {},
-
-        workerVersion:
-          ""
-      };
-    }
-
-
-    /*
-      Lỗi do Worker trả về
-    */
-
-    if (
-      error.raw
-    ) {
-      return {
-        message:
-          error.raw.message ||
-          error.raw.error ||
-          error.message ||
-          "Worker error",
-
-        code:
-          error.raw.code ||
-          error.code ||
-          "WORKER_ERROR",
-
-        details:
-          error.raw.details ||
-          error.details ||
-          {},
-
-        workerVersion:
-          error.raw.workerVersion ||
-          error.raw.version ||
-          error.workerVersion ||
-          ""
-      };
-    }
-
-
-    /*
-      Network / JS error
-    */
-
-    return {
-      message:
-        error.message ||
-        String(
-          error
-        ),
-
-      code:
-        error.code ||
-        "CLIENT_ERROR",
-
-      details:
-        error.details ||
-        {},
-
-      workerVersion:
-        error.workerVersion ||
-        ""
-    };
-  }
-
-
-  /* =====================================================
-     SELF TEST
-  ===================================================== */
-
-  async function selfTest() {
-    const result = {
-      ok:
-        true,
-
-      clientVersion:
-        CLIENT_VERSION,
-
-      backend:
-        getBaseUrl(),
-
-      tests:
-        []
-    };
-
-
-    /*
-      Health
-    */
-
-    try {
-      const data =
-        await health();
-
-      result.tests.push({
-        name:
-          "health",
-
-        ok:
-          true,
-
-        workerVersion:
-          data.version ||
-          "",
-
-        hasAI:
-          Boolean(
-            data.hasAI
-          ),
-
-        hasTranslateEndpoint:
-          Boolean(
-            data
-              ?.endpoints
-              ?.translate
-          )
-      });
-
-    } catch (error) {
-      result.ok =
-        false;
-
-      result.tests.push({
-        name:
-          "health",
-
-        ok:
-          false,
-
-        error:
-          formatError(
-            error
-          )
-      });
-    }
-
-
-    /*
-      Local API object
-    */
-
-    const functionsOk =
-      typeof health ===
-        "function" &&
-
-      typeof analyzeConcept ===
-        "function" &&
-
-      typeof normalizeObject ===
-        "function" &&
-
-      typeof translateConcept ===
-        "function" &&
-
-      typeof generateImages ===
-        "function";
-
-
-    if (
-      !functionsOk
-    ) {
-      result.ok =
-        false;
-    }
-
-
-    result.tests.push({
-      name:
-        "client-functions",
-
-      ok:
-        functionsOk,
-
-      functions: {
-        health:
-          typeof health ===
-          "function",
-
-        analyzeConcept:
-          typeof analyzeConcept ===
-          "function",
-
-        normalizeObject:
-          typeof normalizeObject ===
-          "function",
-
-        translateConcept:
-          typeof translateConcept ===
-          "function",
-
-        generateImages:
-          typeof generateImages ===
-          "function"
       }
-    });
+    }
+  );
+}
 
 
-    return result;
-  }
 
+/* =====================================================
+   SELF TEST
+===================================================== */
 
-  /* =====================================================
-     PUBLIC API
-  ===================================================== */
+async function selfTest() {
 
-  window.RiiWorkerClientV2 = {
-    version:
+  const result = {
+
+    ok:
+      false,
+
+    clientVersion:
       CLIENT_VERSION,
 
-    endpoints:
-      {
-        ...ENDPOINTS
-      },
+    backend:
+      getBaseUrl(),
 
-    getBaseUrl,
-    setBaseUrl,
+    health:
+      null,
 
-    health,
-
-    analyzeConcept,
-
-    normalizeObject,
-
-    translateConcept,
-
-    generateImages,
-
-    formatError,
-
-    selfTest
+    visionReady:
+      false
   };
 
 
-  console.log(
-    `Rii Worker Client V${CLIENT_VERSION} ready`
-  );
+  try {
+
+    result.health =
+      await health();
+
+
+    result.visionReady =
+      Array.isArray(
+        result.health
+          ?.endpoints
+      )
+      &&
+      result.health
+        .endpoints
+        .includes(
+          "/analyze-image"
+        );
+
+
+    result.ok =
+      Boolean(
+        result.health?.ok
+      );
+
+
+    return result;
+
+
+  } catch(error) {
+
+    return {
+
+      ...result,
+
+      error:
+        formatError(
+          error
+        )
+    };
+  }
+}
+
+
+
+/* =====================================================
+   PUBLIC API
+===================================================== */
+
+window.RiiWorkerClientV2 = {
+
+  version:
+    CLIENT_VERSION,
+
+  endpoints:{
+    ...ENDPOINTS
+  },
+
+  getBaseUrl,
+
+  setBaseUrl,
+
+  health,
+
+  analyzeConcept,
+
+  normalizeObject,
+
+  translateConcept,
+
+  analyzeImage,
+
+  generateImages,
+
+  blobToDataUri,
+
+  canvasToDataUri,
+
+  formatError,
+
+  selfTest
+};
+
+
+console.log(
+  "Rii Worker Client V" +
+  CLIENT_VERSION +
+  " ready"
+);
 
 })();
