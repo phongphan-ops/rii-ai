@@ -2,31 +2,20 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8">
-
-<meta
-  name="viewport"
-  content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"
->
-
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
 <meta name="theme-color" content="#050b14">
-
-<title>Rii AI V3.2 — Global Spiral Core</title>
+<title>Rii AI V3.3 — Voice First Camera</title>
 
 <style>
 :root{
   --bg:#050b14;
-  --panel:rgba(10,22,37,.92);
-  --line:rgba(192,150,66,.34);
-
+  --panel:rgba(10,22,37,.94);
+  --line:rgba(190,150,70,.34);
   --gold:#d8ad58;
-  --gold-light:#f2d58b;
+  --gold2:#f2d58b;
   --mint:#58d9b0;
-
   --text:#f7f4ea;
-  --muted:#99aabc;
-
-  --shadow:
-    0 18px 50px rgba(0,0,0,.34);
+  --muted:#9aabbd;
 }
 
 *{
@@ -34,134 +23,69 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-html,
-body{
+html,body{
   margin:0;
   min-height:100%;
   background:var(--bg);
   color:var(--text);
-
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "SF Pro Display",
-    "Segoe UI",
-    sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-body{
-  overflow-x:hidden;
-}
-
-button{
+button,input,select,textarea{
   font:inherit;
 }
-
-/* =========================
-   BACKGROUND
-========================= */
 
 .background{
   position:fixed;
   inset:0;
-  z-index:-3;
-
+  z-index:-2;
   background:
-    radial-gradient(
-      circle at 80% 18%,
-      rgba(210,165,74,.18),
-      transparent 26%
-    ),
-
-    radial-gradient(
-      circle at 15% 70%,
-      rgba(27,92,155,.26),
-      transparent 32%
-    ),
-
-    linear-gradient(
-      145deg,
-      #02070d,
-      #071522 48%,
-      #020811
-    );
+    radial-gradient(circle at 82% 18%,rgba(218,173,88,.17),transparent 27%),
+    radial-gradient(circle at 16% 72%,rgba(31,95,158,.26),transparent 32%),
+    linear-gradient(145deg,#02070d,#071522 48%,#020811);
 }
 
-.background::before{
+.background:before{
   content:"";
   position:absolute;
-  inset:-28%;
-
-  opacity:.28;
-
+  inset:-25%;
+  opacity:.25;
   background:
     repeating-radial-gradient(
-      circle at 78% 22%,
+      circle at 76% 22%,
       transparent 0 18px,
-      rgba(210,164,72,.36) 20px 23px,
+      rgba(210,164,72,.33) 20px 23px,
       transparent 25px 39px
     );
-
-  transform:
-    rotate(-8deg);
+  transform:rotate(-8deg);
 }
-
-.background::after{
-  content:"";
-  position:absolute;
-  inset:-24%;
-
-  opacity:.20;
-
-  background:
-    repeating-radial-gradient(
-      circle at 20% 75%,
-      transparent 0 15px,
-      rgba(35,107,174,.58) 17px 20px,
-      transparent 22px 35px
-    );
-
-  transform:
-    rotate(12deg);
-}
-
-/* =========================
-   APP
-========================= */
 
 .app{
   width:min(100%,980px);
-  min-height:100vh;
   margin:auto;
-
+  min-height:100vh;
   padding:
     calc(18px + env(safe-area-inset-top))
-    16px
-    calc(120px + env(safe-area-inset-bottom));
+    14px
+    calc(110px + env(safe-area-inset-bottom));
 }
-
-/* =========================
-   HEADER
-========================= */
 
 .header{
   display:flex;
   justify-content:space-between;
-  align-items:flex-start;
   gap:12px;
-
-  margin-bottom:20px;
+  align-items:flex-start;
+  margin-bottom:18px;
 }
 
 .logo{
-  font-size:31px;
+  font-size:30px;
   font-weight:900;
-  letter-spacing:-1px;
-  color:var(--gold-light);
+  color:var(--gold2);
 }
 
 .logo span{
-  color:white;
+  color:#fff;
 }
 
 .tagline{
@@ -172,42 +96,29 @@ button{
 
 .header-actions{
   display:flex;
+  gap:6px;
   align-items:center;
-  gap:7px;
 }
 
-.round-btn{
-  min-width:43px;
+.icon-btn{
+  width:43px;
   height:43px;
-
-  display:grid;
-  place-items:center;
-
   border-radius:14px;
   border:1px solid var(--line);
-
-  background:rgba(7,17,28,.84);
-  color:white;
-
-  font-size:19px;
+  background:rgba(8,19,31,.88);
+  color:#fff;
 }
 
 .ready{
+  height:43px;
+  padding:0 10px;
+  border-radius:14px;
+  border:1px solid var(--line);
+  background:rgba(8,19,31,.88);
   display:flex;
   align-items:center;
   gap:6px;
-
-  height:43px;
-
-  padding:0 11px;
-
-  border-radius:14px;
-  border:1px solid var(--line);
-
-  background:rgba(7,17,28,.84);
-
-  color:var(--gold-light);
-
+  color:var(--gold2);
   font-size:11px;
   font-weight:800;
 }
@@ -217,169 +128,103 @@ button{
   height:7px;
   border-radius:50%;
   background:var(--mint);
-
-  box-shadow:
-    0 0 12px
-    rgba(88,217,176,.7);
 }
 
-/* =========================
-   HERO
-========================= */
+.hero,.card{
+  border:1px solid rgba(255,255,255,.08);
+  background:var(--panel);
+  border-radius:28px;
+  box-shadow:0 18px 50px rgba(0,0,0,.28);
+}
 
 .hero{
-  position:relative;
-  overflow:hidden;
-
-  padding:24px;
-
-  border-radius:31px;
-  border:1px solid rgba(218,176,86,.38);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(14,30,48,.96),
-      rgba(5,14,24,.92)
-    );
-
-  box-shadow:var(--shadow);
-}
-
-.hero::after{
-  content:"";
-
-  position:absolute;
-  width:270px;
-  height:270px;
-
-  right:-115px;
-  top:-125px;
-
-  border-radius:50%;
-
-  border:
-    23px solid
-    rgba(215,171,80,.07);
-
-  box-shadow:
-    0 0 0 24px rgba(35,99,159,.06),
-    0 0 0 48px rgba(215,171,80,.035);
+  padding:22px;
+  border-color:rgba(218,176,86,.38);
 }
 
 .eyebrow{
-  position:relative;
-  z-index:2;
-
-  color:var(--gold-light);
-
+  color:var(--gold2);
   font-size:12px;
   font-weight:850;
   letter-spacing:1px;
-
-  margin-bottom:10px;
 }
 
 .hero h1{
-  position:relative;
-  z-index:2;
-
-  margin:0;
-
-  max-width:680px;
-
-  font-size:
-    clamp(31px,7vw,51px);
-
+  font-size:clamp(30px,7vw,50px);
   line-height:1.04;
-  letter-spacing:-1.6px;
+  letter-spacing:-1.4px;
+  margin:9px 0 12px;
 }
 
 .hero p{
-  position:relative;
-  z-index:2;
-
-  max-width:620px;
-
-  margin:
-    15px 0 0;
-
   color:var(--muted);
-
-  font-size:15px;
   line-height:1.6;
+  margin:0;
 }
 
-/* =========================
-   IDENTITY
-========================= */
-
-.identity-bar{
-  position:relative;
-  z-index:2;
-
-  margin-top:18px;
-  padding:13px 14px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.065);
-
+.identity{
+  margin-top:16px;
+  padding:12px 13px;
+  border-radius:17px;
   background:rgba(0,0,0,.22);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
 }
 
-.identity-label{
+.id-small{
   color:var(--muted);
   font-size:10px;
 }
 
-.identity-id{
-  margin-top:4px;
-
-  color:var(--gold-light);
-
-  font-size:15px;
+.id-value{
+  color:var(--gold2);
   font-weight:850;
-}
-
-.identity-type{
   margin-top:3px;
-
-  color:#7d91a5;
-  font-size:10px;
 }
 
 .robot-pill{
-  flex:none;
-
+  align-self:center;
   padding:8px 10px;
-
   border-radius:999px;
-
   background:rgba(255,255,255,.05);
-
   color:#7f91a4;
-
   font-size:10px;
 }
 
-/* =========================
-   SECTION
-========================= */
+.voicebar{
+  display:grid;
+  grid-template-columns:1fr auto auto;
+  gap:7px;
+  margin:16px 0;
+}
+
+.voicebar select{
+  min-width:0;
+  background:#07131f;
+  color:#fff;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:12px;
+}
+
+.voicebar button{
+  border:1px solid var(--line);
+  background:#0c1a29;
+  color:#fff;
+  border-radius:15px;
+  padding:0 13px;
+}
+
+.voicebar button.listening{
+  outline:2px solid var(--mint);
+}
 
 .section-head{
   display:flex;
-  align-items:end;
   justify-content:space-between;
-  gap:10px;
-
-  margin:
-    24px 3px
-    12px;
+  align-items:end;
+  margin:22px 3px 11px;
 }
 
 .section-head h2{
@@ -388,317 +233,258 @@ button{
 }
 
 .section-head span{
-  color:var(--muted);
   font-size:11px;
+  color:var(--muted);
 }
 
-/* =========================
-   CENTERS
-========================= */
-
-.center-grid{
+.grid{
   display:grid;
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
-  gap:11px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
 }
 
-.center-card{
+.center{
   position:relative;
-  overflow:hidden;
-
-  min-height:188px;
-
-  padding:17px;
-
+  min-height:180px;
   border-radius:25px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.08);
-
-  cursor:pointer;
-
-  box-shadow:
-    0 12px 32px
-    rgba(0,0,0,.24);
+  padding:16px;
+  border:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
 }
 
-.center-card:active{
-  transform:scale(.975);
+.center.math{
+  background:linear-gradient(145deg,#103b60,#071d32);
 }
 
-.math{
-  background:
-    linear-gradient(
-      145deg,
-      #103b60,
-      #071d32
-    );
-
-  border-color:
-    rgba(65,159,214,.43);
+.center.camera{
+  background:linear-gradient(145deg,#654a1c,#241a0b);
+  border-color:rgba(226,180,81,.48);
 }
 
-.camera{
-  background:
-    linear-gradient(
-      145deg,
-      #64491c,
-      #241a0b
-    );
-
-  border-color:
-    rgba(226,180,81,.54);
+.center.translate{
+  background:linear-gradient(145deg,#075148,#06272a);
 }
 
-.translate{
-  background:
-    linear-gradient(
-      145deg,
-      #075148,
-      #06272a
-    );
-
-  border-color:
-    rgba(62,207,174,.42);
+.center.notes{
+  background:linear-gradient(145deg,#493174,#211b42);
 }
 
-.notes{
-  background:
-    linear-gradient(
-      145deg,
-      #493174,
-      #211b42
-    );
-
-  border-color:
-    rgba(141,103,215,.42);
-}
-
-.icon{
-  width:55px;
-  height:55px;
-
+.center .icon{
+  width:54px;
+  height:54px;
   display:grid;
   place-items:center;
-
   border-radius:17px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.1);
-
-  background:
-    rgba(0,0,0,.24);
-
+  background:rgba(0,0,0,.23);
   font-size:28px;
 }
 
-.center-card h3{
-  margin:
-    16px 0 7px;
-
-  font-size:19px;
-}
-
-.center-card p{
-  margin:0;
-
-  max-width:210px;
-
-  color:
-    rgba(238,243,248,.70);
-
-  font-size:12px;
-  line-height:1.48;
-}
-
-.arrow{
-  position:absolute;
-  right:14px;
-  bottom:14px;
-
-  width:34px;
-  height:34px;
-
-  display:grid;
-  place-items:center;
-
-  border-radius:50%;
-
-  background:
-    rgba(0,0,0,.22);
-
+.center h3{
   font-size:18px;
+  margin:15px 0 6px;
 }
 
-/* =========================
-   RECENT
-========================= */
-
-.recent{
-  margin-top:18px;
-  padding:17px;
-
-  border-radius:25px;
-  border:1px solid rgba(255,255,255,.07);
-
-  background:
-    rgba(8,20,33,.84);
-}
-
-.recent-title{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  margin-bottom:6px;
-}
-
-.recent-title strong{
-  font-size:16px;
-}
-
-.recent-title span{
-  color:var(--muted);
-  font-size:10px;
-}
-
-.recent-item{
-  display:flex;
-  align-items:center;
-  gap:11px;
-
-  padding:11px 3px;
-
-  border-bottom:
-    1px solid
-    rgba(255,255,255,.05);
-}
-
-.recent-item:last-child{
-  border-bottom:0;
-}
-
-.recent-icon{
-  width:40px;
-  height:40px;
-
-  flex:none;
-
-  display:grid;
-  place-items:center;
-
-  border-radius:12px;
-
-  background:
-    rgba(255,255,255,.055);
-
-  font-size:20px;
-}
-
-.recent-text{
-  flex:1;
-  min-width:0;
-}
-
-.recent-text strong{
-  display:block;
-  font-size:13px;
-}
-
-.recent-text span{
-  display:block;
-
-  margin-top:2px;
-
-  color:var(--muted);
+.center p{
   font-size:11px;
+  line-height:1.48;
+  color:rgba(238,243,248,.72);
+  margin:0 0 42px;
 }
 
-.footer{
+.center .open{
+  position:absolute;
+  right:13px;
+  bottom:13px;
+  width:36px;
+  height:36px;
+  border:0;
+  border-radius:50%;
+  background:rgba(0,0,0,.24);
+  color:#fff;
+}
+
+.card{
+  padding:17px;
   margin-top:16px;
-
-  text-align:center;
-
-  color:#74879a;
-
-  font-size:10px;
-  line-height:1.5;
 }
 
-/* =========================
-   FLOATING RII
-========================= */
+.audio-card{
+  display:grid;
+  gap:9px;
+}
+
+.audio-card select{
+  width:100%;
+  background:#07131f;
+  color:#fff;
+  border:1px solid var(--line);
+  border-radius:15px;
+  padding:12px;
+}
+
+.screen{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:800;
+  overflow:auto;
+  background:linear-gradient(145deg,#030912,#071522);
+  padding:
+    calc(15px + env(safe-area-inset-top))
+    13px
+    calc(95px + env(safe-area-inset-bottom));
+}
+
+.screen.open{
+  display:block;
+}
+
+.screen-inner{
+  width:min(100%,760px);
+  margin:auto;
+}
+
+.screen-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+
+.back{
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(255,255,255,.055);
+  color:#fff;
+  padding:10px 13px;
+  border-radius:14px;
+  font-weight:800;
+}
+
+.screen-title{
+  font-weight:900;
+}
+
+.screen-card{
+  margin-top:14px;
+  padding:18px;
+  border-radius:26px;
+  border:1px solid var(--line);
+  background:var(--panel);
+}
+
+.action-row{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-top:10px;
+}
+
+.action{
+  border:1px solid var(--line);
+  background:#0c1c2c;
+  color:#fff;
+  padding:13px;
+  border-radius:15px;
+  font-weight:800;
+}
+
+.action.gold{
+  background:#5e461b;
+  color:#fff0c5;
+}
+
+.action.mint{
+  background:#0d453d;
+}
+
+.textbox{
+  width:100%;
+  min-height:110px;
+  margin-top:10px;
+  background:#06111c;
+  color:#fff;
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:16px;
+  padding:13px;
+  resize:vertical;
+}
+
+.result{
+  margin-top:12px;
+  padding:14px;
+  border-radius:17px;
+  background:#06111b;
+  border:1px solid rgba(255,255,255,.08);
+  color:#dbe7f1;
+  line-height:1.6;
+  white-space:pre-wrap;
+}
+
+.camera-wrap{
+  position:relative;
+  overflow:hidden;
+  border-radius:24px;
+  border:1px solid rgba(226,180,81,.42);
+  background:#02060b;
+  aspect-ratio:3/4;
+  max-height:66vh;
+}
+
+.camera-wrap video,
+.camera-wrap canvas,
+.camera-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.camera-overlay{
+  position:absolute;
+  inset:10%;
+  border:2px solid rgba(242,213,139,.85);
+  border-radius:20px;
+  pointer-events:none;
+}
+
+.camera-status{
+  margin-top:10px;
+  color:var(--muted);
+  font-size:12px;
+}
 
 .rii{
   position:fixed;
-
-  left:
-    calc(100vw - 82px);
-
-  top:
-    calc(100vh - 148px);
-
+  left:calc(100vw - 82px);
+  top:calc(100vh - 148px);
   z-index:999;
-
   width:62px;
   height:62px;
-
   display:grid;
   place-items:center;
-
   border-radius:50%;
-
-  border:
-    2px solid
-    var(--gold);
-
+  border:2px solid var(--gold);
   background:
-    radial-gradient(
-      circle at 35% 30%,
-      #28517c,
-      #06121e 62%
-    );
-
-  color:var(--gold-light);
-
-  font-size:18px;
+    radial-gradient(circle at 35% 30%,#28517c,#06121e 62%);
+  color:var(--gold2);
   font-weight:900;
-
-  box-shadow:
-    0 9px 28px rgba(0,0,0,.55),
-    0 0 0 5px rgba(10,23,38,.72),
-    0 0 21px rgba(213,168,75,.22);
-
   touch-action:none;
   user-select:none;
+  box-shadow:
+    0 9px 28px rgba(0,0,0,.55),
+    0 0 0 5px rgba(10,23,38,.72);
 }
-
-/* =========================
-   OVERLAYS
-========================= */
 
 .overlay{
   position:fixed;
   inset:0;
-
   z-index:900;
-
   display:none;
-
   align-items:center;
   justify-content:center;
-
   padding:20px;
-
-  background:
-    rgba(1,6,11,.76);
-
-  backdrop-filter:
-    blur(16px);
+  background:rgba(1,6,11,.76);
+  backdrop-filter:blur(16px);
 }
 
 .overlay.open{
@@ -707,309 +493,88 @@ button{
 
 .panel{
   width:min(94vw,430px);
-
-  max-height:86vh;
+  max-height:85vh;
   overflow:auto;
-
-  padding:21px;
-
-  border-radius:30px;
-  border:1px solid rgba(217,173,88,.38);
-
+  padding:20px;
+  border-radius:29px;
+  border:1px solid var(--line);
   background:
     linear-gradient(
       155deg,
       rgba(14,29,47,.99),
       rgba(4,12,21,.99)
     );
-
-  box-shadow:
-    0 30px 80px
-    rgba(0,0,0,.62);
 }
 
 .panel-head{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  gap:10px;
-
-  margin-bottom:16px;
 }
 
 .panel-head h3{
   margin:0;
-  font-size:21px;
 }
 
 .close{
   width:38px;
   height:38px;
-
   border:0;
   border-radius:50%;
-
-  background:
-    rgba(255,255,255,.07);
-
-  color:white;
-
-  font-size:18px;
+  background:rgba(255,255,255,.07);
+  color:#fff;
 }
 
-/* =========================
-   LANGUAGE
-========================= */
-
-.language-list{
+.lang-list{
   display:grid;
-  gap:9px;
+  gap:8px;
+  margin-top:14px;
 }
 
-.language-btn{
-  width:100%;
-
+.lang-btn{
   display:flex;
   align-items:center;
-  gap:12px;
-
-  padding:13px 14px;
-
-  border-radius:17px;
-  border:1px solid rgba(255,255,255,.075);
-
-  background:
-    rgba(255,255,255,.04);
-
-  color:white;
-
+  gap:10px;
+  width:100%;
+  padding:12px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.04);
+  color:#fff;
   text-align:left;
 }
 
-.language-btn.active{
+.lang-btn.active{
   border-color:rgba(216,173,88,.65);
-
-  background:
-    rgba(216,173,88,.12);
+  background:rgba(216,173,88,.11);
 }
-
-.language-flag{
-  width:34px;
-  font-size:23px;
-}
-
-.language-name{
-  flex:1;
-}
-
-.language-name strong{
-  display:block;
-  font-size:14px;
-}
-
-.language-name span{
-  display:block;
-
-  margin-top:2px;
-
-  color:var(--muted);
-  font-size:10px;
-}
-
-.check{
-  color:var(--gold-light);
-  font-weight:900;
-}
-
-/* =========================
-   QUICK MENU
-========================= */
 
 .quick-grid{
   display:grid;
-  grid-template-columns:
-    repeat(2,minmax(0,1fr));
-
-  gap:10px;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin-top:14px;
 }
 
 .quick{
-  min-height:90px;
-
-  border-radius:18px;
-  border:1px solid rgba(255,255,255,.075);
-
-  background:
-    rgba(255,255,255,.045);
-
-  color:white;
-
-  padding:13px;
-
+  min-height:84px;
+  border-radius:17px;
+  border:1px solid rgba(255,255,255,.07);
+  background:rgba(255,255,255,.04);
+  color:#fff;
   text-align:left;
+  padding:12px;
   font-weight:800;
 }
 
 .quick span{
   display:block;
-
-  margin-bottom:7px;
-  font-size:25px;
+  font-size:24px;
+  margin-bottom:5px;
 }
 
-.quick.robot{
-  opacity:.38;
-}
-
-.quick-small-row{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-
-  gap:9px;
-
-  margin-top:10px;
-}
-
-.quick-small{
-  border-radius:15px;
-  border:1px solid rgba(255,255,255,.07);
-
-  background:
-    rgba(255,255,255,.035);
-
-  color:var(--muted);
-
-  padding:12px;
-
-  font-weight:750;
-}
-
-/* =========================
-   PLACEHOLDER
-========================= */
-
-.screen{
-  position:fixed;
-  inset:0;
-
-  z-index:850;
-
-  display:none;
-
-  overflow:auto;
-
-  background:
-    linear-gradient(
-      145deg,
-      #030912,
-      #071522
-    );
-
-  padding:
-    calc(18px + env(safe-area-inset-top))
-    16px
-    calc(100px + env(safe-area-inset-bottom));
-}
-
-.screen.open{
-  display:block;
-}
-
-.screen-inner{
-  width:min(100%,720px);
-  margin:auto;
-}
-
-.back{
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:14px;
-
-  background:
-    rgba(255,255,255,.055);
-
-  color:white;
-
-  padding:10px 13px;
-
-  font-weight:800;
-}
-
-.screen-card{
-  margin-top:18px;
-  padding:25px;
-
-  border-radius:29px;
-  border:1px solid var(--line);
-
-  background:var(--panel);
-}
-
-.screen-icon{
-  font-size:47px;
-}
-
-.screen-card h2{
-  margin:
-    15px 0
-    9px;
-}
-
-.screen-card p{
-  color:var(--muted);
-  line-height:1.6;
-}
-
-.coming{
-  margin-top:19px;
-
-  color:var(--gold-light);
-
-  font-weight:850;
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:430px){
-
-  .app{
-    padding-left:13px;
-    padding-right:13px;
-  }
-
-  .header-actions{
-    gap:5px;
-  }
-
-  .ready{
-    padding:0 8px;
-  }
-
-  .hero{
-    padding:20px;
-  }
-
-  .identity-bar{
-    align-items:flex-start;
-  }
-
-  .center-grid{
-    gap:9px;
-  }
-
-  .center-card{
-    min-height:182px;
-    padding:15px;
-  }
-
-  .center-card h3{
-    font-size:17px;
-  }
-
-  .center-card p{
-    font-size:11px;
-  }
+.hidden{
+  display:none!important;
 }
 </style>
 </head>
@@ -1018,13 +583,11 @@ button{
 
 <div class="background"></div>
 
-
 <div class="app">
 
 <header class="header">
 
   <div>
-
     <div class="logo">
       Rii <span>AI</span>
     </div>
@@ -1033,37 +596,36 @@ button{
       id="tagline"
       class="tagline"
     ></div>
-
   </div>
-
 
   <div class="header-actions">
 
     <button
-      class="round-btn"
-      onclick="speakHome()"
-      aria-label="Read"
+      class="icon-btn"
+      onclick="speakVisible()"
     >
       🔊
     </button>
 
+    <button
+      class="icon-btn"
+      onclick="toggleListening()"
+    >
+      🎙
+    </button>
 
     <button
-      class="round-btn"
-      onclick="openLanguageMenu()"
-      aria-label="Language"
+      class="icon-btn"
+      onclick="openLanguage()"
     >
       🌐
     </button>
-
 
     <div class="ready">
 
       <span class="dot"></span>
 
-      <span id="readyText">
-        Ready
-      </span>
+      <span id="readyText"></span>
 
     </div>
 
@@ -1072,50 +634,65 @@ button{
 </header>
 
 
-
 <section class="hero">
 
   <div class="eyebrow">
-    RII GLOBAL SPIRAL CORE
+    RII V3.3 • VOICE FIRST • CAMERA
   </div>
 
-
   <h1 id="heroTitle"></h1>
-
 
   <p id="heroText"></p>
 
 
-  <div class="identity-bar">
+  <div class="identity">
 
     <div>
 
-      <div
-        id="identityLabel"
-        class="identity-label"
-      ></div>
+      <div class="id-small">
+        Rii Identity
+      </div>
 
-      <div class="identity-id">
+      <div class="id-value">
         Rii00000001
       </div>
 
       <div
-        id="identityType"
-        class="identity-type"
+        id="rootText"
+        class="id-small"
       ></div>
 
     </div>
 
 
-    <div
-      id="robotState"
-      class="robot-pill"
-    ></div>
+    <div class="robot-pill">
+      🤖 Robot • future
+    </div>
 
   </div>
 
 </section>
 
+
+<div class="voicebar">
+
+  <select
+    id="homeLanguage"
+    onchange="setLanguage(this.value)"
+  ></select>
+
+  <button
+    id="homeMicBtn"
+    onclick="toggleListening()"
+  >
+    🎙
+  </button>
+
+  <button onclick="speakVisible()">
+    🔊
+  </button>
+
+</div>
 
 
 <div class="section-head">
@@ -1127,13 +704,9 @@ button{
 </div>
 
 
+<section class="grid">
 
-<section class="center-grid">
-
-  <article
-    class="center-card math"
-    onclick="openCenter('math')"
-  >
+  <article class="center math">
 
     <div class="icon">
       🧮
@@ -1143,18 +716,17 @@ button{
 
     <p id="mathText"></p>
 
-    <div class="arrow">
+    <button
+      class="open"
+      onclick="openCenter('math')"
+    >
       ›
-    </div>
+    </button>
 
   </article>
 
 
-
-  <article
-    class="center-card camera"
-    onclick="openCenter('camera')"
-  >
+  <article class="center camera">
 
     <div class="icon">
       📷
@@ -1164,18 +736,17 @@ button{
 
     <p id="cameraText"></p>
 
-    <div class="arrow">
+    <button
+      class="open"
+      onclick="openCenter('camera')"
+    >
       ›
-    </div>
+    </button>
 
   </article>
 
 
-
-  <article
-    class="center-card translate"
-    onclick="openCenter('translate')"
-  >
+  <article class="center translate">
 
     <div class="icon">
       🌍
@@ -1185,18 +756,17 @@ button{
 
     <p id="translateText"></p>
 
-    <div class="arrow">
+    <button
+      class="open"
+      onclick="openCenter('translate')"
+    >
       ›
-    </div>
+    </button>
 
   </article>
 
 
-
-  <article
-    class="center-card notes"
-    onclick="openCenter('notes')"
-  >
+  <article class="center notes">
 
     <div class="icon">
       📝
@@ -1206,97 +776,50 @@ button{
 
     <p id="notesText"></p>
 
-    <div class="arrow">
+    <button
+      class="open"
+      onclick="openCenter('notes')"
+    >
       ›
-    </div>
+    </button>
 
   </article>
 
 </section>
 
 
+<section class="card audio-card">
 
-<section class="recent">
+  <strong>
+    🎧 Audio
+  </strong>
 
-  <div class="recent-title">
+  <select id="audioMode">
 
-    <strong id="recentTitle"></strong>
+    <option>
+      Automatic / System audio
+    </option>
 
-    <span>
-      Brain History
-    </span>
+    <option>
+      Device speaker
+    </option>
 
-  </div>
+    <option>
+      Bluetooth headset
+    </option>
 
+  </select>
 
-  <div class="recent-item">
-
-    <div class="recent-icon">
-      🐴
-    </div>
-
-    <div class="recent-text">
-
-      <strong id="recentExplore"></strong>
-
-      <span id="recentHorse"></span>
-
-    </div>
-
-  </div>
-
-
-  <div class="recent-item">
-
-    <div class="recent-icon">
-      🧮
-    </div>
-
-    <div class="recent-text">
-
-      <strong id="recentMath"></strong>
-
-      <span>
-        24 + 13 = 37
-      </span>
-
-    </div>
-
-  </div>
-
-
-  <div class="recent-item">
-
-    <div class="recent-icon">
-      🔊
-    </div>
-
-    <div class="recent-text">
-
-      <strong id="recentWord"></strong>
-
-      <span>
-        Brown horse
-      </span>
-
-    </div>
-
+  <div class="id-small">
+    Trên iPhone/iPad, tuyến loa/Bluetooth do hệ điều hành chọn.
+    Rii dùng tuyến âm thanh hiện tại; thiết bị Rii riêng sau này
+    sẽ cho phép điều khiển sâu hơn.
   </div>
 
 </section>
 
-
-
-<div
-  id="footerText"
-  class="footer"
-></div>
-
 </div>
 
-
-
-<!-- FLOATING RII -->
 
 <div
   id="riiButton"
@@ -1305,9 +828,6 @@ button{
   Rii
 </div>
 
-
-
-<!-- LANGUAGE OVERLAY -->
 
 <div
   id="languageOverlay"
@@ -1318,32 +838,28 @@ button{
 
     <div class="panel-head">
 
-      <h3 id="languageHeading">
-        Language
+      <h3>
+        🌐 Language
       </h3>
 
       <button
         class="close"
-        onclick="closeLanguageMenu()"
+        onclick="closeLanguage()"
       >
         ×
       </button>
 
     </div>
 
-
     <div
       id="languageList"
-      class="language-list"
+      class="lang-list"
     ></div>
 
   </div>
 
 </div>
 
-
-
-<!-- QUICK MENU -->
 
 <div
   id="quickOverlay"
@@ -1354,17 +870,18 @@ button{
 
     <div class="panel-head">
 
-      <h3 id="quickHeading"></h3>
+      <h3>
+        Rii
+      </h3>
 
       <button
         class="close"
-        onclick="closeQuickMenu()"
+        onclick="closeQuick()"
       >
         ×
       </button>
 
     </div>
-
 
     <div class="quick-grid">
 
@@ -1373,7 +890,7 @@ button{
         onclick="quickOpen('math')"
       >
         <span>🧮</span>
-        <b id="quickMath"></b>
+        <b id="qMath"></b>
       </button>
 
 
@@ -1382,7 +899,7 @@ button{
         onclick="quickOpen('camera')"
       >
         <span>📷</span>
-        <b id="quickCamera"></b>
+        <b id="qCamera"></b>
       </button>
 
 
@@ -1391,7 +908,7 @@ button{
         onclick="quickOpen('translate')"
       >
         <span>🌍</span>
-        <b id="quickTranslate"></b>
+        <b id="qTranslate"></b>
       </button>
 
 
@@ -1400,13 +917,13 @@ button{
         onclick="quickOpen('notes')"
       >
         <span>📝</span>
-        <b id="quickNotes"></b>
+        <b id="qNotes"></b>
       </button>
 
 
       <button
         class="quick"
-        onclick="closeQuickMenu()"
+        onclick="closeQuick()"
       >
         <span>🏠</span>
         <b>Home</b>
@@ -1414,28 +931,11 @@ button{
 
 
       <button
-        class="quick robot"
-        disabled
-      >
-        <span>🤖</span>
-        <b>Robot</b>
-      </button>
-
-    </div>
-
-
-    <div class="quick-small-row">
-
-      <button
-        class="quick-small"
+        class="quick"
         onclick="openLanguageFromQuick()"
       >
-        🌐 Language
-      </button>
-
-
-      <button class="quick-small">
-        ⚙️ Settings
+        <span>🌐</span>
+        <b>Language</b>
       </button>
 
     </div>
@@ -1444,9 +944,6 @@ button{
 
 </div>
 
-
-
-<!-- CENTER PLACEHOLDER -->
 
 <div
   id="centerScreen"
@@ -1455,37 +952,284 @@ button{
 
   <div class="screen-inner">
 
-    <button
-      id="backButton"
-      class="back"
-      onclick="closeCenter()"
-    >
-      ← Home
-    </button>
 
+    <div class="screen-top">
 
-    <div class="screen-card">
-
-      <div
-        id="screenIcon"
-        class="screen-icon"
-      ></div>
-
-      <h2 id="screenTitle"></h2>
-
-      <p id="screenText"></p>
+      <button
+        class="back"
+        onclick="closeCenter()"
+      >
+        ← Home
+      </button>
 
       <div
-        id="comingText"
-        class="coming"
+        id="screenTitle"
+        class="screen-title"
       ></div>
+
+      <button
+        class="icon-btn"
+        onclick="speakCenter()"
+      >
+        🔊
+      </button>
 
     </div>
+
+
+    <div class="voicebar">
+
+      <select
+        id="centerLanguage"
+        onchange="setLanguage(this.value)"
+      ></select>
+
+      <button
+        id="centerMicBtn"
+        onclick="toggleListening()"
+      >
+        🎙
+      </button>
+
+      <button onclick="speakCenter()">
+        🔊
+      </button>
+
+    </div>
+
+
+    <section
+      id="mathCenter"
+      class="screen-card hidden"
+    >
+
+      <h2>
+        🧮 Math
+      </h2>
+
+      <textarea
+        id="mathInput"
+        class="textbox"
+        placeholder="Nói hoặc nhập bài toán..."
+      ></textarea>
+
+      <div class="action-row">
+
+        <button
+          class="action mint"
+          onclick="startSpeechInto('mathInput')"
+        >
+          🎙 Nói đề
+        </button>
+
+        <button
+          class="action"
+          onclick="demoMath()"
+        >
+          ✨ Giải thích
+        </button>
+
+      </div>
+
+      <div
+        id="mathResult"
+        class="result"
+      >
+Rii sẽ ưu tiên giải thích từng bước, không chỉ đưa đáp án.
+      </div>
+
+    </section>
+
+
+    <section
+      id="cameraCenter"
+      class="screen-card hidden"
+    >
+
+      <h2>
+        📷 Camera AI
+      </h2>
+
+
+      <div class="camera-wrap">
+
+        <video
+          id="cameraVideo"
+          autoplay
+          playsinline
+          muted
+        ></video>
+
+        <img
+          id="capturedImage"
+          class="hidden"
+          alt="Captured"
+        >
+
+        <canvas
+          id="cameraCanvas"
+          class="hidden"
+        ></canvas>
+
+        <div class="camera-overlay"></div>
+
+      </div>
+
+
+      <div
+        id="cameraStatus"
+        class="camera-status"
+      >
+        Camera chưa mở.
+      </div>
+
+
+      <div class="action-row">
+
+        <button
+          class="action mint"
+          onclick="startCamera()"
+        >
+          📷 Mở camera
+        </button>
+
+        <button
+          class="action gold"
+          onclick="captureCamera()"
+        >
+          ◎ Chụp vật
+        </button>
+
+        <button
+          class="action"
+          onclick="startSpeechInto('cameraQuestion')"
+        >
+          🎙 Hỏi Rii
+        </button>
+
+        <button
+          class="action"
+          onclick="speakCameraResult()"
+        >
+          🔊 Nghe giải thích
+        </button>
+
+      </div>
+
+
+      <textarea
+        id="cameraQuestion"
+        class="textbox"
+        placeholder="Ví dụ: Đây là con gì? Nó sống ở đâu?"
+      ></textarea>
+
+
+      <div
+        id="cameraResult"
+        class="result"
+      >
+Camera thật đã sẵn sàng.
+Sau khi chụp, bước kế tiếp là gửi ảnh sang Vision AI.
+V3.3 không giả nhận diện khi backend chưa có endpoint Vision AI.
+      </div>
+
+    </section>
+
+
+    <section
+      id="translateCenter"
+      class="screen-card hidden"
+    >
+
+      <h2>
+        🌍 Languages
+      </h2>
+
+      <textarea
+        id="translateInput"
+        class="textbox"
+        placeholder="Nói hoặc nhập từ/câu..."
+      ></textarea>
+
+
+      <div class="action-row">
+
+        <button
+          class="action mint"
+          onclick="startSpeechInto('translateInput')"
+        >
+          🎙 Nói
+        </button>
+
+        <button
+          class="action"
+          onclick="demoTranslate()"
+        >
+          🌐 Dịch
+        </button>
+
+      </div>
+
+
+      <div
+        id="translateResult"
+        class="result"
+      >
+Ngôn ngữ nghe và phát âm dùng cùng locale đang chọn.
+      </div>
+
+    </section>
+
+
+    <section
+      id="notesCenter"
+      class="screen-card hidden"
+    >
+
+      <h2>
+        📝 Notes & Alarms
+      </h2>
+
+
+      <textarea
+        id="notesInput"
+        class="textbox"
+        placeholder="Ví dụ: Nhắc con học toán lúc 7 giờ tối"
+      ></textarea>
+
+
+      <div class="action-row">
+
+        <button
+          class="action mint"
+          onclick="startSpeechInto('notesInput')"
+        >
+          🎙 Nói ghi chú
+        </button>
+
+        <button
+          class="action"
+          onclick="saveLocalNote()"
+        >
+          💾 Ghi nhớ
+        </button>
+
+      </div>
+
+
+      <div
+        id="notesResult"
+        class="result"
+      >
+Ghi chú cục bộ đã sẵn sàng.
+Báo thức hệ thống sẽ nối ở thiết bị Rii riêng.
+      </div>
+
+    </section>
 
   </div>
 
 </div>
-
 
 
 <script>
@@ -1496,6 +1240,9 @@ button{
 const LANGUAGE_KEY =
   "rii-v3-ui-language";
 
+const NOTE_KEY =
+  "rii-v3-local-notes";
+
 
 const languages = [
 
@@ -1503,639 +1250,216 @@ const languages = [
     code:"vi",
     locale:"vi-VN",
     flag:"🇻🇳",
-    native:"Tiếng Việt",
-    english:"Vietnamese"
+    name:"Tiếng Việt"
   },
 
   {
     code:"en",
     locale:"en-US",
     flag:"🇺🇸",
-    native:"English",
-    english:"English"
+    name:"English"
   },
 
   {
     code:"zh",
     locale:"zh-CN",
     flag:"🇨🇳",
-    native:"中文",
-    english:"Chinese"
+    name:"中文"
   },
 
   {
     code:"ja",
     locale:"ja-JP",
     flag:"🇯🇵",
-    native:"日本語",
-    english:"Japanese"
+    name:"日本語"
   },
 
   {
     code:"ko",
     locale:"ko-KR",
     flag:"🇰🇷",
-    native:"한국어",
-    english:"Korean"
+    name:"한국어"
   },
 
   {
     code:"es",
     locale:"es-ES",
     flag:"🇪🇸",
-    native:"Español",
-    english:"Spanish"
+    name:"Español"
   },
 
   {
     code:"fr",
     locale:"fr-FR",
     flag:"🇫🇷",
-    native:"Français",
-    english:"French"
+    name:"Français"
   },
 
   {
     code:"de",
     locale:"de-DE",
     flag:"🇩🇪",
-    native:"Deutsch",
-    english:"German"
+    name:"Deutsch"
   },
 
   {
     code:"pt",
     locale:"pt-BR",
     flag:"🇧🇷",
-    native:"Português",
-    english:"Portuguese"
+    name:"Português"
   },
 
   {
     code:"it",
     locale:"it-IT",
     flag:"🇮🇹",
-    native:"Italiano",
-    english:"Italian"
+    name:"Italiano"
   },
 
   {
     code:"th",
     locale:"th-TH",
     flag:"🇹🇭",
-    native:"ไทย",
-    english:"Thai"
+    name:"ไทย"
   },
 
   {
     code:"id",
     locale:"id-ID",
     flag:"🇮🇩",
-    native:"Bahasa Indonesia",
-    english:"Indonesian"
+    name:"Bahasa Indonesia"
   }
 
 ];
 
 
-const text = {
+const copy = {
 
 vi:{
-  tagline:"Học thông minh • Khám phá thế giới",
-  ready:"Sẵn sàng",
 
-  heroTitle:
+  tagline:
+    "Học thông minh • Khám phá thế giới",
+
+  ready:
+    "Sẵn sàng",
+
+  hero:
     "Xin chào 👋 Hôm nay con muốn khám phá gì?",
 
   heroText:
-    "Rii giúp con học toán, khám phá thế giới bằng Camera AI, học ngôn ngữ và ghi nhớ những việc quan trọng.",
+    "Con có thể chạm, nói hoặc nghe. Rii được thiết kế để trẻ chưa đọc thành thạo vẫn có thể sử dụng.",
 
-  identityLabel:"Rii Identity",
-  identityType:"Tài khoản gốc • ROOT",
-  robot:"🤖 Robot • tương lai",
+  root:
+    "Tài khoản gốc • ROOT",
 
-  centerTitle:"Trung tâm Rii",
-  centerHint:"Chọn một chức năng",
+  center:
+    "Trung tâm Rii",
 
-  mathTitle:"Giải bài tập toán",
+  hint:
+    "Chạm hoặc nói tên chức năng",
+
+  math:
+    "Giải toán",
+
   mathText:
-    "Giải từng bước và giúp con hiểu cách làm.",
+    "Nói, nhập hoặc chụp bài. Rii giải thích từng bước.",
 
-  cameraTitle:"Camera AI",
+  camera:
+    "Camera AI",
+
   cameraText:
-    "Nhìn, nhận diện và khám phá thế giới.",
+    "Mở camera, chụp vật và nghe Rii giải thích.",
 
-  translateTitle:"Phiên dịch",
+  translate:
+    "Phiên dịch",
+
   translateText:
-    "Dịch, phát âm và hiểu nghĩa ngôn ngữ.",
+    "Nghe, nói, dịch và phát âm theo ngôn ngữ được chọn.",
 
-  notesTitle:"Ghi chú & Báo thức",
+  notes:
+    "Ghi chú & Báo thức",
+
   notesText:
-    "Ghi nhớ việc cần làm và nhắc đúng giờ.",
-
-  recentTitle:"Gần đây",
-  recentExplore:"Khám phá",
-  recentHorse:"Con ngựa",
-  recentMath:"Toán học",
-  recentWord:"Từ mới",
-
-  footer:
-    "Thiết bị Rii và Robot Rii sẽ cùng thuộc một Rii Identity. Các ID khác nhau có dữ liệu tách biệt.",
-
-  languageHeading:"Chọn ngôn ngữ",
-
-  quickHeading:"Trung tâm Rii",
-
-  back:"← Home",
-
-  coming:
-    "Bước tiếp theo: cài chức năng vào trung tâm này.",
-
-  screens:{
-    math:
-      "Trung tâm Toán sẽ hỗ trợ nhập đề, chụp đề, nghe đề và giải thích từng bước phù hợp với học sinh tiểu học.",
-
-    camera:
-      "Camera AI sẽ nhận diện vật trẻ đang nhìn và chủ động giải thích tên, đặc điểm, nguồn gốc, môi trường sống và kiến thức liên quan.",
-
-    translate:
-      "Trung tâm ngôn ngữ sẽ hỗ trợ dịch, phát âm, phiên âm, giải thích nghĩa và học từ mới.",
-
-    notes:
-      "Trung tâm ghi chú giúp lưu việc cần nhớ, lịch học và báo thức trên thiết bị Rii."
-  }
+    "Nói với Rii để ghi nhớ việc học và giờ cần nhắc."
 },
 
 
 en:{
-  tagline:"Smart learning • Explore the world",
-  ready:"Ready",
 
-  heroTitle:
+  tagline:
+    "Smart learning • Explore the world",
+
+  ready:
+    "Ready",
+
+  hero:
     "Hello 👋 What would you like to explore today?",
 
   heroText:
-    "Rii helps you learn math, explore the world with Camera AI, learn languages and remember important things.",
+    "You can tap, speak or listen. Rii is designed so children can use it even before they read fluently.",
 
-  identityLabel:"Rii Identity",
-  identityType:"Root account • ROOT",
-  robot:"🤖 Robot • future",
+  root:
+    "Root account • ROOT",
 
-  centerTitle:"Rii Centers",
-  centerHint:"Choose an activity",
+  center:
+    "Rii Centers",
 
-  mathTitle:"Math",
+  hint:
+    "Tap or say a center name",
+
+  math:
+    "Math",
+
   mathText:
-    "Solve step by step and understand how it works.",
+    "Speak, type or photograph a problem. Rii explains step by step.",
 
-  cameraTitle:"Camera AI",
+  camera:
+    "Camera AI",
+
   cameraText:
-    "Look, identify and discover the world.",
+    "Open the camera, capture an object and listen to Rii explain it.",
 
-  translateTitle:"Languages",
+  translate:
+    "Languages",
+
   translateText:
-    "Translate, pronounce and understand meaning.",
+    "Listen, speak, translate and pronounce in the selected language.",
 
-  notesTitle:"Notes & Alarms",
+  notes:
+    "Notes & Alarms",
+
   notesText:
-    "Remember tasks and get reminders on time.",
-
-  recentTitle:"Recent",
-  recentExplore:"Explore",
-  recentHorse:"Horse",
-  recentMath:"Math",
-  recentWord:"New word",
-
-  footer:
-    "Rii Device and Rii Robot will share one Rii Identity. Different IDs keep separate data.",
-
-  languageHeading:"Choose your language",
-
-  quickHeading:"Rii Centers",
-
-  back:"← Home",
-
-  coming:
-    "Next step: install the learning center.",
-
-  screens:{
-    math:
-      "The Math Center will support typing, photographing or speaking a problem and explain each step for primary school students.",
-
-    camera:
-      "Camera AI will identify what the child is looking at and explain its name, features, origin, habitat and related knowledge.",
-
-    translate:
-      "The Language Center will support translation, pronunciation, phonetics, simple explanations and vocabulary learning.",
-
-    notes:
-      "Notes & Alarms will help children remember homework, schedules and important tasks."
-  }
-},
-
-
-zh:{
-  tagline:"智能学习 • 探索世界",
-  ready:"准备好了",
-  heroTitle:"你好 👋 今天你想探索什么？",
-  heroText:"Rii 可以帮助你学习数学、用 AI 相机探索世界、学习语言并记住重要的事情。",
-  identityLabel:"Rii 身份",
-  identityType:"根账户 • ROOT",
-  robot:"🤖 机器人 • 未来",
-  centerTitle:"Rii 学习中心",
-  centerHint:"选择一个功能",
-  mathTitle:"数学",
-  mathText:"一步一步学习并理解解题方法。",
-  cameraTitle:"AI 相机",
-  cameraText:"观察、识别并探索世界。",
-  translateTitle:"语言",
-  translateText:"翻译、发音并理解意思。",
-  notesTitle:"笔记和闹钟",
-  notesText:"记录任务并按时提醒。",
-  recentTitle:"最近",
-  recentExplore:"探索",
-  recentHorse:"马",
-  recentMath:"数学",
-  recentWord:"新单词",
-  footer:"Rii 设备和 Rii 机器人将共享同一个 Rii 身份。不同 ID 的数据彼此独立。",
-  languageHeading:"选择语言",
-  quickHeading:"Rii 学习中心",
-  back:"← 首页",
-  coming:"下一步：安装学习功能。",
-  screens:{
-    math:"数学中心将帮助小学生输入、拍摄或说出题目，并一步一步解释。",
-    camera:"AI 相机会识别孩子看到的物体，并解释名称、特征、来源、生活环境和相关知识。",
-    translate:"语言中心支持翻译、发音、音标、简单解释和新词学习。",
-    notes:"笔记和闹钟可以帮助孩子记录作业、时间表和重要任务。"
-  }
-},
-
-
-ja:{
-  tagline:"スマート学習 • 世界を探検",
-  ready:"準備完了",
-  heroTitle:"こんにちは 👋 今日は何を知りたい？",
-  heroText:"Rii は算数、AIカメラでの発見、語学学習、大切な予定の記憶を手伝います。",
-  identityLabel:"Rii Identity",
-  identityType:"ルートアカウント • ROOT",
-  robot:"🤖 ロボット • 未来",
-  centerTitle:"Rii センター",
-  centerHint:"機能を選んでください",
-  mathTitle:"算数",
-  mathText:"一歩ずつ考えて解き方を理解します。",
-  cameraTitle:"AIカメラ",
-  cameraText:"見て、認識して、世界を学びます。",
-  translateTitle:"ことば",
-  translateText:"翻訳、発音、意味を学びます。",
-  notesTitle:"メモ & アラーム",
-  notesText:"大切な予定を記録して知らせます。",
-  recentTitle:"最近",
-  recentExplore:"発見",
-  recentHorse:"馬",
-  recentMath:"算数",
-  recentWord:"新しい単語",
-  footer:"Rii デバイスと Rii ロボットは同じ Rii Identity を共有します。別のIDのデータは分離されます。",
-  languageHeading:"言語を選ぶ",
-  quickHeading:"Rii センター",
-  back:"← ホーム",
-  coming:"次のステップ：このセンターの機能を追加します。",
-  screens:{
-    math:"算数センターでは、問題を入力・撮影・音声入力し、小学生向けに一歩ずつ説明します。",
-    camera:"AIカメラは見ている物を認識し、名前、特徴、由来、生息環境などを説明します。",
-    translate:"言語センターでは翻訳、発音、読み方、意味の説明、新しい単語の学習を行います。",
-    notes:"メモとアラームで宿題、予定、大切なことを記録できます。"
-  }
-},
-
-
-ko:{
-  tagline:"스마트 학습 • 세상 탐험",
-  ready:"준비 완료",
-  heroTitle:"안녕 👋 오늘 무엇을 알아볼까요?",
-  heroText:"Rii는 수학, AI 카메라 탐험, 언어 학습과 중요한 일을 기억하도록 도와줍니다.",
-  identityLabel:"Rii Identity",
-  identityType:"루트 계정 • ROOT",
-  robot:"🤖 로봇 • 미래",
-  centerTitle:"Rii 센터",
-  centerHint:"기능을 선택하세요",
-  mathTitle:"수학",
-  mathText:"단계별로 풀고 방법을 이해합니다.",
-  cameraTitle:"AI 카메라",
-  cameraText:"보고, 인식하고, 세상을 탐험합니다.",
-  translateTitle:"언어",
-  translateText:"번역하고 발음을 듣고 뜻을 배웁니다.",
-  notesTitle:"메모 & 알람",
-  notesText:"할 일을 기억하고 제시간에 알려줍니다.",
-  recentTitle:"최근",
-  recentExplore:"탐험",
-  recentHorse:"말",
-  recentMath:"수학",
-  recentWord:"새 단어",
-  footer:"Rii 장치와 Rii 로봇은 하나의 Rii Identity를 공유합니다. 다른 ID의 데이터는 분리됩니다.",
-  languageHeading:"언어 선택",
-  quickHeading:"Rii 센터",
-  back:"← 홈",
-  coming:"다음 단계: 학습 기능을 설치합니다.",
-  screens:{
-    math:"수학 센터는 문제 입력, 촬영, 음성 입력과 초등학생을 위한 단계별 설명을 지원합니다.",
-    camera:"AI 카메라는 아이가 보고 있는 것을 인식하고 이름, 특징, 기원, 서식지와 관련 지식을 설명합니다.",
-    translate:"언어 센터는 번역, 발음, 음성, 쉬운 뜻 설명과 단어 학습을 지원합니다.",
-    notes:"메모와 알람으로 숙제, 일정과 중요한 일을 기억할 수 있습니다."
-  }
-},
-
-
-es:{
-  tagline:"Aprendizaje inteligente • Explora el mundo",
-  ready:"Listo",
-  heroTitle:"Hola 👋 ¿Qué quieres descubrir hoy?",
-  heroText:"Rii te ayuda con matemáticas, a explorar con Camera AI, aprender idiomas y recordar cosas importantes.",
-  identityLabel:"Identidad Rii",
-  identityType:"Cuenta raíz • ROOT",
-  robot:"🤖 Robot • futuro",
-  centerTitle:"Centros Rii",
-  centerHint:"Elige una actividad",
-  mathTitle:"Matemáticas",
-  mathText:"Resuelve paso a paso y aprende cómo hacerlo.",
-  cameraTitle:"Camera AI",
-  cameraText:"Mira, identifica y descubre el mundo.",
-  translateTitle:"Idiomas",
-  translateText:"Traduce, escucha y comprende significados.",
-  notesTitle:"Notas y alarmas",
-  notesText:"Recuerda tareas y recibe avisos.",
-  recentTitle:"Reciente",
-  recentExplore:"Explorar",
-  recentHorse:"Caballo",
-  recentMath:"Matemáticas",
-  recentWord:"Palabra nueva",
-  footer:"El dispositivo Rii y el Robot Rii compartirán una identidad Rii. Los otros ID mantienen sus datos separados.",
-  languageHeading:"Elige tu idioma",
-  quickHeading:"Centros Rii",
-  back:"← Inicio",
-  coming:"Siguiente paso: instalar este centro.",
-  screens:{
-    math:"El centro de matemáticas permitirá escribir, fotografiar o decir un problema y explicarlo paso a paso.",
-    camera:"Camera AI identificará objetos y explicará su nombre, características, origen y entorno.",
-    translate:"El centro de idiomas incluirá traducción, pronunciación, fonética y vocabulario.",
-    notes:"Notas y alarmas ayudará a recordar tareas, horarios y actividades."
-  }
-},
-
-
-fr:{
-  tagline:"Apprentissage intelligent • Explorer le monde",
-  ready:"Prêt",
-  heroTitle:"Bonjour 👋 Que veux-tu découvrir aujourd’hui ?",
-  heroText:"Rii aide à apprendre les maths, explorer avec Camera AI, apprendre les langues et retenir les choses importantes.",
-  identityLabel:"Identité Rii",
-  identityType:"Compte racine • ROOT",
-  robot:"🤖 Robot • futur",
-  centerTitle:"Centres Rii",
-  centerHint:"Choisis une activité",
-  mathTitle:"Mathématiques",
-  mathText:"Résous étape par étape et comprends la méthode.",
-  cameraTitle:"Camera AI",
-  cameraText:"Observe, reconnais et découvre le monde.",
-  translateTitle:"Langues",
-  translateText:"Traduis, écoute et comprends les mots.",
-  notesTitle:"Notes & alarmes",
-  notesText:"Garde tes tâches et reçois des rappels.",
-  recentTitle:"Récent",
-  recentExplore:"Découverte",
-  recentHorse:"Cheval",
-  recentMath:"Mathématiques",
-  recentWord:"Nouveau mot",
-  footer:"L’appareil Rii et le Robot Rii partageront une même identité Rii. Les autres ID restent séparés.",
-  languageHeading:"Choisis ta langue",
-  quickHeading:"Centres Rii",
-  back:"← Accueil",
-  coming:"Étape suivante : installer ce centre.",
-  screens:{
-    math:"Le centre de mathématiques permettra de saisir, photographier ou dicter un exercice et de l’expliquer étape par étape.",
-    camera:"Camera AI identifiera les objets et expliquera leur nom, leurs caractéristiques, leur origine et leur environnement.",
-    translate:"Le centre de langues proposera traduction, prononciation, phonétique et vocabulaire.",
-    notes:"Notes et alarmes aidera à mémoriser devoirs, horaires et activités."
-  }
-},
-
-
-de:{
-  tagline:"Intelligent lernen • Die Welt entdecken",
-  ready:"Bereit",
-  heroTitle:"Hallo 👋 Was möchtest du heute entdecken?",
-  heroText:"Rii hilft dir bei Mathematik, beim Entdecken mit Camera AI, beim Sprachenlernen und beim Erinnern.",
-  identityLabel:"Rii Identity",
-  identityType:"Root-Konto • ROOT",
-  robot:"🤖 Roboter • Zukunft",
-  centerTitle:"Rii Zentren",
-  centerHint:"Wähle eine Aktivität",
-  mathTitle:"Mathematik",
-  mathText:"Schritt für Schritt lösen und verstehen.",
-  cameraTitle:"Camera AI",
-  cameraText:"Ansehen, erkennen und die Welt entdecken.",
-  translateTitle:"Sprachen",
-  translateText:"Übersetzen, aussprechen und verstehen.",
-  notesTitle:"Notizen & Wecker",
-  notesText:"Aufgaben merken und rechtzeitig erinnern.",
-  recentTitle:"Zuletzt",
-  recentExplore:"Entdecken",
-  recentHorse:"Pferd",
-  recentMath:"Mathematik",
-  recentWord:"Neues Wort",
-  footer:"Rii Device und Rii Robot teilen eine Rii Identity. Andere IDs behalten getrennte Daten.",
-  languageHeading:"Sprache wählen",
-  quickHeading:"Rii Zentren",
-  back:"← Home",
-  coming:"Nächster Schritt: Lernfunktion installieren.",
-  screens:{
-    math:"Das Mathematikzentrum unterstützt Eingabe, Foto und Sprache und erklärt Aufgaben Schritt für Schritt.",
-    camera:"Camera AI erkennt Objekte und erklärt Name, Eigenschaften, Herkunft und Lebensraum.",
-    translate:"Das Sprachzentrum bietet Übersetzung, Aussprache, Lautschrift und Wortschatz.",
-    notes:"Notizen und Wecker helfen bei Hausaufgaben, Terminen und wichtigen Aufgaben."
-  }
-},
-
-
-pt:{
-  tagline:"Aprendizado inteligente • Explore o mundo",
-  ready:"Pronto",
-  heroTitle:"Olá 👋 O que você quer descobrir hoje?",
-  heroText:"Rii ajuda você com matemática, Camera AI, idiomas e tarefas importantes.",
-  identityLabel:"Identidade Rii",
-  identityType:"Conta raiz • ROOT",
-  robot:"🤖 Robô • futuro",
-  centerTitle:"Centros Rii",
-  centerHint:"Escolha uma atividade",
-  mathTitle:"Matemática",
-  mathText:"Resolva passo a passo e entenda como fazer.",
-  cameraTitle:"Camera AI",
-  cameraText:"Veja, identifique e descubra o mundo.",
-  translateTitle:"Idiomas",
-  translateText:"Traduza, ouça e entenda significados.",
-  notesTitle:"Notas e alarmes",
-  notesText:"Lembre tarefas e receba avisos.",
-  recentTitle:"Recentes",
-  recentExplore:"Explorar",
-  recentHorse:"Cavalo",
-  recentMath:"Matemática",
-  recentWord:"Nova palavra",
-  footer:"O dispositivo Rii e o Robot Rii compartilharão uma identidade Rii. Outros IDs terão dados separados.",
-  languageHeading:"Escolha seu idioma",
-  quickHeading:"Centros Rii",
-  back:"← Início",
-  coming:"Próximo passo: instalar este centro.",
-  screens:{
-    math:"O centro de matemática permitirá digitar, fotografar ou falar um problema e explicar cada etapa.",
-    camera:"Camera AI reconhecerá objetos e explicará nome, características, origem e ambiente.",
-    translate:"O centro de idiomas terá tradução, pronúncia, fonética e vocabulário.",
-    notes:"Notas e alarmes ajudarão a lembrar tarefas, horários e atividades."
-  }
-},
-
-
-it:{
-  tagline:"Apprendimento intelligente • Esplora il mondo",
-  ready:"Pronto",
-  heroTitle:"Ciao 👋 Cosa vuoi scoprire oggi?",
-  heroText:"Rii ti aiuta con matematica, Camera AI, lingue e cose importanti da ricordare.",
-  identityLabel:"Identità Rii",
-  identityType:"Account root • ROOT",
-  robot:"🤖 Robot • futuro",
-  centerTitle:"Centri Rii",
-  centerHint:"Scegli un'attività",
-  mathTitle:"Matematica",
-  mathText:"Risolvi passo dopo passo e capisci il metodo.",
-  cameraTitle:"Camera AI",
-  cameraText:"Guarda, riconosci e scopri il mondo.",
-  translateTitle:"Lingue",
-  translateText:"Traduci, ascolta e comprendi.",
-  notesTitle:"Note e sveglie",
-  notesText:"Ricorda attività e ricevi promemoria.",
-  recentTitle:"Recenti",
-  recentExplore:"Esplora",
-  recentHorse:"Cavallo",
-  recentMath:"Matematica",
-  recentWord:"Nuova parola",
-  footer:"Il dispositivo Rii e il Robot Rii condivideranno una Rii Identity. Gli altri ID restano separati.",
-  languageHeading:"Scegli la lingua",
-  quickHeading:"Centri Rii",
-  back:"← Home",
-  coming:"Passo successivo: installare questo centro.",
-  screens:{
-    math:"Il centro matematica permetterà di scrivere, fotografare o pronunciare un problema e spiegarlo passo dopo passo.",
-    camera:"Camera AI riconoscerà gli oggetti e spiegherà nome, caratteristiche, origine e ambiente.",
-    translate:"Il centro lingue offrirà traduzione, pronuncia, fonetica e vocabolario.",
-    notes:"Note e sveglie aiuteranno a ricordare compiti, orari e attività."
-  }
-},
-
-
-th:{
-  tagline:"เรียนรู้อย่างฉลาด • สำรวจโลก",
-  ready:"พร้อม",
-  heroTitle:"สวัสดี 👋 วันนี้อยากเรียนรู้อะไร?",
-  heroText:"Rii ช่วยเรียนคณิตศาสตร์ สำรวจโลกด้วย Camera AI เรียนภาษา และจดจำสิ่งสำคัญ",
-  identityLabel:"Rii Identity",
-  identityType:"บัญชีหลัก • ROOT",
-  robot:"🤖 หุ่นยนต์ • อนาคต",
-  centerTitle:"ศูนย์ Rii",
-  centerHint:"เลือกกิจกรรม",
-  mathTitle:"คณิตศาสตร์",
-  mathText:"แก้โจทย์ทีละขั้นและเข้าใจวิธีทำ",
-  cameraTitle:"Camera AI",
-  cameraText:"มอง ระบุ และสำรวจโลก",
-  translateTitle:"ภาษา",
-  translateText:"แปล ฟังเสียง และเข้าใจความหมาย",
-  notesTitle:"โน้ตและนาฬิกาปลุก",
-  notesText:"จำงานและแจ้งเตือนตรงเวลา",
-  recentTitle:"ล่าสุด",
-  recentExplore:"สำรวจ",
-  recentHorse:"ม้า",
-  recentMath:"คณิตศาสตร์",
-  recentWord:"คำใหม่",
-  footer:"อุปกรณ์ Rii และ Robot Rii จะใช้ Rii Identity เดียวกัน ส่วน ID อื่นจะแยกข้อมูลออกจากกัน",
-  languageHeading:"เลือกภาษา",
-  quickHeading:"ศูนย์ Rii",
-  back:"← หน้าหลัก",
-  coming:"ขั้นตอนถัดไป: ติดตั้งศูนย์การเรียนรู้",
-  screens:{
-    math:"ศูนย์คณิตศาสตร์จะรองรับการพิมพ์ ถ่ายภาพ หรือพูดโจทย์ และอธิบายทีละขั้นสำหรับเด็กประถม",
-    camera:"Camera AI จะระบุสิ่งที่เด็กกำลังมองและอธิบายชื่อ ลักษณะ ที่มา และสภาพแวดล้อม",
-    translate:"ศูนย์ภาษาจะรองรับการแปล การออกเสียง คำอ่าน และคำศัพท์ใหม่",
-    notes:"โน้ตและนาฬิกาปลุกจะช่วยจำการบ้าน ตารางเรียน และสิ่งสำคัญ"
-  }
-},
-
-
-id:{
-  tagline:"Belajar cerdas • Jelajahi dunia",
-  ready:"Siap",
-  heroTitle:"Halo 👋 Apa yang ingin kamu pelajari hari ini?",
-  heroText:"Rii membantu matematika, menjelajah dengan Camera AI, belajar bahasa dan mengingat hal penting.",
-  identityLabel:"Identitas Rii",
-  identityType:"Akun root • ROOT",
-  robot:"🤖 Robot • masa depan",
-  centerTitle:"Pusat Rii",
-  centerHint:"Pilih aktivitas",
-  mathTitle:"Matematika",
-  mathText:"Selesaikan langkah demi langkah dan pahami caranya.",
-  cameraTitle:"Camera AI",
-  cameraText:"Lihat, kenali dan jelajahi dunia.",
-  translateTitle:"Bahasa",
-  translateText:"Terjemahkan, dengarkan dan pahami arti.",
-  notesTitle:"Catatan & alarm",
-  notesText:"Ingat tugas dan dapatkan pengingat.",
-  recentTitle:"Terbaru",
-  recentExplore:"Jelajahi",
-  recentHorse:"Kuda",
-  recentMath:"Matematika",
-  recentWord:"Kata baru",
-  footer:"Perangkat Rii dan Robot Rii akan menggunakan satu Rii Identity. ID lain memiliki data terpisah.",
-  languageHeading:"Pilih bahasa",
-  quickHeading:"Pusat Rii",
-  back:"← Home",
-  coming:"Langkah berikutnya: memasang pusat pembelajaran.",
-  screens:{
-    math:"Pusat matematika mendukung mengetik, memotret atau mengucapkan soal dan menjelaskan setiap langkah.",
-    camera:"Camera AI mengenali objek dan menjelaskan nama, ciri, asal dan lingkungannya.",
-    translate:"Pusat bahasa mendukung terjemahan, pengucapan, fonetik dan kosakata.",
-    notes:"Catatan dan alarm membantu mengingat PR, jadwal dan tugas penting."
-  }
+    "Speak to Rii to remember school tasks and reminder times."
 }
 
 };
 
 
-/*
-  Nếu một ngôn ngữ chưa có bản dịch riêng,
-  dùng English làm fallback.
-*/
+let currentCenter =
+  null;
 
-function getText(){
+let cameraStream =
+  null;
 
-  const code =
-    localStorage.getItem(
-      LANGUAGE_KEY
-    ) || "vi";
-
-  return (
-    text[code] ||
-    text.en
-  );
-}
+let recognition =
+  null;
 
 
-function getCurrentLanguage(){
+function lang(){
 
   const code =
     localStorage.getItem(
       LANGUAGE_KEY
-    ) || "vi";
+    )
+    ||
+    "vi";
+
 
   return (
     languages.find(
-      item =>
-        item.code === code
+      x =>
+        x.code ===
+        code
     )
     ||
     languages[0]
@@ -2143,7 +1467,19 @@ function getCurrentLanguage(){
 }
 
 
-function setText(
+function t(){
+
+  return (
+    copy[
+      lang().code
+    ]
+    ||
+    copy.en
+  );
+}
+
+
+function set(
   id,
   value
 ){
@@ -2161,268 +1497,207 @@ function setText(
 }
 
 
-function renderUI(){
+function render(){
 
-  const t =
-    getText();
+  const x =
+    t();
 
-  const lang =
-    getCurrentLanguage();
+  const l =
+    lang();
 
 
   document.documentElement.lang =
-    lang.code;
+    l.code;
 
 
-  setText(
+  set(
     "tagline",
-    t.tagline
+    x.tagline
   );
 
-  setText(
+  set(
     "readyText",
-    t.ready
+    x.ready
   );
 
-  setText(
+  set(
     "heroTitle",
-    t.heroTitle
+    x.hero
   );
 
-  setText(
+  set(
     "heroText",
-    t.heroText
+    x.heroText
   );
 
-  setText(
-    "identityLabel",
-    t.identityLabel
+  set(
+    "rootText",
+    x.root
   );
 
-  setText(
-    "identityType",
-    t.identityType
-  );
-
-  setText(
-    "robotState",
-    t.robot
-  );
-
-
-  setText(
+  set(
     "centerTitle",
-    t.centerTitle
+    x.center
   );
 
-  setText(
+  set(
     "centerHint",
-    t.centerHint
+    x.hint
   );
 
-
-  setText(
+  set(
     "mathTitle",
-    t.mathTitle
+    x.math
   );
 
-  setText(
+  set(
     "mathText",
-    t.mathText
+    x.mathText
   );
 
-
-  setText(
+  set(
     "cameraTitle",
-    t.cameraTitle
+    x.camera
   );
 
-  setText(
+  set(
     "cameraText",
-    t.cameraText
+    x.cameraText
   );
 
-
-  setText(
+  set(
     "translateTitle",
-    t.translateTitle
+    x.translate
   );
 
-  setText(
+  set(
     "translateText",
-    t.translateText
+    x.translateText
   );
 
-
-  setText(
+  set(
     "notesTitle",
-    t.notesTitle
+    x.notes
   );
 
-  setText(
+  set(
     "notesText",
-    t.notesText
+    x.notesText
+  );
+
+  set(
+    "qMath",
+    x.math
+  );
+
+  set(
+    "qCamera",
+    x.camera
+  );
+
+  set(
+    "qTranslate",
+    x.translate
+  );
+
+  set(
+    "qNotes",
+    x.notes
   );
 
 
-  setText(
-    "recentTitle",
-    t.recentTitle
-  );
+  document
+    .querySelectorAll(
+      "#homeLanguage,#centerLanguage"
+    )
+    .forEach(
+      select => {
 
-  setText(
-    "recentExplore",
-    t.recentExplore
-  );
+        select.innerHTML =
+          languages
+            .map(
+              item =>
+                `
+                <option value="${item.code}">
+                  ${item.flag} ${item.name}
+                </option>
+                `
+            )
+            .join("");
 
-  setText(
-    "recentHorse",
-    t.recentHorse
-  );
-
-  setText(
-    "recentMath",
-    t.recentMath
-  );
-
-  setText(
-    "recentWord",
-    t.recentWord
-  );
-
-
-  setText(
-    "footerText",
-    t.footer
-  );
-
-
-  setText(
-    "languageHeading",
-    t.languageHeading
-  );
-
-
-  setText(
-    "quickHeading",
-    t.quickHeading
-  );
-
-
-  setText(
-    "quickMath",
-    t.mathTitle
-  );
-
-  setText(
-    "quickCamera",
-    t.cameraTitle
-  );
-
-  setText(
-    "quickTranslate",
-    t.translateTitle
-  );
-
-  setText(
-    "quickNotes",
-    t.notesTitle
-  );
-
-
-  setText(
-    "backButton",
-    t.back
-  );
-
-
-  renderLanguages();
-}
-
-
-function renderLanguages(){
-
-  const current =
-    getCurrentLanguage();
-
-  const container =
-    document.getElementById(
-      "languageList"
+        select.value =
+          l.code;
+      }
     );
 
 
-  container.innerHTML =
-    languages
-      .map(
-        item => {
+  renderLanguageList();
 
-          const active =
-            item.code ===
-            current.code;
 
-          return `
-            <button
-              class="language-btn ${active ? "active" : ""}"
-              onclick="selectLanguage('${item.code}')"
-            >
+  if(
+    currentCenter
+  ){
 
-              <div class="language-flag">
-                ${item.flag}
-              </div>
-
-              <div class="language-name">
-
-                <strong>
-                  ${item.native}
-                </strong>
-
-                <span>
-                  ${item.english}
-                </span>
-
-              </div>
-
-              <div class="check">
-                ${active ? "✓" : ""}
-              </div>
-
-            </button>
-          `;
-        }
-      )
-      .join("");
+    updateScreenTitle();
+  }
 }
 
 
-window.selectLanguage =
+window.setLanguage =
 function(code){
-
-  if(
-    !languages.some(
-      item =>
-        item.code === code
-    )
-  ){
-    return;
-  }
-
 
   localStorage.setItem(
     LANGUAGE_KEY,
     code
   );
 
-
-  renderUI();
-
-  closeLanguageMenu();
+  render();
 };
 
 
-window.openLanguageMenu =
+function renderLanguageList(){
+
+  const current =
+    lang();
+
+  document
+    .getElementById(
+      "languageList"
+    )
+    .innerHTML =
+
+    languages
+      .map(
+        item =>
+          `
+          <button
+            class="lang-btn ${
+              item.code === current.code
+                ?
+                "active"
+                :
+                ""
+            }"
+            onclick="setLanguage('${item.code}');closeLanguage()"
+          >
+            <span>
+              ${item.flag}
+            </span>
+
+            <b>
+              ${item.name}
+            </b>
+          </button>
+          `
+      )
+      .join("");
+}
+
+
+window.openLanguage =
 function(){
 
-  renderLanguages();
+  renderLanguageList();
 
   document
     .getElementById(
@@ -2435,7 +1710,7 @@ function(){
 };
 
 
-window.closeLanguageMenu =
+window.closeLanguage =
 function(){
 
   document
@@ -2452,57 +1727,67 @@ function(){
 window.openLanguageFromQuick =
 function(){
 
-  closeQuickMenu();
+  closeQuick();
 
-  openLanguageMenu();
+  openLanguage();
 };
 
 
-/* =========================
-   SPEECH
-========================= */
-
-window.speakHome =
+window.closeQuick =
 function(){
+
+  document
+    .getElementById(
+      "quickOverlay"
+    )
+    .classList
+    .remove(
+      "open"
+    );
+};
+
+
+window.quickOpen =
+function(name){
+
+  closeQuick();
+
+  openCenter(
+    name
+  );
+};
+
+
+function speak(
+  text
+){
 
   if(
     !(
-      "speechSynthesis" in window &&
-      "SpeechSynthesisUtterance" in window
+      "speechSynthesis" in
+      window
     )
   ){
 
     alert(
-      "Speech is not supported on this device."
+      "Speech synthesis is not supported."
     );
 
     return;
   }
 
 
-  const t =
-    getText();
-
-  const lang =
-    getCurrentLanguage();
-
-
   const speech =
     new SpeechSynthesisUtterance(
-      t.heroTitle +
-      ". " +
-      t.mathTitle +
-      ". " +
-      t.cameraTitle +
-      ". " +
-      t.translateTitle +
-      ". " +
-      t.notesTitle
+      String(
+        text ||
+        ""
+      )
     );
 
 
   speech.lang =
-    lang.locale;
+    lang().locale;
 
   speech.rate =
     .9;
@@ -2513,61 +1798,320 @@ function(){
   speechSynthesis.speak(
     speech
   );
+}
+
+
+window.speakVisible =
+function(){
+
+  const x =
+    t();
+
+  speak(
+    `${x.hero}. ${x.math}. ${x.camera}. ${x.translate}. ${x.notes}.`
+  );
 };
 
 
-/* =========================
-   CENTERS
-========================= */
+window.speakCenter =
+function(){
 
-const centerIcons = {
-  math:"🧮",
-  camera:"📷",
-  translate:"🌍",
-  notes:"📝"
+  const x =
+    t();
+
+
+  speak(
+    {
+      math:
+        x.math,
+
+      camera:
+        x.camera,
+
+      translate:
+        x.translate,
+
+      notes:
+        x.notes
+
+    }[
+      currentCenter
+    ]
+    ||
+    x.center
+  );
 };
+
+
+window.speakCameraResult =
+function(){
+
+  speak(
+    document
+      .getElementById(
+        "cameraResult"
+      )
+      .textContent
+  );
+};
+
+
+function RC(){
+
+  return (
+    window.SpeechRecognition
+    ||
+    window.webkitSpeechRecognition
+  );
+}
+
+
+function beginRecognition(
+  targetId
+){
+
+  const C =
+    RC();
+
+
+  if(!C){
+
+    alert(
+      "Speech recognition is not supported by this browser."
+    );
+
+    return;
+  }
+
+
+  if(
+    recognition
+  ){
+
+    try{
+
+      recognition.stop();
+
+    }catch{}
+  }
+
+
+  recognition =
+    new C();
+
+
+  recognition.lang =
+    lang().locale;
+
+
+  recognition.interimResults =
+    false;
+
+
+  recognition.continuous =
+    false;
+
+
+  [
+    "homeMicBtn",
+    "centerMicBtn"
+  ]
+    .forEach(
+      id => {
+
+        document
+          .getElementById(
+            id
+          )
+          ?.classList
+          .add(
+            "listening"
+          );
+      }
+    );
+
+
+  recognition.onresult =
+    event => {
+
+      const words =
+        event
+          .results[0][0]
+          .transcript;
+
+
+      if(
+        targetId
+      ){
+
+        document
+          .getElementById(
+            targetId
+          )
+          .value =
+          words;
+
+      }else{
+
+        handleVoiceCommand(
+          words
+        );
+      }
+    };
+
+
+  recognition.onend =
+    () => {
+
+      [
+        "homeMicBtn",
+        "centerMicBtn"
+      ]
+        .forEach(
+          id => {
+
+            document
+              .getElementById(
+                id
+              )
+              ?.classList
+              .remove(
+                "listening"
+              );
+          }
+        );
+    };
+
+
+  recognition.start();
+}
+
+
+window.toggleListening =
+function(){
+
+  beginRecognition(
+    null
+  );
+};
+
+
+window.startSpeechInto =
+function(id){
+
+  beginRecognition(
+    id
+  );
+};
+
+
+function handleVoiceCommand(
+  words
+){
+
+  const query =
+    String(
+      words ||
+      ""
+    )
+      .toLowerCase();
+
+
+  if(
+    /camera|máy ảnh|ống kính|相机|カメラ|카메라/
+      .test(
+        query
+      )
+  ){
+
+    openCenter(
+      "camera"
+    );
+
+    return;
+  }
+
+
+  if(
+    /math|toán|算数|数学|수학/
+      .test(
+        query
+      )
+  ){
+
+    openCenter(
+      "math"
+    );
+
+    return;
+  }
+
+
+  if(
+    /translate|language|dịch|ngôn ngữ|语言|言語|언어/
+      .test(
+        query
+      )
+  ){
+
+    openCenter(
+      "translate"
+    );
+
+    return;
+  }
+
+
+  if(
+    /note|alarm|ghi chú|báo thức|メモ|알람/
+      .test(
+        query
+      )
+  ){
+
+    openCenter(
+      "notes"
+    );
+
+    return;
+  }
+
+
+  speak(
+    words
+  );
+}
 
 
 window.openCenter =
 function(name){
 
-  const t =
-    getText();
+  currentCenter =
+    name;
 
 
-  const titles = {
-    math:t.mathTitle,
-    camera:t.cameraTitle,
-    translate:t.translateTitle,
-    notes:t.notesTitle
-  };
+  [
+    "math",
+    "camera",
+    "translate",
+    "notes"
+  ]
+    .forEach(
+      key => {
 
-
-  setText(
-    "screenIcon",
-    centerIcons[name] ||
-    "✨"
-  );
-
-
-  setText(
-    "screenTitle",
-    titles[name] ||
-    ""
-  );
-
-
-  setText(
-    "screenText",
-    t.screens[name] ||
-    ""
-  );
-
-
-  setText(
-    "comingText",
-    t.coming
-  );
+        document
+          .getElementById(
+            key +
+            "Center"
+          )
+          .classList
+          .toggle(
+            "hidden",
+            key !==
+            name
+          );
+      }
+    );
 
 
   document
@@ -2582,7 +2126,56 @@ function(name){
 
   document.body.style.overflow =
     "hidden";
+
+
+  updateScreenTitle();
+
+
+  if(
+    name ===
+    "camera"
+  ){
+
+    setTimeout(
+      () => {
+
+        startCamera();
+
+      },
+      250
+    );
+  }
 };
+
+
+function updateScreenTitle(){
+
+  const x =
+    t();
+
+
+  set(
+    "screenTitle",
+    {
+      math:
+        x.math,
+
+      camera:
+        x.camera,
+
+      translate:
+        x.translate,
+
+      notes:
+        x.notes
+
+    }[
+      currentCenter
+    ]
+    ||
+    x.center
+  );
+}
 
 
 window.closeCenter =
@@ -2600,41 +2193,333 @@ function(){
 
   document.body.style.overflow =
     "";
+
+
+  stopCamera();
+
+
+  currentCenter =
+    null;
 };
 
 
-/* =========================
-   QUICK MENU
-========================= */
+window.startCamera =
+async function(){
 
-window.closeQuickMenu =
+  const status =
+    document.getElementById(
+      "cameraStatus"
+    );
+
+
+  try{
+
+    stopCamera();
+
+
+    cameraStream =
+      await navigator
+        .mediaDevices
+        .getUserMedia({
+
+          video:{
+            facingMode:{
+              ideal:
+                "environment"
+            }
+          },
+
+          audio:false
+        });
+
+
+    const video =
+      document.getElementById(
+        "cameraVideo"
+      );
+
+
+    video.srcObject =
+      cameraStream;
+
+
+    video
+      .classList
+      .remove(
+        "hidden"
+      );
+
+
+    document
+      .getElementById(
+        "capturedImage"
+      )
+      .classList
+      .add(
+        "hidden"
+      );
+
+
+    status.textContent =
+      "✅ Camera đang hoạt động. Đưa vật thể vào khung rồi bấm Chụp vật.";
+
+
+  }catch(error){
+
+    status.textContent =
+      "❌ Không mở được camera: "
+      +
+      (
+        error?.message ||
+        error
+      );
+  }
+};
+
+
+window.captureCamera =
 function(){
+
+  const video =
+    document.getElementById(
+      "cameraVideo"
+    );
+
+
+  const canvas =
+    document.getElementById(
+      "cameraCanvas"
+    );
+
+
+  const image =
+    document.getElementById(
+      "capturedImage"
+    );
+
+
+  if(
+    !video.videoWidth
+  ){
+
+    document
+      .getElementById(
+        "cameraStatus"
+      )
+      .textContent =
+      "Camera chưa sẵn sàng.";
+
+    return;
+  }
+
+
+  canvas.width =
+    video.videoWidth;
+
+
+  canvas.height =
+    video.videoHeight;
+
+
+  canvas
+    .getContext(
+      "2d"
+    )
+    .drawImage(
+      video,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
+
+
+  image.src =
+    canvas.toDataURL(
+      "image/jpeg",
+      .9
+    );
+
+
+  image
+    .classList
+    .remove(
+      "hidden"
+    );
+
+
+  video
+    .classList
+    .add(
+      "hidden"
+    );
+
+
+  stopCamera();
+
 
   document
     .getElementById(
-      "quickOverlay"
+      "cameraStatus"
     )
-    .classList
-    .remove(
-      "open"
-    );
+    .textContent =
+    "✅ Đã chụp ảnh. Ảnh đã sẵn sàng cho Vision AI.";
+
+
+  document
+    .getElementById(
+      "cameraResult"
+    )
+    .textContent =
+    "Ảnh đã được chụp thành công. Bước kế tiếp là nối endpoint Vision AI để Rii nhận diện vật thật, rồi tự giải thích bằng ngôn ngữ đang chọn. V3.3 không giả mạo kết quả nhận diện khi chưa có Vision AI.";
 };
 
 
-window.quickOpen =
-function(name){
+function stopCamera(){
 
-  closeQuickMenu();
+  if(
+    cameraStream
+  ){
 
-  openCenter(
-    name
+    cameraStream
+      .getTracks()
+      .forEach(
+        track =>
+          track.stop()
+      );
+
+
+    cameraStream =
+      null;
+  }
+}
+
+
+window.demoMath =
+function(){
+
+  const question =
+    document
+      .getElementById(
+        "mathInput"
+      )
+      .value
+      .trim();
+
+
+  document
+    .getElementById(
+      "mathResult"
+    )
+    .textContent =
+
+    question
+      ?
+      `Đã nhận đề: ${question}
+
+V3.3 đã có mic và giao diện.
+Bước tiếp theo sẽ nối Brain/AI để giải từng bước.`
+      :
+      "Hãy nói hoặc nhập bài toán trước.";
+};
+
+
+window.demoTranslate =
+function(){
+
+  const question =
+    document
+      .getElementById(
+        "translateInput"
+      )
+      .value
+      .trim();
+
+
+  document
+    .getElementById(
+      "translateResult"
+    )
+    .textContent =
+
+    question
+      ?
+      `Đã nhận: ${question}
+Ngôn ngữ hiện tại: ${lang().name}
+
+Worker Translation sẽ được nối ở bước tích hợp AI.`
+      :
+      "Hãy nói hoặc nhập từ/câu trước.";
+};
+
+
+window.saveLocalNote =
+function(){
+
+  const note =
+    document
+      .getElementById(
+        "notesInput"
+      )
+      .value
+      .trim();
+
+
+  if(
+    !note
+  ){
+
+    return;
+  }
+
+
+  const notes =
+    JSON.parse(
+      localStorage.getItem(
+        NOTE_KEY
+      )
+      ||
+      "[]"
+    );
+
+
+  notes.unshift({
+
+    text:
+      note,
+
+    createdAt:
+      new Date()
+        .toISOString()
+  });
+
+
+  localStorage.setItem(
+    NOTE_KEY,
+    JSON.stringify(
+      notes.slice(
+        0,
+        100
+      )
+    )
+  );
+
+
+  document
+    .getElementById(
+      "notesResult"
+    )
+    .textContent =
+    "✅ Đã lưu ghi chú trên thiết bị:\n"
+    +
+    note;
+
+
+  speak(
+    note
   );
 };
 
-
-/* =========================
-   FLOATING RII
-========================= */
 
 const rii =
   document.getElementById(
@@ -2645,14 +2530,11 @@ const rii =
 let dragging =
   false;
 
-
 let moved =
   false;
 
-
 let offsetX =
   0;
-
 
 let offsetY =
   0;
@@ -2686,7 +2568,8 @@ rii.addEventListener(
 
 
     const rect =
-      rii.getBoundingClientRect();
+      rii
+        .getBoundingClientRect();
 
 
     offsetX =
@@ -2710,7 +2593,10 @@ rii.addEventListener(
   "pointermove",
   event => {
 
-    if(!dragging){
+    if(
+      !dragging
+    ){
+
       return;
     }
 
@@ -2723,34 +2609,30 @@ rii.addEventListener(
       rii.offsetWidth;
 
 
-    const x =
+    rii.style.left =
       clamp(
         event.clientX -
         offsetX,
         6,
-        window.innerWidth -
+        innerWidth -
         size -
         6
-      );
+      )
+      +
+      "px";
 
 
-    const y =
+    rii.style.top =
       clamp(
         event.clientY -
         offsetY,
         8,
-        window.innerHeight -
+        innerHeight -
         size -
         12
-      );
-
-
-    rii.style.left =
-      x + "px";
-
-
-    rii.style.top =
-      y + "px";
+      )
+      +
+      "px";
   }
 );
 
@@ -2772,7 +2654,9 @@ rii.addEventListener(
     }catch{}
 
 
-    if(!moved){
+    if(
+      !moved
+    ){
 
       document
         .getElementById(
@@ -2787,35 +2671,24 @@ rii.addEventListener(
 );
 
 
-rii.addEventListener(
-  "pointercancel",
-  () => {
-
-    dragging =
-      false;
-  }
-);
-
-
-/* =========================
-   CLOSE OVERLAY
-========================= */
-
 [
-  "quickOverlay",
-  "languageOverlay"
+  "languageOverlay",
+  "quickOverlay"
 ]
 .forEach(
   id => {
 
     document
-      .getElementById(id)
+      .getElementById(
+        id
+      )
       .addEventListener(
         "click",
         event => {
 
           if(
-            event.target.id === id
+            event.target.id ===
+            id
           ){
 
             event
@@ -2831,10 +2704,6 @@ rii.addEventListener(
 );
 
 
-/* =========================
-   FIRST START
-========================= */
-
 if(
   !localStorage.getItem(
     LANGUAGE_KEY
@@ -2848,7 +2717,7 @@ if(
 }
 
 
-renderUI();
+render();
 
 })();
 </script>
