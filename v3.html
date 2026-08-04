@@ -10,7 +10,7 @@
 
 <meta name="theme-color" content="#050b14">
 
-<title>Rii AI V3.4.1 — Camera State Fix</title>
+<title>Rii AI V3.4.2</title>
 
 <style>
 :root{
@@ -20,9 +20,12 @@
 
   --gold:#d8ad58;
   --gold2:#f2d58b;
+
   --mint:#58d9b0;
   --blue:#3fa7da;
+
   --red:#ff7d7d;
+  --orange:#ffc56d;
 
   --text:#f7f4ea;
   --muted:#9aabbd;
@@ -37,6 +40,7 @@ html,
 body{
   margin:0;
   min-height:100%;
+
   background:var(--bg);
   color:var(--text);
 
@@ -64,9 +68,9 @@ button:disabled{
 }
 
 
-/* =====================================================
+/* =========================
    BACKGROUND
-===================================================== */
+========================= */
 
 .background{
   position:fixed;
@@ -114,9 +118,9 @@ button:disabled{
 }
 
 
-/* =====================================================
+/* =========================
    APP
-===================================================== */
+========================= */
 
 .app{
   width:min(100%,980px);
@@ -132,9 +136,9 @@ button:disabled{
 }
 
 
-/* =====================================================
+/* =========================
    HEADER
-===================================================== */
+========================= */
 
 .header{
   display:flex;
@@ -227,9 +231,9 @@ button:disabled{
 }
 
 
-/* =====================================================
+/* =========================
    HERO
-===================================================== */
+========================= */
 
 .hero,
 .card{
@@ -284,9 +288,9 @@ button:disabled{
 }
 
 
-/* =====================================================
-   ID
-===================================================== */
+/* =========================
+   IDENTITY
+========================= */
 
 .identity{
   display:flex;
@@ -336,9 +340,9 @@ button:disabled{
 }
 
 
-/* =====================================================
+/* =========================
    VOICE BAR
-===================================================== */
+========================= */
 
 .voicebar{
   display:grid;
@@ -350,8 +354,7 @@ button:disabled{
 
   gap:7px;
 
-  margin:
-    16px 0;
+  margin:16px 0;
 }
 
 .voicebar select{
@@ -371,8 +374,7 @@ button:disabled{
 }
 
 .voicebar button{
-  padding:
-    0 13px;
+  padding:0 13px;
 
   border-radius:15px;
 
@@ -392,9 +394,9 @@ button:disabled{
 }
 
 
-/* =====================================================
+/* =========================
    HOME CENTERS
-===================================================== */
+========================= */
 
 .section-head{
   display:flex;
@@ -482,7 +484,7 @@ button:disabled{
     );
 }
 
-.center .icon{
+.center-icon{
   width:54px;
   height:54px;
 
@@ -518,7 +520,7 @@ button:disabled{
   line-height:1.48;
 }
 
-.center .open{
+.center-open{
   position:absolute;
 
   right:13px;
@@ -538,9 +540,9 @@ button:disabled{
 }
 
 
-/* =====================================================
+/* =========================
    AUDIO
-===================================================== */
+========================= */
 
 .card{
   margin-top:16px;
@@ -571,9 +573,9 @@ button:disabled{
 }
 
 
-/* =====================================================
-   CENTER SCREEN
-===================================================== */
+/* =========================
+   SCREEN
+========================= */
 
 .screen{
   position:fixed;
@@ -653,9 +655,9 @@ button:disabled{
 }
 
 
-/* =====================================================
-   INPUT / ACTION
-===================================================== */
+/* =========================
+   INPUT
+========================= */
 
 .textbox{
   width:100%;
@@ -678,6 +680,11 @@ button:disabled{
 
   resize:vertical;
 }
+
+
+/* =========================
+   ACTIONS
+========================= */
 
 .action-row{
   display:grid;
@@ -721,34 +728,9 @@ button:disabled{
 }
 
 
-/* =====================================================
-   RESULT
-===================================================== */
-
-.result{
-  margin-top:12px;
-
-  padding:14px;
-
-  border-radius:17px;
-
-  border:
-    1px solid
-    rgba(255,255,255,.08);
-
-  background:#06111b;
-
-  color:#dbe7f1;
-
-  line-height:1.6;
-
-  white-space:pre-wrap;
-}
-
-
-/* =====================================================
+/* =========================
    CAMERA
-===================================================== */
+========================= */
 
 .camera-wrap{
   position:relative;
@@ -804,43 +786,67 @@ button:disabled{
 }
 
 
-/* =====================================================
-   VISION
-===================================================== */
+/* =========================
+   CHILD FRIENDLY AI STATUS
+========================= */
 
-.vision-status{
+.ai-message{
   display:none;
 
-  margin-top:12px;
+  margin-top:13px;
 
-  padding:13px;
+  padding:16px;
 
-  border-radius:16px;
+  border-radius:19px;
 
   border:
     1px solid
-    rgba(63,167,218,.30);
+    rgba(88,217,176,.28);
 
   background:
-    rgba(20,46,70,.64);
+    rgba(8,65,55,.38);
 
-  color:#ccecff;
+  color:#dffdf4;
 
-  font-size:12px;
+  line-height:1.55;
 }
 
-.vision-status.show{
+.ai-message.show{
   display:block;
 }
 
-.vision-status.error{
+.ai-message.resting{
   border-color:
-    rgba(255,125,125,.35);
+    rgba(255,197,109,.34);
 
   background:
-    rgba(72,22,26,.58);
+    rgba(88,59,13,.44);
 
-  color:#ffd4d4;
+  color:#ffe9b8;
+}
+
+.ai-message.error{
+  border-color:
+    rgba(255,125,125,.32);
+
+  background:
+    rgba(80,25,31,.45);
+
+  color:#ffd6d6;
+}
+
+.ai-message-title{
+  font-size:17px;
+
+  font-weight:900;
+
+  margin-bottom:5px;
+}
+
+.ai-message-text{
+  font-size:13px;
+
+  line-height:1.55;
 }
 
 .spinner{
@@ -868,6 +874,11 @@ button:disabled{
     transform:rotate(360deg);
   }
 }
+
+
+/* =========================
+   VISION RESULT
+========================= */
 
 .vision-card{
   display:none;
@@ -1016,27 +1027,76 @@ button:disabled{
   line-height:1.45;
 }
 
-.safety{
+.result{
   margin-top:12px;
 
-  padding:11px;
+  padding:14px;
 
-  border-radius:14px;
+  border-radius:17px;
 
-  background:
-    rgba(255,177,74,.08);
+  border:
+    1px solid
+    rgba(255,255,255,.08);
 
-  color:#ffd99c;
+  background:#06111b;
 
-  font-size:11px;
+  color:#dbe7f1;
 
-  line-height:1.5;
+  line-height:1.6;
+
+  white-space:pre-wrap;
 }
 
 
-/* =====================================================
+/* =========================
+   ROOT DEBUG
+========================= */
+
+.root-debug{
+  margin-top:14px;
+
+  padding:12px;
+
+  border-radius:16px;
+
+  border:
+    1px dashed
+    rgba(216,173,88,.28);
+
+  background:
+    rgba(0,0,0,.16);
+}
+
+.root-debug summary{
+  color:#b89b62;
+
+  font-size:11px;
+
+  cursor:pointer;
+
+  font-weight:800;
+}
+
+.root-debug pre{
+  margin:
+    12px 0
+    0;
+
+  white-space:pre-wrap;
+
+  color:#9dafc0;
+
+  font-size:11px;
+
+  line-height:1.55;
+
+  overflow:auto;
+}
+
+
+/* =========================
    FLOATING RII
-===================================================== */
+========================= */
 
 .rii{
   position:fixed;
@@ -1081,9 +1141,9 @@ button:disabled{
 }
 
 
-/* =====================================================
+/* =========================
    OVERLAY
-===================================================== */
+========================= */
 
 .overlay{
   position:fixed;
@@ -1101,8 +1161,7 @@ button:disabled{
   background:
     rgba(1,6,11,.76);
 
-  backdrop-filter:
-    blur(16px);
+  backdrop-filter:blur(16px);
 }
 
 .overlay.open{
@@ -1157,9 +1216,9 @@ button:disabled{
 }
 
 
-/* =====================================================
+/* =========================
    LANGUAGE
-===================================================== */
+========================= */
 
 .lang-list{
   display:grid;
@@ -1202,9 +1261,9 @@ button:disabled{
 }
 
 
-/* =====================================================
+/* =========================
    QUICK
-===================================================== */
+========================= */
 
 .quick-grid{
   display:grid;
@@ -1249,6 +1308,7 @@ button:disabled{
 .hidden{
   display:none!important;
 }
+
 
 @media(max-width:430px){
 
@@ -1304,15 +1364,16 @@ button:disabled{
 
     <button
       class="icon-btn"
-      onclick="speakVisible()"
+      onclick="speakHome()"
     >
       🔊
     </button>
 
 
     <button
+      id="homeMicButton"
       class="icon-btn"
-      onclick="toggleListening()"
+      onclick="listenCommand()"
     >
       🎙
     </button>
@@ -1330,7 +1391,9 @@ button:disabled{
 
       <span class="dot"></span>
 
-      <span id="readyText"></span>
+      <span id="readyText">
+        Ready
+      </span>
 
     </div>
 
@@ -1343,7 +1406,7 @@ button:disabled{
 <section class="hero">
 
   <div class="eyebrow">
-    RII V3.4.1 • LIVE VISION
+    RII V3.4.2 • GLOBAL VISION
   </div>
 
 
@@ -1368,7 +1431,9 @@ button:disabled{
       <div
         id="rootText"
         class="id-small"
-      ></div>
+      >
+        ROOT
+      </div>
 
     </div>
 
@@ -1391,17 +1456,12 @@ button:disabled{
   ></select>
 
 
-  <button
-    id="homeMicBtn"
-    onclick="toggleListening()"
-  >
+  <button onclick="listenCommand()">
     🎙
   </button>
 
 
-  <button
-    onclick="speakVisible()"
-  >
+  <button onclick="speakHome()">
     🔊
   </button>
 
@@ -1423,7 +1483,7 @@ button:disabled{
 
   <article class="center math">
 
-    <div class="icon">
+    <div class="center-icon">
       🧮
     </div>
 
@@ -1432,7 +1492,7 @@ button:disabled{
     <p id="mathText"></p>
 
     <button
-      class="open"
+      class="center-open"
       onclick="openCenter('math')"
     >
       ›
@@ -1444,7 +1504,7 @@ button:disabled{
 
   <article class="center camera">
 
-    <div class="icon">
+    <div class="center-icon">
       📷
     </div>
 
@@ -1453,7 +1513,7 @@ button:disabled{
     <p id="cameraText"></p>
 
     <button
-      class="open"
+      class="center-open"
       onclick="openCenter('camera')"
     >
       ›
@@ -1465,7 +1525,7 @@ button:disabled{
 
   <article class="center translate">
 
-    <div class="icon">
+    <div class="center-icon">
       🌍
     </div>
 
@@ -1474,7 +1534,7 @@ button:disabled{
     <p id="translateText"></p>
 
     <button
-      class="open"
+      class="center-open"
       onclick="openCenter('translate')"
     >
       ›
@@ -1486,7 +1546,7 @@ button:disabled{
 
   <article class="center notes">
 
-    <div class="icon">
+    <div class="center-icon">
       📝
     </div>
 
@@ -1495,7 +1555,7 @@ button:disabled{
     <p id="notesText"></p>
 
     <button
-      class="open"
+      class="center-open"
       onclick="openCenter('notes')"
     >
       ›
@@ -1517,7 +1577,7 @@ button:disabled{
   <select>
 
     <option>
-      Automatic / System audio
+      Automatic / System
     </option>
 
     <option>
@@ -1532,7 +1592,7 @@ button:disabled{
 
 
   <div class="id-small">
-    Rii sử dụng tuyến âm thanh hiện được hệ điều hành lựa chọn.
+    Rii sử dụng tuyến âm thanh hiện được thiết bị lựa chọn.
   </div>
 
 </section>
@@ -1550,6 +1610,8 @@ button:disabled{
 
 
 
+<!-- LANGUAGE -->
+
 <div
   id="languageOverlay"
   class="overlay"
@@ -1562,6 +1624,7 @@ button:disabled{
       <h3>
         🌐 Language
       </h3>
+
 
       <button
         class="close"
@@ -1583,6 +1646,8 @@ button:disabled{
 </div>
 
 
+
+<!-- QUICK -->
 
 <div
   id="quickOverlay"
@@ -1614,7 +1679,7 @@ button:disabled{
         onclick="quickOpen('math')"
       >
         <span>🧮</span>
-        <b id="qMath"></b>
+        Math
       </button>
 
 
@@ -1623,7 +1688,7 @@ button:disabled{
         onclick="quickOpen('camera')"
       >
         <span>📷</span>
-        <b id="qCamera"></b>
+        Camera AI
       </button>
 
 
@@ -1632,7 +1697,7 @@ button:disabled{
         onclick="quickOpen('translate')"
       >
         <span>🌍</span>
-        <b id="qTranslate"></b>
+        Language
       </button>
 
 
@@ -1641,7 +1706,7 @@ button:disabled{
         onclick="quickOpen('notes')"
       >
         <span>📝</span>
-        <b id="qNotes"></b>
+        Notes
       </button>
 
 
@@ -1650,7 +1715,7 @@ button:disabled{
         onclick="closeQuick()"
       >
         <span>🏠</span>
-        <b>Home</b>
+        Home
       </button>
 
 
@@ -1659,7 +1724,7 @@ button:disabled{
         onclick="openLanguageFromQuick()"
       >
         <span>🌐</span>
-        <b>Language</b>
+        Language
       </button>
 
     </div>
@@ -1670,12 +1735,15 @@ button:disabled{
 
 
 
+<!-- CENTER SCREEN -->
+
 <div
   id="centerScreen"
   class="screen"
 >
 
   <div class="screen-inner">
+
 
     <div class="screen-top">
 
@@ -1713,8 +1781,8 @@ button:disabled{
 
 
       <button
-        id="centerMicBtn"
-        onclick="toggleListening()"
+        id="centerMicButton"
+        onclick="listenCommand()"
       >
         🎙
       </button>
@@ -1729,6 +1797,8 @@ button:disabled{
     </div>
 
 
+
+    <!-- MATH -->
 
     <section
       id="mathCenter"
@@ -1751,7 +1821,7 @@ button:disabled{
 
         <button
           class="action mint"
-          onclick="startSpeechInto('mathInput')"
+          onclick="speechInto('mathInput')"
         >
           🎙 Nói đề
         </button>
@@ -1771,12 +1841,14 @@ button:disabled{
         id="mathResult"
         class="result"
       >
-Rii sẽ ưu tiên giải thích từng bước.
+Rii sẽ giải thích từng bước khi Math AI được nối.
       </div>
 
     </section>
 
 
+
+    <!-- CAMERA -->
 
     <section
       id="cameraCenter"
@@ -1842,7 +1914,7 @@ Rii sẽ ưu tiên giải thích từng bước.
 
 
         <button
-          id="captureAnalyzeButton"
+          id="captureButton"
           class="action gold"
           onclick="captureAndAnalyze()"
         >
@@ -1852,7 +1924,7 @@ Rii sẽ ưu tiên giải thích từng bước.
 
         <button
           class="action"
-          onclick="startSpeechInto('cameraQuestion')"
+          onclick="speechInto('cameraQuestion')"
         >
           🎙 Hỏi Rii
         </button>
@@ -1861,7 +1933,7 @@ Rii sẽ ưu tiên giải thích từng bước.
         <button
           id="visionSpeakButton"
           class="action blue"
-          onclick="speakVisionResult()"
+          onclick="speakVision()"
           disabled
         >
           🔊 Nghe Rii
@@ -1870,11 +1942,29 @@ Rii sẽ ưu tiên giải thích từng bước.
       </div>
 
 
-      <div
-        id="visionStatus"
-        class="vision-status"
-      ></div>
 
+      <!-- CHILD MESSAGE -->
+
+      <div
+        id="aiMessage"
+        class="ai-message"
+      >
+
+        <div
+          id="aiMessageTitle"
+          class="ai-message-title"
+        ></div>
+
+        <div
+          id="aiMessageText"
+          class="ai-message-text"
+        ></div>
+
+      </div>
+
+
+
+      <!-- RESULT -->
 
       <div
         id="visionCard"
@@ -1931,12 +2021,6 @@ Rii sẽ ưu tiên giải thích từng bước.
         ></div>
 
 
-        <div
-          id="visionSafety"
-          class="safety hidden"
-        ></div>
-
-
         <div class="action-row">
 
           <button
@@ -1959,16 +2043,28 @@ Rii sẽ ưu tiên giải thích từng bước.
       </div>
 
 
-      <div
-        id="cameraResult"
-        class="result"
+
+      <!-- ROOT DEBUG -->
+
+      <details
+        id="rootDebug"
+        class="root-debug hidden"
       >
-Mở camera → đưa vật vào khung → bấm “Chụp & tìm hiểu”.
-      </div>
+
+        <summary>
+          🔐 ROOT • Chi tiết kỹ thuật
+        </summary>
+
+
+        <pre id="rootDebugText"></pre>
+
+      </details>
 
     </section>
 
 
+
+    <!-- TRANSLATE -->
 
     <section
       id="translateCenter"
@@ -1991,7 +2087,7 @@ Mở camera → đưa vật vào khung → bấm “Chụp & tìm hiểu”.
 
         <button
           class="action mint"
-          onclick="startSpeechInto('translateInput')"
+          onclick="speechInto('translateInput')"
         >
           🎙 Nói
         </button>
@@ -2011,12 +2107,14 @@ Mở camera → đưa vật vào khung → bấm “Chụp & tìm hiểu”.
         id="translateResult"
         class="result"
       >
-Language center ready.
+Language Center ready.
       </div>
 
     </section>
 
 
+
+    <!-- NOTES -->
 
     <section
       id="notesCenter"
@@ -2039,7 +2137,7 @@ Language center ready.
 
         <button
           class="action mint"
-          onclick="startSpeechInto('notesInput')"
+          onclick="speechInto('notesInput')"
         >
           🎙 Nói
         </button>
@@ -2047,7 +2145,7 @@ Language center ready.
 
         <button
           class="action"
-          onclick="saveLocalNote()"
+          onclick="saveNote()"
         >
           💾 Ghi nhớ
         </button>
@@ -2064,6 +2162,7 @@ Ghi chú sẵn sàng.
 
     </section>
 
+
   </div>
 
 </div>
@@ -2079,7 +2178,11 @@ Ghi chú sẵn sàng.
 
 
 const APP_VERSION =
-  "3.4.1";
+  "3.4.2";
+
+
+const ROOT_ID =
+  "Rii00000001";
 
 
 const LANGUAGE_KEY =
@@ -2195,7 +2298,7 @@ const languages = [
 ];
 
 
-const copy = {
+const ui = {
 
 vi:{
 
@@ -2209,7 +2312,7 @@ vi:{
     "Xin chào 👋 Hôm nay con muốn khám phá gì?",
 
   heroText:
-    "Con có thể chạm, nói hoặc nghe. Rii Vision giúp con tìm hiểu những vật con nhìn thấy.",
+    "Con có thể chạm, nói hoặc nghe. Nếu AI tạm nghỉ, Rii vẫn giữ lại ảnh để con tiếp tục sau.",
 
   root:
     "Tài khoản gốc • ROOT",
@@ -2224,25 +2327,46 @@ vi:{
     "Giải toán",
 
   mathText:
-    "Nói, nhập hoặc chụp bài. Rii giải thích từng bước.",
+    "Nói, nhập hoặc chụp bài.",
 
   camera:
     "Camera AI",
 
   cameraText:
-    "Nhìn vật thật, nhận diện và nghe Rii giải thích.",
+    "Nhìn vật thật và nghe Rii giải thích.",
 
   translate:
     "Phiên dịch",
 
   translateText:
-    "Nghe, nói, dịch và phát âm theo ngôn ngữ được chọn.",
+    "Nghe, nói, dịch và phát âm.",
 
   notes:
     "Ghi chú & Báo thức",
 
   notesText:
-    "Nói với Rii để ghi nhớ việc học."
+    "Nói với Rii để ghi nhớ việc học.",
+
+  lookingTitle:
+    "👀 Rii đang nhìn...",
+
+  lookingText:
+    "Con chờ Rii một chút nhé.",
+
+  quotaTitle:
+    "💤 Rii Vision đang tạm nghỉ",
+
+  quotaText:
+    "Ảnh của con đã được giữ lại. Con vẫn có thể nói chuyện và nghe Rii. Khi AI sẵn sàng, chỉ cần bấm “Phân tích lại”.",
+
+  genericErrorTitle:
+    "🌧️ Rii chưa xem được ảnh",
+
+  genericErrorText:
+    "Ảnh vẫn còn ở đây. Con có thể thử lại hoặc chụp một vật khác.",
+
+  resultReady:
+    "✨ Rii đã tìm hiểu xong."
 },
 
 
@@ -2258,7 +2382,7 @@ en:{
     "Hello 👋 What would you like to explore today?",
 
   heroText:
-    "Tap, speak or listen. Rii Vision helps you learn about things you can see.",
+    "You can tap, speak or listen. If AI is resting, Rii keeps your picture so you can continue later.",
 
   root:
     "Root account • ROOT",
@@ -2267,7 +2391,7 @@ en:{
     "Rii Centers",
 
   hint:
-    "Tap or say a center name",
+    "Tap or say a center",
 
   math:
     "Math",
@@ -2279,7 +2403,7 @@ en:{
     "Camera AI",
 
   cameraText:
-    "Look at a real object and let Rii explain it.",
+    "Look at real things and let Rii explain.",
 
   translate:
     "Languages",
@@ -2291,7 +2415,28 @@ en:{
     "Notes & Alarms",
 
   notesText:
-    "Speak to Rii to remember important things."
+    "Speak to Rii to remember important things.",
+
+  lookingTitle:
+    "👀 Rii is looking...",
+
+  lookingText:
+    "Give Rii a moment.",
+
+  quotaTitle:
+    "💤 Rii Vision is resting",
+
+  quotaText:
+    "Your picture is safe. You can still talk and listen to Rii. When AI is ready, tap Analyze again.",
+
+  genericErrorTitle:
+    "🌧️ Rii cannot view this yet",
+
+  genericErrorText:
+    "Your picture is still here. You can retry or photograph another object.",
+
+  resultReady:
+    "✨ Rii finished exploring."
 }
 
 };
@@ -2309,7 +2454,15 @@ let recognition =
   null;
 
 
+let capturedFrameReady =
+  false;
+
+
 let latestVisionResult =
+  null;
+
+
+let latestTechnicalError =
   null;
 
 
@@ -2317,21 +2470,11 @@ let visionBusy =
   false;
 
 
-/*
-IMPORTANT FIX
+/* =========================
+   HELPERS
+========================= */
 
-This is the state that V3.4 did not track correctly.
-*/
-let capturedFrameReady =
-  false;
-
-
-
-/* =====================================================
-   LANGUAGE
-===================================================== */
-
-function lang(){
+function currentLanguage(){
 
   const code =
     localStorage.getItem(
@@ -2356,159 +2499,147 @@ function lang(){
 function text(){
 
   return (
-    copy[
-      lang().code
+    ui[
+      currentLanguage().code
     ]
     ||
-    copy.en
+    ui.en
   );
 }
 
 
-function set(
+function element(
+  id
+){
+
+  return document.getElementById(
+    id
+  );
+}
+
+
+function setText(
   id,
   value
 ){
 
-  const element =
-    document.getElementById(
-      id
-    );
+  const node =
+    element(id);
 
 
-  if(element){
+  if(node){
 
-    element.textContent =
+    node.textContent =
       value;
   }
 }
 
 
+/* =========================
+   RENDER
+========================= */
+
 function render(){
 
-  const x =
+  const t =
     text();
 
 
   const language =
-    lang();
+    currentLanguage();
 
 
   document.documentElement.lang =
     language.code;
 
 
-  set(
+  setText(
     "tagline",
-    x.tagline
+    t.tagline
   );
 
 
-  set(
+  setText(
     "readyText",
-    x.ready
+    t.ready
   );
 
 
-  set(
+  setText(
     "heroTitle",
-    x.hero
+    t.hero
   );
 
 
-  set(
+  setText(
     "heroText",
-    x.heroText
+    t.heroText
   );
 
 
-  set(
+  setText(
     "rootText",
-    x.root
+    t.root
   );
 
 
-  set(
+  setText(
     "centerTitle",
-    x.center
+    t.center
   );
 
 
-  set(
+  setText(
     "centerHint",
-    x.hint
+    t.hint
   );
 
 
-  set(
+  setText(
     "mathTitle",
-    x.math
+    t.math
   );
 
 
-  set(
+  setText(
     "mathText",
-    x.mathText
+    t.mathText
   );
 
 
-  set(
+  setText(
     "cameraTitle",
-    x.camera
+    t.camera
   );
 
 
-  set(
+  setText(
     "cameraText",
-    x.cameraText
+    t.cameraText
   );
 
 
-  set(
+  setText(
     "translateTitle",
-    x.translate
+    t.translate
   );
 
 
-  set(
+  setText(
     "translateText",
-    x.translateText
+    t.translateText
   );
 
 
-  set(
+  setText(
     "notesTitle",
-    x.notes
+    t.notes
   );
 
 
-  set(
+  setText(
     "notesText",
-    x.notesText
-  );
-
-
-  set(
-    "qMath",
-    x.math
-  );
-
-
-  set(
-    "qCamera",
-    x.camera
-  );
-
-
-  set(
-    "qTranslate",
-    x.translate
-  );
-
-
-  set(
-    "qNotes",
-    x.notes
+    t.notesText
   );
 
 
@@ -2563,21 +2694,19 @@ function(code){
 };
 
 
-
-/* =====================================================
+/* =========================
    LANGUAGE MENU
-===================================================== */
+========================= */
 
 function renderLanguageList(){
 
   const current =
-    lang();
+    currentLanguage();
 
 
-  document
-    .getElementById(
-      "languageList"
-    )
+  element(
+    "languageList"
+  )
     .innerHTML =
 
     languages
@@ -2621,10 +2750,9 @@ function(){
   renderLanguageList();
 
 
-  document
-    .getElementById(
-      "languageOverlay"
-    )
+  element(
+    "languageOverlay"
+  )
     .classList
     .add(
       "open"
@@ -2635,10 +2763,9 @@ function(){
 window.closeLanguage =
 function(){
 
-  document
-    .getElementById(
-      "languageOverlay"
-    )
+  element(
+    "languageOverlay"
+  )
     .classList
     .remove(
       "open"
@@ -2655,16 +2782,15 @@ function(){
 };
 
 
-
-/* =====================================================
-   SPEECH OUTPUT
-===================================================== */
+/* =========================
+   SPEAK
+========================= */
 
 function speak(
   value
 ){
 
-  const speechText =
+  const message =
     String(
       value ||
       ""
@@ -2673,7 +2799,7 @@ function speak(
 
 
   if(
-    !speechText
+    !message
   ){
 
     return;
@@ -2693,12 +2819,13 @@ function speak(
 
   const utterance =
     new SpeechSynthesisUtterance(
-      speechText
+      message
     );
 
 
   utterance.lang =
-    lang().locale;
+    currentLanguage()
+      .locale;
 
 
   utterance.rate =
@@ -2718,22 +2845,24 @@ function speak(
 }
 
 
-window.speakVisible =
+window.speakHome =
 function(){
 
-  const x =
+  const t =
     text();
 
 
   speak(
     [
-      x.hero,
-      x.math,
-      x.camera,
-      x.translate,
-      x.notes
+      t.hero,
+      t.math,
+      t.camera,
+      t.translate,
+      t.notes
     ]
-      .join(". ")
+      .join(
+        ". "
+      )
   );
 };
 
@@ -2741,32 +2870,31 @@ function(){
 window.speakCenter =
 function(){
 
-  const x =
+  const t =
     text();
 
 
   speak(
     {
-      math:x.math,
-      camera:x.camera,
-      translate:x.translate,
-      notes:x.notes
+      math:t.math,
+      camera:t.camera,
+      translate:t.translate,
+      notes:t.notes
 
     }[
       currentCenter
     ]
     ||
-    x.center
+    t.center
   );
 };
 
 
-
-/* =====================================================
+/* =========================
    SPEECH INPUT
-===================================================== */
+========================= */
 
-function recognitionConstructor(){
+function recognitionClass(){
 
   return (
     window.SpeechRecognition
@@ -2776,12 +2904,12 @@ function recognitionConstructor(){
 }
 
 
-function beginRecognition(
-  targetId
+function startRecognition(
+  targetId = null
 ){
 
   const C =
-    recognitionConstructor();
+    recognitionClass();
 
 
   if(!C){
@@ -2797,7 +2925,9 @@ function beginRecognition(
   if(recognition){
 
     try{
+
       recognition.stop();
+
     }catch{}
   }
 
@@ -2807,7 +2937,8 @@ function beginRecognition(
 
 
   recognition.lang =
-    lang().locale;
+    currentLanguage()
+      .locale;
 
 
   recognition.continuous =
@@ -2827,17 +2958,19 @@ function beginRecognition(
           .transcript;
 
 
-      if(targetId){
+      if(
+        targetId
+      ){
 
-        const element =
-          document.getElementById(
+        const target =
+          element(
             targetId
           );
 
 
-        if(element){
+        if(target){
 
-          element.value =
+          target.value =
             words;
         }
 
@@ -2854,31 +2987,29 @@ function beginRecognition(
 }
 
 
-window.toggleListening =
+window.listenCommand =
 function(){
 
-  beginRecognition(
-    null
-  );
+  startRecognition();
 };
 
 
-window.startSpeechInto =
-function(id){
+window.speechInto =
+function(targetId){
 
-  beginRecognition(
-    id
+  startRecognition(
+    targetId
   );
 };
 
 
 function handleVoiceCommand(
-  words
+  value
 ){
 
   const query =
     String(
-      words ||
+      value ||
       ""
     )
       .toLowerCase();
@@ -2937,15 +3068,14 @@ function handleVoiceCommand(
 
 
   speak(
-    words
+    value
   );
 }
 
 
-
-/* =====================================================
-   CENTER
-===================================================== */
+/* =========================
+   CENTERS
+========================= */
 
 window.openCenter =
 function(name){
@@ -2963,11 +3093,10 @@ function(name){
     .forEach(
       key => {
 
-        document
-          .getElementById(
-            key +
-            "Center"
-          )
+        element(
+          key +
+          "Center"
+        )
           .classList
           .toggle(
             "hidden",
@@ -2978,10 +3107,9 @@ function(name){
     );
 
 
-  document
-    .getElementById(
-      "centerScreen"
-    )
+  element(
+    "centerScreen"
+  )
     .classList
     .add(
       "open"
@@ -3010,23 +3138,24 @@ function(name){
 
 function updateScreenTitle(){
 
-  const x =
+  const t =
     text();
 
 
-  set(
+  setText(
     "screenTitle",
+
     {
-      math:x.math,
-      camera:x.camera,
-      translate:x.translate,
-      notes:x.notes
+      math:t.math,
+      camera:t.camera,
+      translate:t.translate,
+      notes:t.notes
 
     }[
       currentCenter
     ]
     ||
-    x.center
+    t.center
   );
 }
 
@@ -3037,10 +3166,9 @@ function(){
   stopCamera();
 
 
-  document
-    .getElementById(
-      "centerScreen"
-    )
+  element(
+    "centerScreen"
+  )
     .classList
     .remove(
       "open"
@@ -3056,15 +3184,14 @@ function(){
 };
 
 
-
-/* =====================================================
+/* =========================
    CAMERA STATE
-===================================================== */
+========================= */
 
 function isCameraLive(){
 
   const video =
-    document.getElementById(
+    element(
       "cameraVideo"
     );
 
@@ -3086,7 +3213,7 @@ function isCameraLive(){
 function hasCapturedFrame(){
 
   const canvas =
-    document.getElementById(
+    element(
       "cameraCanvas"
     );
 
@@ -3101,30 +3228,17 @@ function hasCapturedFrame(){
 }
 
 
-
-/* =====================================================
+/* =========================
    START CAMERA
-===================================================== */
+========================= */
 
 window.startCamera =
 async function(){
-
-  const status =
-    document.getElementById(
-      "cameraStatus"
-    );
-
 
   try{
 
     stopCamera();
 
-
-    /*
-      Starting a new camera session means
-      the next analyze action should capture
-      a NEW frame.
-    */
 
     capturedFrameReady =
       false;
@@ -3134,30 +3248,23 @@ async function(){
       null;
 
 
-    document
-      .getElementById(
-        "visionSpeakButton"
-      )
-      .disabled =
-      true;
+    hideAiMessage();
 
 
-    document
-      .getElementById(
-        "visionCard"
-      )
+    element(
+      "visionCard"
+    )
       .classList
       .remove(
         "show"
       );
 
 
-    document
-      .getElementById(
-        "visionStatus"
-      )
-      .className =
-      "vision-status";
+    element(
+      "visionSpeakButton"
+    )
+      .disabled =
+      true;
 
 
     if(
@@ -3168,7 +3275,7 @@ async function(){
     ){
 
       throw new Error(
-        "Camera API không được hỗ trợ."
+        "Camera API unavailable."
       );
     }
 
@@ -3179,6 +3286,7 @@ async function(){
         .getUserMedia({
 
           video:{
+
             facingMode:{
               ideal:
                 "environment"
@@ -3190,7 +3298,7 @@ async function(){
 
 
     const video =
-      document.getElementById(
+      element(
         "cameraVideo"
       );
 
@@ -3206,10 +3314,9 @@ async function(){
       );
 
 
-    document
-      .getElementById(
-        "capturedImage"
-      )
+    element(
+      "capturedImage"
+    )
       .classList
       .add(
         "hidden"
@@ -3219,41 +3326,32 @@ async function(){
     await video.play();
 
 
-    status.textContent =
-      "✅ Camera đang hoạt động. Đưa vật vào khung rồi bấm Chụp & tìm hiểu.";
+    setText(
+      "cameraStatus",
+      "✅ Camera đang hoạt động."
+    );
 
 
   }catch(error){
 
-    status.textContent =
-      "❌ Không mở được camera: "
+    setText(
+      "cameraStatus",
+      "❌ "
       +
       String(
         error?.message ||
         error
-      );
+      )
+    );
   }
 };
 
 
+/* =========================
+   CAPTURE
+========================= */
 
-/* =====================================================
-   CAPTURE FRAME
-===================================================== */
-
-function captureCurrentFrame(){
-
-  const video =
-    document.getElementById(
-      "cameraVideo"
-    );
-
-
-  const canvas =
-    document.getElementById(
-      "cameraCanvas"
-    );
-
+function captureFrame(){
 
   if(
     !isCameraLive()
@@ -3265,39 +3363,44 @@ function captureCurrentFrame(){
   }
 
 
+  const video =
+    element(
+      "cameraVideo"
+    );
+
+
+  const canvas =
+    element(
+      "cameraCanvas"
+    );
+
+
   const MAX_EDGE =
     1280;
-
-
-  let sourceWidth =
-    video.videoWidth;
-
-
-  let sourceHeight =
-    video.videoHeight;
 
 
   const scale =
     Math.min(
       1,
+
       MAX_EDGE /
       Math.max(
-        sourceWidth,
-        sourceHeight
+        video.videoWidth,
+        video.videoHeight
       )
     );
 
 
   const width =
     Math.round(
-      sourceWidth *
+      video.videoWidth *
       scale
     );
 
 
   const height =
     Math.round(
-      sourceHeight *
+      video.videoHeight *
       scale
     );
 
@@ -3310,58 +3413,25 @@ function captureCurrentFrame(){
     height;
 
 
-  const context =
-    canvas.getContext(
+  canvas
+    .getContext(
       "2d"
+    )
+    .drawImage(
+      video,
+      0,
+      0,
+      width,
+      height
     );
 
-
-  context.drawImage(
-    video,
-    0,
-    0,
-    width,
-    height
-  );
-
-
-  /*
-    Mark frame READY before stopping camera.
-  */
 
   capturedFrameReady =
     true;
 
 
-  return canvas;
-}
-
-
-
-/* =====================================================
-   SHOW CAPTURE
-===================================================== */
-
-function showCapturedImage(){
-
-  const canvas =
-    document.getElementById(
-      "cameraCanvas"
-    );
-
-
-  if(
-    !hasCapturedFrame()
-  ){
-
-    throw new Error(
-      "Ảnh chụp chưa sẵn sàng."
-    );
-  }
-
-
   const image =
-    document.getElementById(
+    element(
       "capturedImage"
     );
 
@@ -3380,29 +3450,22 @@ function showCapturedImage(){
     );
 
 
-  document
-    .getElementById(
-      "cameraVideo"
-    )
+  video
     .classList
     .add(
       "hidden"
     );
 
 
-  document
-    .getElementById(
-      "cameraStatus"
-    )
-    .textContent =
-    "✅ Đã chụp ảnh. Rii đang chuẩn bị phân tích.";
+  setText(
+    "cameraStatus",
+    "✅ Đã chụp ảnh."
+  );
+
+
+  stopCamera();
 }
 
-
-
-/* =====================================================
-   CAPTURE + ANALYZE
-===================================================== */
 
 window.captureAndAnalyze =
 async function(){
@@ -3417,46 +3480,20 @@ async function(){
 
   try{
 
-    /*
-      CASE 1:
-      Camera is currently live.
-      Capture exactly one frame.
-    */
-
     if(
       isCameraLive()
     ){
 
-      captureCurrentFrame();
-
-
-      showCapturedImage();
-
-
-      /*
-        IMPORTANT:
-        Only stop camera AFTER
-        canvas has been populated.
-      */
-
-      stopCamera();
+      captureFrame();
     }
 
-
-    /*
-      CASE 2:
-      Camera is already stopped,
-      but we have a saved frame.
-
-      Reuse it.
-    */
 
     if(
       !hasCapturedFrame()
     ){
 
       throw new Error(
-        "Chưa có ảnh. Hãy bấm Mở camera trước."
+        "Hãy mở camera và chụp vật trước."
       );
     }
 
@@ -3466,17 +3503,16 @@ async function(){
 
   }catch(error){
 
-    showVisionError(
+    handleVisionError(
       error
     );
   }
 };
 
 
-
-/* =====================================================
-   ANALYZE SAVED FRAME
-===================================================== */
+/* =========================
+   ANALYZE
+========================= */
 
 window.analyzeCapturedImage =
 async function(){
@@ -3493,9 +3529,9 @@ async function(){
     !hasCapturedFrame()
   ){
 
-    showVisionError(
+    handleVisionError(
       new Error(
-        "Chưa có ảnh để phân tích. Hãy mở camera và chụp trước."
+        "Chưa có ảnh để phân tích."
       )
     );
 
@@ -3512,9 +3548,9 @@ async function(){
       "function"
   ){
 
-    showVisionError(
+    handleVisionError(
       new Error(
-        "Worker Client Vision chưa được tải."
+        "Vision client chưa sẵn sàng."
       )
     );
 
@@ -3523,22 +3559,15 @@ async function(){
 
 
   const language =
-    lang();
+    currentLanguage();
 
 
   const question =
-    document
-      .getElementById(
-        "cameraQuestion"
-      )
+    element(
+      "cameraQuestion"
+    )
       .value
       .trim();
-
-
-  const canvas =
-    document.getElementById(
-      "cameraCanvas"
-    );
 
 
   setVisionBusy(
@@ -3546,13 +3575,14 @@ async function(){
   );
 
 
-  showVisionLoading(
-    language.code ===
-    "vi"
-      ?
-      "Rii đang nhìn và tìm hiểu vật thể..."
-      :
-      "Rii is looking and learning..."
+  const t =
+    text();
+
+
+  showAiMessage(
+    "loading",
+    t.lookingTitle,
+    t.lookingText
   );
 
 
@@ -3562,8 +3592,13 @@ async function(){
       await window
         .RiiWorkerClientV2
         .analyzeImage(
-          canvas,
+
+          element(
+            "cameraCanvas"
+          ),
+
           {
+
             question,
 
             targetLanguage:
@@ -3579,9 +3614,11 @@ async function(){
       result;
 
 
-    saveVisionHistory(
-      result
-    );
+    latestTechnicalError =
+      null;
+
+
+    hideRootDebug();
 
 
     renderVisionResult(
@@ -3589,25 +3626,39 @@ async function(){
     );
 
 
-    const speechText =
+    saveVisionHistory(
+      result
+    );
+
+
+    showAiMessage(
+      "success",
+      text().resultReady,
+      result.displayName
+      ||
+      result.objectName
+      ||
+      ""
+    );
+
+
+    const speech =
       buildVisionSpeech(
         result
       );
 
 
-    if(
-      speechText
-    ){
+    if(speech){
 
       speak(
-        speechText
+        speech
       );
     }
 
 
   }catch(error){
 
-    showVisionError(
+    handleVisionError(
       error
     );
 
@@ -3621,127 +3672,11 @@ async function(){
 };
 
 
+/* =========================
+   FRIENDLY ERROR
+========================= */
 
-/* =====================================================
-   STOP CAMERA
-===================================================== */
-
-function stopCamera(){
-
-  if(
-    cameraStream
-  ){
-
-    cameraStream
-      .getTracks()
-      .forEach(
-        track =>
-          track.stop()
-      );
-
-
-    cameraStream =
-      null;
-  }
-
-
-  const video =
-    document.getElementById(
-      "cameraVideo"
-    );
-
-
-  if(video){
-
-    video.srcObject =
-      null;
-  }
-}
-
-
-
-/* =====================================================
-   VISION BUSY
-===================================================== */
-
-function setVisionBusy(
-  busy
-){
-
-  visionBusy =
-    busy;
-
-
-  const button =
-    document.getElementById(
-      "captureAnalyzeButton"
-    );
-
-
-  button.disabled =
-    busy;
-
-
-  button.textContent =
-    busy
-      ?
-      "⏳ Rii đang nhìn..."
-      :
-      "✨ Chụp & tìm hiểu";
-}
-
-
-
-/* =====================================================
-   VISION LOADING
-===================================================== */
-
-function showVisionLoading(
-  message
-){
-
-  const status =
-    document.getElementById(
-      "visionStatus"
-    );
-
-
-  status.className =
-    "vision-status show";
-
-
-  status.innerHTML =
-    `
-    <span class="spinner"></span>
-    ${escapeHtml(message)}
-    `;
-
-
-  document
-    .getElementById(
-      "visionCard"
-    )
-    .classList
-    .remove(
-      "show"
-    );
-
-
-  document
-    .getElementById(
-      "visionSpeakButton"
-    )
-    .disabled =
-    true;
-}
-
-
-
-/* =====================================================
-   VISION ERROR
-===================================================== */
-
-function showVisionError(
+function handleVisionError(
   error
 ){
 
@@ -3766,82 +3701,288 @@ function showVisionError(
       };
 
 
-  const status =
-    document.getElementById(
-      "visionStatus"
-    );
+  latestTechnicalError =
+    formatted;
 
 
-  status.className =
-    "vision-status show error";
-
-
-  status.textContent =
-    "❌ "
-    +
-    formatted.message;
-
-
-  document
-    .getElementById(
-      "cameraResult"
-    )
-    .textContent =
-    JSON.stringify(
-      formatted,
-      null,
-      2
-    );
-
-
-  console.error(
-    "Rii Vision Error:",
+  showRootDebug(
     formatted
+  );
+
+
+  const message =
+    String(
+      formatted.message ||
+      ""
+    );
+
+
+  const isQuota =
+    formatted.code ===
+      "VISION_MODEL_FAILED"
+
+    &&
+    (
+      /4006/i.test(
+        message
+      )
+
+      ||
+
+      /daily free allocation/i.test(
+        message
+      )
+
+      ||
+
+      /10,000 neurons/i.test(
+        message
+      )
+    );
+
+
+  if(
+    isQuota
+  ){
+
+    const t =
+      text();
+
+
+    showAiMessage(
+      "quota",
+      t.quotaTitle,
+      t.quotaText
+    );
+
+
+    /*
+      IMPORTANT:
+      Do NOT delete canvas.
+      The child can retry later.
+    */
+
+    if(
+      hasCapturedFrame()
+    ){
+
+      setText(
+        "cameraStatus",
+        "📸 Ảnh vẫn được giữ lại."
+      );
+    }
+
+
+    return;
+  }
+
+
+  showAiMessage(
+    "error",
+    text().genericErrorTitle,
+    text().genericErrorText
   );
 }
 
 
+/* =========================
+   CHILD MESSAGE
+========================= */
 
-/* =====================================================
-   RENDER RESULT
-===================================================== */
+function showAiMessage(
+  type,
+  title,
+  message
+){
+
+  const box =
+    element(
+      "aiMessage"
+    );
+
+
+  box.className =
+    "ai-message show";
+
+
+  if(
+    type ===
+    "quota"
+  ){
+
+    box.classList.add(
+      "resting"
+    );
+  }
+
+
+  if(
+    type ===
+    "error"
+  ){
+
+    box.classList.add(
+      "error"
+    );
+  }
+
+
+  if(
+    type ===
+    "loading"
+  ){
+
+    setText(
+      "aiMessageTitle",
+      title
+    );
+
+
+    element(
+      "aiMessageText"
+    )
+      .innerHTML =
+      `
+      <span class="spinner"></span>
+      ${escapeHtml(message)}
+      `;
+
+
+    return;
+  }
+
+
+  setText(
+    "aiMessageTitle",
+    title
+  );
+
+
+  setText(
+    "aiMessageText",
+    message
+  );
+}
+
+
+function hideAiMessage(){
+
+  element(
+    "aiMessage"
+  )
+    .className =
+    "ai-message";
+}
+
+
+/* =========================
+   ROOT DEBUG
+========================= */
+
+function showRootDebug(
+  error
+){
+
+  /*
+    Current V3 prototype is ROOT.
+    Later this visibility comes from
+    the signed-in Rii Identity.
+  */
+
+  if(
+    ROOT_ID !==
+    "Rii00000001"
+  ){
+
+    return;
+  }
+
+
+  const panel =
+    element(
+      "rootDebug"
+    );
+
+
+  panel
+    .classList
+    .remove(
+      "hidden"
+    );
+
+
+  setText(
+    "rootDebugText",
+
+    JSON.stringify(
+      error,
+      null,
+      2
+    )
+  );
+}
+
+
+function hideRootDebug(){
+
+  element(
+    "rootDebug"
+  )
+    .classList
+    .add(
+      "hidden"
+    );
+
+
+  setText(
+    "rootDebugText",
+    ""
+  );
+}
+
+
+/* =========================
+   BUSY
+========================= */
+
+function setVisionBusy(
+  busy
+){
+
+  visionBusy =
+    busy;
+
+
+  const button =
+    element(
+      "captureButton"
+    );
+
+
+  button.disabled =
+    busy;
+
+
+  button.textContent =
+    busy
+      ?
+      "⏳ Rii đang nhìn..."
+      :
+      "✨ Chụp & tìm hiểu";
+}
+
+
+/* =========================
+   VISION RESULT
+========================= */
 
 function renderVisionResult(
   result
 ){
 
-  const status =
-    document.getElementById(
-      "visionStatus"
-    );
-
-
-  status.className =
-    "vision-status show";
-
-
-  if(
-    result.needsCloserView
-  ){
-
-    status.textContent =
-      "🔎 "
-      +
-      (
-        result.closerViewMessage
-        ||
-        "Rii chưa nhìn đủ rõ. Hãy đưa vật gần hơn rồi thử lại."
-      );
-
-  }else{
-
-    status.textContent =
-      "✅ Rii đã nhận được kết quả.";
-  }
-
-
-  set(
+  setText(
     "visionName",
+
     result.displayName
     ||
     result.objectName
@@ -3850,14 +3991,17 @@ function renderVisionResult(
   );
 
 
-  set(
+  setText(
     "visionCore",
+
     [
       result.category,
       result.objectName
     ]
       .filter(Boolean)
-      .join(" • ")
+      .join(
+        " • "
+      )
   );
 
 
@@ -3872,9 +4016,10 @@ function renderVisionResult(
     );
 
 
-  set(
+  setText(
     "visionConfidence",
-    confidence > 0
+
+    confidence
       ?
       confidence +
       "%"
@@ -3883,8 +4028,9 @@ function renderVisionResult(
   );
 
 
-  set(
+  setText(
     "visionExplanation",
+
     result.childExplanation
     ||
     result.closerViewMessage
@@ -3898,13 +4044,13 @@ function renderVisionResult(
   );
 
 
-  renderVisionFacts(
+  renderFacts(
     result
   );
 
 
   const answer =
-    document.getElementById(
+    element(
       "visionAnswer"
     );
 
@@ -3933,73 +4079,22 @@ function renderVisionResult(
   }
 
 
-  const safety =
-    document.getElementById(
-      "visionSafety"
-    );
-
-
-  if(
-    result.safetyNote
-  ){
-
-    safety.textContent =
-      "⚠️ "
-      +
-      result.safetyNote;
-
-
-    safety
-      .classList
-      .remove(
-        "hidden"
-      );
-
-  }else{
-
-    safety
-      .classList
-      .add(
-        "hidden"
-      );
-  }
-
-
-  document
-    .getElementById(
-      "visionCard"
-    )
+  element(
+    "visionCard"
+  )
     .classList
     .add(
       "show"
     );
 
 
-  document
-    .getElementById(
-      "visionSpeakButton"
-    )
+  element(
+    "visionSpeakButton"
+  )
     .disabled =
     false;
-
-
-  document
-    .getElementById(
-      "cameraResult"
-    )
-    .textContent =
-    JSON.stringify(
-      result,
-      null,
-      2
-    );
 }
 
-
-
-/* =====================================================
-   INFO
-===================================================== */
 
 function renderVisionInfo(
   result
@@ -4009,7 +4104,9 @@ function renderVisionInfo(
     [];
 
 
-  if(result.color){
+  if(
+    result.color
+  ){
 
     items.push([
       "🎨 Color",
@@ -4018,7 +4115,9 @@ function renderVisionInfo(
   }
 
 
-  if(result.habitat){
+  if(
+    result.habitat
+  ){
 
     items.push([
       "🌱 Habitat",
@@ -4027,7 +4126,9 @@ function renderVisionInfo(
   }
 
 
-  if(result.origin){
+  if(
+    result.origin
+  ){
 
     items.push([
       "🌍 Origin",
@@ -4036,7 +4137,9 @@ function renderVisionInfo(
   }
 
 
-  if(result.uses){
+  if(
+    result.uses
+  ){
 
     items.push([
       "🧩 Uses",
@@ -4045,7 +4148,9 @@ function renderVisionInfo(
   }
 
 
-  if(result.detectedText){
+  if(
+    result.detectedText
+  ){
 
     items.push([
       "🔤 Text",
@@ -4066,16 +4171,18 @@ function renderVisionInfo(
       "👁 Features",
 
       result.visibleFeatures
-        .join(", ")
+        .join(
+          ", "
+        )
     ]);
   }
 
 
-  document
-    .getElementById(
-      "visionInfoGrid"
-    )
+  element(
+    "visionInfoGrid"
+  )
     .innerHTML =
+
     items
       .map(
         item =>
@@ -4097,12 +4204,7 @@ function renderVisionInfo(
 }
 
 
-
-/* =====================================================
-   FACTS
-===================================================== */
-
-function renderVisionFacts(
+function renderFacts(
   result
 ){
 
@@ -4116,11 +4218,11 @@ function renderVisionFacts(
       [];
 
 
-  document
-    .getElementById(
-      "visionFacts"
-    )
+  element(
+    "visionFacts"
+  )
     .innerHTML =
+
     facts
       .map(
         fact =>
@@ -4134,16 +4236,17 @@ function renderVisionFacts(
 }
 
 
-
-/* =====================================================
+/* =========================
    VISION SPEECH
-===================================================== */
+========================= */
 
 function buildVisionSpeech(
   result
 ){
 
-  if(!result){
+  if(
+    !result
+  ){
 
     return "";
   }
@@ -4165,45 +4268,60 @@ function buildVisionSpeech(
 
   return [
     result.displayName,
-
     result.childExplanation,
-
     result.answer,
-
     result.habitat,
-
     result.interestingFacts?.[0],
-
     result.safetyNote
   ]
     .filter(Boolean)
-    .join(". ");
+    .join(
+      ". "
+    );
 }
 
 
-window.speakVisionResult =
+window.speakVision =
 function(){
 
   if(
-    !latestVisionResult
+    latestVisionResult
   ){
+
+    speak(
+      buildVisionSpeech(
+        latestVisionResult
+      )
+    );
 
     return;
   }
 
 
-  speak(
-    buildVisionSpeech(
-      latestVisionResult
+  /*
+    AI quota may be exhausted,
+    but speech still works locally.
+  */
+
+  const message =
+    element(
+      "aiMessageText"
     )
-  );
+      .textContent;
+
+
+  if(message){
+
+    speak(
+      message
+    );
+  }
 };
 
 
-
-/* =====================================================
-   VISION HISTORY
-===================================================== */
+/* =========================
+   HISTORY
+========================= */
 
 function saveVisionHistory(
   result
@@ -4224,14 +4342,15 @@ function saveVisionHistory(
     history.unshift({
 
       riiId:
-        "Rii00000001",
+        ROOT_ID,
 
       createdAt:
         new Date()
           .toISOString(),
 
       language:
-        lang().code,
+        currentLanguage()
+          .code,
 
       objectName:
         result.objectName
@@ -4270,44 +4389,78 @@ function saveVisionHistory(
   }catch(error){
 
     console.warn(
-      "Vision history:",
+      "Vision History:",
       error
     );
   }
 }
 
 
+/* =========================
+   STOP CAMERA
+========================= */
 
-/* =====================================================
+function stopCamera(){
+
+  if(
+    cameraStream
+  ){
+
+    cameraStream
+      .getTracks()
+      .forEach(
+        track =>
+          track.stop()
+      );
+
+
+    cameraStream =
+      null;
+  }
+
+
+  const video =
+    element(
+      "cameraVideo"
+    );
+
+
+  if(video){
+
+    video.srcObject =
+      null;
+  }
+}
+
+
+/* =========================
    OTHER CENTERS
-===================================================== */
+========================= */
 
 window.demoMath =
 function(){
 
   const value =
-    document
-      .getElementById(
-        "mathInput"
-      )
+    element(
+      "mathInput"
+    )
       .value
       .trim();
 
 
-  document
-    .getElementById(
-      "mathResult"
-    )
-    .textContent =
+  setText(
+    "mathResult",
+
     value
       ?
       "Đã nhận đề: "
       +
       value
       +
-      "\n\nAI giải toán sẽ được nối sau khi Camera Vision ổn định."
+      "\n\nMath AI sẽ được kết nối ở bước tiếp theo."
       :
-      "Hãy nhập hoặc nói bài toán.";
+      "Hãy nói hoặc nhập bài toán."
+  );
 };
 
 
@@ -4315,19 +4468,16 @@ window.demoTranslate =
 function(){
 
   const value =
-    document
-      .getElementById(
-        "translateInput"
-      )
+    element(
+      "translateInput"
+    )
       .value
       .trim();
 
 
-  document
-    .getElementById(
-      "translateResult"
-    )
-    .textContent =
+  setText(
+    "translateResult",
+
     value
       ?
       "Đã nhận: "
@@ -4336,20 +4486,21 @@ function(){
       +
       "\nLanguage: "
       +
-      lang().name
+      currentLanguage()
+        .name
       :
-      "Hãy nhập hoặc nói.";
+      "Hãy nói hoặc nhập từ/câu."
+  );
 };
 
 
-window.saveLocalNote =
+window.saveNote =
 function(){
 
   const value =
-    document
-      .getElementById(
-        "notesInput"
-      )
+    element(
+      "notesInput"
+    )
       .value
       .trim();
 
@@ -4373,7 +4524,7 @@ function(){
   notes.unshift({
 
     riiId:
-      "Rii00000001",
+      ROOT_ID,
 
     text:
       value,
@@ -4396,7 +4547,7 @@ function(){
   );
 
 
-  set(
+  setText(
     "notesResult",
     "✅ Đã lưu:\n"
     +
@@ -4410,18 +4561,16 @@ function(){
 };
 
 
-
-/* =====================================================
+/* =========================
    QUICK MENU
-===================================================== */
+========================= */
 
 window.closeQuick =
 function(){
 
-  document
-    .getElementById(
-      "quickOverlay"
-    )
+  element(
+    "quickOverlay"
+  )
     .classList
     .remove(
       "open"
@@ -4434,20 +4583,18 @@ function(name){
 
   closeQuick();
 
-
   openCenter(
     name
   );
 };
 
 
-
-/* =====================================================
-   FLOAT BUTTON
-===================================================== */
+/* =========================
+   FLOATING RII
+========================= */
 
 const rii =
-  document.getElementById(
+  element(
     "riiButton"
   );
 
@@ -4583,12 +4730,13 @@ rii.addEventListener(
     }catch{}
 
 
-    if(!moved){
+    if(
+      !moved
+    ){
 
-      document
-        .getElementById(
-          "quickOverlay"
-        )
+      element(
+        "quickOverlay"
+      )
         .classList
         .add(
           "open"
@@ -4598,10 +4746,9 @@ rii.addEventListener(
 );
 
 
-
-/* =====================================================
-   OVERLAY
-===================================================== */
+/* =========================
+   OVERLAYS
+========================= */
 
 [
   "languageOverlay",
@@ -4610,10 +4757,9 @@ rii.addEventListener(
 .forEach(
   id => {
 
-    document
-      .getElementById(
-        id
-      )
+    element(
+      id
+    )
       .addEventListener(
         "click",
         event => {
@@ -4636,10 +4782,9 @@ rii.addEventListener(
 );
 
 
-
-/* =====================================================
-   ESCAPE
-===================================================== */
+/* =========================
+   HTML ESCAPE
+========================= */
 
 function escapeHtml(
   value
@@ -4672,10 +4817,9 @@ function escapeHtml(
 }
 
 
-
-/* =====================================================
+/* =========================
    BOOT
-===================================================== */
+========================= */
 
 if(
   !localStorage.getItem(
@@ -4698,7 +4842,7 @@ console.log(
   +
   APP_VERSION
   +
-  " Camera State Fix ready"
+  " Graceful AI Fallback ready"
 );
 
 })();
