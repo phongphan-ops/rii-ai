@@ -1,0 +1,1842 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"
+>
+
+<meta name="theme-color" content="#050b14">
+
+<title>Rii AI V3 — Spiral Core</title>
+
+<style>
+:root{
+  --bg:#050b14;
+  --panel:rgba(10,22,37,.90);
+  --panel-2:rgba(14,30,49,.94);
+  --line:rgba(186,145,61,.32);
+
+  --gold:#d8ad58;
+  --gold-light:#f2d58b;
+  --blue:#174b80;
+  --blue-light:#3fa7da;
+  --mint:#58d9b0;
+
+  --text:#f7f4ea;
+  --muted:#9aabbd;
+
+  --radius:26px;
+  --shadow:
+    0 18px 50px rgba(0,0,0,.34);
+}
+
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+  margin:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "Segoe UI",
+    sans-serif;
+}
+
+body{
+  overflow-x:hidden;
+}
+
+/* =========================================
+   SPIRAL BACKGROUND
+   Sau này thay bằng đúng ảnh họa tiết gốc.
+========================================= */
+
+.background{
+  position:fixed;
+  inset:0;
+  z-index:-3;
+
+  background:
+    radial-gradient(
+      circle at 78% 20%,
+      rgba(204,157,64,.16),
+      transparent 25%
+    ),
+
+    radial-gradient(
+      circle at 20% 72%,
+      rgba(24,80,134,.25),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 70% 78%,
+      rgba(23,70,116,.20),
+      transparent 27%
+    ),
+
+    linear-gradient(
+      145deg,
+      #02070d 0%,
+      #071421 45%,
+      #020811 100%
+    );
+}
+
+.background::before{
+  content:"";
+
+  position:absolute;
+  inset:-25%;
+
+  opacity:.33;
+
+  background:
+    repeating-radial-gradient(
+      circle at 75% 22%,
+      transparent 0 18px,
+      rgba(210,164,72,.32) 20px 23px,
+      transparent 25px 38px
+    );
+
+  transform:
+    rotate(-8deg)
+    scale(1.05);
+}
+
+.background::after{
+  content:"";
+
+  position:absolute;
+  inset:-20%;
+
+  opacity:.24;
+
+  background:
+    repeating-radial-gradient(
+      circle at 20% 72%,
+      transparent 0 15px,
+      rgba(32,102,167,.55) 17px 20px,
+      transparent 22px 34px
+    );
+
+  transform:
+    rotate(12deg);
+}
+
+/* =========================================
+   APP
+========================================= */
+
+.app{
+  width:min(100%,980px);
+  margin:0 auto;
+
+  min-height:100vh;
+
+  padding:
+    calc(18px + env(safe-area-inset-top))
+    18px
+    calc(120px + env(safe-area-inset-bottom));
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:16px;
+
+  margin-bottom:22px;
+}
+
+.logo{
+  font-size:32px;
+  font-weight:900;
+  letter-spacing:-1px;
+
+  color:var(--gold-light);
+}
+
+.logo span{
+  color:white;
+}
+
+.tagline{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:13px;
+}
+
+.header-right{
+  text-align:right;
+}
+
+.status{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+
+  padding:8px 11px;
+
+  border:1px solid var(--line);
+  border-radius:999px;
+
+  background:rgba(6,15,25,.72);
+
+  color:var(--gold-light);
+
+  font-size:12px;
+  font-weight:750;
+}
+
+.status-dot{
+  width:7px;
+  height:7px;
+
+  border-radius:50%;
+  background:var(--mint);
+
+  box-shadow:
+    0 0 12px
+    rgba(88,217,176,.75);
+}
+
+.mini-id{
+  margin-top:7px;
+  color:var(--muted);
+  font-size:11px;
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero{
+  position:relative;
+
+  overflow:hidden;
+
+  padding:24px;
+
+  border-radius:32px;
+
+  border:
+    1px solid
+    rgba(219,178,92,.38);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(13,28,45,.96),
+      rgba(6,16,28,.90)
+    );
+
+  box-shadow:
+    var(--shadow);
+
+  margin-bottom:18px;
+}
+
+.hero::after{
+  content:"";
+
+  position:absolute;
+  width:260px;
+  height:260px;
+
+  right:-90px;
+  top:-110px;
+
+  border-radius:50%;
+
+  border:
+    22px solid
+    rgba(210,164,72,.08);
+
+  box-shadow:
+    0 0 0 22px rgba(23,80,130,.07),
+    0 0 0 45px rgba(210,164,72,.04);
+}
+
+.eyebrow{
+  color:var(--gold-light);
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.7px;
+
+  margin-bottom:10px;
+}
+
+.hero h1{
+  position:relative;
+  z-index:2;
+
+  margin:0;
+
+  max-width:650px;
+
+  font-size:
+    clamp(30px,7vw,50px);
+
+  line-height:1.04;
+
+  letter-spacing:-1.7px;
+}
+
+.hero p{
+  position:relative;
+  z-index:2;
+
+  max-width:620px;
+
+  color:var(--muted);
+
+  font-size:16px;
+  line-height:1.6;
+
+  margin:
+    15px 0 0;
+}
+
+/* =========================================
+   CORE ID BAR
+========================================= */
+
+.identity-bar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+
+  padding:13px 15px;
+
+  margin-top:18px;
+
+  border-radius:18px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.07);
+
+  background:
+    rgba(0,0,0,.22);
+
+  position:relative;
+  z-index:2;
+}
+
+.identity-left{
+  min-width:0;
+}
+
+.identity-label{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.identity-value{
+  margin-top:4px;
+
+  color:var(--gold-light);
+
+  font-size:14px;
+  font-weight:800;
+
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.robot-state{
+  flex:none;
+
+  padding:8px 11px;
+
+  border-radius:999px;
+
+  background:
+    rgba(255,255,255,.05);
+
+  color:#8292a4;
+
+  font-size:11px;
+}
+
+/* =========================================
+   TITLE
+========================================= */
+
+.section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin:
+    24px 3px
+    12px;
+}
+
+.section-title h2{
+  margin:0;
+  font-size:20px;
+}
+
+.section-title span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* =========================================
+   CENTER GRID
+========================================= */
+
+.center-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:13px;
+}
+
+.center-card{
+  position:relative;
+
+  min-height:190px;
+
+  overflow:hidden;
+
+  padding:19px;
+
+  border-radius:26px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  box-shadow:
+    0 12px 34px
+    rgba(0,0,0,.26);
+
+  cursor:pointer;
+
+  transition:
+    transform .15s ease,
+    border-color .15s ease;
+}
+
+.center-card:active{
+  transform:scale(.975);
+}
+
+.center-card.math{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(12,54,89,.98),
+      rgba(7,29,51,.95)
+    );
+
+  border-color:
+    rgba(65,159,214,.45);
+}
+
+.center-card.camera{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(92,67,20,.96),
+      rgba(34,25,11,.96)
+    );
+
+  border-color:
+    rgba(226,180,81,.58);
+}
+
+.center-card.translate{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(8,78,69,.96),
+      rgba(5,38,39,.96)
+    );
+
+  border-color:
+    rgba(62,207,174,.44);
+}
+
+.center-card.notes{
+  background:
+    linear-gradient(
+      145deg,
+      rgba(61,42,104,.97),
+      rgba(27,22,55,.96)
+    );
+
+  border-color:
+    rgba(141,103,215,.44);
+}
+
+.icon-box{
+  width:58px;
+  height:58px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:18px;
+
+  background:
+    rgba(0,0,0,.25);
+
+  border:
+    1px solid
+    rgba(255,255,255,.11);
+
+  font-size:30px;
+}
+
+.center-card h3{
+  margin:
+    17px 0
+    7px;
+
+  font-size:21px;
+  line-height:1.15;
+}
+
+.center-card p{
+  margin:0;
+
+  max-width:220px;
+
+  color:
+    rgba(238,243,248,.70);
+
+  font-size:13px;
+  line-height:1.5;
+}
+
+.arrow{
+  position:absolute;
+
+  right:15px;
+  bottom:15px;
+
+  width:35px;
+  height:35px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:50%;
+
+  background:
+    rgba(0,0,0,.24);
+
+  color:white;
+
+  font-size:18px;
+}
+
+/* =========================================
+   RECENT
+========================================= */
+
+.recent{
+  margin-top:18px;
+
+  padding:18px;
+
+  border-radius:25px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  background:
+    rgba(8,20,33,.84);
+
+  box-shadow:
+    0 14px 34px
+    rgba(0,0,0,.20);
+}
+
+.recent-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:8px;
+}
+
+.recent-title strong{
+  font-size:17px;
+}
+
+.recent-title span{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.recent-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  padding:12px 4px;
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.055);
+}
+
+.recent-item:last-child{
+  border-bottom:0;
+}
+
+.recent-icon{
+  flex:none;
+
+  width:42px;
+  height:42px;
+
+  display:grid;
+  place-items:center;
+
+  border-radius:13px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  font-size:21px;
+}
+
+.recent-text{
+  min-width:0;
+  flex:1;
+}
+
+.recent-text strong{
+  display:block;
+  font-size:14px;
+}
+
+.recent-text span{
+  display:block;
+
+  margin-top:3px;
+
+  color:var(--muted);
+  font-size:12px;
+}
+
+.recent-time{
+  color:#8292a4;
+  font-size:11px;
+}
+
+/* =========================================
+   FOOTER MESSAGE
+========================================= */
+
+.future-note{
+  margin-top:16px;
+
+  text-align:center;
+
+  color:#77899c;
+
+  font-size:11px;
+  line-height:1.5;
+}
+
+/* =========================================
+   FLOATING RII HOME
+========================================= */
+
+.rii-floating{
+  position:fixed;
+
+  left:
+    calc(100vw - 84px);
+
+  top:
+    calc(100vh - 150px);
+
+  z-index:999;
+
+  width:64px;
+  height:64px;
+
+  border-radius:50%;
+
+  display:grid;
+  place-items:center;
+
+  border:
+    2px solid
+    var(--gold);
+
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      #244b78,
+      #07131f 62%
+    );
+
+  color:var(--gold-light);
+
+  font-size:19px;
+  font-weight:900;
+
+  box-shadow:
+    0 9px 28px
+    rgba(0,0,0,.52),
+    0 0 0 5px
+    rgba(10,23,38,.70),
+    0 0 22px
+    rgba(213,168,75,.24);
+
+  user-select:none;
+  touch-action:none;
+
+  cursor:grab;
+}
+
+.rii-floating.dragging{
+  cursor:grabbing;
+  transform:scale(1.05);
+}
+
+/* =========================================
+   QUICK MENU
+========================================= */
+
+.quick-overlay{
+  position:fixed;
+  inset:0;
+
+  z-index:900;
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  padding:22px;
+
+  background:
+    rgba(1,6,11,.72);
+
+  backdrop-filter:
+    blur(16px);
+}
+
+.quick-overlay.open{
+  display:flex;
+}
+
+.quick-panel{
+  width:min(92vw,420px);
+
+  padding:22px;
+
+  border-radius:32px;
+
+  border:
+    1px solid
+    rgba(217,173,88,.38);
+
+  background:
+    linear-gradient(
+      155deg,
+      rgba(13,28,45,.98),
+      rgba(4,12,21,.98)
+    );
+
+  box-shadow:
+    0 30px 80px
+    rgba(0,0,0,.60);
+}
+
+.quick-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  margin-bottom:18px;
+}
+
+.quick-head h3{
+  margin:0;
+  font-size:22px;
+}
+
+.close{
+  width:38px;
+  height:38px;
+
+  border:0;
+  border-radius:50%;
+
+  background:
+    rgba(255,255,255,.07);
+
+  color:white;
+
+  font-size:18px;
+}
+
+.quick-grid{
+  display:grid;
+  grid-template-columns:
+    repeat(2,minmax(0,1fr));
+
+  gap:11px;
+}
+
+.quick-button{
+  min-height:92px;
+
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  border-radius:19px;
+
+  background:
+    rgba(255,255,255,.045);
+
+  color:white;
+
+  text-align:left;
+
+  padding:14px;
+
+  font-weight:800;
+}
+
+.quick-button span{
+  display:block;
+
+  margin-bottom:7px;
+
+  font-size:26px;
+}
+
+.quick-button.robot{
+  opacity:.45;
+}
+
+.quick-bottom{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+
+  gap:10px;
+
+  margin-top:12px;
+}
+
+.quick-small{
+  border:
+    1px solid
+    rgba(255,255,255,.08);
+
+  border-radius:15px;
+
+  background:
+    rgba(255,255,255,.04);
+
+  color:var(--muted);
+
+  padding:12px;
+
+  font-weight:700;
+}
+
+/* =========================================
+   PLACEHOLDER VIEW
+========================================= */
+
+.placeholder{
+  position:fixed;
+  inset:0;
+
+  z-index:800;
+
+  display:none;
+
+  overflow:auto;
+
+  padding:
+    calc(20px + env(safe-area-inset-top))
+    18px
+    calc(100px + env(safe-area-inset-bottom));
+
+  background:
+    rgba(4,10,18,.98);
+}
+
+.placeholder.open{
+  display:block;
+}
+
+.placeholder-inner{
+  width:min(100%,700px);
+  margin:auto;
+}
+
+.back{
+  border:0;
+
+  padding:10px 14px;
+
+  border-radius:14px;
+
+  background:
+    rgba(255,255,255,.06);
+
+  color:white;
+
+  font-weight:800;
+}
+
+.placeholder-card{
+  margin-top:18px;
+
+  padding:26px;
+
+  border-radius:28px;
+
+  border:
+    1px solid
+    var(--line);
+
+  background:
+    var(--panel);
+}
+
+.placeholder-icon{
+  font-size:48px;
+}
+
+.placeholder-card h2{
+  margin:
+    15px 0
+    8px;
+}
+
+.placeholder-card p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.coming{
+  margin-top:18px;
+
+  color:var(--gold-light);
+
+  font-weight:850;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:430px){
+
+  .app{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .hero{
+    padding:21px;
+  }
+
+  .center-grid{
+    gap:10px;
+  }
+
+  .center-card{
+    min-height:180px;
+    padding:16px;
+  }
+
+  .center-card h3{
+    font-size:18px;
+  }
+
+  .center-card p{
+    font-size:12px;
+  }
+
+  .icon-box{
+    width:52px;
+    height:52px;
+    font-size:27px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+
+<div class="background"></div>
+
+
+<div class="app">
+
+  <header class="header">
+
+    <div>
+
+      <div class="logo">
+        Rii <span>AI</span>
+      </div>
+
+      <div class="tagline">
+        Học thông minh • Khám phá thế giới
+      </div>
+
+    </div>
+
+
+    <div class="header-right">
+
+      <div class="status">
+
+        <span class="status-dot"></span>
+
+        Rii Ready
+
+      </div>
+
+      <div class="mini-id">
+        Rii • 22A1
+      </div>
+
+    </div>
+
+  </header>
+
+
+
+  <section class="hero">
+
+    <div class="eyebrow">
+      RII SPIRAL CORE
+    </div>
+
+    <h1>
+      Xin chào 👋
+      <br>
+      Hôm nay con muốn khám phá gì?
+    </h1>
+
+    <p>
+      Rii giúp con học toán,
+      khám phá thế giới bằng Camera AI,
+      học ngôn ngữ
+      và ghi nhớ những việc quan trọng.
+    </p>
+
+
+    <div class="identity-bar">
+
+      <div class="identity-left">
+
+        <div class="identity-label">
+          Rii Identity
+        </div>
+
+        <div class="identity-value">
+          RII-ROOT-••••-22A1
+        </div>
+
+      </div>
+
+
+      <div class="robot-state">
+        🤖 Robot • tương lai
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <div class="section-title">
+
+    <h2>
+      Trung tâm Rii
+    </h2>
+
+    <span>
+      Chọn một chức năng
+    </span>
+
+  </div>
+
+
+
+  <section class="center-grid">
+
+    <article
+      class="center-card math"
+      onclick="openCenter('math')"
+    >
+
+      <div class="icon-box">
+        🧮
+      </div>
+
+      <h3>
+        Giải bài tập toán
+      </h3>
+
+      <p>
+        Giải từng bước
+        và giúp con hiểu cách làm.
+      </p>
+
+      <div class="arrow">
+        ›
+      </div>
+
+    </article>
+
+
+
+    <article
+      class="center-card camera"
+      onclick="openCenter('camera')"
+    >
+
+      <div class="icon-box">
+        📷
+      </div>
+
+      <h3>
+        Camera AI
+      </h3>
+
+      <p>
+        Nhìn, nhận diện
+        và khám phá thế giới.
+      </p>
+
+      <div class="arrow">
+        ›
+      </div>
+
+    </article>
+
+
+
+    <article
+      class="center-card translate"
+      onclick="openCenter('translate')"
+    >
+
+      <div class="icon-box">
+        🌍
+      </div>
+
+      <h3>
+        Phiên dịch
+      </h3>
+
+      <p>
+        Dịch, phát âm
+        và hiểu nghĩa ngôn ngữ.
+      </p>
+
+      <div class="arrow">
+        ›
+      </div>
+
+    </article>
+
+
+
+    <article
+      class="center-card notes"
+      onclick="openCenter('notes')"
+    >
+
+      <div class="icon-box">
+        📝
+      </div>
+
+      <h3>
+        Ghi chú & Báo thức
+      </h3>
+
+      <p>
+        Ghi nhớ việc cần làm
+        và nhắc đúng giờ.
+      </p>
+
+      <div class="arrow">
+        ›
+      </div>
+
+    </article>
+
+  </section>
+
+
+
+  <section class="recent">
+
+    <div class="recent-title">
+
+      <strong>
+        Gần đây
+      </strong>
+
+      <span>
+        Brain History
+      </span>
+
+    </div>
+
+
+    <div class="recent-item">
+
+      <div class="recent-icon">
+        🐴
+      </div>
+
+      <div class="recent-text">
+
+        <strong>
+          Khám phá
+        </strong>
+
+        <span>
+          Con ngựa
+        </span>
+
+      </div>
+
+      <div class="recent-time">
+        Camera
+      </div>
+
+    </div>
+
+
+
+    <div class="recent-item">
+
+      <div class="recent-icon">
+        🧮
+      </div>
+
+      <div class="recent-text">
+
+        <strong>
+          Toán học
+        </strong>
+
+        <span>
+          24 + 13 = 37
+        </span>
+
+      </div>
+
+      <div class="recent-time">
+        Math
+      </div>
+
+    </div>
+
+
+
+    <div class="recent-item">
+
+      <div class="recent-icon">
+        🔊
+      </div>
+
+      <div class="recent-text">
+
+        <strong>
+          Từ mới
+        </strong>
+
+        <span>
+          Brown horse
+        </span>
+
+      </div>
+
+      <div class="recent-time">
+        Language
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <div class="future-note">
+
+    Thiết bị Rii và Robot Rii
+    sẽ cùng thuộc một Rii Identity.
+    <br>
+    Brain của các ID khác nhau
+    được tách biệt.
+
+  </div>
+
+</div>
+
+
+
+<!-- ========================================
+     FLOATING HOME BUTTON
+========================================= -->
+
+<div
+  id="riiFloating"
+  class="rii-floating"
+  aria-label="Rii Home"
+>
+  Rii
+</div>
+
+
+
+<!-- ========================================
+     QUICK HOME MENU
+========================================= -->
+
+<div
+  id="quickOverlay"
+  class="quick-overlay"
+>
+
+  <div class="quick-panel">
+
+    <div class="quick-head">
+
+      <h3>
+        Trung tâm Rii
+      </h3>
+
+      <button
+        class="close"
+        onclick="closeQuickMenu()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <div class="quick-grid">
+
+      <button
+        class="quick-button"
+        onclick="quickOpen('math')"
+      >
+        <span>🧮</span>
+        Giải toán
+      </button>
+
+
+      <button
+        class="quick-button"
+        onclick="quickOpen('camera')"
+      >
+        <span>📷</span>
+        Camera AI
+      </button>
+
+
+      <button
+        class="quick-button"
+        onclick="quickOpen('translate')"
+      >
+        <span>🌍</span>
+        Phiên dịch
+      </button>
+
+
+      <button
+        class="quick-button"
+        onclick="quickOpen('notes')"
+      >
+        <span>📝</span>
+        Ghi chú
+      </button>
+
+
+      <button
+        class="quick-button"
+        onclick="closeQuickMenu()"
+      >
+        <span>🏠</span>
+        Home
+      </button>
+
+
+      <button
+        class="quick-button robot"
+        disabled
+      >
+        <span>🤖</span>
+        Robot
+      </button>
+
+    </div>
+
+
+    <div class="quick-bottom">
+
+      <button class="quick-small">
+        👤 Hồ sơ
+      </button>
+
+      <button class="quick-small">
+        ⚙️ Cài đặt
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!-- ========================================
+     PLACEHOLDER FOR NEXT PHASE
+========================================= -->
+
+<div
+  id="placeholder"
+  class="placeholder"
+>
+
+  <div class="placeholder-inner">
+
+    <button
+      class="back"
+      onclick="closeCenter()"
+    >
+      ← Home
+    </button>
+
+
+    <div class="placeholder-card">
+
+      <div
+        id="placeholderIcon"
+        class="placeholder-icon"
+      >
+        ✨
+      </div>
+
+      <h2 id="placeholderTitle">
+        Trung tâm
+      </h2>
+
+      <p id="placeholderDescription">
+        Đang chuẩn bị.
+      </p>
+
+      <div class="coming">
+        Bước tiếp theo:
+        cài chức năng vào trung tâm này.
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<script>
+(function(){
+"use strict";
+
+
+const centers = {
+
+  math:{
+    icon:"🧮",
+    title:"Giải bài tập toán",
+    description:
+      "Trung tâm giải toán sẽ hỗ trợ nhập đề, chụp đề, đọc đề và giải thích từng bước theo cách phù hợp với trẻ tiểu học."
+  },
+
+  camera:{
+    icon:"📷",
+    title:"Camera AI — Khám phá",
+    description:
+      "Camera AI sẽ nhận diện vật trẻ đang nhìn, sau đó Rii chủ động giải thích đó là gì, đặc điểm, môi trường sống, nguồn gốc và kiến thức liên quan."
+  },
+
+  translate:{
+    icon:"🌍",
+    title:"Phiên dịch ngôn ngữ",
+    description:
+      "Trung tâm ngôn ngữ sẽ hỗ trợ dịch, phát âm, phiên âm, giải thích nghĩa và lưu từ mới."
+  },
+
+  notes:{
+    icon:"📝",
+    title:"Ghi chú & Báo thức",
+    description:
+      "Trung tâm ghi chú giúp lưu việc cần nhớ, nhắc giờ học và quản lý báo thức trên thiết bị Rii."
+  }
+
+};
+
+
+
+window.openCenter =
+function(name){
+
+  const center =
+    centers[name];
+
+  if(!center){
+    return;
+  }
+
+  document
+    .getElementById(
+      "placeholderIcon"
+    )
+    .textContent =
+    center.icon;
+
+
+  document
+    .getElementById(
+      "placeholderTitle"
+    )
+    .textContent =
+    center.title;
+
+
+  document
+    .getElementById(
+      "placeholderDescription"
+    )
+    .textContent =
+    center.description;
+
+
+  document
+    .getElementById(
+      "placeholder"
+    )
+    .classList
+    .add(
+      "open"
+    );
+
+
+  document.body.style.overflow =
+    "hidden";
+};
+
+
+
+window.closeCenter =
+function(){
+
+  document
+    .getElementById(
+      "placeholder"
+    )
+    .classList
+    .remove(
+      "open"
+    );
+
+
+  document.body.style.overflow =
+    "";
+};
+
+
+
+window.closeQuickMenu =
+function(){
+
+  document
+    .getElementById(
+      "quickOverlay"
+    )
+    .classList
+    .remove(
+      "open"
+    );
+};
+
+
+
+window.quickOpen =
+function(name){
+
+  closeQuickMenu();
+
+  openCenter(
+    name
+  );
+};
+
+
+
+const floating =
+  document
+    .getElementById(
+      "riiFloating"
+    );
+
+
+let dragging =
+  false;
+
+
+let moved =
+  false;
+
+
+let offsetX =
+  0;
+
+
+let offsetY =
+  0;
+
+
+function clamp(
+  value,
+  min,
+  max
+){
+
+  return Math.min(
+    Math.max(
+      value,
+      min
+    ),
+    max
+  );
+}
+
+
+
+floating.addEventListener(
+  "pointerdown",
+  event => {
+
+    dragging =
+      true;
+
+    moved =
+      false;
+
+
+    const rect =
+      floating
+        .getBoundingClientRect();
+
+
+    offsetX =
+      event.clientX -
+      rect.left;
+
+
+    offsetY =
+      event.clientY -
+      rect.top;
+
+
+    floating
+      .classList
+      .add(
+        "dragging"
+      );
+
+
+    floating
+      .setPointerCapture(
+        event.pointerId
+      );
+  }
+);
+
+
+
+floating.addEventListener(
+  "pointermove",
+  event => {
+
+    if(
+      !dragging
+    ){
+      return;
+    }
+
+
+    moved =
+      true;
+
+
+    const size =
+      floating
+        .offsetWidth;
+
+
+    const x =
+      clamp(
+        event.clientX -
+        offsetX,
+        6,
+        window.innerWidth -
+        size -
+        6
+      );
+
+
+    const y =
+      clamp(
+        event.clientY -
+        offsetY,
+        6 +
+        (
+          window
+            .visualViewport
+            ?.offsetTop ||
+          0
+        ),
+        window.innerHeight -
+        size -
+        12
+      );
+
+
+    floating.style.left =
+      x + "px";
+
+
+    floating.style.top =
+      y + "px";
+  }
+);
+
+
+
+floating.addEventListener(
+  "pointerup",
+  event => {
+
+    dragging =
+      false;
+
+
+    floating
+      .classList
+      .remove(
+        "dragging"
+      );
+
+
+    try{
+
+      floating
+        .releasePointerCapture(
+          event.pointerId
+        );
+
+    }catch{}
+
+
+    if(
+      !moved
+    ){
+
+      document
+        .getElementById(
+          "quickOverlay"
+        )
+        .classList
+        .add(
+          "open"
+        );
+    }
+  }
+);
+
+
+
+floating.addEventListener(
+  "pointercancel",
+  () => {
+
+    dragging =
+      false;
+
+    floating
+      .classList
+      .remove(
+        "dragging"
+      );
+  }
+);
+
+
+
+document
+  .getElementById(
+    "quickOverlay"
+  )
+  .addEventListener(
+    "click",
+    event => {
+
+      if(
+        event.target.id ===
+        "quickOverlay"
+      ){
+
+        closeQuickMenu();
+      }
+    }
+  );
+
+
+})();
+</script>
+
+</body>
+</html>
