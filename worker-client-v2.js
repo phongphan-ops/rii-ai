@@ -1,9 +1,26 @@
-(function () {
+/*
+=========================================================
+Rii Worker Client
+Version: 2.2.0
+
+Supports:
+- Health
+- Concept analysis
+- Object normalization
+- Translation
+- Vision AI
+- Image generation
+- Math AI
+=========================================================
+*/
+
+(function(){
+
 "use strict";
 
 
 const CLIENT_VERSION =
-  "2.1.0";
+  "2.2.0";
 
 
 const DEFAULT_BACKEND =
@@ -22,6 +39,10 @@ const AI_TIMEOUT =
   90000;
 
 
+const MATH_TIMEOUT =
+  90000;
+
+
 const VISION_TIMEOUT =
   120000;
 
@@ -34,6 +55,9 @@ const ENDPOINTS = {
 
   health:
     "/health",
+
+  math:
+    "/solve-math",
 
   analyze:
     "/analyze-concept",
@@ -52,14 +76,13 @@ const ENDPOINTS = {
 };
 
 
-
 /* =====================================================
-   BASE URL
+   HELPERS
 ===================================================== */
 
-function cleanUrl(
+function cleanBaseUrl(
   value
-) {
+){
 
   return String(
     value ||
@@ -73,17 +96,15 @@ function cleanUrl(
 }
 
 
-function getBaseUrl() {
+function getBaseUrl(){
 
   const saved =
-    cleanUrl(
-      localStorage.getItem(
-        STORAGE_KEY
-      )
+    localStorage.getItem(
+      STORAGE_KEY
     );
 
 
-  return (
+  return cleanBaseUrl(
     saved ||
     DEFAULT_BACKEND
   );
@@ -92,19 +113,22 @@ function getBaseUrl() {
 
 function setBaseUrl(
   value
-) {
+){
 
   const url =
-    cleanUrl(
+    cleanBaseUrl(
       value
     );
 
 
-  if (!url) {
+  if(!url){
 
-    throw new Error(
-      "Backend URL không hợp lệ."
+    localStorage.removeItem(
+      STORAGE_KEY
     );
+
+
+    return getBaseUrl();
   }
 
 
@@ -118,14 +142,25 @@ function setBaseUrl(
 }
 
 
+function buildUrl(
+  endpoint
+){
+
+  return (
+    getBaseUrl()
+    +
+    endpoint
+  );
+}
+
 
 /* =====================================================
    TIMEOUT
 ===================================================== */
 
-function createTimeoutController(
-  timeout
-) {
+function timeoutController(
+  timeoutMs
+){
 
   const controller =
     new AbortController();
@@ -138,7 +173,7 @@ function createTimeoutController(
         controller.abort();
 
       },
-      timeout
+      timeoutMs
     );
 
 
@@ -146,7 +181,7 @@ function createTimeoutController(
 
     controller,
 
-    clear() {
+    cancel(){
 
       clearTimeout(
         timer
@@ -156,89 +191,6 @@ function createTimeoutController(
 }
 
 
-
-/* =====================================================
-   ERROR
-===================================================== */
-
-function createClientError(
-  message,
-  code,
-  details,
-  status,
-  workerVersion
-) {
-
-  const error =
-    new Error(
-      String(
-        message ||
-        "Unknown error"
-      )
-    );
-
-
-  error.code =
-    code ||
-    "CLIENT_ERROR";
-
-
-  error.details =
-    details ||
-    {};
-
-
-  error.status =
-    Number(
-      status ||
-      0
-    );
-
-
-  error.workerVersion =
-    workerVersion ||
-    "";
-
-
-  return error;
-}
-
-
-function formatError(
-  error
-) {
-
-  return {
-
-    message:
-      String(
-        error?.message ||
-        error ||
-        "Unknown error"
-      ),
-
-    code:
-      error?.code ||
-      "CLIENT_ERROR",
-
-    details:
-      error?.details ||
-      {},
-
-    status:
-      Number(
-        error?.status ||
-        0
-      ),
-
-    workerVersion:
-      error?.workerVersion ||
-      ""
-  };
-}
-
-
-
 /* =====================================================
    REQUEST
 ===================================================== */
@@ -246,7 +198,7 @@ function formatError(
 async function requestJson(
   endpoint,
   options = {}
-) {
+){
 
   const method =
     options.method ||
@@ -264,63 +216,47 @@ async function requestJson(
     options.body;
 
 
-  const baseUrl =
-    getBaseUrl();
-
-
-  const url =
-    baseUrl +
-    endpoint;
-
-
-  const timeoutControl =
-    createTimeoutController(
+  const timeoutState =
+    timeoutController(
       timeout
     );
 
 
-  try {
-
-    const requestOptions = {
-
-      method,
-
-      headers:{
-
-        "Accept":
-          "application/json"
-      },
-
-      signal:
-        timeoutControl
-          .controller
-          .signal
-    };
-
-
-    if (
-      body !==
-      undefined
-    ) {
-
-      requestOptions
-        .headers[
-          "Content-Type"
-        ] =
-        "application/json";
-
-
-      requestOptions.body =
-        JSON.stringify(
-          body
-        );
-    }
-
+  try{
 
     const response =
       await fetch(
-        url,
-        requestOptions
+        buildUrl(
+          endpoint
+        ),
+        {
+          method,
+
+          headers:{
+
+            "Content-Type":
+              "application/json",
+
+            ...(
+              options.headers ||
+              {}
+            )
+          },
+
+          body:
+            body === undefined
+              ?
+              undefined
+              :
+              JSON.stringify(
+                body
+              ),
+
+          signal:
+            timeoutState
+              .controller
+              .signal
+        }
       );
 
 
@@ -328,131 +264,125 @@ async function requestJson(
       null;
 
 
-    try {
+    const raw =
+      await response.text();
 
-      data =
-        await response.json();
 
-    } catch {
+    if(raw){
 
-      const text =
-        await response.text()
-          .catch(
-            () => ""
+      try{
+
+        data =
+          JSON.parse(
+            raw
           );
 
+      }catch{
 
-      throw createClientError(
+        data = {
 
-        text ||
-        "Worker trả về dữ liệu không hợp lệ.",
+          message:
+            raw,
 
-        "INVALID_WORKER_RESPONSE",
+          code:
+            "INVALID_JSON_RESPONSE",
 
-        {
-          endpoint,
-          url
-        },
-
-        response.status
-      );
+          status:
+            response.status
+        };
+      }
     }
 
 
-    if (
+    if(
       !response.ok
-    ) {
+    ){
 
-      throw createClientError(
+      const error =
+        new Error(
+          data?.message ||
+          `HTTP ${response.status}`
+        );
 
-        data?.message ||
-        (
-          "Worker request failed: "
-          +
-          response.status
-        ),
 
+      error.code =
         data?.code ||
-        "WORKER_REQUEST_FAILED",
+        "HTTP_ERROR";
 
+
+      error.status =
+        response.status;
+
+
+      error.details =
         data?.details ||
-        {},
+        {};
 
-        response.status,
 
+      error.workerVersion =
         data?.workerVersion ||
-        ""
-      );
+        data?.version ||
+        "";
+
+
+      error.response =
+        data;
+
+
+      throw error;
     }
 
 
     return data;
 
 
-  } catch(error) {
+  }catch(error){
 
-    if (
+    if(
       error?.name ===
       "AbortError"
-    ) {
+    ){
 
-      throw createClientError(
+      const timeoutError =
+        new Error(
+          "Request timed out."
+        );
 
-        "Worker request timeout.",
 
-        "REQUEST_TIMEOUT",
+      timeoutError.code =
+        "REQUEST_TIMEOUT";
 
-        {
-          endpoint,
-          timeout
-        },
 
-        0
-      );
+      timeoutError.status =
+        408;
+
+
+      throw timeoutError;
     }
 
 
-    if (
-      error?.code
-    ) {
-
-      throw error;
-    }
+    throw error;
 
 
-    throw createClientError(
+  }finally{
 
-      error?.message ||
-      error,
-
-      "NETWORK_ERROR",
-
-      {
-        endpoint,
-        url
-      },
-
-      0
-    );
-
-
-  } finally {
-
-    timeoutControl.clear();
+    timeoutState.cancel();
   }
 }
-
 
 
 /* =====================================================
    HEALTH
 ===================================================== */
 
-async function health() {
+async function health(){
 
   return requestJson(
     ENDPOINTS.health,
     {
+      method:
+        "GET",
+
       timeout:
         HEALTH_TIMEOUT
     }
@@ -460,15 +390,73 @@ async function health() {
 }
 
 
+/* =====================================================
+   MATH
+===================================================== */
+
+async function solveMath(
+  problem,
+  options = {}
+){
+
+  const value =
+    String(
+      problem ||
+      ""
+    )
+      .trim();
+
+
+  if(!value){
+
+    const error =
+      new Error(
+        "Math problem is required."
+      );
+
+
+    error.code =
+      "MATH_PROBLEM_REQUIRED";
+
+
+    throw error;
+  }
+
+
+  return requestJson(
+    ENDPOINTS.math,
+    {
+      method:
+        "POST",
+
+      timeout:
+        MATH_TIMEOUT,
+
+      body:{
+
+        problem:
+          value,
+
+        targetLanguage:
+          options.targetLanguage ||
+          "vi",
+
+        targetLanguageName:
+          options.targetLanguageName ||
+          "Vietnamese"
+      }
+    }
+  );
+}
+
 
 /* =====================================================
-   ANALYZE CONCEPT
+   CONCEPT ANALYSIS
 ===================================================== */
 
 async function analyzeConcept(
-  input,
-  options = {}
-) {
+  input
+){
 
   const value =
     String(
@@ -478,12 +466,19 @@ async function analyzeConcept(
       .trim();
 
 
-  if (!value) {
+  if(!value){
 
-    throw createClientError(
-      "input is required.",
-      "INPUT_REQUIRED"
-    );
+    const error =
+      new Error(
+        "Concept input is required."
+      );
+
+
+    error.code =
+      "INPUT_REQUIRED";
+
+
+    throw error;
   }
 
 
@@ -499,20 +494,11 @@ async function analyzeConcept(
       body:{
 
         input:
-          value,
-
-        targetLanguage:
-          options.targetLanguage ||
-          "en",
-
-        targetLanguageName:
-          options.targetLanguageName ||
-          "English"
+          value
       }
     }
   );
 }
-
 
 
 /* =====================================================
@@ -520,9 +506,8 @@ async function analyzeConcept(
 ===================================================== */
 
 async function normalizeObject(
-  input,
-  options = {}
-) {
+  input
+){
 
   const value =
     String(
@@ -532,12 +517,19 @@ async function normalizeObject(
       .trim();
 
 
-  if (!value) {
+  if(!value){
 
-    throw createClientError(
-      "input is required.",
-      "INPUT_REQUIRED"
-    );
+    const error =
+      new Error(
+        "Object input is required."
+      );
+
+
+    error.code =
+      "INPUT_REQUIRED";
+
+
+    throw error;
   }
 
 
@@ -553,61 +545,43 @@ async function normalizeObject(
       body:{
 
         input:
-          value,
-
-        targetLanguage:
-          options.targetLanguage ||
-          "en",
-
-        targetLanguageName:
-          options.targetLanguageName ||
-          "English"
+          value
       }
     }
   );
 }
 
 
-
 /* =====================================================
-   TRANSLATE
+   TRANSLATION
 ===================================================== */
 
 async function translateConcept(
-  concept,
+  normalizedEnglish,
   options = {}
-) {
+){
 
-  if (
-    !concept ||
-    typeof concept !==
-      "object"
-  ) {
-
-    throw createClientError(
-      "concept object is required.",
-      "CONCEPT_REQUIRED"
-    );
-  }
-
-
-  const normalizedEnglish =
+  const value =
     String(
-      concept
-        .normalizedEnglish ||
+      normalizedEnglish ||
       ""
     )
       .trim();
 
 
-  if (
-    !normalizedEnglish
-  ) {
+  if(!value){
 
-    throw createClientError(
-      "normalizedEnglish is required.",
-      "NORMALIZED_ENGLISH_REQUIRED"
-    );
+    const error =
+      new Error(
+        "normalizedEnglish is required."
+      );
+
+
+    error.code =
+      "NORMALIZED_ENGLISH_REQUIRED";
+
+
+    throw error;
   }
 
 
@@ -622,26 +596,8 @@ async function translateConcept(
 
       body:{
 
-        normalizedEnglish,
-
-        color:
-          String(
-            concept.color ||
-            ""
-          ),
-
-        shape:
-          String(
-            concept.shape ||
-            ""
-          ),
-
-        translatedLabel:
-          String(
-            concept
-              .translatedLabel ||
-            ""
-          ),
+        normalizedEnglish:
+          value,
 
         targetLanguage:
           options.targetLanguage ||
@@ -649,12 +605,19 @@ async function translateConcept(
 
         targetLanguageName:
           options.targetLanguageName ||
-          "Vietnamese"
+          "Vietnamese",
+
+        color:
+          options.color ||
+          "",
+
+        shape:
+          options.shape ||
+          ""
       }
     }
   );
 }
-
 
 
 /* =====================================================
@@ -663,7 +626,7 @@ async function translateConcept(
 
 function blobToDataUri(
   blob
-) {
+){
 
   return new Promise(
     (
@@ -671,16 +634,16 @@ function blobToDataUri(
       reject
     ) => {
 
-      if (
+      if(
         !(blob instanceof Blob)
-      ) {
+      ){
 
         reject(
-          createClientError(
-            "Image must be a Blob.",
-            "INVALID_IMAGE_BLOB"
+          new Error(
+            "Expected a Blob."
           )
         );
+
 
         return;
       }
@@ -694,10 +657,7 @@ function blobToDataUri(
         () => {
 
           resolve(
-            String(
-              reader.result ||
-              ""
-            )
+            reader.result
           );
         };
 
@@ -706,9 +666,9 @@ function blobToDataUri(
         () => {
 
           reject(
-            createClientError(
-              "Không đọc được ảnh.",
-              "IMAGE_READ_FAILED"
+            reader.error ||
+            new Error(
+              "Could not read image."
             )
           );
         };
@@ -724,19 +684,17 @@ function blobToDataUri(
 
 function canvasToDataUri(
   canvas,
-  quality = .86
-) {
+  quality = .82
+){
 
-  if (
+  if(
     !canvas ||
-    typeof canvas
-      .toDataURL !==
-      "function"
-  ) {
+    typeof canvas.toDataURL !==
+    "function"
+  ){
 
-    throw createClientError(
-      "Canvas không hợp lệ.",
-      "INVALID_CANVAS"
+    throw new Error(
+      "Expected a canvas."
     );
   }
 
@@ -748,37 +706,34 @@ function canvasToDataUri(
 }
 
 
-function normalizeImageInput(
+async function normalizeImageInput(
   image
-) {
+){
 
-  if (
+  if(
     typeof image ===
     "string"
-  ) {
+  ){
 
     const value =
       image.trim();
 
 
-    if (!value) {
+    if(!value){
 
-      throw createClientError(
-        "image is required.",
-        "IMAGE_REQUIRED"
+      throw new Error(
+        "Image is empty."
       );
     }
 
 
-    return Promise.resolve(
-      value
-    );
+    return value;
   }
 
 
-  if (
+  if(
     image instanceof Blob
-  ) {
+  ){
 
     return blobToDataUri(
       image
@@ -786,64 +741,37 @@ function normalizeImageInput(
   }
 
 
-  if (
+  if(
     image &&
-    typeof image
-      .toDataURL ===
-      "function"
-  ) {
+    typeof image.toDataURL ===
+    "function"
+  ){
 
-    return Promise.resolve(
-      canvasToDataUri(
-        image
-      )
+    return canvasToDataUri(
+      image
     );
   }
 
 
-  throw createClientError(
-    "Unsupported image input.",
-    "INVALID_IMAGE_INPUT"
+  throw new Error(
+    "Unsupported image input."
   );
 }
 
 
-
 /* =====================================================
-   VISION AI
+   VISION
 ===================================================== */
 
 async function analyzeImage(
   image,
   options = {}
-) {
+){
 
-  const imageData =
+  const normalizedImage =
     await normalizeImageInput(
       image
     );
-
-
-  const body = {
-
-    image:
-      imageData,
-
-    question:
-      String(
-        options.question ||
-        ""
-      )
-        .trim(),
-
-    targetLanguage:
-      options.targetLanguage ||
-      "vi",
-
-    targetLanguageName:
-      options.targetLanguageName ||
-      "Vietnamese"
-  };
 
 
   return requestJson(
@@ -855,21 +783,39 @@ async function analyzeImage(
       timeout:
         VISION_TIMEOUT,
 
-      body
+      body:{
+
+        image:
+          normalizedImage,
+
+        question:
+          String(
+            options.question ||
+            ""
+          )
+            .trim(),
+
+        targetLanguage:
+          options.targetLanguage ||
+          "vi",
+
+        targetLanguageName:
+          options.targetLanguageName ||
+          "Vietnamese"
+      }
     }
   );
 }
 
 
-
 /* =====================================================
-   GENERATE IMAGES
+   IMAGE GENERATION
 ===================================================== */
 
 async function generateImages(
   concept,
   options = {}
-) {
+){
 
   const value =
     String(
@@ -879,43 +825,20 @@ async function generateImages(
       .trim();
 
 
-  if (!value) {
+  if(!value){
 
-    throw createClientError(
-      "concept is required.",
-      "CONCEPT_REQUIRED"
-    );
+    const error =
+      new Error(
+        "Concept is required."
+      );
+
+
+    error.code =
+      "CONCEPT_REQUIRED";
+
+
+    throw error;
   }
-
-
-  let count =
-    Number(
-      options.count ??
-      3
-    );
-
-
-  if (
-    !Number.isFinite(
-      count
-    )
-  ) {
-
-    count =
-      3;
-  }
-
-
-  count =
-    Math.min(
-      Math.max(
-        Math.round(
-          count
-        ),
-        1
-      ),
-      3
-    );
 
 
   return requestJson(
@@ -932,32 +855,73 @@ async function generateImages(
         concept:
           value,
 
-        count,
-
-        targetLanguage:
-          options.targetLanguage ||
-          "en",
-
-        targetLanguageName:
-          options.targetLanguageName ||
-          "English"
+        count:
+          Number(
+            options.count ||
+            3
+          )
       }
     }
   );
 }
 
 
+/* =====================================================
+   ERROR FORMAT
+===================================================== */
+
+function formatError(
+  error
+){
+
+  const raw =
+    error?.response ||
+    {};
+
+
+  return {
+
+    message:
+      String(
+        error?.message ||
+        raw?.message ||
+        error ||
+        "Unknown error"
+      ),
+
+    code:
+      error?.code ||
+      raw?.code ||
+      "CLIENT_ERROR",
+
+    details:
+      error?.details ||
+      raw?.details ||
+      {},
+
+    status:
+      Number(
+        error?.status ||
+        raw?.status ||
+        0
+      ),
+
+    workerVersion:
+      error?.workerVersion ||
+      raw?.workerVersion ||
+      raw?.version ||
+      ""
+  };
+}
+
 
 /* =====================================================
    SELF TEST
 ===================================================== */
 
-async function selfTest() {
+async function selfTest(){
 
-  const result = {
-
-    ok:
-      false,
+  const report = {
 
     clientVersion:
       CLIENT_VERSION,
@@ -968,53 +932,57 @@ async function selfTest() {
     health:
       null,
 
-    visionReady:
-      false
+    mathLocal:
+      null
   };
 
 
-  try {
+  try{
 
-    result.health =
+    report.health =
       await health();
 
+  }catch(error){
 
-    result.visionReady =
-      Array.isArray(
-        result.health
-          ?.endpoints
-      )
-      &&
-      result.health
-        .endpoints
-        .includes(
-          "/analyze-image"
-        );
+    report.health =
+      formatError(
+        error
+      );
+  }
 
 
-    result.ok =
-      Boolean(
-        result.health?.ok
+  try{
+
+    /*
+      This should work even if
+      Workers AI quota is exhausted,
+      because Worker V2.2.0 solves
+      simple arithmetic locally.
+    */
+
+    report.mathLocal =
+      await solveMath(
+        "8 × 7",
+        {
+          targetLanguage:
+            "vi",
+
+          targetLanguageName:
+            "Vietnamese"
+        }
       );
 
+  }catch(error){
 
-    return result;
-
-
-  } catch(error) {
-
-    return {
-
-      ...result,
-
-      error:
-        formatError(
-          error
-        )
-    };
+    report.mathLocal =
+      formatError(
+        error
+      );
   }
-}
 
+
+  return report;
+}
 
 
 /* =====================================================
@@ -1035,6 +1003,8 @@ window.RiiWorkerClientV2 = {
   setBaseUrl,
 
   health,
+
+  solveMath,
 
   analyzeConcept,
 
@@ -1057,9 +1027,11 @@ window.RiiWorkerClientV2 = {
 
 
 console.log(
-  "Rii Worker Client V" +
-  CLIENT_VERSION +
-  " ready"
+  "Rii Worker Client V"
+  +
+  CLIENT_VERSION
+  +
+  " Math ready"
 );
 
 })();
