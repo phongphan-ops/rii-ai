@@ -1,16 +1,25 @@
 /*
 =========================================================
 Rii Worker Client
-Version: 2.2.0
+Version: 2.3.0
 
 Supports:
 - Health
+- Educational Math
+- Live text translation
 - Concept analysis
 - Object normalization
-- Translation
+- Concept translation
 - Vision AI
 - Image generation
-- Math AI
+
+TRANSLATION V2.3.0
+- Dedicated translateText()
+- /translate-text endpoint
+- Auto source-language detection
+- 12 Rii languages
+- Translation error support
+- Preserves all V2.2.0 APIs
 =========================================================
 */
 
@@ -20,7 +29,7 @@ Supports:
 
 
 const CLIENT_VERSION =
-  "2.2.0";
+  "2.3.0";
 
 
 const DEFAULT_BACKEND =
@@ -43,6 +52,10 @@ const MATH_TIMEOUT =
   90000;
 
 
+const TRANSLATION_TIMEOUT =
+  90000;
+
+
 const VISION_TIMEOUT =
   120000;
 
@@ -58,6 +71,9 @@ const ENDPOINTS = {
 
   math:
     "/solve-math",
+
+  translateText:
+    "/translate-text",
 
   analyze:
     "/analyze-concept",
@@ -77,6 +93,26 @@ const ENDPOINTS = {
 
 
 /* =====================================================
+   SUPPORTED LANGUAGES
+===================================================== */
+
+const SUPPORTED_LANGUAGES = [
+  "vi",
+  "en",
+  "zh",
+  "ja",
+  "ko",
+  "es",
+  "fr",
+  "de",
+  "pt",
+  "it",
+  "th",
+  "id"
+];
+
+
+/* =====================================================
    HELPERS
 ===================================================== */
 
@@ -93,6 +129,18 @@ function cleanBaseUrl(
       /\/+$/,
       ""
     );
+}
+
+
+function cleanText(
+  value
+){
+
+  return String(
+    value ??
+    ""
+  )
+    .trim();
 }
 
 
@@ -121,7 +169,9 @@ function setBaseUrl(
     );
 
 
-  if(!url){
+  if(
+    !url
+  ){
 
     localStorage.removeItem(
       STORAGE_KEY
@@ -150,6 +200,21 @@ function buildUrl(
     getBaseUrl()
     +
     endpoint
+  );
+}
+
+
+function isSupportedLanguage(
+  code
+){
+
+  return SUPPORTED_LANGUAGES.includes(
+    String(
+      code ||
+      ""
+    )
+      .trim()
+      .toLowerCase()
   );
 }
 
@@ -244,7 +309,8 @@ async function requestJson(
           },
 
           body:
-            body === undefined
+            body ===
+            undefined
               ?
               undefined
               :
@@ -268,7 +334,9 @@ async function requestJson(
       await response.text();
 
 
-    if(raw){
+    if(
+      raw
+    ){
 
       try{
 
@@ -400,14 +468,14 @@ async function solveMath(
 ){
 
   const value =
-    String(
-      problem ||
-      ""
-    )
-      .trim();
+    cleanText(
+      problem
+    );
 
 
-  if(!value){
+  if(
+    !value
+  ){
 
     const error =
       new Error(
@@ -451,6 +519,149 @@ async function solveMath(
 
 
 /* =====================================================
+   LIVE TEXT TRANSLATION
+   V2.3.0
+===================================================== */
+
+async function translateText(
+  text,
+  options = {}
+){
+
+  const value =
+    cleanText(
+      text
+    );
+
+
+  if(
+    !value
+  ){
+
+    const error =
+      new Error(
+        "Translation text is required."
+      );
+
+
+    error.code =
+      "TRANSLATION_TEXT_REQUIRED";
+
+
+    throw error;
+  }
+
+
+  let sourceLanguage =
+    String(
+      options.sourceLanguage ||
+      "auto"
+    )
+      .trim()
+      .toLowerCase();
+
+
+  const targetLanguage =
+    String(
+      options.targetLanguage ||
+      "vi"
+    )
+      .trim()
+      .toLowerCase();
+
+
+  if(
+    sourceLanguage !==
+    "auto"
+    &&
+    !isSupportedLanguage(
+      sourceLanguage
+    )
+  ){
+
+    const error =
+      new Error(
+        "Unsupported source language."
+      );
+
+
+    error.code =
+      "SOURCE_LANGUAGE_INVALID";
+
+
+    error.details = {
+
+      sourceLanguage,
+
+      supportedLanguages:[
+        "auto",
+        ...SUPPORTED_LANGUAGES
+      ]
+    };
+
+
+    throw error;
+  }
+
+
+  if(
+    !isSupportedLanguage(
+      targetLanguage
+    )
+  ){
+
+    const error =
+      new Error(
+        "Unsupported target language."
+      );
+
+
+    error.code =
+      "TARGET_LANGUAGE_INVALID";
+
+
+    error.details = {
+
+      targetLanguage,
+
+      supportedLanguages:[
+        ...SUPPORTED_LANGUAGES
+      ]
+    };
+
+
+    throw error;
+  }
+
+
+  return requestJson(
+    ENDPOINTS.translateText,
+    {
+      method:
+        "POST",
+
+      timeout:
+        TRANSLATION_TIMEOUT,
+
+      body:{
+
+        text:
+          value,
+
+        sourceLanguage,
+
+        targetLanguage,
+
+        targetLanguageName:
+          options.targetLanguageName ||
+          ""
+      }
+    }
+  );
+}
+
+
+/* =====================================================
    CONCEPT ANALYSIS
 ===================================================== */
 
@@ -459,14 +670,14 @@ async function analyzeConcept(
 ){
 
   const value =
-    String(
-      input ||
-      ""
-    )
-      .trim();
+    cleanText(
+      input
+    );
 
 
-  if(!value){
+  if(
+    !value
+  ){
 
     const error =
       new Error(
@@ -510,14 +721,14 @@ async function normalizeObject(
 ){
 
   const value =
-    String(
-      input ||
-      ""
-    )
-      .trim();
+    cleanText(
+      input
+    );
 
 
-  if(!value){
+  if(
+    !value
+  ){
 
     const error =
       new Error(
@@ -553,7 +764,8 @@ async function normalizeObject(
 
 
 /* =====================================================
-   TRANSLATION
+   CONCEPT TRANSLATION
+   PRESERVED FOR V2 COMPATIBILITY
 ===================================================== */
 
 async function translateConcept(
@@ -562,14 +774,14 @@ async function translateConcept(
 ){
 
   const value =
-    String(
-      normalizedEnglish ||
-      ""
-    )
-      .trim();
+    cleanText(
+      normalizedEnglish
+    );
 
 
-  if(!value){
+  if(
+    !value
+  ){
 
     const error =
       new Error(
@@ -688,7 +900,8 @@ function canvasToDataUri(
 ){
 
   if(
-    !canvas ||
+    !canvas
+    ||
     typeof canvas.toDataURL !==
     "function"
   ){
@@ -719,7 +932,9 @@ async function normalizeImageInput(
       image.trim();
 
 
-    if(!value){
+    if(
+      !value
+    ){
 
       throw new Error(
         "Image is empty."
@@ -742,7 +957,8 @@ async function normalizeImageInput(
 
 
   if(
-    image &&
+    image
+    &&
     typeof image.toDataURL ===
     "function"
   ){
@@ -818,14 +1034,14 @@ async function generateImages(
 ){
 
   const value =
-    String(
-      concept ||
-      ""
-    )
-      .trim();
+    cleanText(
+      concept
+    );
 
 
-  if(!value){
+  if(
+    !value
+  ){
 
     const error =
       new Error(
@@ -933,6 +1149,9 @@ async function selfTest(){
       null,
 
     mathLocal:
+      null,
+
+    translationLocal:
       null
   };
 
@@ -954,10 +1173,7 @@ async function selfTest(){
   try{
 
     /*
-      This should work even if
-      Workers AI quota is exhausted,
-      because Worker V2.2.0 solves
-      simple arithmetic locally.
+      Must remain local and not consume AI.
     */
 
     report.mathLocal =
@@ -981,6 +1197,38 @@ async function selfTest(){
   }
 
 
+  try{
+
+    /*
+      Same-language translation should be
+      handled locally by Worker V2.3.0
+      and therefore consume no AI quota.
+    */
+
+    report.translationLocal =
+      await translateText(
+        "Xin chào Rii",
+        {
+          sourceLanguage:
+            "vi",
+
+          targetLanguage:
+            "vi",
+
+          targetLanguageName:
+            "Vietnamese"
+        }
+      );
+
+  }catch(error){
+
+    report.translationLocal =
+      formatError(
+        error
+      );
+  }
+
+
   return report;
 }
 
@@ -998,6 +1246,10 @@ window.RiiWorkerClientV2 = {
     ...ENDPOINTS
   },
 
+  supportedLanguages:[
+    ...SUPPORTED_LANGUAGES
+  ],
+
   getBaseUrl,
 
   setBaseUrl,
@@ -1005,6 +1257,8 @@ window.RiiWorkerClientV2 = {
   health,
 
   solveMath,
+
+  translateText,
 
   analyzeConcept,
 
@@ -1031,7 +1285,7 @@ console.log(
   +
   CLIENT_VERSION
   +
-  " Math ready"
+  " Translation ready"
 );
 
 })();
