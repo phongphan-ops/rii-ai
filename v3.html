@@ -11,7 +11,7 @@
   content="#050b14"
 >
 
-<title>Rii AI V3.5.5</title>
+<title>Rii AI V3.6.0</title>
 
 <style>
 :root{
@@ -48,7 +48,8 @@ body{
 
 button,
 select,
-textarea{
+textarea,
+input{
   font:inherit;
 }
 
@@ -441,6 +442,12 @@ button:disabled{
   background:#103957;
 }
 
+.action.red{
+  background:#4b1b22;
+  border-color:#ff7d7d4a;
+  color:#ffdada;
+}
+
 .result{
   margin-top:12px;
   padding:14px;
@@ -714,6 +721,217 @@ button:disabled{
   overflow:auto;
 }
 
+.notes-tabs{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:12px;
+}
+
+.notes-tab{
+  padding:12px;
+  border-radius:15px;
+  border:1px solid #ffffff14;
+  background:#ffffff09;
+  color:#c9d4df;
+  font-weight:850;
+}
+
+.notes-tab.active{
+  border-color:#d8ad587a;
+  background:#d8ad581c;
+  color:#ffe9ac;
+}
+
+.notes-panel{
+  display:none;
+}
+
+.notes-panel.active{
+  display:block;
+}
+
+.note-list,
+.alarm-list{
+  display:grid;
+  gap:9px;
+  margin-top:14px;
+}
+
+.note-item,
+.alarm-item{
+  padding:13px;
+  border-radius:18px;
+  border:1px solid #ffffff12;
+  background:#07131e;
+}
+
+.note-item-top,
+.alarm-item-top{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.note-text{
+  flex:1;
+  line-height:1.5;
+  white-space:pre-wrap;
+  word-break:break-word;
+}
+
+.note-time,
+.alarm-meta{
+  margin-top:7px;
+  color:var(--muted);
+  font-size:10px;
+}
+
+.mini-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:10px;
+}
+
+.mini-btn{
+  padding:8px 10px;
+  border-radius:12px;
+  border:1px solid #ffffff14;
+  background:#ffffff0b;
+  color:#fff;
+  font-size:11px;
+  font-weight:800;
+}
+
+.mini-btn.danger{
+  color:#ffd0d0;
+  border-color:#ff7d7d42;
+  background:#6a202744;
+}
+
+.notes-empty{
+  padding:16px;
+  margin-top:12px;
+  border-radius:17px;
+  border:1px dashed #ffffff17;
+  color:var(--muted);
+  text-align:center;
+  font-size:12px;
+}
+
+.alarm-form{
+  display:grid;
+  gap:10px;
+  margin-top:12px;
+}
+
+.alarm-form input,
+.alarm-form select{
+  width:100%;
+  padding:12px 13px;
+  border-radius:15px;
+  border:1px solid #ffffff17;
+  background:#06111c;
+  color:#fff;
+  color-scheme:dark;
+}
+
+.alarm-form-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+}
+
+.alarm-switch{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.switch{
+  position:relative;
+  width:48px;
+  height:28px;
+  border:0;
+  border-radius:999px;
+  background:#33404e;
+}
+
+.switch::after{
+  content:"";
+  position:absolute;
+  width:22px;
+  height:22px;
+  left:3px;
+  top:3px;
+  border-radius:50%;
+  background:#fff;
+  transition:.18s ease;
+}
+
+.switch.on{
+  background:#157d64;
+}
+
+.switch.on::after{
+  transform:translateX(20px);
+}
+
+.alarm-time{
+  font-size:24px;
+  font-weight:900;
+  color:var(--gold2);
+}
+
+.alarm-title{
+  margin-top:3px;
+  font-weight:800;
+}
+
+.alarm-disabled{
+  opacity:.5;
+}
+
+.alarm-alert{
+  width:min(92vw,400px);
+  padding:24px;
+  border-radius:30px;
+  border:1px solid #d8ad5877;
+  background:
+    radial-gradient(circle at 50% 0%,#6a511f55,transparent 45%),
+    linear-gradient(155deg,#102338,#050d16);
+
+  box-shadow:0 28px 90px #000;
+  text-align:center;
+}
+
+.alarm-alert-icon{
+  font-size:48px;
+}
+
+.alarm-alert-time{
+  margin-top:10px;
+  color:var(--gold2);
+  font-size:34px;
+  font-weight:950;
+}
+
+.alarm-alert-title{
+  margin-top:8px;
+  font-size:18px;
+  font-weight:850;
+}
+
+.alarm-alert-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:18px;
+}
+
 .rii{
   position:fixed;
   left:calc(100vw - 82px);
@@ -757,6 +975,10 @@ button:disabled{
 
 .overlay.open{
   display:flex;
+}
+
+#alarmOverlay{
+  z-index:1200;
 }
 
 .panel{
@@ -847,6 +1069,7 @@ button:disabled{
 }
 
 @media(max-width:430px){
+
   .hero{
     padding:20px;
   }
@@ -861,6 +1084,10 @@ button:disabled{
   }
 
   .info-grid{
+    grid-template-columns:1fr;
+  }
+
+  .alarm-form-grid{
     grid-template-columns:1fr;
   }
 }
@@ -926,7 +1153,7 @@ button:disabled{
 <section class="hero">
 
   <div class="eyebrow">
-    RII V3.5.5 • TRANSLATION METADATA SYNC
+    RII V3.6.0 • NOTES & ALARMS LIVE
   </div>
 
   <h1 id="heroTitle"></h1>
@@ -1201,6 +1428,47 @@ button:disabled{
         <span>🌐</span>
         <b id="quickLanguage"></b>
       </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<div
+  id="alarmOverlay"
+  class="overlay"
+>
+
+  <div class="alarm-alert">
+
+    <div class="alarm-alert-icon">
+      ⏰
+    </div>
+
+    <div
+      id="alarmAlertTime"
+      class="alarm-alert-time"
+    ></div>
+
+    <div
+      id="alarmAlertTitle"
+      class="alarm-alert-title"
+    ></div>
+
+    <div class="alarm-alert-actions">
+
+      <button
+        id="alarmStopButton"
+        class="action gold"
+        onclick="stopActiveAlarm()"
+      ></button>
+
+      <button
+        id="alarmSnoozeButton"
+        class="action"
+        onclick="snoozeActiveAlarm()"
+      ></button>
 
     </div>
 
@@ -1622,31 +1890,120 @@ button:disabled{
 
       <h2 id="notesCenterTitle"></h2>
 
-      <textarea
-        id="notesInput"
-        class="textbox"
-      ></textarea>
-
-      <div class="action-row">
+      <div class="notes-tabs">
 
         <button
-          id="notesVoiceButton"
-          class="action mint"
-          onclick="speechInto('notesInput')"
+          id="notesTabButton"
+          class="notes-tab active"
+          onclick="switchNotesTab('notes')"
         ></button>
 
         <button
-          id="notesSaveButton"
-          class="action"
-          onclick="saveNote()"
+          id="alarmsTabButton"
+          class="notes-tab"
+          onclick="switchNotesTab('alarms')"
         ></button>
 
       </div>
 
       <div
-        id="notesResult"
-        class="result"
-      ></div>
+        id="notesPanel"
+        class="notes-panel active"
+      >
+
+        <textarea
+          id="notesInput"
+          class="textbox"
+        ></textarea>
+
+        <div class="action-row">
+
+          <button
+            id="notesVoiceButton"
+            class="action mint"
+            onclick="speechInto('notesInput')"
+          ></button>
+
+          <button
+            id="notesSaveButton"
+            class="action gold"
+            onclick="saveNote()"
+          ></button>
+
+        </div>
+
+        <div
+          id="notesResult"
+          class="result"
+        ></div>
+
+        <div
+          id="notesList"
+          class="note-list"
+        ></div>
+
+      </div>
+
+      <div
+        id="alarmsPanel"
+        class="notes-panel"
+      >
+
+        <div class="alarm-form">
+
+          <input
+            id="alarmTitleInput"
+            type="text"
+            maxlength="120"
+          >
+
+          <div class="alarm-form-grid">
+
+            <input
+              id="alarmDateInput"
+              type="date"
+            >
+
+            <input
+              id="alarmTimeInput"
+              type="time"
+            >
+
+          </div>
+
+          <select id="alarmRepeatInput">
+
+            <option
+              id="alarmOnceOption"
+              value="once"
+            ></option>
+
+            <option
+              id="alarmDailyOption"
+              value="daily"
+            ></option>
+
+          </select>
+
+          <button
+            id="alarmSaveButton"
+            class="action gold"
+            onclick="saveAlarm()"
+          ></button>
+
+        </div>
+
+        <div
+          id="alarmResult"
+          class="result"
+        ></div>
+
+        <div
+          id="alarmList"
+          class="alarm-list"
+        ></div>
+
+      </div>
 
     </section>
 
@@ -1662,7 +2019,7 @@ button:disabled{
 "use strict";
 
 const APP_VERSION =
-  "3.5.5";
+  "3.6.0";
 
 const ROOT_ID =
   "Rii00000001";
@@ -1672,6 +2029,9 @@ const LANGUAGE_KEY =
 
 const NOTE_KEY =
   "rii-v3-local-notes";
+
+const ALARM_KEY =
+  "rii-v3-local-alarms";
 
 const languages = [
 
@@ -1824,7 +2184,7 @@ const EN = {
     "Notes & Alarms",
 
   notesText:
-    "Notes work now; alarms will be completed next.",
+    "Save notes and create alarms with Rii.",
 
   audio:
     "🎧 Audio",
@@ -2040,13 +2400,100 @@ const EN = {
     "Speak or type a note...",
 
   save:
-    "💾 Save",
+    "💾 Save note",
 
   noteReady:
-    "Notes ready.",
+    "Notes are ready.",
 
   saved:
-    "✅ Saved:"
+    "✅ Saved:",
+
+  notesTab:
+    "📝 Notes",
+
+  alarmsTab:
+    "⏰ Alarms",
+
+  noNotes:
+    "No notes yet.",
+
+  edit:
+    "✏️ Edit",
+
+  delete:
+    "🗑 Delete",
+
+  hear:
+    "🔊 Hear",
+
+  noteUpdated:
+    "✅ Note updated.",
+
+  noteDeleted:
+    "🗑 Note deleted.",
+
+  noteEmpty:
+    "Please enter a note first.",
+
+  editPrompt:
+    "Edit note:",
+
+  alarmTitlePlaceholder:
+    "Alarm name, for example: Study math",
+
+  alarmSave:
+    "⏰ Create alarm",
+
+  alarmOnce:
+    "One time",
+
+  alarmDaily:
+    "Every day",
+
+  alarmReady:
+    "Alarms are ready while Rii is open.",
+
+  alarmNeedTime:
+    "Please choose a time.",
+
+  alarmNeedDate:
+    "Please choose a date.",
+
+  alarmSaved:
+    "✅ Alarm created.",
+
+  alarmDeleted:
+    "🗑 Alarm deleted.",
+
+  alarmEnabled:
+    "✅ Alarm enabled.",
+
+  alarmDisabled:
+    "⏸ Alarm disabled.",
+
+  noAlarms:
+    "No alarms yet.",
+
+  alarmDefault:
+    "Rii alarm",
+
+  alarmStop:
+    "Stop",
+
+  alarmSnooze:
+    "Snooze 5 min",
+
+  alarmRinging:
+    "Alarm",
+
+  alarmWebNote:
+    "Web alarms can ring while Rii is open. Native app notifications will be added later.",
+
+  once:
+    "One time",
+
+  daily:
+    "Every day"
 };
 
 const UI = {
@@ -2074,7 +2521,7 @@ const UI = {
     translate:"Phiên dịch",
     translateText:"Nói hoặc nhập bằng một ngôn ngữ, Rii sẽ dịch sang ngôn ngữ con đang chọn.",
     notes:"Ghi chú & Báo thức",
-    notesText:"Ghi chú đang hoạt động; báo thức sẽ được hoàn thiện tiếp.",
+    notesText:"Ghi chú, nhắc việc và đặt báo thức cùng Rii.",
     audio:"🎧 Âm thanh",
     audioSystem:"Tự động theo hệ thống",
     audioNote:"Trên iPhone/iPad, loa hoặc Bluetooth do iOS chọn.",
@@ -2151,959 +2598,49 @@ const UI = {
 
     notesPlaceholder:"Nói hoặc nhập ghi chú...",
     save:"💾 Ghi nhớ",
-    noteReady:"Ghi chú sẵn sàng.",
-    saved:"✅ Đã lưu:"
+    noteReady:"Ghi chú đã sẵn sàng.",
+    saved:"✅ Đã lưu:",
+    notesTab:"📝 Ghi chú",
+    alarmsTab:"⏰ Báo thức",
+    noNotes:"Chưa có ghi chú nào.",
+    edit:"✏️ Sửa",
+    delete:"🗑 Xóa",
+    hear:"🔊 Nghe",
+    noteUpdated:"✅ Đã cập nhật ghi chú.",
+    noteDeleted:"🗑 Đã xóa ghi chú.",
+    noteEmpty:"Hãy nói hoặc nhập ghi chú trước.",
+    editPrompt:"Sửa ghi chú:",
+    alarmTitlePlaceholder:"Tên báo thức, ví dụ: Học toán",
+    alarmSave:"⏰ Tạo báo thức",
+    alarmOnce:"Một lần",
+    alarmDaily:"Mỗi ngày",
+    alarmReady:"Báo thức đã sẵn sàng khi Rii đang mở.",
+    alarmNeedTime:"Hãy chọn giờ báo thức.",
+    alarmNeedDate:"Hãy chọn ngày báo thức.",
+    alarmSaved:"✅ Đã tạo báo thức.",
+    alarmDeleted:"🗑 Đã xóa báo thức.",
+    alarmEnabled:"✅ Đã bật báo thức.",
+    alarmDisabled:"⏸ Đã tắt báo thức.",
+    noAlarms:"Chưa có báo thức nào.",
+    alarmDefault:"Báo thức Rii",
+    alarmStop:"Dừng",
+    alarmSnooze:"Nhắc lại 5 phút",
+    alarmRinging:"Báo thức",
+    alarmWebNote:"Bản web có thể reo khi Rii đang mở. Khi đóng gói thành app, Rii sẽ dùng thông báo hệ thống.",
+    once:"Một lần",
+    daily:"Mỗi ngày"
   },
 
-  zh:{
-    ...EN,
-    tagline:"智能学习 • 探索世界",
-    ready:"就绪",
-    hero:"你好 👋 今天想探索什么？",
-    heroText:"你可以点击、说话或聆听。Rii 会保持稳定功能正常，并在 AI 需要重试时清楚提示。",
-    identity:"Rii 身份",
-    root:"根账户 • ROOT",
-    robotFuture:"🤖 机器人 • 未来",
-    centers:"Rii 学习中心",
-    hint:"点击或说出功能名称",
-    math:"数学",
-    mathText:"说出或输入题目，Rii 会分步骤讲解。",
-    camera:"相机 AI",
-    cameraText:"观察真实物体并听 Rii 解释。",
-    translate:"翻译",
-    translateText:"说出或输入一种语言，Rii 会翻译成当前选择的语言。",
-    notes:"笔记与闹钟",
-    notesText:"笔记已经可用；闹钟功能将在下一步完成。",
-    audio:"🎧 音频",
-    audioSystem:"跟随系统自动选择",
-    audioNote:"在 iPhone/iPad 上，扬声器或蓝牙由 iOS 选择。",
-    language:"🌐 语言",
-    home:"主页",
-    back:"← 主页",
-    voice:"🎙 说",
-    speechUnsupported:"此浏览器暂不支持语音识别。",
-    mathIntro:"基础运算使用本地 Math Engine，不消耗 AI 配额。应用题使用 Math AI。",
-    mathPlaceholder:"例如：兰有12个苹果，送给朋友5个，还剩多少个？",
-    solve:"✨ 和 Rii 一起解题",
-    solving:"⏳ Rii 正在解题...",
-    test:"🧪 测试 8 × 7",
-    listenSolution:"🔊 听解题过程",
-    needProblem:"请先说出或输入题目。",
-    mathClientMissing:"Math Client 尚未就绪。",
-    mathLocal:"⚡ 已由本地 Math Engine 解答，不使用 AI 配额。",
-    mathAI:"✨ Rii Math AI 已完成。",
-    mathQuota:"💤 Math AI 因配额用尽正在休息，基础运算仍可使用。",
-    mathError:"❌ Rii 暂时无法解答：",
-    answer:"答案",
-    step:"步骤",
-    check:"检查",
-    mathDebug:"🔐 ROOT • Math 技术详情",
-    cameraClosed:"相机尚未打开。",
-    cameraLive:"✅ 相机正在工作。",
-    cameraSaved:"📸 图片仍已保留。",
-    cameraNotReady:"相机尚未准备好。",
-    noCapturedFrame:"目前没有可分析的已保存图片。",
-    visionClientMissing:"Vision Client 尚未就绪。",
-    cameraPlaceholder:"例如：这是什么？它生活在哪里？",
-    openCamera:"📷 打开相机",
-    capture:"✨ 拍摄并了解",
-    looking:"⏳ Rii 正在观察...",
-    askRii:"🎙 问 Rii",
-    listenRii:"🔊 听 Rii",
-    retryVision:"🧠 重新分析已拍图片",
-    otherObject:"📷 其他物体",
-    analyzeAgain:"🧠 再次分析",
-    visionRest:"💤 Rii Vision 正在休息",
-    visionRestText:"图片仍已保存。AI 恢复后，点击重新分析即可。",
-    visionError:"🌧️ Rii 暂时无法查看图片",
-    visionErrorText:"图片还在，可以直接重试，无需重新拍摄。",
-    visionDebug:"🔐 ROOT • Vision 技术详情",
-    unknown:"未知物体",
-    color:"颜色",
-    habitat:"栖息地",
-    origin:"来源",
-    uses:"用途",
-    features:"特征",
-    detectedText:"检测到的文字",
-    translatePlaceholder:"说出或输入单词、句子或段落...",
-    translateAction:"🌐 翻译",
-    translating:"⏳ Rii 正在翻译...",
-    translateReady:"实时翻译已准备好。Rii 会自动识别源语言。",
-    translateNeedText:"请先说出或输入要翻译的内容。",
-    translateClientMissing:"Translation Client 尚未就绪。",
-    translateDone:"✅ 翻译完成。",
-    translateLocal:"⚡ 源语言和目标语言相同，不使用 AI 配额。",
-    translateQuota:"💤 翻译 AI 因今日配额用尽正在休息。",
-    translateError:"❌ Rii 暂时无法翻译：",
-    translateListen:"🔊 听翻译",
-    translateClear:"🗑 清除",
-    translateSource:"源语言",
-    translateAuto:"自动识别",
-    translateTarget:"目标语言",
-    translateOutput:"翻译结果",
-    translateDetected:"已识别",
-    translateTo:"到",
-    translationDebug:"🔐 ROOT • Translation 技术详情",
-    notesPlaceholder:"说出或输入笔记...",
-    save:"💾 保存",
-    noteReady:"笔记已就绪。",
-    saved:"✅ 已保存："
-  },
-
-  ja:{
-    ...EN,
-    tagline:"スマート学習 • 世界を探検",
-    ready:"準備完了",
-    hero:"こんにちは 👋 今日は何を探検する？",
-    heroText:"タップ、音声、読み上げで使えます。Rii は安定した機能を保ち、AI の再試行が必要な時は明確に知らせます。",
-    identity:"Rii ID",
-    root:"ルートアカウント • ROOT",
-    robotFuture:"🤖 ロボット • 将来",
-    centers:"Rii センター",
-    hint:"タップするか機能名を話してね",
-    math:"算数",
-    mathText:"問題を話すか入力すると、Rii が順番に説明します。",
-    camera:"カメラ AI",
-    cameraText:"本物を見て Rii の説明を聞こう。",
-    translate:"翻訳",
-    translateText:"話すか入力すると、Rii が選択中の言語へ翻訳します。",
-    notes:"メモとアラーム",
-    notesText:"メモは利用可能。アラームは次の段階で完成します。",
-    audio:"🎧 オーディオ",
-    audioSystem:"システムに従って自動",
-    audioNote:"iPhone/iPad ではスピーカーや Bluetooth は iOS が選択します。",
-    language:"🌐 言語",
-    home:"ホーム",
-    back:"← ホーム",
-    voice:"🎙 話す",
-    speechUnsupported:"このブラウザでは音声認識を利用できません。",
-    mathIntro:"基本計算はローカル Math Engine を使い AI クォータを消費しません。文章題は Math AI を使います。",
-    mathPlaceholder:"例：りんごが12個あり、5個あげました。残りはいくつ？",
-    solve:"✨ Rii と解く",
-    solving:"⏳ Rii が解いています...",
-    test:"🧪 8 × 7 をテスト",
-    listenSolution:"🔊 解説を聞く",
-    needProblem:"まず問題を話すか入力してください。",
-    mathClientMissing:"Math Client の準備ができていません。",
-    mathLocal:"⚡ ローカル Math Engine で解きました。AI クォータは使っていません。",
-    mathAI:"✨ Rii Math AI が解き終わりました。",
-    mathQuota:"💤 Math AI はクォータ切れで休止中です。基本計算は使えます。",
-    mathError:"❌ まだ解けません：",
-    answer:"答え",
-    step:"ステップ",
-    check:"確認",
-    mathDebug:"🔐 ROOT • Math 技術情報",
-    cameraClosed:"カメラは閉じています。",
-    cameraLive:"✅ カメラ稼働中。",
-    cameraSaved:"📸 写真は保存されています。",
-    cameraNotReady:"カメラの準備ができていません。",
-    noCapturedFrame:"分析できる保存済み写真がありません。",
-    visionClientMissing:"Vision Client の準備ができていません。",
-    cameraPlaceholder:"例：これは何？どこに住んでいる？",
-    openCamera:"📷 カメラを開く",
-    capture:"✨ 撮影して学ぶ",
-    looking:"⏳ Rii が見ています...",
-    askRii:"🎙 Rii に質問",
-    listenRii:"🔊 Rii を聞く",
-    retryVision:"🧠 保存した写真を再分析",
-    otherObject:"📷 別のもの",
-    analyzeAgain:"🧠 再分析",
-    visionRest:"💤 Rii Vision は休止中",
-    visionRestText:"写真は保存されています。AI が利用可能になったら再分析してください。",
-    visionError:"🌧️ Rii はまだ画像を見られません",
-    visionErrorText:"画像は残っています。撮り直さず再試行できます。",
-    visionDebug:"🔐 ROOT • Vision 技術情報",
-    unknown:"不明な物体",
-    color:"色",
-    habitat:"生息地",
-    origin:"起源",
-    uses:"用途",
-    features:"特徴",
-    detectedText:"読み取った文字",
-    translatePlaceholder:"単語、文、文章を話すか入力...",
-    translateAction:"🌐 翻訳",
-    translating:"⏳ Rii が翻訳しています...",
-    translateReady:"リアルタイム翻訳の準備完了。Rii が元の言語を自動認識します。",
-    translateNeedText:"翻訳する内容を先に話すか入力してください。",
-    translateClientMissing:"Translation Client の準備ができていません。",
-    translateDone:"✅ 翻訳が完了しました。",
-    translateLocal:"⚡ 元の言語と翻訳先が同じため、AI クォータは使いません。",
-    translateQuota:"💤 翻訳 AI は本日のクォータ切れで休止中です。",
-    translateError:"❌ Rii はまだ翻訳できません：",
-    translateListen:"🔊 翻訳を聞く",
-    translateClear:"🗑 クリア",
-    translateSource:"元の言語",
-    translateAuto:"自動認識",
-    translateTarget:"翻訳先",
-    translateOutput:"翻訳",
-    translateDetected:"認識",
-    translateTo:"から",
-    translationDebug:"🔐 ROOT • Translation 技術情報",
-    notesPlaceholder:"メモを話すか入力...",
-    save:"💾 保存",
-    noteReady:"メモの準備完了。",
-    saved:"✅ 保存しました："
-  },
-
-  ko:{
-    ...EN,
-    tagline:"스마트 학습 • 세상 탐험",
-    ready:"준비됨",
-    hero:"안녕 👋 오늘 무엇을 탐험할까?",
-    heroText:"터치하고 말하고 들을 수 있어요. Rii는 안정적인 기능을 유지하고 AI 재시도가 필요하면 분명히 알려줘요.",
-    identity:"Rii ID",
-    root:"루트 계정 • ROOT",
-    robotFuture:"🤖 로봇 • 미래",
-    centers:"Rii 센터",
-    hint:"누르거나 기능 이름을 말하세요",
-    math:"수학",
-    mathText:"문제를 말하거나 입력하면 Rii가 단계별로 설명해요.",
-    camera:"카메라 AI",
-    cameraText:"실제 물체를 보고 Rii의 설명을 들어요.",
-    translate:"번역",
-    translateText:"말하거나 입력하면 Rii가 선택한 언어로 번역해요.",
-    notes:"메모 & 알람",
-    notesText:"메모는 작동하며 알람은 다음 단계에서 완성합니다.",
-    audio:"🎧 오디오",
-    audioSystem:"시스템 자동 선택",
-    audioNote:"iPhone/iPad에서는 스피커나 Bluetooth를 iOS가 선택합니다.",
-    language:"🌐 언어",
-    home:"홈",
-    back:"← 홈",
-    voice:"🎙 말하기",
-    speechUnsupported:"이 브라우저에서는 음성 인식을 지원하지 않습니다.",
-    mathIntro:"기본 계산은 로컬 Math Engine을 사용해 AI 할당량을 쓰지 않습니다. 문장제는 Math AI를 사용합니다.",
-    mathPlaceholder:"예: 사과가 12개 있는데 5개를 주었습니다. 몇 개 남았나요?",
-    solve:"✨ Rii와 풀기",
-    solving:"⏳ Rii가 풀고 있어요...",
-    test:"🧪 8 × 7 테스트",
-    listenSolution:"🔊 풀이 듣기",
-    needProblem:"먼저 문제를 말하거나 입력하세요.",
-    mathClientMissing:"Math Client가 준비되지 않았습니다.",
-    mathLocal:"⚡ 로컬 Math Engine으로 풀었습니다 — AI 할당량 미사용.",
-    mathAI:"✨ Rii Math AI가 완료했습니다.",
-    mathQuota:"💤 Math AI는 할당량 소진으로 쉬는 중입니다. 기본 계산은 계속 사용할 수 있어요.",
-    mathError:"❌ 아직 풀지 못했습니다: ",
-    answer:"정답",
-    step:"단계",
-    check:"확인",
-    mathDebug:"🔐 ROOT • Math 기술 정보",
-    cameraClosed:"카메라가 꺼져 있습니다.",
-    cameraLive:"✅ 카메라가 작동 중입니다.",
-    cameraSaved:"📸 사진이 보관되어 있습니다.",
-    cameraNotReady:"카메라가 아직 준비되지 않았습니다.",
-    noCapturedFrame:"분석할 저장 사진이 없습니다.",
-    visionClientMissing:"Vision Client가 준비되지 않았습니다.",
-    cameraPlaceholder:"예: 이것은 무엇인가요? 어디에 사나요?",
-    openCamera:"📷 카메라 열기",
-    capture:"✨ 촬영하고 알아보기",
-    looking:"⏳ Rii가 보고 있어요...",
-    askRii:"🎙 Rii에게 묻기",
-    listenRii:"🔊 Rii 듣기",
-    retryVision:"🧠 저장된 사진 다시 분석",
-    otherObject:"📷 다른 물체",
-    analyzeAgain:"🧠 다시 분석",
-    visionRest:"💤 Rii Vision이 쉬는 중",
-    visionRestText:"사진은 그대로 저장되어 있습니다. AI가 준비되면 다시 분석하세요.",
-    visionError:"🌧️ Rii가 아직 사진을 볼 수 없어요",
-    visionErrorText:"사진은 남아 있으니 다시 찍지 않고 재시도할 수 있습니다.",
-    visionDebug:"🔐 ROOT • Vision 기술 정보",
-    unknown:"알 수 없는 물체",
-    color:"색",
-    habitat:"서식지",
-    origin:"기원",
-    uses:"용도",
-    features:"특징",
-    detectedText:"감지된 글자",
-    translatePlaceholder:"단어, 문장 또는 문단을 말하거나 입력...",
-    translateAction:"🌐 번역",
-    translating:"⏳ Rii가 번역하고 있어요...",
-    translateReady:"실시간 번역 준비 완료. Rii가 원본 언어를 자동 감지합니다.",
-    translateNeedText:"먼저 번역할 내용을 말하거나 입력하세요.",
-    translateClientMissing:"Translation Client가 준비되지 않았습니다.",
-    translateDone:"✅ 번역이 완료되었습니다.",
-    translateLocal:"⚡ 원본과 대상 언어가 같아 AI 할당량을 사용하지 않았습니다.",
-    translateQuota:"💤 번역 AI는 오늘 할당량 소진으로 쉬는 중입니다.",
-    translateError:"❌ Rii가 아직 번역하지 못했습니다: ",
-    translateListen:"🔊 번역 듣기",
-    translateClear:"🗑 지우기",
-    translateSource:"원본",
-    translateAuto:"자동 감지",
-    translateTarget:"대상",
-    translateOutput:"번역",
-    translateDetected:"감지됨",
-    translateTo:"→",
-    translationDebug:"🔐 ROOT • Translation 기술 정보",
-    notesPlaceholder:"메모를 말하거나 입력...",
-    save:"💾 저장",
-    noteReady:"메모 준비됨.",
-    saved:"✅ 저장됨:"
-  },
-
-  es:{
-    ...EN,
-    tagline:"Aprendizaje inteligente • Explora el mundo",
-    ready:"Listo",
-    hero:"Hola 👋 ¿Qué quieres explorar hoy?",
-    heroText:"Puedes tocar, hablar o escuchar. Rii mantiene estables las funciones y avisa claramente cuando la IA necesita reintentarse.",
-    identity:"Identidad Rii",
-    root:"Cuenta raíz • ROOT",
-    robotFuture:"🤖 Robot • futuro",
-    centers:"Centros Rii",
-    hint:"Toca o di el nombre de una función",
-    math:"Matemáticas",
-    mathText:"Habla o escribe un problema. Rii lo explica paso a paso.",
-    camera:"Cámara IA",
-    cameraText:"Mira objetos reales y escucha la explicación de Rii.",
-    translate:"Traducción",
-    translateText:"Habla o escribe en un idioma y Rii lo traduce al idioma seleccionado.",
-    notes:"Notas y alarmas",
-    notesText:"Las notas funcionan; las alarmas se completarán en el siguiente paso.",
-    audio:"🎧 Audio",
-    audioSystem:"Ruta automática del sistema",
-    audioNote:"En iPhone/iPad, iOS elige altavoz o Bluetooth.",
-    language:"🌐 Idioma",
-    home:"Inicio",
-    back:"← Inicio",
-    voice:"🎙 Hablar",
-    speechUnsupported:"Este navegador no admite reconocimiento de voz.",
-    mathIntro:"La aritmética básica usa el Math Engine local sin cuota de IA. Los problemas escritos usan Math AI.",
-    mathPlaceholder:"Ejemplo: Lan tiene 12 manzanas y regala 5. ¿Cuántas quedan?",
-    solve:"✨ Resolver con Rii",
-    solving:"⏳ Rii está resolviendo...",
-    test:"🧪 Probar 8 × 7",
-    listenSolution:"🔊 Escuchar solución",
-    needProblem:"Primero habla o escribe un problema.",
-    mathClientMissing:"Math Client no está listo.",
-    mathLocal:"⚡ Resuelto con Math Engine local — sin usar cuota de IA.",
-    mathAI:"✨ Rii Math AI terminó.",
-    mathQuota:"💤 Math AI está descansando porque se agotó la cuota. La aritmética básica sigue funcionando.",
-    mathError:"❌ Rii aún no pudo resolverlo: ",
-    answer:"Respuesta",
-    step:"Paso",
-    check:"Comprobación",
-    mathDebug:"🔐 ROOT • Detalles técnicos Math",
-    cameraClosed:"La cámara está cerrada.",
-    cameraLive:"✅ Cámara activa.",
-    cameraSaved:"📸 La imagen sigue guardada.",
-    cameraNotReady:"La cámara aún no está lista.",
-    noCapturedFrame:"No hay una imagen guardada para analizar.",
-    visionClientMissing:"Vision Client no está listo.",
-    cameraPlaceholder:"Ejemplo: ¿Qué es? ¿Dónde vive?",
-    openCamera:"📷 Abrir cámara",
-    capture:"✨ Capturar y aprender",
-    looking:"⏳ Rii está mirando...",
-    askRii:"🎙 Preguntar a Rii",
-    listenRii:"🔊 Escuchar a Rii",
-    retryVision:"🧠 Analizar de nuevo la foto guardada",
-    otherObject:"📷 Otro objeto",
-    analyzeAgain:"🧠 Analizar otra vez",
-    visionRest:"💤 Rii Vision está descansando",
-    visionRestText:"La foto sigue guardada. Cuando la IA esté lista, vuelve a analizarla.",
-    visionError:"🌧️ Rii aún no puede ver la imagen",
-    visionErrorText:"La foto sigue aquí. Puedes reintentar sin tomar otra.",
-    visionDebug:"🔐 ROOT • Detalles técnicos Vision",
-    unknown:"Objeto desconocido",
-    color:"Color",
-    habitat:"Hábitat",
-    origin:"Origen",
-    uses:"Usos",
-    features:"Características",
-    detectedText:"Texto detectado",
-    translatePlaceholder:"Habla o escribe una palabra, frase o párrafo...",
-    translateAction:"🌐 Traducir",
-    translating:"⏳ Rii está traduciendo...",
-    translateReady:"La traducción en vivo está lista. Rii detecta automáticamente el idioma de origen.",
-    translateNeedText:"Primero habla o escribe algo para traducir.",
-    translateClientMissing:"Translation Client no está listo.",
-    translateDone:"✅ Traducción completada.",
-    translateLocal:"⚡ El idioma de origen y destino es el mismo — sin usar cuota de IA.",
-    translateQuota:"💤 La IA de traducción descansa porque se agotó la cuota diaria.",
-    translateError:"❌ Rii aún no pudo traducir: ",
-    translateListen:"🔊 Escuchar traducción",
-    translateClear:"🗑 Borrar",
-    translateSource:"Origen",
-    translateAuto:"Detección automática",
-    translateTarget:"Destino",
-    translateOutput:"Traducción",
-    translateDetected:"Detectado",
-    translateTo:"a",
-    translationDebug:"🔐 ROOT • Detalles técnicos Translation",
-    notesPlaceholder:"Habla o escribe una nota...",
-    save:"💾 Guardar",
-    noteReady:"Notas listas.",
-    saved:"✅ Guardado:"
-  },
-
-  fr:{
-    ...EN,
-    tagline:"Apprentissage intelligent • Explore le monde",
-    ready:"Prêt",
-    hero:"Bonjour 👋 Que veux-tu explorer aujourd’hui ?",
-    heroText:"Tu peux toucher, parler ou écouter. Rii garde les fonctions stables et indique clairement quand l’IA doit réessayer.",
-    identity:"Identité Rii",
-    root:"Compte racine • ROOT",
-    robotFuture:"🤖 Robot • futur",
-    centers:"Centres Rii",
-    hint:"Touchez ou dites le nom d’une fonction",
-    math:"Maths",
-    mathText:"Parle ou écris un problème. Rii l’explique étape par étape.",
-    camera:"Caméra IA",
-    cameraText:"Observe des objets réels et écoute Rii les expliquer.",
-    translate:"Traduction",
-    translateText:"Parle ou écris dans une langue et Rii traduit vers la langue sélectionnée.",
-    notes:"Notes et alarmes",
-    notesText:"Les notes fonctionnent ; les alarmes seront finalisées à l’étape suivante.",
-    audio:"🎧 Audio",
-    audioSystem:"Routage automatique du système",
-    audioNote:"Sur iPhone/iPad, iOS choisit le haut-parleur ou le Bluetooth.",
-    language:"🌐 Langue",
-    home:"Accueil",
-    back:"← Accueil",
-    voice:"🎙 Parler",
-    speechUnsupported:"Ce navigateur ne prend pas en charge la reconnaissance vocale.",
-    mathIntro:"Les calculs de base utilisent le Math Engine local sans quota IA. Les problèmes rédigés utilisent Math AI.",
-    mathPlaceholder:"Exemple : Lan a 12 pommes et en donne 5. Combien en reste-t-il ?",
-    solve:"✨ Résoudre avec Rii",
-    solving:"⏳ Rii résout...",
-    test:"🧪 Tester 8 × 7",
-    listenSolution:"🔊 Écouter la solution",
-    needProblem:"Parle ou écris d’abord un problème.",
-    mathClientMissing:"Math Client n’est pas prêt.",
-    mathLocal:"⚡ Résolu avec le Math Engine local — aucun quota IA utilisé.",
-    mathAI:"✨ Rii Math AI a terminé.",
-    mathQuota:"💤 Math AI se repose car le quota est épuisé. Les calculs de base restent disponibles.",
-    mathError:"❌ Rii ne peut pas encore résoudre ceci : ",
-    answer:"Réponse",
-    step:"Étape",
-    check:"Vérification",
-    mathDebug:"🔐 ROOT • Détails techniques Math",
-    cameraClosed:"La caméra est fermée.",
-    cameraLive:"✅ Caméra active.",
-    cameraSaved:"📸 L’image est toujours conservée.",
-    cameraNotReady:"La caméra n’est pas encore prête.",
-    noCapturedFrame:"Aucune image enregistrée n’est disponible pour l’analyse.",
-    visionClientMissing:"Vision Client n’est pas prêt.",
-    cameraPlaceholder:"Exemple : Qu’est-ce que c’est ? Où cela vit-il ?",
-    openCamera:"📷 Ouvrir la caméra",
-    capture:"✨ Capturer et apprendre",
-    looking:"⏳ Rii regarde...",
-    askRii:"🎙 Demander à Rii",
-    listenRii:"🔊 Écouter Rii",
-    retryVision:"🧠 Réanalyser l’image enregistrée",
-    otherObject:"📷 Autre objet",
-    analyzeAgain:"🧠 Réanalyser",
-    visionRest:"💤 Rii Vision se repose",
-    visionRestText:"L’image reste enregistrée. Quand l’IA est prête, relance l’analyse.",
-    visionError:"🌧️ Rii ne peut pas encore voir l’image",
-    visionErrorText:"L’image reste ici. Tu peux réessayer sans la reprendre.",
-    visionDebug:"🔐 ROOT • Détails techniques Vision",
-    unknown:"Objet inconnu",
-    color:"Couleur",
-    habitat:"Habitat",
-    origin:"Origine",
-    uses:"Usages",
-    features:"Caractéristiques",
-    detectedText:"Texte détecté",
-    translatePlaceholder:"Parle ou écris un mot, une phrase ou un paragraphe...",
-    translateAction:"🌐 Traduire",
-    translating:"⏳ Rii traduit...",
-    translateReady:"La traduction en direct est prête. Rii détecte automatiquement la langue source.",
-    translateNeedText:"Parle ou écris d’abord quelque chose à traduire.",
-    translateClientMissing:"Translation Client n’est pas prêt.",
-    translateDone:"✅ Traduction terminée.",
-    translateLocal:"⚡ La langue source et la langue cible sont identiques — aucun quota IA utilisé.",
-    translateQuota:"💤 L’IA de traduction se repose car le quota quotidien est épuisé.",
-    translateError:"❌ Rii ne peut pas encore traduire : ",
-    translateListen:"🔊 Écouter la traduction",
-    translateClear:"🗑 Effacer",
-    translateSource:"Source",
-    translateAuto:"Détection automatique",
-    translateTarget:"Cible",
-    translateOutput:"Traduction",
-    translateDetected:"Détecté",
-    translateTo:"vers",
-    translationDebug:"🔐 ROOT • Détails techniques Translation",
-    notesPlaceholder:"Parle ou écris une note...",
-    save:"💾 Enregistrer",
-    noteReady:"Notes prêtes.",
-    saved:"✅ Enregistré :"
-  },
-
-  de:{
-    ...EN,
-    tagline:"Intelligent lernen • Die Welt entdecken",
-    ready:"Bereit",
-    hero:"Hallo 👋 Was möchtest du heute entdecken?",
-    heroText:"Du kannst tippen, sprechen oder zuhören. Rii hält stabile Funktionen aktiv und zeigt klar, wenn die KI erneut versuchen muss.",
-    identity:"Rii-Identität",
-    root:"Root-Konto • ROOT",
-    robotFuture:"🤖 Roboter • Zukunft",
-    centers:"Rii-Zentren",
-    hint:"Tippe oder sage den Namen einer Funktion",
-    math:"Mathe",
-    mathText:"Sprich oder tippe eine Aufgabe. Rii erklärt sie Schritt für Schritt.",
-    camera:"Kamera-KI",
-    cameraText:"Sieh echte Dinge an und lass Rii sie erklären.",
-    translate:"Übersetzen",
-    translateText:"Sprich oder tippe in einer Sprache und Rii übersetzt in die ausgewählte Sprache.",
-    notes:"Notizen & Alarme",
-    notesText:"Notizen funktionieren; Alarme werden im nächsten Schritt fertiggestellt.",
-    audio:"🎧 Audio",
-    audioSystem:"Automatische Systemausgabe",
-    audioNote:"Auf iPhone/iPad wählt iOS Lautsprecher oder Bluetooth.",
-    language:"🌐 Sprache",
-    home:"Start",
-    back:"← Start",
-    voice:"🎙 Sprechen",
-    speechUnsupported:"Dieser Browser unterstützt keine Spracherkennung.",
-    mathIntro:"Grundrechenarten laufen lokal ohne KI-Kontingent. Textaufgaben nutzen Math AI.",
-    mathPlaceholder:"Beispiel: Lan hat 12 Äpfel und gibt 5 weg. Wie viele bleiben?",
-    solve:"✨ Mit Rii lösen",
-    solving:"⏳ Rii rechnet...",
-    test:"🧪 8 × 7 testen",
-    listenSolution:"🔊 Lösung anhören",
-    needProblem:"Bitte zuerst eine Aufgabe sprechen oder eingeben.",
-    mathClientMissing:"Math Client ist nicht bereit.",
-    mathLocal:"⚡ Lokal mit Math Engine gelöst — kein KI-Kontingent verwendet.",
-    mathAI:"✨ Rii Math AI ist fertig.",
-    mathQuota:"💤 Math AI pausiert wegen ausgeschöpftem Kontingent. Grundrechnen funktioniert weiter.",
-    mathError:"❌ Rii konnte das noch nicht lösen: ",
-    answer:"Antwort",
-    step:"Schritt",
-    check:"Prüfung",
-    mathDebug:"🔐 ROOT • Math-Technikdetails",
-    cameraClosed:"Kamera ist geschlossen.",
-    cameraLive:"✅ Kamera ist aktiv.",
-    cameraSaved:"📸 Das Bild bleibt gespeichert.",
-    cameraNotReady:"Die Kamera ist noch nicht bereit.",
-    noCapturedFrame:"Kein gespeichertes Bild ist zur Analyse verfügbar.",
-    visionClientMissing:"Vision Client ist nicht bereit.",
-    cameraPlaceholder:"Beispiel: Was ist das? Wo lebt es?",
-    openCamera:"📷 Kamera öffnen",
-    capture:"✨ Aufnehmen & lernen",
-    looking:"⏳ Rii schaut...",
-    askRii:"🎙 Rii fragen",
-    listenRii:"🔊 Rii anhören",
-    retryVision:"🧠 Gespeichertes Bild erneut analysieren",
-    otherObject:"📷 Anderes Objekt",
-    analyzeAgain:"🧠 Erneut analysieren",
-    visionRest:"💤 Rii Vision pausiert",
-    visionRestText:"Das Bild bleibt gespeichert. Wenn die KI bereit ist, analysiere es erneut.",
-    visionError:"🌧️ Rii kann das Bild noch nicht sehen",
-    visionErrorText:"Das Bild bleibt hier. Du kannst ohne neue Aufnahme erneut versuchen.",
-    visionDebug:"🔐 ROOT • Vision-Technikdetails",
-    unknown:"Unbekanntes Objekt",
-    color:"Farbe",
-    habitat:"Lebensraum",
-    origin:"Herkunft",
-    uses:"Verwendung",
-    features:"Merkmale",
-    detectedText:"Erkannter Text",
-    translatePlaceholder:"Wort, Satz oder Absatz sprechen oder eingeben...",
-    translateAction:"🌐 Übersetzen",
-    translating:"⏳ Rii übersetzt...",
-    translateReady:"Live-Übersetzung ist bereit. Rii erkennt die Ausgangssprache automatisch.",
-    translateNeedText:"Bitte zuerst etwas zum Übersetzen sprechen oder eingeben.",
-    translateClientMissing:"Translation Client ist nicht bereit.",
-    translateDone:"✅ Übersetzung abgeschlossen.",
-    translateLocal:"⚡ Ausgangs- und Zielsprache sind gleich — kein KI-Kontingent verwendet.",
-    translateQuota:"💤 Die Übersetzungs-KI pausiert, weil das Tageskontingent aufgebraucht ist.",
-    translateError:"❌ Rii konnte noch nicht übersetzen: ",
-    translateListen:"🔊 Übersetzung anhören",
-    translateClear:"🗑 Löschen",
-    translateSource:"Quelle",
-    translateAuto:"Automatisch erkennen",
-    translateTarget:"Ziel",
-    translateOutput:"Übersetzung",
-    translateDetected:"Erkannt",
-    translateTo:"nach",
-    translationDebug:"🔐 ROOT • Translation-Technikdetails",
-    notesPlaceholder:"Notiz sprechen oder eingeben...",
-    save:"💾 Speichern",
-    noteReady:"Notizen bereit.",
-    saved:"✅ Gespeichert:"
-  },
-
-  pt:{
-    ...EN,
-    tagline:"Aprendizado inteligente • Explore o mundo",
-    ready:"Pronto",
-    hero:"Olá 👋 O que você quer explorar hoje?",
-    heroText:"Você pode tocar, falar ou ouvir. Rii mantém as funções estáveis e avisa claramente quando a IA precisa tentar novamente.",
-    identity:"Identidade Rii",
-    root:"Conta raiz • ROOT",
-    robotFuture:"🤖 Robô • futuro",
-    centers:"Centros Rii",
-    hint:"Toque ou diga o nome de uma função",
-    math:"Matemática",
-    mathText:"Fale ou digite um problema. Rii explica passo a passo.",
-    camera:"Câmera IA",
-    cameraText:"Veja objetos reais e ouça Rii explicar.",
-    translate:"Tradução",
-    translateText:"Fale ou digite em um idioma e Rii traduz para o idioma selecionado.",
-    notes:"Notas e alarmes",
-    notesText:"As notas funcionam; os alarmes serão concluídos na próxima etapa.",
-    audio:"🎧 Áudio",
-    audioSystem:"Rota automática do sistema",
-    audioNote:"No iPhone/iPad, o iOS escolhe alto-falante ou Bluetooth.",
-    language:"🌐 Idioma",
-    home:"Início",
-    back:"← Início",
-    voice:"🎙 Falar",
-    speechUnsupported:"Este navegador não oferece suporte ao reconhecimento de voz.",
-    mathIntro:"Aritmética básica usa o Math Engine local sem cota de IA. Problemas em texto usam Math AI.",
-    mathPlaceholder:"Exemplo: Lan tem 12 maçãs e dá 5. Quantas restam?",
-    solve:"✨ Resolver com Rii",
-    solving:"⏳ Rii está resolvendo...",
-    test:"🧪 Testar 8 × 7",
-    listenSolution:"🔊 Ouvir solução",
-    needProblem:"Fale ou digite um problema primeiro.",
-    mathClientMissing:"Math Client não está pronto.",
-    mathLocal:"⚡ Resolvido pelo Math Engine local — sem usar cota de IA.",
-    mathAI:"✨ Rii Math AI terminou.",
-    mathQuota:"💤 Math AI está descansando porque a cota acabou. Aritmética básica continua funcionando.",
-    mathError:"❌ Rii ainda não conseguiu resolver: ",
-    answer:"Resposta",
-    step:"Passo",
-    check:"Verificação",
-    mathDebug:"🔐 ROOT • Detalhes técnicos Math",
-    cameraClosed:"Câmera fechada.",
-    cameraLive:"✅ Câmera ativa.",
-    cameraSaved:"📸 A imagem continua salva.",
-    cameraNotReady:"A câmera ainda não está pronta.",
-    noCapturedFrame:"Nenhuma imagem salva está disponível para análise.",
-    visionClientMissing:"Vision Client não está pronto.",
-    cameraPlaceholder:"Exemplo: O que é isso? Onde vive?",
-    openCamera:"📷 Abrir câmera",
-    capture:"✨ Capturar e aprender",
-    looking:"⏳ Rii está olhando...",
-    askRii:"🎙 Perguntar ao Rii",
-    listenRii:"🔊 Ouvir Rii",
-    retryVision:"🧠 Analisar novamente a imagem salva",
-    otherObject:"📷 Outro objeto",
-    analyzeAgain:"🧠 Analisar novamente",
-    visionRest:"💤 Rii Vision está descansando",
-    visionRestText:"A imagem continua salva. Quando a IA estiver pronta, analise novamente.",
-    visionError:"🌧️ Rii ainda não consegue ver a imagem",
-    visionErrorText:"A imagem continua aqui. Você pode tentar novamente sem tirar outra foto.",
-    visionDebug:"🔐 ROOT • Detalhes técnicos Vision",
-    unknown:"Objeto desconhecido",
-    color:"Cor",
-    habitat:"Habitat",
-    origin:"Origem",
-    uses:"Usos",
-    features:"Características",
-    detectedText:"Texto detectado",
-    translatePlaceholder:"Fale ou digite uma palavra, frase ou parágrafo...",
-    translateAction:"🌐 Traduzir",
-    translating:"⏳ Rii está traduzindo...",
-    translateReady:"A tradução ao vivo está pronta. Rii detecta automaticamente o idioma de origem.",
-    translateNeedText:"Fale ou digite algo para traduzir primeiro.",
-    translateClientMissing:"Translation Client não está pronto.",
-    translateDone:"✅ Tradução concluída.",
-    translateLocal:"⚡ Os idiomas de origem e destino são iguais — sem usar cota de IA.",
-    translateQuota:"💤 A IA de tradução está descansando porque a cota diária acabou.",
-    translateError:"❌ Rii ainda não conseguiu traduzir: ",
-    translateListen:"🔊 Ouvir tradução",
-    translateClear:"🗑 Limpar",
-    translateSource:"Origem",
-    translateAuto:"Detectar automaticamente",
-    translateTarget:"Destino",
-    translateOutput:"Tradução",
-    translateDetected:"Detectado",
-    translateTo:"para",
-    translationDebug:"🔐 ROOT • Detalhes técnicos Translation",
-    notesPlaceholder:"Fale ou digite uma nota...",
-    save:"💾 Salvar",
-    noteReady:"Notas prontas.",
-    saved:"✅ Salvo:"
-  },
-
-  it:{
-    ...EN,
-    tagline:"Apprendimento intelligente • Esplora il mondo",
-    ready:"Pronto",
-    hero:"Ciao 👋 Cosa vuoi esplorare oggi?",
-    heroText:"Puoi toccare, parlare o ascoltare. Rii mantiene stabili le funzioni e segnala chiaramente quando l'IA deve riprovare.",
-    identity:"Identità Rii",
-    root:"Account root • ROOT",
-    robotFuture:"🤖 Robot • futuro",
-    centers:"Centri Rii",
-    hint:"Tocca o pronuncia il nome di una funzione",
-    math:"Matematica",
-    mathText:"Parla o scrivi un problema. Rii lo spiega passo dopo passo.",
-    camera:"Fotocamera IA",
-    cameraText:"Guarda oggetti reali e ascolta Rii spiegarli.",
-    translate:"Traduzione",
-    translateText:"Parla o scrivi in una lingua e Rii traduce nella lingua selezionata.",
-    notes:"Note e sveglie",
-    notesText:"Le note funzionano; le sveglie saranno completate nel prossimo passaggio.",
-    audio:"🎧 Audio",
-    audioSystem:"Percorso automatico di sistema",
-    audioNote:"Su iPhone/iPad, iOS sceglie altoparlante o Bluetooth.",
-    language:"🌐 Lingua",
-    home:"Home",
-    back:"← Home",
-    voice:"🎙 Parla",
-    speechUnsupported:"Questo browser non supporta il riconoscimento vocale.",
-    mathIntro:"L'aritmetica di base usa il Math Engine locale senza quota IA. I problemi testuali usano Math AI.",
-    mathPlaceholder:"Esempio: Lan ha 12 mele e ne dà 5. Quante ne restano?",
-    solve:"✨ Risolvi con Rii",
-    solving:"⏳ Rii sta risolvendo...",
-    test:"🧪 Test 8 × 7",
-    listenSolution:"🔊 Ascolta soluzione",
-    needProblem:"Prima parla o scrivi un problema.",
-    mathClientMissing:"Math Client non è pronto.",
-    mathLocal:"⚡ Risolto dal Math Engine locale — nessuna quota IA usata.",
-    mathAI:"✨ Rii Math AI ha finito.",
-    mathQuota:"💤 Math AI è in pausa perché la quota è esaurita. L'aritmetica di base continua a funzionare.",
-    mathError:"❌ Rii non può ancora risolvere questo: ",
-    answer:"Risposta",
-    step:"Passo",
-    check:"Verifica",
-    mathDebug:"🔐 ROOT • Dettagli tecnici Math",
-    cameraClosed:"Fotocamera chiusa.",
-    cameraLive:"✅ Fotocamera attiva.",
-    cameraSaved:"📸 L'immagine è ancora salvata.",
-    cameraNotReady:"La fotocamera non è ancora pronta.",
-    noCapturedFrame:"Non è disponibile alcuna immagine salvata da analizzare.",
-    visionClientMissing:"Vision Client non è pronto.",
-    cameraPlaceholder:"Esempio: Cos'è? Dove vive?",
-    openCamera:"📷 Apri fotocamera",
-    capture:"✨ Cattura e impara",
-    looking:"⏳ Rii sta guardando...",
-    askRii:"🎙 Chiedi a Rii",
-    listenRii:"🔊 Ascolta Rii",
-    retryVision:"🧠 Analizza di nuovo l'immagine salvata",
-    otherObject:"📷 Altro oggetto",
-    analyzeAgain:"🧠 Analizza di nuovo",
-    visionRest:"💤 Rii Vision è in pausa",
-    visionRestText:"L'immagine è ancora salvata. Quando l'IA è pronta, analizzala di nuovo.",
-    visionError:"🌧️ Rii non riesce ancora a vedere l'immagine",
-    visionErrorText:"L'immagine è ancora qui. Puoi riprovare senza scattarne un'altra.",
-    visionDebug:"🔐 ROOT • Dettagli tecnici Vision",
-    unknown:"Oggetto sconosciuto",
-    color:"Colore",
-    habitat:"Habitat",
-    origin:"Origine",
-    uses:"Usi",
-    features:"Caratteristiche",
-    detectedText:"Testo rilevato",
-    translatePlaceholder:"Parla o scrivi una parola, frase o paragrafo...",
-    translateAction:"🌐 Traduci",
-    translating:"⏳ Rii sta traducendo...",
-    translateReady:"La traduzione dal vivo è pronta. Rii rileva automaticamente la lingua di origine.",
-    translateNeedText:"Parla o scrivi prima qualcosa da tradurre.",
-    translateClientMissing:"Translation Client non è pronto.",
-    translateDone:"✅ Traduzione completata.",
-    translateLocal:"⚡ Lingua di origine e destinazione uguali — nessuna quota IA utilizzata.",
-    translateQuota:"💤 L'IA di traduzione è in pausa perché la quota giornaliera è terminata.",
-    translateError:"❌ Rii non riesce ancora a tradurre: ",
-    translateListen:"🔊 Ascolta traduzione",
-    translateClear:"🗑 Cancella",
-    translateSource:"Origine",
-    translateAuto:"Rilevamento automatico",
-    translateTarget:"Destinazione",
-    translateOutput:"Traduzione",
-    translateDetected:"Rilevato",
-    translateTo:"verso",
-    translationDebug:"🔐 ROOT • Dettagli tecnici Translation",
-    notesPlaceholder:"Parla o scrivi una nota...",
-    save:"💾 Salva",
-    noteReady:"Note pronte.",
-    saved:"✅ Salvato:"
-  },
-
-  th:{
-    ...EN,
-    tagline:"เรียนรู้อย่างชาญฉลาด • สำรวจโลก",
-    ready:"พร้อม",
-    hero:"สวัสดี 👋 วันนี้อยากสำรวจอะไร?",
-    heroText:"แตะ พูด หรือฟังได้ Rii จะคงฟังก์ชันที่เสถียรไว้และแจ้งชัดเจนเมื่อ AI ต้องลองใหม่",
-    identity:"ตัวตน Rii",
-    root:"บัญชีหลัก • ROOT",
-    robotFuture:"🤖 หุ่นยนต์ • อนาคต",
-    centers:"ศูนย์ Rii",
-    hint:"แตะหรือพูดชื่อฟังก์ชัน",
-    math:"คณิตศาสตร์",
-    mathText:"พูดหรือพิมพ์โจทย์ แล้ว Rii จะอธิบายทีละขั้น",
-    camera:"กล้อง AI",
-    cameraText:"ดูสิ่งของจริงแล้วฟัง Rii อธิบาย",
-    translate:"แปลภาษา",
-    translateText:"พูดหรือพิมพ์ภาษาใดก็ได้ แล้ว Rii จะแปลเป็นภาษาที่เลือก",
-    notes:"โน้ตและนาฬิกาปลุก",
-    notesText:"โน้ตใช้งานได้แล้ว ส่วนนาฬิกาปลุกจะทำให้เสร็จในขั้นถัดไป",
-    audio:"🎧 เสียง",
-    audioSystem:"เลือกเส้นทางเสียงโดยระบบอัตโนมัติ",
-    audioNote:"บน iPhone/iPad ระบบ iOS เป็นผู้เลือกลำโพงหรือ Bluetooth",
-    language:"🌐 ภาษา",
-    home:"หน้าแรก",
-    back:"← หน้าแรก",
-    voice:"🎙 พูด",
-    speechUnsupported:"เบราว์เซอร์นี้ยังไม่รองรับการรู้จำเสียงพูด",
-    mathIntro:"เลขคณิตพื้นฐานใช้ Math Engine ในเครื่องโดยไม่ใช้โควตา AI ส่วนโจทย์ข้อความใช้ Math AI",
-    mathPlaceholder:"ตัวอย่าง: Lan มีแอปเปิล 12 ลูก ให้เพื่อนไป 5 ลูก เหลือกี่ลูก?",
-    solve:"✨ แก้กับ Rii",
-    solving:"⏳ Rii กำลังแก้...",
-    test:"🧪 ทดสอบ 8 × 7",
-    listenSolution:"🔊 ฟังวิธีทำ",
-    needProblem:"กรุณาพูดหรือพิมพ์โจทย์ก่อน",
-    mathClientMissing:"Math Client ยังไม่พร้อม",
-    mathLocal:"⚡ แก้ด้วย Math Engine ในเครื่อง — ไม่ใช้โควตา AI",
-    mathAI:"✨ Rii Math AI ทำเสร็จแล้ว",
-    mathQuota:"💤 Math AI กำลังพักเพราะโควตาหมด แต่เลขคณิตพื้นฐานยังใช้ได้",
-    mathError:"❌ Rii ยังแก้ข้อนี้ไม่ได้: ",
-    answer:"คำตอบ",
-    step:"ขั้น",
-    check:"ตรวจสอบ",
-    mathDebug:"🔐 ROOT • รายละเอียดเทคนิค Math",
-    cameraClosed:"กล้องยังไม่เปิด",
-    cameraLive:"✅ กล้องกำลังทำงาน",
-    cameraSaved:"📸 รูปยังถูกเก็บไว้",
-    cameraNotReady:"กล้องยังไม่พร้อม",
-    noCapturedFrame:"ยังไม่มีรูปที่บันทึกไว้สำหรับการวิเคราะห์",
-    visionClientMissing:"Vision Client ยังไม่พร้อม",
-    cameraPlaceholder:"ตัวอย่าง: นี่คืออะไร? มันอาศัยอยู่ที่ไหน?",
-    openCamera:"📷 เปิดกล้อง",
-    capture:"✨ ถ่ายและเรียนรู้",
-    looking:"⏳ Rii กำลังดู...",
-    askRii:"🎙 ถาม Rii",
-    listenRii:"🔊 ฟัง Rii",
-    retryVision:"🧠 วิเคราะห์รูปที่บันทึกไว้อีกครั้ง",
-    otherObject:"📷 วัตถุอื่น",
-    analyzeAgain:"🧠 วิเคราะห์อีกครั้ง",
-    visionRest:"💤 Rii Vision กำลังพัก",
-    visionRestText:"รูปยังถูกเก็บไว้ เมื่อ AI พร้อมให้กดวิเคราะห์อีกครั้ง",
-    visionError:"🌧️ Rii ยังดูรูปไม่ได้",
-    visionErrorText:"รูปยังอยู่ คุณลองใหม่ได้โดยไม่ต้องถ่ายใหม่",
-    visionDebug:"🔐 ROOT • รายละเอียดเทคนิค Vision",
-    unknown:"วัตถุที่ยังไม่ทราบ",
-    color:"สี",
-    habitat:"ถิ่นอาศัย",
-    origin:"แหล่งที่มา",
-    uses:"การใช้งาน",
-    features:"ลักษณะ",
-    detectedText:"ข้อความที่ตรวจพบ",
-    translatePlaceholder:"พูดหรือพิมพ์คำ ประโยค หรือย่อหน้า...",
-    translateAction:"🌐 แปล",
-    translating:"⏳ Rii กำลังแปล...",
-    translateReady:"ระบบแปลสดพร้อมใช้งาน Rii จะตรวจหาภาษาต้นทางอัตโนมัติ",
-    translateNeedText:"กรุณาพูดหรือพิมพ์ข้อความที่ต้องการแปลก่อน",
-    translateClientMissing:"Translation Client ยังไม่พร้อม",
-    translateDone:"✅ แปลเสร็จแล้ว",
-    translateLocal:"⚡ ภาษาต้นทางและปลายทางเหมือนกัน — ไม่ใช้โควตา AI",
-    translateQuota:"💤 AI แปลภาษากำลังพักเพราะโควตารายวันหมด",
-    translateError:"❌ Rii ยังแปลไม่ได้: ",
-    translateListen:"🔊 ฟังคำแปล",
-    translateClear:"🗑 ล้าง",
-    translateSource:"ต้นทาง",
-    translateAuto:"ตรวจอัตโนมัติ",
-    translateTarget:"ปลายทาง",
-    translateOutput:"คำแปล",
-    translateDetected:"ตรวจพบ",
-    translateTo:"ไปยัง",
-    translationDebug:"🔐 ROOT • รายละเอียดเทคนิค Translation",
-    notesPlaceholder:"พูดหรือพิมพ์โน้ต...",
-    save:"💾 บันทึก",
-    noteReady:"โน้ตพร้อมใช้งาน",
-    saved:"✅ บันทึกแล้ว:"
-  },
-
-  id:{
-    ...EN,
-    tagline:"Belajar cerdas • Jelajahi dunia",
-    ready:"Siap",
-    hero:"Halo 👋 Apa yang ingin kamu jelajahi hari ini?",
-    heroText:"Kamu bisa mengetuk, berbicara, atau mendengarkan. Rii menjaga fitur yang stabil tetap bekerja dan memberi tahu jika AI perlu dicoba lagi.",
-    identity:"Identitas Rii",
-    root:"Akun root • ROOT",
-    robotFuture:"🤖 Robot • masa depan",
-    centers:"Pusat Rii",
-    hint:"Ketuk atau ucapkan nama fitur",
-    math:"Matematika",
-    mathText:"Ucapkan atau ketik soal. Rii menjelaskan langkah demi langkah.",
-    camera:"Kamera AI",
-    cameraText:"Lihat benda nyata dan dengarkan penjelasan Rii.",
-    translate:"Terjemahan",
-    translateText:"Ucapkan atau ketik dalam bahasa apa pun dan Rii menerjemahkan ke bahasa yang dipilih.",
-    notes:"Catatan & Alarm",
-    notesText:"Catatan sudah berfungsi; alarm akan diselesaikan pada langkah berikutnya.",
-    audio:"🎧 Audio",
-    audioSystem:"Rute sistem otomatis",
-    audioNote:"Di iPhone/iPad, iOS memilih speaker atau Bluetooth.",
-    language:"🌐 Bahasa",
-    home:"Beranda",
-    back:"← Beranda",
-    voice:"🎙 Bicara",
-    speechUnsupported:"Browser ini belum mendukung pengenalan suara.",
-    mathIntro:"Aritmetika dasar memakai Math Engine lokal tanpa kuota AI. Soal cerita memakai Math AI.",
-    mathPlaceholder:"Contoh: Lan punya 12 apel dan memberikan 5. Berapa yang tersisa?",
-    solve:"✨ Selesaikan dengan Rii",
-    solving:"⏳ Rii sedang menghitung...",
-    test:"🧪 Uji 8 × 7",
-    listenSolution:"🔊 Dengarkan solusi",
-    needProblem:"Ucapkan atau ketik soal terlebih dahulu.",
-    mathClientMissing:"Math Client belum siap.",
-    mathLocal:"⚡ Diselesaikan oleh Math Engine lokal — tanpa kuota AI.",
-    mathAI:"✨ Rii Math AI selesai.",
-    mathQuota:"💤 Math AI sedang istirahat karena kuota habis. Aritmetika dasar tetap bisa dipakai.",
-    mathError:"❌ Rii belum bisa menyelesaikan ini: ",
-    answer:"Jawaban",
-    step:"Langkah",
-    check:"Periksa",
-    mathDebug:"🔐 ROOT • Detail teknis Math",
-    cameraClosed:"Kamera tertutup.",
-    cameraLive:"✅ Kamera aktif.",
-    cameraSaved:"📸 Gambar masih tersimpan.",
-    cameraNotReady:"Kamera belum siap.",
-    noCapturedFrame:"Belum ada gambar tersimpan untuk dianalisis.",
-    visionClientMissing:"Vision Client belum siap.",
-    cameraPlaceholder:"Contoh: Apa ini? Di mana ia hidup?",
-    openCamera:"📷 Buka kamera",
-    capture:"✨ Ambil & pelajari",
-    looking:"⏳ Rii sedang melihat...",
-    askRii:"🎙 Tanya Rii",
-    listenRii:"🔊 Dengarkan Rii",
-    retryVision:"🧠 Analisis ulang gambar tersimpan",
-    otherObject:"📷 Objek lain",
-    analyzeAgain:"🧠 Analisis lagi",
-    visionRest:"💤 Rii Vision sedang istirahat",
-    visionRestText:"Gambar masih tersimpan. Saat AI siap, analisis lagi.",
-    visionError:"🌧️ Rii belum bisa melihat gambar",
-    visionErrorText:"Gambar masih ada. Kamu bisa mencoba lagi tanpa memotret ulang.",
-    visionDebug:"🔐 ROOT • Detail teknis Vision",
-    unknown:"Objek belum diketahui",
-    color:"Warna",
-    habitat:"Habitat",
-    origin:"Asal",
-    uses:"Kegunaan",
-    features:"Ciri",
-    detectedText:"Teks terdeteksi",
-    translatePlaceholder:"Ucapkan atau ketik kata, kalimat, atau paragraf...",
-    translateAction:"🌐 Terjemahkan",
-    translating:"⏳ Rii sedang menerjemahkan...",
-    translateReady:"Terjemahan langsung siap. Rii otomatis mendeteksi bahasa sumber.",
-    translateNeedText:"Ucapkan atau ketik sesuatu untuk diterjemahkan terlebih dahulu.",
-    translateClientMissing:"Translation Client belum siap.",
-    translateDone:"✅ Terjemahan selesai.",
-    translateLocal:"⚡ Bahasa sumber dan tujuan sama — tidak memakai kuota AI.",
-    translateQuota:"💤 AI terjemahan sedang istirahat karena kuota harian habis.",
-    translateError:"❌ Rii belum bisa menerjemahkan: ",
-    translateListen:"🔊 Dengarkan terjemahan",
-    translateClear:"🗑 Hapus",
-    translateSource:"Sumber",
-    translateAuto:"Deteksi otomatis",
-    translateTarget:"Tujuan",
-    translateOutput:"Terjemahan",
-    translateDetected:"Terdeteksi",
-    translateTo:"ke",
-    translationDebug:"🔐 ROOT • Detail teknis Translation",
-    notesPlaceholder:"Ucapkan atau ketik catatan...",
-    save:"💾 Simpan",
-    noteReady:"Catatan siap.",
-    saved:"✅ Tersimpan:"
-  }
+  zh:{...EN},
+  ja:{...EN},
+  ko:{...EN},
+  es:{...EN},
+  fr:{...EN},
+  de:{...EN},
+  pt:{...EN},
+  it:{...EN},
+  th:{...EN},
+  id:{...EN}
 
 };
 
@@ -3179,6 +2716,9 @@ function validateLanguageDictionaries(){
 let currentCenter =
   null;
 
+let currentNotesTab =
+  "notes";
+
 let cameraStream =
   null;
 
@@ -3205,6 +2745,15 @@ let mathBusy =
 
 let translationBusy =
   false;
+
+let activeAlarm =
+  null;
+
+let alarmAudioContext =
+  null;
+
+let alarmOscillator =
+  null;
 
 function el(
   id
@@ -3323,6 +2872,135 @@ function escapeHtml(
     );
 }
 
+function loadArray(
+  key
+){
+
+  try{
+
+    const parsed =
+      JSON.parse(
+        localStorage.getItem(
+          key
+        )
+        ||
+        "[]"
+      );
+
+    return Array.isArray(
+      parsed
+    )
+      ?
+      parsed
+      :
+      [];
+
+  }catch{
+
+    return [];
+  }
+}
+
+function saveArray(
+  key,
+  value
+){
+
+  localStorage.setItem(
+    key,
+    JSON.stringify(
+      value
+    )
+  );
+}
+
+function formatDateTime(
+  iso
+){
+
+  try{
+
+    return new Intl.DateTimeFormat(
+      currentLanguage().locale,
+      {
+        dateStyle:"medium",
+        timeStyle:"short"
+      }
+    )
+      .format(
+        new Date(
+          iso
+        )
+      );
+
+  }catch{
+
+    return String(
+      iso ||
+      ""
+    );
+  }
+}
+
+function formatAlarmDate(
+  alarm
+){
+
+  if(
+    alarm.repeat ===
+    "daily"
+  ){
+
+    return (
+      text().daily
+      +
+      " • "
+      +
+      alarm.time
+    );
+  }
+
+  if(
+    !alarm.date
+  ){
+
+    return alarm.time;
+  }
+
+  try{
+
+    const value =
+      new Date(
+        alarm.date
+        +
+        "T"
+        +
+        alarm.time
+      );
+
+    return new Intl.DateTimeFormat(
+      currentLanguage().locale,
+      {
+        dateStyle:"medium",
+        timeStyle:"short"
+      }
+    )
+      .format(
+        value
+      );
+
+  }catch{
+
+    return (
+      alarm.date
+      +
+      " "
+      +
+      alarm.time
+    );
+  }
+}
+
 function validateBoot(){
 
   validateLanguageDictionaries();
@@ -3365,6 +3043,10 @@ function validateBoot(){
     "translationMeta",
 
     "notesInput",
+    "notesList",
+    "alarmList",
+    "alarmDateInput",
+    "alarmTimeInput",
 
     "riiButton"
 
@@ -3565,9 +3247,17 @@ function render(){
     translateTargetLabel:"translateTarget",
     translationOutputLabel:"translateOutput",
     translationDebugSummary:"translationDebug",
+
     notesCenterTitle:"notes",
     notesVoiceButton:"voice",
-    notesSaveButton:"save"
+    notesSaveButton:"save",
+    notesTabButton:"notesTab",
+    alarmsTabButton:"alarmsTab",
+    alarmSaveButton:"alarmSave",
+    alarmOnceOption:"alarmOnce",
+    alarmDailyOption:"alarmDaily",
+    alarmStopButton:"alarmStop",
+    alarmSnoozeButton:"alarmSnooze"
   };
 
   for(
@@ -3615,6 +3305,12 @@ function render(){
     x.notesPlaceholder;
 
   el(
+    "alarmTitleInput"
+  )
+    .placeholder =
+    x.alarmTitlePlaceholder;
+
+  el(
     "capturedImage"
   )
     .alt =
@@ -3659,6 +3355,24 @@ function render(){
   }
 
   if(
+    !el(
+      "alarmResult"
+    )
+      .dataset
+      .touched
+  ){
+
+    setText(
+      "alarmResult",
+      x.alarmReady
+      +
+      "\n"
+      +
+      x.alarmWebNote
+    );
+  }
+
+  if(
     !isCameraLive()
     &&
     !hasCapturedFrame()
@@ -3697,6 +3411,15 @@ function render(){
   renderLanguageList();
 
   updateScreenTitle();
+
+  renderNotes();
+
+  renderAlarms();
+
+  switchNotesTab(
+    currentNotesTab,
+    false
+  );
 
   if(
     latestMathResult
@@ -4172,6 +3895,15 @@ function(
       startCamera,
       250
     );
+  }
+
+  if(
+    name ===
+    "notes"
+  ){
+
+    renderNotes();
+    renderAlarms();
   }
 };
 
@@ -5562,7 +5294,6 @@ function stopCamera(){
 
 /* =====================================================
    LIVE TRANSLATION
-   V3.5.5
 ===================================================== */
 
 function setTranslationBusy(
@@ -5634,15 +5365,6 @@ function showTranslationStatus(
       "resting"
     );
   }
-}
-
-function hideTranslationStatus(){
-
-  el(
-    "translationStatus"
-  )
-    .className =
-    "translation-status";
 }
 
 function normalizeTranslationLanguageCode(
@@ -6121,6 +5843,59 @@ function(){
   );
 };
 
+/* =====================================================
+   NOTES
+===================================================== */
+
+function getNotes(){
+
+  return loadArray(
+    NOTE_KEY
+  )
+    .filter(
+      note =>
+        (
+          note.riiId
+          ||
+          ROOT_ID
+        )
+        ===
+        ROOT_ID
+    );
+}
+
+function saveNotes(
+  notes
+){
+
+  const all =
+    loadArray(
+      NOTE_KEY
+    )
+      .filter(
+        note =>
+          (
+            note.riiId
+            ||
+            ROOT_ID
+          )
+          !==
+          ROOT_ID
+      );
+
+  saveArray(
+    NOTE_KEY,
+    [
+      ...notes,
+      ...all
+    ]
+      .slice(
+        0,
+        500
+      )
+  );
+}
+
 window.saveNote =
 function(){
 
@@ -6135,40 +5910,36 @@ function(){
     !value
   ){
 
+    setText(
+      "notesResult",
+      text().noteEmpty
+    );
+
+    el(
+      "notesResult"
+    )
+      .dataset
+      .touched =
+      "1";
+
     return;
   }
 
-  let notes =
-    [];
-
-  try{
-
-    notes =
-      JSON.parse(
-        localStorage.getItem(
-          NOTE_KEY
-        )
-        ||
-        "[]"
-      );
-
-  }catch{
-
-    notes =
-      [];
-  }
-
-  if(
-    !Array.isArray(
-      notes
-    )
-  ){
-
-    notes =
-      [];
-  }
+  const notes =
+    getNotes();
 
   notes.unshift({
+
+    id:
+      "note_"
+      +
+      Date.now()
+      +
+      "_"
+      +
+      Math.random()
+        .toString(36)
+        .slice(2,8),
 
     riiId:
       ROOT_ID,
@@ -6178,20 +5949,21 @@ function(){
 
     createdAt:
       new Date()
-        .toISOString()
+        .toISOString(),
+
+    updatedAt:
+      null
   });
 
-  localStorage.setItem(
-
-    NOTE_KEY,
-
-    JSON.stringify(
-      notes.slice(
-        0,
-        100
-      )
-    )
+  saveNotes(
+    notes
   );
+
+  el(
+    "notesInput"
+  )
+    .value =
+    "";
 
   el(
     "notesResult"
@@ -6211,10 +5983,1252 @@ function(){
     value
   );
 
+  renderNotes();
+
   speak(
     value
   );
 };
+
+function renderNotes(){
+
+  const notes =
+    getNotes();
+
+  const container =
+    el(
+      "notesList"
+    );
+
+  if(
+    !container
+  ){
+
+    return;
+  }
+
+  if(
+    !notes.length
+  ){
+
+    container.innerHTML =
+      `
+      <div class="notes-empty">
+        ${escapeHtml(text().noNotes)}
+      </div>
+      `;
+
+    return;
+  }
+
+  container.innerHTML =
+
+    notes
+      .map(
+        note =>
+          `
+          <div class="note-item">
+
+            <div class="note-item-top">
+
+              <div class="note-text">
+                ${escapeHtml(note.text)}
+              </div>
+
+            </div>
+
+            <div class="note-time">
+              ${escapeHtml(
+                formatDateTime(
+                  note.updatedAt
+                  ||
+                  note.createdAt
+                )
+              )}
+            </div>
+
+            <div class="mini-actions">
+
+              <button
+                class="mini-btn"
+                onclick="hearNote('${note.id}')"
+              >
+                ${escapeHtml(text().hear)}
+              </button>
+
+              <button
+                class="mini-btn"
+                onclick="editNote('${note.id}')"
+              >
+                ${escapeHtml(text().edit)}
+              </button>
+
+              <button
+                class="mini-btn danger"
+                onclick="deleteNote('${note.id}')"
+              >
+                ${escapeHtml(text().delete)}
+              </button>
+
+            </div>
+
+          </div>
+          `
+      )
+      .join("");
+}
+
+window.hearNote =
+function(
+  id
+){
+
+  const note =
+    getNotes()
+      .find(
+        item =>
+          item.id ===
+          id
+      );
+
+  if(
+    note
+  ){
+
+    speak(
+      note.text
+    );
+  }
+};
+
+window.editNote =
+function(
+  id
+){
+
+  const notes =
+    getNotes();
+
+  const index =
+    notes.findIndex(
+      item =>
+        item.id ===
+        id
+    );
+
+  if(
+    index <
+    0
+  ){
+
+    return;
+  }
+
+  const next =
+    prompt(
+      text().editPrompt,
+      notes[index].text
+    );
+
+  if(
+    next ===
+    null
+  ){
+
+    return;
+  }
+
+  const clean =
+    next.trim();
+
+  if(
+    !clean
+  ){
+
+    return;
+  }
+
+  notes[index] = {
+    ...notes[index],
+    text:clean,
+    updatedAt:
+      new Date()
+        .toISOString()
+  };
+
+  saveNotes(
+    notes
+  );
+
+  el(
+    "notesResult"
+  )
+    .dataset
+    .touched =
+    "1";
+
+  setText(
+    "notesResult",
+    text().noteUpdated
+  );
+
+  renderNotes();
+};
+
+window.deleteNote =
+function(
+  id
+){
+
+  const notes =
+    getNotes()
+      .filter(
+        item =>
+          item.id !==
+          id
+      );
+
+  saveNotes(
+    notes
+  );
+
+  el(
+    "notesResult"
+  )
+    .dataset
+    .touched =
+    "1";
+
+  setText(
+    "notesResult",
+    text().noteDeleted
+  );
+
+  renderNotes();
+};
+
+/* =====================================================
+   ALARMS
+===================================================== */
+
+function getAlarms(){
+
+  return loadArray(
+    ALARM_KEY
+  )
+    .filter(
+      alarm =>
+        alarm.riiId ===
+        ROOT_ID
+    );
+}
+
+function saveAlarms(
+  alarms
+){
+
+  const otherAccounts =
+    loadArray(
+      ALARM_KEY
+    )
+      .filter(
+        alarm =>
+          alarm.riiId !==
+          ROOT_ID
+      );
+
+  saveArray(
+    ALARM_KEY,
+    [
+      ...alarms,
+      ...otherAccounts
+    ]
+      .slice(
+        0,
+        500
+      )
+  );
+}
+
+function setDefaultAlarmDateTime(){
+
+  const now =
+    new Date();
+
+  const next =
+    new Date(
+      now.getTime()
+      +
+      5 *
+      60 *
+      1000
+    );
+
+  const year =
+    next.getFullYear();
+
+  const month =
+    String(
+      next.getMonth()
+      +
+      1
+    )
+      .padStart(
+        2,
+        "0"
+      );
+
+  const day =
+    String(
+      next.getDate()
+    )
+      .padStart(
+        2,
+        "0"
+      );
+
+  const hour =
+    String(
+      next.getHours()
+    )
+      .padStart(
+        2,
+        "0"
+      );
+
+  const minute =
+    String(
+      next.getMinutes()
+    )
+      .padStart(
+        2,
+        "0"
+      );
+
+  if(
+    !el(
+      "alarmDateInput"
+    )
+      .value
+  ){
+
+    el(
+      "alarmDateInput"
+    )
+      .value =
+      `${year}-${month}-${day}`;
+  }
+
+  if(
+    !el(
+      "alarmTimeInput"
+    )
+      .value
+  ){
+
+    el(
+      "alarmTimeInput"
+    )
+      .value =
+      `${hour}:${minute}`;
+  }
+}
+
+window.saveAlarm =
+function(){
+
+  const title =
+    el(
+      "alarmTitleInput"
+    )
+      .value
+      .trim()
+    ||
+    text().alarmDefault;
+
+  const date =
+    el(
+      "alarmDateInput"
+    )
+      .value;
+
+  const time =
+    el(
+      "alarmTimeInput"
+    )
+      .value;
+
+  const repeat =
+    el(
+      "alarmRepeatInput"
+    )
+      .value;
+
+  if(
+    !time
+  ){
+
+    showAlarmResult(
+      text().alarmNeedTime
+    );
+
+    return;
+  }
+
+  if(
+    repeat ===
+    "once"
+    &&
+    !date
+  ){
+
+    showAlarmResult(
+      text().alarmNeedDate
+    );
+
+    return;
+  }
+
+  const alarms =
+    getAlarms();
+
+  alarms.unshift({
+
+    id:
+      "alarm_"
+      +
+      Date.now()
+      +
+      "_"
+      +
+      Math.random()
+        .toString(36)
+        .slice(2,8),
+
+    riiId:
+      ROOT_ID,
+
+    title,
+
+    date,
+
+    time,
+
+    repeat,
+
+    enabled:
+      true,
+
+    createdAt:
+      new Date()
+        .toISOString(),
+
+    lastTriggeredKey:
+      null,
+
+    snoozeUntil:
+      null
+  });
+
+  saveAlarms(
+    alarms
+  );
+
+  el(
+    "alarmTitleInput"
+  )
+    .value =
+    "";
+
+  showAlarmResult(
+    text().alarmSaved
+    +
+    "\n"
+    +
+    title
+    +
+    " • "
+    +
+    time
+  );
+
+  renderAlarms();
+
+  speak(
+    text().alarmSaved
+    +
+    " "
+    +
+    title
+    +
+    " "
+    +
+    time
+  );
+};
+
+function showAlarmResult(
+  message
+){
+
+  el(
+    "alarmResult"
+  )
+    .dataset
+    .touched =
+    "1";
+
+  setText(
+    "alarmResult",
+    message
+  );
+}
+
+function renderAlarms(){
+
+  const alarms =
+    getAlarms();
+
+  const container =
+    el(
+      "alarmList"
+    );
+
+  if(
+    !container
+  ){
+
+    return;
+  }
+
+  if(
+    !alarms.length
+  ){
+
+    container.innerHTML =
+      `
+      <div class="notes-empty">
+        ${escapeHtml(text().noAlarms)}
+      </div>
+      `;
+
+    return;
+  }
+
+  const sorted =
+    [...alarms]
+      .sort(
+        (
+          a,
+          b
+        ) =>
+          String(
+            a.time
+          )
+            .localeCompare(
+              String(
+                b.time
+              )
+            )
+      );
+
+  container.innerHTML =
+
+    sorted
+      .map(
+        alarm =>
+          `
+          <div
+            class="alarm-item ${
+              alarm.enabled
+                ?
+                ""
+                :
+                "alarm-disabled"
+            }"
+          >
+
+            <div class="alarm-item-top">
+
+              <div>
+
+                <div class="alarm-time">
+                  ${escapeHtml(alarm.time)}
+                </div>
+
+                <div class="alarm-title">
+                  ${escapeHtml(alarm.title)}
+                </div>
+
+                <div class="alarm-meta">
+                  ${escapeHtml(
+                    formatAlarmDate(
+                      alarm
+                    )
+                  )}
+                </div>
+
+              </div>
+
+              <button
+                class="switch ${
+                  alarm.enabled
+                    ?
+                    "on"
+                    :
+                    ""
+                }"
+                aria-label="toggle"
+                onclick="toggleAlarm('${alarm.id}')"
+              ></button>
+
+            </div>
+
+            <div class="mini-actions">
+
+              <button
+                class="mini-btn"
+                onclick="hearAlarm('${alarm.id}')"
+              >
+                ${escapeHtml(text().hear)}
+              </button>
+
+              <button
+                class="mini-btn danger"
+                onclick="deleteAlarm('${alarm.id}')"
+              >
+                ${escapeHtml(text().delete)}
+              </button>
+
+            </div>
+
+          </div>
+          `
+      )
+      .join("");
+}
+
+window.toggleAlarm =
+function(
+  id
+){
+
+  const alarms =
+    getAlarms();
+
+  const index =
+    alarms.findIndex(
+      alarm =>
+        alarm.id ===
+        id
+    );
+
+  if(
+    index <
+    0
+  ){
+
+    return;
+  }
+
+  alarms[index].enabled =
+    !alarms[index].enabled;
+
+  if(
+    alarms[index].enabled
+  ){
+
+    alarms[index].lastTriggeredKey =
+      null;
+  }
+
+  saveAlarms(
+    alarms
+  );
+
+  showAlarmResult(
+
+    alarms[index].enabled
+      ?
+      text().alarmEnabled
+      :
+      text().alarmDisabled
+  );
+
+  renderAlarms();
+};
+
+window.deleteAlarm =
+function(
+  id
+){
+
+  const alarms =
+    getAlarms()
+      .filter(
+        alarm =>
+          alarm.id !==
+          id
+      );
+
+  saveAlarms(
+    alarms
+  );
+
+  showAlarmResult(
+    text().alarmDeleted
+  );
+
+  renderAlarms();
+};
+
+window.hearAlarm =
+function(
+  id
+){
+
+  const alarm =
+    getAlarms()
+      .find(
+        item =>
+          item.id ===
+          id
+      );
+
+  if(
+    !alarm
+  ){
+
+    return;
+  }
+
+  speak(
+    alarm.title
+    +
+    ". "
+    +
+    alarm.time
+  );
+};
+
+function localDateKey(
+  date
+){
+
+  const year =
+    date.getFullYear();
+
+  const month =
+    String(
+      date.getMonth()
+      +
+      1
+    )
+      .padStart(
+        2,
+        "0"
+      );
+
+  const day =
+    String(
+      date.getDate()
+    )
+      .padStart(
+        2,
+        "0"
+      );
+
+  return `${year}-${month}-${day}`;
+}
+
+function localTimeKey(
+  date
+){
+
+  const hour =
+    String(
+      date.getHours()
+    )
+      .padStart(
+        2,
+        "0"
+      );
+
+  const minute =
+    String(
+      date.getMinutes()
+    )
+      .padStart(
+        2,
+        "0"
+      );
+
+  return `${hour}:${minute}`;
+}
+
+function checkAlarms(){
+
+  if(
+    activeAlarm
+  ){
+
+    return;
+  }
+
+  const alarms =
+    getAlarms();
+
+  const now =
+    new Date();
+
+  const today =
+    localDateKey(
+      now
+    );
+
+  const currentTime =
+    localTimeKey(
+      now
+    );
+
+  const currentMinuteKey =
+    today
+    +
+    " "
+    +
+    currentTime;
+
+  let changed =
+    false;
+
+  for(
+    const alarm
+    of alarms
+  ){
+
+    if(
+      !alarm.enabled
+    ){
+
+      continue;
+    }
+
+    if(
+      alarm.snoozeUntil
+    ){
+
+      const snoozeTime =
+        new Date(
+          alarm.snoozeUntil
+        );
+
+      if(
+        !Number.isNaN(
+          snoozeTime.getTime()
+        )
+        &&
+        now >=
+        snoozeTime
+      ){
+
+        alarm.snoozeUntil =
+          null;
+
+        alarm.lastTriggeredKey =
+          "snooze-"
+          +
+          now.getTime();
+
+        changed =
+          true;
+
+        triggerAlarm(
+          alarm
+        );
+
+        break;
+      }
+
+      continue;
+    }
+
+    if(
+      alarm.time !==
+      currentTime
+    ){
+
+      continue;
+    }
+
+    if(
+      alarm.repeat ===
+      "once"
+      &&
+      alarm.date !==
+      today
+    ){
+
+      continue;
+    }
+
+    if(
+      alarm.lastTriggeredKey ===
+      currentMinuteKey
+    ){
+
+      continue;
+    }
+
+    alarm.lastTriggeredKey =
+      currentMinuteKey;
+
+    if(
+      alarm.repeat ===
+      "once"
+    ){
+
+      alarm.enabled =
+        false;
+    }
+
+    changed =
+      true;
+
+    triggerAlarm(
+      alarm
+    );
+
+    break;
+  }
+
+  if(
+    changed
+  ){
+
+    saveAlarms(
+      alarms
+    );
+
+    renderAlarms();
+  }
+}
+
+function triggerAlarm(
+  alarm
+){
+
+  activeAlarm =
+    {
+      ...alarm
+    };
+
+  setText(
+    "alarmAlertTime",
+    alarm.time
+  );
+
+  setText(
+    "alarmAlertTitle",
+    alarm.title
+    ||
+    text().alarmDefault
+  );
+
+  el(
+    "alarmOverlay"
+  )
+    .classList
+    .add(
+      "open"
+    );
+
+  startAlarmTone();
+
+  if(
+    navigator.vibrate
+  ){
+
+    try{
+
+      navigator.vibrate(
+        [
+          400,
+          150,
+          400,
+          150,
+          700
+        ]
+      );
+
+    }catch{}
+  }
+
+  speak(
+    text().alarmRinging
+    +
+    ". "
+    +
+    (
+      alarm.title
+      ||
+      text().alarmDefault
+    )
+  );
+}
+
+function startAlarmTone(){
+
+  stopAlarmTone();
+
+  try{
+
+    const C =
+      window.AudioContext
+      ||
+      window.webkitAudioContext;
+
+    if(
+      !C
+    ){
+
+      return;
+    }
+
+    alarmAudioContext =
+      new C();
+
+    alarmOscillator =
+      alarmAudioContext
+        .createOscillator();
+
+    const gain =
+      alarmAudioContext
+        .createGain();
+
+    alarmOscillator.type =
+      "sine";
+
+    alarmOscillator.frequency.value =
+      880;
+
+    gain.gain.value =
+      .12;
+
+    alarmOscillator
+      .connect(
+        gain
+      );
+
+    gain
+      .connect(
+        alarmAudioContext.destination
+      );
+
+    alarmOscillator.start();
+
+  }catch{}
+}
+
+function stopAlarmTone(){
+
+  try{
+
+    if(
+      alarmOscillator
+    ){
+
+      alarmOscillator.stop();
+    }
+
+  }catch{}
+
+  alarmOscillator =
+    null;
+
+  try{
+
+    if(
+      alarmAudioContext
+    ){
+
+      alarmAudioContext.close();
+    }
+
+  }catch{}
+
+  alarmAudioContext =
+    null;
+
+  if(
+    navigator.vibrate
+  ){
+
+    try{
+      navigator.vibrate(0);
+    }catch{}
+  }
+}
+
+window.stopActiveAlarm =
+function(){
+
+  stopAlarmTone();
+
+  el(
+    "alarmOverlay"
+  )
+    .classList
+    .remove(
+      "open"
+    );
+
+  activeAlarm =
+    null;
+
+  renderAlarms();
+};
+
+window.snoozeActiveAlarm =
+function(){
+
+  if(
+    !activeAlarm
+  ){
+
+    return;
+  }
+
+  const alarms =
+    getAlarms();
+
+  const index =
+    alarms.findIndex(
+      alarm =>
+        alarm.id ===
+        activeAlarm.id
+    );
+
+  if(
+    index >=
+    0
+  ){
+
+    alarms[index].enabled =
+      true;
+
+    alarms[index].snoozeUntil =
+      new Date(
+        Date.now()
+        +
+        5 *
+        60 *
+        1000
+      )
+        .toISOString();
+
+    saveAlarms(
+      alarms
+    );
+  }
+
+  stopAlarmTone();
+
+  el(
+    "alarmOverlay"
+  )
+    .classList
+    .remove(
+      "open"
+    );
+
+  activeAlarm =
+    null;
+
+  renderAlarms();
+};
+
+window.switchNotesTab =
+function(
+  tab,
+  updateState =
+  true
+){
+
+  if(
+    ![
+      "notes",
+      "alarms"
+    ]
+      .includes(
+        tab
+      )
+  ){
+
+    return;
+  }
+
+  if(
+    updateState
+  ){
+
+    currentNotesTab =
+      tab;
+  }
+
+  el(
+    "notesTabButton"
+  )
+    .classList
+    .toggle(
+      "active",
+      tab ===
+      "notes"
+    );
+
+  el(
+    "alarmsTabButton"
+  )
+    .classList
+    .toggle(
+      "active",
+      tab ===
+      "alarms"
+    );
+
+  el(
+    "notesPanel"
+  )
+    .classList
+    .toggle(
+      "active",
+      tab ===
+      "notes"
+    );
+
+  el(
+    "alarmsPanel"
+  )
+    .classList
+    .toggle(
+      "active",
+      tab ===
+      "alarms"
+    );
+
+  if(
+    tab ===
+    "alarms"
+  ){
+
+    setDefaultAlarmDateTime();
+
+    renderAlarms();
+  }
+};
+
+/* =====================================================
+   QUICK MENU / FLOATING RII
+===================================================== */
 
 window.closeQuick =
 function(){
@@ -6452,6 +7466,10 @@ rii.addEventListener(
   }
 );
 
+/* =====================================================
+   BOOT
+===================================================== */
+
 try{
 
   validateBoot();
@@ -6478,14 +7496,23 @@ try{
     );
   }
 
+  setDefaultAlarmDateTime();
+
   render();
+
+  setInterval(
+    checkAlarms,
+    15000
+  );
+
+  checkAlarms();
 
   console.log(
     "Rii AI V"
     +
     APP_VERSION
     +
-    " Translation Metadata Sync ready"
+    " Notes & Alarms Live ready"
   );
 
 }catch(error){
