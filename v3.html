@@ -6,12 +6,9 @@
   name="viewport"
   content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"
 >
-<meta
-  name="theme-color"
-  content="#050b14"
->
+<meta name="theme-color" content="#050b14">
 
-<title>Rii AI V3.6.1</title>
+<title>Rii AI V3.6.2</title>
 
 <style>
 :root{
@@ -67,22 +64,9 @@ button:disabled{
   inset:0;
   z-index:-2;
   background:
-    radial-gradient(
-      circle at 82% 18%,
-      #daad582b,
-      transparent 27%
-    ),
-    radial-gradient(
-      circle at 16% 72%,
-      #1f5f9e42,
-      transparent 32%
-    ),
-    linear-gradient(
-      145deg,
-      #02070d,
-      #071522 48%,
-      #020811
-    );
+    radial-gradient(circle at 82% 18%,#daad582b,transparent 27%),
+    radial-gradient(circle at 16% 72%,#1f5f9e42,transparent 32%),
+    linear-gradient(145deg,#02070d,#071522 48%,#020811);
 }
 
 .app{
@@ -350,12 +334,7 @@ button:disabled{
     calc(15px + env(safe-area-inset-top))
     13px
     calc(95px + env(safe-area-inset-bottom));
-  background:
-    linear-gradient(
-      145deg,
-      #030912,
-      #071522
-    );
+  background:linear-gradient(145deg,#030912,#071522);
 }
 
 .screen.open{
@@ -434,12 +413,6 @@ button:disabled{
 
 .action.blue{
   background:#103957;
-}
-
-.action.red{
-  background:#4b1b22;
-  border-color:#ff7d7d4a;
-  color:#ffdada;
 }
 
 .result{
@@ -586,12 +559,7 @@ button:disabled{
   padding:16px;
   border-radius:20px;
   border:1px solid #58d9b044;
-  background:
-    linear-gradient(
-      145deg,
-      #092524,
-      #07141c
-    );
+  background:linear-gradient(145deg,#092524,#07141c);
 }
 
 .translation-output.show{
@@ -611,14 +579,12 @@ button:disabled{
   font-weight:750;
   line-height:1.55;
   white-space:pre-wrap;
-  word-break:break-word;
 }
 
 .translation-meta{
   margin-top:12px;
   color:var(--muted);
   font-size:11px;
-  line-height:1.55;
 }
 
 .camera-wrap{
@@ -673,7 +639,6 @@ button:disabled{
 }
 
 .info-label{
-  margin-bottom:4px;
   color:#7f94a8;
   font-size:10px;
 }
@@ -689,7 +654,6 @@ button:disabled{
   border-radius:14px;
   background:#d8ad580f;
   font-size:12px;
-  line-height:1.45;
 }
 
 .root-debug{
@@ -700,22 +664,11 @@ button:disabled{
   background:#00000029;
 }
 
-.root-debug summary{
-  color:#b89b62;
-  font-size:11px;
-  font-weight:800;
-}
-
 .root-debug pre{
   white-space:pre-wrap;
   color:#9dafc0;
   font-size:11px;
-  overflow:auto;
 }
-
-/* =====================================================
-   NOTES & ALARMS
-===================================================== */
 
 .notes-tabs{
   display:grid;
@@ -764,8 +717,6 @@ button:disabled{
 
 .note-text{
   line-height:1.55;
-  white-space:pre-wrap;
-  word-break:break-word;
 }
 
 .note-time,
@@ -805,7 +756,6 @@ button:disabled{
   border:1px dashed #ffffff17;
   color:var(--muted);
   text-align:center;
-  font-size:12px;
 }
 
 .alarm-form{
@@ -833,9 +783,7 @@ button:disabled{
 
 .alarm-item-top{
   display:flex;
-  align-items:flex-start;
   justify-content:space-between;
-  gap:10px;
 }
 
 .alarm-time{
@@ -845,7 +793,6 @@ button:disabled{
 }
 
 .alarm-title{
-  margin-top:3px;
   font-weight:800;
 }
 
@@ -857,7 +804,6 @@ button:disabled{
   position:relative;
   width:48px;
   height:28px;
-  min-width:48px;
   border:0;
   border-radius:999px;
   background:#33404e;
@@ -872,7 +818,6 @@ button:disabled{
   top:3px;
   border-radius:50%;
   background:#fff;
-  transition:.18s ease;
 }
 
 .switch.on{
@@ -888,18 +833,7 @@ button:disabled{
   padding:24px;
   border-radius:30px;
   border:1px solid #d8ad5877;
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      #6a511f55,
-      transparent 45%
-    ),
-    linear-gradient(
-      155deg,
-      #102338,
-      #050d16
-    );
-  box-shadow:0 28px 90px #000;
+  background:linear-gradient(155deg,#102338,#050d16);
   text-align:center;
 }
 
@@ -908,14 +842,12 @@ button:disabled{
 }
 
 .alarm-alert-time{
-  margin-top:10px;
   color:var(--gold2);
   font-size:34px;
   font-weight:950;
 }
 
 .alarm-alert-title{
-  margin-top:8px;
   font-size:18px;
   font-weight:850;
 }
@@ -927,9 +859,39 @@ button:disabled{
   margin-top:18px;
 }
 
-/* =====================================================
-   FLOATING RII
-===================================================== */
+.speech-toast{
+  position:fixed;
+  left:50%;
+  bottom:
+    calc(
+      82px +
+      env(safe-area-inset-bottom)
+    );
+  z-index:2000;
+  transform:translateX(-50%) translateY(20px);
+  width:min(90vw,420px);
+  padding:13px 16px;
+  border-radius:18px;
+  border:1px solid #58d9b055;
+  background:#09251ff0;
+  color:#eafff8;
+  text-align:center;
+  opacity:0;
+  pointer-events:none;
+  transition:.2s ease;
+  box-shadow:0 16px 50px #0009;
+}
+
+.speech-toast.show{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.speech-toast.error{
+  background:#511a21f2;
+  border-color:#ff7d7d66;
+  color:#ffe1e1;
+}
 
 .rii{
   position:fixed;
@@ -943,18 +905,11 @@ button:disabled{
   border-radius:50%;
   border:2px solid var(--gold);
   background:
-    radial-gradient(
-      circle at 35% 30%,
-      #28517c,
-      #06121e 62%
-    );
+    radial-gradient(circle at 35% 30%,#28517c,#06121e 62%);
   color:var(--gold2);
   font-weight:900;
   touch-action:none;
   user-select:none;
-  box-shadow:
-    0 9px 28px #0000008c,
-    0 0 0 5px #0a1726b8;
 }
 
 .overlay{
@@ -984,12 +939,7 @@ button:disabled{
   padding:20px;
   border-radius:29px;
   border:1px solid var(--line);
-  background:
-    linear-gradient(
-      155deg,
-      #0e1d2ffc,
-      #040c15fc
-    );
+  background:linear-gradient(155deg,#0e1d2ffc,#040c15fc);
 }
 
 .panel-head{
@@ -1049,14 +999,13 @@ button:disabled{
 }
 
 .boot-error{
+  display:none;
   margin-top:14px;
   padding:14px;
   border-radius:16px;
   border:1px solid #ff7d7d55;
   background:#521820a8;
   color:#ffd9d9;
-  line-height:1.5;
-  display:none;
 }
 
 .boot-error.show{
@@ -1064,24 +1013,7 @@ button:disabled{
 }
 
 @media(max-width:430px){
-
-  .hero{
-    padding:20px;
-  }
-
-  .grid{
-    gap:8px;
-  }
-
-  .center{
-    min-height:176px;
-    padding:14px;
-  }
-
-  .info-grid{
-    grid-template-columns:1fr;
-  }
-
+  .info-grid,
   .alarm-form-grid{
     grid-template-columns:1fr;
   }
@@ -1093,52 +1025,34 @@ button:disabled{
 
 <div class="background"></div>
 
+<div id="speechToast" class="speech-toast"></div>
+
 <div class="app">
 
 <header class="header">
 
   <div>
-
-    <div class="logo">
-      Rii <span>AI</span>
-    </div>
-
-    <div
-      id="tagline"
-      class="tagline"
-    ></div>
-
+    <div class="logo">Rii <span>AI</span></div>
+    <div id="tagline" class="tagline"></div>
   </div>
 
   <div class="header-actions">
 
-    <button
-      class="icon-btn"
-      onclick="speakHome()"
-    >
+    <button class="icon-btn" onclick="speakHome()">
       🔊
     </button>
 
-    <button
-      class="icon-btn"
-      onclick="listenCommand()"
-    >
+    <button class="icon-btn" onclick="listenCommand()">
       🎙
     </button>
 
-    <button
-      class="icon-btn"
-      onclick="openLanguage()"
-    >
+    <button class="icon-btn" onclick="openLanguage()">
       🌐
     </button>
 
     <div class="ready">
-
       <span class="dot"></span>
-
       <span id="readyText"></span>
-
     </div>
 
   </div>
@@ -1148,7 +1062,7 @@ button:disabled{
 <section class="hero">
 
   <div class="eyebrow">
-    RII V3.6.1 • IOS SPEECH STABILITY FIX
+    RII V3.6.2 • IOS SPEECH INPUT FIX
   </div>
 
   <h1 id="heroTitle"></h1>
@@ -1158,34 +1072,16 @@ button:disabled{
   <div class="identity">
 
     <div>
-
-      <div
-        id="identityLabel"
-        class="id-small"
-      ></div>
-
-      <div class="id-value">
-        Rii00000001
-      </div>
-
-      <div
-        id="rootText"
-        class="id-small"
-      ></div>
-
+      <div id="identityLabel" class="id-small"></div>
+      <div class="id-value">Rii00000001</div>
+      <div id="rootText" class="id-small"></div>
     </div>
 
-    <div
-      id="robotFuture"
-      class="robot-pill"
-    ></div>
+    <div id="robotFuture" class="robot-pill"></div>
 
   </div>
 
-  <div
-    id="bootError"
-    class="boot-error"
-  ></div>
+  <div id="bootError" class="boot-error"></div>
 
 </section>
 
@@ -1196,100 +1092,45 @@ button:disabled{
     onchange="setLanguage(this.value)"
   ></select>
 
-  <button onclick="listenCommand()">
-    🎙
-  </button>
+  <button onclick="listenCommand()">🎙</button>
 
-  <button onclick="speakHome()">
-    🔊
-  </button>
+  <button onclick="speakHome()">🔊</button>
 
 </div>
 
 <div class="section-head">
-
   <h2 id="centerTitle"></h2>
-
   <span id="centerHint"></span>
-
 </div>
 
 <section class="grid">
 
   <article class="center math">
-
-    <div class="center-icon">
-      🧮
-    </div>
-
+    <div class="center-icon">🧮</div>
     <h3 id="mathTitle"></h3>
-
     <p id="mathText"></p>
-
-    <button
-      class="center-open"
-      onclick="openCenter('math')"
-    >
-      ›
-    </button>
-
+    <button class="center-open" onclick="openCenter('math')">›</button>
   </article>
 
   <article class="center camera">
-
-    <div class="center-icon">
-      📷
-    </div>
-
+    <div class="center-icon">📷</div>
     <h3 id="cameraTitle"></h3>
-
     <p id="cameraText"></p>
-
-    <button
-      class="center-open"
-      onclick="openCenter('camera')"
-    >
-      ›
-    </button>
-
+    <button class="center-open" onclick="openCenter('camera')">›</button>
   </article>
 
   <article class="center translate">
-
-    <div class="center-icon">
-      🌍
-    </div>
-
+    <div class="center-icon">🌍</div>
     <h3 id="translateTitle"></h3>
-
     <p id="translateText"></p>
-
-    <button
-      class="center-open"
-      onclick="openCenter('translate')"
-    >
-      ›
-    </button>
-
+    <button class="center-open" onclick="openCenter('translate')">›</button>
   </article>
 
   <article class="center notes">
-
-    <div class="center-icon">
-      📝
-    </div>
-
+    <div class="center-icon">📝</div>
     <h3 id="notesTitle"></h3>
-
     <p id="notesText"></p>
-
-    <button
-      class="center-open"
-      onclick="openCenter('notes')"
-    >
-      ›
-    </button>
-
+    <button class="center-open" onclick="openCenter('notes')">›</button>
   </article>
 
 </section>
@@ -1298,35 +1139,21 @@ button:disabled{
 
   <strong id="audioTitle"></strong>
 
-  <select
-    id="audioRoute"
-    disabled
-  >
-
+  <select disabled>
     <option id="audioSystemOption"></option>
-
   </select>
 
-  <div
-    id="audioNote"
-    class="id-small"
-  ></div>
+  <div id="audioNote" class="id-small"></div>
 
 </section>
 
 </div>
 
-<div
-  id="riiButton"
-  class="rii"
->
+<div id="riiButton" class="rii">
   Rii
 </div>
 
-<div
-  id="languageOverlay"
-  class="overlay"
->
+<div id="languageOverlay" class="overlay">
 
   <div class="panel">
 
@@ -1334,90 +1161,55 @@ button:disabled{
 
       <h3 id="languagePanelTitle"></h3>
 
-      <button
-        class="close"
-        onclick="closeLanguage()"
-      >
+      <button class="close" onclick="closeLanguage()">
         ×
       </button>
 
     </div>
 
-    <div
-      id="languageList"
-      class="lang-list"
-    ></div>
+    <div id="languageList" class="lang-list"></div>
 
   </div>
 
 </div>
 
-<div
-  id="quickOverlay"
-  class="overlay"
->
+<div id="quickOverlay" class="overlay">
 
   <div class="panel">
 
     <div class="panel-head">
-
       <h3>Rii</h3>
-
-      <button
-        class="close"
-        onclick="closeQuick()"
-      >
-        ×
-      </button>
-
+      <button class="close" onclick="closeQuick()">×</button>
     </div>
 
     <div class="quick-grid">
 
-      <button
-        class="quick"
-        onclick="quickOpen('math')"
-      >
+      <button class="quick" onclick="quickOpen('math')">
         <span>🧮</span>
         <b id="quickMath"></b>
       </button>
 
-      <button
-        class="quick"
-        onclick="quickOpen('camera')"
-      >
+      <button class="quick" onclick="quickOpen('camera')">
         <span>📷</span>
         <b id="quickCamera"></b>
       </button>
 
-      <button
-        class="quick"
-        onclick="quickOpen('translate')"
-      >
+      <button class="quick" onclick="quickOpen('translate')">
         <span>🌍</span>
         <b id="quickTranslate"></b>
       </button>
 
-      <button
-        class="quick"
-        onclick="quickOpen('notes')"
-      >
+      <button class="quick" onclick="quickOpen('notes')">
         <span>📝</span>
         <b id="quickNotes"></b>
       </button>
 
-      <button
-        class="quick"
-        onclick="closeQuick()"
-      >
+      <button class="quick" onclick="closeQuick()">
         <span>🏠</span>
         <b id="quickHome"></b>
       </button>
 
-      <button
-        class="quick"
-        onclick="openLanguageFromQuick()"
-      >
+      <button class="quick" onclick="openLanguageFromQuick()">
         <span>🌐</span>
         <b id="quickLanguage"></b>
       </button>
@@ -1428,26 +1220,15 @@ button:disabled{
 
 </div>
 
-<div
-  id="alarmOverlay"
-  class="overlay"
->
+<div id="alarmOverlay" class="overlay">
 
   <div class="alarm-alert">
 
-    <div class="alarm-alert-icon">
-      ⏰
-    </div>
+    <div class="alarm-alert-icon">⏰</div>
 
-    <div
-      id="alarmAlertTime"
-      class="alarm-alert-time"
-    ></div>
+    <div id="alarmAlertTime" class="alarm-alert-time"></div>
 
-    <div
-      id="alarmAlertTitle"
-      class="alarm-alert-title"
-    ></div>
+    <div id="alarmAlertTitle" class="alarm-alert-title"></div>
 
     <div class="alarm-alert-actions">
 
@@ -1469,547 +1250,428 @@ button:disabled{
 
 </div>
 
-<div
-  id="centerScreen"
-  class="screen"
->
+<div id="centerScreen" class="screen">
 
-  <div class="screen-inner">
+<div class="screen-inner">
 
-    <div class="screen-top">
+  <div class="screen-top">
+
+    <button
+      id="backButton"
+      class="back"
+      onclick="closeCenter()"
+    ></button>
+
+    <div id="screenTitle" class="screen-title"></div>
+
+    <button class="icon-btn" onclick="speakCenter()">
+      🔊
+    </button>
+
+  </div>
+
+  <div class="voicebar">
+
+    <select
+      id="centerLanguage"
+      onchange="setLanguage(this.value)"
+    ></select>
+
+    <button onclick="listenCommand()">🎙</button>
+
+    <button onclick="speakCenter()">🔊</button>
+
+  </div>
+
+  <section id="mathCenter" class="screen-card hidden">
+
+    <h2 id="mathCenterTitle"></h2>
+
+    <p id="mathIntro" class="id-small"></p>
+
+    <textarea
+      id="mathInput"
+      class="textbox"
+    ></textarea>
+
+    <div class="action-row">
 
       <button
-        id="backButton"
-        class="back"
-        onclick="closeCenter()"
+        id="mathVoiceButton"
+        class="action mint"
+        onclick="speechInto('mathInput')"
       ></button>
 
-      <div
-        id="screenTitle"
-        class="screen-title"
-      ></div>
+      <button
+        id="mathSolveButton"
+        class="action gold"
+        onclick="solveMathNow()"
+      ></button>
 
       <button
-        class="icon-btn"
-        onclick="speakCenter()"
+        id="mathTestButton"
+        class="action"
+        onclick="setMathExample()"
+      ></button>
+
+      <button
+        id="mathSpeakButton"
+        class="action blue"
+        onclick="speakMath()"
+        disabled
+      ></button>
+
+    </div>
+
+    <div id="mathStatus" class="math-status"></div>
+
+    <div id="mathCard" class="math-card">
+
+      <div id="mathAnswer" class="math-answer"></div>
+
+      <div id="mathExplanation" class="explanation"></div>
+
+      <div id="mathSteps" class="math-steps"></div>
+
+      <div id="mathCheck" class="result hidden"></div>
+
+      <div id="mathMeta" class="math-meta"></div>
+
+    </div>
+
+    <details id="mathDebug" class="root-debug hidden">
+      <summary id="mathDebugSummary"></summary>
+      <pre id="mathDebugText"></pre>
+    </details>
+
+  </section>
+
+  <section id="cameraCenter" class="screen-card hidden">
+
+    <h2 id="cameraCenterTitle"></h2>
+
+    <div class="camera-wrap">
+
+      <video
+        id="cameraVideo"
+        autoplay
+        playsinline
+        muted
+      ></video>
+
+      <img
+        id="capturedImage"
+        class="hidden"
+        alt=""
       >
-        🔊
-      </button>
+
+      <canvas
+        id="cameraCanvas"
+        class="hidden"
+      ></canvas>
+
+      <div class="camera-overlay"></div>
 
     </div>
 
-    <div class="voicebar">
+    <div id="cameraStatus" class="camera-status"></div>
 
-      <select
-        id="centerLanguage"
-        onchange="setLanguage(this.value)"
-      ></select>
+    <textarea
+      id="cameraQuestion"
+      class="textbox"
+    ></textarea>
 
-      <button onclick="listenCommand()">
-        🎙
-      </button>
+    <div class="action-row">
 
-      <button onclick="speakCenter()">
-        🔊
-      </button>
+      <button
+        id="cameraOpenButton"
+        class="action mint"
+        onclick="startCamera()"
+      ></button>
+
+      <button
+        id="captureButton"
+        class="action gold"
+        onclick="captureAndAnalyze()"
+      ></button>
+
+      <button
+        id="cameraAskButton"
+        class="action"
+        onclick="speechInto('cameraQuestion')"
+      ></button>
+
+      <button
+        id="visionSpeakButton"
+        class="action blue"
+        onclick="speakVision()"
+        disabled
+      ></button>
 
     </div>
 
-    <!-- MATH -->
+    <button
+      id="visionRetryButton"
+      class="action hidden"
+      style="width:100%;margin-top:10px"
+      onclick="analyzeCapturedImage()"
+    ></button>
 
-    <section
-      id="mathCenter"
-      class="screen-card hidden"
-    >
+    <div id="aiMessage" class="ai-message">
 
-      <h2 id="mathCenterTitle"></h2>
+      <div
+        id="aiMessageTitle"
+        style="font-size:17px;font-weight:900;margin-bottom:5px"
+      ></div>
 
-      <p
-        id="mathIntro"
-        class="id-small"
-      ></p>
+      <div id="aiMessageText"></div>
 
-      <textarea
-        id="mathInput"
-        class="textbox"
-      ></textarea>
+    </div>
+
+    <div id="visionCard" class="vision-card">
+
+      <div id="visionName" class="vision-name"></div>
+
+      <div id="visionCore" class="vision-core"></div>
+
+      <div id="visionExplanation" class="explanation"></div>
+
+      <div id="visionInfoGrid" class="info-grid"></div>
+
+      <div id="visionFacts" class="fact-list"></div>
+
+      <div id="visionAnswer" class="result hidden"></div>
 
       <div class="action-row">
 
         <button
-          id="mathVoiceButton"
-          class="action mint"
-          onclick="speechInto('mathInput')"
-        ></button>
-
-        <button
-          id="mathSolveButton"
-          class="action gold"
-          onclick="solveMathNow()"
-        ></button>
-
-        <button
-          id="mathTestButton"
-          class="action"
-          onclick="setMathExample()"
-        ></button>
-
-        <button
-          id="mathSpeakButton"
-          class="action blue"
-          onclick="speakMath()"
-          disabled
-        ></button>
-
-      </div>
-
-      <div
-        id="mathStatus"
-        class="math-status"
-      ></div>
-
-      <div
-        id="mathCard"
-        class="math-card"
-      >
-
-        <div
-          id="mathAnswer"
-          class="math-answer"
-        ></div>
-
-        <div
-          id="mathExplanation"
-          class="explanation"
-        ></div>
-
-        <div
-          id="mathSteps"
-          class="math-steps"
-        ></div>
-
-        <div
-          id="mathCheck"
-          class="result hidden"
-        ></div>
-
-        <div
-          id="mathMeta"
-          class="math-meta"
-        ></div>
-
-      </div>
-
-      <details
-        id="mathDebug"
-        class="root-debug hidden"
-      >
-        <summary id="mathDebugSummary"></summary>
-        <pre id="mathDebugText"></pre>
-      </details>
-
-    </section>
-
-    <!-- CAMERA -->
-
-    <section
-      id="cameraCenter"
-      class="screen-card hidden"
-    >
-
-      <h2 id="cameraCenterTitle"></h2>
-
-      <div class="camera-wrap">
-
-        <video
-          id="cameraVideo"
-          autoplay
-          playsinline
-          muted
-        ></video>
-
-        <img
-          id="capturedImage"
-          class="hidden"
-          alt=""
-        >
-
-        <canvas
-          id="cameraCanvas"
-          class="hidden"
-        ></canvas>
-
-        <div class="camera-overlay"></div>
-
-      </div>
-
-      <div
-        id="cameraStatus"
-        class="camera-status"
-      ></div>
-
-      <textarea
-        id="cameraQuestion"
-        class="textbox"
-      ></textarea>
-
-      <div class="action-row">
-
-        <button
-          id="cameraOpenButton"
+          id="otherObjectButton"
           class="action mint"
           onclick="startCamera()"
         ></button>
 
         <button
-          id="captureButton"
-          class="action gold"
-          onclick="captureAndAnalyze()"
-        ></button>
-
-        <button
-          id="cameraAskButton"
+          id="visionAnalyzeAgainButton"
           class="action"
-          onclick="speechInto('cameraQuestion')"
-        ></button>
-
-        <button
-          id="visionSpeakButton"
-          class="action blue"
-          onclick="speakVision()"
-          disabled
+          onclick="analyzeCapturedImage()"
         ></button>
 
       </div>
+
+    </div>
+
+    <details id="rootDebug" class="root-debug hidden">
+      <summary id="visionDebugSummary"></summary>
+      <pre id="rootDebugText"></pre>
+    </details>
+
+  </section>
+
+  <section id="translateCenter" class="screen-card hidden">
+
+    <h2 id="translateCenterTitle"></h2>
+
+    <div class="translation-route">
+
+      <div>
+        <div
+          id="translateSourceLabel"
+          class="translation-route-label"
+        ></div>
+
+        <div
+          id="translateSourceValue"
+          class="translation-route-value"
+        ></div>
+      </div>
+
+      <div style="font-size:22px">→</div>
+
+      <div style="text-align:right">
+
+        <div
+          id="translateTargetLabel"
+          class="translation-route-label"
+        ></div>
+
+        <div
+          id="translateTargetValue"
+          class="translation-route-value"
+        ></div>
+
+      </div>
+
+    </div>
+
+    <textarea
+      id="translateInput"
+      class="textbox"
+    ></textarea>
+
+    <div class="action-row">
 
       <button
-        id="visionRetryButton"
-        class="action hidden"
-        style="width:100%;margin-top:10px"
-        onclick="analyzeCapturedImage()"
+        id="translateVoiceButton"
+        class="action mint"
+        onclick="speechInto('translateInput')"
       ></button>
 
+      <button
+        id="translateActionButton"
+        class="action gold"
+        onclick="translateNow()"
+      ></button>
+
+      <button
+        id="translateSpeakButton"
+        class="action blue"
+        onclick="speakTranslation()"
+        disabled
+      ></button>
+
+      <button
+        id="translateClearButton"
+        class="action"
+        onclick="clearTranslation()"
+      ></button>
+
+    </div>
+
+    <div id="translationStatus" class="translation-status"></div>
+
+    <div id="translationOutput" class="translation-output">
+
       <div
-        id="aiMessage"
-        class="ai-message"
-      >
-
-        <div
-          id="aiMessageTitle"
-          style="font-size:17px;font-weight:900;margin-bottom:5px"
-        ></div>
-
-        <div id="aiMessageText"></div>
-
-      </div>
+        id="translationOutputLabel"
+        class="translation-output-label"
+      ></div>
 
       <div
-        id="visionCard"
-        class="vision-card"
-      >
+        id="translateResult"
+        class="translation-result"
+      ></div>
 
-        <div
-          id="visionName"
-          class="vision-name"
-        ></div>
+      <div
+        id="translationMeta"
+        class="translation-meta"
+      ></div>
 
-        <div
-          id="visionCore"
-          class="vision-core"
-        ></div>
+    </div>
 
-        <div
-          id="visionExplanation"
-          class="explanation"
-        ></div>
-
-        <div
-          id="visionInfoGrid"
-          class="info-grid"
-        ></div>
-
-        <div
-          id="visionFacts"
-          class="fact-list"
-        ></div>
-
-        <div
-          id="visionAnswer"
-          class="result hidden"
-        ></div>
-
-        <div class="action-row">
-
-          <button
-            id="otherObjectButton"
-            class="action mint"
-            onclick="startCamera()"
-          ></button>
-
-          <button
-            id="visionAnalyzeAgainButton"
-            class="action"
-            onclick="analyzeCapturedImage()"
-          ></button>
-
-        </div>
-
-      </div>
-
-      <details
-        id="rootDebug"
-        class="root-debug hidden"
-      >
-        <summary id="visionDebugSummary"></summary>
-        <pre id="rootDebugText"></pre>
-      </details>
-
-    </section>
-
-    <!-- TRANSLATE -->
-
-    <section
-      id="translateCenter"
-      class="screen-card hidden"
+    <details
+      id="translationDebug"
+      class="root-debug hidden"
     >
+      <summary id="translationDebugSummary"></summary>
+      <pre id="translationDebugText"></pre>
+    </details>
 
-      <h2 id="translateCenterTitle"></h2>
+  </section>
 
-      <div class="translation-route">
+  <section id="notesCenter" class="screen-card hidden">
 
-        <div>
+    <h2 id="notesCenterTitle"></h2>
 
-          <div
-            id="translateSourceLabel"
-            class="translation-route-label"
-          ></div>
+    <div class="notes-tabs">
 
-          <div
-            id="translateSourceValue"
-            class="translation-route-value"
-          ></div>
+      <button
+        id="notesTabButton"
+        class="notes-tab active"
+        onclick="switchNotesTab('notes')"
+      ></button>
 
-        </div>
+      <button
+        id="alarmsTabButton"
+        class="notes-tab"
+        onclick="switchNotesTab('alarms')"
+      ></button>
 
-        <div style="font-size:22px">
-          →
-        </div>
+    </div>
 
-        <div style="text-align:right">
-
-          <div
-            id="translateTargetLabel"
-            class="translation-route-label"
-          ></div>
-
-          <div
-            id="translateTargetValue"
-            class="translation-route-value"
-          ></div>
-
-        </div>
-
-      </div>
+    <div id="notesPanel" class="notes-panel active">
 
       <textarea
-        id="translateInput"
+        id="notesInput"
         class="textbox"
       ></textarea>
 
       <div class="action-row">
 
         <button
-          id="translateVoiceButton"
+          id="notesVoiceButton"
           class="action mint"
-          onclick="speechInto('translateInput')"
+          onclick="speechInto('notesInput')"
         ></button>
 
         <button
-          id="translateActionButton"
+          id="notesSaveButton"
           class="action gold"
-          onclick="translateNow()"
-        ></button>
-
-        <button
-          id="translateSpeakButton"
-          class="action blue"
-          onclick="speakTranslation()"
-          disabled
-        ></button>
-
-        <button
-          id="translateClearButton"
-          class="action"
-          onclick="clearTranslation()"
+          onclick="saveNote()"
         ></button>
 
       </div>
 
-      <div
-        id="translationStatus"
-        class="translation-status"
-      ></div>
+      <div id="notesResult" class="result"></div>
 
-      <div
-        id="translationOutput"
-        class="translation-output"
-      >
+      <div id="notesList" class="note-list"></div>
 
-        <div
-          id="translationOutputLabel"
-          class="translation-output-label"
-        ></div>
+    </div>
 
-        <div
-          id="translateResult"
-          class="translation-result"
-        ></div>
+    <div id="alarmsPanel" class="notes-panel">
 
-        <div
-          id="translationMeta"
-          class="translation-meta"
-        ></div>
+      <div class="alarm-form">
 
-      </div>
+        <input
+          id="alarmTitleInput"
+          type="text"
+          maxlength="120"
+        >
 
-      <details
-        id="translationDebug"
-        class="root-debug hidden"
-      >
-        <summary id="translationDebugSummary"></summary>
-        <pre id="translationDebugText"></pre>
-      </details>
-
-    </section>
-
-    <!-- NOTES -->
-
-    <section
-      id="notesCenter"
-      class="screen-card hidden"
-    >
-
-      <h2 id="notesCenterTitle"></h2>
-
-      <div class="notes-tabs">
-
-        <button
-          id="notesTabButton"
-          class="notes-tab active"
-          onclick="switchNotesTab('notes')"
-        ></button>
-
-        <button
-          id="alarmsTabButton"
-          class="notes-tab"
-          onclick="switchNotesTab('alarms')"
-        ></button>
-
-      </div>
-
-      <div
-        id="notesPanel"
-        class="notes-panel active"
-      >
-
-        <textarea
-          id="notesInput"
-          class="textbox"
-        ></textarea>
-
-        <div class="action-row">
-
-          <button
-            id="notesVoiceButton"
-            class="action mint"
-            onclick="speechInto('notesInput')"
-          ></button>
-
-          <button
-            id="notesSaveButton"
-            class="action gold"
-            onclick="saveNote()"
-          ></button>
-
-        </div>
-
-        <div
-          id="notesResult"
-          class="result"
-        ></div>
-
-        <div
-          id="notesList"
-          class="note-list"
-        ></div>
-
-      </div>
-
-      <div
-        id="alarmsPanel"
-        class="notes-panel"
-      >
-
-        <div class="alarm-form">
+        <div class="alarm-form-grid">
 
           <input
-            id="alarmTitleInput"
-            type="text"
-            maxlength="120"
+            id="alarmDateInput"
+            type="date"
           >
 
-          <div class="alarm-form-grid">
-
-            <input
-              id="alarmDateInput"
-              type="date"
-            >
-
-            <input
-              id="alarmTimeInput"
-              type="time"
-            >
-
-          </div>
-
-          <select id="alarmRepeatInput">
-
-            <option
-              id="alarmOnceOption"
-              value="once"
-            ></option>
-
-            <option
-              id="alarmDailyOption"
-              value="daily"
-            ></option>
-
-          </select>
-
-          <button
-            id="alarmSaveButton"
-            class="action gold"
-            onclick="saveAlarm()"
-          ></button>
+          <input
+            id="alarmTimeInput"
+            type="time"
+          >
 
         </div>
 
-        <div
-          id="alarmResult"
-          class="result"
-        ></div>
+        <select id="alarmRepeatInput">
 
-        <div
-          id="alarmList"
-          class="alarm-list"
-        ></div>
+          <option
+            id="alarmOnceOption"
+            value="once"
+          ></option>
+
+          <option
+            id="alarmDailyOption"
+            value="daily"
+          ></option>
+
+        </select>
+
+        <button
+          id="alarmSaveButton"
+          class="action gold"
+          onclick="saveAlarm()"
+        ></button>
 
       </div>
 
-    </section>
+      <div id="alarmResult" class="result"></div>
 
-  </div>
+      <div id="alarmList" class="alarm-list"></div>
 
+    </div>
+
+  </section>
+
+</div>
 </div>
 
 <script src="./worker-client-v2.js"></script>
@@ -2020,7 +1682,7 @@ button:disabled{
 "use strict";
 
 const APP_VERSION =
-  "3.6.1";
+  "3.6.2";
 
 const ROOT_ID =
   "Rii00000001";
@@ -2050,7 +1712,6 @@ const languages = [
 ];
 
 const EN = {
-
   tagline:"Smart learning • Explore the world",
   ready:"Ready",
   hero:"Hello 👋 What would you like to explore today?",
@@ -2080,7 +1741,14 @@ const EN = {
   home:"Home",
   back:"← Home",
   voice:"🎙 Speak",
+
   speechUnsupported:"Speech recognition is not supported on this browser.",
+  speechPreparing:"🎙 Preparing microphone...",
+  speechListening:"🎙 Rii is listening...",
+  speechDone:"✅ Rii heard you.",
+  speechNoMatch:"Rii did not hear clearly. Please try again.",
+  speechPermission:"Microphone permission is blocked. Enable microphone access for Safari and try again.",
+  speechError:"Rii could not use the microphone: ",
 
   mathIntro:"Basic arithmetic uses the local Math Engine without AI quota. Word problems use Math AI.",
   mathPlaceholder:"Example: Lan has 12 apples and gives 5 away. How many are left?",
@@ -2144,7 +1812,6 @@ const EN = {
   translateTarget:"Target",
   translateOutput:"Translation",
   translateDetected:"Detected",
-  translateTo:"to",
   translationDebug:"🔐 ROOT • Translation technical details",
 
   notesPlaceholder:"Speak or type a note...",
@@ -2179,7 +1846,6 @@ const EN = {
   alarmSnooze:"Snooze 5 min",
   alarmRinging:"Alarm",
   alarmWebNote:"Web alarms can ring while Rii is open. Native app notifications will be added later.",
-  once:"One time",
   daily:"Every day"
 };
 
@@ -2221,7 +1887,14 @@ const UI = {
     home:"Trang chủ",
     back:"← Trang chủ",
     voice:"🎙 Nói",
+
     speechUnsupported:"Trình duyệt này chưa hỗ trợ nhận dạng giọng nói.",
+    speechPreparing:"🎙 Rii đang chuẩn bị microphone...",
+    speechListening:"🎙 Rii đang nghe...",
+    speechDone:"✅ Rii đã nghe được.",
+    speechNoMatch:"Rii chưa nghe rõ. Hãy nói lại nhé.",
+    speechPermission:"Microphone đang bị chặn. Hãy cho phép Safari dùng microphone rồi thử lại.",
+    speechError:"Rii chưa dùng được microphone: ",
 
     mathIntro:"Phép tính cơ bản dùng Math Engine cục bộ, không dùng quota AI. Bài toán bằng lời dùng Math AI.",
     mathPlaceholder:"Ví dụ: Lan có 12 quả táo, cho bạn 5 quả. Lan còn bao nhiêu quả?",
@@ -2285,7 +1958,6 @@ const UI = {
     translateTarget:"Đích",
     translateOutput:"Bản dịch",
     translateDetected:"Đã nhận biết",
-    translateTo:"sang",
     translationDebug:"🔐 ROOT • Chi tiết kỹ thuật Translation",
 
     notesPlaceholder:"Nói hoặc nhập ghi chú...",
@@ -2320,240 +1992,19 @@ const UI = {
     alarmSnooze:"Nhắc lại 5 phút",
     alarmRinging:"Báo thức",
     alarmWebNote:"Bản web có thể reo khi Rii đang mở. Khi đóng gói thành app, Rii sẽ dùng thông báo hệ thống.",
-    once:"Một lần",
     daily:"Mỗi ngày"
   },
 
-  zh:{
-    ...EN,
-    tagline:"智能学习 • 探索世界",
-    ready:"就绪",
-    hero:"你好 👋 今天想探索什么？",
-    identity:"Rii 身份",
-    root:"根账户 • ROOT",
-    centers:"Rii 学习中心",
-    math:"数学",
-    camera:"相机 AI",
-    translate:"翻译",
-    notes:"笔记与闹钟",
-    home:"主页",
-    back:"← 主页",
-    language:"🌐 语言",
-    voice:"🎙 说",
-    save:"💾 保存",
-    hear:"🔊 收听",
-    edit:"✏️ 编辑",
-    delete:"🗑 删除",
-    notesTab:"📝 笔记",
-    alarmsTab:"⏰ 闹钟"
-  },
-
-  ja:{
-    ...EN,
-    tagline:"スマート学習 • 世界を探検",
-    ready:"準備完了",
-    hero:"こんにちは 👋 今日は何を探検する？",
-    identity:"Rii ID",
-    centers:"Rii センター",
-    math:"算数",
-    camera:"カメラ AI",
-    translate:"翻訳",
-    notes:"メモとアラーム",
-    home:"ホーム",
-    back:"← ホーム",
-    language:"🌐 言語",
-    voice:"🎙 話す",
-    save:"💾 保存",
-    hear:"🔊 聞く",
-    edit:"✏️ 編集",
-    delete:"🗑 削除",
-    notesTab:"📝 メモ",
-    alarmsTab:"⏰ アラーム"
-  },
-
-  ko:{
-    ...EN,
-    tagline:"스마트 학습 • 세상 탐험",
-    ready:"준비됨",
-    hero:"안녕 👋 오늘 무엇을 탐험할까?",
-    identity:"Rii ID",
-    centers:"Rii 센터",
-    math:"수학",
-    camera:"카메라 AI",
-    translate:"번역",
-    notes:"메모 & 알람",
-    home:"홈",
-    back:"← 홈",
-    language:"🌐 언어",
-    voice:"🎙 말하기",
-    save:"💾 저장",
-    hear:"🔊 듣기",
-    edit:"✏️ 수정",
-    delete:"🗑 삭제",
-    notesTab:"📝 메모",
-    alarmsTab:"⏰ 알람"
-  },
-
-  es:{
-    ...EN,
-    tagline:"Aprendizaje inteligente • Explora el mundo",
-    ready:"Listo",
-    hero:"Hola 👋 ¿Qué quieres explorar hoy?",
-    identity:"Identidad Rii",
-    centers:"Centros Rii",
-    math:"Matemáticas",
-    camera:"Cámara IA",
-    translate:"Traducción",
-    notes:"Notas y alarmas",
-    home:"Inicio",
-    back:"← Inicio",
-    language:"🌐 Idioma",
-    voice:"🎙 Hablar",
-    save:"💾 Guardar",
-    hear:"🔊 Escuchar",
-    edit:"✏️ Editar",
-    delete:"🗑 Borrar",
-    notesTab:"📝 Notas",
-    alarmsTab:"⏰ Alarmas"
-  },
-
-  fr:{
-    ...EN,
-    tagline:"Apprentissage intelligent • Explore le monde",
-    ready:"Prêt",
-    hero:"Bonjour 👋 Que veux-tu explorer aujourd’hui ?",
-    identity:"Identité Rii",
-    centers:"Centres Rii",
-    math:"Maths",
-    camera:"Caméra IA",
-    translate:"Traduction",
-    notes:"Notes et alarmes",
-    home:"Accueil",
-    back:"← Accueil",
-    language:"🌐 Langue",
-    voice:"🎙 Parler",
-    save:"💾 Enregistrer",
-    hear:"🔊 Écouter",
-    edit:"✏️ Modifier",
-    delete:"🗑 Supprimer",
-    notesTab:"📝 Notes",
-    alarmsTab:"⏰ Alarmes"
-  },
-
-  de:{
-    ...EN,
-    tagline:"Intelligent lernen • Die Welt entdecken",
-    ready:"Bereit",
-    hero:"Hallo 👋 Was möchtest du heute entdecken?",
-    identity:"Rii-Identität",
-    centers:"Rii-Zentren",
-    math:"Mathe",
-    camera:"Kamera-KI",
-    translate:"Übersetzen",
-    notes:"Notizen & Alarme",
-    home:"Start",
-    back:"← Start",
-    language:"🌐 Sprache",
-    voice:"🎙 Sprechen",
-    save:"💾 Speichern",
-    hear:"🔊 Anhören",
-    edit:"✏️ Bearbeiten",
-    delete:"🗑 Löschen",
-    notesTab:"📝 Notizen",
-    alarmsTab:"⏰ Alarme"
-  },
-
-  pt:{
-    ...EN,
-    tagline:"Aprendizado inteligente • Explore o mundo",
-    ready:"Pronto",
-    hero:"Olá 👋 O que você quer explorar hoje?",
-    identity:"Identidade Rii",
-    centers:"Centros Rii",
-    math:"Matemática",
-    camera:"Câmera IA",
-    translate:"Tradução",
-    notes:"Notas e alarmes",
-    home:"Início",
-    back:"← Início",
-    language:"🌐 Idioma",
-    voice:"🎙 Falar",
-    save:"💾 Salvar",
-    hear:"🔊 Ouvir",
-    edit:"✏️ Editar",
-    delete:"🗑 Excluir",
-    notesTab:"📝 Notas",
-    alarmsTab:"⏰ Alarmes"
-  },
-
-  it:{
-    ...EN,
-    tagline:"Apprendimento intelligente • Esplora il mondo",
-    ready:"Pronto",
-    hero:"Ciao 👋 Cosa vuoi esplorare oggi?",
-    identity:"Identità Rii",
-    centers:"Centri Rii",
-    math:"Matematica",
-    camera:"Fotocamera IA",
-    translate:"Traduzione",
-    notes:"Note e sveglie",
-    home:"Home",
-    back:"← Home",
-    language:"🌐 Lingua",
-    voice:"🎙 Parla",
-    save:"💾 Salva",
-    hear:"🔊 Ascolta",
-    edit:"✏️ Modifica",
-    delete:"🗑 Elimina",
-    notesTab:"📝 Note",
-    alarmsTab:"⏰ Sveglie"
-  },
-
-  th:{
-    ...EN,
-    tagline:"เรียนรู้อย่างชาญฉลาด • สำรวจโลก",
-    ready:"พร้อม",
-    hero:"สวัสดี 👋 วันนี้อยากสำรวจอะไร?",
-    identity:"ตัวตน Rii",
-    centers:"ศูนย์ Rii",
-    math:"คณิตศาสตร์",
-    camera:"กล้อง AI",
-    translate:"แปลภาษา",
-    notes:"โน้ตและนาฬิกาปลุก",
-    home:"หน้าแรก",
-    back:"← หน้าแรก",
-    language:"🌐 ภาษา",
-    voice:"🎙 พูด",
-    save:"💾 บันทึก",
-    hear:"🔊 ฟัง",
-    edit:"✏️ แก้ไข",
-    delete:"🗑 ลบ",
-    notesTab:"📝 โน้ต",
-    alarmsTab:"⏰ นาฬิกาปลุก"
-  },
-
-  id:{
-    ...EN,
-    tagline:"Belajar cerdas • Jelajahi dunia",
-    ready:"Siap",
-    hero:"Halo 👋 Apa yang ingin kamu jelajahi hari ini?",
-    identity:"Identitas Rii",
-    centers:"Pusat Rii",
-    math:"Matematika",
-    camera:"Kamera AI",
-    translate:"Terjemahan",
-    notes:"Catatan & Alarm",
-    home:"Beranda",
-    back:"← Beranda",
-    language:"🌐 Bahasa",
-    voice:"🎙 Bicara",
-    save:"💾 Simpan",
-    hear:"🔊 Dengarkan",
-    edit:"✏️ Edit",
-    delete:"🗑 Hapus",
-    notesTab:"📝 Catatan",
-    alarmsTab:"⏰ Alarm"
-  }
+  zh:{...EN},
+  ja:{...EN},
+  ko:{...EN},
+  es:{...EN},
+  fr:{...EN},
+  de:{...EN},
+  pt:{...EN},
+  it:{...EN},
+  th:{...EN},
+  id:{...EN}
 
 };
 
@@ -2568,6 +2019,9 @@ let cameraStream =
 
 let recognition =
   null;
+
+let speechRecognitionBusy =
+  false;
 
 let capturedFrameReady =
   false;
@@ -2606,10 +2060,7 @@ function el(id){
   return document.getElementById(id);
 }
 
-function setText(
-  id,
-  value
-){
+function setText(id,value){
 
   const node =
     el(id);
@@ -2622,39 +2073,23 @@ function setText(
 
 function currentLanguage(){
 
-  const savedCode =
+  const saved =
     localStorage.getItem(
       LANGUAGE_KEY
     );
-
-  const valid =
-    languages.some(
-      item =>
-        item.code ===
-        savedCode
-    );
-
-  const code =
-    valid
-      ?
-      savedCode
-      :
-      "vi";
 
   return (
     languages.find(
       item =>
         item.code ===
-        code
+        saved
     )
     ||
     languages[0]
   );
 }
 
-function languageByCode(
-  code
-){
+function languageByCode(code){
 
   return (
     languages.find(
@@ -2678,14 +2113,9 @@ function text(){
   );
 }
 
-function escapeHtml(
-  value
-){
+function escapeHtml(value){
 
-  return String(
-    value ??
-    ""
-  )
+  return String(value ?? "")
     .replaceAll("&","&amp;")
     .replaceAll("<","&lt;")
     .replaceAll(">","&gt;")
@@ -2693,24 +2123,18 @@ function escapeHtml(
     .replaceAll("'","&#039;");
 }
 
-function loadArray(
-  key
-){
+function loadArray(key){
 
   try{
 
     const value =
       JSON.parse(
-        localStorage.getItem(
-          key
-        )
+        localStorage.getItem(key)
         ||
         "[]"
       );
 
-    return Array.isArray(
-      value
-    )
+    return Array.isArray(value)
       ?
       value
       :
@@ -2722,37 +2146,81 @@ function loadArray(
   }
 }
 
-function saveArray(
-  key,
-  value
-){
+function saveArray(key,value){
 
   localStorage.setItem(
     key,
-    JSON.stringify(
-      value
-    )
+    JSON.stringify(value)
   );
 }
 
+function showSpeechToast(
+  message,
+  error =
+  false,
+  timeout =
+  0
+){
+
+  const box =
+    el("speechToast");
+
+  if(!box){
+    return;
+  }
+
+  box.textContent =
+    message;
+
+  box.className =
+    "speech-toast show"
+    +
+    (
+      error
+        ?
+        " error"
+        :
+        ""
+    );
+
+  if(timeout){
+
+    setTimeout(
+      () => {
+
+        box.className =
+          "speech-toast";
+
+      },
+      timeout
+    );
+  }
+}
+
+function hideSpeechToast(){
+
+  const box =
+    el("speechToast");
+
+  if(box){
+    box.className =
+      "speech-toast";
+  }
+}
+
 /* =====================================================
-   IOS SPEECH STABILITY FIX
+   SPEECH OUTPUT
 ===================================================== */
 
 function delay(ms){
 
   return new Promise(
     resolve =>
-      setTimeout(
-        resolve,
-        ms
-      )
+      setTimeout(resolve,ms)
   );
 }
 
-function getBestVoice(
-  locale
-){
+function getBestVoice(locale){
 
   if(
     !(
@@ -2765,125 +2233,31 @@ function getBestVoice(
   }
 
   const voices =
-    speechSynthesis
-      .getVoices();
-
-  if(
-    !voices.length
-  ){
-
-    return null;
-  }
+    speechSynthesis.getVoices();
 
   const wanted =
-    String(
-      locale ||
-      ""
-    )
+    String(locale || "")
       .toLowerCase();
 
   const base =
-    wanted
-      .split("-")[0];
+    wanted.split("-")[0];
 
   return (
     voices.find(
       voice =>
-        String(
-          voice.lang ||
-          ""
-        )
+        String(voice.lang || "")
           .toLowerCase()
-        ===
-        wanted
+        === wanted
     )
     ||
     voices.find(
       voice =>
-        String(
-          voice.lang ||
-          ""
-        )
+        String(voice.lang || "")
           .toLowerCase()
-          .startsWith(
-            base + "-"
-          )
+          .startsWith(base + "-")
     )
     ||
     null
-  );
-}
-
-function waitForSpeechVoices(
-  timeout =
-  800
-){
-
-  return new Promise(
-    resolve => {
-
-      if(
-        !(
-          "speechSynthesis"
-          in window
-        )
-      ){
-
-        resolve([]);
-
-        return;
-      }
-
-      const synth =
-        speechSynthesis;
-
-      const existing =
-        synth.getVoices();
-
-      if(
-        existing.length
-      ){
-
-        resolve(
-          existing
-        );
-
-        return;
-      }
-
-      let done =
-        false;
-
-      const finish =
-        () => {
-
-          if(done){
-            return;
-          }
-
-          done =
-            true;
-
-          synth.removeEventListener(
-            "voiceschanged",
-            finish
-          );
-
-          resolve(
-            synth.getVoices()
-          );
-        };
-
-      synth.addEventListener(
-        "voiceschanged",
-        finish
-      );
-
-      setTimeout(
-        finish,
-        timeout
-      );
-    }
   );
 }
 
@@ -2894,10 +2268,7 @@ async function speak(
 ){
 
   const message =
-    String(
-      value ||
-      ""
-    )
+    String(value || "")
       .trim();
 
   if(
@@ -2921,28 +2292,11 @@ async function speak(
   const locale =
     localeOverride
     ||
-    currentLanguage().locale
-    ||
-    "vi-VN";
-
-  await waitForSpeechVoices();
-
-  if(
-    token !==
-    riiSpeechToken
-  ){
-
-    return false;
-  }
+    currentLanguage().locale;
 
   try{
     synth.cancel();
   }catch{}
-
-  /*
-    Quan trọng với Safari iOS:
-    không speak() ngay trong cùng tick với cancel().
-  */
 
   await delay(120);
 
@@ -2965,46 +2319,20 @@ async function speak(
   utterance.rate =
     .9;
 
-  utterance.pitch =
-    1;
-
   utterance.volume =
     1;
 
   const voice =
-    getBestVoice(
-      locale
-    );
+    getBestVoice(locale);
 
   if(voice){
     utterance.voice =
       voice;
   }
 
-  let started =
-    false;
-
-  utterance.onstart =
-    () => {
-      started =
-        true;
-    };
-
-  utterance.onerror =
-    event => {
-
-      console.warn(
-        "Rii speech error",
-        event?.error
-      );
-    };
-
   try{
 
-    if(
-      synth.paused
-    ){
-
+    if(synth.paused){
       synth.resume();
     }
 
@@ -3012,83 +2340,464 @@ async function speak(
       utterance
     );
 
-  }catch(error){
+    return true;
 
-    console.warn(
-      "Rii speech failed",
-      error
-    );
+  }catch{
 
     return false;
   }
-
-  /*
-    Fallback cho Safari:
-    đôi khi utterance vào queue nhưng không start.
-  */
-
-  setTimeout(
-    () => {
-
-      if(
-        token !==
-        riiSpeechToken
-        ||
-        started
-        ||
-        synth.speaking
-      ){
-
-        return;
-      }
-
-      try{
-
-        const retry =
-          new SpeechSynthesisUtterance(
-            message
-          );
-
-        retry.lang =
-          locale;
-
-        retry.rate =
-          .9;
-
-        retry.volume =
-          1;
-
-        const retryVoice =
-          getBestVoice(
-            locale
-          );
-
-        if(retryVoice){
-          retry.voice =
-            retryVoice;
-        }
-
-        synth.speak(
-          retry
-        );
-
-      }catch(error){
-
-        console.warn(
-          "Rii speech retry failed",
-          error
-        );
-      }
-
-    },
-    550
-  );
-
-  return true;
 }
 
 /* =====================================================
-   RENDER
+   IOS SPEECH INPUT FIX
+===================================================== */
+
+function recognitionClass(){
+
+  return (
+    window.SpeechRecognition
+    ||
+    window.webkitSpeechRecognition
+  );
+}
+
+async function ensureMicrophonePermission(){
+
+  if(
+    !navigator.mediaDevices
+    ||
+    typeof navigator
+      .mediaDevices
+      .getUserMedia !==
+      "function"
+  ){
+
+    return true;
+  }
+
+  showSpeechToast(
+    text().speechPreparing
+  );
+
+  let stream =
+    null;
+
+  try{
+
+    stream =
+      await navigator
+        .mediaDevices
+        .getUserMedia({
+          audio:true,
+          video:false
+        });
+
+    return true;
+
+  }catch(error){
+
+    const name =
+      String(
+        error?.name ||
+        ""
+      );
+
+    if(
+      /notallowed|permission|security/i
+        .test(name)
+    ){
+
+      throw new Error(
+        text().speechPermission
+      );
+    }
+
+    throw error;
+
+  }finally{
+
+    if(stream){
+
+      stream
+        .getTracks()
+        .forEach(
+          track =>
+            track.stop()
+        );
+    }
+  }
+}
+
+async function startRecognition(
+  targetId =
+  null
+){
+
+  if(
+    speechRecognitionBusy
+  ){
+
+    try{
+      recognition?.stop();
+    }catch{}
+
+    return;
+  }
+
+  const C =
+    recognitionClass();
+
+  if(!C){
+
+    showSpeechToast(
+      text().speechUnsupported,
+      true,
+      3500
+    );
+
+    return;
+  }
+
+  /*
+    Dừng speech output trước khi mở mic.
+  */
+
+  try{
+    speechSynthesis?.cancel();
+  }catch{}
+
+  try{
+
+    await ensureMicrophonePermission();
+
+  }catch(error){
+
+    showSpeechToast(
+      String(
+        error?.message ||
+        error
+      ),
+      true,
+      4500
+    );
+
+    return;
+  }
+
+  try{
+
+    if(recognition){
+
+      recognition.onresult =
+        null;
+
+      recognition.onerror =
+        null;
+
+      recognition.onend =
+        null;
+
+      try{
+        recognition.abort();
+      }catch{}
+    }
+
+    recognition =
+      new C();
+
+    recognition.lang =
+      currentLanguage().locale;
+
+    recognition.continuous =
+      false;
+
+    recognition.interimResults =
+      true;
+
+    recognition.maxAlternatives =
+      1;
+
+    speechRecognitionBusy =
+      true;
+
+    let finalText =
+      "";
+
+    let receivedSomething =
+      false;
+
+    recognition.onstart =
+      () => {
+
+        showSpeechToast(
+          text().speechListening
+        );
+      };
+
+    recognition.onaudiostart =
+      () => {
+
+        showSpeechToast(
+          text().speechListening
+        );
+      };
+
+    recognition.onspeechstart =
+      () => {
+
+        showSpeechToast(
+          text().speechListening
+        );
+      };
+
+    recognition.onresult =
+      event => {
+
+        let interim =
+          "";
+
+        for(
+          let i =
+            event.resultIndex;
+          i <
+            event.results.length;
+          i++
+        ){
+
+          const transcript =
+            event.results[i][0]
+              .transcript;
+
+          receivedSomething =
+            true;
+
+          if(
+            event.results[i]
+              .isFinal
+          ){
+
+            finalText +=
+              transcript;
+
+          }else{
+
+            interim +=
+              transcript;
+          }
+        }
+
+        const value =
+          (
+            finalText
+            ||
+            interim
+          )
+            .trim();
+
+        if(
+          targetId
+          &&
+          value
+        ){
+
+          const target =
+            el(targetId);
+
+          if(target){
+
+            target.value =
+              value;
+
+            target.dispatchEvent(
+              new Event(
+                "input",
+                {
+                  bubbles:true
+                }
+              )
+            );
+          }
+
+        }else if(
+          !targetId
+          &&
+          finalText.trim()
+        ){
+
+          handleVoiceCommand(
+            finalText.trim()
+          );
+        }
+      };
+
+    recognition.onnomatch =
+      () => {
+
+        showSpeechToast(
+          text().speechNoMatch,
+          true,
+          3000
+        );
+      };
+
+    recognition.onerror =
+      event => {
+
+        speechRecognitionBusy =
+          false;
+
+        const code =
+          String(
+            event?.error ||
+            "unknown"
+          );
+
+        let message =
+          text().speechError
+          +
+          code;
+
+        if(
+          code ===
+          "not-allowed"
+          ||
+          code ===
+          "service-not-allowed"
+        ){
+
+          message =
+            text().speechPermission;
+        }
+
+        if(
+          code ===
+          "no-speech"
+        ){
+
+          message =
+            text().speechNoMatch;
+        }
+
+        if(
+          code ===
+          "aborted"
+        ){
+
+          hideSpeechToast();
+          return;
+        }
+
+        showSpeechToast(
+          message,
+          true,
+          4000
+        );
+      };
+
+    recognition.onend =
+      () => {
+
+        speechRecognitionBusy =
+          false;
+
+        if(
+          finalText.trim()
+        ){
+
+          if(
+            targetId
+          ){
+
+            const target =
+              el(targetId);
+
+            if(target){
+
+              target.value =
+                finalText.trim();
+
+              target.dispatchEvent(
+                new Event(
+                  "change",
+                  {
+                    bubbles:true
+                  }
+                )
+              );
+            }
+
+          }else{
+
+            handleVoiceCommand(
+              finalText.trim()
+            );
+          }
+
+          showSpeechToast(
+            text().speechDone,
+            false,
+            1600
+          );
+
+          return;
+        }
+
+        if(
+          receivedSomething
+        ){
+
+          showSpeechToast(
+            text().speechDone,
+            false,
+            1200
+          );
+
+        }else{
+
+          hideSpeechToast();
+        }
+      };
+
+    /*
+      Safari cần start() xảy ra ngay sau thao tác người dùng.
+    */
+
+    recognition.start();
+
+  }catch(error){
+
+    speechRecognitionBusy =
+      false;
+
+    showSpeechToast(
+      text().speechError
+      +
+      String(
+        error?.message ||
+        error
+      ),
+      true,
+      4000
+    );
+  }
+}
+
+window.listenCommand =
+function(){
+
+  startRecognition();
+};
+
+window.speechInto =
+function(targetId){
+
+  startRecognition(
+    targetId
+  );
+};
+
+/* =====================================================
+   UI / LANGUAGE
 ===================================================== */
 
 function render(){
@@ -3099,7 +2808,9 @@ function render(){
   const language =
     currentLanguage();
 
-  document.documentElement.lang =
+  document
+    .documentElement
+    .lang =
     language.code;
 
   const map = {
@@ -3111,15 +2822,19 @@ function render(){
     identityLabel:"identity",
     rootText:"root",
     robotFuture:"robotFuture",
+
     centerTitle:"centers",
     centerHint:"hint",
 
     mathTitle:"math",
     mathText:"mathText",
+
     cameraTitle:"camera",
     cameraText:"cameraText",
+
     translateTitle:"translate",
     translateText:"translateText",
+
     notesTitle:"notes",
     notesText:"notesText",
 
@@ -3141,24 +2856,14 @@ function render(){
     mathCenterTitle:"math",
     mathIntro:"mathIntro",
     mathVoiceButton:"voice",
-    mathSolveButton:
-      mathBusy
-        ?
-        "solving"
-        :
-        "solve",
+    mathSolveButton:"solve",
     mathTestButton:"test",
     mathSpeakButton:"listenSolution",
     mathDebugSummary:"mathDebug",
 
     cameraCenterTitle:"camera",
     cameraOpenButton:"openCamera",
-    captureButton:
-      visionBusy
-        ?
-        "looking"
-        :
-        "capture",
+    captureButton:"capture",
     cameraAskButton:"askRii",
     visionSpeakButton:"listenRii",
     visionRetryButton:"retryVision",
@@ -3168,12 +2873,7 @@ function render(){
 
     translateCenterTitle:"translate",
     translateVoiceButton:"voice",
-    translateActionButton:
-      translationBusy
-        ?
-        "translating"
-        :
-        "translateAction",
+    translateActionButton:"translateAction",
     translateSpeakButton:"translateListen",
     translateClearButton:"translateClear",
     translateSourceLabel:"translateSource",
@@ -3195,13 +2895,8 @@ function render(){
   };
 
   for(
-    const [
-      id,
-      key
-    ]
-    of Object.entries(
-      map
-    )
+    const [id,key]
+    of Object.entries(map)
   ){
 
     setText(
@@ -3228,9 +2923,6 @@ function render(){
 
   el("alarmTitleInput").placeholder =
     x.alarmTitlePlaceholder;
-
-  el("capturedImage").alt =
-    x.cameraSaved;
 
   document
     .querySelectorAll(
@@ -3263,11 +2955,6 @@ function render(){
   renderNotes();
 
   renderAlarms();
-
-  switchNotesTab(
-    currentNotesTab,
-    false
-  );
 
   if(
     !el("notesResult")
@@ -3320,87 +3007,40 @@ function render(){
     );
   }
 
-  if(
-    latestMathResult
-  ){
-
-    renderMath(
-      latestMathResult
-    );
+  if(latestMathResult){
+    renderMath(latestMathResult);
   }
 
-  if(
-    latestVisionResult
-  ){
-
-    renderVision(
-      latestVisionResult
-    );
+  if(latestVisionResult){
+    renderVision(latestVisionResult);
   }
 
-  if(
-    latestTranslationResult
-  ){
-
-    renderTranslation(
-      latestTranslationResult
-    );
-  }
-
-  if(
-    !isCameraLive()
-    &&
-    !hasCapturedFrame()
-  ){
-
-    setText(
-      "cameraStatus",
-      x.cameraClosed
-    );
+  if(latestTranslationResult){
+    renderTranslation(latestTranslationResult);
   }
 }
 
 window.setLanguage =
-function(
-  code
-){
+function(code){
 
-  const valid =
-    languages.some(
+  if(
+    !languages.some(
       item =>
         item.code ===
         code
-    );
+    )
+  ){
 
-  if(!valid){
     return;
   }
-
-  const old =
-    currentLanguage().code;
 
   localStorage.setItem(
     LANGUAGE_KEY,
     code
   );
 
-  if(
-    old !== code
-    &&
-    latestTranslationResult
-  ){
-
-    latestTranslationResult =
-      null;
-
-    el("translationOutput")
-      .classList
-      .remove("show");
-
-    el("translateSpeakButton")
-      .disabled =
-      true;
-  }
+  latestTranslationResult =
+    null;
 
   render();
 };
@@ -3499,109 +3139,10 @@ function(){
   );
 };
 
-/* =====================================================
-   SPEECH INPUT
-===================================================== */
-
-function recognitionClass(){
-
-  return (
-    window.SpeechRecognition
-    ||
-    window.webkitSpeechRecognition
-  );
-}
-
-function startRecognition(
-  targetId =
-  null
-){
-
-  const C =
-    recognitionClass();
-
-  if(!C){
-
-    alert(
-      text().speechUnsupported
-    );
-
-    return;
-  }
-
-  if(recognition){
-
-    try{
-      recognition.stop();
-    }catch{}
-  }
-
-  recognition =
-    new C();
-
-  recognition.lang =
-    currentLanguage().locale;
-
-  recognition.continuous =
-    false;
-
-  recognition.interimResults =
-    false;
-
-  recognition.onresult =
-    event => {
-
-      const words =
-        event
-          .results[0][0]
-          .transcript;
-
-      if(targetId){
-
-        const target =
-          el(targetId);
-
-        if(target){
-          target.value =
-            words;
-        }
-
-      }else{
-
-        handleVoiceCommand(
-          words
-        );
-      }
-    };
-
-  recognition.start();
-}
-
-window.listenCommand =
-function(){
-
-  startRecognition();
-};
-
-window.speechInto =
-function(
-  targetId
-){
-
-  startRecognition(
-    targetId
-  );
-};
-
-function handleVoiceCommand(
-  value
-){
+function handleVoiceCommand(value){
 
   const query =
-    String(
-      value ||
-      ""
-    )
+    String(value || "")
       .toLowerCase();
 
   if(
@@ -3623,7 +3164,7 @@ function handleVoiceCommand(
   }
 
   if(
-    /translate|translation|language|dịch|phiên dịch|ngôn ngữ|翻译|翻訳|번역|idioma|traduc|langue|tradu|übersetz|lingua|traduz|ภาษา|แปล|bahasa|terjemah/
+    /translate|language|dịch|phiên dịch|ngôn ngữ|翻译|翻訳|번역|idioma|tradu|übersetz|lingua|ภาษา|แปล|terjemah/
       .test(query)
   ){
 
@@ -3632,7 +3173,7 @@ function handleVoiceCommand(
   }
 
   if(
-    /note|alarm|ghi chú|báo thức|メモ|アラーム|메모|알람|nota|alarma|alarme|notiz|โน้ต|catatan/
+    /note|alarm|ghi chú|báo thức|メモ|アラーム|메모|알람|nota|alarma|note|alarme|notiz|โน้ต|catatan/
       .test(query)
   ){
 
@@ -3640,32 +3181,15 @@ function handleVoiceCommand(
     return;
   }
 
-  speak(
-    value
-  );
+  speak(value);
 }
 
 /* =====================================================
-   CENTER
+   CENTERS
 ===================================================== */
 
 window.openCenter =
-function(
-  name
-){
-
-  if(
-    ![
-      "math",
-      "camera",
-      "translate",
-      "notes"
-    ]
-      .includes(name)
-  ){
-
-    return;
-  }
+function(name){
 
   currentCenter =
     name;
@@ -3680,12 +3204,14 @@ function(
       key => {
 
         el(
-          key + "Center"
+          key +
+          "Center"
         )
           .classList
           .toggle(
             "hidden",
-            key !== name
+            key !==
+            name
           );
       }
     );
@@ -3699,10 +3225,7 @@ function(
 
   updateScreenTitle();
 
-  if(
-    name ===
-    "camera"
-  ){
+  if(name === "camera"){
 
     setTimeout(
       startCamera,
@@ -3710,10 +3233,7 @@ function(
     );
   }
 
-  if(
-    name ===
-    "notes"
-  ){
+  if(name === "notes"){
 
     renderNotes();
 
@@ -3742,8 +3262,6 @@ function updateScreenTitle(){
     }[
       currentCenter
     ]
-    ||
-    x.centers
   );
 }
 
@@ -3769,7 +3287,7 @@ function(){
 
 function showMathStatus(
   message,
-  isError =
+  error =
   false
 ){
 
@@ -3783,39 +3301,12 @@ function showMathStatus(
     "math-status show"
     +
     (
-      isError
+      error
         ?
         " error"
         :
         ""
     );
-}
-
-function hideMathStatus(){
-
-  el("mathStatus").className =
-    "math-status";
-}
-
-function setMathBusy(
-  busy
-){
-
-  mathBusy =
-    busy;
-
-  el("mathSolveButton")
-    .disabled =
-    busy;
-
-  setText(
-    "mathSolveButton",
-    busy
-      ?
-      text().solving
-      :
-      text().solve
-  );
 }
 
 window.setMathExample =
@@ -3839,13 +3330,10 @@ async function(){
       .value
       .trim();
 
-  const x =
-    text();
-
   if(!problem){
 
     showMathStatus(
-      x.needProblem,
+      text().needProblem,
       true
     );
 
@@ -3862,24 +3350,24 @@ async function(){
   ){
 
     showMathStatus(
-      x.mathClientMissing,
+      text().mathClientMissing,
       true
     );
 
     return;
   }
 
-  setMathBusy(true);
+  mathBusy =
+    true;
 
-  hideMathStatus();
+  el("mathSolveButton")
+    .disabled =
+    true;
 
-  el("mathCard")
-    .classList
-    .remove("show");
-
-  el("mathDebug")
-    .classList
-    .add("hidden");
+  setText(
+    "mathSolveButton",
+    text().solving
+  );
 
   try{
 
@@ -3902,144 +3390,92 @@ async function(){
     latestMathResult =
       result;
 
-    renderMath(
-      result
-    );
+    renderMath(result);
 
     showMathStatus(
       result.aiUsed
         ?
-        x.mathAI
+        text().mathAI
         :
-        x.mathLocal
+        text().mathLocal
     );
 
   }catch(error){
 
-    const formatted =
-      window
-        .RiiWorkerClientV2
-        ?.formatError
-      ?
-      window
-        .RiiWorkerClientV2
-        .formatError(error)
-      :
-      {
-        message:
-          String(
-            error?.message ||
-            error
-          ),
-        code:"CLIENT_ERROR"
-      };
-
-    el("mathDebugText")
-      .textContent =
-      JSON.stringify(
-        formatted,
-        null,
-        2
-      );
-
-    el("mathDebug")
-      .classList
-      .remove("hidden");
-
-    const quota =
-      formatted.code ===
-      "MATH_MODEL_FAILED"
-      &&
-      /4006|daily free allocation|10,000 neurons/i
-        .test(
-          formatted.message
-        );
-
     showMathStatus(
-      quota
-        ?
-        x.mathQuota
-        :
-        x.mathError
-        +
-        formatted.message,
+      text().mathError
+      +
+      String(
+        error?.message ||
+        error
+      ),
       true
     );
 
   }finally{
 
-    setMathBusy(false);
+    mathBusy =
+      false;
+
+    el("mathSolveButton")
+      .disabled =
+      false;
+
+    setText(
+      "mathSolveButton",
+      text().solve
+    );
   }
 };
 
-function renderMath(
-  result
-){
-
-  const x =
-    text();
+function renderMath(result){
 
   setText(
     "mathAnswer",
-    result.answer
-      ?
-      x.answer
-      +
-      ": "
-      +
+    text().answer
+    +
+    ": "
+    +
+    (
       result.answer
-      +
-      (
+      ||
+      "—"
+    )
+    +
+    (
+      result.unit
+        ?
+        " "
+        +
         result.unit
-          ?
-          " "
-          +
-          result.unit
-          :
-          ""
-      )
-      :
-      x.answer
-      +
-      ": —"
+        :
+        ""
+    )
   );
 
   setText(
     "mathExplanation",
-    result.needsClarification
-      ?
-      (
-        result.clarificationQuestion
-        ||
-        ""
-      )
-      :
-      (
-        result.explanation
-        ||
-        ""
-      )
+    result.explanation
+    ||
+    result.clarificationQuestion
+    ||
+    ""
   );
 
   el("mathSteps").innerHTML =
     (
-      Array.isArray(
-        result.steps
-      )
+      Array.isArray(result.steps)
         ?
         result.steps
         :
         []
     )
       .map(
-        (
-          step,
-          index
-        ) =>
+        (step,index) =>
           `
           <div class="math-step">
             <b>
-              ${escapeHtml(x.step)}
+              ${escapeHtml(text().step)}
               ${index + 1}
             </b>
             <br>
@@ -4049,27 +3485,26 @@ function renderMath(
       )
       .join("");
 
-  const check =
-    el("mathCheck");
-
   if(result.check){
 
-    check.textContent =
+    setText(
+      "mathCheck",
       "✅ "
       +
-      x.check
+      text().check
       +
       ": "
       +
-      result.check;
+      result.check
+    );
 
-    check
+    el("mathCheck")
       .classList
       .remove("hidden");
 
   }else{
 
-    check
+    el("mathCheck")
       .classList
       .add("hidden");
   }
@@ -4077,16 +3512,12 @@ function renderMath(
   setText(
     "mathMeta",
     [
-      result.source
-      ||
-      "math",
-
+      result.source,
       result.aiUsed
         ?
         "AI"
         :
         "local",
-
       result.workerVersion
         ?
         "Worker "
@@ -4111,51 +3542,20 @@ function renderMath(
 window.speakMath =
 function(){
 
-  if(
-    !latestMathResult
-  ){
-
+  if(!latestMathResult){
     return;
   }
 
-  const result =
-    latestMathResult;
-
-  const x =
-    text();
-
   speak(
     [
-      result.answer
-        ?
-        x.answer
-        +
-        " "
-        +
-        result.answer
-        +
-        (
-          result.unit
-            ?
-            " "
-            +
-            result.unit
-            :
-            ""
-        )
-        :
-        "",
-      result.explanation,
+      latestMathResult.answer,
+      latestMathResult.explanation,
       ...(
-        Array.isArray(
-          result.steps
-        )
-          ?
-          result.steps
-          :
-          []
+        latestMathResult.steps
+        ||
+        []
       ),
-      result.check
+      latestMathResult.check
     ]
       .filter(Boolean)
       .join(". ")
@@ -4176,11 +3576,10 @@ function isCameraLive(){
     &&
     video
     &&
-    video.readyState >= 2
+    video.readyState >=
+    2
     &&
     video.videoWidth > 0
-    &&
-    video.videoHeight > 0
   );
 }
 
@@ -4211,19 +3610,9 @@ async function(){
     latestVisionResult =
       null;
 
-    hideAiMessage();
-
     el("visionCard")
       .classList
       .remove("show");
-
-    el("visionRetryButton")
-      .classList
-      .add("hidden");
-
-    el("visionSpeakButton")
-      .disabled =
-      true;
 
     cameraStream =
       await navigator
@@ -4243,8 +3632,7 @@ async function(){
     video.srcObject =
       cameraStream;
 
-    video
-      .classList
+    video.classList
       .remove("hidden");
 
     el("capturedImage")
@@ -4274,9 +3662,7 @@ async function(){
 
 function captureFrame(){
 
-  if(
-    !isCameraLive()
-  ){
+  if(!isCameraLive()){
 
     throw new Error(
       text().cameraNotReady
@@ -4299,34 +3685,27 @@ function captureFrame(){
       )
     );
 
-  const width =
+  canvas.width =
     Math.round(
       video.videoWidth *
       scale
     );
 
-  const height =
+  canvas.height =
     Math.round(
       video.videoHeight *
       scale
     );
 
-  canvas.width =
-    width;
-
-  canvas.height =
-    height;
-
-  const context =
-    canvas.getContext("2d");
-
-  context.drawImage(
-    video,
-    0,
-    0,
-    width,
-    height
-  );
+  canvas
+    .getContext("2d")
+    .drawImage(
+      video,
+      0,
+      0,
+      canvas.width,
+      canvas.height
+    );
 
   capturedFrameReady =
     true;
@@ -4340,83 +3719,38 @@ function captureFrame(){
       .82
     );
 
-  image
-    .classList
+  image.classList
     .remove("hidden");
 
-  video
-    .classList
+  video.classList
     .add("hidden");
+
+  stopCamera();
 
   setText(
     "cameraStatus",
     text().cameraSaved
   );
-
-  stopCamera();
 }
 
 window.captureAndAnalyze =
 async function(){
 
-  if(visionBusy){
-    return;
+  if(isCameraLive()){
+    captureFrame();
   }
 
-  try{
-
-    if(
-      isCameraLive()
-    ){
-
-      captureFrame();
-    }
-
-    if(
-      !hasCapturedFrame()
-    ){
-
-      throw new Error(
-        text().noCapturedFrame
-      );
-    }
-
-    await analyzeCapturedImage();
-
-  }catch(error){
-
-    handleVisionError(
-      error
-    );
-  }
+  await analyzeCapturedImage();
 };
 
 window.analyzeCapturedImage =
 async function(){
 
   if(
-    visionBusy
-    ||
     !hasCapturedFrame()
-  ){
-
-    return;
-  }
-
-  if(
-    !window.RiiWorkerClientV2
     ||
-    typeof window
-      .RiiWorkerClientV2
-      .analyzeImage !==
-      "function"
+    visionBusy
   ){
-
-    handleVisionError(
-      new Error(
-        text().visionClientMissing
-      )
-    );
 
     return;
   }
@@ -4424,19 +3758,9 @@ async function(){
   visionBusy =
     true;
 
-  el("captureButton")
-    .disabled =
-    true;
-
   setText(
     "captureButton",
     text().looking
-  );
-
-  showAiMessage(
-    "⏳",
-    text().looking,
-    false
   );
 
   try{
@@ -4464,25 +3788,22 @@ async function(){
     latestVisionResult =
       result;
 
-    renderVision(
-      result
-    );
-
-    hideAiMessage();
+    renderVision(result);
 
   }catch(error){
 
-    handleVisionError(
-      error
+    setText(
+      "aiMessageText",
+      text().visionErrorText
     );
+
+    el("aiMessage")
+      .classList
+      .add("show");
 
   }finally{
 
     visionBusy =
-      false;
-
-    el("captureButton")
-      .disabled =
       false;
 
     setText(
@@ -4492,99 +3813,7 @@ async function(){
   }
 };
 
-function handleVisionError(
-  error
-){
-
-  const formatted =
-    window
-      .RiiWorkerClientV2
-      ?.formatError
-    ?
-    window
-      .RiiWorkerClientV2
-      .formatError(error)
-    :
-    {
-      message:
-        String(
-          error?.message ||
-          error
-        ),
-      code:"CLIENT_ERROR"
-    };
-
-  el("rootDebugText")
-    .textContent =
-    JSON.stringify(
-      formatted,
-      null,
-      2
-    );
-
-  el("rootDebug")
-    .classList
-    .remove("hidden");
-
-  showAiMessage(
-    text().visionError,
-    text().visionErrorText,
-    true
-  );
-
-  if(
-    hasCapturedFrame()
-  ){
-
-    el("visionRetryButton")
-      .classList
-      .remove("hidden");
-  }
-}
-
-function showAiMessage(
-  title,
-  message,
-  isError
-){
-
-  const box =
-    el("aiMessage");
-
-  box.className =
-    "ai-message show"
-    +
-    (
-      isError
-        ?
-        " error"
-        :
-        " resting"
-    );
-
-  setText(
-    "aiMessageTitle",
-    title
-  );
-
-  setText(
-    "aiMessageText",
-    message
-  );
-}
-
-function hideAiMessage(){
-
-  el("aiMessage").className =
-    "ai-message";
-}
-
-function renderVision(
-  result
-){
-
-  const x =
-    text();
+function renderVision(result){
 
   setText(
     "visionName",
@@ -4592,7 +3821,7 @@ function renderVision(
     ||
     result.objectName
     ||
-    x.unknown
+    text().unknown
   );
 
   setText(
@@ -4609,8 +3838,6 @@ function renderVision(
     "visionExplanation",
     result.childExplanation
     ||
-    result.closerViewMessage
-    ||
     ""
   );
 
@@ -4619,36 +3846,29 @@ function renderVision(
 
   if(result.color){
     items.push([
-      x.color,
+      text().color,
       result.color
     ]);
   }
 
   if(result.habitat){
     items.push([
-      x.habitat,
+      text().habitat,
       result.habitat
     ]);
   }
 
   if(result.origin){
     items.push([
-      x.origin,
+      text().origin,
       result.origin
     ]);
   }
 
   if(result.uses){
     items.push([
-      x.uses,
+      text().uses,
       result.uses
-    ]);
-  }
-
-  if(result.detectedText){
-    items.push([
-      x.detectedText,
-      result.detectedText
     ]);
   }
 
@@ -4656,12 +3876,10 @@ function renderVision(
     Array.isArray(
       result.visibleFeatures
     )
-    &&
-    result.visibleFeatures.length
   ){
 
     items.push([
-      x.features,
+      text().features,
       result.visibleFeatures
         .join(", ")
     ]);
@@ -4686,13 +3904,9 @@ function renderVision(
 
   el("visionFacts").innerHTML =
     (
-      Array.isArray(
-        result.interestingFacts
-      )
-        ?
-        result.interestingFacts
-        :
-        []
+      result.interestingFacts
+      ||
+      []
     )
       .map(
         fact =>
@@ -4704,23 +3918,16 @@ function renderVision(
       )
       .join("");
 
-  const answer =
-    el("visionAnswer");
-
   if(result.answer){
 
-    answer.textContent =
-      result.answer;
+    setText(
+      "visionAnswer",
+      result.answer
+    );
 
-    answer
+    el("visionAnswer")
       .classList
       .remove("hidden");
-
-  }else{
-
-    answer
-      .classList
-      .add("hidden");
   }
 
   el("visionCard")
@@ -4739,18 +3946,13 @@ function(){
     return;
   }
 
-  const result =
-    latestVisionResult;
-
   speak(
     [
-      result.displayName
+      latestVisionResult.displayName
       ||
-      result.objectName,
-      result.childExplanation,
-      result.answer,
-      result.habitat,
-      result.interestingFacts?.[0]
+      latestVisionResult.objectName,
+      latestVisionResult.childExplanation,
+      latestVisionResult.answer
     ]
       .filter(Boolean)
       .join(". ")
@@ -4785,177 +3987,24 @@ function stopCamera(){
    TRANSLATION
 ===================================================== */
 
-function setTranslationBusy(
-  busy
-){
-
-  translationBusy =
-    busy;
-
-  el("translateActionButton")
-    .disabled =
-    busy;
-
-  el("translateVoiceButton")
-    .disabled =
-    busy;
-
-  setText(
-    "translateActionButton",
-    busy
-      ?
-      text().translating
-      :
-      text().translateAction
-  );
-}
-
 function showTranslationStatus(
   message,
   mode =
   "normal"
 ){
 
-  const box =
+  const node =
     el("translationStatus");
 
-  box.textContent =
+  node.textContent =
     message;
 
-  box.className =
+  node.className =
     "translation-status show";
 
-  if(
-    mode ===
-    "error"
-  ){
-
-    box.classList.add(
-      "error"
-    );
+  if(mode === "error"){
+    node.classList.add("error");
   }
-
-  if(
-    mode ===
-    "resting"
-  ){
-
-    box.classList.add(
-      "resting"
-    );
-  }
-}
-
-function renderTranslation(
-  result
-){
-
-  if(!result){
-    return;
-  }
-
-  const x =
-    text();
-
-  const sourceCode =
-    result.detectedLanguageCode
-    ||
-    result.detectedSourceLanguage
-    ||
-    result.sourceLanguage
-    ||
-    "";
-
-  const source =
-    languageByCode(
-      sourceCode
-    );
-
-  const sourceName =
-    source?.name
-    ||
-    result.detectedLanguage
-    ||
-    result.detectedSourceLanguageName
-    ||
-    result.sourceLanguageName
-    ||
-    x.translateAuto;
-
-  const target =
-    languageByCode(
-      result.targetLanguage
-    )
-    ||
-    currentLanguage();
-
-  setText(
-    "translateResult",
-    result.translatedText
-    ||
-    ""
-  );
-
-  setText(
-    "translateSourceValue",
-    source
-      ?
-      source.flag
-      +
-      " "
-      +
-      source.name
-      :
-      sourceName
-  );
-
-  setText(
-    "translateTargetValue",
-    target.flag
-    +
-    " "
-    +
-    target.name
-  );
-
-  setText(
-    "translationMeta",
-    [
-      x.translateDetected
-      +
-      ": "
-      +
-      sourceName,
-
-      result.source
-      ||
-      "translation",
-
-      result.aiUsed
-        ?
-        "AI"
-        :
-        "local",
-
-      result.workerVersion
-        ?
-        "Worker "
-        +
-        result.workerVersion
-        :
-        ""
-    ]
-      .filter(Boolean)
-      .join(" • ")
-  );
-
-  el("translationOutput")
-    .classList
-    .add("show");
-
-  el("translateSpeakButton")
-    .disabled =
-    !result.translatedText;
 }
 
 window.translateNow =
@@ -4965,9 +4014,6 @@ async function(){
     return;
   }
 
-  const x =
-    text();
-
   const value =
     el("translateInput")
       .value
@@ -4976,34 +4022,18 @@ async function(){
   if(!value){
 
     showTranslationStatus(
-      x.translateNeedText,
+      text().translateNeedText,
       "error"
     );
 
     return;
   }
 
-  if(
-    !window.RiiWorkerClientV2
-    ||
-    typeof window
-      .RiiWorkerClientV2
-      .translateText !==
-      "function"
-  ){
-
-    showTranslationStatus(
-      x.translateClientMissing,
-      "error"
-    );
-
-    return;
-  }
-
-  setTranslationBusy(true);
+  translationBusy =
+    true;
 
   showTranslationStatus(
-    x.translating
+    text().translating
   );
 
   try{
@@ -5028,111 +4058,125 @@ async function(){
     latestTranslationResult =
       result;
 
-    renderTranslation(
-      result
-    );
+    renderTranslation(result);
 
     showTranslationStatus(
       result.aiUsed
         ?
-        x.translateDone
+        text().translateDone
         :
-        x.translateLocal
+        text().translateLocal
     );
 
   }catch(error){
 
-    const formatted =
-      window
-        .RiiWorkerClientV2
-        ?.formatError
-      ?
-      window
-        .RiiWorkerClientV2
-        .formatError(error)
-      :
-      {
-        message:
-          String(
-            error?.message ||
-            error
-          ),
-        code:"CLIENT_ERROR"
-      };
-
-    el("translationDebugText")
-      .textContent =
-      JSON.stringify(
-        formatted,
-        null,
-        2
-      );
-
-    el("translationDebug")
-      .classList
-      .remove("hidden");
-
-    const quota =
-      formatted.code ===
-      "TRANSLATION_MODEL_FAILED"
-      &&
-      /4006|daily free allocation|10,000 neurons/i
-        .test(
-          formatted.message
-        );
-
     showTranslationStatus(
-      quota
-        ?
-        x.translateQuota
-        :
-        x.translateError
-        +
-        formatted.message,
-      quota
-        ?
-        "resting"
-        :
-        "error"
+      text().translateError
+      +
+      String(
+        error?.message ||
+        error
+      ),
+      "error"
     );
 
   }finally{
 
-    setTranslationBusy(false);
+    translationBusy =
+      false;
   }
 };
+
+function renderTranslation(result){
+
+  setText(
+    "translateResult",
+    result.translatedText
+    ||
+    ""
+  );
+
+  const sourceCode =
+    result.detectedLanguageCode
+    ||
+    result.sourceLanguage;
+
+  const source =
+    languageByCode(sourceCode);
+
+  const target =
+    languageByCode(
+      result.targetLanguage
+    )
+    ||
+    currentLanguage();
+
+  setText(
+    "translateSourceValue",
+    source
+      ?
+      source.flag
+      +
+      " "
+      +
+      source.name
+      :
+      text().translateAuto
+  );
+
+  setText(
+    "translateTargetValue",
+    target.flag
+    +
+    " "
+    +
+    target.name
+  );
+
+  setText(
+    "translationMeta",
+    [
+      result.source,
+      result.aiUsed
+        ?
+        "AI"
+        :
+        "local",
+      result.workerVersion
+        ?
+        "Worker "
+        +
+        result.workerVersion
+        :
+        ""
+    ]
+      .filter(Boolean)
+      .join(" • ")
+  );
+
+  el("translationOutput")
+    .classList
+    .add("show");
+
+  el("translateSpeakButton")
+    .disabled =
+    false;
+}
 
 window.speakTranslation =
 function(){
 
-  if(
-    !latestTranslationResult
-    ||
-    !latestTranslationResult
-      .translatedText
-  ){
-
+  if(!latestTranslationResult){
     return;
   }
-
-  const target =
-    languageByCode(
-      latestTranslationResult
-        .targetLanguage
-    );
 
   speak(
     latestTranslationResult
       .translatedText,
-    latestTranslationResult
-      .targetLocale
-    ||
-    latestTranslationResult
-      .locale
-    ||
-    target?.locale
-    ||
-    currentLanguage().locale
+    languageByCode(
+      latestTranslationResult
+        .targetLanguage
+    )?.locale
   );
 };
 
@@ -5145,23 +4189,9 @@ function(){
   el("translateInput").value =
     "";
 
-  setText(
-    "translateResult",
-    ""
-  );
-
-  setText(
-    "translationMeta",
-    ""
-  );
-
   el("translationOutput")
     .classList
     .remove("show");
-
-  el("translateSpeakButton")
-    .disabled =
-    true;
 
   render();
 };
@@ -5187,35 +4217,11 @@ function getNotes(){
     );
 }
 
-function saveNotes(
-  notes
-){
-
-  const others =
-    loadArray(
-      NOTE_KEY
-    )
-      .filter(
-        note =>
-          (
-            note.riiId
-            ||
-            ROOT_ID
-          )
-          !==
-          ROOT_ID
-      );
+function saveNotes(notes){
 
   saveArray(
     NOTE_KEY,
-    [
-      ...notes,
-      ...others
-    ]
-      .slice(
-        0,
-        500
-      )
+    notes
   );
 }
 
@@ -5234,11 +4240,6 @@ function(){
       text().noteEmpty
     );
 
-    el("notesResult")
-      .dataset
-      .touched =
-      "1";
-
     return;
   }
 
@@ -5246,35 +4247,18 @@ function(){
     getNotes();
 
   notes.unshift({
-
     id:
       "note_"
       +
-      Date.now()
-      +
-      "_"
-      +
-      Math.random()
-        .toString(36)
-        .slice(2,8),
-
-    riiId:
-      ROOT_ID,
-
-    text:
-      value,
-
+      Date.now(),
+    riiId:ROOT_ID,
+    text:value,
     createdAt:
       new Date()
-        .toISOString(),
-
-    updatedAt:
-      null
+        .toISOString()
   });
 
-  saveNotes(
-    notes
-  );
+  saveNotes(notes);
 
   el("notesInput").value =
     "";
@@ -5294,12 +4278,6 @@ function(){
   );
 
   renderNotes();
-
-  /*
-    Không tự đọc sau khi save.
-    Để nút Nghe là user gesture riêng,
-    ổn định hơn trên Safari iOS.
-  */
 };
 
 function renderNotes(){
@@ -5307,16 +4285,9 @@ function renderNotes(){
   const notes =
     getNotes();
 
-  const container =
-    el("notesList");
-
-  if(!container){
-    return;
-  }
-
   if(!notes.length){
 
-    container.innerHTML =
+    el("notesList").innerHTML =
       `
       <div class="notes-empty">
         ${escapeHtml(text().noNotes)}
@@ -5326,7 +4297,7 @@ function renderNotes(){
     return;
   }
 
-  container.innerHTML =
+  el("notesList").innerHTML =
     notes
       .map(
         note =>
@@ -5339,19 +4310,13 @@ function renderNotes(){
 
             <div class="note-time">
               ${escapeHtml(
-                new Intl.DateTimeFormat(
-                  currentLanguage().locale,
-                  {
-                    dateStyle:"medium",
-                    timeStyle:"short"
-                  }
+                new Date(
+                  note.updatedAt
+                  ||
+                  note.createdAt
                 )
-                  .format(
-                    new Date(
-                      note.updatedAt
-                      ||
-                      note.createdAt
-                    )
+                  .toLocaleString(
+                    currentLanguage().locale
                   )
               )}
             </div>
@@ -5388,9 +4353,7 @@ function renderNotes(){
 }
 
 window.hearNote =
-function(
-  id
-){
+function(id){
 
   const note =
     getNotes()
@@ -5400,68 +4363,56 @@ function(
           id
       );
 
-  if(!note){
-    return;
-  }
+  if(note){
 
-  speak(
-    note.text,
-    currentLanguage().locale
-  );
+    speak(
+      note.text,
+      currentLanguage().locale
+    );
+  }
 };
 
 window.editNote =
-function(
-  id
-){
+function(id){
 
   const notes =
     getNotes();
 
-  const index =
-    notes.findIndex(
+  const note =
+    notes.find(
       item =>
         item.id ===
         id
     );
 
-  if(index < 0){
+  if(!note){
     return;
   }
 
   const next =
     prompt(
       text().editPrompt,
-      notes[index].text
+      note.text
     );
 
-  if(next === null){
+  if(
+    next ===
+    null
+    ||
+    !next.trim()
+  ){
+
     return;
   }
 
-  const clean =
+  note.text =
     next.trim();
 
-  if(!clean){
-    return;
-  }
+  note.updatedAt =
+    new Date()
+      .toISOString();
 
-  notes[index] = {
-    ...notes[index],
-    text:clean,
-    updatedAt:
-      new Date()
-        .toISOString()
-  };
-
-  saveNotes(
-    notes
-  );
-
-  el("notesResult")
-    .dataset
-    .touched =
-    "1";
+  saveNotes(notes);
 
   setText(
     "notesResult",
@@ -5472,9 +4423,7 @@ function(
 };
 
 window.deleteNote =
-function(
-  id
-){
+function(id){
 
   saveNotes(
     getNotes()
@@ -5484,11 +4433,6 @@ function(
           id
       )
   );
-
-  el("notesResult")
-    .dataset
-    .touched =
-    "1";
 
   setText(
     "notesResult",
@@ -5514,26 +4458,11 @@ function getAlarms(){
     );
 }
 
-function saveAlarms(
-  alarms
-){
-
-  const others =
-    loadArray(
-      ALARM_KEY
-    )
-      .filter(
-        alarm =>
-          alarm.riiId !==
-          ROOT_ID
-      );
+function saveAlarms(value){
 
   saveArray(
     ALARM_KEY,
-    [
-      ...alarms,
-      ...others
-    ]
+    value
   );
 }
 
@@ -5553,39 +4482,33 @@ function setDefaultAlarmDateTime(){
 
   const mm =
     String(
-      next.getMonth() + 1
-    )
-      .padStart(2,"0");
+      next.getMonth()
+      +
+      1
+    ).padStart(2,"0");
 
   const dd =
     String(
       next.getDate()
-    )
-      .padStart(2,"0");
+    ).padStart(2,"0");
 
   const hh =
     String(
       next.getHours()
-    )
-      .padStart(2,"0");
+    ).padStart(2,"0");
 
   const min =
     String(
       next.getMinutes()
-    )
-      .padStart(2,"0");
+    ).padStart(2,"0");
 
-  if(
-    !el("alarmDateInput").value
-  ){
+  if(!el("alarmDateInput").value){
 
     el("alarmDateInput").value =
       `${yyyy}-${mm}-${dd}`;
   }
 
-  if(
-    !el("alarmTimeInput").value
-  ){
+  if(!el("alarmTimeInput").value){
 
     el("alarmTimeInput").value =
       `${hh}:${min}`;
@@ -5595,6 +4518,15 @@ function setDefaultAlarmDateTime(){
 window.saveAlarm =
 function(){
 
+  const time =
+    el("alarmTimeInput").value;
+
+  const date =
+    el("alarmDateInput").value;
+
+  const repeat =
+    el("alarmRepeatInput").value;
+
   const title =
     el("alarmTitleInput")
       .value
@@ -5602,37 +4534,7 @@ function(){
     ||
     text().alarmDefault;
 
-  const date =
-    el("alarmDateInput").value;
-
-  const time =
-    el("alarmTimeInput").value;
-
-  const repeat =
-    el("alarmRepeatInput").value;
-
   if(!time){
-
-    setText(
-      "alarmResult",
-      text().alarmNeedTime
-    );
-
-    return;
-  }
-
-  if(
-    repeat ===
-    "once"
-    &&
-    !date
-  ){
-
-    setText(
-      "alarmResult",
-      text().alarmNeedDate
-    );
-
     return;
   }
 
@@ -5640,38 +4542,21 @@ function(){
     getAlarms();
 
   alarms.unshift({
-
     id:
       "alarm_"
       +
       Date.now(),
-
-    riiId:
-      ROOT_ID,
-
+    riiId:ROOT_ID,
     title,
     date,
     time,
     repeat,
-
     enabled:true,
-
     lastTriggeredKey:null,
-
     snoozeUntil:null
   });
 
-  saveAlarms(
-    alarms
-  );
-
-  el("alarmTitleInput").value =
-    "";
-
-  el("alarmResult")
-    .dataset
-    .touched =
-    "1";
+  saveAlarms(alarms);
 
   setText(
     "alarmResult",
@@ -5694,16 +4579,9 @@ function renderAlarms(){
   const alarms =
     getAlarms();
 
-  const container =
-    el("alarmList");
-
-  if(!container){
-    return;
-  }
-
   if(!alarms.length){
 
-    container.innerHTML =
+    el("alarmList").innerHTML =
       `
       <div class="notes-empty">
         ${escapeHtml(text().noAlarms)}
@@ -5713,20 +4591,18 @@ function renderAlarms(){
     return;
   }
 
-  container.innerHTML =
+  el("alarmList").innerHTML =
     alarms
       .map(
         alarm =>
           `
-          <div
-            class="alarm-item ${
-              alarm.enabled
-                ?
-                ""
-                :
-                "alarm-disabled"
-            }"
-          >
+          <div class="alarm-item ${
+            alarm.enabled
+              ?
+              ""
+              :
+              "alarm-disabled"
+          }">
 
             <div class="alarm-item-top">
 
@@ -5738,21 +4614,6 @@ function renderAlarms(){
 
                 <div class="alarm-title">
                   ${escapeHtml(alarm.title)}
-                </div>
-
-                <div class="alarm-meta">
-                  ${
-                    alarm.repeat ===
-                    "daily"
-                      ?
-                      escapeHtml(
-                        text().daily
-                      )
-                      :
-                      escapeHtml(
-                        alarm.date
-                      )
-                  }
                 </div>
 
               </div>
@@ -5795,9 +4656,7 @@ function renderAlarms(){
 }
 
 window.toggleAlarm =
-function(
-  id
-){
+function(id){
 
   const alarms =
     getAlarms();
@@ -5816,29 +4675,13 @@ function(
   alarm.enabled =
     !alarm.enabled;
 
-  alarm.lastTriggeredKey =
-    null;
-
-  saveAlarms(
-    alarms
-  );
-
-  setText(
-    "alarmResult",
-    alarm.enabled
-      ?
-      text().alarmEnabled
-      :
-      text().alarmDisabled
-  );
+  saveAlarms(alarms);
 
   renderAlarms();
 };
 
 window.deleteAlarm =
-function(
-  id
-){
+function(id){
 
   saveAlarms(
     getAlarms()
@@ -5849,18 +4692,11 @@ function(
       )
   );
 
-  setText(
-    "alarmResult",
-    text().alarmDeleted
-  );
-
   renderAlarms();
 };
 
 window.hearAlarm =
-function(
-  id
-){
+function(id){
 
   const alarm =
     getAlarms()
@@ -5882,9 +4718,7 @@ function(
   }
 };
 
-function localDateKey(
-  date
-){
+function localDateKey(date){
 
   return (
     date.getFullYear()
@@ -5903,9 +4737,7 @@ function localDateKey(
   );
 }
 
-function localTimeKey(
-  date
-){
+function localTimeKey(date){
 
   return (
     String(
@@ -5935,15 +4767,8 @@ function checkAlarms(){
   const today =
     localDateKey(now);
 
-  const currentTime =
+  const time =
     localTimeKey(now);
-
-  const triggerKey =
-    today
-    +
-    " "
-    +
-    currentTime;
 
   let changed =
     false;
@@ -5957,36 +4782,9 @@ function checkAlarms(){
       continue;
     }
 
-    if(alarm.snoozeUntil){
-
-      const snooze =
-        new Date(
-          alarm.snoozeUntil
-        );
-
-      if(
-        now >= snooze
-      ){
-
-        alarm.snoozeUntil =
-          null;
-
-        changed =
-          true;
-
-        triggerAlarm(
-          alarm
-        );
-
-        break;
-      }
-
-      continue;
-    }
-
     if(
       alarm.time !==
-      currentTime
+      time
     ){
 
       continue;
@@ -6003,16 +4801,23 @@ function checkAlarms(){
       continue;
     }
 
+    const key =
+      today
+      +
+      " "
+      +
+      time;
+
     if(
       alarm.lastTriggeredKey ===
-      triggerKey
+      key
     ){
 
       continue;
     }
 
     alarm.lastTriggeredKey =
-      triggerKey;
+      key;
 
     if(
       alarm.repeat ===
@@ -6026,31 +4831,23 @@ function checkAlarms(){
     changed =
       true;
 
-    triggerAlarm(
-      alarm
-    );
+    triggerAlarm(alarm);
 
     break;
   }
 
   if(changed){
 
-    saveAlarms(
-      alarms
-    );
+    saveAlarms(alarms);
 
     renderAlarms();
   }
 }
 
-function triggerAlarm(
-  alarm
-){
+function triggerAlarm(alarm){
 
   activeAlarm =
-    {
-      ...alarm
-    };
+    alarm;
 
   setText(
     "alarmAlertTime",
@@ -6060,94 +4857,23 @@ function triggerAlarm(
   setText(
     "alarmAlertTitle",
     alarm.title
-    ||
-    text().alarmDefault
   );
 
   el("alarmOverlay")
     .classList
     .add("open");
 
-  startAlarmTone();
-
   speak(
     text().alarmRinging
     +
     ". "
     +
-    (
-      alarm.title
-      ||
-      text().alarmDefault
-    )
+    alarm.title
   );
-}
-
-function startAlarmTone(){
-
-  stopAlarmTone();
-
-  try{
-
-    const C =
-      window.AudioContext
-      ||
-      window.webkitAudioContext;
-
-    if(!C){
-      return;
-    }
-
-    alarmAudioContext =
-      new C();
-
-    alarmOscillator =
-      alarmAudioContext
-        .createOscillator();
-
-    const gain =
-      alarmAudioContext
-        .createGain();
-
-    alarmOscillator.frequency.value =
-      880;
-
-    gain.gain.value =
-      .14;
-
-    alarmOscillator
-      .connect(gain);
-
-    gain.connect(
-      alarmAudioContext.destination
-    );
-
-    alarmOscillator.start();
-
-  }catch{}
-}
-
-function stopAlarmTone(){
-
-  try{
-    alarmOscillator?.stop();
-  }catch{}
-
-  alarmOscillator =
-    null;
-
-  try{
-    alarmAudioContext?.close();
-  }catch{}
-
-  alarmAudioContext =
-    null;
 }
 
 window.stopActiveAlarm =
 function(){
-
-  stopAlarmTone();
 
   el("alarmOverlay")
     .classList
@@ -6176,22 +4902,31 @@ function(){
 
   if(alarm){
 
-    alarm.enabled =
-      true;
-
-    alarm.snoozeUntil =
+    const next =
       new Date(
         Date.now()
         +
         5 *
         60 *
         1000
-      )
-        .toISOString();
+      );
 
-    saveAlarms(
-      alarms
-    );
+    alarm.time =
+      localTimeKey(next);
+
+    alarm.date =
+      localDateKey(next);
+
+    alarm.enabled =
+      true;
+
+    alarm.repeat =
+      "once";
+
+    alarm.lastTriggeredKey =
+      null;
+
+    saveAlarms(alarms);
   }
 
   stopActiveAlarm();
@@ -6202,22 +4937,11 @@ function(){
 window.switchNotesTab =
 function(
   tab,
-  updateState =
+  update =
   true
 ){
 
-  if(
-    ![
-      "notes",
-      "alarms"
-    ]
-      .includes(tab)
-  ){
-
-    return;
-  }
-
-  if(updateState){
+  if(update){
     currentNotesTab =
       tab;
   }
@@ -6253,20 +4977,10 @@ function(
       tab ===
       "alarms"
     );
-
-  if(
-    tab ===
-    "alarms"
-  ){
-
-    setDefaultAlarmDateTime();
-
-    renderAlarms();
-  }
 };
 
 /* =====================================================
-   QUICK RII
+   RII FLOAT BUTTON
 ===================================================== */
 
 window.closeQuick =
@@ -6278,15 +4992,11 @@ function(){
 };
 
 window.quickOpen =
-function(
-  name
-){
+function(name){
 
   closeQuick();
 
-  openCenter(
-    name
-  );
+  openCenter(name);
 };
 
 const rii =
@@ -6304,27 +5014,6 @@ let offsetX =
 let offsetY =
   0;
 
-let dragStartX =
-  0;
-
-let dragStartY =
-  0;
-
-function clamp(
-  value,
-  min,
-  max
-){
-
-  return Math.min(
-    Math.max(
-      value,
-      min
-    ),
-    max
-  );
-}
-
 rii.addEventListener(
   "pointerdown",
   event => {
@@ -6334,12 +5023,6 @@ rii.addEventListener(
 
     moved =
       false;
-
-    dragStartX =
-      event.clientX;
-
-    dragStartY =
-      event.clientY;
 
     const rect =
       rii
@@ -6352,12 +5035,6 @@ rii.addEventListener(
     offsetY =
       event.clientY -
       rect.top;
-
-    try{
-      rii.setPointerCapture(
-        event.pointerId
-      );
-    }catch{}
   }
 );
 
@@ -6369,51 +5046,33 @@ rii.addEventListener(
       return;
     }
 
-    const dx =
-      event.clientX -
-      dragStartX;
-
-    const dy =
-      event.clientY -
-      dragStartY;
-
-    if(
-      Math.sqrt(
-        dx * dx
-        +
-        dy * dy
-      )
-      >
-      4
-    ){
-
-      moved =
-        true;
-    }
-
-    const size =
-      rii.offsetWidth;
+    moved =
+      true;
 
     rii.style.left =
-      clamp(
-        event.clientX -
-        offsetX,
+      Math.max(
         6,
-        innerWidth -
-        size -
-        6
+        Math.min(
+          innerWidth -
+          rii.offsetWidth -
+          6,
+          event.clientX -
+          offsetX
+        )
       )
       +
       "px";
 
     rii.style.top =
-      clamp(
-        event.clientY -
-        offsetY,
+      Math.max(
         8,
-        innerHeight -
-        size -
-        12
+        Math.min(
+          innerHeight -
+          rii.offsetHeight -
+          12,
+          event.clientY -
+          offsetY
+        )
       )
       +
       "px";
@@ -6422,16 +5081,10 @@ rii.addEventListener(
 
 rii.addEventListener(
   "pointerup",
-  event => {
+  () => {
 
     dragging =
       false;
-
-    try{
-      rii.releasePointerCapture(
-        event.pointerId
-      );
-    }catch{}
 
     if(!moved){
 
@@ -6442,83 +5095,22 @@ rii.addEventListener(
   }
 );
 
-rii.addEventListener(
-  "pointercancel",
-  () => {
-
-    dragging =
-      false;
-  }
-);
-
-[
-  "languageOverlay",
-  "quickOverlay"
-]
-  .forEach(
-    id => {
-
-      el(id)
-        .addEventListener(
-          "click",
-          event => {
-
-            if(
-              event.target.id ===
-              id
-            ){
-
-              event
-                .currentTarget
-                .classList
-                .remove("open");
-            }
-          }
-        );
-    }
-  );
-
 /* =====================================================
    BOOT
 ===================================================== */
 
 try{
 
-  const savedLanguage =
-    localStorage.getItem(
+  if(
+    !localStorage.getItem(
       LANGUAGE_KEY
-    );
-
-  const valid =
-    languages.some(
-      item =>
-        item.code ===
-        savedLanguage
-    );
-
-  if(!valid){
+    )
+  ){
 
     localStorage.setItem(
       LANGUAGE_KEY,
       "vi"
     );
-  }
-
-  /*
-    Gọi getVoices sớm để Safari bắt đầu load voice list.
-  */
-
-  if(
-    "speechSynthesis"
-    in window
-  ){
-
-    try{
-
-      speechSynthesis
-        .getVoices();
-
-    }catch{}
   }
 
   setDefaultAlarmDateTime();
@@ -6537,33 +5129,24 @@ try{
     +
     APP_VERSION
     +
-    " iOS Speech Stability ready"
+    " iOS Speech Input Fix ready"
   );
 
 }catch(error){
 
-  console.error(
-    "Rii boot failed",
-    error
+  setText(
+    "bootError",
+    "❌ "
+    +
+    String(
+      error?.message ||
+      error
+    )
   );
 
-  const node =
-    el("bootError");
-
-  if(node){
-
-    node.textContent =
-      "❌ Rii UI boot error: "
-      +
-      String(
-        error?.message ||
-        error
-      );
-
-    node
-      .classList
-      .add("show");
-  }
+  el("bootError")
+    .classList
+    .add("show");
 }
 
 })();
