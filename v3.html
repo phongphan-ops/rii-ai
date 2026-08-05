@@ -11,7 +11,7 @@
   content="#050b14"
 >
 
-<title>Rii AI V3.6.0</title>
+<title>Rii AI V3.6.1</title>
 
 <style>
 :root{
@@ -66,20 +66,17 @@ button:disabled{
   position:fixed;
   inset:0;
   z-index:-2;
-
   background:
     radial-gradient(
       circle at 82% 18%,
       #daad582b,
       transparent 27%
     ),
-
     radial-gradient(
       circle at 16% 72%,
       #1f5f9e42,
       transparent 32%
     ),
-
     linear-gradient(
       145deg,
       #02070d,
@@ -92,7 +89,6 @@ button:disabled{
   width:min(100%,980px);
   margin:auto;
   min-height:100vh;
-
   padding:
     calc(18px + env(safe-area-inset-top))
     14px
@@ -350,12 +346,10 @@ button:disabled{
   z-index:800;
   display:none;
   overflow:auto;
-
   padding:
     calc(15px + env(safe-area-inset-top))
     13px
     calc(95px + env(safe-area-inset-bottom));
-
   background:
     linear-gradient(
       145deg,
@@ -592,7 +586,6 @@ button:disabled{
   padding:16px;
   border-radius:20px;
   border:1px solid #58d9b044;
-
   background:
     linear-gradient(
       145deg,
@@ -609,7 +602,6 @@ button:disabled{
   color:var(--mint);
   font-size:11px;
   font-weight:850;
-  letter-spacing:.3px;
 }
 
 .translation-result{
@@ -721,6 +713,10 @@ button:disabled{
   overflow:auto;
 }
 
+/* =====================================================
+   NOTES & ALARMS
+===================================================== */
+
 .notes-tabs{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -729,8 +725,8 @@ button:disabled{
 }
 
 .notes-tab{
-  padding:12px;
-  border-radius:15px;
+  padding:13px;
+  border-radius:16px;
   border:1px solid #ffffff14;
   background:#ffffff09;
   color:#c9d4df;
@@ -754,36 +750,27 @@ button:disabled{
 .note-list,
 .alarm-list{
   display:grid;
-  gap:9px;
+  gap:10px;
   margin-top:14px;
 }
 
 .note-item,
 .alarm-item{
-  padding:13px;
-  border-radius:18px;
+  padding:14px;
+  border-radius:19px;
   border:1px solid #ffffff12;
   background:#07131e;
 }
 
-.note-item-top,
-.alarm-item-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-}
-
 .note-text{
-  flex:1;
-  line-height:1.5;
+  line-height:1.55;
   white-space:pre-wrap;
   word-break:break-word;
 }
 
 .note-time,
 .alarm-meta{
-  margin-top:7px;
+  margin-top:9px;
   color:var(--muted);
   font-size:10px;
 }
@@ -791,8 +778,8 @@ button:disabled{
 .mini-actions{
   display:flex;
   flex-wrap:wrap;
-  gap:6px;
-  margin-top:10px;
+  gap:7px;
+  margin-top:11px;
 }
 
 .mini-btn{
@@ -844,17 +831,33 @@ button:disabled{
   gap:8px;
 }
 
-.alarm-switch{
+.alarm-item-top{
   display:flex;
-  align-items:center;
+  align-items:flex-start;
   justify-content:space-between;
   gap:10px;
+}
+
+.alarm-time{
+  font-size:25px;
+  font-weight:900;
+  color:var(--gold2);
+}
+
+.alarm-title{
+  margin-top:3px;
+  font-weight:800;
+}
+
+.alarm-disabled{
+  opacity:.48;
 }
 
 .switch{
   position:relative;
   width:48px;
   height:28px;
+  min-width:48px;
   border:0;
   border-radius:999px;
   background:#33404e;
@@ -880,30 +883,22 @@ button:disabled{
   transform:translateX(20px);
 }
 
-.alarm-time{
-  font-size:24px;
-  font-weight:900;
-  color:var(--gold2);
-}
-
-.alarm-title{
-  margin-top:3px;
-  font-weight:800;
-}
-
-.alarm-disabled{
-  opacity:.5;
-}
-
 .alarm-alert{
   width:min(92vw,400px);
   padding:24px;
   border-radius:30px;
   border:1px solid #d8ad5877;
   background:
-    radial-gradient(circle at 50% 0%,#6a511f55,transparent 45%),
-    linear-gradient(155deg,#102338,#050d16);
-
+    radial-gradient(
+      circle at 50% 0%,
+      #6a511f55,
+      transparent 45%
+    ),
+    linear-gradient(
+      155deg,
+      #102338,
+      #050d16
+    );
   box-shadow:0 28px 90px #000;
   text-align:center;
 }
@@ -932,6 +927,10 @@ button:disabled{
   margin-top:18px;
 }
 
+/* =====================================================
+   FLOATING RII
+===================================================== */
+
 .rii{
   position:fixed;
   left:calc(100vw - 82px);
@@ -943,19 +942,16 @@ button:disabled{
   place-items:center;
   border-radius:50%;
   border:2px solid var(--gold);
-
   background:
     radial-gradient(
       circle at 35% 30%,
       #28517c,
       #06121e 62%
     );
-
   color:var(--gold2);
   font-weight:900;
   touch-action:none;
   user-select:none;
-
   box-shadow:
     0 9px 28px #0000008c,
     0 0 0 5px #0a1726b8;
@@ -988,7 +984,6 @@ button:disabled{
   padding:20px;
   border-radius:29px;
   border:1px solid var(--line);
-
   background:
     linear-gradient(
       155deg,
@@ -1153,7 +1148,7 @@ button:disabled{
 <section class="hero">
 
   <div class="eyebrow">
-    RII V3.6.0 • NOTES & ALARMS LIVE
+    RII V3.6.1 • IOS SPEECH STABILITY FIX
   </div>
 
   <h1 id="heroTitle"></h1>
@@ -1366,9 +1361,7 @@ button:disabled{
 
     <div class="panel-head">
 
-      <h3>
-        Rii
-      </h3>
+      <h3>Rii</h3>
 
       <button
         class="close"
@@ -1522,6 +1515,8 @@ button:disabled{
 
     </div>
 
+    <!-- MATH -->
+
     <section
       id="mathCenter"
       class="screen-card hidden"
@@ -1614,6 +1609,8 @@ button:disabled{
       </details>
 
     </section>
+
+    <!-- CAMERA -->
 
     <section
       id="cameraCenter"
@@ -1769,6 +1766,8 @@ button:disabled{
 
     </section>
 
+    <!-- TRANSLATE -->
+
     <section
       id="translateCenter"
       class="screen-card hidden"
@@ -1882,6 +1881,8 @@ button:disabled{
       </details>
 
     </section>
+
+    <!-- NOTES -->
 
     <section
       id="notesCenter"
@@ -2019,7 +2020,7 @@ button:disabled{
 "use strict";
 
 const APP_VERSION =
-  "3.6.0";
+  "3.6.1";
 
 const ROOT_ID =
   "Rii00000001";
@@ -2034,466 +2035,152 @@ const ALARM_KEY =
   "rii-v3-local-alarms";
 
 const languages = [
-
-  {
-    code:"vi",
-    locale:"vi-VN",
-    flag:"🇻🇳",
-    name:"Tiếng Việt",
-    english:"Vietnamese"
-  },
-
-  {
-    code:"en",
-    locale:"en-US",
-    flag:"🇺🇸",
-    name:"English",
-    english:"English"
-  },
-
-  {
-    code:"zh",
-    locale:"zh-CN",
-    flag:"🇨🇳",
-    name:"中文",
-    english:"Chinese"
-  },
-
-  {
-    code:"ja",
-    locale:"ja-JP",
-    flag:"🇯🇵",
-    name:"日本語",
-    english:"Japanese"
-  },
-
-  {
-    code:"ko",
-    locale:"ko-KR",
-    flag:"🇰🇷",
-    name:"한국어",
-    english:"Korean"
-  },
-
-  {
-    code:"es",
-    locale:"es-ES",
-    flag:"🇪🇸",
-    name:"Español",
-    english:"Spanish"
-  },
-
-  {
-    code:"fr",
-    locale:"fr-FR",
-    flag:"🇫🇷",
-    name:"Français",
-    english:"French"
-  },
-
-  {
-    code:"de",
-    locale:"de-DE",
-    flag:"🇩🇪",
-    name:"Deutsch",
-    english:"German"
-  },
-
-  {
-    code:"pt",
-    locale:"pt-BR",
-    flag:"🇧🇷",
-    name:"Português",
-    english:"Portuguese"
-  },
-
-  {
-    code:"it",
-    locale:"it-IT",
-    flag:"🇮🇹",
-    name:"Italiano",
-    english:"Italian"
-  },
-
-  {
-    code:"th",
-    locale:"th-TH",
-    flag:"🇹🇭",
-    name:"ไทย",
-    english:"Thai"
-  },
-
-  {
-    code:"id",
-    locale:"id-ID",
-    flag:"🇮🇩",
-    name:"Bahasa Indonesia",
-    english:"Indonesian"
-  }
-
+  {code:"vi",locale:"vi-VN",flag:"🇻🇳",name:"Tiếng Việt",english:"Vietnamese"},
+  {code:"en",locale:"en-US",flag:"🇺🇸",name:"English",english:"English"},
+  {code:"zh",locale:"zh-CN",flag:"🇨🇳",name:"中文",english:"Chinese"},
+  {code:"ja",locale:"ja-JP",flag:"🇯🇵",name:"日本語",english:"Japanese"},
+  {code:"ko",locale:"ko-KR",flag:"🇰🇷",name:"한국어",english:"Korean"},
+  {code:"es",locale:"es-ES",flag:"🇪🇸",name:"Español",english:"Spanish"},
+  {code:"fr",locale:"fr-FR",flag:"🇫🇷",name:"Français",english:"French"},
+  {code:"de",locale:"de-DE",flag:"🇩🇪",name:"Deutsch",english:"German"},
+  {code:"pt",locale:"pt-BR",flag:"🇧🇷",name:"Português",english:"Portuguese"},
+  {code:"it",locale:"it-IT",flag:"🇮🇹",name:"Italiano",english:"Italian"},
+  {code:"th",locale:"th-TH",flag:"🇹🇭",name:"ไทย",english:"Thai"},
+  {code:"id",locale:"id-ID",flag:"🇮🇩",name:"Bahasa Indonesia",english:"Indonesian"}
 ];
 
 const EN = {
 
-  tagline:
-    "Smart learning • Explore the world",
-
-  ready:
-    "Ready",
-
-  hero:
-    "Hello 👋 What would you like to explore today?",
-
-  heroText:
-    "Tap, speak or listen. Rii keeps stable features working and clearly shows when AI needs a retry.",
-
-  identity:
-    "Rii Identity",
-
-  root:
-    "Root account • ROOT",
-
-  robotFuture:
-    "🤖 Robot • future",
-
-  centers:
-    "Rii Centers",
-
-  hint:
-    "Tap or say a center",
-
-  math:
-    "Math",
-
-  mathText:
-    "Speak or type a problem. Rii explains it step by step.",
-
-  camera:
-    "Camera AI",
-
-  cameraText:
-    "Look at real things and let Rii explain.",
-
-  translate:
-    "Languages",
-
-  translateText:
-    "Speak or type in one language and Rii translates it into your selected language.",
-
-  notes:
-    "Notes & Alarms",
-
-  notesText:
-    "Save notes and create alarms with Rii.",
-
-  audio:
-    "🎧 Audio",
-
-  audioSystem:
-    "Automatic system route",
-
-  audioNote:
-    "On iPhone/iPad, iOS chooses speaker or Bluetooth.",
-
-  language:
-    "🌐 Language",
-
-  home:
-    "Home",
-
-  back:
-    "← Home",
-
-  voice:
-    "🎙 Speak",
-
-  speechUnsupported:
-    "Speech recognition is not supported on this browser.",
-
-  mathIntro:
-    "Basic arithmetic uses the local Math Engine without AI quota. Word problems use Math AI.",
-
-  mathPlaceholder:
-    "Example: Lan has 12 apples and gives 5 away. How many are left?",
-
-  solve:
-    "✨ Solve with Rii",
-
-  solving:
-    "⏳ Rii is solving...",
-
-  test:
-    "🧪 Test 8 × 7",
-
-  listenSolution:
-    "🔊 Hear solution",
-
-  needProblem:
-    "Speak or type a math problem first.",
-
-  mathClientMissing:
-    "Math Client is not ready.",
-
-  mathLocal:
-    "⚡ Solved by the local Math Engine — no AI quota used.",
-
-  mathAI:
-    "✨ Rii Math AI finished.",
-
-  mathQuota:
-    "💤 Math AI is resting because the quota is exhausted. Basic arithmetic still works.",
-
-  mathError:
-    "❌ Rii could not solve this yet: ",
-
-  answer:
-    "Answer",
-
-  step:
-    "Step",
-
-  check:
-    "Check",
-
-  mathDebug:
-    "🔐 ROOT • Math technical details",
-
-  cameraClosed:
-    "Camera is closed.",
-
-  cameraLive:
-    "✅ Camera is active.",
-
-  cameraSaved:
-    "📸 The picture is still saved.",
-
-  cameraNotReady:
-    "Camera is not ready.",
-
-  noCapturedFrame:
-    "No saved picture is available.",
-
-  visionClientMissing:
-    "Vision Client is not ready.",
-
-  cameraPlaceholder:
-    "Example: What is it? Where does it live?",
-
-  openCamera:
-    "📷 Open camera",
-
-  capture:
-    "✨ Capture & learn",
-
-  looking:
-    "⏳ Rii is looking...",
-
-  askRii:
-    "🎙 Ask Rii",
-
-  listenRii:
-    "🔊 Hear Rii",
-
-  retryVision:
-    "🧠 Analyze saved picture again",
-
-  otherObject:
-    "📷 Another object",
-
-  analyzeAgain:
-    "🧠 Analyze again",
-
-  visionRest:
-    "💤 Rii Vision is resting",
-
-  visionRestText:
-    "Your picture is still saved. When AI is ready, tap Analyze saved picture again.",
-
-  visionError:
-    "🌧️ Rii cannot view the picture yet",
-
-  visionErrorText:
-    "The picture is still here. You can retry without taking it again.",
-
-  visionDebug:
-    "🔐 ROOT • Vision technical details",
-
-  unknown:
-    "Unknown object",
-
-  color:
-    "Color",
-
-  habitat:
-    "Habitat",
-
-  origin:
-    "Origin",
-
-  uses:
-    "Uses",
-
-  features:
-    "Features",
-
-  detectedText:
-    "Detected text",
-
-  translatePlaceholder:
-    "Speak or type a word, sentence, or paragraph...",
-
-  translateAction:
-    "🌐 Translate",
-
-  translating:
-    "⏳ Rii is translating...",
-
-  translateReady:
-    "Live translation is ready. Rii automatically detects the source language.",
-
-  translateNeedText:
-    "Speak or type something to translate first.",
-
-  translateClientMissing:
-    "Translation Client is not ready.",
-
-  translateDone:
-    "✅ Translation completed.",
-
-  translateLocal:
-    "⚡ Source and target are the same language — no AI quota used.",
-
-  translateQuota:
-    "💤 Translation AI is resting because the daily AI quota is exhausted.",
-
-  translateError:
-    "❌ Rii could not translate this yet: ",
-
-  translateListen:
-    "🔊 Hear translation",
-
-  translateClear:
-    "🗑 Clear",
-
-  translateSource:
-    "Source",
-
-  translateAuto:
-    "Auto detect",
-
-  translateTarget:
-    "Target",
-
-  translateOutput:
-    "Translation",
-
-  translateDetected:
-    "Detected",
-
-  translateTo:
-    "to",
-
-  translationDebug:
-    "🔐 ROOT • Translation technical details",
-
-  notesPlaceholder:
-    "Speak or type a note...",
-
-  save:
-    "💾 Save note",
-
-  noteReady:
-    "Notes are ready.",
-
-  saved:
-    "✅ Saved:",
-
-  notesTab:
-    "📝 Notes",
-
-  alarmsTab:
-    "⏰ Alarms",
-
-  noNotes:
-    "No notes yet.",
-
-  edit:
-    "✏️ Edit",
-
-  delete:
-    "🗑 Delete",
-
-  hear:
-    "🔊 Hear",
-
-  noteUpdated:
-    "✅ Note updated.",
-
-  noteDeleted:
-    "🗑 Note deleted.",
-
-  noteEmpty:
-    "Please enter a note first.",
-
-  editPrompt:
-    "Edit note:",
-
-  alarmTitlePlaceholder:
-    "Alarm name, for example: Study math",
-
-  alarmSave:
-    "⏰ Create alarm",
-
-  alarmOnce:
-    "One time",
-
-  alarmDaily:
-    "Every day",
-
-  alarmReady:
-    "Alarms are ready while Rii is open.",
-
-  alarmNeedTime:
-    "Please choose a time.",
-
-  alarmNeedDate:
-    "Please choose a date.",
-
-  alarmSaved:
-    "✅ Alarm created.",
-
-  alarmDeleted:
-    "🗑 Alarm deleted.",
-
-  alarmEnabled:
-    "✅ Alarm enabled.",
-
-  alarmDisabled:
-    "⏸ Alarm disabled.",
-
-  noAlarms:
-    "No alarms yet.",
-
-  alarmDefault:
-    "Rii alarm",
-
-  alarmStop:
-    "Stop",
-
-  alarmSnooze:
-    "Snooze 5 min",
-
-  alarmRinging:
-    "Alarm",
-
-  alarmWebNote:
-    "Web alarms can ring while Rii is open. Native app notifications will be added later.",
-
-  once:
-    "One time",
-
-  daily:
-    "Every day"
+  tagline:"Smart learning • Explore the world",
+  ready:"Ready",
+  hero:"Hello 👋 What would you like to explore today?",
+  heroText:"Tap, speak or listen. Rii keeps stable features working and clearly shows when AI needs a retry.",
+  identity:"Rii Identity",
+  root:"Root account • ROOT",
+  robotFuture:"🤖 Robot • future",
+  centers:"Rii Centers",
+  hint:"Tap or say a center",
+
+  math:"Math",
+  mathText:"Speak or type a problem. Rii explains it step by step.",
+
+  camera:"Camera AI",
+  cameraText:"Look at real things and let Rii explain.",
+
+  translate:"Languages",
+  translateText:"Speak or type in one language and Rii translates it into your selected language.",
+
+  notes:"Notes & Alarms",
+  notesText:"Save notes and create alarms with Rii.",
+
+  audio:"🎧 Audio",
+  audioSystem:"Automatic system route",
+  audioNote:"On iPhone/iPad, iOS chooses speaker or Bluetooth.",
+  language:"🌐 Language",
+  home:"Home",
+  back:"← Home",
+  voice:"🎙 Speak",
+  speechUnsupported:"Speech recognition is not supported on this browser.",
+
+  mathIntro:"Basic arithmetic uses the local Math Engine without AI quota. Word problems use Math AI.",
+  mathPlaceholder:"Example: Lan has 12 apples and gives 5 away. How many are left?",
+  solve:"✨ Solve with Rii",
+  solving:"⏳ Rii is solving...",
+  test:"🧪 Test 8 × 7",
+  listenSolution:"🔊 Hear solution",
+  needProblem:"Speak or type a math problem first.",
+  mathClientMissing:"Math Client is not ready.",
+  mathLocal:"⚡ Solved by the local Math Engine — no AI quota used.",
+  mathAI:"✨ Rii Math AI finished.",
+  mathQuota:"💤 Math AI is resting because the quota is exhausted. Basic arithmetic still works.",
+  mathError:"❌ Rii could not solve this yet: ",
+  answer:"Answer",
+  step:"Step",
+  check:"Check",
+  mathDebug:"🔐 ROOT • Math technical details",
+
+  cameraClosed:"Camera is closed.",
+  cameraLive:"✅ Camera is active.",
+  cameraSaved:"📸 The picture is still saved.",
+  cameraNotReady:"Camera is not ready.",
+  noCapturedFrame:"No saved picture is available.",
+  visionClientMissing:"Vision Client is not ready.",
+  cameraPlaceholder:"Example: What is it? Where does it live?",
+  openCamera:"📷 Open camera",
+  capture:"✨ Capture & learn",
+  looking:"⏳ Rii is looking...",
+  askRii:"🎙 Ask Rii",
+  listenRii:"🔊 Hear Rii",
+  retryVision:"🧠 Analyze saved picture again",
+  otherObject:"📷 Another object",
+  analyzeAgain:"🧠 Analyze again",
+  visionRest:"💤 Rii Vision is resting",
+  visionRestText:"Your picture is still saved. When AI is ready, tap Analyze saved picture again.",
+  visionError:"🌧️ Rii cannot view the picture yet",
+  visionErrorText:"The picture is still here. You can retry without taking it again.",
+  visionDebug:"🔐 ROOT • Vision technical details",
+  unknown:"Unknown object",
+  color:"Color",
+  habitat:"Habitat",
+  origin:"Origin",
+  uses:"Uses",
+  features:"Features",
+  detectedText:"Detected text",
+
+  translatePlaceholder:"Speak or type a word, sentence, or paragraph...",
+  translateAction:"🌐 Translate",
+  translating:"⏳ Rii is translating...",
+  translateReady:"Live translation is ready. Rii automatically detects the source language.",
+  translateNeedText:"Speak or type something to translate first.",
+  translateClientMissing:"Translation Client is not ready.",
+  translateDone:"✅ Translation completed.",
+  translateLocal:"⚡ Source and target are the same language — no AI quota used.",
+  translateQuota:"💤 Translation AI is resting because the daily AI quota is exhausted.",
+  translateError:"❌ Rii could not translate this yet: ",
+  translateListen:"🔊 Hear translation",
+  translateClear:"🗑 Clear",
+  translateSource:"Source",
+  translateAuto:"Auto detect",
+  translateTarget:"Target",
+  translateOutput:"Translation",
+  translateDetected:"Detected",
+  translateTo:"to",
+  translationDebug:"🔐 ROOT • Translation technical details",
+
+  notesPlaceholder:"Speak or type a note...",
+  save:"💾 Save note",
+  noteReady:"Notes are ready.",
+  saved:"✅ Saved:",
+  notesTab:"📝 Notes",
+  alarmsTab:"⏰ Alarms",
+  noNotes:"No notes yet.",
+  edit:"✏️ Edit",
+  delete:"🗑 Delete",
+  hear:"🔊 Hear",
+  noteUpdated:"✅ Note updated.",
+  noteDeleted:"🗑 Note deleted.",
+  noteEmpty:"Please enter a note first.",
+  editPrompt:"Edit note:",
+
+  alarmTitlePlaceholder:"Alarm name, for example: Study math",
+  alarmSave:"⏰ Create alarm",
+  alarmOnce:"One time",
+  alarmDaily:"Every day",
+  alarmReady:"Alarms are ready while Rii is open.",
+  alarmNeedTime:"Please choose a time.",
+  alarmNeedDate:"Please choose a date.",
+  alarmSaved:"✅ Alarm created.",
+  alarmDeleted:"🗑 Alarm deleted.",
+  alarmEnabled:"✅ Alarm enabled.",
+  alarmDisabled:"⏸ Alarm disabled.",
+  noAlarms:"No alarms yet.",
+  alarmDefault:"Rii alarm",
+  alarmStop:"Stop",
+  alarmSnooze:"Snooze 5 min",
+  alarmRinging:"Alarm",
+  alarmWebNote:"Web alarms can ring while Rii is open. Native app notifications will be added later.",
+  once:"One time",
+  daily:"Every day"
 };
 
 const UI = {
@@ -2514,14 +2201,19 @@ const UI = {
     robotFuture:"🤖 Robot • tương lai",
     centers:"Trung tâm Rii",
     hint:"Chạm hoặc nói tên chức năng",
+
     math:"Giải toán",
     mathText:"Nói hoặc nhập bài toán. Rii giải từng bước.",
+
     camera:"Camera AI",
     cameraText:"Nhìn vật thật và nghe Rii giải thích.",
+
     translate:"Phiên dịch",
     translateText:"Nói hoặc nhập bằng một ngôn ngữ, Rii sẽ dịch sang ngôn ngữ con đang chọn.",
+
     notes:"Ghi chú & Báo thức",
     notesText:"Ghi chú, nhắc việc và đặt báo thức cùng Rii.",
+
     audio:"🎧 Âm thanh",
     audioSystem:"Tự động theo hệ thống",
     audioNote:"Trên iPhone/iPad, loa hoặc Bluetooth do iOS chọn.",
@@ -2610,6 +2302,7 @@ const UI = {
     noteDeleted:"🗑 Đã xóa ghi chú.",
     noteEmpty:"Hãy nói hoặc nhập ghi chú trước.",
     editPrompt:"Sửa ghi chú:",
+
     alarmTitlePlaceholder:"Tên báo thức, ví dụ: Học toán",
     alarmSave:"⏰ Tạo báo thức",
     alarmOnce:"Một lần",
@@ -2631,87 +2324,238 @@ const UI = {
     daily:"Mỗi ngày"
   },
 
-  zh:{...EN},
-  ja:{...EN},
-  ko:{...EN},
-  es:{...EN},
-  fr:{...EN},
-  de:{...EN},
-  pt:{...EN},
-  it:{...EN},
-  th:{...EN},
-  id:{...EN}
+  zh:{
+    ...EN,
+    tagline:"智能学习 • 探索世界",
+    ready:"就绪",
+    hero:"你好 👋 今天想探索什么？",
+    identity:"Rii 身份",
+    root:"根账户 • ROOT",
+    centers:"Rii 学习中心",
+    math:"数学",
+    camera:"相机 AI",
+    translate:"翻译",
+    notes:"笔记与闹钟",
+    home:"主页",
+    back:"← 主页",
+    language:"🌐 语言",
+    voice:"🎙 说",
+    save:"💾 保存",
+    hear:"🔊 收听",
+    edit:"✏️ 编辑",
+    delete:"🗑 删除",
+    notesTab:"📝 笔记",
+    alarmsTab:"⏰ 闹钟"
+  },
+
+  ja:{
+    ...EN,
+    tagline:"スマート学習 • 世界を探検",
+    ready:"準備完了",
+    hero:"こんにちは 👋 今日は何を探検する？",
+    identity:"Rii ID",
+    centers:"Rii センター",
+    math:"算数",
+    camera:"カメラ AI",
+    translate:"翻訳",
+    notes:"メモとアラーム",
+    home:"ホーム",
+    back:"← ホーム",
+    language:"🌐 言語",
+    voice:"🎙 話す",
+    save:"💾 保存",
+    hear:"🔊 聞く",
+    edit:"✏️ 編集",
+    delete:"🗑 削除",
+    notesTab:"📝 メモ",
+    alarmsTab:"⏰ アラーム"
+  },
+
+  ko:{
+    ...EN,
+    tagline:"스마트 학습 • 세상 탐험",
+    ready:"준비됨",
+    hero:"안녕 👋 오늘 무엇을 탐험할까?",
+    identity:"Rii ID",
+    centers:"Rii 센터",
+    math:"수학",
+    camera:"카메라 AI",
+    translate:"번역",
+    notes:"메모 & 알람",
+    home:"홈",
+    back:"← 홈",
+    language:"🌐 언어",
+    voice:"🎙 말하기",
+    save:"💾 저장",
+    hear:"🔊 듣기",
+    edit:"✏️ 수정",
+    delete:"🗑 삭제",
+    notesTab:"📝 메모",
+    alarmsTab:"⏰ 알람"
+  },
+
+  es:{
+    ...EN,
+    tagline:"Aprendizaje inteligente • Explora el mundo",
+    ready:"Listo",
+    hero:"Hola 👋 ¿Qué quieres explorar hoy?",
+    identity:"Identidad Rii",
+    centers:"Centros Rii",
+    math:"Matemáticas",
+    camera:"Cámara IA",
+    translate:"Traducción",
+    notes:"Notas y alarmas",
+    home:"Inicio",
+    back:"← Inicio",
+    language:"🌐 Idioma",
+    voice:"🎙 Hablar",
+    save:"💾 Guardar",
+    hear:"🔊 Escuchar",
+    edit:"✏️ Editar",
+    delete:"🗑 Borrar",
+    notesTab:"📝 Notas",
+    alarmsTab:"⏰ Alarmas"
+  },
+
+  fr:{
+    ...EN,
+    tagline:"Apprentissage intelligent • Explore le monde",
+    ready:"Prêt",
+    hero:"Bonjour 👋 Que veux-tu explorer aujourd’hui ?",
+    identity:"Identité Rii",
+    centers:"Centres Rii",
+    math:"Maths",
+    camera:"Caméra IA",
+    translate:"Traduction",
+    notes:"Notes et alarmes",
+    home:"Accueil",
+    back:"← Accueil",
+    language:"🌐 Langue",
+    voice:"🎙 Parler",
+    save:"💾 Enregistrer",
+    hear:"🔊 Écouter",
+    edit:"✏️ Modifier",
+    delete:"🗑 Supprimer",
+    notesTab:"📝 Notes",
+    alarmsTab:"⏰ Alarmes"
+  },
+
+  de:{
+    ...EN,
+    tagline:"Intelligent lernen • Die Welt entdecken",
+    ready:"Bereit",
+    hero:"Hallo 👋 Was möchtest du heute entdecken?",
+    identity:"Rii-Identität",
+    centers:"Rii-Zentren",
+    math:"Mathe",
+    camera:"Kamera-KI",
+    translate:"Übersetzen",
+    notes:"Notizen & Alarme",
+    home:"Start",
+    back:"← Start",
+    language:"🌐 Sprache",
+    voice:"🎙 Sprechen",
+    save:"💾 Speichern",
+    hear:"🔊 Anhören",
+    edit:"✏️ Bearbeiten",
+    delete:"🗑 Löschen",
+    notesTab:"📝 Notizen",
+    alarmsTab:"⏰ Alarme"
+  },
+
+  pt:{
+    ...EN,
+    tagline:"Aprendizado inteligente • Explore o mundo",
+    ready:"Pronto",
+    hero:"Olá 👋 O que você quer explorar hoje?",
+    identity:"Identidade Rii",
+    centers:"Centros Rii",
+    math:"Matemática",
+    camera:"Câmera IA",
+    translate:"Tradução",
+    notes:"Notas e alarmes",
+    home:"Início",
+    back:"← Início",
+    language:"🌐 Idioma",
+    voice:"🎙 Falar",
+    save:"💾 Salvar",
+    hear:"🔊 Ouvir",
+    edit:"✏️ Editar",
+    delete:"🗑 Excluir",
+    notesTab:"📝 Notas",
+    alarmsTab:"⏰ Alarmes"
+  },
+
+  it:{
+    ...EN,
+    tagline:"Apprendimento intelligente • Esplora il mondo",
+    ready:"Pronto",
+    hero:"Ciao 👋 Cosa vuoi esplorare oggi?",
+    identity:"Identità Rii",
+    centers:"Centri Rii",
+    math:"Matematica",
+    camera:"Fotocamera IA",
+    translate:"Traduzione",
+    notes:"Note e sveglie",
+    home:"Home",
+    back:"← Home",
+    language:"🌐 Lingua",
+    voice:"🎙 Parla",
+    save:"💾 Salva",
+    hear:"🔊 Ascolta",
+    edit:"✏️ Modifica",
+    delete:"🗑 Elimina",
+    notesTab:"📝 Note",
+    alarmsTab:"⏰ Sveglie"
+  },
+
+  th:{
+    ...EN,
+    tagline:"เรียนรู้อย่างชาญฉลาด • สำรวจโลก",
+    ready:"พร้อม",
+    hero:"สวัสดี 👋 วันนี้อยากสำรวจอะไร?",
+    identity:"ตัวตน Rii",
+    centers:"ศูนย์ Rii",
+    math:"คณิตศาสตร์",
+    camera:"กล้อง AI",
+    translate:"แปลภาษา",
+    notes:"โน้ตและนาฬิกาปลุก",
+    home:"หน้าแรก",
+    back:"← หน้าแรก",
+    language:"🌐 ภาษา",
+    voice:"🎙 พูด",
+    save:"💾 บันทึก",
+    hear:"🔊 ฟัง",
+    edit:"✏️ แก้ไข",
+    delete:"🗑 ลบ",
+    notesTab:"📝 โน้ต",
+    alarmsTab:"⏰ นาฬิกาปลุก"
+  },
+
+  id:{
+    ...EN,
+    tagline:"Belajar cerdas • Jelajahi dunia",
+    ready:"Siap",
+    hero:"Halo 👋 Apa yang ingin kamu jelajahi hari ini?",
+    identity:"Identitas Rii",
+    centers:"Pusat Rii",
+    math:"Matematika",
+    camera:"Kamera AI",
+    translate:"Terjemahan",
+    notes:"Catatan & Alarm",
+    home:"Beranda",
+    back:"← Beranda",
+    language:"🌐 Bahasa",
+    voice:"🎙 Bicara",
+    save:"💾 Simpan",
+    hear:"🔊 Dengarkan",
+    edit:"✏️ Edit",
+    delete:"🗑 Hapus",
+    notesTab:"📝 Catatan",
+    alarmsTab:"⏰ Alarm"
+  }
 
 };
-
-const ALL_KEYS =
-  Object.keys(
-    EN
-  );
-
-function validateLanguageDictionaries(){
-
-  const errors =
-    [];
-
-  for(
-    const language
-    of languages
-  ){
-
-    const dictionary =
-      UI[
-        language.code
-      ];
-
-    if(
-      !dictionary
-    ){
-
-      errors.push(
-        language.code
-        +
-        ": missing dictionary"
-      );
-
-      continue;
-    }
-
-    const missingKeys =
-      ALL_KEYS.filter(
-        key =>
-          typeof dictionary[key]
-          !==
-          "string"
-      );
-
-    if(
-      missingKeys.length
-    ){
-
-      errors.push(
-        language.code
-        +
-        ": "
-        +
-        missingKeys.join(", ")
-      );
-    }
-  }
-
-  if(
-    errors.length
-  ){
-
-    throw new Error(
-      "Incomplete language dictionaries: "
-      +
-      errors.join(" | ")
-    );
-  }
-
-  return true;
-}
 
 let currentCenter =
   null;
@@ -2755,13 +2599,11 @@ let alarmAudioContext =
 let alarmOscillator =
   null;
 
-function el(
-  id
-){
+let riiSpeechToken =
+  0;
 
-  return document.getElementById(
-    id
-  );
+function el(id){
+  return document.getElementById(id);
 }
 
 function setText(
@@ -2770,14 +2612,9 @@ function setText(
 ){
 
   const node =
-    el(
-      id
-    );
+    el(id);
 
-  if(
-    node
-  ){
-
+  if(node){
     node.textContent =
       value;
   }
@@ -2834,8 +2671,7 @@ function text(){
 
   return (
     UI[
-      currentLanguage()
-        .code
+      currentLanguage().code
     ]
     ||
     EN
@@ -2850,26 +2686,11 @@ function escapeHtml(
     value ??
     ""
   )
-    .replaceAll(
-      "&",
-      "&amp;"
-    )
-    .replaceAll(
-      "<",
-      "&lt;"
-    )
-    .replaceAll(
-      ">",
-      "&gt;"
-    )
-    .replaceAll(
-      '"',
-      "&quot;"
-    )
-    .replaceAll(
-      "'",
-      "&#039;"
-    );
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 }
 
 function loadArray(
@@ -2878,7 +2699,7 @@ function loadArray(
 
   try{
 
-    const parsed =
+    const value =
       JSON.parse(
         localStorage.getItem(
           key
@@ -2888,10 +2709,10 @@ function loadArray(
       );
 
     return Array.isArray(
-      parsed
+      value
     )
       ?
-      parsed
+      value
       :
       [];
 
@@ -2914,249 +2735,361 @@ function saveArray(
   );
 }
 
-function formatDateTime(
-  iso
+/* =====================================================
+   IOS SPEECH STABILITY FIX
+===================================================== */
+
+function delay(ms){
+
+  return new Promise(
+    resolve =>
+      setTimeout(
+        resolve,
+        ms
+      )
+  );
+}
+
+function getBestVoice(
+  locale
 ){
 
-  try{
-
-    return new Intl.DateTimeFormat(
-      currentLanguage().locale,
-      {
-        dateStyle:"medium",
-        timeStyle:"short"
-      }
+  if(
+    !(
+      "speechSynthesis"
+      in window
     )
-      .format(
-        new Date(
-          iso
-        )
-      );
+  ){
 
-  }catch{
+    return null;
+  }
 
-    return String(
-      iso ||
+  const voices =
+    speechSynthesis
+      .getVoices();
+
+  if(
+    !voices.length
+  ){
+
+    return null;
+  }
+
+  const wanted =
+    String(
+      locale ||
       ""
-    );
-  }
+    )
+      .toLowerCase();
+
+  const base =
+    wanted
+      .split("-")[0];
+
+  return (
+    voices.find(
+      voice =>
+        String(
+          voice.lang ||
+          ""
+        )
+          .toLowerCase()
+        ===
+        wanted
+    )
+    ||
+    voices.find(
+      voice =>
+        String(
+          voice.lang ||
+          ""
+        )
+          .toLowerCase()
+          .startsWith(
+            base + "-"
+          )
+    )
+    ||
+    null
+  );
 }
 
-function formatAlarmDate(
-  alarm
+function waitForSpeechVoices(
+  timeout =
+  800
 ){
 
+  return new Promise(
+    resolve => {
+
+      if(
+        !(
+          "speechSynthesis"
+          in window
+        )
+      ){
+
+        resolve([]);
+
+        return;
+      }
+
+      const synth =
+        speechSynthesis;
+
+      const existing =
+        synth.getVoices();
+
+      if(
+        existing.length
+      ){
+
+        resolve(
+          existing
+        );
+
+        return;
+      }
+
+      let done =
+        false;
+
+      const finish =
+        () => {
+
+          if(done){
+            return;
+          }
+
+          done =
+            true;
+
+          synth.removeEventListener(
+            "voiceschanged",
+            finish
+          );
+
+          resolve(
+            synth.getVoices()
+          );
+        };
+
+      synth.addEventListener(
+        "voiceschanged",
+        finish
+      );
+
+      setTimeout(
+        finish,
+        timeout
+      );
+    }
+  );
+}
+
+async function speak(
+  value,
+  localeOverride =
+  null
+){
+
+  const message =
+    String(
+      value ||
+      ""
+    )
+      .trim();
+
   if(
-    alarm.repeat ===
-    "daily"
+    !message
+    ||
+    !(
+      "speechSynthesis"
+      in window
+    )
   ){
 
-    return (
-      text().daily
-      +
-      " • "
-      +
-      alarm.time
-    );
+    return false;
   }
 
+  const synth =
+    speechSynthesis;
+
+  const token =
+    ++riiSpeechToken;
+
+  const locale =
+    localeOverride
+    ||
+    currentLanguage().locale
+    ||
+    "vi-VN";
+
+  await waitForSpeechVoices();
+
   if(
-    !alarm.date
+    token !==
+    riiSpeechToken
   ){
 
-    return alarm.time;
+    return false;
   }
 
   try{
+    synth.cancel();
+  }catch{}
 
-    const value =
-      new Date(
-        alarm.date
-        +
-        "T"
-        +
-        alarm.time
-      );
+  /*
+    Quan trọng với Safari iOS:
+    không speak() ngay trong cùng tick với cancel().
+  */
 
-    return new Intl.DateTimeFormat(
-      currentLanguage().locale,
-      {
-        dateStyle:"medium",
-        timeStyle:"short"
-      }
-    )
-      .format(
-        value
-      );
-
-  }catch{
-
-    return (
-      alarm.date
-      +
-      " "
-      +
-      alarm.time
-    );
-  }
-}
-
-function validateBoot(){
-
-  validateLanguageDictionaries();
-
-  const requiredIds = [
-
-    "tagline",
-    "readyText",
-    "heroTitle",
-    "heroText",
-    "identityLabel",
-    "rootText",
-    "centerTitle",
-
-    "mathTitle",
-    "cameraTitle",
-    "translateTitle",
-    "notesTitle",
-
-    "homeLanguage",
-    "centerLanguage",
-
-    "mathInput",
-
-    "cameraVideo",
-    "cameraCanvas",
-    "capturedImage",
-    "cameraQuestion",
-
-    "translateInput",
-    "translateActionButton",
-    "translateSpeakButton",
-    "translateSourceLabel",
-    "translateSourceValue",
-    "translateTargetLabel",
-    "translateTargetValue",
-    "translationStatus",
-    "translationOutput",
-    "translateResult",
-    "translationMeta",
-
-    "notesInput",
-    "notesList",
-    "alarmList",
-    "alarmDateInput",
-    "alarmTimeInput",
-
-    "riiButton"
-
-  ];
-
-  const missing =
-    requiredIds.filter(
-      id =>
-        !el(id)
-    );
+  await delay(120);
 
   if(
-    missing.length
+    token !==
+    riiSpeechToken
   ){
 
-    throw new Error(
-      "Missing DOM IDs: "
-      +
-      missing.join(", ")
-    );
+    return false;
   }
+
+  const utterance =
+    new SpeechSynthesisUtterance(
+      message
+    );
+
+  utterance.lang =
+    locale;
+
+  utterance.rate =
+    .9;
+
+  utterance.pitch =
+    1;
+
+  utterance.volume =
+    1;
+
+  const voice =
+    getBestVoice(
+      locale
+    );
+
+  if(voice){
+    utterance.voice =
+      voice;
+  }
+
+  let started =
+    false;
+
+  utterance.onstart =
+    () => {
+      started =
+        true;
+    };
+
+  utterance.onerror =
+    event => {
+
+      console.warn(
+        "Rii speech error",
+        event?.error
+      );
+    };
+
+  try{
+
+    if(
+      synth.paused
+    ){
+
+      synth.resume();
+    }
+
+    synth.speak(
+      utterance
+    );
+
+  }catch(error){
+
+    console.warn(
+      "Rii speech failed",
+      error
+    );
+
+    return false;
+  }
+
+  /*
+    Fallback cho Safari:
+    đôi khi utterance vào queue nhưng không start.
+  */
+
+  setTimeout(
+    () => {
+
+      if(
+        token !==
+        riiSpeechToken
+        ||
+        started
+        ||
+        synth.speaking
+      ){
+
+        return;
+      }
+
+      try{
+
+        const retry =
+          new SpeechSynthesisUtterance(
+            message
+          );
+
+        retry.lang =
+          locale;
+
+        retry.rate =
+          .9;
+
+        retry.volume =
+          1;
+
+        const retryVoice =
+          getBestVoice(
+            locale
+          );
+
+        if(retryVoice){
+          retry.voice =
+            retryVoice;
+        }
+
+        synth.speak(
+          retry
+        );
+
+      }catch(error){
+
+        console.warn(
+          "Rii speech retry failed",
+          error
+        );
+      }
+
+    },
+    550
+  );
 
   return true;
 }
 
-function showBootError(
-  error
-){
-
-  const node =
-    el(
-      "bootError"
-    );
-
-  if(
-    !node
-  ){
-
-    return;
-  }
-
-  node.textContent =
-    "❌ Rii UI boot error: "
-    +
-    String(
-      error?.message ||
-      error
-    );
-
-  node
-    .classList
-    .add(
-      "show"
-    );
-}
-
-function resetTranslationViewForLanguageChange(){
-
-  latestTranslationResult =
-    null;
-
-  setText(
-    "translateResult",
-    ""
-  );
-
-  setText(
-    "translationMeta",
-    ""
-  );
-
-  el(
-    "translationOutput"
-  )
-    .classList
-    .remove(
-      "show"
-    );
-
-  el(
-    "translateSpeakButton"
-  )
-    .disabled =
-    true;
-
-  el(
-    "translationDebug"
-  )
-    .classList
-    .add(
-      "hidden"
-    );
-
-  const language =
-    currentLanguage();
-
-  setText(
-    "translateSourceValue",
-    text().translateAuto
-  );
-
-  setText(
-    "translateTargetValue",
-    language.flag
-    +
-    " "
-    +
-    language.name
-  );
-}
+/* =====================================================
+   RENDER
+===================================================== */
 
 function render(){
 
@@ -3166,9 +3099,7 @@ function render(){
   const language =
     currentLanguage();
 
-  document
-    .documentElement
-    .lang =
+  document.documentElement.lang =
     language.code;
 
   const map = {
@@ -3182,6 +3113,7 @@ function render(){
     robotFuture:"robotFuture",
     centerTitle:"centers",
     centerHint:"hint",
+
     mathTitle:"math",
     mathText:"mathText",
     cameraTitle:"camera",
@@ -3190,57 +3122,58 @@ function render(){
     translateText:"translateText",
     notesTitle:"notes",
     notesText:"notesText",
+
     audioTitle:"audio",
     audioSystemOption:"audioSystem",
     audioNote:"audioNote",
+
     languagePanelTitle:"language",
+
     quickMath:"math",
     quickCamera:"camera",
     quickTranslate:"translate",
     quickNotes:"notes",
     quickHome:"home",
     quickLanguage:"language",
+
     backButton:"back",
+
     mathCenterTitle:"math",
     mathIntro:"mathIntro",
     mathVoiceButton:"voice",
-
     mathSolveButton:
       mathBusy
         ?
         "solving"
         :
         "solve",
-
     mathTestButton:"test",
     mathSpeakButton:"listenSolution",
     mathDebugSummary:"mathDebug",
+
     cameraCenterTitle:"camera",
     cameraOpenButton:"openCamera",
-
     captureButton:
       visionBusy
         ?
         "looking"
         :
         "capture",
-
     cameraAskButton:"askRii",
     visionSpeakButton:"listenRii",
     visionRetryButton:"retryVision",
     otherObjectButton:"otherObject",
     visionAnalyzeAgainButton:"analyzeAgain",
     visionDebugSummary:"visionDebug",
+
     translateCenterTitle:"translate",
     translateVoiceButton:"voice",
-
     translateActionButton:
       translationBusy
         ?
         "translating"
         :
         "translateAction",
-
     translateSpeakButton:"translateListen",
     translateClearButton:"translateClear",
     translateSourceLabel:"translateSource",
@@ -3253,6 +3186,7 @@ function render(){
     notesSaveButton:"save",
     notesTabButton:"notesTab",
     alarmsTabButton:"alarmsTab",
+
     alarmSaveButton:"alarmSave",
     alarmOnceOption:"alarmOnce",
     alarmDailyOption:"alarmDaily",
@@ -3280,109 +3214,23 @@ function render(){
     );
   }
 
-  el(
-    "mathInput"
-  )
-    .placeholder =
+  el("mathInput").placeholder =
     x.mathPlaceholder;
 
-  el(
-    "cameraQuestion"
-  )
-    .placeholder =
+  el("cameraQuestion").placeholder =
     x.cameraPlaceholder;
 
-  el(
-    "translateInput"
-  )
-    .placeholder =
+  el("translateInput").placeholder =
     x.translatePlaceholder;
 
-  el(
-    "notesInput"
-  )
-    .placeholder =
+  el("notesInput").placeholder =
     x.notesPlaceholder;
 
-  el(
-    "alarmTitleInput"
-  )
-    .placeholder =
+  el("alarmTitleInput").placeholder =
     x.alarmTitlePlaceholder;
 
-  el(
-    "capturedImage"
-  )
-    .alt =
+  el("capturedImage").alt =
     x.cameraSaved;
-
-  if(
-    !latestTranslationResult
-  ){
-
-    setText(
-      "translateSourceValue",
-      x.translateAuto
-    );
-
-    setText(
-      "translateTargetValue",
-      language.flag
-      +
-      " "
-      +
-      language.name
-    );
-
-    showTranslationStatus(
-      x.translateReady,
-      "normal"
-    );
-  }
-
-  if(
-    !el(
-      "notesResult"
-    )
-      .dataset
-      .touched
-  ){
-
-    setText(
-      "notesResult",
-      x.noteReady
-    );
-  }
-
-  if(
-    !el(
-      "alarmResult"
-    )
-      .dataset
-      .touched
-  ){
-
-    setText(
-      "alarmResult",
-      x.alarmReady
-      +
-      "\n"
-      +
-      x.alarmWebNote
-    );
-  }
-
-  if(
-    !isCameraLive()
-    &&
-    !hasCapturedFrame()
-  ){
-
-    setText(
-      "cameraStatus",
-      x.cameraClosed
-    );
-  }
 
   document
     .querySelectorAll(
@@ -3422,6 +3270,57 @@ function render(){
   );
 
   if(
+    !el("notesResult")
+      .dataset
+      .touched
+  ){
+
+    setText(
+      "notesResult",
+      x.noteReady
+    );
+  }
+
+  if(
+    !el("alarmResult")
+      .dataset
+      .touched
+  ){
+
+    setText(
+      "alarmResult",
+      x.alarmReady
+      +
+      "\n"
+      +
+      x.alarmWebNote
+    );
+  }
+
+  if(
+    !latestTranslationResult
+  ){
+
+    setText(
+      "translateSourceValue",
+      x.translateAuto
+    );
+
+    setText(
+      "translateTargetValue",
+      language.flag
+      +
+      " "
+      +
+      language.name
+    );
+
+    showTranslationStatus(
+      x.translateReady
+    );
+  }
+
+  if(
     latestMathResult
   ){
 
@@ -3447,6 +3346,18 @@ function render(){
       latestTranslationResult
     );
   }
+
+  if(
+    !isCameraLive()
+    &&
+    !hasCapturedFrame()
+  ){
+
+    setText(
+      "cameraStatus",
+      x.cameraClosed
+    );
+  }
 }
 
 window.setLanguage =
@@ -3461,26 +3372,12 @@ function(
         code
     );
 
-  if(
-    !valid
-  ){
-
+  if(!valid){
     return;
   }
 
-  const oldCode =
-    currentLanguage()
-      .code;
-
-  if(
-    oldCode ===
-    code
-  ){
-
-    render();
-
-    return;
-  }
+  const old =
+    currentLanguage().code;
 
   localStorage.setItem(
     LANGUAGE_KEY,
@@ -3488,10 +3385,21 @@ function(
   );
 
   if(
+    old !== code
+    &&
     latestTranslationResult
   ){
 
-    resetTranslationViewForLanguageChange();
+    latestTranslationResult =
+      null;
+
+    el("translationOutput")
+      .classList
+      .remove("show");
+
+    el("translateSpeakButton")
+      .disabled =
+      true;
   }
 
   render();
@@ -3502,32 +3410,25 @@ function renderLanguageList(){
   const current =
     currentLanguage();
 
-  el(
-    "languageList"
-  )
-    .innerHTML =
-
+  el("languageList").innerHTML =
     languages
       .map(
         item =>
           `
           <button
             class="lang-btn ${
-              item.code ===
-              current.code
+              item.code === current.code
                 ?
                 "active"
                 :
                 ""
             }"
-
             onclick="
               setLanguage('${item.code}');
               closeLanguage();
             "
           >
-            ${item.flag}
-            ${item.name}
+            ${item.flag} ${item.name}
           </button>
           `
       )
@@ -3539,25 +3440,17 @@ function(){
 
   renderLanguageList();
 
-  el(
-    "languageOverlay"
-  )
+  el("languageOverlay")
     .classList
-    .add(
-      "open"
-    );
+    .add("open");
 };
 
 window.closeLanguage =
 function(){
 
-  el(
-    "languageOverlay"
-  )
+  el("languageOverlay")
     .classList
-    .remove(
-      "open"
-    );
+    .remove("open");
 };
 
 window.openLanguageFromQuick =
@@ -3567,52 +3460,6 @@ function(){
 
   openLanguage();
 };
-
-function speak(
-  value,
-  localeOverride =
-  null
-){
-
-  const message =
-    String(
-      value ||
-      ""
-    )
-      .trim();
-
-  if(
-    !message
-    ||
-    !(
-      "speechSynthesis"
-      in window
-    )
-  ){
-
-    return;
-  }
-
-  const utterance =
-    new SpeechSynthesisUtterance(
-      message
-    );
-
-  utterance.lang =
-    localeOverride
-    ||
-    currentLanguage()
-      .locale;
-
-  utterance.rate =
-    .9;
-
-  speechSynthesis.cancel();
-
-  speechSynthesis.speak(
-    utterance
-  );
-}
 
 window.speakHome =
 function(){
@@ -3628,9 +3475,7 @@ function(){
       x.translate,
       x.notes
     ]
-      .join(
-        ". "
-      )
+      .join(". ")
   );
 };
 
@@ -3654,6 +3499,10 @@ function(){
   );
 };
 
+/* =====================================================
+   SPEECH INPUT
+===================================================== */
+
 function recognitionClass(){
 
   return (
@@ -3671,9 +3520,7 @@ function startRecognition(
   const C =
     recognitionClass();
 
-  if(
-    !C
-  ){
+  if(!C){
 
     alert(
       text().speechUnsupported
@@ -3682,9 +3529,7 @@ function startRecognition(
     return;
   }
 
-  if(
-    recognition
-  ){
+  if(recognition){
 
     try{
       recognition.stop();
@@ -3695,8 +3540,7 @@ function startRecognition(
     new C();
 
   recognition.lang =
-    currentLanguage()
-      .locale;
+    currentLanguage().locale;
 
   recognition.continuous =
     false;
@@ -3712,19 +3556,12 @@ function startRecognition(
           .results[0][0]
           .transcript;
 
-      if(
-        targetId
-      ){
+      if(targetId){
 
         const target =
-          el(
-            targetId
-          );
+          el(targetId);
 
-        if(
-          target
-        ){
-
+        if(target){
           target.value =
             words;
         }
@@ -3769,57 +3606,37 @@ function handleVoiceCommand(
 
   if(
     /camera|máy ảnh|カメラ|相机|카메라|cámara|caméra|kamera|fotocamera|กล้อง/
-      .test(
-        query
-      )
+      .test(query)
   ){
 
-    openCenter(
-      "camera"
-    );
-
+    openCenter("camera");
     return;
   }
 
   if(
     /math|toán|数学|算数|수학|matemáticas|maths|mathe|matemática|matematica|คณิต|matematika/
-      .test(
-        query
-      )
+      .test(query)
   ){
 
-    openCenter(
-      "math"
-    );
-
+    openCenter("math");
     return;
   }
 
   if(
-    /translate|translation|language|dịch|phiên dịch|ngôn ngữ|翻译|翻訳|번역|idioma|traduc|langue|tradu|übersetz|lingua|traduz|traduc|ภาษา|แปล|bahasa|terjemah/
-      .test(
-        query
-      )
+    /translate|translation|language|dịch|phiên dịch|ngôn ngữ|翻译|翻訳|번역|idioma|traduc|langue|tradu|übersetz|lingua|traduz|ภาษา|แปล|bahasa|terjemah/
+      .test(query)
   ){
 
-    openCenter(
-      "translate"
-    );
-
+    openCenter("translate");
     return;
   }
 
   if(
-    /note|alarm|ghi chú|báo thức|メモ|アラーム|메모|알람|nota|alarma|note|alarme|notiz|โน้ต|catatan/
-      .test(
-        query
-      )
+    /note|alarm|ghi chú|báo thức|メモ|アラーム|메모|알람|nota|alarma|alarme|notiz|โน้ต|catatan/
+      .test(query)
   ){
 
-    openCenter(
-      "notes"
-    );
-
+    openCenter("notes");
     return;
   }
 
@@ -3827,6 +3644,10 @@ function handleVoiceCommand(
     value
   );
 }
+
+/* =====================================================
+   CENTER
+===================================================== */
 
 window.openCenter =
 function(
@@ -3840,9 +3661,7 @@ function(
       "translate",
       "notes"
     ]
-      .includes(
-        name
-      )
+      .includes(name)
   ){
 
     return;
@@ -3861,25 +3680,19 @@ function(
       key => {
 
         el(
-          key +
-          "Center"
+          key + "Center"
         )
           .classList
           .toggle(
             "hidden",
-            key !==
-            name
+            key !== name
           );
       }
     );
 
-  el(
-    "centerScreen"
-  )
+  el("centerScreen")
     .classList
-    .add(
-      "open"
-    );
+    .add("open");
 
   document.body.style.overflow =
     "hidden";
@@ -3903,16 +3716,16 @@ function(
   ){
 
     renderNotes();
+
     renderAlarms();
+
+    setDefaultAlarmDateTime();
   }
 };
 
 function updateScreenTitle(){
 
-  if(
-    !currentCenter
-  ){
-
+  if(!currentCenter){
     return;
   }
 
@@ -3921,7 +3734,6 @@ function updateScreenTitle(){
 
   setText(
     "screenTitle",
-
     {
       math:x.math,
       camera:x.camera,
@@ -3940,13 +3752,9 @@ function(){
 
   stopCamera();
 
-  el(
-    "centerScreen"
-  )
+  el("centerScreen")
     .classList
-    .remove(
-      "open"
-    );
+    .remove("open");
 
   document.body.style.overflow =
     "";
@@ -3955,6 +3763,10 @@ function(){
     null;
 };
 
+/* =====================================================
+   MATH
+===================================================== */
+
 function showMathStatus(
   message,
   isError =
@@ -3962,9 +3774,7 @@ function showMathStatus(
 ){
 
   const node =
-    el(
-      "mathStatus"
-    );
+    el("mathStatus");
 
   node.textContent =
     message;
@@ -3983,10 +3793,7 @@ function showMathStatus(
 
 function hideMathStatus(){
 
-  el(
-    "mathStatus"
-  )
-    .className =
+  el("mathStatus").className =
     "math-status";
 }
 
@@ -3997,15 +3804,12 @@ function setMathBusy(
   mathBusy =
     busy;
 
-  el(
-    "mathSolveButton"
-  )
+  el("mathSolveButton")
     .disabled =
     busy;
 
   setText(
     "mathSolveButton",
-
     busy
       ?
       text().solving
@@ -4017,10 +3821,7 @@ function setMathBusy(
 window.setMathExample =
 function(){
 
-  el(
-    "mathInput"
-  )
-    .value =
+  el("mathInput").value =
     "8 × 7";
 
   solveMathNow();
@@ -4029,26 +3830,19 @@ function(){
 window.solveMathNow =
 async function(){
 
-  if(
-    mathBusy
-  ){
-
+  if(mathBusy){
     return;
   }
 
   const problem =
-    el(
-      "mathInput"
-    )
+    el("mathInput")
       .value
       .trim();
 
   const x =
     text();
 
-  if(
-    !problem
-  ){
+  if(!problem){
 
     showMathStatus(
       x.needProblem,
@@ -4075,27 +3869,17 @@ async function(){
     return;
   }
 
-  setMathBusy(
-    true
-  );
+  setMathBusy(true);
 
   hideMathStatus();
 
-  el(
-    "mathCard"
-  )
+  el("mathCard")
     .classList
-    .remove(
-      "show"
-    );
+    .remove("show");
 
-  el(
-    "mathDebug"
-  )
+  el("mathDebug")
     .classList
-    .add(
-      "hidden"
-    );
+    .add("hidden");
 
   try{
 
@@ -4106,13 +3890,10 @@ async function(){
       await window
         .RiiWorkerClientV2
         .solveMath(
-
           problem,
-
           {
             targetLanguage:
               language.code,
-
             targetLanguageName:
               language.english
           }
@@ -4126,15 +3907,12 @@ async function(){
     );
 
     showMathStatus(
-
       result.aiUsed
         ?
         x.mathAI
         :
         x.mathLocal
     );
-
-    speakMath();
 
   }catch(error){
 
@@ -4145,9 +3923,7 @@ async function(){
       ?
       window
         .RiiWorkerClientV2
-        .formatError(
-          error
-        )
+        .formatError(error)
       :
       {
         message:
@@ -4155,14 +3931,10 @@ async function(){
             error?.message ||
             error
           ),
-
-        code:
-          "CLIENT_ERROR"
+        code:"CLIENT_ERROR"
       };
 
-    el(
-      "mathDebugText"
-    )
+    el("mathDebugText")
       .textContent =
       JSON.stringify(
         formatted,
@@ -4170,18 +3942,13 @@ async function(){
         2
       );
 
-    el(
-      "mathDebug"
-    )
+    el("mathDebug")
       .classList
-      .remove(
-        "hidden"
-      );
+      .remove("hidden");
 
     const quota =
       formatted.code ===
       "MATH_MODEL_FAILED"
-
       &&
       /4006|daily free allocation|10,000 neurons/i
         .test(
@@ -4189,7 +3956,6 @@ async function(){
         );
 
     showMathStatus(
-
       quota
         ?
         x.mathQuota
@@ -4197,15 +3963,12 @@ async function(){
         x.mathError
         +
         formatted.message,
-
       true
     );
 
   }finally{
 
-    setMathBusy(
-      false
-    );
+    setMathBusy(false);
   }
 };
 
@@ -4218,7 +3981,6 @@ function renderMath(
 
   setText(
     "mathAnswer",
-
     result.answer
       ?
       x.answer
@@ -4244,7 +4006,6 @@ function renderMath(
 
   setText(
     "mathExplanation",
-
     result.needsClarification
       ?
       (
@@ -4260,11 +4021,7 @@ function renderMath(
       )
   );
 
-  el(
-    "mathSteps"
-  )
-    .innerHTML =
-
+  el("mathSteps").innerHTML =
     (
       Array.isArray(
         result.steps
@@ -4281,29 +4038,21 @@ function renderMath(
         ) =>
           `
           <div class="math-step">
-
             <b>
               ${escapeHtml(x.step)}
               ${index + 1}
             </b>
-
             <br>
-
             ${escapeHtml(step)}
-
           </div>
           `
       )
       .join("");
 
   const check =
-    el(
-      "mathCheck"
-    );
+    el("mathCheck");
 
-  if(
-    result.check
-  ){
+  if(result.check){
 
     check.textContent =
       "✅ "
@@ -4316,22 +4065,17 @@ function renderMath(
 
     check
       .classList
-      .remove(
-        "hidden"
-      );
+      .remove("hidden");
 
   }else{
 
     check
       .classList
-      .add(
-        "hidden"
-      );
+      .add("hidden");
   }
 
   setText(
     "mathMeta",
-
     [
       result.source
       ||
@@ -4351,25 +4095,15 @@ function renderMath(
         :
         ""
     ]
-      .filter(
-        Boolean
-      )
-      .join(
-        " • "
-      )
+      .filter(Boolean)
+      .join(" • ")
   );
 
-  el(
-    "mathCard"
-  )
+  el("mathCard")
     .classList
-    .add(
-      "show"
-    );
+    .add("show");
 
-  el(
-    "mathSpeakButton"
-  )
+  el("mathSpeakButton")
     .disabled =
     false;
 }
@@ -4391,7 +4125,6 @@ function(){
     text();
 
   speak(
-
     [
       result.answer
         ?
@@ -4412,9 +4145,7 @@ function(){
         )
         :
         "",
-
       result.explanation,
-
       ...(
         Array.isArray(
           result.steps
@@ -4424,64 +4155,46 @@ function(){
           :
           []
       ),
-
       result.check
     ]
-      .filter(
-        Boolean
-      )
-      .join(
-        ". "
-      )
+      .filter(Boolean)
+      .join(". ")
   );
 };
+
+/* =====================================================
+   CAMERA
+===================================================== */
 
 function isCameraLive(){
 
   const video =
-    el(
-      "cameraVideo"
-    );
+    el("cameraVideo");
 
   return Boolean(
-
     cameraStream
-
     &&
     video
-
     &&
-    video.readyState >=
-      2
-
+    video.readyState >= 2
     &&
-    video.videoWidth >
-      0
-
+    video.videoWidth > 0
     &&
-    video.videoHeight >
-      0
+    video.videoHeight > 0
   );
 }
 
 function hasCapturedFrame(){
 
   const canvas =
-    el(
-      "cameraCanvas"
-    );
+    el("cameraCanvas");
 
   return Boolean(
-
     capturedFrameReady
-
     &&
-    canvas.width >
-      0
-
+    canvas.width > 0
     &&
-    canvas.height >
-      0
+    canvas.height > 0
   );
 }
 
@@ -4500,25 +4213,15 @@ async function(){
 
     hideAiMessage();
 
-    el(
-      "visionCard"
-    )
+    el("visionCard")
       .classList
-      .remove(
-        "show"
-      );
+      .remove("show");
 
-    el(
-      "visionRetryButton"
-    )
+    el("visionRetryButton")
       .classList
-      .add(
-        "hidden"
-      );
+      .add("hidden");
 
-    el(
-      "visionSpeakButton"
-    )
+    el("visionSpeakButton")
       .disabled =
       true;
 
@@ -4526,40 +4229,27 @@ async function(){
       await navigator
         .mediaDevices
         .getUserMedia({
-
           video:{
-
             facingMode:{
-              ideal:
-                "environment"
+              ideal:"environment"
             }
           },
-
-          audio:
-            false
+          audio:false
         });
 
     const video =
-      el(
-        "cameraVideo"
-      );
+      el("cameraVideo");
 
     video.srcObject =
       cameraStream;
 
     video
       .classList
-      .remove(
-        "hidden"
-      );
+      .remove("hidden");
 
-    el(
-      "capturedImage"
-    )
+    el("capturedImage")
       .classList
-      .add(
-        "hidden"
-      );
+      .add("hidden");
 
     await video.play();
 
@@ -4572,7 +4262,6 @@ async function(){
 
     setText(
       "cameraStatus",
-
       "❌ "
       +
       String(
@@ -4595,20 +4284,14 @@ function captureFrame(){
   }
 
   const video =
-    el(
-      "cameraVideo"
-    );
+    el("cameraVideo");
 
   const canvas =
-    el(
-      "cameraCanvas"
-    );
+    el("cameraCanvas");
 
   const scale =
     Math.min(
-
       1,
-
       1280 /
       Math.max(
         video.videoWidth,
@@ -4635,18 +4318,7 @@ function captureFrame(){
     height;
 
   const context =
-    canvas.getContext(
-      "2d"
-    );
-
-  if(
-    !context
-  ){
-
-    throw new Error(
-      text().cameraNotReady
-    );
-  }
+    canvas.getContext("2d");
 
   context.drawImage(
     video,
@@ -4660,9 +4332,7 @@ function captureFrame(){
     true;
 
   const image =
-    el(
-      "capturedImage"
-    );
+    el("capturedImage");
 
   image.src =
     canvas.toDataURL(
@@ -4672,15 +4342,11 @@ function captureFrame(){
 
   image
     .classList
-    .remove(
-      "hidden"
-    );
+    .remove("hidden");
 
   video
     .classList
-    .add(
-      "hidden"
-    );
+    .add("hidden");
 
   setText(
     "cameraStatus",
@@ -4693,10 +4359,7 @@ function captureFrame(){
 window.captureAndAnalyze =
 async function(){
 
-  if(
-    visionBusy
-  ){
-
+  if(visionBusy){
     return;
   }
 
@@ -4733,20 +4396,9 @@ async function(){
 
   if(
     visionBusy
-  ){
-
-    return;
-  }
-
-  if(
+    ||
     !hasCapturedFrame()
   ){
-
-    handleVisionError(
-      new Error(
-        text().noCapturedFrame
-      )
-    );
 
     return;
   }
@@ -4772,9 +4424,7 @@ async function(){
   visionBusy =
     true;
 
-  el(
-    "captureButton"
-  )
+  el("captureButton")
     .disabled =
     true;
 
@@ -4782,14 +4432,6 @@ async function(){
     "captureButton",
     text().looking
   );
-
-  el(
-    "visionRetryButton"
-  )
-    .classList
-    .add(
-      "hidden"
-    );
 
   showAiMessage(
     "⏳",
@@ -4802,28 +4444,18 @@ async function(){
     const language =
       currentLanguage();
 
-    const question =
-      el(
-        "cameraQuestion"
-      )
-        .value
-        .trim();
-
     const result =
       await window
         .RiiWorkerClientV2
         .analyzeImage(
-
-          el(
-            "cameraCanvas"
-          ),
-
+          el("cameraCanvas"),
           {
-            question,
-
+            question:
+              el("cameraQuestion")
+                .value
+                .trim(),
             targetLanguage:
               language.code,
-
             targetLanguageName:
               language.english
           }
@@ -4838,16 +4470,6 @@ async function(){
 
     hideAiMessage();
 
-    el(
-      "rootDebug"
-    )
-      .classList
-      .add(
-        "hidden"
-      );
-
-    speakVision();
-
   }catch(error){
 
     handleVisionError(
@@ -4859,9 +4481,7 @@ async function(){
     visionBusy =
       false;
 
-    el(
-      "captureButton"
-    )
+    el("captureButton")
       .disabled =
       false;
 
@@ -4883,9 +4503,7 @@ function handleVisionError(
     ?
     window
       .RiiWorkerClientV2
-      .formatError(
-        error
-      )
+      .formatError(error)
     :
     {
       message:
@@ -4893,14 +4511,10 @@ function handleVisionError(
           error?.message ||
           error
         ),
-
-      code:
-        "CLIENT_ERROR"
+      code:"CLIENT_ERROR"
     };
 
-  el(
-    "rootDebugText"
-  )
+  el("rootDebugText")
     .textContent =
     JSON.stringify(
       formatted,
@@ -4908,57 +4522,23 @@ function handleVisionError(
       2
     );
 
-  el(
-    "rootDebug"
-  )
+  el("rootDebug")
     .classList
-    .remove(
-      "hidden"
-    );
-
-  const quota =
-    formatted.code ===
-    "VISION_MODEL_FAILED"
-
-    &&
-    /4006|daily free allocation|10,000 neurons/i
-      .test(
-        formatted.message
-      );
+    .remove("hidden");
 
   showAiMessage(
-
-    quota
-      ?
-      text().visionRest
-      :
-      text().visionError,
-
-    quota
-      ?
-      text().visionRestText
-      :
-      text().visionErrorText,
-
-    !quota
+    text().visionError,
+    text().visionErrorText,
+    true
   );
 
   if(
     hasCapturedFrame()
   ){
 
-    el(
-      "visionRetryButton"
-    )
+    el("visionRetryButton")
       .classList
-      .remove(
-        "hidden"
-      );
-
-    setText(
-      "cameraStatus",
-      text().cameraSaved
-    );
+      .remove("hidden");
   }
 }
 
@@ -4969,9 +4549,7 @@ function showAiMessage(
 ){
 
   const box =
-    el(
-      "aiMessage"
-    );
+    el("aiMessage");
 
   box.className =
     "ai-message show"
@@ -4997,10 +4575,7 @@ function showAiMessage(
 
 function hideAiMessage(){
 
-  el(
-    "aiMessage"
-  )
-    .className =
+  el("aiMessage").className =
     "ai-message";
 }
 
@@ -5013,7 +4588,6 @@ function renderVision(
 
   setText(
     "visionName",
-
     result.displayName
     ||
     result.objectName
@@ -5023,22 +4597,16 @@ function renderVision(
 
   setText(
     "visionCore",
-
     [
       result.category,
       result.objectName
     ]
-      .filter(
-        Boolean
-      )
-      .join(
-        " • "
-      )
+      .filter(Boolean)
+      .join(" • ")
   );
 
   setText(
     "visionExplanation",
-
     result.childExplanation
     ||
     result.closerViewMessage
@@ -5049,50 +4617,35 @@ function renderVision(
   const items =
     [];
 
-  if(
-    result.color
-  ){
-
+  if(result.color){
     items.push([
       x.color,
       result.color
     ]);
   }
 
-  if(
-    result.habitat
-  ){
-
+  if(result.habitat){
     items.push([
       x.habitat,
       result.habitat
     ]);
   }
 
-  if(
-    result.origin
-  ){
-
+  if(result.origin){
     items.push([
       x.origin,
       result.origin
     ]);
   }
 
-  if(
-    result.uses
-  ){
-
+  if(result.uses){
     items.push([
       x.uses,
       result.uses
     ]);
   }
 
-  if(
-    result.detectedText
-  ){
-
+  if(result.detectedText){
     items.push([
       x.detectedText,
       result.detectedText
@@ -5108,46 +4661,30 @@ function renderVision(
   ){
 
     items.push([
-
       x.features,
-
-      result
-        .visibleFeatures
-        .join(
-          ", "
-        )
+      result.visibleFeatures
+        .join(", ")
     ]);
   }
 
-  el(
-    "visionInfoGrid"
-  )
-    .innerHTML =
-
+  el("visionInfoGrid").innerHTML =
     items
       .map(
         item =>
           `
           <div class="info-box">
-
             <div class="info-label">
               ${escapeHtml(item[0])}
             </div>
-
             <div>
               ${escapeHtml(item[1])}
             </div>
-
           </div>
           `
       )
       .join("");
 
-  el(
-    "visionFacts"
-  )
-    .innerHTML =
-
+  el("visionFacts").innerHTML =
     (
       Array.isArray(
         result.interestingFacts
@@ -5168,104 +4705,61 @@ function renderVision(
       .join("");
 
   const answer =
-    el(
-      "visionAnswer"
-    );
+    el("visionAnswer");
 
-  if(
-    result.answer
-  ){
+  if(result.answer){
 
     answer.textContent =
       result.answer;
 
     answer
       .classList
-      .remove(
-        "hidden"
-      );
+      .remove("hidden");
 
   }else{
 
     answer
       .classList
-      .add(
-        "hidden"
-      );
+      .add("hidden");
   }
 
-  el(
-    "visionCard"
-  )
+  el("visionCard")
     .classList
-    .add(
-      "show"
-    );
+    .add("show");
 
-  el(
-    "visionSpeakButton"
-  )
+  el("visionSpeakButton")
     .disabled =
     false;
-
-  el(
-    "visionRetryButton"
-  )
-    .classList
-    .add(
-      "hidden"
-    );
 }
 
 window.speakVision =
 function(){
 
-  if(
-    latestVisionResult
-  ){
-
-    const result =
-      latestVisionResult;
-
-    speak(
-
-      [
-        result.displayName
-        ||
-        result.objectName,
-
-        result.childExplanation,
-
-        result.answer,
-
-        result.habitat,
-
-        result.interestingFacts?.[0]
-      ]
-        .filter(
-          Boolean
-        )
-        .join(
-          ". "
-        )
-    );
-
+  if(!latestVisionResult){
     return;
   }
 
+  const result =
+    latestVisionResult;
+
   speak(
-    el(
-      "aiMessageText"
-    )
-      .textContent
+    [
+      result.displayName
+      ||
+      result.objectName,
+      result.childExplanation,
+      result.answer,
+      result.habitat,
+      result.interestingFacts?.[0]
+    ]
+      .filter(Boolean)
+      .join(". ")
   );
 };
 
 function stopCamera(){
 
-  if(
-    cameraStream
-  ){
+  if(cameraStream){
 
     cameraStream
       .getTracks()
@@ -5279,21 +4773,16 @@ function stopCamera(){
   }
 
   const video =
-    el(
-      "cameraVideo"
-    );
+    el("cameraVideo");
 
-  if(
-    video
-  ){
-
+  if(video){
     video.srcObject =
       null;
   }
 }
 
 /* =====================================================
-   LIVE TRANSLATION
+   TRANSLATION
 ===================================================== */
 
 function setTranslationBusy(
@@ -5303,21 +4792,16 @@ function setTranslationBusy(
   translationBusy =
     busy;
 
-  el(
-    "translateActionButton"
-  )
+  el("translateActionButton")
     .disabled =
     busy;
 
-  el(
-    "translateVoiceButton"
-  )
+  el("translateVoiceButton")
     .disabled =
     busy;
 
   setText(
     "translateActionButton",
-
     busy
       ?
       text().translating
@@ -5333,15 +4817,10 @@ function showTranslationStatus(
 ){
 
   const box =
-    el(
-      "translationStatus"
-    );
+    el("translationStatus");
 
   box.textContent =
-    String(
-      message ||
-      ""
-    );
+    message;
 
   box.className =
     "translation-status show";
@@ -5367,52 +4846,11 @@ function showTranslationStatus(
   }
 }
 
-function normalizeTranslationLanguageCode(
-  result
-){
-
-  return (
-    result?.detectedLanguageCode
-    ||
-    result?.detectedSourceLanguage
-    ||
-    result?.sourceLanguage
-    ||
-    ""
-  );
-}
-
-function normalizeTranslationLanguageName(
-  result,
-  source
-){
-
-  if(
-    source
-  ){
-
-    return source.name;
-  }
-
-  return (
-    result?.detectedLanguage
-    ||
-    result?.detectedSourceLanguageName
-    ||
-    result?.sourceLanguageName
-    ||
-    ""
-  );
-}
-
 function renderTranslation(
   result
 ){
 
-  if(
-    !result
-  ){
-
+  if(!result){
     return;
   }
 
@@ -5420,9 +4858,13 @@ function renderTranslation(
     text();
 
   const sourceCode =
-    normalizeTranslationLanguageCode(
-      result
-    );
+    result.detectedLanguageCode
+    ||
+    result.detectedSourceLanguage
+    ||
+    result.sourceLanguage
+    ||
+    "";
 
   const source =
     languageByCode(
@@ -5430,22 +4872,19 @@ function renderTranslation(
     );
 
   const sourceName =
-    normalizeTranslationLanguageName(
-      result,
-      source
-    )
+    source?.name
+    ||
+    result.detectedLanguage
+    ||
+    result.detectedSourceLanguageName
+    ||
+    result.sourceLanguageName
     ||
     x.translateAuto;
 
-  const targetCode =
-    result.targetLanguage
-    ||
-    currentLanguage()
-      .code;
-
   const target =
     languageByCode(
-      targetCode
+      result.targetLanguage
     )
     ||
     currentLanguage();
@@ -5459,7 +4898,6 @@ function renderTranslation(
 
   setText(
     "translateSourceValue",
-
     source
       ?
       source.flag
@@ -5473,7 +4911,6 @@ function renderTranslation(
 
   setText(
     "translateTargetValue",
-
     target.flag
     +
     " "
@@ -5483,17 +4920,12 @@ function renderTranslation(
 
   setText(
     "translationMeta",
-
     [
-      sourceName
-        ?
-        x.translateDetected
-        +
-        ": "
-        +
-        sourceName
-        :
-        "",
+      x.translateDetected
+      +
+      ": "
+      +
+      sourceName,
 
       result.source
       ||
@@ -5513,25 +4945,15 @@ function renderTranslation(
         :
         ""
     ]
-      .filter(
-        Boolean
-      )
-      .join(
-        " • "
-      )
+      .filter(Boolean)
+      .join(" • ")
   );
 
-  el(
-    "translationOutput"
-  )
+  el("translationOutput")
     .classList
-    .add(
-      "show"
-    );
+    .add("show");
 
-  el(
-    "translateSpeakButton"
-  )
+  el("translateSpeakButton")
     .disabled =
     !result.translatedText;
 }
@@ -5539,10 +4961,7 @@ function renderTranslation(
 window.translateNow =
 async function(){
 
-  if(
-    translationBusy
-  ){
-
+  if(translationBusy){
     return;
   }
 
@@ -5550,15 +4969,11 @@ async function(){
     text();
 
   const value =
-    el(
-      "translateInput"
-    )
+    el("translateInput")
       .value
       .trim();
 
-  if(
-    !value
-  ){
+  if(!value){
 
     showTranslationStatus(
       x.translateNeedText,
@@ -5585,21 +5000,11 @@ async function(){
     return;
   }
 
-  setTranslationBusy(
-    true
-  );
+  setTranslationBusy(true);
 
   showTranslationStatus(
     x.translating
   );
-
-  el(
-    "translationDebug"
-  )
-    .classList
-    .add(
-      "hidden"
-    );
 
   try{
 
@@ -5610,16 +5015,11 @@ async function(){
       await window
         .RiiWorkerClientV2
         .translateText(
-
           value,
-
           {
-            sourceLanguage:
-              "auto",
-
+            sourceLanguage:"auto",
             targetLanguage:
               language.code,
-
             targetLanguageName:
               language.english
           }
@@ -5633,14 +5033,11 @@ async function(){
     );
 
     showTranslationStatus(
-
       result.aiUsed
         ?
         x.translateDone
         :
-        x.translateLocal,
-
-      "normal"
+        x.translateLocal
     );
 
   }catch(error){
@@ -5652,9 +5049,7 @@ async function(){
       ?
       window
         .RiiWorkerClientV2
-        .formatError(
-          error
-        )
+        .formatError(error)
       :
       {
         message:
@@ -5662,16 +5057,10 @@ async function(){
             error?.message ||
             error
           ),
-
-        code:
-          "CLIENT_ERROR",
-
-        details:{}
+        code:"CLIENT_ERROR"
       };
 
-    el(
-      "translationDebugText"
-    )
+    el("translationDebugText")
       .textContent =
       JSON.stringify(
         formatted,
@@ -5679,18 +5068,13 @@ async function(){
         2
       );
 
-    el(
-      "translationDebug"
-    )
+    el("translationDebug")
       .classList
-      .remove(
-        "hidden"
-      );
+      .remove("hidden");
 
     const quota =
       formatted.code ===
       "TRANSLATION_MODEL_FAILED"
-
       &&
       /4006|daily free allocation|10,000 neurons/i
         .test(
@@ -5698,7 +5082,6 @@ async function(){
         );
 
     showTranslationStatus(
-
       quota
         ?
         x.translateQuota
@@ -5706,7 +5089,6 @@ async function(){
         x.translateError
         +
         formatted.message,
-
       quota
         ?
         "resting"
@@ -5714,20 +5096,9 @@ async function(){
         "error"
     );
 
-    if(
-      latestTranslationResult
-    ){
-
-      renderTranslation(
-        latestTranslationResult
-      );
-    }
-
   }finally{
 
-    setTranslationBusy(
-      false
-    );
+    setTranslationBusy(false);
   }
 };
 
@@ -5751,41 +5122,27 @@ function(){
     );
 
   speak(
-
     latestTranslationResult
       .translatedText,
-
     latestTranslationResult
       .targetLocale
     ||
     latestTranslationResult
       .locale
     ||
-    target
-      ?.locale
+    target?.locale
     ||
-    currentLanguage()
-      .locale
+    currentLanguage().locale
   );
 };
 
 window.clearTranslation =
 function(){
 
-  if(
-    translationBusy
-  ){
-
-    return;
-  }
-
   latestTranslationResult =
     null;
 
-  el(
-    "translateInput"
-  )
-    .value =
+  el("translateInput").value =
     "";
 
   setText(
@@ -5798,49 +5155,15 @@ function(){
     ""
   );
 
-  setText(
-    "translateSourceValue",
-    text().translateAuto
-  );
-
-  const language =
-    currentLanguage();
-
-  setText(
-    "translateTargetValue",
-
-    language.flag
-    +
-    " "
-    +
-    language.name
-  );
-
-  el(
-    "translationOutput"
-  )
+  el("translationOutput")
     .classList
-    .remove(
-      "show"
-    );
+    .remove("show");
 
-  el(
-    "translateSpeakButton"
-  )
+  el("translateSpeakButton")
     .disabled =
     true;
 
-  el(
-    "translationDebug"
-  )
-    .classList
-    .add(
-      "hidden"
-    );
-
-  showTranslationStatus(
-    text().translateReady
-  );
+  render();
 };
 
 /* =====================================================
@@ -5868,7 +5191,7 @@ function saveNotes(
   notes
 ){
 
-  const all =
+  const others =
     loadArray(
       NOTE_KEY
     )
@@ -5887,7 +5210,7 @@ function saveNotes(
     NOTE_KEY,
     [
       ...notes,
-      ...all
+      ...others
     ]
       .slice(
         0,
@@ -5900,24 +5223,18 @@ window.saveNote =
 function(){
 
   const value =
-    el(
-      "notesInput"
-    )
+    el("notesInput")
       .value
       .trim();
 
-  if(
-    !value
-  ){
+  if(!value){
 
     setText(
       "notesResult",
       text().noteEmpty
     );
 
-    el(
-      "notesResult"
-    )
+    el("notesResult")
       .dataset
       .touched =
       "1";
@@ -5959,23 +5276,16 @@ function(){
     notes
   );
 
-  el(
-    "notesInput"
-  )
-    .value =
+  el("notesInput").value =
     "";
 
-  el(
-    "notesResult"
-  )
+  el("notesResult")
     .dataset
     .touched =
     "1";
 
   setText(
-
     "notesResult",
-
     text().saved
     +
     "\n"
@@ -5985,9 +5295,11 @@ function(){
 
   renderNotes();
 
-  speak(
-    value
-  );
+  /*
+    Không tự đọc sau khi save.
+    Để nút Nghe là user gesture riêng,
+    ổn định hơn trên Safari iOS.
+  */
 };
 
 function renderNotes(){
@@ -5996,20 +5308,13 @@ function renderNotes(){
     getNotes();
 
   const container =
-    el(
-      "notesList"
-    );
+    el("notesList");
 
-  if(
-    !container
-  ){
-
+  if(!container){
     return;
   }
 
-  if(
-    !notes.length
-  ){
+  if(!notes.length){
 
     container.innerHTML =
       `
@@ -6022,28 +5327,32 @@ function renderNotes(){
   }
 
   container.innerHTML =
-
     notes
       .map(
         note =>
           `
           <div class="note-item">
 
-            <div class="note-item-top">
-
-              <div class="note-text">
-                ${escapeHtml(note.text)}
-              </div>
-
+            <div class="note-text">
+              ${escapeHtml(note.text)}
             </div>
 
             <div class="note-time">
               ${escapeHtml(
-                formatDateTime(
-                  note.updatedAt
-                  ||
-                  note.createdAt
+                new Intl.DateTimeFormat(
+                  currentLanguage().locale,
+                  {
+                    dateStyle:"medium",
+                    timeStyle:"short"
+                  }
                 )
+                  .format(
+                    new Date(
+                      note.updatedAt
+                      ||
+                      note.createdAt
+                    )
+                  )
               )}
             </div>
 
@@ -6091,14 +5400,14 @@ function(
           id
       );
 
-  if(
-    note
-  ){
-
-    speak(
-      note.text
-    );
+  if(!note){
+    return;
   }
+
+  speak(
+    note.text,
+    currentLanguage().locale
+  );
 };
 
 window.editNote =
@@ -6116,11 +5425,7 @@ function(
         id
     );
 
-  if(
-    index <
-    0
-  ){
-
+  if(index < 0){
     return;
   }
 
@@ -6130,21 +5435,14 @@ function(
       notes[index].text
     );
 
-  if(
-    next ===
-    null
-  ){
-
+  if(next === null){
     return;
   }
 
   const clean =
     next.trim();
 
-  if(
-    !clean
-  ){
-
+  if(!clean){
     return;
   }
 
@@ -6160,9 +5458,7 @@ function(
     notes
   );
 
-  el(
-    "notesResult"
-  )
+  el("notesResult")
     .dataset
     .touched =
     "1";
@@ -6180,21 +5476,16 @@ function(
   id
 ){
 
-  const notes =
+  saveNotes(
     getNotes()
       .filter(
         item =>
           item.id !==
           id
-      );
-
-  saveNotes(
-    notes
+      )
   );
 
-  el(
-    "notesResult"
-  )
+  el("notesResult")
     .dataset
     .touched =
     "1";
@@ -6227,7 +5518,7 @@ function saveAlarms(
   alarms
 ){
 
-  const otherAccounts =
+  const others =
     loadArray(
       ALARM_KEY
     )
@@ -6241,96 +5532,63 @@ function saveAlarms(
     ALARM_KEY,
     [
       ...alarms,
-      ...otherAccounts
+      ...others
     ]
-      .slice(
-        0,
-        500
-      )
   );
 }
 
 function setDefaultAlarmDateTime(){
 
-  const now =
-    new Date();
-
   const next =
     new Date(
-      now.getTime()
+      Date.now()
       +
       5 *
       60 *
       1000
     );
 
-  const year =
+  const yyyy =
     next.getFullYear();
 
-  const month =
+  const mm =
     String(
-      next.getMonth()
-      +
-      1
+      next.getMonth() + 1
     )
-      .padStart(
-        2,
-        "0"
-      );
+      .padStart(2,"0");
 
-  const day =
+  const dd =
     String(
       next.getDate()
     )
-      .padStart(
-        2,
-        "0"
-      );
+      .padStart(2,"0");
 
-  const hour =
+  const hh =
     String(
       next.getHours()
     )
-      .padStart(
-        2,
-        "0"
-      );
+      .padStart(2,"0");
 
-  const minute =
+  const min =
     String(
       next.getMinutes()
     )
-      .padStart(
-        2,
-        "0"
-      );
+      .padStart(2,"0");
 
   if(
-    !el(
-      "alarmDateInput"
-    )
-      .value
+    !el("alarmDateInput").value
   ){
 
-    el(
-      "alarmDateInput"
-    )
-      .value =
-      `${year}-${month}-${day}`;
+    el("alarmDateInput").value =
+      `${yyyy}-${mm}-${dd}`;
   }
 
   if(
-    !el(
-      "alarmTimeInput"
-    )
-      .value
+    !el("alarmTimeInput").value
   ){
 
-    el(
-      "alarmTimeInput"
-    )
-      .value =
-      `${hour}:${minute}`;
+    el("alarmTimeInput").value =
+      `${hh}:${min}`;
   }
 }
 
@@ -6338,37 +5596,25 @@ window.saveAlarm =
 function(){
 
   const title =
-    el(
-      "alarmTitleInput"
-    )
+    el("alarmTitleInput")
       .value
       .trim()
     ||
     text().alarmDefault;
 
   const date =
-    el(
-      "alarmDateInput"
-    )
-      .value;
+    el("alarmDateInput").value;
 
   const time =
-    el(
-      "alarmTimeInput"
-    )
-      .value;
+    el("alarmTimeInput").value;
 
   const repeat =
-    el(
-      "alarmRepeatInput"
-    )
-      .value;
+    el("alarmRepeatInput").value;
 
-  if(
-    !time
-  ){
+  if(!time){
 
-    showAlarmResult(
+    setText(
+      "alarmResult",
       text().alarmNeedTime
     );
 
@@ -6382,7 +5628,8 @@ function(){
     !date
   ){
 
-    showAlarmResult(
+    setText(
+      "alarmResult",
       text().alarmNeedDate
     );
 
@@ -6397,50 +5644,37 @@ function(){
     id:
       "alarm_"
       +
-      Date.now()
-      +
-      "_"
-      +
-      Math.random()
-        .toString(36)
-        .slice(2,8),
+      Date.now(),
 
     riiId:
       ROOT_ID,
 
     title,
-
     date,
-
     time,
-
     repeat,
 
-    enabled:
-      true,
+    enabled:true,
 
-    createdAt:
-      new Date()
-        .toISOString(),
+    lastTriggeredKey:null,
 
-    lastTriggeredKey:
-      null,
-
-    snoozeUntil:
-      null
+    snoozeUntil:null
   });
 
   saveAlarms(
     alarms
   );
 
-  el(
-    "alarmTitleInput"
-  )
-    .value =
+  el("alarmTitleInput").value =
     "";
 
-  showAlarmResult(
+  el("alarmResult")
+    .dataset
+    .touched =
+    "1";
+
+  setText(
+    "alarmResult",
     text().alarmSaved
     +
     "\n"
@@ -6453,36 +5687,7 @@ function(){
   );
 
   renderAlarms();
-
-  speak(
-    text().alarmSaved
-    +
-    " "
-    +
-    title
-    +
-    " "
-    +
-    time
-  );
 };
-
-function showAlarmResult(
-  message
-){
-
-  el(
-    "alarmResult"
-  )
-    .dataset
-    .touched =
-    "1";
-
-  setText(
-    "alarmResult",
-    message
-  );
-}
 
 function renderAlarms(){
 
@@ -6490,20 +5695,13 @@ function renderAlarms(){
     getAlarms();
 
   const container =
-    el(
-      "alarmList"
-    );
+    el("alarmList");
 
-  if(
-    !container
-  ){
-
+  if(!container){
     return;
   }
 
-  if(
-    !alarms.length
-  ){
+  if(!alarms.length){
 
     container.innerHTML =
       `
@@ -6515,26 +5713,8 @@ function renderAlarms(){
     return;
   }
 
-  const sorted =
-    [...alarms]
-      .sort(
-        (
-          a,
-          b
-        ) =>
-          String(
-            a.time
-          )
-            .localeCompare(
-              String(
-                b.time
-              )
-            )
-      );
-
   container.innerHTML =
-
-    sorted
+    alarms
       .map(
         alarm =>
           `
@@ -6561,11 +5741,18 @@ function renderAlarms(){
                 </div>
 
                 <div class="alarm-meta">
-                  ${escapeHtml(
-                    formatAlarmDate(
-                      alarm
-                    )
-                  )}
+                  ${
+                    alarm.repeat ===
+                    "daily"
+                      ?
+                      escapeHtml(
+                        text().daily
+                      )
+                      :
+                      escapeHtml(
+                        alarm.date
+                      )
+                  }
                 </div>
 
               </div>
@@ -6578,7 +5765,6 @@ function renderAlarms(){
                     :
                     ""
                 }"
-                aria-label="toggle"
                 onclick="toggleAlarm('${alarm.id}')"
               ></button>
 
@@ -6616,39 +5802,30 @@ function(
   const alarms =
     getAlarms();
 
-  const index =
-    alarms.findIndex(
-      alarm =>
-        alarm.id ===
+  const alarm =
+    alarms.find(
+      item =>
+        item.id ===
         id
     );
 
-  if(
-    index <
-    0
-  ){
-
+  if(!alarm){
     return;
   }
 
-  alarms[index].enabled =
-    !alarms[index].enabled;
+  alarm.enabled =
+    !alarm.enabled;
 
-  if(
-    alarms[index].enabled
-  ){
-
-    alarms[index].lastTriggeredKey =
-      null;
-  }
+  alarm.lastTriggeredKey =
+    null;
 
   saveAlarms(
     alarms
   );
 
-  showAlarmResult(
-
-    alarms[index].enabled
+  setText(
+    "alarmResult",
+    alarm.enabled
       ?
       text().alarmEnabled
       :
@@ -6663,19 +5840,17 @@ function(
   id
 ){
 
-  const alarms =
+  saveAlarms(
     getAlarms()
       .filter(
-        alarm =>
-          alarm.id !==
+        item =>
+          item.id !==
           id
-      );
-
-  saveAlarms(
-    alarms
+      )
   );
 
-  showAlarmResult(
+  setText(
+    "alarmResult",
     text().alarmDeleted
   );
 
@@ -6695,83 +5870,59 @@ function(
           id
       );
 
-  if(
-    !alarm
-  ){
+  if(alarm){
 
-    return;
+    speak(
+      alarm.title
+      +
+      ". "
+      +
+      alarm.time
+    );
   }
-
-  speak(
-    alarm.title
-    +
-    ". "
-    +
-    alarm.time
-  );
 };
 
 function localDateKey(
   date
 ){
 
-  const year =
-    date.getFullYear();
-
-  const month =
+  return (
+    date.getFullYear()
+    +
+    "-"
+    +
     String(
-      date.getMonth()
-      +
-      1
-    )
-      .padStart(
-        2,
-        "0"
-      );
-
-  const day =
+      date.getMonth() + 1
+    ).padStart(2,"0")
+    +
+    "-"
+    +
     String(
       date.getDate()
-    )
-      .padStart(
-        2,
-        "0"
-      );
-
-  return `${year}-${month}-${day}`;
+    ).padStart(2,"0")
+  );
 }
 
 function localTimeKey(
   date
 ){
 
-  const hour =
+  return (
     String(
       date.getHours()
-    )
-      .padStart(
-        2,
-        "0"
-      );
-
-  const minute =
+    ).padStart(2,"0")
+    +
+    ":"
+    +
     String(
       date.getMinutes()
-    )
-      .padStart(
-        2,
-        "0"
-      );
-
-  return `${hour}:${minute}`;
+    ).padStart(2,"0")
+  );
 }
 
 function checkAlarms(){
 
-  if(
-    activeAlarm
-  ){
-
+  if(activeAlarm){
     return;
   }
 
@@ -6782,16 +5933,12 @@ function checkAlarms(){
     new Date();
 
   const today =
-    localDateKey(
-      now
-    );
+    localDateKey(now);
 
   const currentTime =
-    localTimeKey(
-      now
-    );
+    localTimeKey(now);
 
-  const currentMinuteKey =
+  const triggerKey =
     today
     +
     " "
@@ -6806,38 +5953,23 @@ function checkAlarms(){
     of alarms
   ){
 
-    if(
-      !alarm.enabled
-    ){
-
+    if(!alarm.enabled){
       continue;
     }
 
-    if(
-      alarm.snoozeUntil
-    ){
+    if(alarm.snoozeUntil){
 
-      const snoozeTime =
+      const snooze =
         new Date(
           alarm.snoozeUntil
         );
 
       if(
-        !Number.isNaN(
-          snoozeTime.getTime()
-        )
-        &&
-        now >=
-        snoozeTime
+        now >= snooze
       ){
 
         alarm.snoozeUntil =
           null;
-
-        alarm.lastTriggeredKey =
-          "snooze-"
-          +
-          now.getTime();
 
         changed =
           true;
@@ -6873,14 +6005,14 @@ function checkAlarms(){
 
     if(
       alarm.lastTriggeredKey ===
-      currentMinuteKey
+      triggerKey
     ){
 
       continue;
     }
 
     alarm.lastTriggeredKey =
-      currentMinuteKey;
+      triggerKey;
 
     if(
       alarm.repeat ===
@@ -6901,9 +6033,7 @@ function checkAlarms(){
     break;
   }
 
-  if(
-    changed
-  ){
+  if(changed){
 
     saveAlarms(
       alarms
@@ -6934,34 +6064,11 @@ function triggerAlarm(
     text().alarmDefault
   );
 
-  el(
-    "alarmOverlay"
-  )
+  el("alarmOverlay")
     .classList
-    .add(
-      "open"
-    );
+    .add("open");
 
   startAlarmTone();
-
-  if(
-    navigator.vibrate
-  ){
-
-    try{
-
-      navigator.vibrate(
-        [
-          400,
-          150,
-          400,
-          150,
-          700
-        ]
-      );
-
-    }catch{}
-  }
 
   speak(
     text().alarmRinging
@@ -6987,10 +6094,7 @@ function startAlarmTone(){
       ||
       window.webkitAudioContext;
 
-    if(
-      !C
-    ){
-
+    if(!C){
       return;
     }
 
@@ -7005,24 +6109,18 @@ function startAlarmTone(){
       alarmAudioContext
         .createGain();
 
-    alarmOscillator.type =
-      "sine";
-
     alarmOscillator.frequency.value =
       880;
 
     gain.gain.value =
-      .12;
+      .14;
 
     alarmOscillator
-      .connect(
-        gain
-      );
+      .connect(gain);
 
-    gain
-      .connect(
-        alarmAudioContext.destination
-      );
+    gain.connect(
+      alarmAudioContext.destination
+    );
 
     alarmOscillator.start();
 
@@ -7032,41 +6130,18 @@ function startAlarmTone(){
 function stopAlarmTone(){
 
   try{
-
-    if(
-      alarmOscillator
-    ){
-
-      alarmOscillator.stop();
-    }
-
+    alarmOscillator?.stop();
   }catch{}
 
   alarmOscillator =
     null;
 
   try{
-
-    if(
-      alarmAudioContext
-    ){
-
-      alarmAudioContext.close();
-    }
-
+    alarmAudioContext?.close();
   }catch{}
 
   alarmAudioContext =
     null;
-
-  if(
-    navigator.vibrate
-  ){
-
-    try{
-      navigator.vibrate(0);
-    }catch{}
-  }
 }
 
 window.stopActiveAlarm =
@@ -7074,49 +6149,37 @@ function(){
 
   stopAlarmTone();
 
-  el(
-    "alarmOverlay"
-  )
+  el("alarmOverlay")
     .classList
-    .remove(
-      "open"
-    );
+    .remove("open");
 
   activeAlarm =
     null;
-
-  renderAlarms();
 };
 
 window.snoozeActiveAlarm =
 function(){
 
-  if(
-    !activeAlarm
-  ){
-
+  if(!activeAlarm){
     return;
   }
 
   const alarms =
     getAlarms();
 
-  const index =
-    alarms.findIndex(
-      alarm =>
-        alarm.id ===
+  const alarm =
+    alarms.find(
+      item =>
+        item.id ===
         activeAlarm.id
     );
 
-  if(
-    index >=
-    0
-  ){
+  if(alarm){
 
-    alarms[index].enabled =
+    alarm.enabled =
       true;
 
-    alarms[index].snoozeUntil =
+    alarm.snoozeUntil =
       new Date(
         Date.now()
         +
@@ -7131,18 +6194,7 @@ function(){
     );
   }
 
-  stopAlarmTone();
-
-  el(
-    "alarmOverlay"
-  )
-    .classList
-    .remove(
-      "open"
-    );
-
-  activeAlarm =
-    null;
+  stopActiveAlarm();
 
   renderAlarms();
 };
@@ -7159,25 +6211,18 @@ function(
       "notes",
       "alarms"
     ]
-      .includes(
-        tab
-      )
+      .includes(tab)
   ){
 
     return;
   }
 
-  if(
-    updateState
-  ){
-
+  if(updateState){
     currentNotesTab =
       tab;
   }
 
-  el(
-    "notesTabButton"
-  )
+  el("notesTabButton")
     .classList
     .toggle(
       "active",
@@ -7185,9 +6230,7 @@ function(
       "notes"
     );
 
-  el(
-    "alarmsTabButton"
-  )
+  el("alarmsTabButton")
     .classList
     .toggle(
       "active",
@@ -7195,9 +6238,7 @@ function(
       "alarms"
     );
 
-  el(
-    "notesPanel"
-  )
+  el("notesPanel")
     .classList
     .toggle(
       "active",
@@ -7205,9 +6246,7 @@ function(
       "notes"
     );
 
-  el(
-    "alarmsPanel"
-  )
+  el("alarmsPanel")
     .classList
     .toggle(
       "active",
@@ -7227,19 +6266,15 @@ function(
 };
 
 /* =====================================================
-   QUICK MENU / FLOATING RII
+   QUICK RII
 ===================================================== */
 
 window.closeQuick =
 function(){
 
-  el(
-    "quickOverlay"
-  )
+  el("quickOverlay")
     .classList
-    .remove(
-      "open"
-    );
+    .remove("open");
 };
 
 window.quickOpen =
@@ -7255,9 +6290,7 @@ function(
 };
 
 const rii =
-  el(
-    "riiButton"
-  );
+  el("riiButton");
 
 let dragging =
   false;
@@ -7321,11 +6354,9 @@ rii.addEventListener(
       rect.top;
 
     try{
-
       rii.setPointerCapture(
         event.pointerId
       );
-
     }catch{}
   }
 );
@@ -7334,32 +6365,25 @@ rii.addEventListener(
   "pointermove",
   event => {
 
-    if(
-      !dragging
-    ){
-
+    if(!dragging){
       return;
     }
 
-    const deltaX =
+    const dx =
       event.clientX -
       dragStartX;
 
-    const deltaY =
+    const dy =
       event.clientY -
       dragStartY;
 
-    const distance =
-      Math.sqrt(
-        deltaX *
-        deltaX
-        +
-        deltaY *
-        deltaY
-      );
-
     if(
-      distance >
+      Math.sqrt(
+        dx * dx
+        +
+        dy * dy
+      )
+      >
       4
     ){
 
@@ -7404,24 +6428,16 @@ rii.addEventListener(
       false;
 
     try{
-
       rii.releasePointerCapture(
         event.pointerId
       );
-
     }catch{}
 
-    if(
-      !moved
-    ){
+    if(!moved){
 
-      el(
-        "quickOverlay"
-      )
+      el("quickOverlay")
         .classList
-        .add(
-          "open"
-        );
+        .add("open");
     }
   }
 );
@@ -7439,32 +6455,28 @@ rii.addEventListener(
   "languageOverlay",
   "quickOverlay"
 ]
-.forEach(
-  id => {
+  .forEach(
+    id => {
 
-    el(
-      id
-    )
-      .addEventListener(
-        "click",
-        event => {
+      el(id)
+        .addEventListener(
+          "click",
+          event => {
 
-          if(
-            event.target.id ===
-            id
-          ){
+            if(
+              event.target.id ===
+              id
+            ){
 
-            event
-              .currentTarget
-              .classList
-              .remove(
-                "open"
-              );
+              event
+                .currentTarget
+                .classList
+                .remove("open");
+            }
           }
-        }
-      );
-  }
-);
+        );
+    }
+  );
 
 /* =====================================================
    BOOT
@@ -7472,28 +6484,41 @@ rii.addEventListener(
 
 try{
 
-  validateBoot();
-
   const savedLanguage =
     localStorage.getItem(
       LANGUAGE_KEY
     );
 
-  const validSavedLanguage =
+  const valid =
     languages.some(
       item =>
         item.code ===
         savedLanguage
     );
 
-  if(
-    !validSavedLanguage
-  ){
+  if(!valid){
 
     localStorage.setItem(
       LANGUAGE_KEY,
       "vi"
     );
+  }
+
+  /*
+    Gọi getVoices sớm để Safari bắt đầu load voice list.
+  */
+
+  if(
+    "speechSynthesis"
+    in window
+  ){
+
+    try{
+
+      speechSynthesis
+        .getVoices();
+
+    }catch{}
   }
 
   setDefaultAlarmDateTime();
@@ -7512,7 +6537,7 @@ try{
     +
     APP_VERSION
     +
-    " Notes & Alarms Live ready"
+    " iOS Speech Stability ready"
   );
 
 }catch(error){
@@ -7522,9 +6547,23 @@ try{
     error
   );
 
-  showBootError(
-    error
-  );
+  const node =
+    el("bootError");
+
+  if(node){
+
+    node.textContent =
+      "❌ Rii UI boot error: "
+      +
+      String(
+        error?.message ||
+        error
+      );
+
+    node
+      .classList
+      .add("show");
+  }
 }
 
 })();
