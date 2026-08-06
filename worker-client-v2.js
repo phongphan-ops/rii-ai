@@ -1,25 +1,19 @@
 /*
 =========================================================
 Rii Worker Client
-Version: 2.3.0
+Version: 2.3.2
 
-Supports:
-- Health
-- Educational Math
-- Live text translation
-- Concept analysis
-- Object normalization
-- Concept translation
-- Vision AI
-- Image generation
+CORE 5 LANGUAGES
+- Vietnamese
+- English
+- Chinese
+- Korean
+- Japanese
 
-TRANSLATION V2.3.0
-- Dedicated translateText()
-- /translate-text endpoint
-- Auto source-language detection
-- 12 Rii languages
-- Translation error support
-- Preserves all V2.2.0 APIs
+STABILITY FIXES
+- GET requests do not force JSON Content-Type
+- Preserves Math / Translation / Vision / Concept APIs
+- Full replacement file, no patching required
 =========================================================
 */
 
@@ -29,7 +23,7 @@ TRANSLATION V2.3.0
 
 
 const CLIENT_VERSION =
-  "2.3.0";
+  "2.3.2";
 
 
 const DEFAULT_BACKEND =
@@ -93,22 +87,21 @@ const ENDPOINTS = {
 
 
 /* =====================================================
-   SUPPORTED LANGUAGES
+   CORE 5 LANGUAGES
 ===================================================== */
 
 const SUPPORTED_LANGUAGES = [
+
   "vi",
+
   "en",
+
   "zh",
-  "ja",
+
   "ko",
-  "es",
-  "fr",
-  "de",
-  "pt",
-  "it",
-  "th",
-  "id"
+
+  "ja"
+
 ];
 
 
@@ -266,8 +259,11 @@ async function requestJson(
 ){
 
   const method =
-    options.method ||
-    "GET";
+    String(
+      options.method ||
+      "GET"
+    )
+      .toUpperCase();
 
 
   const timeout =
@@ -287,6 +283,27 @@ async function requestJson(
     );
 
 
+  const headers = {
+
+    ...(
+      body ===
+      undefined
+        ?
+        {}
+        :
+        {
+          "Content-Type":
+            "application/json"
+        }
+    ),
+
+    ...(
+      options.headers ||
+      {}
+    )
+  };
+
+
   try{
 
     const response =
@@ -297,16 +314,7 @@ async function requestJson(
         {
           method,
 
-          headers:{
-
-            "Content-Type":
-              "application/json",
-
-            ...(
-              options.headers ||
-              {}
-            )
-          },
+          headers,
 
           body:
             body ===
@@ -326,12 +334,12 @@ async function requestJson(
       );
 
 
-    let data =
-      null;
-
-
     const raw =
       await response.text();
+
+
+    let data =
+      null;
 
 
     if(
@@ -491,6 +499,45 @@ async function solveMath(
   }
 
 
+  const targetLanguage =
+    String(
+      options.targetLanguage ||
+      "vi"
+    )
+      .trim()
+      .toLowerCase();
+
+
+  if(
+    !isSupportedLanguage(
+      targetLanguage
+    )
+  ){
+
+    const error =
+      new Error(
+        "Unsupported target language."
+      );
+
+
+    error.code =
+      "TARGET_LANGUAGE_INVALID";
+
+
+    error.details = {
+
+      targetLanguage,
+
+      supportedLanguages:[
+        ...SUPPORTED_LANGUAGES
+      ]
+    };
+
+
+    throw error;
+  }
+
+
   return requestJson(
     ENDPOINTS.math,
     {
@@ -505,9 +552,7 @@ async function solveMath(
         problem:
           value,
 
-        targetLanguage:
-          options.targetLanguage ||
-          "vi",
+        targetLanguage,
 
         targetLanguageName:
           options.targetLanguageName ||
@@ -520,7 +565,6 @@ async function solveMath(
 
 /* =====================================================
    LIVE TEXT TRANSLATION
-   V2.3.0
 ===================================================== */
 
 async function translateText(
@@ -552,7 +596,7 @@ async function translateText(
   }
 
 
-  let sourceLanguage =
+  const sourceLanguage =
     String(
       options.sourceLanguage ||
       "auto"
@@ -765,7 +809,6 @@ async function normalizeObject(
 
 /* =====================================================
    CONCEPT TRANSLATION
-   PRESERVED FOR V2 COMPATIBILITY
 ===================================================== */
 
 async function translateConcept(
@@ -797,6 +840,35 @@ async function translateConcept(
   }
 
 
+  const targetLanguage =
+    String(
+      options.targetLanguage ||
+      "vi"
+    )
+      .trim()
+      .toLowerCase();
+
+
+  if(
+    !isSupportedLanguage(
+      targetLanguage
+    )
+  ){
+
+    const error =
+      new Error(
+        "Unsupported target language."
+      );
+
+
+    error.code =
+      "TARGET_LANGUAGE_INVALID";
+
+
+    throw error;
+  }
+
+
   return requestJson(
     ENDPOINTS.translate,
     {
@@ -811,9 +883,7 @@ async function translateConcept(
         normalizedEnglish:
           value,
 
-        targetLanguage:
-          options.targetLanguage ||
-          "vi",
+        targetLanguage,
 
         targetLanguageName:
           options.targetLanguageName ||
@@ -990,6 +1060,35 @@ async function analyzeImage(
     );
 
 
+  const targetLanguage =
+    String(
+      options.targetLanguage ||
+      "vi"
+    )
+      .trim()
+      .toLowerCase();
+
+
+  if(
+    !isSupportedLanguage(
+      targetLanguage
+    )
+  ){
+
+    const error =
+      new Error(
+        "Unsupported target language."
+      );
+
+
+    error.code =
+      "TARGET_LANGUAGE_INVALID";
+
+
+    throw error;
+  }
+
+
   return requestJson(
     ENDPOINTS.vision,
     {
@@ -1011,9 +1110,7 @@ async function analyzeImage(
           )
             .trim(),
 
-        targetLanguage:
-          options.targetLanguage ||
-          "vi",
+        targetLanguage,
 
         targetLanguageName:
           options.targetLanguageName ||
@@ -1057,6 +1154,36 @@ async function generateImages(
   }
 
 
+  let count =
+    Number(
+      options.count ||
+      3
+    );
+
+
+  if(
+    !Number.isFinite(
+      count
+    )
+  ){
+
+    count =
+      3;
+  }
+
+
+  count =
+    Math.max(
+      1,
+      Math.min(
+        6,
+        Math.round(
+          count
+        )
+      )
+    );
+
+
   return requestJson(
     ENDPOINTS.generate,
     {
@@ -1071,11 +1198,7 @@ async function generateImages(
         concept:
           value,
 
-        count:
-          Number(
-            options.count ||
-            3
-          )
+        count
       }
     }
   );
@@ -1145,6 +1268,10 @@ async function selfTest(){
     backend:
       getBaseUrl(),
 
+    supportedLanguages:[
+      ...SUPPORTED_LANGUAGES
+    ],
+
     health:
       null,
 
@@ -1172,10 +1299,6 @@ async function selfTest(){
 
   try{
 
-    /*
-      Must remain local and not consume AI.
-    */
-
     report.mathLocal =
       await solveMath(
         "8 × 7",
@@ -1198,12 +1321,6 @@ async function selfTest(){
 
 
   try{
-
-    /*
-      Same-language translation should be
-      handled locally by Worker V2.3.0
-      and therefore consume no AI quota.
-    */
 
     report.translationLocal =
       await translateText(
@@ -1285,7 +1402,7 @@ console.log(
   +
   CLIENT_VERSION
   +
-  " Translation ready"
+  " Core 5 ready"
 );
 
 })();
