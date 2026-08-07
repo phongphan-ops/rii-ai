@@ -1,21 +1,28 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#020814">
-
-<title>Rii AI V3.9.0</title>
+<meta name="theme-color" content="#020713">
+<title>Rii AI V3.9.2 Heritage Native</title>
 
 <style>
 :root{
-  --bg:#020814;
-  --panel:#061326;
-  --gold:#f3c65e;
-  --gold2:#fff0b3;
-  --blue:#58b8ff;
-  --text:#f7f3e9;
-  --muted:#9badc0;
+  --night:#020713;
+  --night2:#061329;
+  --night3:#0b2345;
+
+  --gold:#f1c35b;
+  --gold2:#ffe59a;
+  --gold3:#a96f20;
+
+  --cyan:#43b9ff;
+  --cyan2:#1d6eaa;
+
+  --white:#f8f5ea;
+  --muted:#91a7bb;
+
+  --line:rgba(242,197,92,.28);
 }
 
 *{
@@ -23,16 +30,21 @@
   -webkit-tap-highlight-color:transparent;
 }
 
-html,body{
-  margin:0;
+html{
   min-height:100%;
-  background:var(--bg);
-  color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+  background:var(--night);
 }
 
 body{
-  overscroll-behavior:none;
+  margin:0;
+  min-height:100vh;
+  overflow-x:hidden;
+  color:var(--white);
+  background:
+    radial-gradient(circle at 20% 12%,rgba(24,99,163,.18),transparent 34%),
+    radial-gradient(circle at 82% 40%,rgba(12,71,125,.15),transparent 30%),
+    linear-gradient(180deg,#07162c 0%,#020713 48%,#020611 100%);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
 }
 
 button,input,textarea,select{
@@ -43,194 +55,802 @@ button{
   cursor:pointer;
 }
 
+button:active{
+  transform:scale(.97);
+}
+
 .app{
-  width:min(100%,720px);
-  margin:auto;
-  min-height:100vh;
-  background:#020814;
-}
-
-.home-art{
   position:relative;
-  width:100%;
-  line-height:0;
-  background:#020814;
+  width:min(100%,720px);
+  min-height:100vh;
+  margin:auto;
+  overflow:hidden;
+  padding-bottom:104px;
 }
 
-.home-art img{
-  display:block;
-  width:100%;
-  height:auto;
-  pointer-events:none;
-  user-select:none;
-  -webkit-user-select:none;
-}
+/* =========================
+   BACKGROUND ORNAMENT
+========================= */
 
-.hot{
+.bg-art{
   position:absolute;
+  inset:0;
+  pointer-events:none;
+  overflow:hidden;
+  z-index:0;
+}
+
+.bg-art svg{
+  position:absolute;
+}
+
+.bg-top{
+  width:130%;
+  left:-25%;
+  top:-20px;
+  opacity:.42;
+}
+
+.bg-middle{
+  width:145%;
+  right:-62%;
+  top:345px;
+  opacity:.28;
+  transform:rotate(14deg);
+}
+
+.bg-bottom{
+  width:125%;
+  left:-45%;
+  top:720px;
+  opacity:.25;
+  transform:rotate(-11deg);
+}
+
+.star{
+  position:absolute;
+  width:3px;
+  height:3px;
+  border-radius:50%;
+  background:#f8dc8e;
+  box-shadow:0 0 9px #f8dc8e;
+  opacity:.65;
+}
+
+.star.s1{left:8%;top:7%}
+.star.s2{left:87%;top:14%;width:2px;height:2px}
+.star.s3{left:76%;top:33%}
+.star.s4{left:13%;top:42%;width:2px;height:2px}
+.star.s5{left:92%;top:56%;width:2px;height:2px}
+.star.s6{left:5%;top:68%}
+.star.s7{left:80%;top:78%}
+.star.s8{left:37%;top:91%;width:2px;height:2px}
+
+/* =========================
+   HEADER
+========================= */
+
+.topbar{
+  position:relative;
+  z-index:2;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  min-height:96px;
+  padding:
+    calc(14px + env(safe-area-inset-top))
+    18px
+    10px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.brand-mark{
+  position:relative;
+  width:54px;
+  height:54px;
+}
+
+.brand-mark svg{
+  width:100%;
+  height:100%;
+}
+
+.brand-text{
+  margin-top:-2px;
+}
+
+.brand-title{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:27px;
+  line-height:1;
+  letter-spacing:.2px;
+  color:var(--gold2);
+  text-shadow:0 0 18px rgba(241,195,91,.18);
+}
+
+.brand-sub{
+  margin-top:6px;
+  font-size:10px;
+  letter-spacing:1.5px;
+  color:#9fb2c4;
+  text-transform:uppercase;
+}
+
+.header-actions{
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+
+.grade-pill{
+  height:40px;
+  min-width:82px;
+  padding:0 13px;
+  border:1px solid rgba(241,195,91,.46);
+  border-radius:999px;
+  background:
+    linear-gradient(180deg,rgba(18,48,83,.94),rgba(5,19,38,.96));
+  color:#ffe19a;
+  font-size:13px;
+  font-weight:800;
+  box-shadow:
+    inset 0 0 12px rgba(255,215,116,.04),
+    0 6px 20px rgba(0,0,0,.2);
+}
+
+.voice-btn{
+  display:grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  padding:0;
+  border-radius:50%;
+  border:1px solid rgba(65,184,255,.42);
+  background:linear-gradient(145deg,#102f52,#061427);
+  box-shadow:0 0 18px rgba(48,162,232,.1);
+}
+
+.voice-btn svg{
+  width:21px;
+  height:21px;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+  position:relative;
+  z-index:2;
+  padding:8px 20px 8px;
+  min-height:116px;
+}
+
+.hero-copy{
+  width:72%;
+}
+
+.eyebrow{
+  color:#7fcfff;
+  font-size:11px;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:1.45px;
+}
+
+.hero h1{
+  margin:7px 0 4px;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:29px;
+  line-height:1.08;
+  font-weight:700;
+  color:#f6d678;
+}
+
+.hero p{
+  margin:0;
+  max-width:300px;
+  color:#9bafc2;
+  font-size:12px;
+  line-height:1.5;
+}
+
+.avatar{
+  position:absolute;
+  right:17px;
+  bottom:0;
+  width:82px;
+  height:82px;
+}
+
+.avatar-orbit{
+  position:absolute;
+  inset:4px;
+  border:1px solid rgba(241,195,91,.38);
+  border-radius:50%;
+  transform:rotate(-10deg);
+}
+
+.avatar-orbit:after{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:var(--gold2);
+  top:5px;
+  right:8px;
+  box-shadow:0 0 10px var(--gold);
+}
+
+.avatar-core{
+  position:absolute;
+  inset:13px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border-radius:50%;
+  border:2px solid #e9bd5a;
+  background:
+    radial-gradient(circle at 40% 30%,#fff2c2,#f0b64b 38%,#804314 76%);
+  box-shadow:
+    0 0 0 4px rgba(8,28,51,.85),
+    0 0 18px rgba(241,195,91,.19);
+}
+
+.avatar-face{
+  position:relative;
+  width:40px;
+  height:40px;
+  border-radius:45% 45% 48% 48%;
+  background:#ffe7bd;
+  box-shadow:inset 0 -5px 9px rgba(144,78,32,.17);
+}
+
+.avatar-face:before,
+.avatar-face:after{
+  content:"";
+  position:absolute;
+  top:15px;
+  width:4px;
+  height:5px;
+  border-radius:50%;
+  background:#172338;
+}
+
+.avatar-face:before{left:10px}
+.avatar-face:after{right:10px}
+
+.avatar-hair{
+  position:absolute;
+  width:43px;
+  height:25px;
+  top:-5px;
+  left:-2px;
+  border-radius:50% 50% 35% 35%;
+  background:#172137;
+  clip-path:polygon(
+    0 35%,15% 5%,30% 22%,47% 0,
+    58% 20%,78% 3%,100% 36%,
+    94% 68%,6% 70%
+  );
+}
+
+.avatar-mouth{
+  position:absolute;
+  left:16px;
+  bottom:8px;
+  width:9px;
+  height:4px;
+  border-bottom:2px solid #a84f40;
+  border-radius:50%;
+}
+
+/* =========================
+   FLOW DIVIDER
+========================= */
+
+.flow-divider{
+  position:relative;
+  z-index:2;
+  height:48px;
+  margin-top:-2px;
+}
+
+.flow-divider svg{
+  position:absolute;
+  width:120%;
+  left:-10%;
+  top:0;
+  height:52px;
+}
+
+/* =========================
+   LEARNING AREA
+========================= */
+
+.section{
+  position:relative;
+  z-index:2;
+  padding:0 18px;
+}
+
+.section-title{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:9px;
+}
+
+.section-title h2{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  color:#efd277;
+  font-size:20px;
+  font-weight:700;
+}
+
+.section-title span{
+  color:#718ba3;
+  font-size:10px;
+  letter-spacing:.65px;
+}
+
+.learning-shell{
+  position:relative;
+  min-height:310px;
+  padding:13px 8px 8px;
+}
+
+.learning-thread{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.learning-thread svg{
+  width:100%;
+  height:100%;
+}
+
+.learning-grid{
+  position:relative;
+  z-index:2;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:5px;
+  min-height:284px;
+}
+
+.learn-item{
+  position:relative;
+  min-width:0;
   border:0;
   background:transparent;
-  color:transparent;
-  padding:0;
-  margin:0;
-  z-index:5;
-  border-radius:20px;
+  color:inherit;
+  padding:8px 3px 14px;
 }
 
-.hot:active{
-  background:rgba(255,221,130,.09);
-  box-shadow:inset 0 0 0 1px rgba(255,221,130,.35);
-}
-
-/* ===== HOTSPOT GIAO DIỆN ===== */
-
-.class-hot{
-  left:61.4%;
-  top:5%;
-  width:22.2%;
-  height:6.3%;
-  border-radius:999px;
-}
-
-.voice-hot{
-  left:82.8%;
-  top:4%;
-  width:13%;
-  height:9.8%;
+.learn-item:before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:16px;
+  width:72px;
+  height:72px;
+  transform:translateX(-50%);
   border-radius:50%;
+  background:
+    radial-gradient(circle,rgba(30,110,175,.16),rgba(6,20,39,.02) 68%);
+  filter:blur(1px);
 }
 
-.math-hot{
-  left:2.6%;
-  top:17.4%;
-  width:22.8%;
-  height:21.5%;
+.learn-icon{
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:72px;
+  height:72px;
+  margin:0 auto 9px;
 }
 
-.trans-hot{
-  left:26.2%;
-  top:17.4%;
-  width:22.9%;
-  height:21.5%;
+.learn-icon svg{
+  width:72px;
+  height:72px;
+  overflow:visible;
+  filter:drop-shadow(0 5px 8px rgba(0,0,0,.3));
 }
 
-.camera-hot{
-  left:50.2%;
-  top:17.4%;
-  width:22.9%;
-  height:21.5%;
+.learn-name{
+  position:relative;
+  display:block;
+  min-height:30px;
+  color:#f3d579;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:12px;
+  line-height:1.12;
+  font-weight:700;
+  text-align:center;
 }
 
-.notes-hot{
-  left:74%;
-  top:17.4%;
-  width:23%;
-  height:21.5%;
+.learn-sub{
+  display:block;
+  margin-top:5px;
+  color:#71879c;
+  font-size:8px;
+  line-height:1.25;
+  text-align:center;
 }
 
-.gm-hot{
-  left:6%;
-  top:43.2%;
-  width:18.7%;
-  height:15.8%;
-  border-radius:50%;
+/* =========================
+   GAME
+========================= */
+
+.game-area{
+  position:relative;
+  z-index:2;
+  padding:6px 18px 15px;
 }
 
-.gl-hot{
-  left:26%;
-  top:43.2%;
-  width:18.7%;
-  height:15.8%;
-  border-radius:50%;
+.game-stage{
+  position:relative;
+  height:205px;
+  margin-top:4px;
 }
 
-.gc-hot{
-  left:46.3%;
-  top:43.2%;
-  width:18.7%;
-  height:15.8%;
-  border-radius:50%;
+.game-line{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
 }
 
-.start-hot{
-  left:67.7%;
-  top:41.4%;
-  width:28.5%;
-  height:19.5%;
-  border-radius:50%;
+.game-line svg{
+  width:100%;
+  height:100%;
 }
 
-.rt-all{
-  left:11.7%;
-  top:65.7%;
-  width:18%;
-  height:4.7%;
-  border-radius:999px;
-}
-
-.rt-math{
-  left:31%;
-  top:65.7%;
-  width:18%;
-  height:4.7%;
-  border-radius:999px;
-}
-
-.rt-lang{
-  left:50.4%;
-  top:65.7%;
-  width:18%;
-  height:4.7%;
-  border-radius:999px;
-}
-
-.rt-cam{
-  left:69.8%;
-  top:65.7%;
-  width:18.7%;
-  height:4.7%;
-  border-radius:999px;
-}
-
-.nav-home{
+.game-orbs{
+  position:absolute;
   left:0;
-  bottom:0;
-  width:25%;
-  height:10.4%;
+  top:26px;
+  width:65%;
+  display:flex;
+  justify-content:space-around;
 }
 
-.nav-learn{
-  left:25%;
-  bottom:0;
-  width:25%;
-  height:10.4%;
+.game-orb{
+  width:74px;
+  border:0;
+  padding:0;
+  background:transparent;
+  color:inherit;
 }
 
-.nav-vision{
+.orb-ring{
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:68px;
+  height:68px;
+  margin:auto;
+  border-radius:50%;
+  border:1px solid rgba(241,195,91,.45);
+  background:
+    radial-gradient(circle at 35% 25%,#173e68,#07172c 64%);
+  box-shadow:
+    inset 0 0 18px rgba(71,181,247,.12),
+    0 0 20px rgba(0,0,0,.22);
+}
+
+.orb-ring:before{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border:1px solid rgba(63,171,239,.17);
+  border-radius:50%;
+  transform:rotate(20deg) scaleY(.72);
+}
+
+.orb-ring svg{
+  width:38px;
+  height:38px;
+}
+
+.orb-label{
+  margin-top:8px;
+  color:#d5bd77;
+  font-size:9px;
+  text-align:center;
+}
+
+.start-game{
+  position:absolute;
+  right:7px;
+  top:8px;
+  display:grid;
+  place-items:center;
+  width:119px;
+  height:119px;
+  padding:15px;
+  border-radius:50%;
+  border:0;
+  color:#261600;
+  font-family:Georgia,"Times New Roman",serif;
+  font-weight:900;
+  line-height:1.05;
+  font-size:14px;
+  background:
+    radial-gradient(circle at 33% 25%,#fff3b4 0%,#f4c95f 25%,#d99b2b 64%,#8d5315 100%);
+  box-shadow:
+    0 0 0 3px #07172a,
+    0 0 0 5px rgba(240,193,87,.6),
+    0 12px 30px rgba(0,0,0,.34),
+    inset 0 0 18px rgba(255,255,255,.35);
+}
+
+.start-game:before,
+.start-game:after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  border:1px solid rgba(238,196,94,.3);
+}
+
+.start-game:before{
+  inset:-12px;
+  border-left-color:#43b9ff;
+  transform:rotate(-18deg) scaleY(.76);
+}
+
+.start-game:after{
+  inset:-18px;
+  border-right-color:#e9be5b;
+  transform:rotate(27deg) scaleY(.85);
+}
+
+.start-icon{
+  width:28px;
+  height:28px;
+  margin-bottom:3px;
+}
+
+/* =========================
+   RANKING
+========================= */
+
+.rank-area{
+  position:relative;
+  z-index:2;
+  padding:0 18px 26px;
+}
+
+.rank-tabs{
+  display:flex;
+  gap:5px;
+  margin:10px 0 12px;
+  padding-bottom:8px;
+  overflow-x:auto;
+  scrollbar-width:none;
+}
+
+.rank-tabs::-webkit-scrollbar{
+  display:none;
+}
+
+.rank-tab{
+  flex:1 0 auto;
+  min-width:75px;
+  height:29px;
+  border-radius:999px;
+  border:1px solid rgba(109,145,179,.18);
+  background:rgba(4,16,31,.56);
+  color:#778da2;
+  font-size:9px;
+}
+
+.rank-tab.active{
+  border-color:rgba(241,195,91,.48);
+  color:#f5d37b;
+  background:linear-gradient(180deg,rgba(28,51,76,.9),rgba(7,22,40,.9));
+}
+
+.podium{
+  position:relative;
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  height:162px;
+  margin-top:6px;
+}
+
+.podium-line{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+}
+
+.podium-line svg{
+  width:100%;
+  height:100%;
+}
+
+.player{
+  position:relative;
+  z-index:2;
+  width:30%;
+  text-align:center;
+}
+
+.player.p1{
+  transform:translateY(-18px);
+}
+
+.player-avatar{
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:58px;
+  height:58px;
+  margin:auto;
+  border-radius:50%;
+  background:
+    linear-gradient(145deg,#19446e,#08192e);
+  border:1px solid rgba(241,195,91,.45);
+  box-shadow:0 7px 18px rgba(0,0,0,.32);
+}
+
+.player.p1 .player-avatar{
+  width:68px;
+  height:68px;
+  border-color:#f4cc70;
+  box-shadow:
+    0 0 0 3px rgba(241,195,91,.07),
+    0 8px 20px rgba(0,0,0,.35);
+}
+
+.crown{
+  position:absolute;
+  top:-16px;
+  color:#f7ce6b;
+  font-size:18px;
+}
+
+.face-mini{
+  position:relative;
+  width:31px;
+  height:31px;
+  border-radius:50%;
+  background:#efc496;
+}
+
+.face-mini:before,
+.face-mini:after{
+  content:"";
+  position:absolute;
+  top:12px;
+  width:3px;
+  height:4px;
+  border-radius:50%;
+  background:#152038;
+}
+
+.face-mini:before{left:8px}
+.face-mini:after{right:8px}
+
+.hair-mini{
+  position:absolute;
+  top:-2px;
+  left:0;
+  width:31px;
+  height:14px;
+  border-radius:50%;
+  background:#172338;
+  clip-path:polygon(0 45%,18% 5%,32% 31%,48% 0,66% 25%,83% 5%,100% 43%,94% 80%,6% 80%);
+}
+
+.player-name{
+  margin-top:6px;
+  color:#e1c77f;
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:10px;
+}
+
+.player-score{
+  margin-top:2px;
+  color:#758ca1;
+  font-size:8px;
+}
+
+.rank-number{
+  position:absolute;
+  right:2px;
+  bottom:-2px;
+  display:grid;
+  place-items:center;
+  width:21px;
+  height:21px;
+  border-radius:50%;
+  border:1px solid rgba(241,195,91,.5);
+  background:#08182c;
+  color:#edc665;
+  font-size:9px;
+  font-weight:900;
+}
+
+/* =========================
+   BOTTOM NAV
+========================= */
+
+.bottom-nav{
+  position:fixed;
+  z-index:20;
   left:50%;
   bottom:0;
-  width:25%;
-  height:10.4%;
+  transform:translateX(-50%);
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  width:min(100%,720px);
+  height:calc(72px + env(safe-area-inset-bottom));
+  padding:8px 8px env(safe-area-inset-bottom);
+  background:
+    linear-gradient(180deg,rgba(5,18,35,.84),rgba(2,8,18,.98));
+  border-top:1px solid rgba(241,195,91,.12);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
 }
 
-.nav-settings{
-  left:75%;
-  bottom:0;
-  width:25%;
-  height:10.4%;
+.nav-btn{
+  position:relative;
+  display:grid;
+  place-items:center;
+  align-content:center;
+  gap:3px;
+  border:0;
+  background:transparent;
+  color:#60788e;
+  font-size:8px;
 }
 
-/* ===== MODAL ===== */
+.nav-btn svg{
+  width:25px;
+  height:25px;
+}
+
+.nav-btn.active{
+  color:#edc667;
+}
+
+.nav-btn.active:after{
+  content:"";
+  position:absolute;
+  bottom:1px;
+  width:23px;
+  height:2px;
+  border-radius:999px;
+  background:#e9bd5a;
+  box-shadow:0 0 8px rgba(233,189,90,.5);
+}
+
+/* =========================
+   MODALS
+========================= */
 
 .sheet{
   position:fixed;
   inset:0;
-  z-index:50;
+  z-index:100;
   display:none;
   align-items:flex-end;
-  background:rgba(0,0,0,.58);
-  backdrop-filter:blur(7px);
-  -webkit-backdrop-filter:blur(7px);
+  background:rgba(0,0,0,.62);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
 }
 
 .sheet.open{
@@ -239,18 +859,19 @@ button{
 
 .panel{
   width:min(100%,720px);
-  max-height:88vh;
-  overflow:auto;
+  max-height:89vh;
+  overflow-y:auto;
   margin:0 auto;
-  background:
-    radial-gradient(circle at 50% 0%,rgba(32,93,153,.18),transparent 38%),
-    linear-gradient(180deg,#0a1d35,#03101f);
-  border:1px solid rgba(243,198,94,.52);
+  padding:19px 17px calc(25px + env(safe-area-inset-bottom));
+  border:1px solid rgba(241,195,91,.38);
+  border-bottom:0;
   border-radius:28px 28px 0 0;
-  padding:18px 18px calc(24px + env(safe-area-inset-bottom));
+  background:
+    radial-gradient(circle at 50% -10%,rgba(32,111,179,.2),transparent 42%),
+    linear-gradient(180deg,#0a1d35,#03101f 65%);
   box-shadow:
-    0 -20px 60px rgba(0,0,0,.5),
-    inset 0 0 30px rgba(88,184,255,.06);
+    0 -20px 60px rgba(0,0,0,.58),
+    inset 0 0 32px rgba(52,166,234,.04);
 }
 
 .panel-head{
@@ -263,19 +884,22 @@ button{
 
 .panel h2{
   margin:0;
+  color:#f5d274;
   font-family:Georgia,"Times New Roman",serif;
-  color:#f6cf75;
-  font-size:26px;
+  font-size:25px;
 }
 
 .close{
+  display:grid;
+  place-items:center;
   width:38px;
   height:38px;
+  padding:0;
   border-radius:50%;
-  border:1px solid rgba(243,198,94,.4);
-  background:#07162a;
-  color:#f6cf75;
-  font-size:22px;
+  border:1px solid rgba(241,195,91,.33);
+  background:#07172a;
+  color:#efd176;
+  font-size:21px;
 }
 
 .field{
@@ -284,86 +908,135 @@ button{
   margin:12px 0;
 }
 
-label{
-  font-size:13px;
-  color:#c8d2de;
+.field label{
+  color:#9eafbf;
+  font-size:11px;
+  font-weight:700;
 }
 
 input,
 textarea,
 select{
   width:100%;
-  border:1px solid rgba(96,157,219,.3);
-  border-radius:16px;
-  background:#04101f;
-  color:white;
   padding:13px 14px;
   outline:none;
+  border:1px solid rgba(88,153,210,.26);
+  border-radius:16px;
+  background:#04101f;
+  color:#f5f4ed;
 }
 
 textarea{
-  min-height:110px;
+  min-height:108px;
   resize:vertical;
 }
 
 .row{
   display:flex;
-  gap:10px;
   flex-wrap:wrap;
+  gap:9px;
 }
 
 .btn{
-  border:1px solid rgba(243,198,94,.55);
-  border-radius:16px;
-  background:linear-gradient(180deg,#1a3d68,#071a31);
-  color:#ffe59c;
-  padding:12px 16px;
-  font-weight:700;
+  min-height:43px;
+  padding:10px 15px;
+  border:1px solid rgba(241,195,91,.42);
+  border-radius:15px;
+  background:linear-gradient(180deg,#173b63,#071a31);
+  color:#ffe291;
+  font-weight:800;
 }
 
 .btn.gold{
-  background:linear-gradient(180deg,#ffe6a0,#d89b29);
-  color:#211300;
-  border-color:#ffe5a0;
+  border-color:#f2ce77;
+  color:#211400;
+  background:linear-gradient(180deg,#ffeaa8,#dca538);
 }
 
 .result{
-  white-space:pre-wrap;
-  line-height:1.55;
-  border:1px solid rgba(243,198,94,.22);
+  min-height:59px;
+  margin-top:12px;
+  padding:13px;
+  border:1px solid rgba(241,195,91,.17);
+  border-radius:15px;
   background:#03101d;
-  border-radius:16px;
-  padding:14px;
-  min-height:58px;
-  color:#edf3fa;
+  color:#dfe9f2;
+  line-height:1.55;
+  white-space:pre-wrap;
 }
 
 .status{
-  font-size:12px;
-  color:#8fa5bb;
-  margin-top:7px;
+  min-height:18px;
+  margin-top:8px;
+  color:#8298ac;
+  font-size:11px;
+}
+
+.preview{
+  display:block;
+  width:100%;
+  max-height:310px;
+  object-fit:contain;
+  margin:10px 0;
+  border-radius:16px;
+  background:#010710;
+}
+
+.preview[hidden]{
+  display:none;
+}
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.note-item{
+  position:relative;
+  margin-top:9px;
+  padding:12px;
+  border:1px solid rgba(91,146,196,.19);
+  border-radius:14px;
+  background:#04111f;
+  line-height:1.4;
+}
+
+.game-choice{
+  flex:1;
+  min-width:92px;
+  min-height:46px;
+  border:1px solid rgba(241,195,91,.2);
+  border-radius:16px;
+  background:#06162a;
+  color:#93a7b9;
+  font-weight:700;
+}
+
+.game-choice.active{
+  color:#ffe291;
+  border-color:#dcb350;
+  background:
+    linear-gradient(180deg,#173452,#091a2d);
 }
 
 .toast{
   position:fixed;
+  z-index:200;
   left:50%;
-  bottom:24px;
-  transform:translate(-50%,20px);
-  opacity:0;
-  z-index:99;
-
-  background:#07182d;
-  border:1px solid rgba(243,198,94,.5);
-  color:#ffe59c;
-
-  padding:10px 15px;
-  border-radius:999px;
-
-  transition:.2s;
-  pointer-events:none;
-
-  white-space:nowrap;
+  bottom:92px;
   max-width:90vw;
+  padding:10px 15px;
+  border:1px solid rgba(241,195,91,.43);
+  border-radius:999px;
+  color:#ffe497;
+  background:#07182c;
+  box-shadow:0 9px 28px rgba(0,0,0,.4);
+  opacity:0;
+  pointer-events:none;
+  transform:translate(-50%,15px);
+  transition:.2s ease;
+  white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
 }
@@ -373,55 +1046,50 @@ textarea{
   transform:translate(-50%,0);
 }
 
-.note-item{
-  padding:12px;
-  border:1px solid rgba(100,155,213,.22);
-  border-radius:15px;
-  background:#04101d;
-  margin:8px 0;
-}
-
-.profile-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.game-choice{
-  flex:1;
-  min-width:90px;
-  text-align:center;
-  border:1px solid rgba(243,198,94,.28);
-  background:#06162a;
-  color:#dce8f4;
-  border-radius:18px;
-  padding:14px 10px;
-}
-
-.game-choice.active{
-  border-color:#f3c65e;
-  color:#ffe59c;
-  box-shadow:0 0 18px rgba(243,198,94,.16);
-}
-
-.preview{
-  width:100%;
-  max-height:300px;
-  object-fit:contain;
-  border-radius:16px;
-  background:#020914;
-  margin-top:10px;
-}
-
 @media(max-width:390px){
-  .panel{
-    border-radius:24px 24px 0 0;
+  .topbar{
     padding-left:14px;
     padding-right:14px;
   }
 
-  .panel h2{
-    font-size:23px;
+  .brand-mark{
+    width:49px;
+    height:49px;
+  }
+
+  .brand-title{
+    font-size:24px;
+  }
+
+  .hero{
+    padding-left:16px;
+    padding-right:16px;
+  }
+
+  .hero h1{
+    font-size:26px;
+  }
+
+  .section,
+  .game-area,
+  .rank-area{
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .learn-icon,
+  .learn-icon svg{
+    width:65px;
+    height:65px;
+  }
+
+  .learn-name{
+    font-size:11px;
+  }
+
+  .start-game{
+    width:108px;
+    height:108px;
   }
 }
 </style>
@@ -429,103 +1097,910 @@ textarea{
 
 <body>
 
-<div class="app">
+<main class="app">
 
-  <section class="home-art" id="homeArt">
+  <div class="bg-art">
 
-    <img
-      src="./rii-ui.jpg"
-      alt="Rii AI Heritage"
-    >
+    <svg class="bg-top" viewBox="0 0 600 360" fill="none">
+      <path d="M-20 90C84 14 169 30 212 110C246 174 184 227 247 279C326 345 399 202 465 215C540 230 541 327 637 322"
+            stroke="#42b8ff" stroke-width="14" stroke-linecap="round" opacity=".5"/>
+      <path d="M-25 68C94 -7 185 16 226 102C254 161 210 213 269 256C354 318 414 177 479 192C555 210 557 304 635 303"
+            stroke="#d5a842" stroke-width="8" stroke-linecap="round" opacity=".82"/>
+      <path d="M-25 112C79 42 150 53 190 123C222 178 172 230 224 288"
+            stroke="#113e69" stroke-width="22" stroke-linecap="round"/>
+    </svg>
 
-    <button class="hot class-hot" data-open="settings">
-      Lớp
-    </button>
+    <svg class="bg-middle" viewBox="0 0 700 480" fill="none">
+      <path d="M48 403C164 361 181 249 267 227C349 207 395 288 467 250C544 209 506 93 644 39"
+            stroke="#c79838" stroke-width="9" stroke-linecap="round"/>
+      <path d="M20 443C146 392 175 288 268 267C350 248 393 329 489 282C575 240 547 128 681 74"
+            stroke="#3bb4ff" stroke-width="13" stroke-linecap="round" opacity=".42"/>
+    </svg>
 
-    <button class="hot voice-hot" id="voiceHot">
-      Voice
-    </button>
+    <svg class="bg-bottom" viewBox="0 0 650 430" fill="none">
+      <path d="M-23 277C95 189 166 262 246 209C323 158 291 51 401 27C502 4 539 109 683 77"
+            stroke="#ddb150" stroke-width="7" stroke-linecap="round"/>
+      <path d="M-41 320C87 223 176 302 263 243C348 186 312 86 421 58C526 31 564 140 704 111"
+            stroke="#3db7ff" stroke-width="12" stroke-linecap="round" opacity=".38"/>
+    </svg>
 
-    <button class="hot math-hot" data-open="math">
-      Math
-    </button>
+    <i class="star s1"></i>
+    <i class="star s2"></i>
+    <i class="star s3"></i>
+    <i class="star s4"></i>
+    <i class="star s5"></i>
+    <i class="star s6"></i>
+    <i class="star s7"></i>
+    <i class="star s8"></i>
 
-    <button class="hot trans-hot" data-open="translate">
-      Translate
-    </button>
+  </div>
 
-    <button class="hot camera-hot" data-open="vision">
-      Vision
-    </button>
 
-    <button class="hot notes-hot" data-open="notes">
-      Notes
-    </button>
+  <header class="topbar">
 
-    <button class="hot gm-hot" data-game="math">
-      Game Math
-    </button>
+    <div class="brand">
 
-    <button class="hot gl-hot" data-game="language">
-      Game Language
-    </button>
+      <div class="brand-mark">
 
-    <button class="hot gc-hot" data-game="vision">
-      Game Vision
-    </button>
+        <svg viewBox="0 0 64 64" fill="none">
 
-    <button class="hot start-hot" id="startGameHot">
-      Start Game
-    </button>
+          <circle cx="32" cy="32" r="25"
+                  stroke="#d8aa45"
+                  stroke-width="2"/>
 
-    <button class="hot rt-all" data-rank="overall">
-      Overall
-    </button>
+          <path d="M8 36C17 17 28 9 45 11C54 12 60 17 62 25"
+                stroke="#3eb8ff"
+                stroke-width="5"
+                stroke-linecap="round"/>
 
-    <button class="hot rt-math" data-rank="math">
-      Math Rank
-    </button>
+          <path d="M12 47C21 34 34 34 41 22C45 16 48 12 56 9"
+                stroke="#f0c35b"
+                stroke-width="5"
+                stroke-linecap="round"/>
 
-    <button class="hot rt-lang" data-rank="language">
-      Language Rank
-    </button>
+          <circle cx="31.5" cy="32" r="14"
+                  fill="#07172a"
+                  stroke="#efc461"
+                  stroke-width="2"/>
 
-    <button class="hot rt-cam" data-rank="vision">
-      Vision Rank
-    </button>
+          <text x="32"
+                y="38"
+                text-anchor="middle"
+                font-family="Georgia"
+                font-size="19"
+                font-weight="700"
+                fill="#f6d57c">R</text>
 
-    <button class="hot nav-home" id="navHome">
-      Home
-    </button>
+        </svg>
 
-    <button class="hot nav-learn" data-open="math">
-      Learn
-    </button>
+      </div>
 
-    <button class="hot nav-vision" data-open="vision">
-      Vision
-    </button>
+      <div class="brand-text">
 
-    <button class="hot nav-settings" data-open="settings">
-      Settings
-    </button>
+        <h1 class="brand-title">
+          Rii AI
+        </h1>
+
+        <div class="brand-sub">
+          Learning Intelligence
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="header-actions">
+
+      <button class="grade-pill"
+              id="gradeButton">
+        Lớp 3
+      </button>
+
+      <button class="voice-btn"
+              id="voiceButton"
+              aria-label="Rii Voice">
+
+        <svg viewBox="0 0 28 28" fill="none">
+
+          <path d="M14 4C11.8 4 10 5.8 10 8V14C10 16.2 11.8 18 14 18C16.2 18 18 16.2 18 14V8C18 5.8 16.2 4 14 4Z"
+                stroke="#f1c35b"
+                stroke-width="1.8"/>
+
+          <path d="M7 13.5C7 17.4 10.1 20.5 14 20.5C17.9 20.5 21 17.4 21 13.5"
+                stroke="#43b9ff"
+                stroke-width="1.8"
+                stroke-linecap="round"/>
+
+          <path d="M14 20.5V24"
+                stroke="#f1c35b"
+                stroke-width="1.8"/>
+
+        </svg>
+
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <section class="hero">
+
+    <div class="hero-copy">
+
+      <div class="eyebrow">
+        Rii Future Learning
+      </div>
+
+      <h1>
+        Học thông minh<br>
+        cùng Rii AI
+      </h1>
+
+      <p>
+        Toán, ngôn ngữ, quan sát và trò chơi
+        được cá nhân hóa theo từng bé.
+      </p>
+
+    </div>
+
+
+    <div class="avatar">
+
+      <div class="avatar-orbit"></div>
+
+      <div class="avatar-core">
+
+        <div class="avatar-face">
+
+          <div class="avatar-hair"></div>
+          <div class="avatar-mouth"></div>
+
+        </div>
+
+      </div>
+
+    </div>
 
   </section>
 
-</div>
+
+  <div class="flow-divider">
+
+    <svg viewBox="0 0 500 60" fill="none">
+
+      <path d="M-20 33C62 2 126 8 173 29C221 51 265 56 312 29C361 2 419 7 518 35"
+            stroke="#183e67"
+            stroke-width="12"
+            stroke-linecap="round"/>
+
+      <path d="M-16 27C72 -3 129 5 176 25C224 45 265 51 310 24C361 -6 421 2 518 28"
+            stroke="#c89a3d"
+            stroke-width="4"
+            stroke-linecap="round"/>
+
+      <path d="M0 39C81 15 137 16 178 34C226 56 269 57 315 35C368 10 420 15 500 42"
+            stroke="#39b3f5"
+            stroke-width="3"
+            stroke-linecap="round"
+            opacity=".65"/>
+
+    </svg>
+
+  </div>
 
 
-<!-- ===================== -->
-<!-- MATH AI -->
-<!-- ===================== -->
+  <section class="section">
 
-<div class="sheet" id="sheet-math">
+    <div class="section-title">
 
-  <div class="panel">
+      <h2>
+        Học tập
+      </h2>
+
+      <span>
+        4 TRUNG TÂM AI
+      </span>
+
+    </div>
+
+
+    <div class="learning-shell">
+
+      <div class="learning-thread">
+
+        <svg viewBox="0 0 520 315"
+             preserveAspectRatio="none"
+             fill="none">
+
+          <path d="M-24 92C72 15 118 89 177 55C238 20 253 86 310 51C373 13 418 62 545 10"
+                stroke="#b88b35"
+                stroke-width="5"
+                stroke-linecap="round"
+                opacity=".55"/>
+
+          <path d="M-26 109C76 34 124 106 181 73C243 37 258 100 316 68C383 30 420 77 549 28"
+                stroke="#2d93d0"
+                stroke-width="6"
+                stroke-linecap="round"
+                opacity=".34"/>
+
+          <path d="M-20 258C86 191 135 252 194 219C264 179 299 235 355 205C419 170 460 211 550 165"
+                stroke="#d5a947"
+                stroke-width="4"
+                stroke-linecap="round"
+                opacity=".38"/>
+
+        </svg>
+
+      </div>
+
+
+      <div class="learning-grid">
+
+        <!-- MATH -->
+
+        <button class="learn-item"
+                data-open="math">
+
+          <span class="learn-icon">
+
+            <svg viewBox="0 0 82 82" fill="none">
+
+              <path d="M14 56C23 41 34 43 40 29C45 18 53 15 69 17"
+                    stroke="#45baff"
+                    stroke-width="6"
+                    stroke-linecap="round"/>
+
+              <path d="M12 63C24 50 37 55 44 40C50 28 57 25 72 26"
+                    stroke="#d8a943"
+                    stroke-width="5"
+                    stroke-linecap="round"/>
+
+              <rect x="21"
+                    y="21"
+                    width="39"
+                    height="42"
+                    rx="10"
+                    fill="#0b2340"
+                    stroke="#e2b656"
+                    stroke-width="2"/>
+
+              <path d="M29 31H51"
+                    stroke="#50c0ff"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+              <path d="M31 43H49M40 34V52"
+                    stroke="#f3ce73"
+                    stroke-width="3"
+                    stroke-linecap="round"/>
+
+              <circle cx="59"
+                      cy="21"
+                      r="4"
+                      fill="#f1ca68"/>
+
+            </svg>
+
+          </span>
+
+          <span class="learn-name">
+            Math AI
+          </span>
+
+          <span class="learn-sub">
+            Toán thông minh
+          </span>
+
+        </button>
+
+
+        <!-- TRANSLATE -->
+
+        <button class="learn-item"
+                data-open="translate">
+
+          <span class="learn-icon">
+
+            <svg viewBox="0 0 82 82" fill="none">
+
+              <path d="M10 60C22 42 31 46 42 31C51 19 60 17 74 21"
+                    stroke="#d9a943"
+                    stroke-width="5"
+                    stroke-linecap="round"/>
+
+              <path d="M14 67C26 50 39 55 49 40C59 27 67 28 76 32"
+                    stroke="#45baff"
+                    stroke-width="5"
+                    stroke-linecap="round"/>
+
+              <circle cx="40"
+                      cy="41"
+                      r="24"
+                      fill="#0a203a"
+                      stroke="#dcb253"
+                      stroke-width="2"/>
+
+              <text x="31"
+                    y="46"
+                    font-size="24"
+                    font-family="Georgia"
+                    font-weight="700"
+                    fill="#f3cf76">A</text>
+
+              <path d="M49 29C53 33 57 39 59 45"
+                    stroke="#49bfff"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+              <path d="M50 51C56 48 60 43 63 37"
+                    stroke="#e6b95b"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+            </svg>
+
+          </span>
+
+          <span class="learn-name">
+            Phiên dịch
+          </span>
+
+          <span class="learn-sub">
+            5 ngôn ngữ
+          </span>
+
+        </button>
+
+
+        <!-- VISION -->
+
+        <button class="learn-item"
+                data-open="vision">
+
+          <span class="learn-icon">
+
+            <svg viewBox="0 0 82 82" fill="none">
+
+              <path d="M9 57C20 41 33 47 41 31C48 18 57 17 72 19"
+                    stroke="#43b9ff"
+                    stroke-width="6"
+                    stroke-linecap="round"/>
+
+              <path d="M14 65C26 52 36 57 47 43C56 31 62 29 75 31"
+                    stroke="#d7a844"
+                    stroke-width="5"
+                    stroke-linecap="round"/>
+
+              <rect x="20"
+                    y="26"
+                    width="45"
+                    height="34"
+                    rx="10"
+                    fill="#0b2340"
+                    stroke="#e2b655"
+                    stroke-width="2"/>
+
+              <circle cx="42"
+                      cy="43"
+                      r="10"
+                      stroke="#50c2ff"
+                      stroke-width="3"/>
+
+              <circle cx="42"
+                      cy="43"
+                      r="4"
+                      fill="#efc767"/>
+
+              <path d="M29 26L34 20H49L54 26"
+                    stroke="#e6bb60"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+
+            </svg>
+
+          </span>
+
+          <span class="learn-name">
+            Camera AI
+          </span>
+
+          <span class="learn-sub">
+            Quan sát thế giới
+          </span>
+
+        </button>
+
+
+        <!-- NOTES -->
+
+        <button class="learn-item"
+                data-open="notes">
+
+          <span class="learn-icon">
+
+            <svg viewBox="0 0 82 82" fill="none">
+
+              <path d="M11 61C21 42 33 47 42 31C49 19 58 17 73 21"
+                    stroke="#d8aa45"
+                    stroke-width="5"
+                    stroke-linecap="round"/>
+
+              <path d="M16 67C28 51 40 56 50 42C60 29 68 29 76 34"
+                    stroke="#44baff"
+                    stroke-width="5"
+                    stroke-linecap="round"/>
+
+              <rect x="23"
+                    y="21"
+                    width="36"
+                    height="43"
+                    rx="9"
+                    fill="#0b213c"
+                    stroke="#e1b455"
+                    stroke-width="2"/>
+
+              <path d="M31 34H51M31 42H50M31 50H44"
+                    stroke="#58c2ff"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+              <circle cx="59"
+                      cy="57"
+                      r="9"
+                      fill="#dba33b"
+                      stroke="#ffe696"
+                      stroke-width="1.5"/>
+
+              <path d="M59 52V57L63 59"
+                    stroke="#122038"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+            </svg>
+
+          </span>
+
+          <span class="learn-name">
+            Ghi chú
+          </span>
+
+          <span class="learn-sub">
+            & Báo thức
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="game-area">
+
+    <div class="section-title">
+
+      <h2>
+        Game
+      </h2>
+
+      <span>
+        HỌC QUA TRÒ CHƠI
+      </span>
+
+    </div>
+
+
+    <div class="game-stage">
+
+      <div class="game-line">
+
+        <svg viewBox="0 0 520 210"
+             preserveAspectRatio="none"
+             fill="none">
+
+          <path d="M-20 114C55 48 113 91 160 61C221 22 257 75 306 58C363 38 405 73 532 18"
+                stroke="#b98b34"
+                stroke-width="5"
+                stroke-linecap="round"/>
+
+          <path d="M-18 132C63 66 116 108 166 80C225 47 260 94 315 77C372 59 414 90 537 37"
+                stroke="#38aef0"
+                stroke-width="6"
+                stroke-linecap="round"
+                opacity=".42"/>
+
+        </svg>
+
+      </div>
+
+
+      <div class="game-orbs">
+
+        <button class="game-orb"
+                data-game="math">
+
+          <div class="orb-ring">
+
+            <svg viewBox="0 0 48 48" fill="none">
+
+              <path d="M12 15H36M24 8V22M13 31H35"
+                    stroke="#f3cf75"
+                    stroke-width="3"
+                    stroke-linecap="round"/>
+
+              <path d="M30 26L37 37M37 26L30 37"
+                    stroke="#48bfff"
+                    stroke-width="3"
+                    stroke-linecap="round"/>
+
+            </svg>
+
+          </div>
+
+          <div class="orb-label">
+            Toán
+          </div>
+
+        </button>
+
+
+        <button class="game-orb"
+                data-game="language">
+
+          <div class="orb-ring">
+
+            <svg viewBox="0 0 48 48" fill="none">
+
+              <text x="9"
+                    y="31"
+                    font-size="23"
+                    font-weight="700"
+                    font-family="Georgia"
+                    fill="#f1cc71">A</text>
+
+              <path d="M31 14C34 18 37 22 39 27M30 34C35 31 38 27 40 22"
+                    stroke="#4ec1ff"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+            </svg>
+
+          </div>
+
+          <div class="orb-label">
+            Phiên dịch
+          </div>
+
+        </button>
+
+
+        <button class="game-orb"
+                data-game="vision">
+
+          <div class="orb-ring">
+
+            <svg viewBox="0 0 48 48" fill="none">
+
+              <rect x="9"
+                    y="15"
+                    width="30"
+                    height="23"
+                    rx="6"
+                    stroke="#efc96d"
+                    stroke-width="2"/>
+
+              <circle cx="24"
+                      cy="26"
+                      r="6"
+                      stroke="#4dbfff"
+                      stroke-width="2"/>
+
+              <path d="M15 15L19 10H29L33 15"
+                    stroke="#e8be60"
+                    stroke-width="2"/>
+
+            </svg>
+
+          </div>
+
+          <div class="orb-label">
+            Camera AI
+          </div>
+
+        </button>
+
+      </div>
+
+
+      <button class="start-game"
+              id="startGame">
+
+        <svg class="start-icon"
+             viewBox="0 0 40 40"
+             fill="none">
+
+          <path d="M15 10L30 20L15 30V10Z"
+                fill="#17243b"/>
+
+          <circle cx="20"
+                  cy="20"
+                  r="17"
+                  stroke="#725019"
+                  stroke-width="1.5"/>
+
+        </svg>
+
+        BẮT ĐẦU<br>
+        TRÒ CHƠI
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <section class="rank-area">
+
+    <div class="section-title">
+
+      <h2>
+        Bảng xếp hạng
+      </h2>
+
+      <span id="rankGrade">
+        LỚP 3
+      </span>
+
+    </div>
+
+
+    <div class="rank-tabs">
+
+      <button class="rank-tab active"
+              data-rank="overall">
+        Tổng
+      </button>
+
+      <button class="rank-tab"
+              data-rank="math">
+        Toán
+      </button>
+
+      <button class="rank-tab"
+              data-rank="language">
+        Phiên dịch
+      </button>
+
+      <button class="rank-tab"
+              data-rank="vision">
+        Camera
+      </button>
+
+    </div>
+
+
+    <div class="podium">
+
+      <div class="podium-line">
+
+        <svg viewBox="0 0 500 160"
+             preserveAspectRatio="none"
+             fill="none">
+
+          <path d="M-10 112C67 75 114 106 168 81C229 52 270 90 322 69C379 46 420 73 512 39"
+                stroke="#b68b37"
+                stroke-width="3"
+                opacity=".5"/>
+
+          <path d="M-8 128C67 92 118 122 171 98C230 71 273 106 329 87C388 67 429 91 514 59"
+                stroke="#3caeea"
+                stroke-width="4"
+                opacity=".28"/>
+
+        </svg>
+
+      </div>
+
+
+      <div class="player p2">
+
+        <div class="player-avatar">
+
+          <div class="face-mini">
+            <div class="hair-mini"></div>
+          </div>
+
+          <span class="rank-number">
+            2
+          </span>
+
+        </div>
+
+        <div class="player-name">
+          Minh
+        </div>
+
+        <div class="player-score">
+          2.460 XP
+        </div>
+
+      </div>
+
+
+      <div class="player p1">
+
+        <div class="player-avatar">
+
+          <span class="crown">
+            ♛
+          </span>
+
+          <div class="face-mini">
+            <div class="hair-mini"></div>
+          </div>
+
+          <span class="rank-number">
+            1
+          </span>
+
+        </div>
+
+        <div class="player-name">
+          Rii
+        </div>
+
+        <div class="player-score"
+             id="myScore">
+          2.860 XP
+        </div>
+
+      </div>
+
+
+      <div class="player p3">
+
+        <div class="player-avatar">
+
+          <div class="face-mini">
+            <div class="hair-mini"></div>
+          </div>
+
+          <span class="rank-number">
+            3
+          </span>
+
+        </div>
+
+        <div class="player-name">
+          An
+        </div>
+
+        <div class="player-score">
+          2.210 XP
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<nav class="bottom-nav">
+
+  <button class="nav-btn active"
+          id="navHome">
+
+    <svg viewBox="0 0 32 32" fill="none">
+
+      <path d="M5 15L16 6L27 15V27H20V19H12V27H5V15Z"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linejoin="round"/>
+
+    </svg>
+
+    <span>
+      Trang chủ
+    </span>
+
+  </button>
+
+
+  <button class="nav-btn"
+          data-open="math">
+
+    <svg viewBox="0 0 32 32" fill="none">
+
+      <path d="M7 7H15C17 7 18 9 18 11V26C17 24 15 23 12 23H7V7Z"
+            stroke="currentColor"
+            stroke-width="1.7"/>
+
+      <path d="M25 7H19C17 7 16 9 16 11V26C17 24 19 23 22 23H25V7Z"
+            stroke="currentColor"
+            stroke-width="1.7"/>
+
+    </svg>
+
+    <span>
+      Học
+    </span>
+
+  </button>
+
+
+  <button class="nav-btn"
+          data-open="vision">
+
+    <svg viewBox="0 0 32 32" fill="none">
+
+      <path d="M4 16C7 10 11 7 16 7C21 7 25 10 28 16C25 22 21 25 16 25C11 25 7 22 4 16Z"
+            stroke="currentColor"
+            stroke-width="1.7"/>
+
+      <circle cx="16"
+              cy="16"
+              r="4"
+              stroke="currentColor"
+              stroke-width="1.7"/>
+
+    </svg>
+
+    <span>
+      Vision
+    </span>
+
+  </button>
+
+
+  <button class="nav-btn"
+          data-open="settings">
+
+    <svg viewBox="0 0 32 32" fill="none">
+
+      <circle cx="16"
+              cy="16"
+              r="5"
+              stroke="currentColor"
+              stroke-width="1.7"/>
+
+      <path d="M16 4V8M16 24V28M4 16H8M24 16H28M7.5 7.5L10.5 10.5M21.5 21.5L24.5 24.5M24.5 7.5L21.5 10.5M10.5 21.5L7.5 24.5"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"/>
+
+    </svg>
+
+    <span>
+      Cài đặt
+    </span>
+
+  </button>
+
+</nav>
+
+
+<!-- MATH -->
+
+<div class="sheet"
+     id="sheet-math">
+
+  <section class="panel">
 
     <div class="panel-head">
 
-      <h2>Math AI</h2>
+      <h2>
+        Math AI
+      </h2>
 
       <button class="close">
         ×
@@ -533,61 +2008,53 @@ textarea{
 
     </div>
 
+
     <div class="field">
 
       <label>
         Nhập bài toán
       </label>
 
-      <textarea
-        id="mathInput"
-        placeholder="Ví dụ: 125 + 37 hoặc giải thích 3/4 + 1/2"
-      ></textarea>
+      <textarea id="mathInput"
+                placeholder="Ví dụ: 125 + 37 hoặc giải thích 3/4 + 1/2"></textarea>
 
     </div>
 
+
     <div class="row">
 
-      <button
-        class="btn gold"
-        id="mathSolve"
-      >
+      <button class="btn gold"
+              id="mathSolve">
         Giải bài
       </button>
 
-      <button
-        class="btn"
-        id="mathSpeak"
-      >
+      <button class="btn"
+              id="mathSpeak">
         Đọc kết quả
       </button>
 
     </div>
 
-    <div
-      class="status"
-      id="mathStatus"
-    ></div>
 
-    <div
-      class="result"
-      id="mathResult"
-    >
+    <div class="status"
+         id="mathStatus"></div>
+
+    <div class="result"
+         id="mathResult">
       Rii sẵn sàng giải toán.
     </div>
 
-  </div>
+  </section>
 
 </div>
 
 
-<!-- ===================== -->
 <!-- TRANSLATE -->
-<!-- ===================== -->
 
-<div class="sheet" id="sheet-translate">
+<div class="sheet"
+     id="sheet-translate">
 
-  <div class="panel">
+  <section class="panel">
 
     <div class="panel-head">
 
@@ -601,23 +2068,23 @@ textarea{
 
     </div>
 
+
     <div class="field">
 
       <label>
-        Nội dung
+        Nội dung cần dịch
       </label>
 
-      <textarea
-        id="transInput"
-        placeholder="Nhập câu cần dịch..."
-      ></textarea>
+      <textarea id="transInput"
+                placeholder="Nhập nội dung..."></textarea>
 
     </div>
 
+
     <div class="field">
 
       <label>
-        Dịch sang
+        Ngôn ngữ đích
       </label>
 
       <select id="transTarget">
@@ -646,53 +2113,46 @@ textarea{
 
     </div>
 
+
     <div class="row">
 
-      <button
-        class="btn gold"
-        id="transGo"
-      >
+      <button class="btn gold"
+              id="transGo">
         Dịch
       </button>
 
-      <button
-        class="btn"
-        id="transSpeak"
-      >
+      <button class="btn"
+              id="transSpeak">
         Đọc
       </button>
 
     </div>
 
-    <div
-      class="status"
-      id="transStatus"
-    ></div>
 
-    <div
-      class="result"
-      id="transResult"
-    >
-      Kết quả dịch sẽ hiện ở đây.
+    <div class="status"
+         id="transStatus"></div>
+
+    <div class="result"
+         id="transResult">
+      Kết quả dịch sẽ xuất hiện ở đây.
     </div>
 
-  </div>
+  </section>
 
 </div>
 
 
-<!-- ===================== -->
-<!-- CAMERA / VISION -->
-<!-- ===================== -->
+<!-- VISION -->
 
-<div class="sheet" id="sheet-vision">
+<div class="sheet"
+     id="sheet-vision">
 
-  <div class="panel">
+  <section class="panel">
 
     <div class="panel-head">
 
       <h2>
-        Camera / Vision
+        Camera AI
       </h2>
 
       <button class="close">
@@ -701,74 +2161,63 @@ textarea{
 
     </div>
 
+
     <div class="field">
 
       <label>
-        Chọn ảnh
+        Chụp hoặc chọn ảnh
       </label>
 
-      <input
-        id="visionFile"
-        type="file"
-        accept="image/*"
-        capture="environment"
-      >
+      <input id="visionFile"
+             type="file"
+             accept="image/*"
+             capture="environment">
 
     </div>
 
-    <img
-      id="visionPreview"
-      class="preview"
-      hidden
-    >
+
+    <img id="visionPreview"
+         class="preview"
+         hidden>
+
 
     <div class="row">
 
-      <button
-        class="btn gold"
-        id="visionAnalyze"
-      >
-        Phân tích ảnh
+      <button class="btn gold"
+              id="visionAnalyze">
+        Phân tích
       </button>
 
-      <button
-        class="btn"
-        id="visionSpeak"
-      >
+      <button class="btn"
+              id="visionSpeak">
         Đọc kết quả
       </button>
 
     </div>
 
-    <div
-      class="status"
-      id="visionStatus"
-    ></div>
 
-    <div
-      class="result"
-      id="visionResult"
-    >
-      Rii sẽ quan sát và mô tả vật thể hoặc cảnh trong ảnh.
+    <div class="status"
+         id="visionStatus"></div>
+
+    <div class="result"
+         id="visionResult">
+      Rii sẽ quan sát và mô tả hình ảnh.
     </div>
 
-  </div>
+  </section>
 
 </div>
-
-
-<!-- ===================== -->
 <!-- NOTES -->
-<!-- ===================== -->
 
-<div class="sheet" id="sheet-notes">
+<div class="sheet"
+     id="sheet-notes">
 
-  <div class="panel">
+  <section class="panel">
 
     <div class="panel-head">
 
       <h2>
-        Ghi chú / Báo thức
+        Ghi chú & Báo thức
       </h2>
 
       <button class="close">
@@ -777,18 +2226,18 @@ textarea{
 
     </div>
 
+
     <div class="field">
 
       <label>
-        Ghi chú
+        Nội dung
       </label>
 
-      <textarea
-        id="noteText"
-        placeholder="Con cần nhớ điều gì?"
-      ></textarea>
+      <textarea id="noteText"
+                placeholder="Rii cần nhớ điều gì?"></textarea>
 
     </div>
+
 
     <div class="field">
 
@@ -796,39 +2245,36 @@ textarea{
         Thời gian nhắc
       </label>
 
-      <input
-        id="noteTime"
-        type="datetime-local"
-      >
+      <input id="noteTime"
+             type="datetime-local">
 
     </div>
 
-    <button
-      class="btn gold"
-      id="saveNote"
-    >
+
+    <button class="btn gold"
+            id="saveNote">
       Lưu ghi chú
     </button>
 
+
     <div id="noteList"></div>
 
-  </div>
+  </section>
 
 </div>
 
 
-<!-- ===================== -->
 <!-- GAME -->
-<!-- ===================== -->
 
-<div class="sheet" id="sheet-game">
+<div class="sheet"
+     id="sheet-game">
 
-  <div class="panel">
+  <section class="panel">
 
     <div class="panel-head">
 
       <h2>
-        Trò chơi
+        Rii Game
       </h2>
 
       <button class="close">
@@ -837,30 +2283,26 @@ textarea{
 
     </div>
 
+
     <div class="row">
 
-      <button
-        class="game-choice active"
-        data-mode="math"
-      >
+      <button class="game-choice active"
+              data-mode="math">
         Toán
       </button>
 
-      <button
-        class="game-choice"
-        data-mode="language"
-      >
+      <button class="game-choice"
+              data-mode="language">
         Phiên dịch
       </button>
 
-      <button
-        class="game-choice"
-        data-mode="vision"
-      >
+      <button class="game-choice"
+              data-mode="vision">
         Camera AI
       </button>
 
     </div>
+
 
     <div class="field">
 
@@ -868,63 +2310,54 @@ textarea{
         Thử thách
       </label>
 
-      <div
-        class="result"
-        id="gameQuestion"
-      >
+      <div class="result"
+           id="gameQuestion">
         Nhấn “Câu mới” để bắt đầu.
       </div>
 
     </div>
 
+
     <div class="field">
 
       <label>
-        Đáp án
+        Câu trả lời
       </label>
 
-      <input
-        id="gameAnswer"
-        placeholder="Nhập câu trả lời"
-      >
-
+      <input id="gameAnswer"
+             placeholder="Nhập đáp án">
     </div>
+
 
     <div class="row">
 
-      <button
-        class="btn gold"
-        id="newQuestion"
-      >
+      <button class="btn gold"
+              id="newQuestion">
         Câu mới
       </button>
 
-      <button
-        class="btn"
-        id="checkAnswer"
-      >
+      <button class="btn"
+              id="checkAnswer">
         Kiểm tra
       </button>
 
     </div>
 
-    <div
-      class="status"
-      id="gameStatus"
-    ></div>
 
-  </div>
+    <div class="status"
+         id="gameStatus"></div>
+
+  </section>
 
 </div>
 
 
-<!-- ===================== -->
 <!-- SETTINGS -->
-<!-- ===================== -->
 
-<div class="sheet" id="sheet-settings">
+<div class="sheet"
+     id="sheet-settings">
 
-  <div class="panel">
+  <section class="panel">
 
     <div class="panel-head">
 
@@ -938,6 +2371,7 @@ textarea{
 
     </div>
 
+
     <div class="profile-grid">
 
       <div class="field">
@@ -950,6 +2384,7 @@ textarea{
 
       </div>
 
+
       <div class="field">
 
         <label>
@@ -958,25 +2393,11 @@ textarea{
 
         <select id="profileGrade">
 
-          <option value="1">
-            1
-          </option>
-
-          <option value="2">
-            2
-          </option>
-
-          <option value="3">
-            3
-          </option>
-
-          <option value="4">
-            4
-          </option>
-
-          <option value="5">
-            5
-          </option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
 
         </select>
 
@@ -984,18 +2405,18 @@ textarea{
 
     </div>
 
+
     <div class="field">
 
       <label>
         Rii ID
       </label>
 
-      <input
-        value="Rii00000001"
-        disabled
-      >
+      <input value="Rii00000001"
+             disabled>
 
     </div>
+
 
     <div class="field">
 
@@ -1029,22 +2450,19 @@ textarea{
 
     </div>
 
-    <button
-      class="btn gold"
-      id="saveProfile"
-    >
+
+    <button class="btn gold"
+            id="saveProfile">
       Lưu hồ sơ
     </button>
 
-  </div>
+  </section>
 
 </div>
 
 
-<div
-  class="toast"
-  id="toast"
-></div>
+<div class="toast"
+     id="toast"></div>
 
 
 <script src="./worker-client-v2.js"></script>
@@ -1052,117 +2470,131 @@ textarea{
 <script>
 (() => {
 
-  const $ = selector =>
-    document.querySelector(selector);
+  const $ = s =>
+    document.querySelector(s);
 
-  const $$ = selector =>
-    [...document.querySelectorAll(selector)];
+  const $$ = s =>
+    [...document.querySelectorAll(s)];
 
 
-  const LANGS = {
-
-    vi: "vi-VN",
-
-    en: "en-US",
-
-    zh: "zh-CN",
-
-    ko: "ko-KR",
-
-    ja: "ja-JP"
-
+  const STORAGE = {
+    profile:"rii-v392-profile",
+    notes:"rii-v392-notes",
+    scores:"rii-v392-scores"
   };
 
 
-  const STORE = {
-
-    profile: "rii-v390-profile",
-
-    notes: "rii-v390-notes",
-
-    game: "rii-v390-game"
-
+  const LANGS = {
+    vi:"vi-VN",
+    en:"en-US",
+    zh:"zh-CN",
+    ko:"ko-KR",
+    ja:"ja-JP"
   };
 
 
   let profile =
     JSON.parse(
       localStorage.getItem(
-        STORE.profile
+        STORAGE.profile
       ) || "null"
     ) || {
-
-      name: "Rii Kid",
-
-      grade: 3,
-
-      lang: "vi",
-
-      xp: 0
-
+      name:"Rii Kid",
+      grade:3,
+      lang:"vi",
+      xp:2860
     };
 
 
   let notes =
     JSON.parse(
       localStorage.getItem(
-        STORE.notes
+        STORAGE.notes
       ) || "[]"
     );
 
 
+  let scores =
+    JSON.parse(
+      localStorage.getItem(
+        STORAGE.scores
+      ) || "null"
+    ) || {
+      math:0,
+      language:0,
+      vision:0
+    };
+
+
   let game = {
-
-    mode: "math",
-
-    answer: null
-
+    mode:"math",
+    answer:null
   };
+
+
+  let visionData = "";
 
 
   const worker = () =>
     window.RiiWorkerClientV2 || null;
 
 
-  function toast(text) {
+  function saveProfileData(){
 
-    const el =
+    localStorage.setItem(
+      STORAGE.profile,
+      JSON.stringify(profile)
+    );
+
+  }
+
+
+  function saveScores(){
+
+    localStorage.setItem(
+      STORAGE.scores,
+      JSON.stringify(scores)
+    );
+
+  }
+
+
+  function toast(text){
+
+    const element =
       $("#toast");
 
-    el.textContent =
-      text;
+    element.textContent =
+      String(text || "");
 
-    el.classList.add(
+    element.classList.add(
       "show"
     );
 
     clearTimeout(
-      window.__riiToastTimer
+      window.__riiToast
     );
 
-    window.__riiToastTimer =
+    window.__riiToast =
       setTimeout(
-        () => {
-
-          el.classList.remove(
+        () =>
+          element.classList.remove(
             "show"
-          );
-
-        },
+          ),
         1800
       );
 
   }
 
 
-  function openSheet(
-    name
-  ) {
+  function openSheet(name){
 
     const sheet =
       $("#sheet-" + name);
 
-    if (!sheet) return;
+    if(!sheet){
+      return;
+    }
 
     sheet.classList.add(
       "open"
@@ -1171,7 +2603,7 @@ textarea{
   }
 
 
-  function closeSheets() {
+  function closeSheets(){
 
     $$(".sheet.open")
       .forEach(
@@ -1188,11 +2620,13 @@ textarea{
     .forEach(
       button => {
 
-        button.onclick =
+        button.addEventListener(
+          "click",
           () =>
             openSheet(
               button.dataset.open
-            );
+            )
+        );
 
       }
     );
@@ -1202,8 +2636,10 @@ textarea{
     .forEach(
       button => {
 
-        button.onclick =
-          closeSheets;
+        button.addEventListener(
+          "click",
+          closeSheets
+        );
 
       }
     );
@@ -1213,42 +2649,175 @@ textarea{
     .forEach(
       sheet => {
 
-        sheet.onclick =
+        sheet.addEventListener(
+          "click",
           event => {
 
-            if (
-              event.target === sheet
-            ) {
-
+            if(
+              event.target
+              === sheet
+            ){
               closeSheets();
-
             }
 
-          };
+          }
+        );
 
       }
     );
 
 
+  function setActiveNav(button){
+
+    $$(".nav-btn")
+      .forEach(
+        item =>
+          item.classList.remove(
+            "active"
+          )
+      );
+
+    button?.classList.add(
+      "active"
+    );
+
+  }
+
+
+  $$(".nav-btn")
+    .forEach(
+      button => {
+
+        button.addEventListener(
+          "click",
+          () =>
+            setActiveNav(button)
+        );
+
+      }
+    );
+
+
+  $("#navHome")
+    .addEventListener(
+      "click",
+      () => {
+
+        window.scrollTo({
+          top:0,
+          behavior:"smooth"
+        });
+
+      }
+    );
+
+
+  /* ======================
+     PROFILE
+  ====================== */
+
+  function renderProfile(){
+
+    $("#gradeButton")
+      .textContent =
+      `Lớp ${profile.grade}`;
+
+    $("#rankGrade")
+      .textContent =
+      `LỚP ${profile.grade}`;
+
+    $("#myScore")
+      .textContent =
+      `${Number(profile.xp || 0).toLocaleString("vi-VN")} XP`;
+
+    $("#profileName")
+      .value =
+      profile.name || "Rii Kid";
+
+    $("#profileGrade")
+      .value =
+      String(profile.grade || 3);
+
+    $("#appLang")
+      .value =
+      profile.lang || "vi";
+
+  }
+
+
+  renderProfile();
+
+
+  $("#gradeButton")
+    .addEventListener(
+      "click",
+      () =>
+        openSheet(
+          "settings"
+        )
+    );
+
+
+  $("#saveProfile")
+    .addEventListener(
+      "click",
+      () => {
+
+        profile.name =
+          $("#profileName")
+            .value
+            .trim()
+          || "Rii Kid";
+
+        profile.grade =
+          Number(
+            $("#profileGrade")
+              .value
+          ) || 3;
+
+        profile.lang =
+          $("#appLang")
+            .value
+          || "vi";
+
+        saveProfileData();
+
+        renderProfile();
+
+        closeSheets();
+
+        toast(
+          "Đã lưu hồ sơ"
+        );
+
+      }
+    );
+
+
+  /* ======================
+     SPEECH
+  ====================== */
+
   function speak(
     text,
     lang = profile.lang
-  ) {
+  ){
 
-    text =
+    const clean =
       String(
         text || ""
       ).trim();
 
-    if (!text) return;
+    if(!clean){
+      return;
+    }
 
-
-    if (
+    if(
       !(
         "speechSynthesis"
         in window
       )
-    ) {
+    ){
 
       toast(
         "Thiết bị chưa hỗ trợ đọc"
@@ -1258,27 +2827,22 @@ textarea{
 
     }
 
-
-    speechSynthesis
+    window.speechSynthesis
       .cancel();
-
 
     const utterance =
       new SpeechSynthesisUtterance(
-        text
+        clean
       );
-
 
     utterance.lang =
       LANGS[lang]
       || "vi-VN";
 
-
     utterance.rate =
-      0.95;
+      .94;
 
-
-    speechSynthesis
+    window.speechSynthesis
       .speak(
         utterance
       );
@@ -1286,18 +2850,14 @@ textarea{
   }
 
 
-  function listen(
-    callback
-  ) {
+  function listen(callback){
 
-    const SpeechRecognition =
+    const Recognition =
       window.SpeechRecognition
-      || window.webkitSpeechRecognition;
+      ||
+      window.webkitSpeechRecognition;
 
-
-    if (
-      !SpeechRecognition
-    ) {
+    if(!Recognition){
 
       toast(
         "Safari chưa hỗ trợ nhận giọng nói"
@@ -1307,24 +2867,18 @@ textarea{
 
     }
 
-
     const recognition =
-      new SpeechRecognition();
-
+      new Recognition();
 
     recognition.lang =
-      LANGS[
-        profile.lang
-      ] || "vi-VN";
-
+      LANGS[profile.lang]
+      || "vi-VN";
 
     recognition.interimResults =
       false;
 
-
     recognition.maxAlternatives =
       1;
-
 
     recognition.onresult =
       event => {
@@ -1334,510 +2888,454 @@ textarea{
             .results[0][0]
             .transcript;
 
-        callback(
-          text
-        );
+        callback(text);
 
       };
-
 
     recognition.onerror =
-      () => {
-
+      () =>
         toast(
-          "Không nghe rõ"
+          "Rii chưa nghe rõ"
         );
-
-      };
-
 
     recognition.start();
 
   }
 
 
-  $("#voiceHot")
-    .onclick =
-    () => {
-
-      listen(
-        text => {
-
-          const normalized =
-            text.toLowerCase();
-
-
-          if (
-            normalized
-              .includes(
-                "toán"
-              )
-          ) {
-
-            openSheet(
-              "math"
-            );
-
-          }
-
-          else if (
-            normalized
-              .includes(
-                "dịch"
-              )
-          ) {
-
-            openSheet(
-              "translate"
-            );
-
-          }
-
-          else if (
-            normalized
-              .includes(
-                "camera"
-              )
-            ||
-            normalized
-              .includes(
-                "nhìn"
-              )
-          ) {
-
-            openSheet(
-              "vision"
-            );
-
-          }
-
-          else if (
-            normalized
-              .includes(
-                "ghi chú"
-              )
-            ||
-            normalized
-              .includes(
-                "nhắc"
-              )
-          ) {
-
-            openSheet(
-              "notes"
-            );
-
-          }
-
-          else {
-
-            toast(
-              "Rii nghe: "
-              + text
-            );
-
-          }
-
-        }
-      );
-
-    };
-
-
-  /* ===================== */
-  /* MATH */
-  /* ===================== */
-
-  $("#mathSolve")
-    .onclick =
-    async () => {
-
-      const question =
-        $("#mathInput")
-          .value
-          .trim();
-
-
-      if (
-        !question
-      ) {
+  $("#voiceButton")
+    .addEventListener(
+      "click",
+      () => {
 
         toast(
-          "Nhập bài toán"
+          "Rii đang nghe..."
         );
 
-        return;
+        listen(
+          text => {
+
+            const cmd =
+              text
+                .toLowerCase()
+                .trim();
+
+            if(
+              cmd.includes("toán")
+            ){
+
+              openSheet("math");
+
+            }
+
+            else if(
+              cmd.includes("dịch")
+              ||
+              cmd.includes("ngôn ngữ")
+            ){
+
+              openSheet(
+                "translate"
+              );
+
+            }
+
+            else if(
+              cmd.includes("camera")
+              ||
+              cmd.includes("nhìn")
+              ||
+              cmd.includes("vật")
+            ){
+
+              openSheet(
+                "vision"
+              );
+
+            }
+
+            else if(
+              cmd.includes("ghi chú")
+              ||
+              cmd.includes("nhắc")
+              ||
+              cmd.includes("báo thức")
+            ){
+
+              openSheet(
+                "notes"
+              );
+
+            }
+
+            else if(
+              cmd.includes("game")
+              ||
+              cmd.includes("trò chơi")
+            ){
+
+              openGame(
+                game.mode
+              );
+
+            }
+
+            else{
+
+              toast(
+                "Rii nghe: "
+                + text
+              );
+
+            }
+
+          }
+        );
 
       }
+    );
 
 
-      const client =
-        worker();
+  /* ======================
+     MATH
+  ====================== */
 
+  $("#mathSolve")
+    .addEventListener(
+      "click",
+      async () => {
 
-      $("#mathStatus")
-        .textContent =
-        "Rii đang suy nghĩ...";
+        const question =
+          $("#mathInput")
+            .value
+            .trim();
 
+        if(!question){
 
-      try {
-
-        if (
-          !client
-          ||
-          !client.solveMath
-        ) {
-
-          throw new Error(
-            "Worker chưa sẵn sàng"
+          toast(
+            "Nhập bài toán trước"
           );
+
+          return;
 
         }
 
+        const client =
+          worker();
 
-        const response =
-          await client
-            .solveMath(
+        $("#mathStatus")
+          .textContent =
+          "Rii đang suy nghĩ...";
+
+        try{
+
+          if(
+            !client
+            ||
+            !client.solveMath
+          ){
+
+            throw new Error(
+              "Worker chưa sẵn sàng"
+            );
+
+          }
+
+          const response =
+            await client.solveMath(
               question,
               profile.lang
             );
 
+          const answer =
+            response?.answer
+            ||
+            response?.result
+            ||
+            response?.text
+            ||
+            JSON.stringify(
+              response
+            );
 
-        const answer =
-          response?.answer
-          ||
-          response?.result
-          ||
-          response?.text
-          ||
-          JSON.stringify(
-            response
-          );
+          $("#mathResult")
+            .textContent =
+            answer;
 
-
-        $("#mathResult")
-          .textContent =
-          answer;
-
-
-        $("#mathStatus")
-          .textContent =
-          "Hoàn tất";
-
-
-      }
-
-      catch (
-        error
-      ) {
-
-        $("#mathStatus")
-          .textContent =
-          "Lỗi: "
-          + error.message;
-
-      }
-
-    };
-
-
-  $("#mathSpeak")
-    .onclick =
-    () => {
-
-      speak(
-        $("#mathResult")
-          .textContent
-      );
-
-    };
-
-
-  /* ===================== */
-  /* TRANSLATION */
-  /* ===================== */
-
-  $("#transGo")
-    .onclick =
-    async () => {
-
-      const text =
-        $("#transInput")
-          .value
-          .trim();
-
-
-      const target =
-        $("#transTarget")
-          .value;
-
-
-      if (
-        !text
-      ) {
-
-        toast(
-          "Nhập nội dung cần dịch"
-        );
-
-        return;
-
-      }
-
-
-      const client =
-        worker();
-
-
-      $("#transStatus")
-        .textContent =
-        "Đang dịch...";
-
-
-      try {
-
-        if (
-          !client
-          ||
-          !client.translateText
-        ) {
-
-          throw new Error(
-            "Worker chưa sẵn sàng"
-          );
+          $("#mathStatus")
+            .textContent =
+            "Hoàn tất";
 
         }
 
+        catch(error){
 
-        const response =
-          await client
-            .translateText(
+          $("#mathStatus")
+            .textContent =
+            "Lỗi: "
+            + error.message;
+
+        }
+
+      }
+    );
+
+
+  $("#mathSpeak")
+    .addEventListener(
+      "click",
+      () =>
+        speak(
+          $("#mathResult")
+            .textContent
+        )
+    );
+
+
+  /* ======================
+     TRANSLATION
+  ====================== */
+
+  $("#transGo")
+    .addEventListener(
+      "click",
+      async () => {
+
+        const text =
+          $("#transInput")
+            .value
+            .trim();
+
+        const target =
+          $("#transTarget")
+            .value;
+
+        if(!text){
+
+          toast(
+            "Nhập nội dung cần dịch"
+          );
+
+          return;
+
+        }
+
+        const client =
+          worker();
+
+        $("#transStatus")
+          .textContent =
+          "Rii đang dịch...";
+
+        try{
+
+          if(
+            !client
+            ||
+            !client.translateText
+          ){
+
+            throw new Error(
+              "Worker chưa sẵn sàng"
+            );
+
+          }
+
+          const response =
+            await client.translateText(
               text,
               target
             );
 
+          const output =
+            response?.translation
+            ||
+            response?.result
+            ||
+            response?.text
+            ||
+            JSON.stringify(
+              response
+            );
 
-        const output =
-          response?.translation
-          ||
-          response?.result
-          ||
-          response?.text
-          ||
-          JSON.stringify(
-            response
-          );
+          $("#transResult")
+            .textContent =
+            output;
 
-
-        $("#transResult")
-          .textContent =
-          output;
-
-
-        $("#transStatus")
-          .textContent =
-          "Hoàn tất";
-
-      }
-
-      catch (
-        error
-      ) {
-
-        $("#transStatus")
-          .textContent =
-          "Lỗi: "
-          + error.message;
-
-      }
-
-    };
-
-
-  $("#transSpeak")
-    .onclick =
-    () => {
-
-      speak(
-
-        $("#transResult")
-          .textContent,
-
-        $("#transTarget")
-          .value
-
-      );
-
-    };
-
-
-  /* ===================== */
-  /* VISION */
-  /* ===================== */
-
-  let visionData = "";
-
-
-  $("#visionFile")
-    .onchange =
-    event => {
-
-      const file =
-        event
-          .target
-          .files?.[0];
-
-
-      if (
-        !file
-      ) {
-
-        return;
-
-      }
-
-
-      const reader =
-        new FileReader();
-
-
-      reader.onload =
-        () => {
-
-          visionData =
-            reader.result;
-
-
-          $("#visionPreview")
-            .src =
-            visionData;
-
-
-          $("#visionPreview")
-            .hidden =
-            false;
-
-        };
-
-
-      reader
-        .readAsDataURL(
-          file
-        );
-
-    };
-
-
-  $("#visionAnalyze")
-    .onclick =
-    async () => {
-
-      if (
-        !visionData
-      ) {
-
-        toast(
-          "Chọn ảnh trước"
-        );
-
-        return;
-
-      }
-
-
-      const client =
-        worker();
-
-
-      $("#visionStatus")
-        .textContent =
-        "Rii đang quan sát...";
-
-
-      try {
-
-        if (
-          !client
-          ||
-          !client.analyzeImage
-        ) {
-
-          throw new Error(
-            "Worker chưa sẵn sàng"
-          );
+          $("#transStatus")
+            .textContent =
+            "Hoàn tất";
 
         }
 
+        catch(error){
 
-        const response =
-          await client
-            .analyzeImage(
+          $("#transStatus")
+            .textContent =
+            "Lỗi: "
+            + error.message;
+
+        }
+
+      }
+    );
+
+
+  $("#transSpeak")
+    .addEventListener(
+      "click",
+      () =>
+        speak(
+          $("#transResult")
+            .textContent,
+          $("#transTarget")
+            .value
+        )
+    );
+
+
+  /* ======================
+     VISION
+  ====================== */
+
+  $("#visionFile")
+    .addEventListener(
+      "change",
+      event => {
+
+        const file =
+          event
+            .target
+            .files?.[0];
+
+        if(!file){
+          return;
+        }
+
+        const reader =
+          new FileReader();
+
+        reader.onload =
+          () => {
+
+            visionData =
+              reader.result;
+
+            $("#visionPreview")
+              .src =
+              visionData;
+
+            $("#visionPreview")
+              .hidden =
+              false;
+
+          };
+
+        reader.readAsDataURL(
+          file
+        );
+
+      }
+    );
+
+
+  $("#visionAnalyze")
+    .addEventListener(
+      "click",
+      async () => {
+
+        if(!visionData){
+
+          toast(
+            "Chọn hoặc chụp ảnh trước"
+          );
+
+          return;
+
+        }
+
+        const client =
+          worker();
+
+        $("#visionStatus")
+          .textContent =
+          "Rii đang quan sát...";
+
+        try{
+
+          if(
+            !client
+            ||
+            !client.analyzeImage
+          ){
+
+            throw new Error(
+              "Worker chưa sẵn sàng"
+            );
+
+          }
+
+          const response =
+            await client.analyzeImage(
               visionData,
               profile.lang
             );
 
+          const output =
+            response?.answer
+            ||
+            response?.result
+            ||
+            response?.description
+            ||
+            response?.text
+            ||
+            JSON.stringify(
+              response
+            );
 
-        const output =
-          response?.answer
-          ||
-          response?.result
-          ||
-          response?.description
-          ||
-          response?.text
-          ||
-          JSON.stringify(
-            response
-          );
+          $("#visionResult")
+            .textContent =
+            output;
 
+          $("#visionStatus")
+            .textContent =
+            "Hoàn tất";
 
-        $("#visionResult")
-          .textContent =
-          output;
+        }
 
+        catch(error){
 
-        $("#visionStatus")
-          .textContent =
-          "Hoàn tất";
+          $("#visionStatus")
+            .textContent =
+            "Lỗi: "
+            + error.message;
 
-      }
-
-      catch (
-        error
-      ) {
-
-        $("#visionStatus")
-          .textContent =
-          "Lỗi: "
-          + error.message;
+        }
 
       }
-
-    };
+    );
 
 
   $("#visionSpeak")
-    .onclick =
-    () => {
+    .addEventListener(
+      "click",
+      () =>
+        speak(
+          $("#visionResult")
+            .textContent
+        )
+    );
 
-      speak(
-        $("#visionResult")
-          .textContent
-      );
 
-    };
+  /* ======================
+     NOTES
+  ====================== */
 
-
-  /* ===================== */
-  /* NOTES */
-  /* ===================== */
-
-  function escapeHTML(
-    text
-  ) {
+  function escapeHTML(text){
 
     return String(
-      text
+      text || ""
     )
       .replace(
         /&/g,
@@ -1859,15 +3357,12 @@ textarea{
   }
 
 
-  function renderNotes() {
+  function renderNotes(){
 
     const list =
       $("#noteList");
 
-
-    if (
-      !notes.length
-    ) {
+    if(!notes.length){
 
       list.innerHTML =
         `
@@ -1880,60 +3375,47 @@ textarea{
 
     }
 
-
     list.innerHTML =
       notes
         .map(
-          (
-            note,
-            index
-          ) => {
+          (note,index) => `
+            <div class="note-item">
 
-            return `
-              <div class="note-item">
+              <b>
+                ${escapeHTML(note.text)}
+              </b>
 
-                <b>
-                  ${escapeHTML(
-                    note.text
-                  )}
-                </b>
-
-                <br>
-
-                <small>
-                  ${
-                    note.time
-                    ||
-                    "Không đặt giờ"
-                  }
-                </small>
-
-                <button
-                  class="btn"
-                  data-delete-note="${index}"
-                  style="
-                    float:right;
-                    padding:5px 9px;
-                  "
-                >
-                  Xóa
-                </button>
-
+              <div class="status">
+                ${escapeHTML(
+                  note.time
+                  ||
+                  "Không đặt giờ"
+                )}
               </div>
-            `;
 
-          }
+              <button
+                class="btn"
+                data-delete-note="${index}"
+                style="
+                  margin-top:8px;
+                  min-height:32px;
+                  padding:5px 10px;
+                "
+              >
+                Xóa
+              </button>
+
+            </div>
+          `
         )
         .join("");
 
-
-    $$(
-      "[data-delete-note]"
-    )
+    $$("[data-delete-note]")
       .forEach(
         button => {
 
-          button.onclick =
+          button.addEventListener(
+            "click",
             () => {
 
               const index =
@@ -1942,25 +3424,20 @@ textarea{
                     .deleteNote
                 );
 
-
               notes.splice(
                 index,
                 1
               );
 
-
-              localStorage
-                .setItem(
-                  STORE.notes,
-                  JSON.stringify(
-                    notes
-                  )
-                );
-
+              localStorage.setItem(
+                STORAGE.notes,
+                JSON.stringify(notes)
+              );
 
               renderNotes();
 
-            };
+            }
+          );
 
         }
       );
@@ -1968,103 +3445,80 @@ textarea{
   }
 
 
-  $("#saveNote")
-    .onclick =
-    () => {
-
-      const text =
-        $("#noteText")
-          .value
-          .trim();
-
-
-      const time =
-        $("#noteTime")
-          .value;
-
-
-      if (
-        !text
-      ) {
-
-        toast(
-          "Nhập ghi chú"
-        );
-
-        return;
-
-      }
-
-
-      notes.unshift(
-        {
-
-          text,
-
-          time
-
-        }
-      );
-
-
-      localStorage
-        .setItem(
-          STORE.notes,
-          JSON.stringify(
-            notes
-          )
-        );
-
-
-      $("#noteText")
-        .value =
-        "";
-
-
-      renderNotes();
-
-
-      toast(
-        "Đã lưu"
-      );
-
-    };
-
-
   renderNotes();
 
 
-  /* ===================== */
-  /* GAME */
-  /* ===================== */
+  $("#saveNote")
+    .addEventListener(
+      "click",
+      () => {
 
-  function setGame(
-    mode
-  ) {
+        const text =
+          $("#noteText")
+            .value
+            .trim();
+
+        const time =
+          $("#noteTime")
+            .value;
+
+        if(!text){
+
+          toast(
+            "Nhập nội dung ghi chú"
+          );
+
+          return;
+
+        }
+
+        notes.unshift({
+          text,
+          time
+        });
+
+        localStorage.setItem(
+          STORAGE.notes,
+          JSON.stringify(notes)
+        );
+
+        $("#noteText")
+          .value =
+          "";
+
+        renderNotes();
+
+        toast(
+          "Đã lưu ghi chú"
+        );
+
+      }
+    );
+
+
+  /* ======================
+     GAME
+  ====================== */
+
+  function openGame(mode){
 
     game.mode =
-      mode;
-
+      mode || "math";
 
     $$(".game-choice")
       .forEach(
         button => {
 
-          button.classList
-            .toggle(
-              "active",
-              button.dataset.mode
-              === mode
-            );
+          button.classList.toggle(
+            "active",
+            button.dataset.mode
+              === game.mode
+          );
 
         }
       );
 
-
-    openSheet(
-      "game"
-    );
-
+    openSheet("game");
 
     newQuestion();
 
@@ -2075,16 +3529,25 @@ textarea{
     .forEach(
       button => {
 
-        button.onclick =
-          () => {
-
-            setGame(
+        button.addEventListener(
+          "click",
+          () =>
+            openGame(
               button.dataset.game
-            );
-
-          };
+            )
+        );
 
       }
+    );
+
+
+  $("#startGame")
+    .addEventListener(
+      "click",
+      () =>
+        openGame(
+          game.mode
+        )
     );
 
 
@@ -2092,129 +3555,158 @@ textarea{
     .forEach(
       button => {
 
-        button.onclick =
+        button.addEventListener(
+          "click",
           () => {
 
             game.mode =
               button.dataset.mode;
 
-
             $$(".game-choice")
               .forEach(
-                item => {
-
-                  item.classList
-                    .toggle(
-                      "active",
-                      item === button
-                    );
-
-                }
+                item =>
+                  item.classList.toggle(
+                    "active",
+                    item === button
+                  )
               );
-
 
             newQuestion();
 
-          };
+          }
+        );
 
       }
     );
 
 
-  $("#startGameHot")
-    .onclick =
-    () => {
+  function randomInt(
+    min,
+    max
+  ){
 
-      setGame(
-        game.mode
-      );
+    return Math.floor(
+      Math.random()
+      * (max-min+1)
+    ) + min;
 
-    };
+  }
 
 
-  function newQuestion() {
+  function newQuestion(){
 
     let question = "";
 
-
-    if (
+    if(
       game.mode
       === "math"
-    ) {
+    ){
 
-      const a =
-        2
-        +
-        Math.floor(
-          Math.random()
-          * 20
+      const grade =
+        Number(
+          profile.grade || 3
         );
 
+      let a;
+      let b;
+      let op;
 
-      const b =
-        2
-        +
-        Math.floor(
-          Math.random()
-          * 20
-        );
+      if(
+        grade <= 1
+      ){
 
+        a = randomInt(1,10);
+        b = randomInt(1,10);
+        op = "+";
 
-      game.answer =
-        String(
-          a + b
-        );
+        game.answer =
+          String(a+b);
 
+      }
+
+      else if(
+        grade === 2
+      ){
+
+        a = randomInt(10,50);
+        b = randomInt(1,30);
+
+        op =
+          Math.random() > .5
+          ? "+"
+          : "-";
+
+        if(
+          op === "-"
+          &&
+          b > a
+        ){
+
+          [a,b] = [b,a];
+
+        }
+
+        game.answer =
+          String(
+            op === "+"
+            ? a+b
+            : a-b
+          );
+
+      }
+
+      else{
+
+        a = randomInt(2,12);
+        b = randomInt(2,12);
+
+        op =
+          Math.random() > .45
+          ? "×"
+          : "+";
+
+        game.answer =
+          String(
+            op === "×"
+            ? a*b
+            : a+b
+          );
+
+      }
 
       question =
-        `${a} + ${b} = ?`;
+        `${a} ${op} ${b} = ?`;
 
     }
 
 
-    else if (
+    else if(
       game.mode
       === "language"
-    ) {
+    ){
 
-      const bank = [
-
-        [
-          "hello",
-          "xin chào"
-        ],
-
-        [
-          "book",
-          "quyển sách"
-        ],
-
-        [
-          "water",
-          "nước"
-        ],
-
-        [
-          "cat",
-          "con mèo"
-        ]
-
+      const vocabulary = [
+        ["hello","xin chào"],
+        ["book","quyển sách"],
+        ["water","nước"],
+        ["apple","quả táo"],
+        ["school","trường học"],
+        ["friend","bạn bè"],
+        ["cat","con mèo"],
+        ["sun","mặt trời"]
       ];
 
-
       const pair =
-        bank[
-          Math.floor(
-            Math.random()
-            * bank.length
+        vocabulary[
+          randomInt(
+            0,
+            vocabulary.length-1
           )
         ];
-
 
       game.answer =
         pair[1]
           .toLowerCase();
-
 
       question =
         `Dịch sang tiếng Việt: “${pair[0]}”`;
@@ -2222,14 +3714,29 @@ textarea{
     }
 
 
-    else {
+    else{
+
+      const objects = [
+        "chai nước",
+        "quyển sách",
+        "chiếc ghế",
+        "điện thoại",
+        "đôi giày"
+      ];
+
+      const target =
+        objects[
+          randomInt(
+            0,
+            objects.length-1
+          )
+        ];
 
       game.answer =
-        "camera";
-
+        target;
 
       question =
-        "Mở Camera AI và tìm một vật thể quanh con. Sau đó nhập từ “camera” để hoàn thành thử thách.";
+        `Hãy tìm “${target}” quanh con. Có thể mở Camera AI để quan sát rồi nhập tên vật.`;
 
     }
 
@@ -2238,11 +3745,9 @@ textarea{
       .textContent =
       question;
 
-
     $("#gameAnswer")
       .value =
       "";
-
 
     $("#gameStatus")
       .textContent =
@@ -2252,221 +3757,157 @@ textarea{
 
 
   $("#newQuestion")
-    .onclick =
-    newQuestion;
+    .addEventListener(
+      "click",
+      newQuestion
+    );
 
 
   $("#checkAnswer")
-    .onclick =
-    () => {
+    .addEventListener(
+      "click",
+      () => {
 
-      const answer =
-        $("#gameAnswer")
-          .value
-          .trim()
-          .toLowerCase();
+        const answer =
+          $("#gameAnswer")
+            .value
+            .trim()
+            .toLowerCase();
 
+        if(!answer){
 
-      if (
-        !answer
-      ) {
+          toast(
+            "Nhập đáp án"
+          );
 
-        toast(
-          "Nhập đáp án"
-        );
+          return;
 
-        return;
+        }
 
-      }
+        const correct =
+          String(
+            game.answer || ""
+          )
+            .trim()
+            .toLowerCase();
 
+        if(
+          answer === correct
+        ){
 
-      if (
-        answer
-        ===
-        String(
-          game.answer
-        )
-          .toLowerCase()
-      ) {
-
-        profile.xp =
-          (
-            profile.xp
-            || 0
+          scores[
+            game.mode
+          ] =
+          Number(
+            scores[
+              game.mode
+            ] || 0
           )
           + 20;
 
-
-        localStorage
-          .setItem(
-            STORE.profile,
-            JSON.stringify(
-              profile
+          profile.xp =
+            Number(
+              profile.xp || 0
             )
+            + 20;
+
+          saveScores();
+
+          saveProfileData();
+
+          renderProfile();
+
+          $("#gameStatus")
+            .textContent =
+            "Chính xác! +20 XP";
+
+          speak(
+            "Chính xác! Giỏi lắm!"
           );
 
+        }
 
-        $("#gameStatus")
-          .textContent =
-          "Chính xác! +20 XP";
+        else{
 
+          $("#gameStatus")
+            .textContent =
+            "Chưa đúng. Thử lại nhé.";
 
-        speak(
-          "Chính xác!"
-        );
-
-      }
-
-      else {
-
-        $("#gameStatus")
-          .textContent =
-          "Chưa đúng, thử lại nhé.";
-
-      }
-
-    };
-
-
-  /* ===================== */
-  /* LEADERBOARD */
-  /* ===================== */
-
-  $$("[data-rank]")
-    .forEach(
-      button => {
-
-        button.onclick =
-          () => {
-
-            const type =
-              button.dataset.rank;
-
-
-            const label = {
-
-              overall:
-                "Tổng",
-
-              math:
-                "Toán",
-
-              language:
-                "Phiên dịch",
-
-              vision:
-                "Camera"
-
-            }[type]
-            || type;
-
-
-            toast(
-              "Bảng xếp hạng: "
-              + label
-            );
-
-          };
+        }
 
       }
     );
 
 
-  /* ===================== */
-  /* HOME */
-  /* ===================== */
+  /* ======================
+     RANKING
+  ====================== */
 
-  $("#navHome")
-    .onclick =
-    () => {
+  $$(".rank-tab")
+    .forEach(
+      button => {
 
-      window.scrollTo(
-        {
+        button.addEventListener(
+          "click",
+          () => {
 
-          top:0,
+            $$(".rank-tab")
+              .forEach(
+                item =>
+                  item.classList.remove(
+                    "active"
+                  )
+              );
 
-          behavior:"smooth"
+            button.classList.add(
+              "active"
+            );
 
-        }
-      );
+            const type =
+              button.dataset.rank;
 
-    };
+            const labels = {
+              overall:"Tổng",
+              math:"Toán",
+              language:"Phiên dịch",
+              vision:"Camera"
+            };
 
+            toast(
+              `Bảng xếp hạng ${labels[type]}`
+            );
 
-  /* ===================== */
-  /* PROFILE */
-  /* ===================== */
-
-  function fillProfile() {
-
-    $("#profileName")
-      .value =
-      profile.name
-      || "Rii Kid";
-
-
-    $("#profileGrade")
-      .value =
-      String(
-        profile.grade
-        || 3
-      );
-
-
-    $("#appLang")
-      .value =
-      profile.lang
-      || "vi";
-
-  }
-
-
-  fillProfile();
-
-
-  $("#saveProfile")
-    .onclick =
-    () => {
-
-      profile.name =
-        $("#profileName")
-          .value
-          .trim()
-        ||
-        "Rii Kid";
-
-
-      profile.grade =
-        Number(
-          $("#profileGrade")
-            .value
-        )
-        || 3;
-
-
-      profile.lang =
-        $("#appLang")
-          .value
-        || "vi";
-
-
-      localStorage
-        .setItem(
-          STORE.profile,
-          JSON.stringify(
-            profile
-          )
+          }
         );
 
-
-      toast(
-        "Đã lưu hồ sơ"
-      );
+      }
+    );
 
 
-      closeSheets();
+  /* ======================
+     INITIAL
+  ====================== */
 
-    };
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+
+      if(
+        document.visibilityState
+        === "visible"
+      ){
+
+        renderProfile();
+
+      }
+
+    }
+  );
+
+
+  console.log(
+    "Rii AI V3.9.2 Heritage Native ready"
+  );
 
 })();
 </script>
