@@ -1,1558 +1,2475 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<meta name="theme-color" content="#050913">
-<title>Rii AI V3.7.0</title>
+<meta name="theme-color" content="#020814">
+
+<title>Rii AI V3.9.0</title>
+
 <style>
 :root{
-  --bg:#050913;
-  --panel:#0b1422e8;
-  --panel2:#0d1a2a;
-  --line:#ffffff14;
-  --gold:#e1b968;
-  --gold2:#ffe2a0;
-  --cyan:#59d8ff;
-  --mint:#5de0ba;
-  --violet:#9d84ff;
-  --red:#ff7d88;
-  --text:#f8fbff;
-  --muted:#93a6ba;
-  --shadow:0 22px 70px #0008;
+  --bg:#020814;
+  --panel:#061326;
+  --gold:#f3c65e;
+  --gold2:#fff0b3;
+  --blue:#58b8ff;
+  --text:#f7f3e9;
+  --muted:#9badc0;
 }
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html,body{
-  margin:0;min-height:100%;
-  background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif
-}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-button:disabled{opacity:.45;cursor:not-allowed}
-body{overflow-x:hidden}
-.bg{
-  position:fixed;inset:0;z-index:-3;
-  background:
-    radial-gradient(circle at 82% 10%,#7156ff22,transparent 26%),
-    radial-gradient(circle at 12% 28%,#21c7ff20,transparent 28%),
-    radial-gradient(circle at 75% 78%,#e1b96818,transparent 30%),
-    linear-gradient(145deg,#02050b,#07101c 48%,#030812);
-}
-.bg:after{
-  content:"";position:absolute;inset:0;opacity:.12;
-  background-image:
-    linear-gradient(#ffffff09 1px,transparent 1px),
-    linear-gradient(90deg,#ffffff09 1px,transparent 1px);
-  background-size:34px 34px;
-  mask-image:linear-gradient(to bottom,#000,transparent 75%)
-}
-.app{
-  width:min(100%,980px);margin:auto;min-height:100vh;
-  padding:calc(16px + env(safe-area-inset-top)) 14px calc(112px + env(safe-area-inset-bottom))
-}
-.glass{
-  border:1px solid var(--line);
-  background:linear-gradient(160deg,#0e1a2ad9,#07101ce8);
-  box-shadow:var(--shadow);
-  backdrop-filter:blur(22px)
-}
-.header{
-  display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px
-}
-.brand{display:flex;align-items:center;gap:11px}
-.brand-orb{
-  width:44px;height:44px;border-radius:15px;display:grid;place-items:center;font-weight:950;
-  background:radial-gradient(circle at 32% 25%,#7cdfff,#29466f 42%,#0a1322 70%);
-  border:1px solid #83ddff66;box-shadow:0 0 28px #45cfff35
-}
-.logo{font-size:26px;font-weight:950;letter-spacing:-.8px}
-.logo b{color:var(--gold2)}
-.tagline{color:var(--muted);font-size:10px;margin-top:2px}
-.header-actions{display:flex;gap:7px;align-items:center}
-.icon-btn,.status-pill{
-  height:40px;border-radius:13px;border:1px solid var(--line);
-  background:#091421dd;color:#fff
-}
-.icon-btn{width:40px}
-.status-pill{
-  display:flex;align-items:center;gap:7px;padding:0 10px;font-size:10px;color:#ccffec;font-weight:800
-}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--mint);box-shadow:0 0 12px var(--mint)}
-.hero{
-  border-radius:28px;padding:20px;position:relative;overflow:hidden
-}
-.hero:before{
-  content:"";position:absolute;width:180px;height:180px;border-radius:50%;right:-55px;top:-70px;
-  background:radial-gradient(circle,#55d9ff2b,transparent 68%)
-}
-.hero-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
-.eyebrow{font-size:10px;font-weight:900;letter-spacing:1.4px;color:var(--gold2)}
-.hero h1{font-size:clamp(28px,7vw,50px);line-height:1.04;letter-spacing:-1.5px;margin:8px 0 10px}
-.hero p{color:var(--muted);line-height:1.55;margin:0;max-width:680px}
-.profile-card{
-  min-width:155px;padding:12px;border-radius:18px;border:1px solid #ffffff13;background:#07101ca8
-}
-.profile-label{font-size:9px;color:var(--muted)}
-.profile-name{margin-top:4px;font-weight:900;color:var(--gold2)}
-.profile-meta{margin-top:4px;font-size:10px;color:#bed1e3}
-.profile-edit{
-  margin-top:9px;width:100%;padding:8px;border-radius:11px;border:1px solid #ffffff12;background:#ffffff09;color:#fff;font-size:10px
-}
-.identity{
-  display:grid;grid-template-columns:1fr auto;gap:10px;margin-top:15px;padding:12px;border-radius:17px;background:#0000002c
-}
-.id-small{color:var(--muted);font-size:9px;line-height:1.4}
-.id-value{margin-top:3px;color:var(--gold2);font-weight:900}
-.robot-pill{align-self:center;padding:8px 10px;border-radius:999px;background:#ffffff0b;color:#9fb1c3;font-size:9px}
-.voicebar{display:grid;grid-template-columns:1fr auto auto;gap:7px;margin:14px 0}
-.voicebar select,.voicebar button{
-  min-width:0;border-radius:14px;border:1px solid var(--line);background:#07131f;color:#fff
-}
-.voicebar select{padding:11px}.voicebar button{padding:0 13px}
-.section-head{display:flex;justify-content:space-between;align-items:end;margin:20px 3px 10px}
-.section-head h2{margin:0;font-size:18px}.section-head span{font-size:10px;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.center{
-  position:relative;min-height:164px;padding:15px;border-radius:23px;border:1px solid #ffffff14;overflow:hidden
-}
-.center:after{
-  content:"";position:absolute;width:100px;height:100px;border-radius:50%;right:-30px;bottom:-35px;background:#ffffff08
-}
-.center.math{background:linear-gradient(145deg,#0e4269,#071b2e)}
-.center.camera{background:linear-gradient(145deg,#6a4c1f,#261a0b);border-color:#ddb15d63}
-.center.translate{background:linear-gradient(145deg,#07594f,#06252d)}
-.center.notes{background:linear-gradient(145deg,#4b337d,#201a42)}
-.center-icon{
-  width:48px;height:48px;display:grid;place-items:center;border-radius:15px;background:#00000035;font-size:25px
-}
-.center h3{margin:13px 0 5px;font-size:17px}.center p{margin:0 0 40px;color:#e6eff7b5;font-size:10px;line-height:1.45}
-.center-open{
-  position:absolute;right:12px;bottom:12px;width:34px;height:34px;border:0;border-radius:50%;background:#00000038;color:#fff;z-index:2
-}
-.game-entry{
-  margin-top:12px;border-radius:26px;padding:17px;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;
-  border-color:#8d76ff45;background:
-    radial-gradient(circle at 88% 18%,#8e73ff35,transparent 28%),
-    linear-gradient(145deg,#11192d,#0b1020)
-}
-.game-orb{
-  width:58px;height:58px;border-radius:19px;display:grid;place-items:center;font-size:29px;
-  background:linear-gradient(145deg,#7d69ff,#3348a2);box-shadow:0 0 30px #6c61ff44
-}
-.game-entry h3{margin:0 0 5px;font-size:18px}.game-entry p{margin:0;color:var(--muted);font-size:10px;line-height:1.45}
-.game-launch{
-  width:40px;height:40px;border-radius:50%;border:1px solid #ffffff16;background:#ffffff0c;color:#fff;font-size:20px
-}
-.card{margin-top:13px;border-radius:24px;padding:15px}
-.audio-card select{width:100%;margin-top:8px;padding:11px;border-radius:14px;border:1px solid var(--line);background:#07131f;color:#fff}
-.screen{
-  position:fixed;inset:0;z-index:800;display:none;overflow:auto;
-  padding:calc(14px + env(safe-area-inset-top)) 13px calc(95px + env(safe-area-inset-bottom));
-  background:linear-gradient(145deg,#020711,#071522)
-}
-.screen.open{display:block}.screen-inner{width:min(100%,780px);margin:auto}
-.screen-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
-.back{padding:10px 12px;border-radius:13px;border:1px solid #ffffff14;background:#ffffff0c;color:#fff;font-weight:800}
-.screen-title{font-weight:950}.screen-card{margin-top:13px;padding:16px;border-radius:24px;border:1px solid var(--line);background:#091522e8}
-.textbox{width:100%;min-height:105px;margin-top:10px;padding:12px;border-radius:15px;border:1px solid #ffffff15;background:#06111c;color:#fff;resize:vertical}
-.action-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:10px}
-.action{padding:12px;border-radius:14px;border:1px solid var(--line);background:#0c1c2c;color:#fff;font-weight:850}
-.action.gold{background:#5b431a;color:#fff0c7}.action.mint{background:#0b473d}.action.blue{background:#103b5c}.action.red{background:#4c1b24;color:#ffdada}
-.result{margin-top:11px;padding:13px;border-radius:16px;border:1px solid #ffffff12;background:#06111b;color:#dbe7f1;line-height:1.55;white-space:pre-wrap}
-.math-card,.vision-card,.translation-output{display:none;margin-top:13px;padding:15px;border-radius:20px;background:#081624}
-.math-card{border:1px solid #45b7ff4a}.vision-card{border:1px solid #e1b96845}.translation-output{border:1px solid #5de0ba44}
-.math-card.show,.vision-card.show,.translation-output.show{display:block}
-.math-answer,.vision-name{font-size:27px;font-weight:950;color:var(--gold2);margin-bottom:9px}
-.math-steps,.fact-list{display:grid;gap:7px}.math-step,.fact{padding:10px;border-radius:13px;background:#ffffff09;line-height:1.45}
-.math-meta,.vision-core,.translation-meta{margin-top:9px;color:var(--muted);font-size:10px}
-.math-status,.ai-message,.translation-status{display:none;margin-top:11px;padding:13px;border-radius:15px;background:#09382f;border:1px solid #58d9b044}
-.math-status.show,.ai-message.show,.translation-status.show{display:block}
-.math-status.error,.ai-message.error,.translation-status.error{background:#50191f73;border-color:#ff7d7d52;color:#ffd6d6}
-.ai-message.resting,.translation-status.resting{border-color:#ffc56d57;background:#583b0d70;color:#ffe9b8}
-.translation-route{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:11px;padding:11px 12px;border-radius:15px;background:#071a1c;border:1px solid #58d9b02f}
-.translation-route-label{color:var(--muted);font-size:9px}.translation-route-value{margin-top:3px;font-weight:850;color:#d8fff1}
-.translation-result{margin-top:8px;font-size:19px;font-weight:750;line-height:1.5;white-space:pre-wrap}
-.camera-wrap{position:relative;overflow:hidden;max-height:66vh;aspect-ratio:3/4;border-radius:22px;border:1px solid #e2b45161;background:#02060b}
-.camera-wrap video,.camera-wrap canvas,.camera-wrap img{width:100%;height:100%;display:block;object-fit:cover}
-.camera-overlay{position:absolute;inset:10%;border:2px solid #f2d58bd9;border-radius:19px;pointer-events:none}
-.camera-status{margin-top:9px;color:var(--muted);font-size:11px}
-.explanation{margin-top:13px;line-height:1.6}
-.info-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
-.info-box{padding:10px;border-radius:14px;background:#ffffff09}.info-label{margin-bottom:4px;color:#7f94a8;font-size:9px}
-.root-debug{margin-top:13px;padding:11px;border-radius:15px;border:1px dashed #d8ad5847;background:#00000026}
-.root-debug summary{color:#b89b62;font-size:10px;font-weight:800}.root-debug pre{white-space:pre-wrap;color:#9dafc0;font-size:10px;overflow:auto}
-.notes-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}
-.notes-tab{padding:12px;border-radius:15px;border:1px solid #ffffff13;background:#ffffff08;color:#c9d4df;font-weight:850}
-.notes-tab.active{border-color:#d8ad5870;background:#d8ad581a;color:#ffe9ac}
-.notes-panel{display:none}.notes-panel.active{display:block}
-.note-list,.alarm-list{display:grid;gap:9px;margin-top:13px}
-.note-item,.alarm-item{padding:13px;border-radius:18px;border:1px solid #ffffff11;background:#07131e}
-.note-text{line-height:1.5;white-space:pre-wrap;word-break:break-word}.note-time,.alarm-meta{margin-top:8px;color:var(--muted);font-size:9px}
-.mini-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.mini-btn{padding:8px 9px;border-radius:11px;border:1px solid #ffffff13;background:#ffffff0a;color:#fff;font-size:10px;font-weight:800}
-.mini-btn.danger{color:#ffd0d0;border-color:#ff7d7d3c;background:#6a202740}
-.notes-empty{padding:15px;margin-top:11px;border-radius:16px;border:1px dashed #ffffff16;color:var(--muted);text-align:center;font-size:11px}
-.alarm-form{display:grid;gap:9px;margin-top:11px}.alarm-form input,.alarm-form select{width:100%;padding:11px 12px;border-radius:14px;border:1px solid #ffffff16;background:#06111c;color:#fff;color-scheme:dark}
-.alarm-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.alarm-item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.alarm-time{font-size:24px;font-weight:950;color:var(--gold2)}.alarm-title{margin-top:3px;font-weight:800}.alarm-disabled{opacity:.48}
-.switch{position:relative;width:47px;height:27px;min-width:47px;border:0;border-radius:999px;background:#33404e}
-.switch:after{content:"";position:absolute;width:21px;height:21px;left:3px;top:3px;border-radius:50%;background:#fff;transition:.18s}
-.switch.on{background:#157d64}.switch.on:after{transform:translateX(20px)}
-.overlay{position:fixed;inset:0;z-index:900;display:none;align-items:center;justify-content:center;padding:18px;background:#01060bc7;backdrop-filter:blur(18px)}
-.overlay.open{display:flex}.panel{width:min(94vw,440px);max-height:86vh;overflow:auto;padding:19px;border-radius:28px;border:1px solid var(--line);background:linear-gradient(155deg,#0e1d2ffc,#040c15fc)}
-.panel-head{display:flex;justify-content:space-between;align-items:center}.close{width:37px;height:37px;border:0;border-radius:50%;background:#ffffff11;color:#fff}
-.lang-list,.quick-grid{display:grid;gap:8px;margin-top:13px}.quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-.lang-btn,.quick{padding:11px;border-radius:15px;border:1px solid #ffffff11;background:#ffffff09;color:#fff;text-align:left}
-.lang-btn.active{border-color:#d8ad5899;background:#d8ad581b}.quick{min-height:80px;font-weight:800}.quick span{display:block;margin-bottom:5px;font-size:23px}
-.hidden{display:none!important}.speech-toast{position:fixed;left:50%;bottom:calc(82px + env(safe-area-inset-bottom));z-index:2000;transform:translateX(-50%) translateY(20px);width:min(90vw,420px);padding:12px 15px;border-radius:17px;border:1px solid #58d9b055;background:#09251ff0;color:#eafff8;text-align:center;opacity:0;pointer-events:none;transition:.2s;box-shadow:0 16px 50px #0009}
-.speech-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.speech-toast.error{background:#511a21f2;border-color:#ff7d7d66;color:#ffe1e1}
-.rii{position:fixed;left:calc(100vw - 78px);top:calc(100vh - 144px);z-index:999;width:58px;height:58px;display:grid;place-items:center;border-radius:50%;border:2px solid var(--gold);background:radial-gradient(circle at 35% 30%,#28517c,#06121e 62%);color:var(--gold2);font-weight:950;touch-action:none;user-select:none;box-shadow:0 9px 28px #0009,0 0 0 5px #0a1726b8}
-.boot-error{display:none;margin-top:13px;padding:13px;border-radius:15px;border:1px solid #ff7d7d55;background:#521820a8;color:#ffd9d9;line-height:1.5}.boot-error.show{display:block}
 
-/* GAME */
-.game-screen{
-  position:fixed;inset:0;z-index:1100;display:none;overflow:auto;
-  padding:calc(14px + env(safe-area-inset-top)) 13px calc(95px + env(safe-area-inset-bottom));
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  margin:0;
+  min-height:100%;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",sans-serif;
+}
+
+body{
+  overscroll-behavior:none;
+}
+
+button,input,textarea,select{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  width:min(100%,720px);
+  margin:auto;
+  min-height:100vh;
+  background:#020814;
+}
+
+.home-art{
+  position:relative;
+  width:100%;
+  line-height:0;
+  background:#020814;
+}
+
+.home-art img{
+  display:block;
+  width:100%;
+  height:auto;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-select:none;
+}
+
+.hot{
+  position:absolute;
+  border:0;
+  background:transparent;
+  color:transparent;
+  padding:0;
+  margin:0;
+  z-index:5;
+  border-radius:20px;
+}
+
+.hot:active{
+  background:rgba(255,221,130,.09);
+  box-shadow:inset 0 0 0 1px rgba(255,221,130,.35);
+}
+
+/* ===== HOTSPOT GIAO DIỆN ===== */
+
+.class-hot{
+  left:61.4%;
+  top:5%;
+  width:22.2%;
+  height:6.3%;
+  border-radius:999px;
+}
+
+.voice-hot{
+  left:82.8%;
+  top:4%;
+  width:13%;
+  height:9.8%;
+  border-radius:50%;
+}
+
+.math-hot{
+  left:2.6%;
+  top:17.4%;
+  width:22.8%;
+  height:21.5%;
+}
+
+.trans-hot{
+  left:26.2%;
+  top:17.4%;
+  width:22.9%;
+  height:21.5%;
+}
+
+.camera-hot{
+  left:50.2%;
+  top:17.4%;
+  width:22.9%;
+  height:21.5%;
+}
+
+.notes-hot{
+  left:74%;
+  top:17.4%;
+  width:23%;
+  height:21.5%;
+}
+
+.gm-hot{
+  left:6%;
+  top:43.2%;
+  width:18.7%;
+  height:15.8%;
+  border-radius:50%;
+}
+
+.gl-hot{
+  left:26%;
+  top:43.2%;
+  width:18.7%;
+  height:15.8%;
+  border-radius:50%;
+}
+
+.gc-hot{
+  left:46.3%;
+  top:43.2%;
+  width:18.7%;
+  height:15.8%;
+  border-radius:50%;
+}
+
+.start-hot{
+  left:67.7%;
+  top:41.4%;
+  width:28.5%;
+  height:19.5%;
+  border-radius:50%;
+}
+
+.rt-all{
+  left:11.7%;
+  top:65.7%;
+  width:18%;
+  height:4.7%;
+  border-radius:999px;
+}
+
+.rt-math{
+  left:31%;
+  top:65.7%;
+  width:18%;
+  height:4.7%;
+  border-radius:999px;
+}
+
+.rt-lang{
+  left:50.4%;
+  top:65.7%;
+  width:18%;
+  height:4.7%;
+  border-radius:999px;
+}
+
+.rt-cam{
+  left:69.8%;
+  top:65.7%;
+  width:18.7%;
+  height:4.7%;
+  border-radius:999px;
+}
+
+.nav-home{
+  left:0;
+  bottom:0;
+  width:25%;
+  height:10.4%;
+}
+
+.nav-learn{
+  left:25%;
+  bottom:0;
+  width:25%;
+  height:10.4%;
+}
+
+.nav-vision{
+  left:50%;
+  bottom:0;
+  width:25%;
+  height:10.4%;
+}
+
+.nav-settings{
+  left:75%;
+  bottom:0;
+  width:25%;
+  height:10.4%;
+}
+
+/* ===== MODAL ===== */
+
+.sheet{
+  position:fixed;
+  inset:0;
+  z-index:50;
+  display:none;
+  align-items:flex-end;
+  background:rgba(0,0,0,.58);
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+}
+
+.sheet.open{
+  display:flex;
+}
+
+.panel{
+  width:min(100%,720px);
+  max-height:88vh;
+  overflow:auto;
+  margin:0 auto;
   background:
-    radial-gradient(circle at 85% 12%,#7560ff2f,transparent 27%),
-    radial-gradient(circle at 10% 78%,#21c7ff22,transparent 31%),
-    linear-gradient(145deg,#030711,#081425)
+    radial-gradient(circle at 50% 0%,rgba(32,93,153,.18),transparent 38%),
+    linear-gradient(180deg,#0a1d35,#03101f);
+  border:1px solid rgba(243,198,94,.52);
+  border-radius:28px 28px 0 0;
+  padding:18px 18px calc(24px + env(safe-area-inset-bottom));
+  box-shadow:
+    0 -20px 60px rgba(0,0,0,.5),
+    inset 0 0 30px rgba(88,184,255,.06);
 }
-.game-screen.open{display:block}
-.game-shell{width:min(100%,820px);margin:auto}
-.game-hero{margin-top:12px;padding:18px;border-radius:26px}
-.game-hero h2{margin:6px 0 7px;font-size:26px}.game-hero p{margin:0;color:var(--muted);font-size:11px;line-height:1.5}
-.game-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:12px}
-.stat{padding:11px;border-radius:15px;background:#ffffff08;border:1px solid #ffffff10;text-align:center}
-.stat strong{display:block;font-size:18px;color:var(--gold2)}.stat span{font-size:9px;color:var(--muted)}
-.game-mode-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
-.game-mode{padding:14px;border-radius:21px;border:1px solid #ffffff13;background:#0b1725;color:#fff;text-align:left}
-.game-mode .ico{font-size:28px}.game-mode h3{margin:9px 0 4px}.game-mode p{margin:0;color:var(--muted);font-size:9px;line-height:1.4}
-.leader-card{margin-top:12px;padding:15px;border-radius:23px}
-.rank-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:10px}
-.rank-tab{padding:9px 6px;border-radius:12px;border:1px solid #ffffff10;background:#ffffff07;color:#cdd8e3;font-size:9px;font-weight:800}
-.rank-tab.active{background:#806cff27;border-color:#8f7dff6b;color:#fff}
-.rank-list{display:grid;gap:7px;margin-top:10px}
-.rank-row{display:grid;grid-template-columns:34px 1fr auto;align-items:center;gap:9px;padding:10px;border-radius:14px;background:#ffffff07}
-.rank-pos{font-weight:950;color:var(--gold2)}.rank-name{font-weight:800}.rank-meta{font-size:9px;color:var(--muted)}.rank-score{font-weight:950}
-.game-play{display:none;margin-top:12px;padding:16px;border-radius:24px}.game-play.show{display:block}
-.question{font-size:24px;font-weight:950;line-height:1.25;margin:8px 0 12px}.answers{display:grid;gap:8px}.answer-btn{padding:12px;border-radius:14px;border:1px solid #ffffff12;background:#0c1a29;color:#fff;text-align:left}
-.answer-btn.correct{border-color:#5de0ba88;background:#0b473c}.answer-btn.wrong{border-color:#ff7d7d77;background:#4f1c24}
-.game-feedback{margin-top:10px;padding:12px;border-radius:14px;background:#ffffff08;display:none}.game-feedback.show{display:block}
-.profile-overlay .panel{width:min(94vw,420px)}.profile-form{display:grid;gap:9px;margin-top:12px}.profile-form input,.profile-form select{padding:11px;border-radius:14px;border:1px solid #ffffff15;background:#06111c;color:#fff}
-@media(max-width:620px){
-  .hero-top{display:block}.profile-card{margin-top:14px;min-width:0}
-  .game-mode-grid{grid-template-columns:1fr}.game-stats{grid-template-columns:repeat(2,1fr)}
+
+.panel-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:16px;
 }
-@media(max-width:430px){
-  .grid{gap:8px}.center{min-height:158px;padding:13px}.info-grid,.alarm-form-grid{grid-template-columns:1fr}
-  .status-pill{display:none}.hero{padding:18px}.rank-tabs{grid-template-columns:repeat(2,1fr)}
+
+.panel h2{
+  margin:0;
+  font-family:Georgia,"Times New Roman",serif;
+  color:#f6cf75;
+  font-size:26px;
+}
+
+.close{
+  width:38px;
+  height:38px;
+  border-radius:50%;
+  border:1px solid rgba(243,198,94,.4);
+  background:#07162a;
+  color:#f6cf75;
+  font-size:22px;
+}
+
+.field{
+  display:grid;
+  gap:7px;
+  margin:12px 0;
+}
+
+label{
+  font-size:13px;
+  color:#c8d2de;
+}
+
+input,
+textarea,
+select{
+  width:100%;
+  border:1px solid rgba(96,157,219,.3);
+  border-radius:16px;
+  background:#04101f;
+  color:white;
+  padding:13px 14px;
+  outline:none;
+}
+
+textarea{
+  min-height:110px;
+  resize:vertical;
+}
+
+.row{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  border:1px solid rgba(243,198,94,.55);
+  border-radius:16px;
+  background:linear-gradient(180deg,#1a3d68,#071a31);
+  color:#ffe59c;
+  padding:12px 16px;
+  font-weight:700;
+}
+
+.btn.gold{
+  background:linear-gradient(180deg,#ffe6a0,#d89b29);
+  color:#211300;
+  border-color:#ffe5a0;
+}
+
+.result{
+  white-space:pre-wrap;
+  line-height:1.55;
+  border:1px solid rgba(243,198,94,.22);
+  background:#03101d;
+  border-radius:16px;
+  padding:14px;
+  min-height:58px;
+  color:#edf3fa;
+}
+
+.status{
+  font-size:12px;
+  color:#8fa5bb;
+  margin-top:7px;
+}
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:24px;
+  transform:translate(-50%,20px);
+  opacity:0;
+  z-index:99;
+
+  background:#07182d;
+  border:1px solid rgba(243,198,94,.5);
+  color:#ffe59c;
+
+  padding:10px 15px;
+  border-radius:999px;
+
+  transition:.2s;
+  pointer-events:none;
+
+  white-space:nowrap;
+  max-width:90vw;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.toast.show{
+  opacity:1;
+  transform:translate(-50%,0);
+}
+
+.note-item{
+  padding:12px;
+  border:1px solid rgba(100,155,213,.22);
+  border-radius:15px;
+  background:#04101d;
+  margin:8px 0;
+}
+
+.profile-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.game-choice{
+  flex:1;
+  min-width:90px;
+  text-align:center;
+  border:1px solid rgba(243,198,94,.28);
+  background:#06162a;
+  color:#dce8f4;
+  border-radius:18px;
+  padding:14px 10px;
+}
+
+.game-choice.active{
+  border-color:#f3c65e;
+  color:#ffe59c;
+  box-shadow:0 0 18px rgba(243,198,94,.16);
+}
+
+.preview{
+  width:100%;
+  max-height:300px;
+  object-fit:contain;
+  border-radius:16px;
+  background:#020914;
+  margin-top:10px;
+}
+
+@media(max-width:390px){
+  .panel{
+    border-radius:24px 24px 0 0;
+    padding-left:14px;
+    padding-right:14px;
+  }
+
+  .panel h2{
+    font-size:23px;
+  }
 }
 </style>
 </head>
+
 <body>
-<div class="bg"></div>
-<div id="speechToast" class="speech-toast"></div>
 
 <div class="app">
-<header class="header">
-  <div class="brand">
-    <div class="brand-orb">R</div>
-    <div>
-      <div class="logo">Rii <b>AI</b></div>
-      <div id="tagline" class="tagline"></div>
-    </div>
-  </div>
-  <div class="header-actions">
-    <button class="icon-btn" onclick="speakHome()">🔊</button>
-    <button class="icon-btn" onclick="listenCommand()">🎙</button>
-    <button class="icon-btn" onclick="openLanguage()">🌐</button>
-    <div class="status-pill"><span class="dot"></span><span id="readyText"></span></div>
-  </div>
-</header>
 
-<section class="hero glass">
-  <div class="hero-top">
-    <div>
-      <div class="eyebrow">RII V3.7.0 • FUTURE LEARNING CORE</div>
-      <h1 id="heroTitle"></h1>
-      <p id="heroText"></p>
-    </div>
-    <div class="profile-card">
-      <div id="profileLabel" class="profile-label"></div>
-      <div id="profileName" class="profile-name"></div>
-      <div id="profileGrade" class="profile-meta"></div>
-      <button id="profileEditButton" class="profile-edit" onclick="openProfile()"></button>
-    </div>
-  </div>
+  <section class="home-art" id="homeArt">
 
-  <div class="identity">
-    <div>
-      <div id="identityLabel" class="id-small"></div>
-      <div class="id-value">Rii00000001</div>
-      <div id="rootText" class="id-small"></div>
-    </div>
-    <div id="robotFuture" class="robot-pill"></div>
-  </div>
+    <img
+      src="./rii-ui.jpg"
+      alt="Rii AI Heritage"
+    >
 
-  <div id="bootError" class="boot-error"></div>
-</section>
+    <button class="hot class-hot" data-open="settings">
+      Lớp
+    </button>
 
-<div class="voicebar">
-  <select id="homeLanguage" onchange="setLanguage(this.value)"></select>
-  <button onclick="listenCommand()">🎙</button>
-  <button onclick="speakHome()">🔊</button>
+    <button class="hot voice-hot" id="voiceHot">
+      Voice
+    </button>
+
+    <button class="hot math-hot" data-open="math">
+      Math
+    </button>
+
+    <button class="hot trans-hot" data-open="translate">
+      Translate
+    </button>
+
+    <button class="hot camera-hot" data-open="vision">
+      Vision
+    </button>
+
+    <button class="hot notes-hot" data-open="notes">
+      Notes
+    </button>
+
+    <button class="hot gm-hot" data-game="math">
+      Game Math
+    </button>
+
+    <button class="hot gl-hot" data-game="language">
+      Game Language
+    </button>
+
+    <button class="hot gc-hot" data-game="vision">
+      Game Vision
+    </button>
+
+    <button class="hot start-hot" id="startGameHot">
+      Start Game
+    </button>
+
+    <button class="hot rt-all" data-rank="overall">
+      Overall
+    </button>
+
+    <button class="hot rt-math" data-rank="math">
+      Math Rank
+    </button>
+
+    <button class="hot rt-lang" data-rank="language">
+      Language Rank
+    </button>
+
+    <button class="hot rt-cam" data-rank="vision">
+      Vision Rank
+    </button>
+
+    <button class="hot nav-home" id="navHome">
+      Home
+    </button>
+
+    <button class="hot nav-learn" data-open="math">
+      Learn
+    </button>
+
+    <button class="hot nav-vision" data-open="vision">
+      Vision
+    </button>
+
+    <button class="hot nav-settings" data-open="settings">
+      Settings
+    </button>
+
+  </section>
+
 </div>
 
-<div class="section-head">
-  <h2 id="centerTitle"></h2>
-  <span id="centerHint"></span>
-</div>
 
-<section class="grid">
-  <article class="center math">
-    <div class="center-icon">🧮</div>
-    <h3 id="mathTitle"></h3>
-    <p id="mathText"></p>
-    <button class="center-open" onclick="openCenter('math')">›</button>
-  </article>
+<!-- ===================== -->
+<!-- MATH AI -->
+<!-- ===================== -->
 
-  <article class="center camera">
-    <div class="center-icon">📷</div>
-    <h3 id="cameraTitle"></h3>
-    <p id="cameraText"></p>
-    <button class="center-open" onclick="openCenter('camera')">›</button>
-  </article>
+<div class="sheet" id="sheet-math">
 
-  <article class="center translate">
-    <div class="center-icon">🌍</div>
-    <h3 id="translateTitle"></h3>
-    <p id="translateText"></p>
-    <button class="center-open" onclick="openCenter('translate')">›</button>
-  </article>
-
-  <article class="center notes">
-    <div class="center-icon">📝</div>
-    <h3 id="notesTitle"></h3>
-    <p id="notesText"></p>
-    <button class="center-open" onclick="openCenter('notes')">›</button>
-  </article>
-</section>
-
-<section class="game-entry glass" onclick="openGameHub()">
-  <div class="game-orb">🎮</div>
-  <div>
-    <h3 id="gameTitle"></h3>
-    <p id="gameText"></p>
-  </div>
-  <button class="game-launch">›</button>
-</section>
-
-<section class="card audio-card glass">
-  <strong id="audioTitle"></strong>
-  <select disabled><option id="audioSystemOption"></option></select>
-  <div id="audioNote" class="id-small"></div>
-</section>
-</div>
-
-<div id="riiButton" class="rii">Rii</div>
-
-<div id="languageOverlay" class="overlay">
   <div class="panel">
+
     <div class="panel-head">
-      <h3 id="languagePanelTitle"></h3>
-      <button class="close" onclick="closeLanguage()">×</button>
+
+      <h2>Math AI</h2>
+
+      <button class="close">
+        ×
+      </button>
+
     </div>
-    <div id="languageList" class="lang-list"></div>
+
+    <div class="field">
+
+      <label>
+        Nhập bài toán
+      </label>
+
+      <textarea
+        id="mathInput"
+        placeholder="Ví dụ: 125 + 37 hoặc giải thích 3/4 + 1/2"
+      ></textarea>
+
+    </div>
+
+    <div class="row">
+
+      <button
+        class="btn gold"
+        id="mathSolve"
+      >
+        Giải bài
+      </button>
+
+      <button
+        class="btn"
+        id="mathSpeak"
+      >
+        Đọc kết quả
+      </button>
+
+    </div>
+
+    <div
+      class="status"
+      id="mathStatus"
+    ></div>
+
+    <div
+      class="result"
+      id="mathResult"
+    >
+      Rii sẵn sàng giải toán.
+    </div>
+
   </div>
+
 </div>
 
-<div id="quickOverlay" class="overlay">
-  <div class="panel">
-    <div class="panel-head">
-      <h3>Rii</h3>
-      <button class="close" onclick="closeQuick()">×</button>
-    </div>
-    <div class="quick-grid">
-      <button class="quick" onclick="quickOpen('math')"><span>🧮</span><b id="quickMath"></b></button>
-      <button class="quick" onclick="quickOpen('camera')"><span>📷</span><b id="quickCamera"></b></button>
-      <button class="quick" onclick="quickOpen('translate')"><span>🌍</span><b id="quickTranslate"></b></button>
-      <button class="quick" onclick="quickOpen('notes')"><span>📝</span><b id="quickNotes"></b></button>
-      <button class="quick" onclick="openGameFromQuick()"><span>🎮</span><b id="quickGame"></b></button>
-      <button class="quick" onclick="openLanguageFromQuick()"><span>🌐</span><b id="quickLanguage"></b></button>
-    </div>
-  </div>
-</div>
 
-<div id="profileOverlay" class="overlay profile-overlay">
+<!-- ===================== -->
+<!-- TRANSLATE -->
+<!-- ===================== -->
+
+<div class="sheet" id="sheet-translate">
+
   <div class="panel">
+
     <div class="panel-head">
-      <h3 id="profilePanelTitle"></h3>
-      <button class="close" onclick="closeProfile()">×</button>
+
+      <h2>
+        Phiên dịch
+      </h2>
+
+      <button class="close">
+        ×
+      </button>
+
     </div>
-    <div class="profile-form">
-      <input id="profileNameInput" maxlength="18">
-      <select id="profileGradeInput">
-        <option value="1">Lớp 1</option>
-        <option value="2">Lớp 2</option>
-        <option value="3">Lớp 3</option>
-        <option value="4">Lớp 4</option>
-        <option value="5">Lớp 5</option>
+
+    <div class="field">
+
+      <label>
+        Nội dung
+      </label>
+
+      <textarea
+        id="transInput"
+        placeholder="Nhập câu cần dịch..."
+      ></textarea>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Dịch sang
+      </label>
+
+      <select id="transTarget">
+
+        <option value="vi">
+          Tiếng Việt
+        </option>
+
+        <option value="en">
+          English
+        </option>
+
+        <option value="zh">
+          中文
+        </option>
+
+        <option value="ko">
+          한국어
+        </option>
+
+        <option value="ja">
+          日本語
+        </option>
+
       </select>
-      <button id="profileSaveButton" class="action gold" onclick="saveProfile()"></button>
+
     </div>
+
+    <div class="row">
+
+      <button
+        class="btn gold"
+        id="transGo"
+      >
+        Dịch
+      </button>
+
+      <button
+        class="btn"
+        id="transSpeak"
+      >
+        Đọc
+      </button>
+
+    </div>
+
+    <div
+      class="status"
+      id="transStatus"
+    ></div>
+
+    <div
+      class="result"
+      id="transResult"
+    >
+      Kết quả dịch sẽ hiện ở đây.
+    </div>
+
   </div>
+
 </div>
 
-<div id="centerScreen" class="screen">
-<div class="screen-inner">
-  <div class="screen-top">
-    <button id="backButton" class="back" onclick="closeCenter()"></button>
-    <div id="screenTitle" class="screen-title"></div>
-    <button class="icon-btn" onclick="speakCenter()">🔊</button>
+
+<!-- ===================== -->
+<!-- CAMERA / VISION -->
+<!-- ===================== -->
+
+<div class="sheet" id="sheet-vision">
+
+  <div class="panel">
+
+    <div class="panel-head">
+
+      <h2>
+        Camera / Vision
+      </h2>
+
+      <button class="close">
+        ×
+      </button>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Chọn ảnh
+      </label>
+
+      <input
+        id="visionFile"
+        type="file"
+        accept="image/*"
+        capture="environment"
+      >
+
+    </div>
+
+    <img
+      id="visionPreview"
+      class="preview"
+      hidden
+    >
+
+    <div class="row">
+
+      <button
+        class="btn gold"
+        id="visionAnalyze"
+      >
+        Phân tích ảnh
+      </button>
+
+      <button
+        class="btn"
+        id="visionSpeak"
+      >
+        Đọc kết quả
+      </button>
+
+    </div>
+
+    <div
+      class="status"
+      id="visionStatus"
+    ></div>
+
+    <div
+      class="result"
+      id="visionResult"
+    >
+      Rii sẽ quan sát và mô tả vật thể hoặc cảnh trong ảnh.
+    </div>
+
   </div>
 
-  <div class="voicebar">
-    <select id="centerLanguage" onchange="setLanguage(this.value)"></select>
-    <button onclick="listenCommand()">🎙</button>
-    <button onclick="speakCenter()">🔊</button>
+</div>
+
+
+<!-- ===================== -->
+<!-- NOTES -->
+<!-- ===================== -->
+
+<div class="sheet" id="sheet-notes">
+
+  <div class="panel">
+
+    <div class="panel-head">
+
+      <h2>
+        Ghi chú / Báo thức
+      </h2>
+
+      <button class="close">
+        ×
+      </button>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Ghi chú
+      </label>
+
+      <textarea
+        id="noteText"
+        placeholder="Con cần nhớ điều gì?"
+      ></textarea>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Thời gian nhắc
+      </label>
+
+      <input
+        id="noteTime"
+        type="datetime-local"
+      >
+
+    </div>
+
+    <button
+      class="btn gold"
+      id="saveNote"
+    >
+      Lưu ghi chú
+    </button>
+
+    <div id="noteList"></div>
+
   </div>
 
-  <section id="mathCenter" class="screen-card hidden">
-    <h2 id="mathCenterTitle"></h2>
-    <p id="mathIntro" class="id-small"></p>
-    <textarea id="mathInput" class="textbox"></textarea>
-    <div class="action-row">
-      <button id="mathVoiceButton" class="action mint" onclick="speechInto('mathInput')"></button>
-      <button id="mathSolveButton" class="action gold" onclick="solveMathNow()"></button>
-      <button id="mathTestButton" class="action" onclick="setMathExample()"></button>
-      <button id="mathSpeakButton" class="action blue" onclick="speakMath()" disabled></button>
-    </div>
-    <div id="mathStatus" class="math-status"></div>
-    <div id="mathCard" class="math-card">
-      <div id="mathAnswer" class="math-answer"></div>
-      <div id="mathExplanation" class="explanation"></div>
-      <div id="mathSteps" class="math-steps"></div>
-      <div id="mathCheck" class="result hidden"></div>
-      <div id="mathMeta" class="math-meta"></div>
-    </div>
-    <details id="mathDebug" class="root-debug hidden">
-      <summary id="mathDebugSummary"></summary>
-      <pre id="mathDebugText"></pre>
-    </details>
-  </section>
+</div>
 
-  <section id="cameraCenter" class="screen-card hidden">
-    <h2 id="cameraCenterTitle"></h2>
-    <div class="camera-wrap">
-      <video id="cameraVideo" autoplay playsinline muted></video>
-      <img id="capturedImage" class="hidden" alt="">
-      <canvas id="cameraCanvas" class="hidden"></canvas>
-      <div class="camera-overlay"></div>
-    </div>
-    <div id="cameraStatus" class="camera-status"></div>
-    <textarea id="cameraQuestion" class="textbox"></textarea>
-    <div class="action-row">
-      <button id="cameraOpenButton" class="action mint" onclick="startCamera()"></button>
-      <button id="captureButton" class="action gold" onclick="captureAndAnalyze()"></button>
-      <button id="cameraAskButton" class="action" onclick="speechInto('cameraQuestion')"></button>
-      <button id="visionSpeakButton" class="action blue" onclick="speakVision()" disabled></button>
-    </div>
-    <button id="visionRetryButton" class="action hidden" style="width:100%;margin-top:10px" onclick="analyzeCapturedImage()"></button>
-    <div id="aiMessage" class="ai-message">
-      <div id="aiMessageTitle" style="font-size:16px;font-weight:900;margin-bottom:5px"></div>
-      <div id="aiMessageText"></div>
-    </div>
-    <div id="visionCard" class="vision-card">
-      <div id="visionName" class="vision-name"></div>
-      <div id="visionCore" class="vision-core"></div>
-      <div id="visionExplanation" class="explanation"></div>
-      <div id="visionInfoGrid" class="info-grid"></div>
-      <div id="visionFacts" class="fact-list"></div>
-      <div id="visionAnswer" class="result hidden"></div>
-      <div class="action-row">
-        <button id="otherObjectButton" class="action mint" onclick="startCamera()"></button>
-        <button id="visionAnalyzeAgainButton" class="action" onclick="analyzeCapturedImage()"></button>
-      </div>
-    </div>
-    <details id="rootDebug" class="root-debug hidden">
-      <summary id="visionDebugSummary"></summary>
-      <pre id="rootDebugText"></pre>
-    </details>
-  </section>
 
-  <section id="translateCenter" class="screen-card hidden">
-    <h2 id="translateCenterTitle"></h2>
-    <div class="translation-route">
-      <div>
-        <div id="translateSourceLabel" class="translation-route-label"></div>
-        <div id="translateSourceValue" class="translation-route-value"></div>
-      </div>
-      <div style="font-size:21px">→</div>
-      <div style="text-align:right">
-        <div id="translateTargetLabel" class="translation-route-label"></div>
-        <div id="translateTargetValue" class="translation-route-value"></div>
-      </div>
-    </div>
-    <textarea id="translateInput" class="textbox"></textarea>
-    <div class="action-row">
-      <button id="translateVoiceButton" class="action mint" onclick="speechInto('translateInput')"></button>
-      <button id="translateActionButton" class="action gold" onclick="translateNow()"></button>
-      <button id="translateSpeakButton" class="action blue" onclick="speakTranslation()" disabled></button>
-      <button id="translateClearButton" class="action" onclick="clearTranslation()"></button>
-    </div>
-    <div id="translationStatus" class="translation-status"></div>
-    <div id="translationOutput" class="translation-output">
-      <div id="translationOutputLabel" class="translation-route-label"></div>
-      <div id="translateResult" class="translation-result"></div>
-      <div id="translationMeta" class="translation-meta"></div>
-    </div>
-    <details id="translationDebug" class="root-debug hidden">
-      <summary id="translationDebugSummary"></summary>
-      <pre id="translationDebugText"></pre>
-    </details>
-  </section>
+<!-- ===================== -->
+<!-- GAME -->
+<!-- ===================== -->
 
-  <section id="notesCenter" class="screen-card hidden">
-    <h2 id="notesCenterTitle"></h2>
-    <div class="notes-tabs">
-      <button id="notesTabButton" class="notes-tab active" onclick="switchNotesTab('notes')"></button>
-      <button id="alarmsTabButton" class="notes-tab" onclick="switchNotesTab('alarms')"></button>
-    </div>
-    <div id="notesPanel" class="notes-panel active">
-      <textarea id="notesInput" class="textbox"></textarea>
-      <div class="action-row">
-        <button id="notesVoiceButton" class="action mint" onclick="speechInto('notesInput')"></button>
-        <button id="notesSaveButton" class="action gold" onclick="saveNote()"></button>
-      </div>
-      <div id="notesResult" class="result"></div>
-      <div id="notesList" class="note-list"></div>
+<div class="sheet" id="sheet-game">
+
+  <div class="panel">
+
+    <div class="panel-head">
+
+      <h2>
+        Trò chơi
+      </h2>
+
+      <button class="close">
+        ×
+      </button>
+
     </div>
 
-    <div id="alarmsPanel" class="notes-panel">
-      <div class="alarm-form">
-        <input id="alarmTitleInput" type="text" maxlength="120">
-        <div class="alarm-form-grid">
-          <input id="alarmDateInput" type="date">
-          <input id="alarmTimeInput" type="time">
-        </div>
-        <select id="alarmRepeatInput">
-          <option id="alarmOnceOption" value="once"></option>
-          <option id="alarmDailyOption" value="daily"></option>
+    <div class="row">
+
+      <button
+        class="game-choice active"
+        data-mode="math"
+      >
+        Toán
+      </button>
+
+      <button
+        class="game-choice"
+        data-mode="language"
+      >
+        Phiên dịch
+      </button>
+
+      <button
+        class="game-choice"
+        data-mode="vision"
+      >
+        Camera AI
+      </button>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Thử thách
+      </label>
+
+      <div
+        class="result"
+        id="gameQuestion"
+      >
+        Nhấn “Câu mới” để bắt đầu.
+      </div>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Đáp án
+      </label>
+
+      <input
+        id="gameAnswer"
+        placeholder="Nhập câu trả lời"
+      >
+
+    </div>
+
+    <div class="row">
+
+      <button
+        class="btn gold"
+        id="newQuestion"
+      >
+        Câu mới
+      </button>
+
+      <button
+        class="btn"
+        id="checkAnswer"
+      >
+        Kiểm tra
+      </button>
+
+    </div>
+
+    <div
+      class="status"
+      id="gameStatus"
+    ></div>
+
+  </div>
+
+</div>
+
+
+<!-- ===================== -->
+<!-- SETTINGS -->
+<!-- ===================== -->
+
+<div class="sheet" id="sheet-settings">
+
+  <div class="panel">
+
+    <div class="panel-head">
+
+      <h2>
+        Hồ sơ Rii
+      </h2>
+
+      <button class="close">
+        ×
+      </button>
+
+    </div>
+
+    <div class="profile-grid">
+
+      <div class="field">
+
+        <label>
+          Tên
+        </label>
+
+        <input id="profileName">
+
+      </div>
+
+      <div class="field">
+
+        <label>
+          Lớp
+        </label>
+
+        <select id="profileGrade">
+
+          <option value="1">
+            1
+          </option>
+
+          <option value="2">
+            2
+          </option>
+
+          <option value="3">
+            3
+          </option>
+
+          <option value="4">
+            4
+          </option>
+
+          <option value="5">
+            5
+          </option>
+
         </select>
-        <button id="alarmSaveButton" class="action gold" onclick="saveAlarm()"></button>
-      </div>
-      <div id="alarmResult" class="result"></div>
-      <div id="alarmList" class="alarm-list"></div>
-    </div>
-  </section>
-</div>
-</div>
 
-<div id="gameScreen" class="game-screen">
-<div class="game-shell">
-  <div class="screen-top">
-    <button id="gameBackButton" class="back" onclick="closeGameHub()"></button>
-    <div id="gameScreenTitle" class="screen-title"></div>
-    <button class="icon-btn" onclick="speakGameHub()">🔊</button>
+      </div>
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Rii ID
+      </label>
+
+      <input
+        value="Rii00000001"
+        disabled
+      >
+
+    </div>
+
+    <div class="field">
+
+      <label>
+        Ngôn ngữ
+      </label>
+
+      <select id="appLang">
+
+        <option value="vi">
+          Tiếng Việt
+        </option>
+
+        <option value="en">
+          English
+        </option>
+
+        <option value="zh">
+          中文
+        </option>
+
+        <option value="ko">
+          한국어
+        </option>
+
+        <option value="ja">
+          日本語
+        </option>
+
+      </select>
+
+    </div>
+
+    <button
+      class="btn gold"
+      id="saveProfile"
+    >
+      Lưu hồ sơ
+    </button>
+
   </div>
 
-  <section class="game-hero glass">
-    <div class="eyebrow">RII GAME FOUNDATION</div>
-    <h2 id="gameHeroTitle"></h2>
-    <p id="gameHeroText"></p>
-    <div class="game-stats">
-      <div class="stat"><strong id="statTotal">0</strong><span id="statTotalLabel"></span></div>
-      <div class="stat"><strong id="statMath">0</strong><span id="statMathLabel"></span></div>
-      <div class="stat"><strong id="statLanguage">0</strong><span id="statLanguageLabel"></span></div>
-      <div class="stat"><strong id="statVision">0</strong><span id="statVisionLabel"></span></div>
-    </div>
-  </section>
-
-  <div class="game-mode-grid">
-    <button class="game-mode" onclick="startGame('math')">
-      <div class="ico">🧮</div><h3 id="gameMathTitle"></h3><p id="gameMathText"></p>
-    </button>
-    <button class="game-mode" onclick="startGame('language')">
-      <div class="ico">🌍</div><h3 id="gameLanguageTitle"></h3><p id="gameLanguageText"></p>
-    </button>
-    <button class="game-mode" onclick="startGame('vision')">
-      <div class="ico">📷</div><h3 id="gameVisionTitle"></h3><p id="gameVisionText"></p>
-    </button>
-  </div>
-
-  <section id="gamePlay" class="game-play glass">
-    <div class="section-head" style="margin-top:0">
-      <h2 id="gamePlayTitle"></h2>
-      <span id="gameRound"></span>
-    </div>
-    <div id="gameQuestion" class="question"></div>
-    <div id="gameAnswers" class="answers"></div>
-    <div id="gameFeedback" class="game-feedback"></div>
-    <div id="gameVisionTools" class="hidden">
-      <div class="camera-wrap" style="margin-top:10px">
-        <video id="gameCameraVideo" autoplay playsinline muted></video>
-        <canvas id="gameCameraCanvas" class="hidden"></canvas>
-        <div class="camera-overlay"></div>
-      </div>
-      <div class="action-row">
-        <button id="gameCameraOpen" class="action mint" onclick="startGameCamera()"></button>
-        <button id="gameCameraCheck" class="action gold" onclick="checkGameVision()"></button>
-      </div>
-    </div>
-    <button id="nextGameButton" class="action blue hidden" style="width:100%;margin-top:10px" onclick="nextGameQuestion()"></button>
-  </section>
-
-  <section class="leader-card glass">
-    <div class="section-head" style="margin-top:0">
-      <h2 id="rankingTitle"></h2>
-      <span id="rankingGrade"></span>
-    </div>
-    <div class="rank-tabs">
-      <button class="rank-tab active" data-rank="overall" onclick="setRankTab('overall')">🏆 <span id="rankAll"></span></button>
-      <button class="rank-tab" data-rank="math" onclick="setRankTab('math')">🧮 <span id="rankMath"></span></button>
-      <button class="rank-tab" data-rank="language" onclick="setRankTab('language')">🌍 <span id="rankLanguage"></span></button>
-      <button class="rank-tab" data-rank="vision" onclick="setRankTab('vision')">📷 <span id="rankVision"></span></button>
-    </div>
-    <div id="rankList" class="rank-list"></div>
-    <div id="rankingNote" class="id-small" style="margin-top:10px"></div>
-  </section>
-</div>
 </div>
 
-<div id="alarmOverlay" class="overlay" style="z-index:1300">
-  <div class="panel" style="text-align:center">
-    <div style="font-size:44px">⏰</div>
-    <div id="alarmAlertTime" style="font-size:32px;font-weight:950;color:var(--gold2);margin-top:8px"></div>
-    <div id="alarmAlertTitle" style="font-size:17px;font-weight:850;margin-top:6px"></div>
-    <div class="action-row" style="margin-top:16px">
-      <button id="alarmStopButton" class="action gold" onclick="stopActiveAlarm()"></button>
-      <button id="alarmSnoozeButton" class="action" onclick="snoozeActiveAlarm()"></button>
-    </div>
-  </div>
-</div>
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
 
 <script src="./worker-client-v2.js"></script>
+
 <script>
-(function(){
-"use strict";
+(() => {
 
-const APP_VERSION="3.7.0";
-const ROOT_ID="Rii00000001";
-const LANGUAGE_KEY="rii-v3-ui-language";
-const NOTE_KEY="rii-v3-local-notes";
-const ALARM_KEY="rii-v3-local-alarms";
-const PROFILE_KEY="rii-v3-profile";
-const GAME_KEY="rii-v3-game-score";
+  const $ = selector =>
+    document.querySelector(selector);
 
-const languages=[
-  {code:"vi",locale:"vi-VN",flag:"🇻🇳",name:"Tiếng Việt",english:"Vietnamese"},
-  {code:"en",locale:"en-US",flag:"🇺🇸",name:"English",english:"English"},
-  {code:"zh",locale:"zh-CN",flag:"🇨🇳",name:"中文",english:"Chinese"},
-  {code:"ko",locale:"ko-KR",flag:"🇰🇷",name:"한국어",english:"Korean"},
-  {code:"ja",locale:"ja-JP",flag:"🇯🇵",name:"日本語",english:"Japanese"}
-];
+  const $$ = selector =>
+    [...document.querySelectorAll(selector)];
 
-const EN={
-  tagline:"Future learning • Explore • Play",
-  ready:"Ready",
-  hero:"Hello 👋 What would you like to discover today?",
-  heroText:"Learn with Math, Camera AI, Translation and Notes. When you're ready, enter Rii Game and turn learning into a challenge.",
-  identity:"Rii Identity",root:"Root account • ROOT",robotFuture:"🤖 Robot • future",
-  profile:"Learner profile",profileEdit:"Edit profile",profileNamePlaceholder:"Nickname",profilePanel:"Learner profile",profileSave:"Save profile",grade:"Grade",
-  centers:"Learning centers",hint:"Tap or speak",
-  math:"Math",mathText:"Speak or type a problem. Rii explains step by step.",
-  camera:"Camera AI",cameraText:"Observe real objects and let Rii explain.",
-  translate:"Translation",translateText:"Translate between the five core Rii languages.",
-  notes:"Notes & Alarms",notesText:"Save notes, reminders and alarms.",
-  game:"Learning Game",gameText:"Math • Translation • Camera observation • Rankings",
-  audio:"🎧 Audio",audioSystem:"Automatic system route",audioNote:"On iPhone/iPad, iOS chooses speaker or Bluetooth.",
-  language:"🌐 Language",back:"← Home",voice:"🎙 Speak",home:"Home",
-  speechUnsupported:"Speech recognition is not supported on this browser.",speechPreparing:"🎙 Preparing microphone...",speechListening:"🎙 Rii is listening...",speechDone:"✅ Rii heard you.",speechNoMatch:"Rii did not hear clearly. Try again.",speechPermission:"Microphone access is blocked.",speechError:"Rii could not use the microphone: ",
-  mathIntro:"Basic arithmetic can be solved locally. Word problems use Math AI.",mathPlaceholder:"Example: Lan has 12 apples and gives away 5. How many are left?",solve:"✨ Solve",solving:"⏳ Solving...",test:"🧪 Test 8 × 7",listenSolution:"🔊 Hear solution",needProblem:"Enter a math problem first.",mathClientMissing:"Math Client is not ready.",mathLocal:"⚡ Solved locally.",mathAI:"✨ Math AI finished.",mathQuota:"💤 Math AI quota is exhausted. Basic arithmetic still works.",mathError:"❌ Rii could not solve this: ",answer:"Answer",step:"Step",check:"Check",mathDebug:"🔐 ROOT • Math technical details",
-  cameraClosed:"Camera is closed.",cameraLive:"✅ Camera is active.",cameraSaved:"📸 Picture saved.",cameraNotReady:"Camera is not ready.",noCapturedFrame:"No saved picture.",visionClientMissing:"Vision Client is not ready.",cameraPlaceholder:"Example: What is this? What is it used for?",openCamera:"📷 Open camera",capture:"✨ Capture & learn",looking:"⏳ Rii is looking...",askRii:"🎙 Ask Rii",listenRii:"🔊 Hear Rii",retryVision:"🧠 Analyze saved picture",otherObject:"📷 Another object",analyzeAgain:"🧠 Analyze again",visionRest:"💤 Vision is resting",visionRestText:"The picture is saved. Try again when AI is available.",visionError:"🌧️ Rii cannot view the picture yet",visionErrorText:"The picture remains saved. You can retry.",visionDebug:"🔐 ROOT • Vision details",unknown:"Unknown object",color:"Color",habitat:"Habitat",origin:"Origin",uses:"Uses",features:"Features",detectedText:"Detected text",
-  translatePlaceholder:"Type or speak a word, sentence or paragraph...",translateAction:"🌐 Translate",translating:"⏳ Translating...",translateReady:"Live translation is ready. Source language is detected automatically.",translateNeedText:"Enter something to translate.",translateClientMissing:"Translation Client is not ready.",translateDone:"✅ Translation completed.",translateLocal:"⚡ Same-language result — no AI quota used.",translateQuota:"💤 Translation AI quota is exhausted.",translateError:"❌ Rii could not translate: ",translateListen:"🔊 Hear translation",translateClear:"🗑 Clear",translateSource:"Source",translateAuto:"Auto detect",translateTarget:"Target",translateOutput:"Translation",translateDetected:"Detected",translationDebug:"🔐 ROOT • Translation details",
-  notesPlaceholder:"Speak or type a note...",save:"💾 Save",noteReady:"Notes are ready.",saved:"✅ Saved:",notesTab:"📝 Notes",alarmsTab:"⏰ Alarms",noNotes:"No notes yet.",edit:"✏️ Edit",delete:"🗑 Delete",hear:"🔊 Hear",noteUpdated:"✅ Note updated.",noteDeleted:"🗑 Note deleted.",noteEmpty:"Enter a note first.",editPrompt:"Edit note:",
-  alarmTitlePlaceholder:"Alarm name",alarmSave:"⏰ Create alarm",alarmOnce:"One time",alarmDaily:"Every day",alarmReady:"Alarms work while Rii remains open.",alarmNeedTime:"Choose a time.",alarmNeedDate:"Choose a date.",alarmSaved:"✅ Alarm created.",alarmDeleted:"🗑 Alarm deleted.",alarmEnabled:"✅ Alarm enabled.",alarmDisabled:"⏸ Alarm disabled.",noAlarms:"No alarms yet.",alarmDefault:"Rii alarm",alarmStop:"Stop",alarmSnooze:"Snooze 5 min",alarmRinging:"Alarm",alarmWebNote:"Web alarms work while Rii is open.",once:"One time",daily:"Every day",
-  gameScreen:"Rii Game",gameHero:"Learn • Play • Improve",gameHeroText:"Choose what you enjoy. Scores are separated by Math, Translation and Observation, plus one balanced overall score.",totalScore:"Overall",mathScore:"Math",languageScore:"Language",visionScore:"Observation",gameMath:"Math Challenge",gameMathText:"Grade-based arithmetic questions.",gameLanguage:"Language Challenge",gameLanguageText:"Vocabulary across Rii's five core languages.",gameVision:"Camera Observation",gameVisionText:"Find real objects with Camera AI.",ranking:"Leaderboard",rankingAll:"Overall",rankingMath:"Math",rankingLanguage:"Translation",rankingVision:"Observation",rankingLocal:"This version keeps ranking data on this device. Backend sync can be added without changing the game UI.",nextQuestion:"Next question",round:"Round",correct:"✅ Correct!",wrong:"❌ Not quite. Keep going!",gameCameraOpen:"📷 Open game camera",gameCameraCheck:"✨ Check object",visionPrompt:"Find an object that matches: ",gameVisionUnavailable:"Camera AI is unavailable right now."
-};
 
-const UI={
-  en:{...EN},
-  vi:{...EN,
-    tagline:"Học tập tương lai • Khám phá • Trò chơi",ready:"Sẵn sàng",
-    hero:"Xin chào 👋 Hôm nay con muốn khám phá gì?",heroText:"Học cùng Toán, Camera AI, Phiên dịch và Ghi chú. Khi sẵn sàng, vào Rii Game để biến việc học thành thử thách.",
-    identity:"Danh tính Rii",root:"Tài khoản gốc • ROOT",robotFuture:"🤖 Robot • tương lai",
-    profile:"Hồ sơ học tập",profileEdit:"Sửa hồ sơ",profileNamePlaceholder:"Tên hiển thị",profilePanel:"Hồ sơ học tập",profileSave:"Lưu hồ sơ",grade:"Lớp",
-    centers:"Trung tâm học tập",hint:"Chạm hoặc nói",
-    math:"Giải toán",mathText:"Nói hoặc nhập bài toán. Rii giải từng bước.",
-    camera:"Camera AI",cameraText:"Quan sát vật thật và nghe Rii giải thích.",
-    translate:"Phiên dịch",translateText:"Dịch giữa 5 ngôn ngữ cốt lõi của Rii.",
-    notes:"Ghi chú & Báo thức",notesText:"Ghi chú, nhắc việc và đặt báo thức.",
-    game:"Trò chơi học tập",gameText:"Toán • Phiên dịch • Quan sát Camera • Bảng xếp hạng",
-    audio:"🎧 Âm thanh",audioSystem:"Tự động theo hệ thống",audioNote:"Trên iPhone/iPad, loa hoặc Bluetooth do iOS chọn.",
-    language:"🌐 Ngôn ngữ",back:"← Trang chủ",voice:"🎙 Nói",home:"Trang chủ",
-    speechUnsupported:"Trình duyệt này chưa hỗ trợ nhận dạng giọng nói.",speechPreparing:"🎙 Rii đang chuẩn bị microphone...",speechListening:"🎙 Rii đang nghe...",speechDone:"✅ Rii đã nghe được.",speechNoMatch:"Rii chưa nghe rõ. Hãy nói lại nhé.",speechPermission:"Microphone đang bị chặn.",speechError:"Rii chưa dùng được microphone: ",
-    mathIntro:"Phép tính cơ bản có thể giải cục bộ. Bài toán lời văn dùng Math AI.",mathPlaceholder:"Ví dụ: Lan có 12 quả táo, cho bạn 5 quả. Lan còn bao nhiêu quả?",solve:"✨ Giải cùng Rii",solving:"⏳ Rii đang giải...",test:"🧪 Test 8 × 7",listenSolution:"🔊 Nghe lời giải",needProblem:"Hãy nhập bài toán trước.",mathClientMissing:"Math Client chưa sẵn sàng.",mathLocal:"⚡ Đã giải cục bộ.",mathAI:"✨ Math AI đã giải xong.",mathQuota:"💤 Math AI hết quota. Phép tính cơ bản vẫn dùng được.",mathError:"❌ Rii chưa giải được: ",answer:"Đáp án",step:"Bước",check:"Kiểm tra",mathDebug:"🔐 ROOT • Chi tiết Math",
-    cameraClosed:"Camera chưa mở.",cameraLive:"✅ Camera đang hoạt động.",cameraSaved:"📸 Ảnh đã được giữ lại.",cameraNotReady:"Camera chưa sẵn sàng.",noCapturedFrame:"Chưa có ảnh để phân tích.",visionClientMissing:"Vision Client chưa sẵn sàng.",cameraPlaceholder:"Ví dụ: Đây là gì? Nó dùng để làm gì?",openCamera:"📷 Mở camera",capture:"✨ Chụp & tìm hiểu",looking:"⏳ Rii đang nhìn...",askRii:"🎙 Hỏi Rii",listenRii:"🔊 Nghe Rii",retryVision:"🧠 Phân tích ảnh đã chụp",otherObject:"📷 Vật khác",analyzeAgain:"🧠 Phân tích lại",visionRest:"💤 Vision đang tạm nghỉ",visionRestText:"Ảnh vẫn được giữ lại. Hãy thử lại khi AI sẵn sàng.",visionError:"🌧️ Rii chưa xem được ảnh",visionErrorText:"Ảnh vẫn còn. Con có thể thử lại.",visionDebug:"🔐 ROOT • Chi tiết Vision",unknown:"Chưa nhận ra vật",color:"Màu sắc",habitat:"Môi trường sống",origin:"Nguồn gốc",uses:"Công dụng",features:"Đặc điểm",detectedText:"Chữ nhìn thấy",
-    translatePlaceholder:"Nói hoặc nhập từ, câu hoặc đoạn văn...",translateAction:"🌐 Dịch",translating:"⏳ Rii đang dịch...",translateReady:"Phiên dịch đã sẵn sàng. Rii tự nhận biết ngôn ngữ nguồn.",translateNeedText:"Hãy nhập nội dung cần dịch.",translateClientMissing:"Translation Client chưa sẵn sàng.",translateDone:"✅ Rii đã dịch xong.",translateLocal:"⚡ Cùng ngôn ngữ — không dùng quota AI.",translateQuota:"💤 Translation AI hết quota.",translateError:"❌ Rii chưa dịch được: ",translateListen:"🔊 Nghe bản dịch",translateClear:"🗑 Xóa",translateSource:"Nguồn",translateAuto:"Tự nhận biết",translateTarget:"Đích",translateOutput:"Bản dịch",translateDetected:"Đã nhận biết",translationDebug:"🔐 ROOT • Chi tiết Translation",
-    notesPlaceholder:"Nói hoặc nhập ghi chú...",save:"💾 Ghi nhớ",noteReady:"Ghi chú đã sẵn sàng.",saved:"✅ Đã lưu:",notesTab:"📝 Ghi chú",alarmsTab:"⏰ Báo thức",noNotes:"Chưa có ghi chú.",edit:"✏️ Sửa",delete:"🗑 Xóa",hear:"🔊 Nghe",noteUpdated:"✅ Đã cập nhật ghi chú.",noteDeleted:"🗑 Đã xóa ghi chú.",noteEmpty:"Hãy nhập ghi chú trước.",editPrompt:"Sửa ghi chú:",
-    alarmTitlePlaceholder:"Tên báo thức",alarmSave:"⏰ Tạo báo thức",alarmOnce:"Một lần",alarmDaily:"Mỗi ngày",alarmReady:"Báo thức hoạt động khi Rii đang mở.",alarmNeedTime:"Hãy chọn giờ.",alarmNeedDate:"Hãy chọn ngày.",alarmSaved:"✅ Đã tạo báo thức.",alarmDeleted:"🗑 Đã xóa báo thức.",alarmEnabled:"✅ Đã bật báo thức.",alarmDisabled:"⏸ Đã tắt báo thức.",noAlarms:"Chưa có báo thức.",alarmDefault:"Báo thức Rii",alarmStop:"Dừng",alarmSnooze:"Nhắc lại 5 phút",alarmRinging:"Báo thức",alarmWebNote:"Bản web reo khi Rii đang mở.",once:"Một lần",daily:"Mỗi ngày",
-    gameScreen:"Rii Game",gameHero:"Học • Chơi • Tiến bộ",gameHeroText:"Chọn điều con thích. Điểm được tách riêng theo Toán, Phiên dịch, Quan sát và có thêm điểm Tổng cân bằng.",totalScore:"Tổng",mathScore:"Toán",languageScore:"Ngôn ngữ",visionScore:"Quan sát",gameMath:"Thử thách Toán",gameMathText:"Câu hỏi theo đúng lớp đang học.",gameLanguage:"Thử thách Ngôn ngữ",gameLanguageText:"Từ vựng trong 5 ngôn ngữ cốt lõi.",gameVision:"Quan sát Camera",gameVisionText:"Tìm vật thật bằng Camera AI.",ranking:"Bảng xếp hạng",rankingAll:"Tổng",rankingMath:"Toán",rankingLanguage:"Phiên dịch",rankingVision:"Quan sát",rankingLocal:"Bản này lưu bảng xếp hạng trên thiết bị. Khi nối backend, giao diện game không cần làm lại.",nextQuestion:"Câu tiếp theo",round:"Câu",correct:"✅ Chính xác!",wrong:"❌ Chưa đúng. Tiếp tục nhé!",gameCameraOpen:"📷 Mở camera game",gameCameraCheck:"✨ Kiểm tra vật",visionPrompt:"Hãy tìm một vật phù hợp: ",gameVisionUnavailable:"Camera AI hiện chưa sẵn sàng."
-  },
-  zh:{...EN,
-    tagline:"未来学习 • 探索 • 游戏",ready:"就绪",hero:"你好 👋 今天想探索什么？",heroText:"通过数学、相机 AI、翻译和笔记学习。准备好后进入 Rii Game，把学习变成挑战。",
-    identity:"Rii 身份",root:"根账户 • ROOT",robotFuture:"🤖 机器人 • 未来",profile:"学习档案",profileEdit:"编辑档案",profileNamePlaceholder:"昵称",profilePanel:"学习档案",profileSave:"保存档案",grade:"年级",
-    centers:"学习中心",hint:"点击或说出功能",math:"数学",mathText:"说出或输入题目，Rii 分步骤解释。",camera:"相机 AI",cameraText:"观察真实物体并听 Rii 解释。",translate:"翻译",translateText:"在 Rii 的五种核心语言之间翻译。",notes:"笔记与闹钟",notesText:"保存笔记、提醒和闹钟。",game:"学习游戏",gameText:"数学 • 翻译 • 相机观察 • 排行榜",
-    audio:"🎧 音频",audioSystem:"系统自动选择",audioNote:"在 iPhone/iPad 上由 iOS 选择扬声器或 Bluetooth。",language:"🌐 语言",back:"← 主页",voice:"🎙 说",home:"主页",
-    gameScreen:"Rii Game",gameHero:"学习 • 游戏 • 进步",gameHeroText:"选择你喜欢的内容。数学、翻译、观察分别计分，并有综合排名。",totalScore:"综合",mathScore:"数学",languageScore:"语言",visionScore:"观察",gameMath:"数学挑战",gameMathText:"按年级生成算术题。",gameLanguage:"语言挑战",gameLanguageText:"Rii 五种核心语言词汇。",gameVision:"相机观察",gameVisionText:"用 Camera AI 寻找真实物体。",ranking:"排行榜",rankingAll:"综合",rankingMath:"数学",rankingLanguage:"翻译",rankingVision:"观察",rankingLocal:"当前版本在本机保存排行榜数据，后续可无缝连接后端。",nextQuestion:"下一题",round:"题目",correct:"✅ 正确！",wrong:"❌ 还不对，继续加油！",gameCameraOpen:"📷 打开游戏相机",gameCameraCheck:"✨ 检查物体",visionPrompt:"请找到符合条件的物体：",gameVisionUnavailable:"Camera AI 暂时不可用。"
-  },
-  ko:{...EN,
-    tagline:"미래 학습 • 탐험 • 게임",ready:"준비됨",hero:"안녕 👋 오늘 무엇을 탐험할까?",heroText:"수학, 카메라 AI, 번역, 메모로 배우고 Rii Game에서 도전해 보세요.",
-    identity:"Rii ID",root:"루트 계정 • ROOT",robotFuture:"🤖 로봇 • 미래",profile:"학습 프로필",profileEdit:"프로필 수정",profileNamePlaceholder:"닉네임",profilePanel:"학습 프로필",profileSave:"프로필 저장",grade:"학년",
-    centers:"학습 센터",hint:"누르거나 말하세요",math:"수학",mathText:"문제를 말하거나 입력하면 단계별로 설명합니다.",camera:"카메라 AI",cameraText:"실제 물체를 관찰하고 Rii의 설명을 들어요.",translate:"번역",translateText:"Rii의 5개 핵심 언어 사이를 번역합니다.",notes:"메모 & 알람",notesText:"메모, 알림, 알람을 저장합니다.",game:"학습 게임",gameText:"수학 • 번역 • 카메라 관찰 • 순위",
-    audio:"🎧 오디오",audioSystem:"시스템 자동 선택",audioNote:"iPhone/iPad에서는 iOS가 스피커 또는 Bluetooth를 선택합니다.",language:"🌐 언어",back:"← 홈",voice:"🎙 말하기",home:"홈",
-    gameScreen:"Rii Game",gameHero:"배우기 • 놀기 • 성장",gameHeroText:"좋아하는 분야를 선택하세요. 수학, 번역, 관찰 점수와 종합 점수가 따로 계산됩니다.",totalScore:"종합",mathScore:"수학",languageScore:"언어",visionScore:"관찰",gameMath:"수학 도전",gameMathText:"학년에 맞는 계산 문제.",gameLanguage:"언어 도전",gameLanguageText:"Rii의 5개 핵심 언어 어휘.",gameVision:"카메라 관찰",gameVisionText:"Camera AI로 실제 물체를 찾아보세요.",ranking:"순위표",rankingAll:"종합",rankingMath:"수학",rankingLanguage:"번역",rankingVision:"관찰",rankingLocal:"현재 버전은 순위 데이터를 이 기기에 저장합니다. 나중에 백엔드 동기화를 추가할 수 있습니다.",nextQuestion:"다음 문제",round:"문제",correct:"✅ 정답!",wrong:"❌ 아직 아니에요. 계속해요!",gameCameraOpen:"📷 게임 카메라 열기",gameCameraCheck:"✨ 물체 확인",visionPrompt:"다음 조건의 물체를 찾아보세요: ",gameVisionUnavailable:"Camera AI를 지금 사용할 수 없습니다."
-  },
-  ja:{...EN,
-    tagline:"未来の学び • 探検 • ゲーム",ready:"準備完了",hero:"こんにちは 👋 今日は何を探検する？",heroText:"算数、カメラ AI、翻訳、メモで学び、Rii Gameで挑戦しよう。",
-    identity:"Rii ID",root:"ルートアカウント • ROOT",robotFuture:"🤖 ロボット • 将来",profile:"学習プロフィール",profileEdit:"プロフィール編集",profileNamePlaceholder:"ニックネーム",profilePanel:"学習プロフィール",profileSave:"保存",grade:"学年",
-    centers:"学習センター",hint:"タップまたは話す",math:"算数",mathText:"問題を話すか入力すると順番に説明します。",camera:"カメラ AI",cameraText:"本物を観察して Rii の説明を聞こう。",translate:"翻訳",translateText:"Rii の5つの主要言語を翻訳します。",notes:"メモとアラーム",notesText:"メモ、リマインダー、アラームを保存します。",game:"学習ゲーム",gameText:"算数 • 翻訳 • カメラ観察 • ランキング",
-    audio:"🎧 オーディオ",audioSystem:"システム自動",audioNote:"iPhone/iPadでは iOS がスピーカーや Bluetooth を選択します。",language:"🌐 言語",back:"← ホーム",voice:"🎙 話す",home:"ホーム",
-    gameScreen:"Rii Game",gameHero:"学ぶ • 遊ぶ • 成長",gameHeroText:"好きな分野を選ぼう。算数、翻訳、観察の点数と総合点を別々に記録します。",totalScore:"総合",mathScore:"算数",languageScore:"言語",visionScore:"観察",gameMath:"算数チャレンジ",gameMathText:"学年に合わせた計算問題。",gameLanguage:"言語チャレンジ",gameLanguageText:"Rii の5つの主要言語の語彙。",gameVision:"カメラ観察",gameVisionText:"Camera AIで本物を探そう。",ranking:"ランキング",rankingAll:"総合",rankingMath:"算数",rankingLanguage:"翻訳",rankingVision:"観察",rankingLocal:"現在のランキングはこの端末に保存されます。後からバックエンド同期を追加できます。",nextQuestion:"次の問題",round:"問題",correct:"✅ 正解！",wrong:"❌ まだ違います。続けよう！",gameCameraOpen:"📷 ゲームカメラを開く",gameCameraCheck:"✨ 物体を確認",visionPrompt:"次の条件に合う物を探してください: ",gameVisionUnavailable:"Camera AI は現在利用できません。"
+  const LANGS = {
+
+    vi: "vi-VN",
+
+    en: "en-US",
+
+    zh: "zh-CN",
+
+    ko: "ko-KR",
+
+    ja: "ja-JP"
+
+  };
+
+
+  const STORE = {
+
+    profile: "rii-v390-profile",
+
+    notes: "rii-v390-notes",
+
+    game: "rii-v390-game"
+
+  };
+
+
+  let profile =
+    JSON.parse(
+      localStorage.getItem(
+        STORE.profile
+      ) || "null"
+    ) || {
+
+      name: "Rii Kid",
+
+      grade: 3,
+
+      lang: "vi",
+
+      xp: 0
+
+    };
+
+
+  let notes =
+    JSON.parse(
+      localStorage.getItem(
+        STORE.notes
+      ) || "[]"
+    );
+
+
+  let game = {
+
+    mode: "math",
+
+    answer: null
+
+  };
+
+
+  const worker = () =>
+    window.RiiWorkerClientV2 || null;
+
+
+  function toast(text) {
+
+    const el =
+      $("#toast");
+
+    el.textContent =
+      text;
+
+    el.classList.add(
+      "show"
+    );
+
+    clearTimeout(
+      window.__riiToastTimer
+    );
+
+    window.__riiToastTimer =
+      setTimeout(
+        () => {
+
+          el.classList.remove(
+            "show"
+          );
+
+        },
+        1800
+      );
+
   }
-};
 
-let currentCenter=null,currentNotesTab="notes",cameraStream=null,recognition=null,speechRecognitionBusy=false,capturedFrameReady=false;
-let latestVisionResult=null,latestMathResult=null,latestTranslationResult=null,visionBusy=false,mathBusy=false,translationBusy=false;
-let activeAlarm=null,alarmAudioContext=null,alarmOscillator=null,alarmGain=null,alarmToneTimer=null,riiSpeechToken=0;
-let currentGame=null,currentGameQuestion=null,currentGameRound=0,currentRankTab="overall",gameCameraStream=null;
 
-const el=id=>document.getElementById(id);
-function setText(id,value){const n=el(id);if(n)n.textContent=value}
-function delay(ms){return new Promise(r=>setTimeout(r,ms))}
-function escapeHtml(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;")}
-function loadJSON(key,fallback){try{return JSON.parse(localStorage.getItem(key)||JSON.stringify(fallback))}catch{return fallback}}
-function saveJSON(key,v){localStorage.setItem(key,JSON.stringify(v))}
-function loadArray(key){const x=loadJSON(key,[]);return Array.isArray(x)?x:[]}
-function currentLanguage(){const c=localStorage.getItem(LANGUAGE_KEY);return languages.find(x=>x.code===c)||languages[0]}
-function languageByCode(c){return languages.find(x=>x.code===c)||null}
-function text(){return UI[currentLanguage().code]||EN}
-function getProfile(){const p=loadJSON(PROFILE_KEY,{name:"Rii Kid",grade:1});return {name:String(p.name||"Rii Kid").slice(0,18),grade:Math.min(5,Math.max(1,Number(p.grade)||1))}}
-function getGameScore(){const s=loadJSON(GAME_KEY,{math:0,language:0,vision:0,streak:0});return {math:+s.math||0,language:+s.language||0,vision:+s.vision||0,streak:+s.streak||0}}
-function overallScore(s=getGameScore()){return Math.round((s.math+s.language+s.vision)/3)}
-function saveGameScore(s){saveJSON(GAME_KEY,s);renderGameStats();renderRanking()}
+  function openSheet(
+    name
+  ) {
 
-function validateBoot(){
-  const ids=["tagline","readyText","heroTitle","heroText","identityLabel","rootText","robotFuture","homeLanguage","centerLanguage","mathCenter","cameraCenter","translateCenter","notesCenter","riiButton","gameScreen"];
-  const missing=ids.filter(id=>!el(id));if(missing.length)throw new Error("Missing DOM IDs: "+missing.join(", "));
-  for(const l of languages){if(!UI[l.code])throw new Error("Missing UI language: "+l.code)}
-}
-function showBootError(error){const n=el("bootError");if(!n)return;n.textContent="❌ Rii UI boot error: "+String(error?.message||error);n.classList.add("show")}
+    const sheet =
+      $("#sheet-" + name);
 
-let speechToastTimer=null;
-function showSpeechToast(message,isError=false,timeout=0){const box=el("speechToast");if(!box)return;if(speechToastTimer)clearTimeout(speechToastTimer);box.textContent=String(message||"");box.className="speech-toast show"+(isError?" error":"");if(timeout>0)speechToastTimer=setTimeout(hideSpeechToast,timeout)}
-function hideSpeechToast(){const box=el("speechToast");if(!box)return;box.className="speech-toast";if(speechToastTimer)clearTimeout(speechToastTimer);speechToastTimer=null}
-function getBestVoice(locale){if(!("speechSynthesis"in window))return null;const vs=window.speechSynthesis.getVoices();const w=String(locale||"").toLowerCase(),b=w.split("-")[0];return vs.find(v=>String(v.lang||"").toLowerCase()===w)||vs.find(v=>String(v.lang||"").toLowerCase().startsWith(b+"-"))||null}
-function waitForSpeechVoices(timeout=800){return new Promise(resolve=>{if(!("speechSynthesis"in window)){resolve([]);return}const s=window.speechSynthesis,e=s.getVoices();if(e.length){resolve(e);return}let done=false;const f=()=>{if(done)return;done=true;try{s.removeEventListener("voiceschanged",f)}catch{}resolve(s.getVoices())};try{s.addEventListener("voiceschanged",f)}catch{}setTimeout(f,timeout)})}
-async function speak(value,localeOverride=null){const message=String(value||"").trim();if(!message||!("speechSynthesis"in window))return false;const synth=window.speechSynthesis,token=++riiSpeechToken,locale=localeOverride||currentLanguage().locale;await waitForSpeechVoices();if(token!==riiSpeechToken)return false;try{synth.cancel()}catch{}await delay(120);if(token!==riiSpeechToken)return false;const u=new SpeechSynthesisUtterance(message);u.lang=locale;u.rate=.9;u.pitch=1;u.volume=1;const v=getBestVoice(locale);if(v)u.voice=v;try{if(synth.paused)synth.resume();synth.speak(u);return true}catch{return false}}
+    if (!sheet) return;
 
-function recognitionClass(){return window.SpeechRecognition||window.webkitSpeechRecognition}
-async function ensureMicrophonePermission(){if(!navigator.mediaDevices||typeof navigator.mediaDevices.getUserMedia!=="function")return true;showSpeechToast(text().speechPreparing);let s=null;try{s=await navigator.mediaDevices.getUserMedia({audio:true,video:false});return true}catch(e){if(/notallowed|permission|security/i.test(String(e?.name||"")))throw new Error(text().speechPermission);throw e}finally{if(s)s.getTracks().forEach(t=>t.stop())}}
-async function startRecognition(targetId=null){
-  const C=recognitionClass();if(!C){showSpeechToast(text().speechUnsupported,true,3500);return}
-  if(speechRecognitionBusy){try{recognition?.stop()}catch{}return}
-  try{
-    try{window.speechSynthesis?.cancel()}catch{}
-    await ensureMicrophonePermission();recognition=new C();recognition.lang=currentLanguage().locale;recognition.continuous=false;recognition.interimResults=true;recognition.maxAlternatives=1;speechRecognitionBusy=true;
-    let finalText="",interim="";
-    recognition.onstart=()=>showSpeechToast(text().speechListening);
-    recognition.onresult=e=>{interim="";for(let i=e.resultIndex;i<e.results.length;i++){const r=e.results[i],t=r[0].transcript;if(r.isFinal)finalText+=t+" ";else interim+=t}const v=(finalText+interim).trim();if(targetId&&v){const target=el(targetId);if(target)target.value=v}};
-    recognition.onerror=e=>{speechRecognitionBusy=false;showSpeechToast(e.error==="not-allowed"?text().speechPermission:text().speechError+e.error,true,3500)};
-    recognition.onend=()=>{speechRecognitionBusy=false;const v=(finalText||interim).trim();if(targetId&&v){const target=el(targetId);if(target)target.value=v}else if(v)handleVoiceCommand(v);if(v)showSpeechToast(text().speechDone,false,1200);else hideSpeechToast()};
+    sheet.classList.add(
+      "open"
+    );
+
+  }
+
+
+  function closeSheets() {
+
+    $$(".sheet.open")
+      .forEach(
+        sheet =>
+          sheet.classList.remove(
+            "open"
+          )
+      );
+
+  }
+
+
+  $$("[data-open]")
+    .forEach(
+      button => {
+
+        button.onclick =
+          () =>
+            openSheet(
+              button.dataset.open
+            );
+
+      }
+    );
+
+
+  $$(".close")
+    .forEach(
+      button => {
+
+        button.onclick =
+          closeSheets;
+
+      }
+    );
+
+
+  $$(".sheet")
+    .forEach(
+      sheet => {
+
+        sheet.onclick =
+          event => {
+
+            if (
+              event.target === sheet
+            ) {
+
+              closeSheets();
+
+            }
+
+          };
+
+      }
+    );
+
+
+  function speak(
+    text,
+    lang = profile.lang
+  ) {
+
+    text =
+      String(
+        text || ""
+      ).trim();
+
+    if (!text) return;
+
+
+    if (
+      !(
+        "speechSynthesis"
+        in window
+      )
+    ) {
+
+      toast(
+        "Thiết bị chưa hỗ trợ đọc"
+      );
+
+      return;
+
+    }
+
+
+    speechSynthesis
+      .cancel();
+
+
+    const utterance =
+      new SpeechSynthesisUtterance(
+        text
+      );
+
+
+    utterance.lang =
+      LANGS[lang]
+      || "vi-VN";
+
+
+    utterance.rate =
+      0.95;
+
+
+    speechSynthesis
+      .speak(
+        utterance
+      );
+
+  }
+
+
+  function listen(
+    callback
+  ) {
+
+    const SpeechRecognition =
+      window.SpeechRecognition
+      || window.webkitSpeechRecognition;
+
+
+    if (
+      !SpeechRecognition
+    ) {
+
+      toast(
+        "Safari chưa hỗ trợ nhận giọng nói"
+      );
+
+      return;
+
+    }
+
+
+    const recognition =
+      new SpeechRecognition();
+
+
+    recognition.lang =
+      LANGS[
+        profile.lang
+      ] || "vi-VN";
+
+
+    recognition.interimResults =
+      false;
+
+
+    recognition.maxAlternatives =
+      1;
+
+
+    recognition.onresult =
+      event => {
+
+        const text =
+          event
+            .results[0][0]
+            .transcript;
+
+        callback(
+          text
+        );
+
+      };
+
+
+    recognition.onerror =
+      () => {
+
+        toast(
+          "Không nghe rõ"
+        );
+
+      };
+
+
     recognition.start();
-  }catch(e){speechRecognitionBusy=false;showSpeechToast(String(e?.message||e),true,3500)}
-}
-window.listenCommand=()=>startRecognition();window.speechInto=id=>startRecognition(id);
 
-function render(){
-  const x=text(),l=currentLanguage(),p=getProfile();document.documentElement.lang=l.code;
-  const map={tagline:"tagline",readyText:"ready",heroTitle:"hero",heroText:"heroText",identityLabel:"identity",rootText:"root",robotFuture:"robotFuture",centerTitle:"centers",centerHint:"hint",mathTitle:"math",mathText:"mathText",cameraTitle:"camera",cameraText:"cameraText",translateTitle:"translate",translateText:"translateText",notesTitle:"notes",notesText:"notesText",gameTitle:"game",gameText:"gameText",audioTitle:"audio",audioSystemOption:"audioSystem",audioNote:"audioNote",languagePanelTitle:"language",quickMath:"math",quickCamera:"camera",quickTranslate:"translate",quickNotes:"notes",quickGame:"game",quickLanguage:"language",backButton:"back",mathCenterTitle:"math",mathIntro:"mathIntro",mathVoiceButton:"voice",mathSolveButton:mathBusy?"solving":"solve",mathTestButton:"test",mathSpeakButton:"listenSolution",mathDebugSummary:"mathDebug",cameraCenterTitle:"camera",cameraOpenButton:"openCamera",captureButton:visionBusy?"looking":"capture",cameraAskButton:"askRii",visionSpeakButton:"listenRii",visionRetryButton:"retryVision",otherObjectButton:"otherObject",visionAnalyzeAgainButton:"analyzeAgain",visionDebugSummary:"visionDebug",translateCenterTitle:"translate",translateVoiceButton:"voice",translateActionButton:translationBusy?"translating":"translateAction",translateSpeakButton:"translateListen",translateClearButton:"translateClear",translateSourceLabel:"translateSource",translateTargetLabel:"translateTarget",translationOutputLabel:"translateOutput",translationDebugSummary:"translationDebug",notesCenterTitle:"notes",notesVoiceButton:"voice",notesSaveButton:"save",notesTabButton:"notesTab",alarmsTabButton:"alarmsTab",alarmSaveButton:"alarmSave",alarmOnceOption:"alarmOnce",alarmDailyOption:"alarmDaily",alarmStopButton:"alarmStop",alarmSnoozeButton:"alarmSnooze",profileLabel:"profile",profileEditButton:"profileEdit",profilePanelTitle:"profilePanel",profileSaveButton:"profileSave",
-  gameBackButton:"back",gameScreenTitle:"gameScreen",gameHeroTitle:"gameHero",gameHeroText:"gameHeroText",statTotalLabel:"totalScore",statMathLabel:"mathScore",statLanguageLabel:"languageScore",statVisionLabel:"visionScore",gameMathTitle:"gameMath",gameMathText:"gameMathText",gameLanguageTitle:"gameLanguage",gameLanguageText:"gameLanguageText",gameVisionTitle:"gameVision",gameVisionText:"gameVisionText",rankingTitle:"ranking",rankAll:"rankingAll",rankMath:"rankingMath",rankLanguage:"rankingLanguage",rankVision:"rankingVision",rankingNote:"rankingLocal",nextGameButton:"nextQuestion",gameCameraOpen:"gameCameraOpen",gameCameraCheck:"gameCameraCheck"};
-  for(const [id,key] of Object.entries(map))setText(id,x[key]||EN[key]||key);
-  el("mathInput").placeholder=x.mathPlaceholder;el("cameraQuestion").placeholder=x.cameraPlaceholder;el("translateInput").placeholder=x.translatePlaceholder;el("notesInput").placeholder=x.notesPlaceholder;el("alarmTitleInput").placeholder=x.alarmTitlePlaceholder;el("profileNameInput").placeholder=x.profileNamePlaceholder;
-  setText("profileName",p.name);setText("profileGrade",x.grade+" "+p.grade);setText("rankingGrade",x.grade+" "+p.grade);
-  for(const select of document.querySelectorAll("#homeLanguage,#centerLanguage")){select.innerHTML=languages.map(i=>`<option value="${i.code}">${i.flag} ${i.name}</option>`).join("");select.value=l.code}
-  renderLanguageList();renderNotes();renderAlarms();switchNotesTab(currentNotesTab,false);renderGameStats();renderRanking();
-  if(!el("notesResult").dataset.touched)setText("notesResult",x.noteReady);
-  if(!el("alarmResult").dataset.touched)setText("alarmResult",x.alarmReady+"\n"+x.alarmWebNote);
-  if(!latestTranslationResult){setText("translateSourceValue",x.translateAuto);setText("translateTargetValue",l.flag+" "+l.name);showTranslationStatus(x.translateReady)}
-  if(!isCameraLive()&&!hasCapturedFrame())setText("cameraStatus",x.cameraClosed);
-}
-window.setLanguage=code=>{if(!languages.some(x=>x.code===code))return;localStorage.setItem(LANGUAGE_KEY,code);latestTranslationResult=null;render()};
-function renderLanguageList(){const c=currentLanguage();el("languageList").innerHTML=languages.map(i=>`<button class="lang-btn ${i.code===c.code?"active":""}" onclick="setLanguage('${i.code}');closeLanguage()">${i.flag} ${i.name}</button>`).join("")}
-window.openLanguage=()=>{renderLanguageList();el("languageOverlay").classList.add("open")};window.closeLanguage=()=>el("languageOverlay").classList.remove("open");window.openLanguageFromQuick=()=>{closeQuick();openLanguage()};
-
-window.openProfile=()=>{const p=getProfile();el("profileNameInput").value=p.name;el("profileGradeInput").value=String(p.grade);el("profileOverlay").classList.add("open")};
-window.closeProfile=()=>el("profileOverlay").classList.remove("open");
-window.saveProfile=()=>{const name=String(el("profileNameInput").value||"").trim().slice(0,18)||"Rii Kid";const grade=Math.min(5,Math.max(1,Number(el("profileGradeInput").value)||1));saveJSON(PROFILE_KEY,{name,grade});closeProfile();render()};
-
-window.speakHome=()=>{const x=text();speak([x.hero,x.math,x.camera,x.translate,x.notes,x.game].join(". "))};
-window.speakCenter=()=>{const x=text();speak(({math:x.math,camera:x.camera,translate:x.translate,notes:x.notes}[currentCenter])||x.centers)};
-function handleVoiceCommand(value){const q=String(value||"").toLowerCase();if(/camera|máy ảnh|相机|カメラ|카메라/.test(q))return openCenter("camera");if(/math|toán|数学|算数|수학/.test(q))return openCenter("math");if(/translate|dịch|翻译|翻訳|번역/.test(q))return openCenter("translate");if(/note|alarm|ghi chú|báo thức|笔记|闹钟|メモ|アラーム|메모|알람/.test(q))return openCenter("notes");if(/game|trò chơi|游戏|ゲーム|게임/.test(q))return openGameHub();speak(value)}
-
-window.openCenter=name=>{if(!["math","camera","translate","notes"].includes(name))return;currentCenter=name;for(const key of["math","camera","translate","notes"])el(key+"Center").classList.toggle("hidden",key!==name);el("centerScreen").classList.add("open");document.body.style.overflow="hidden";setText("screenTitle",({math:text().math,camera:text().camera,translate:text().translate,notes:text().notes}[name]));if(name==="camera")setTimeout(startCamera,250);if(name==="notes"){renderNotes();renderAlarms();setDefaultAlarmDateTime()}};
-window.closeCenter=()=>{stopCamera();el("centerScreen").classList.remove("open");document.body.style.overflow="";currentCenter=null};
-
-function showMathStatus(m,e=false){const n=el("mathStatus");n.textContent=m;n.className="math-status show"+(e?" error":"")}
-function setMathBusy(b){mathBusy=b;el("mathSolveButton").disabled=b;setText("mathSolveButton",b?text().solving:text().solve)}
-window.setMathExample=()=>{el("mathInput").value="8 × 7";solveMathNow()};
-window.solveMathNow=async()=>{if(mathBusy)return;const problem=el("mathInput").value.trim(),x=text();if(!problem)return showMathStatus(x.needProblem,true);if(!window.RiiWorkerClientV2?.solveMath)return showMathStatus(x.mathClientMissing,true);setMathBusy(true);el("mathCard").classList.remove("show");try{const l=currentLanguage(),r=await RiiWorkerClientV2.solveMath(problem,{targetLanguage:l.code,targetLanguageName:l.english});latestMathResult=r;renderMath(r);showMathStatus(r.aiUsed?x.mathAI:x.mathLocal)}catch(e){const f=RiiWorkerClientV2?.formatError?RiiWorkerClientV2.formatError(e):{message:String(e),code:"CLIENT_ERROR"};el("mathDebugText").textContent=JSON.stringify(f,null,2);el("mathDebug").classList.remove("hidden");const quota=f.code==="MATH_MODEL_FAILED"&&/4006|daily free allocation|10,000 neurons/i.test(f.message);showMathStatus(quota?x.mathQuota:x.mathError+f.message,true)}finally{setMathBusy(false)}};
-function renderMath(r){const x=text();setText("mathAnswer",r.answer?x.answer+": "+r.answer+(r.unit?" "+r.unit:""):x.answer+": —");setText("mathExplanation",r.needsClarification?(r.clarificationQuestion||""):(r.explanation||""));el("mathSteps").innerHTML=(Array.isArray(r.steps)?r.steps:[]).map((s,i)=>`<div class="math-step"><b>${escapeHtml(x.step)} ${i+1}</b><br>${escapeHtml(s)}</div>`).join("");if(r.check){setText("mathCheck","✅ "+x.check+": "+r.check);el("mathCheck").classList.remove("hidden")}else el("mathCheck").classList.add("hidden");setText("mathMeta",[r.source||"math",r.aiUsed?"AI":"local",r.workerVersion?"Worker "+r.workerVersion:""].filter(Boolean).join(" • "));el("mathCard").classList.add("show");el("mathSpeakButton").disabled=false}
-window.speakMath=()=>{if(!latestMathResult)return;const r=latestMathResult;speak([r.answer,r.explanation,...(Array.isArray(r.steps)?r.steps:[]),r.check].filter(Boolean).join(". "))};
-
-function isCameraLive(){const v=el("cameraVideo");return Boolean(cameraStream&&v&&v.readyState>=2&&v.videoWidth>0)}
-function hasCapturedFrame(){const c=el("cameraCanvas");return Boolean(capturedFrameReady&&c.width>0&&c.height>0)}
-window.startCamera=async()=>{try{stopCamera();capturedFrameReady=false;latestVisionResult=null;hideAiMessage();el("visionCard").classList.remove("show");el("visionRetryButton").classList.add("hidden");if(!navigator.mediaDevices?.getUserMedia)throw new Error(text().cameraNotReady);cameraStream=await navigator.mediaDevices.getUserMedia({video:{facingMode:{ideal:"environment"}},audio:false});const v=el("cameraVideo");v.srcObject=cameraStream;v.classList.remove("hidden");el("capturedImage").classList.add("hidden");await v.play();setText("cameraStatus",text().cameraLive)}catch(e){setText("cameraStatus","❌ "+String(e?.message||e))}};
-function stopCamera(){if(cameraStream){cameraStream.getTracks().forEach(t=>t.stop());cameraStream=null}if(el("cameraVideo"))el("cameraVideo").srcObject=null}
-function captureFrame(){if(!isCameraLive())throw new Error(text().cameraNotReady);const v=el("cameraVideo"),c=el("cameraCanvas"),scale=Math.min(1,1280/Math.max(v.videoWidth,v.videoHeight));c.width=Math.round(v.videoWidth*scale);c.height=Math.round(v.videoHeight*scale);const ctx=c.getContext("2d");ctx.drawImage(v,0,0,c.width,c.height);capturedFrameReady=true;const img=el("capturedImage");img.src=c.toDataURL("image/jpeg",.82);img.classList.remove("hidden");v.classList.add("hidden");setText("cameraStatus",text().cameraSaved);stopCamera()}
-window.captureAndAnalyze=async()=>{try{if(isCameraLive())captureFrame();if(!hasCapturedFrame())throw new Error(text().noCapturedFrame);await analyzeCapturedImage()}catch(e){handleVisionError(e)}};
-window.analyzeCapturedImage=async()=>{if(visionBusy||!hasCapturedFrame())return;if(!RiiWorkerClientV2?.analyzeImage)return handleVisionError(new Error(text().visionClientMissing));visionBusy=true;el("captureButton").disabled=true;setText("captureButton",text().looking);showAiMessage("⏳",text().looking,"normal");try{const l=currentLanguage(),r=await RiiWorkerClientV2.analyzeImage(el("cameraCanvas"),{question:el("cameraQuestion").value.trim(),targetLanguage:l.code,targetLanguageName:l.english});latestVisionResult=r;renderVision(r);hideAiMessage()}catch(e){handleVisionError(e)}finally{visionBusy=false;el("captureButton").disabled=false;setText("captureButton",text().capture)}};
-function handleVisionError(e){const f=RiiWorkerClientV2?.formatError?RiiWorkerClientV2.formatError(e):{message:String(e),code:"CLIENT_ERROR"};el("rootDebugText").textContent=JSON.stringify(f,null,2);el("rootDebug").classList.remove("hidden");const quota=f.code==="VISION_MODEL_FAILED"&&/4006|daily free allocation|10,000 neurons/i.test(f.message);showAiMessage(quota?text().visionRest:text().visionError,quota?text().visionRestText:text().visionErrorText,quota?"resting":"error");if(hasCapturedFrame())el("visionRetryButton").classList.remove("hidden")}
-function showAiMessage(title,message,mode="normal"){const b=el("aiMessage");b.className="ai-message show";if(mode==="error")b.classList.add("error");if(mode==="resting")b.classList.add("resting");setText("aiMessageTitle",title);setText("aiMessageText",message)}
-function hideAiMessage(){el("aiMessage").className="ai-message"}
-function renderVision(r){const x=text();setText("visionName",r.displayName||r.objectName||x.unknown);setText("visionCore",[r.category,r.objectName].filter(Boolean).join(" • "));setText("visionExplanation",r.childExplanation||r.closerViewMessage||"");const items=[];if(r.color)items.push([x.color,r.color]);if(r.habitat)items.push([x.habitat,r.habitat]);if(r.origin)items.push([x.origin,r.origin]);if(r.uses)items.push([x.uses,r.uses]);if(r.detectedText)items.push([x.detectedText,r.detectedText]);if(Array.isArray(r.visibleFeatures)&&r.visibleFeatures.length)items.push([x.features,r.visibleFeatures.join(", ")]);el("visionInfoGrid").innerHTML=items.map(i=>`<div class="info-box"><div class="info-label">${escapeHtml(i[0])}</div><div>${escapeHtml(i[1])}</div></div>`).join("");el("visionFacts").innerHTML=(Array.isArray(r.interestingFacts)?r.interestingFacts:[]).map(f=>`<div class="fact">✨ ${escapeHtml(f)}</div>`).join("");if(r.answer){setText("visionAnswer",r.answer);el("visionAnswer").classList.remove("hidden")}else el("visionAnswer").classList.add("hidden");el("visionCard").classList.add("show");el("visionSpeakButton").disabled=false}
-window.speakVision=()=>{if(latestVisionResult){const r=latestVisionResult;speak([r.displayName||r.objectName,r.childExplanation,r.answer,r.habitat,r.interestingFacts?.[0]].filter(Boolean).join(". "))}};
-
-function showTranslationStatus(m,mode="normal"){const b=el("translationStatus");b.textContent=String(m||"");b.className="translation-status show";if(mode==="error")b.classList.add("error");if(mode==="resting")b.classList.add("resting")}
-window.translateNow=async()=>{if(translationBusy)return;const x=text(),value=el("translateInput").value.trim();if(!value)return showTranslationStatus(x.translateNeedText,"error");if(!RiiWorkerClientV2?.translateText)return showTranslationStatus(x.translateClientMissing,"error");translationBusy=true;el("translateActionButton").disabled=true;setText("translateActionButton",x.translating);showTranslationStatus(x.translating);try{const l=currentLanguage(),r=await RiiWorkerClientV2.translateText(value,{sourceLanguage:"auto",targetLanguage:l.code,targetLanguageName:l.english});latestTranslationResult=r;renderTranslation(r);showTranslationStatus(r.aiUsed?x.translateDone:x.translateLocal)}catch(e){const f=RiiWorkerClientV2?.formatError?RiiWorkerClientV2.formatError(e):{message:String(e),code:"CLIENT_ERROR"};el("translationDebugText").textContent=JSON.stringify(f,null,2);el("translationDebug").classList.remove("hidden");const quota=f.code==="TRANSLATION_MODEL_FAILED"&&/4006|daily free allocation|10,000 neurons/i.test(f.message);showTranslationStatus(quota?x.translateQuota:x.translateError+f.message,quota?"resting":"error")}finally{translationBusy=false;el("translateActionButton").disabled=false;setText("translateActionButton",x.translateAction)}};
-function renderTranslation(r){const x=text(),sourceCode=r.detectedLanguageCode||r.detectedSourceLanguage||r.sourceLanguage||"",source=languageByCode(sourceCode),target=languageByCode(r.targetLanguage)||currentLanguage();setText("translateResult",r.translatedText||"");setText("translateSourceValue",source?source.flag+" "+source.name:(r.detectedLanguage||x.translateAuto));setText("translateTargetValue",target.flag+" "+target.name);setText("translationMeta",[r.source||"translation",r.aiUsed?"AI":"local",r.workerVersion?"Worker "+r.workerVersion:""].filter(Boolean).join(" • "));el("translationOutput").classList.add("show");el("translateSpeakButton").disabled=!r.translatedText}
-window.speakTranslation=()=>{if(!latestTranslationResult?.translatedText)return;const t=languageByCode(latestTranslationResult.targetLanguage);speak(latestTranslationResult.translatedText,latestTranslationResult.targetLocale||latestTranslationResult.locale||t?.locale||currentLanguage().locale)};
-window.clearTranslation=()=>{latestTranslationResult=null;el("translateInput").value="";setText("translateResult","");el("translationOutput").classList.remove("show");el("translateSpeakButton").disabled=true;setText("translateSourceValue",text().translateAuto);const l=currentLanguage();setText("translateTargetValue",l.flag+" "+l.name);showTranslationStatus(text().translateReady)};
-
-function getNotes(){return loadArray(NOTE_KEY).filter(n=>(n.riiId||ROOT_ID)===ROOT_ID)}
-function saveNotes(notes){saveJSON(NOTE_KEY,notes.slice(0,500))}
-window.saveNote=()=>{const v=el("notesInput").value.trim();el("notesResult").dataset.touched="1";if(!v)return setText("notesResult",text().noteEmpty);const notes=getNotes();notes.unshift({id:"note_"+Date.now(),riiId:ROOT_ID,text:v,createdAt:new Date().toISOString(),updatedAt:null});saveNotes(notes);el("notesInput").value="";setText("notesResult",text().saved+"\n"+v);renderNotes()};
-function renderNotes(){const c=el("notesList"),notes=getNotes();if(!notes.length){c.innerHTML=`<div class="notes-empty">${escapeHtml(text().noNotes)}</div>`;return}c.innerHTML=notes.map(n=>`<div class="note-item"><div class="note-text">${escapeHtml(n.text)}</div><div class="note-time">${escapeHtml(new Date(n.updatedAt||n.createdAt).toLocaleString())}</div><div class="mini-actions"><button class="mini-btn" onclick="hearNote('${n.id}')">${escapeHtml(text().hear)}</button><button class="mini-btn" onclick="editNote('${n.id}')">${escapeHtml(text().edit)}</button><button class="mini-btn danger" onclick="deleteNote('${n.id}')">${escapeHtml(text().delete)}</button></div></div>`).join("")}
-window.hearNote=id=>{const n=getNotes().find(x=>x.id===id);if(n)speak(n.text)};window.editNote=id=>{const notes=getNotes(),i=notes.findIndex(x=>x.id===id);if(i<0)return;const v=prompt(text().editPrompt,notes[i].text);if(v===null||!v.trim())return;notes[i]={...notes[i],text:v.trim(),updatedAt:new Date().toISOString()};saveNotes(notes);renderNotes()};window.deleteNote=id=>{saveNotes(getNotes().filter(x=>x.id!==id));renderNotes()};
-
-function getAlarms(){return loadArray(ALARM_KEY).filter(a=>(a.riiId||ROOT_ID)===ROOT_ID)}
-function saveAlarms(v){saveJSON(ALARM_KEY,v)}
-function localDateKey(d){return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")}
-function localTimeKey(d){return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0")}
-function setDefaultAlarmDateTime(){const n=new Date(Date.now()+5*60*1000);if(!el("alarmDateInput").value)el("alarmDateInput").value=localDateKey(n);if(!el("alarmTimeInput").value)el("alarmTimeInput").value=localTimeKey(n)}
-window.saveAlarm=()=>{const x=text(),title=el("alarmTitleInput").value.trim()||x.alarmDefault,date=el("alarmDateInput").value,time=el("alarmTimeInput").value,repeat=el("alarmRepeatInput").value;el("alarmResult").dataset.touched="1";if(!time)return setText("alarmResult",x.alarmNeedTime);if(repeat==="once"&&!date)return setText("alarmResult",x.alarmNeedDate);const alarms=getAlarms();alarms.unshift({id:"alarm_"+Date.now(),riiId:ROOT_ID,title,date,time,repeat,enabled:true,createdAt:new Date().toISOString(),lastTriggeredKey:null,snoozeUntil:null});saveAlarms(alarms);el("alarmTitleInput").value="";setText("alarmResult",x.alarmSaved);renderAlarms()};
-function renderAlarms(){const c=el("alarmList"),alarms=getAlarms();if(!alarms.length){c.innerHTML=`<div class="notes-empty">${escapeHtml(text().noAlarms)}</div>`;return}c.innerHTML=alarms.map(a=>`<div class="alarm-item ${a.enabled?"":"alarm-disabled"}"><div class="alarm-item-top"><div><div class="alarm-time">${escapeHtml(a.time)}</div><div class="alarm-title">${escapeHtml(a.title)}</div><div class="alarm-meta">${escapeHtml(a.repeat==="daily"?text().daily:a.date)}</div></div><button class="switch ${a.enabled?"on":""}" onclick="toggleAlarm('${a.id}')"></button></div><div class="mini-actions"><button class="mini-btn" onclick="hearAlarm('${a.id}')">${escapeHtml(text().hear)}</button><button class="mini-btn danger" onclick="deleteAlarm('${a.id}')">${escapeHtml(text().delete)}</button></div></div>`).join("")}
-window.toggleAlarm=id=>{const a=getAlarms(),x=a.find(v=>v.id===id);if(!x)return;x.enabled=!x.enabled;x.lastTriggeredKey=null;x.snoozeUntil=null;saveAlarms(a);renderAlarms()};window.deleteAlarm=id=>{saveAlarms(getAlarms().filter(a=>a.id!==id));renderAlarms()};window.hearAlarm=id=>{const a=getAlarms().find(v=>v.id===id);if(a)speak(a.title+". "+a.time)};
-function checkAlarms(){if(activeAlarm)return;const alarms=getAlarms(),now=new Date(),today=localDateKey(now),time=localTimeKey(now),key=today+" "+time;let changed=false;for(const a of alarms){if(!a.enabled)continue;if(a.snoozeUntil){const s=new Date(a.snoozeUntil);if(Number.isFinite(s.getTime())&&now>=s){a.snoozeUntil=null;a.lastTriggeredKey=key+"_snooze";if(a.repeat==="once")a.enabled=false;changed=true;triggerAlarm(a);break}continue}if(a.time!==time)continue;if(a.repeat==="once"&&a.date!==today)continue;if(a.lastTriggeredKey===key)continue;a.lastTriggeredKey=key;if(a.repeat==="once")a.enabled=false;changed=true;triggerAlarm(a);break}if(changed){saveAlarms(alarms);renderAlarms()}}
-function triggerAlarm(a){activeAlarm={...a};setText("alarmAlertTime",a.time);setText("alarmAlertTitle",a.title||text().alarmDefault);el("alarmOverlay").classList.add("open");startAlarmTone();speak(text().alarmRinging+". "+(a.title||text().alarmDefault))}
-function startAlarmTone(){stopAlarmTone();try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;alarmAudioContext=new A();alarmOscillator=alarmAudioContext.createOscillator();alarmGain=alarmAudioContext.createGain();alarmOscillator.frequency.value=880;alarmGain.gain.value=.0001;alarmOscillator.connect(alarmGain);alarmGain.connect(alarmAudioContext.destination);alarmOscillator.start();let loud=false;const pulse=()=>{if(!alarmGain||!alarmAudioContext)return;const n=alarmAudioContext.currentTime;loud=!loud;alarmGain.gain.cancelScheduledValues(n);alarmGain.gain.setTargetAtTime(loud?.16:.0001,n,.02)};pulse();alarmToneTimer=setInterval(pulse,450)}catch{}}
-function stopAlarmTone(){if(alarmToneTimer)clearInterval(alarmToneTimer);alarmToneTimer=null;try{alarmOscillator?.stop()}catch{}alarmOscillator=null;alarmGain=null;try{alarmAudioContext?.close()}catch{}alarmAudioContext=null}
-window.stopActiveAlarm=()=>{stopAlarmTone();try{window.speechSynthesis?.cancel()}catch{}el("alarmOverlay").classList.remove("open");activeAlarm=null};
-window.snoozeActiveAlarm=()=>{if(!activeAlarm)return;const alarms=getAlarms(),a=alarms.find(x=>x.id===activeAlarm.id);if(a){a.enabled=true;a.snoozeUntil=new Date(Date.now()+5*60*1000).toISOString();a.lastTriggeredKey=null;saveAlarms(alarms)}stopActiveAlarm();renderAlarms()};
-window.switchNotesTab=(tab,updateState=true)=>{if(!["notes","alarms"].includes(tab))return;if(updateState)currentNotesTab=tab;el("notesTabButton").classList.toggle("active",tab==="notes");el("alarmsTabButton").classList.toggle("active",tab==="alarms");el("notesPanel").classList.toggle("active",tab==="notes");el("alarmsPanel").classList.toggle("active",tab==="alarms");if(tab==="alarms"){setDefaultAlarmDateTime();renderAlarms()}};
-
-function renderGameStats(){const s=getGameScore();setText("statMath",s.math);setText("statLanguage",s.language);setText("statVision",s.vision);setText("statTotal",overallScore(s))}
-window.openGameHub=()=>{const p=getProfile();if(!p.name||!p.grade)return openProfile();el("gameScreen").classList.add("open");document.body.style.overflow="hidden";renderGameStats();renderRanking()};
-window.closeGameHub=()=>{stopGameCamera();el("gameScreen").classList.remove("open");el("gamePlay").classList.remove("show");document.body.style.overflow="";currentGame=null};
-window.speakGameHub=()=>speak([text().gameHero,text().gameMath,text().gameLanguage,text().gameVision,text().ranking].join(". "));
-window.openGameFromQuick=()=>{closeQuick();openGameHub()};
-
-function gradeMathQuestion(grade){
-  let a,b,op="+",answer;
-  const rnd=(min,max)=>Math.floor(Math.random()*(max-min+1))+min;
-  if(grade===1){a=rnd(1,20);b=rnd(1,10);op=Math.random()<.5?"+":"-";if(op==="-"&&b>a)[a,b]=[b,a]}
-  else if(grade===2){a=rnd(2,50);b=rnd(2,20);op=["+","-","×"][rnd(0,2)];if(op==="-"&&b>a)[a,b]=[b,a]}
-  else if(grade===3){a=rnd(2,20);b=rnd(2,12);op=["×","÷","+","-"][rnd(0,3)];if(op==="÷"){a=a*b}}
-  else if(grade===4){a=rnd(10,99);b=rnd(2,20);op=["×","÷","+","-"][rnd(0,3)];if(op==="÷")a=a*b}
-  else{a=rnd(20,150);b=rnd(2,25);op=["×","÷","+","-"][rnd(0,3)];if(op==="÷")a=a*b}
-  answer=op==="+"?a+b:op==="-"?a-b:op==="×"?a*b:a/b;
-  const choices=new Set([answer]);while(choices.size<4){choices.add(answer+rnd(-8,8)||answer+1)}
-  return {type:"math",prompt:`${a} ${op} ${b} = ?`,answer:String(answer),choices:[...choices].map(String).sort(()=>Math.random()-.5)}
-}
-
-const vocab=[
-  {vi:"quả táo",en:"apple",zh:"苹果",ko:"사과",ja:"りんご"},
-  {vi:"con mèo",en:"cat",zh:"猫",ko:"고양이",ja:"ねこ"},
-  {vi:"nước",en:"water",zh:"水",ko:"물",ja:"みず"},
-  {vi:"mặt trời",en:"sun",zh:"太阳",ko:"태양",ja:"たいよう"},
-  {vi:"quyển sách",en:"book",zh:"书",ko:"책",ja:"ほん"},
-  {vi:"ngôi nhà",en:"house",zh:"房子",ko:"집",ja:"いえ"},
-  {vi:"trường học",en:"school",zh:"学校",ko:"학교",ja:"がっこう"},
-  {vi:"cây",en:"tree",zh:"树",ko:"나무",ja:"き"},
-  {vi:"con chó",en:"dog",zh:"狗",ko:"개",ja:"いぬ"},
-  {vi:"cái bàn",en:"table",zh:"桌子",ko:"탁자",ja:"つくえ"}
-];
-
-function languageGameQuestion(){
-  const codes=languages.map(x=>x.code);
-  const from=codes[Math.floor(Math.random()*codes.length)];
-  let to=codes[Math.floor(Math.random()*codes.length)];
-  while(to===from)to=codes[Math.floor(Math.random()*codes.length)];
-
-  const item=vocab[Math.floor(Math.random()*vocab.length)];
-  const correct=item[to];
-  const wrong=vocab
-    .filter(v=>v!==item)
-    .sort(()=>Math.random()-.5)
-    .slice(0,3)
-    .map(v=>v[to]);
-
-  const fromL=languageByCode(from);
-  const toL=languageByCode(to);
-
-  return{
-    type:"language",
-    prompt:`${fromL.flag} ${item[from]}  →  ${toL.flag} ?`,
-    answer:correct,
-    choices:[correct,...wrong].sort(()=>Math.random()-.5)
-  };
-}
-
-const visionPrompts=[
-  {label:"một vật màu đỏ",keywords:["red","đỏ","红","빨","赤"]},
-  {label:"một chai nước",keywords:["bottle","water","chai","nước","瓶","물","ボトル"]},
-  {label:"một quyển sách",keywords:["book","sách","书","책","本"]},
-  {label:"một cái cốc",keywords:["cup","glass","cốc","杯","컵","コップ"]},
-  {label:"một chiếc ghế",keywords:["chair","ghế","椅","의자","いす"]}
-];
-
-function visionGameQuestion(){
-  const p=visionPrompts[Math.floor(Math.random()*visionPrompts.length)];
-  return{
-    type:"vision",
-    prompt:text().visionPrompt+p.label,
-    answer:p.label,
-    keywords:p.keywords
-  };
-}
-
-window.startGame=type=>{
-  currentGame=type;
-  currentGameRound=0;
-  el("gamePlay").classList.add("show");
-  el("gameFeedback").classList.remove("show");
-  nextGameQuestion();
-  el("gamePlay").scrollIntoView({behavior:"smooth",block:"start"})
-};
-
-window.nextGameQuestion=()=>{
-  if(!currentGame)return;
-
-  currentGameRound++;
-
-  setText(
-    "gameRound",
-    text().round+" "+currentGameRound
-  );
-
-  setText(
-    "gamePlayTitle",
-    currentGame==="math"
-      ? text().gameMath
-      : currentGame==="language"
-      ? text().gameLanguage
-      : text().gameVision
-  );
-
-  el("gameFeedback").classList.remove("show");
-  el("nextGameButton").classList.add("hidden");
-  el("gameVisionTools").classList.add("hidden");
-
-  if(currentGame==="math"){
-    currentGameQuestion=gradeMathQuestion(getProfile().grade);
-  }else if(currentGame==="language"){
-    currentGameQuestion=languageGameQuestion();
-  }else{
-    currentGameQuestion=visionGameQuestion();
   }
 
-  setText(
-    "gameQuestion",
-    currentGameQuestion.prompt
-  );
 
-  if(currentGameQuestion.choices){
+  $("#voiceHot")
+    .onclick =
+    () => {
 
-    el("gameAnswers").innerHTML=
-      currentGameQuestion.choices
+      listen(
+        text => {
+
+          const normalized =
+            text.toLowerCase();
+
+
+          if (
+            normalized
+              .includes(
+                "toán"
+              )
+          ) {
+
+            openSheet(
+              "math"
+            );
+
+          }
+
+          else if (
+            normalized
+              .includes(
+                "dịch"
+              )
+          ) {
+
+            openSheet(
+              "translate"
+            );
+
+          }
+
+          else if (
+            normalized
+              .includes(
+                "camera"
+              )
+            ||
+            normalized
+              .includes(
+                "nhìn"
+              )
+          ) {
+
+            openSheet(
+              "vision"
+            );
+
+          }
+
+          else if (
+            normalized
+              .includes(
+                "ghi chú"
+              )
+            ||
+            normalized
+              .includes(
+                "nhắc"
+              )
+          ) {
+
+            openSheet(
+              "notes"
+            );
+
+          }
+
+          else {
+
+            toast(
+              "Rii nghe: "
+              + text
+            );
+
+          }
+
+        }
+      );
+
+    };
+
+
+  /* ===================== */
+  /* MATH */
+  /* ===================== */
+
+  $("#mathSolve")
+    .onclick =
+    async () => {
+
+      const question =
+        $("#mathInput")
+          .value
+          .trim();
+
+
+      if (
+        !question
+      ) {
+
+        toast(
+          "Nhập bài toán"
+        );
+
+        return;
+
+      }
+
+
+      const client =
+        worker();
+
+
+      $("#mathStatus")
+        .textContent =
+        "Rii đang suy nghĩ...";
+
+
+      try {
+
+        if (
+          !client
+          ||
+          !client.solveMath
+        ) {
+
+          throw new Error(
+            "Worker chưa sẵn sàng"
+          );
+
+        }
+
+
+        const response =
+          await client
+            .solveMath(
+              question,
+              profile.lang
+            );
+
+
+        const answer =
+          response?.answer
+          ||
+          response?.result
+          ||
+          response?.text
+          ||
+          JSON.stringify(
+            response
+          );
+
+
+        $("#mathResult")
+          .textContent =
+          answer;
+
+
+        $("#mathStatus")
+          .textContent =
+          "Hoàn tất";
+
+
+      }
+
+      catch (
+        error
+      ) {
+
+        $("#mathStatus")
+          .textContent =
+          "Lỗi: "
+          + error.message;
+
+      }
+
+    };
+
+
+  $("#mathSpeak")
+    .onclick =
+    () => {
+
+      speak(
+        $("#mathResult")
+          .textContent
+      );
+
+    };
+
+
+  /* ===================== */
+  /* TRANSLATION */
+  /* ===================== */
+
+  $("#transGo")
+    .onclick =
+    async () => {
+
+      const text =
+        $("#transInput")
+          .value
+          .trim();
+
+
+      const target =
+        $("#transTarget")
+          .value;
+
+
+      if (
+        !text
+      ) {
+
+        toast(
+          "Nhập nội dung cần dịch"
+        );
+
+        return;
+
+      }
+
+
+      const client =
+        worker();
+
+
+      $("#transStatus")
+        .textContent =
+        "Đang dịch...";
+
+
+      try {
+
+        if (
+          !client
+          ||
+          !client.translateText
+        ) {
+
+          throw new Error(
+            "Worker chưa sẵn sàng"
+          );
+
+        }
+
+
+        const response =
+          await client
+            .translateText(
+              text,
+              target
+            );
+
+
+        const output =
+          response?.translation
+          ||
+          response?.result
+          ||
+          response?.text
+          ||
+          JSON.stringify(
+            response
+          );
+
+
+        $("#transResult")
+          .textContent =
+          output;
+
+
+        $("#transStatus")
+          .textContent =
+          "Hoàn tất";
+
+      }
+
+      catch (
+        error
+      ) {
+
+        $("#transStatus")
+          .textContent =
+          "Lỗi: "
+          + error.message;
+
+      }
+
+    };
+
+
+  $("#transSpeak")
+    .onclick =
+    () => {
+
+      speak(
+
+        $("#transResult")
+          .textContent,
+
+        $("#transTarget")
+          .value
+
+      );
+
+    };
+
+
+  /* ===================== */
+  /* VISION */
+  /* ===================== */
+
+  let visionData = "";
+
+
+  $("#visionFile")
+    .onchange =
+    event => {
+
+      const file =
+        event
+          .target
+          .files?.[0];
+
+
+      if (
+        !file
+      ) {
+
+        return;
+
+      }
+
+
+      const reader =
+        new FileReader();
+
+
+      reader.onload =
+        () => {
+
+          visionData =
+            reader.result;
+
+
+          $("#visionPreview")
+            .src =
+            visionData;
+
+
+          $("#visionPreview")
+            .hidden =
+            false;
+
+        };
+
+
+      reader
+        .readAsDataURL(
+          file
+        );
+
+    };
+
+
+  $("#visionAnalyze")
+    .onclick =
+    async () => {
+
+      if (
+        !visionData
+      ) {
+
+        toast(
+          "Chọn ảnh trước"
+        );
+
+        return;
+
+      }
+
+
+      const client =
+        worker();
+
+
+      $("#visionStatus")
+        .textContent =
+        "Rii đang quan sát...";
+
+
+      try {
+
+        if (
+          !client
+          ||
+          !client.analyzeImage
+        ) {
+
+          throw new Error(
+            "Worker chưa sẵn sàng"
+          );
+
+        }
+
+
+        const response =
+          await client
+            .analyzeImage(
+              visionData,
+              profile.lang
+            );
+
+
+        const output =
+          response?.answer
+          ||
+          response?.result
+          ||
+          response?.description
+          ||
+          response?.text
+          ||
+          JSON.stringify(
+            response
+          );
+
+
+        $("#visionResult")
+          .textContent =
+          output;
+
+
+        $("#visionStatus")
+          .textContent =
+          "Hoàn tất";
+
+      }
+
+      catch (
+        error
+      ) {
+
+        $("#visionStatus")
+          .textContent =
+          "Lỗi: "
+          + error.message;
+
+      }
+
+    };
+
+
+  $("#visionSpeak")
+    .onclick =
+    () => {
+
+      speak(
+        $("#visionResult")
+          .textContent
+      );
+
+    };
+
+
+  /* ===================== */
+  /* NOTES */
+  /* ===================== */
+
+  function escapeHTML(
+    text
+  ) {
+
+    return String(
+      text
+    )
+      .replace(
+        /&/g,
+        "&amp;"
+      )
+      .replace(
+        /</g,
+        "&lt;"
+      )
+      .replace(
+        />/g,
+        "&gt;"
+      )
+      .replace(
+        /"/g,
+        "&quot;"
+      );
+
+  }
+
+
+  function renderNotes() {
+
+    const list =
+      $("#noteList");
+
+
+    if (
+      !notes.length
+    ) {
+
+      list.innerHTML =
+        `
+        <div class="status">
+          Chưa có ghi chú.
+        </div>
+        `;
+
+      return;
+
+    }
+
+
+    list.innerHTML =
+      notes
         .map(
-          c=>
-            `<button class="answer-btn" onclick="answerGame(this,'${String(c).replaceAll("'","\\'")}')">${escapeHtml(c)}</button>`
+          (
+            note,
+            index
+          ) => {
+
+            return `
+              <div class="note-item">
+
+                <b>
+                  ${escapeHTML(
+                    note.text
+                  )}
+                </b>
+
+                <br>
+
+                <small>
+                  ${
+                    note.time
+                    ||
+                    "Không đặt giờ"
+                  }
+                </small>
+
+                <button
+                  class="btn"
+                  data-delete-note="${index}"
+                  style="
+                    float:right;
+                    padding:5px 9px;
+                  "
+                >
+                  Xóa
+                </button>
+
+              </div>
+            `;
+
+          }
         )
         .join("");
 
-  }else{
 
-    el("gameAnswers").innerHTML="";
-    el("gameVisionTools").classList.remove("hidden");
-    startGameCamera();
-  }
-};
-
-window.answerGame=(button,value)=>{
-  const ok=
-    String(value)===
-    String(currentGameQuestion.answer);
-
-  document
-    .querySelectorAll("#gameAnswers .answer-btn")
-    .forEach(b=>b.disabled=true);
-
-  button.classList.add(
-    ok
-      ? "correct"
-      : "wrong"
-  );
-
-  awardGame(ok);
-  showGameFeedback(ok);
-};
-
-function awardGame(ok){
-  const s=getGameScore();
-
-  if(ok){
-    s[currentGame]+=
-      10+
-      Math.min(
-        10,
-        getProfile().grade*2
-      );
-
-    s.streak=
-      (s.streak||0)+1;
-  }else{
-    s.streak=0;
-  }
-
-  saveGameScore(s);
-}
-
-function showGameFeedback(
-  ok,
-  extra=""
-){
-  const f=el("gameFeedback");
-
-  f.textContent=
-    (
-      ok
-        ? text().correct
-        : text().wrong
+    $$(
+      "[data-delete-note]"
     )
-    +
-    (
-      extra
-        ? " "+extra
-        : ""
-    );
-
-  f.classList.add("show");
-  el("nextGameButton").classList.remove("hidden");
-}
-
-window.startGameCamera=async()=>{
-  try{
-    stopGameCamera();
-
-    if(!navigator.mediaDevices?.getUserMedia){
-      throw new Error("camera");
-    }
-
-    gameCameraStream=
-      await navigator.mediaDevices.getUserMedia({
-        video:{
-          facingMode:{
-            ideal:"environment"
-          }
-        },
-        audio:false
-      });
-
-    const v=
-      el("gameCameraVideo");
-
-    v.srcObject=
-      gameCameraStream;
-
-    await v.play();
-
-  }catch{
-    showGameFeedback(
-      false,
-      text().gameVisionUnavailable
-    );
-  }
-};
-
-function stopGameCamera(){
-  if(gameCameraStream){
-    gameCameraStream
-      .getTracks()
       .forEach(
-        t=>t.stop()
-      );
+        button => {
 
-    gameCameraStream=null;
-  }
+          button.onclick =
+            () => {
 
-  if(el("gameCameraVideo")){
-    el("gameCameraVideo")
-      .srcObject=null;
-  }
-}
+              const index =
+                Number(
+                  button.dataset
+                    .deleteNote
+                );
 
-window.checkGameVision=async()=>{
-  if(
-    !currentGameQuestion
-    ||
-    currentGame!=="vision"
-  ){
-    return;
-  }
 
-  const v=
-    el("gameCameraVideo");
+              notes.splice(
+                index,
+                1
+              );
 
-  const c=
-    el("gameCameraCanvas");
 
-  if(
-    !gameCameraStream
-    ||
-    !v.videoWidth
-  ){
-    return showGameFeedback(
-      false,
-      text().gameVisionUnavailable
-    );
-  }
+              localStorage
+                .setItem(
+                  STORE.notes,
+                  JSON.stringify(
+                    notes
+                  )
+                );
 
-  const scale=
-    Math.min(
-      1,
-      960/
-      Math.max(
-        v.videoWidth,
-        v.videoHeight
-      )
-    );
 
-  c.width=
-    Math.round(
-      v.videoWidth*scale
-    );
+              renderNotes();
 
-  c.height=
-    Math.round(
-      v.videoHeight*scale
-    );
+            };
 
-  c.getContext("2d")
-    .drawImage(
-      v,
-      0,
-      0,
-      c.width,
-      c.height
-    );
-
-  if(
-    !RiiWorkerClientV2?.analyzeImage
-  ){
-    return showGameFeedback(
-      false,
-      text().gameVisionUnavailable
-    );
-  }
-
-  try{
-
-    const l=
-      currentLanguage();
-
-    const r=
-      await RiiWorkerClientV2
-        .analyzeImage(
-          c,
-          {
-            question:
-              "Identify the main object and its color briefly.",
-
-            targetLanguage:
-              l.code,
-
-            targetLanguageName:
-              l.english
-          }
-        );
-
-    const hay=[
-      r.displayName,
-      r.objectName,
-      r.color,
-      r.category,
-      r.answer,
-      r.childExplanation
-    ]
-      .filter(Boolean)
-      .join(" ")
-      .toLowerCase();
-
-    const ok=
-      currentGameQuestion
-        .keywords
-        .some(
-          k=>
-            hay.includes(
-              k.toLowerCase()
-            )
-        );
-
-    awardGame(ok);
-
-    showGameFeedback(
-      ok,
-      r.displayName
-      ||
-      r.objectName
-      ||
-      ""
-    );
-
-    stopGameCamera();
-
-  }catch{
-
-    showGameFeedback(
-      false,
-      text().gameVisionUnavailable
-    );
-  }
-};
-
-window.setRankTab=tab=>{
-  currentRankTab=tab;
-
-  document
-    .querySelectorAll(".rank-tab")
-    .forEach(
-      b=>
-        b.classList.toggle(
-          "active",
-          b.dataset.rank===tab
-        )
-    );
-
-  renderRanking();
-};
-
-function renderRanking(){
-
-  const p=getProfile();
-  const s=getGameScore();
-
-  const mine={
-    name:p.name,
-    grade:p.grade,
-    math:s.math,
-    language:s.language,
-    vision:s.vision,
-    overall:overallScore(s)
-  };
-
-  const bots=[
-    {name:"Nova",math:180,language:140,vision:150},
-    {name:"Milo",math:120,language:200,vision:130},
-    {name:"Luna",math:160,language:150,vision:210},
-    {name:"Kiro",math:110,language:100,vision:170}
-  ]
-    .map(
-      x=>({
-        ...x,
-        grade:p.grade,
-        overall:
-          Math.round(
-            (
-              x.math+
-              x.language+
-              x.vision
-            )/3
-          )
-      })
-    );
-
-  const rows=[
-    mine,
-    ...bots
-  ]
-    .sort(
-      (a,b)=>
-        b[currentRankTab]-
-        a[currentRankTab]
-    );
-
-  el("rankList").innerHTML=
-    rows
-      .map(
-        (r,i)=>
-          `
-          <div class="rank-row">
-
-            <div class="rank-pos">
-              #${i+1}
-            </div>
-
-            <div>
-
-              <div class="rank-name">
-                ${escapeHtml(r.name)}
-                ${r.name===mine.name?" • You":""}
-              </div>
-
-              <div class="rank-meta">
-                ${escapeHtml(
-                  text().grade+
-                  " "+
-                  r.grade
-                )}
-              </div>
-
-            </div>
-
-            <div class="rank-score">
-              ${r[currentRankTab]}
-            </div>
-
-          </div>
-          `
-      )
-      .join("");
-}
-
-window.closeQuick=
-()=>el("quickOverlay")
-  .classList
-  .remove("open");
-
-window.quickOpen=
-name=>{
-  closeQuick();
-  openCenter(name);
-};
-
-const rii=
-  el("riiButton");
-
-let dragging=false;
-let moved=false;
-let offsetX=0;
-let offsetY=0;
-let startX=0;
-let startY=0;
-
-const clamp=
-(v,min,max)=>
-  Math.min(
-    Math.max(
-      v,
-      min
-    ),
-    max
-  );
-
-rii.addEventListener(
-  "pointerdown",
-  e=>{
-    dragging=true;
-    moved=false;
-
-    startX=e.clientX;
-    startY=e.clientY;
-
-    const r=
-      rii.getBoundingClientRect();
-
-    offsetX=
-      e.clientX-
-      r.left;
-
-    offsetY=
-      e.clientY-
-      r.top;
-
-    try{
-      rii.setPointerCapture(
-        e.pointerId
-      );
-    }catch{}
-  }
-);
-
-rii.addEventListener(
-  "pointermove",
-  e=>{
-    if(!dragging)return;
-
-    if(
-      Math.hypot(
-        e.clientX-startX,
-        e.clientY-startY
-      )>4
-    ){
-      moved=true;
-    }
-
-    const size=
-      rii.offsetWidth;
-
-    rii.style.left=
-      clamp(
-        e.clientX-offsetX,
-        6,
-        innerWidth-size-6
-      )
-      +"px";
-
-    rii.style.top=
-      clamp(
-        e.clientY-offsetY,
-        8,
-        innerHeight-size-12
-      )
-      +"px";
-  }
-);
-
-rii.addEventListener(
-  "pointerup",
-  e=>{
-    dragging=false;
-
-    try{
-      rii.releasePointerCapture(
-        e.pointerId
-      );
-    }catch{}
-
-    if(!moved){
-      el("quickOverlay")
-        .classList
-        .add("open");
-    }
-  }
-);
-
-rii.addEventListener(
-  "pointercancel",
-  ()=>dragging=false
-);
-
-[
-  "languageOverlay",
-  "quickOverlay",
-  "profileOverlay"
-]
-.forEach(
-  id=>
-    el(id)
-      .addEventListener(
-        "click",
-        e=>{
-          if(
-            e.target.id===
-            id
-          ){
-            e.currentTarget
-              .classList
-              .remove("open");
-          }
         }
-      )
-);
+      );
 
-document.addEventListener(
-  "visibilitychange",
-  ()=>{
-    if(
-      document.visibilityState===
-      "visible"
-    ){
-      checkAlarms();
-    }
   }
-);
 
-try{
 
-  validateBoot();
+  $("#saveNote")
+    .onclick =
+    () => {
 
-  if(
-    !languages.some(
-      x=>
-        x.code===
-        localStorage.getItem(
-          LANGUAGE_KEY
-        )
-    )
-  ){
-    localStorage.setItem(
-      LANGUAGE_KEY,
-      "vi"
+      const text =
+        $("#noteText")
+          .value
+          .trim();
+
+
+      const time =
+        $("#noteTime")
+          .value;
+
+
+      if (
+        !text
+      ) {
+
+        toast(
+          "Nhập ghi chú"
+        );
+
+        return;
+
+      }
+
+
+      notes.unshift(
+        {
+
+          text,
+
+          time
+
+        }
+      );
+
+
+      localStorage
+        .setItem(
+          STORE.notes,
+          JSON.stringify(
+            notes
+          )
+        );
+
+
+      $("#noteText")
+        .value =
+        "";
+
+
+      renderNotes();
+
+
+      toast(
+        "Đã lưu"
+      );
+
+    };
+
+
+  renderNotes();
+
+
+  /* ===================== */
+  /* GAME */
+  /* ===================== */
+
+  function setGame(
+    mode
+  ) {
+
+    game.mode =
+      mode;
+
+
+    $$(".game-choice")
+      .forEach(
+        button => {
+
+          button.classList
+            .toggle(
+              "active",
+              button.dataset.mode
+              === mode
+            );
+
+        }
+      );
+
+
+    openSheet(
+      "game"
     );
+
+
+    newQuestion();
+
   }
 
-  if(
-    !localStorage.getItem(
-      PROFILE_KEY
-    )
-  ){
-    saveJSON(
-      PROFILE_KEY,
-      {
-        name:"Rii Kid",
-        grade:1
+
+  $$("[data-game]")
+    .forEach(
+      button => {
+
+        button.onclick =
+          () => {
+
+            setGame(
+              button.dataset.game
+            );
+
+          };
+
       }
     );
+
+
+  $$(".game-choice")
+    .forEach(
+      button => {
+
+        button.onclick =
+          () => {
+
+            game.mode =
+              button.dataset.mode;
+
+
+            $$(".game-choice")
+              .forEach(
+                item => {
+
+                  item.classList
+                    .toggle(
+                      "active",
+                      item === button
+                    );
+
+                }
+              );
+
+
+            newQuestion();
+
+          };
+
+      }
+    );
+
+
+  $("#startGameHot")
+    .onclick =
+    () => {
+
+      setGame(
+        game.mode
+      );
+
+    };
+
+
+  function newQuestion() {
+
+    let question = "";
+
+
+    if (
+      game.mode
+      === "math"
+    ) {
+
+      const a =
+        2
+        +
+        Math.floor(
+          Math.random()
+          * 20
+        );
+
+
+      const b =
+        2
+        +
+        Math.floor(
+          Math.random()
+          * 20
+        );
+
+
+      game.answer =
+        String(
+          a + b
+        );
+
+
+      question =
+        `${a} + ${b} = ?`;
+
+    }
+
+
+    else if (
+      game.mode
+      === "language"
+    ) {
+
+      const bank = [
+
+        [
+          "hello",
+          "xin chào"
+        ],
+
+        [
+          "book",
+          "quyển sách"
+        ],
+
+        [
+          "water",
+          "nước"
+        ],
+
+        [
+          "cat",
+          "con mèo"
+        ]
+
+      ];
+
+
+      const pair =
+        bank[
+          Math.floor(
+            Math.random()
+            * bank.length
+          )
+        ];
+
+
+      game.answer =
+        pair[1]
+          .toLowerCase();
+
+
+      question =
+        `Dịch sang tiếng Việt: “${pair[0]}”`;
+
+    }
+
+
+    else {
+
+      game.answer =
+        "camera";
+
+
+      question =
+        "Mở Camera AI và tìm một vật thể quanh con. Sau đó nhập từ “camera” để hoàn thành thử thách.";
+
+    }
+
+
+    $("#gameQuestion")
+      .textContent =
+      question;
+
+
+    $("#gameAnswer")
+      .value =
+      "";
+
+
+    $("#gameStatus")
+      .textContent =
+      "";
+
   }
 
-  try{
-    window
-      .speechSynthesis
-      ?.getVoices();
-  }catch{}
 
-  setDefaultAlarmDateTime();
+  $("#newQuestion")
+    .onclick =
+    newQuestion;
 
-  render();
 
-  setInterval(
-    checkAlarms,
-    5000
-  );
+  $("#checkAnswer")
+    .onclick =
+    () => {
 
-  checkAlarms();
+      const answer =
+        $("#gameAnswer")
+          .value
+          .trim()
+          .toLowerCase();
 
-  console.log(
-    "Rii AI V"+
-    APP_VERSION+
-    " Future Learning Core ready"
-  );
 
-}catch(error){
+      if (
+        !answer
+      ) {
 
-  console.error(
-    "Rii boot failed",
-    error
-  );
+        toast(
+          "Nhập đáp án"
+        );
 
-  showBootError(
-    error
-  );
-}
+        return;
+
+      }
+
+
+      if (
+        answer
+        ===
+        String(
+          game.answer
+        )
+          .toLowerCase()
+      ) {
+
+        profile.xp =
+          (
+            profile.xp
+            || 0
+          )
+          + 20;
+
+
+        localStorage
+          .setItem(
+            STORE.profile,
+            JSON.stringify(
+              profile
+            )
+          );
+
+
+        $("#gameStatus")
+          .textContent =
+          "Chính xác! +20 XP";
+
+
+        speak(
+          "Chính xác!"
+        );
+
+      }
+
+      else {
+
+        $("#gameStatus")
+          .textContent =
+          "Chưa đúng, thử lại nhé.";
+
+      }
+
+    };
+
+
+  /* ===================== */
+  /* LEADERBOARD */
+  /* ===================== */
+
+  $$("[data-rank]")
+    .forEach(
+      button => {
+
+        button.onclick =
+          () => {
+
+            const type =
+              button.dataset.rank;
+
+
+            const label = {
+
+              overall:
+                "Tổng",
+
+              math:
+                "Toán",
+
+              language:
+                "Phiên dịch",
+
+              vision:
+                "Camera"
+
+            }[type]
+            || type;
+
+
+            toast(
+              "Bảng xếp hạng: "
+              + label
+            );
+
+          };
+
+      }
+    );
+
+
+  /* ===================== */
+  /* HOME */
+  /* ===================== */
+
+  $("#navHome")
+    .onclick =
+    () => {
+
+      window.scrollTo(
+        {
+
+          top:0,
+
+          behavior:"smooth"
+
+        }
+      );
+
+    };
+
+
+  /* ===================== */
+  /* PROFILE */
+  /* ===================== */
+
+  function fillProfile() {
+
+    $("#profileName")
+      .value =
+      profile.name
+      || "Rii Kid";
+
+
+    $("#profileGrade")
+      .value =
+      String(
+        profile.grade
+        || 3
+      );
+
+
+    $("#appLang")
+      .value =
+      profile.lang
+      || "vi";
+
+  }
+
+
+  fillProfile();
+
+
+  $("#saveProfile")
+    .onclick =
+    () => {
+
+      profile.name =
+        $("#profileName")
+          .value
+          .trim()
+        ||
+        "Rii Kid";
+
+
+      profile.grade =
+        Number(
+          $("#profileGrade")
+            .value
+        )
+        || 3;
+
+
+      profile.lang =
+        $("#appLang")
+          .value
+        || "vi";
+
+
+      localStorage
+        .setItem(
+          STORE.profile,
+          JSON.stringify(
+            profile
+          )
+        );
+
+
+      toast(
+        "Đã lưu hồ sơ"
+      );
+
+
+      closeSheets();
+
+    };
 
 })();
 </script>
+
 </body>
-</html> 
+</html>
