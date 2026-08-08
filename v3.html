@@ -11,17 +11,13 @@
   --night:#020713;
   --night2:#061329;
   --night3:#0b2345;
-
   --gold:#f1c35b;
   --gold2:#ffe59a;
   --gold3:#a96f20;
-
   --cyan:#43b9ff;
   --cyan2:#1d6eaa;
-
   --white:#f8f5ea;
   --muted:#91a7bb;
-
   --line:rgba(242,197,92,.28);
 }
 
@@ -1339,8 +1335,6 @@ textarea{
 
       <div class="learning-grid">
 
-        <!-- MATH -->
-
         <button class="learn-item"
                 data-open="math">
 
@@ -1397,8 +1391,6 @@ textarea{
         </button>
 
 
-        <!-- TRANSLATE -->
-
         <button class="learn-item"
                 data-open="translate">
 
@@ -1454,8 +1446,6 @@ textarea{
 
         </button>
 
-
-        <!-- VISION -->
 
         <button class="learn-item"
                 data-open="vision">
@@ -1514,8 +1504,6 @@ textarea{
 
         </button>
 
-
-        <!-- NOTES -->
 
         <button class="learn-item"
                 data-open="notes">
@@ -1989,8 +1977,6 @@ textarea{
 </nav>
 
 
-<!-- MATH -->
-
 <div class="sheet"
      id="sheet-math">
 
@@ -2048,8 +2034,6 @@ textarea{
 
 </div>
 
-
-<!-- TRANSLATE -->
 
 <div class="sheet"
      id="sheet-translate">
@@ -2142,8 +2126,6 @@ textarea{
 </div>
 
 
-<!-- VISION -->
-
 <div class="sheet"
      id="sheet-vision">
 
@@ -2207,7 +2189,7 @@ textarea{
   </section>
 
 </div>
-<!-- NOTES -->
+
 
 <div class="sheet"
      id="sheet-notes">
@@ -2263,8 +2245,6 @@ textarea{
 
 </div>
 
-
-<!-- GAME -->
 
 <div class="sheet"
      id="sheet-game">
@@ -2326,6 +2306,7 @@ textarea{
 
       <input id="gameAnswer"
              placeholder="Nhập đáp án">
+
     </div>
 
 
@@ -2351,8 +2332,6 @@ textarea{
 
 </div>
 
-
-<!-- SETTINGS -->
 
 <div class="sheet"
      id="sheet-settings">
@@ -2712,10 +2691,6 @@ textarea{
     );
 
 
-  /* ======================
-     PROFILE
-  ====================== */
-
   function renderProfile(){
 
     $("#gradeButton")
@@ -2793,10 +2768,6 @@ textarea{
       }
     );
 
-
-  /* ======================
-     SPEECH
-  ====================== */
 
   function speak(
     text,
@@ -2996,10 +2967,6 @@ textarea{
     );
 
 
-  /* ======================
-     MATH
-  ====================== */
-
   $("#mathSolve")
     .addEventListener(
       "click",
@@ -3091,10 +3058,6 @@ textarea{
         )
     );
 
-
-  /* ======================
-     TRANSLATION
-  ====================== */
 
   $("#transGo")
     .addEventListener(
@@ -3193,10 +3156,6 @@ textarea{
         )
     );
 
-
-  /* ======================
-     VISION
-  ====================== */
 
   $("#visionFile")
     .addEventListener(
@@ -3327,10 +3286,6 @@ textarea{
         )
     );
 
-
-  /* ======================
-     NOTES
-  ====================== */
 
   function escapeHTML(text){
 
@@ -3495,10 +3450,6 @@ textarea{
       }
     );
 
-
-  /* ======================
-     GAME
-  ====================== */
 
   function openGame(mode){
 
@@ -3839,10 +3790,6 @@ textarea{
     );
 
 
-  /* ======================
-     RANKING
-  ====================== */
-
   $$(".rank-tab")
     .forEach(
       button => {
@@ -3883,10 +3830,6 @@ textarea{
       }
     );
 
-
-  /* ======================
-     INITIAL
-  ====================== */
 
   document.addEventListener(
     "visibilitychange",
